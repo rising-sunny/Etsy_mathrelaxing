@@ -1,0 +1,249 @@
+import json
+import urllib.request
+import urllib.parse
+import os
+import uuid
+import mimetypes
+
+CLIENT_ID = "1nkkipgbsfholyrhfkqqqkjj"
+SHARED_SECRET = "3qm1l21bul"
+TOKEN_FILE = "etsy_token.json"
+
+class EtsyManager:
+    def __init__(self):
+        self.base_url = "https://api.etsy.com/v3/application"
+        self.token_data = self.load_tokens()
+        self.shop_id = None
+        
+    def load_tokens(self):
+        if not os.path.exists(TOKEN_FILE):
+            raise Exception("No se encontró etsy_token.json. ¡Por favor ejecuta auth.py primero!")
+        with open(TOKEN_FILE, 'r') as f:
+            return json.load(f)
+            
+    def save_tokens(self, data):
+        with open(TOKEN_FILE, 'w') as f:
+            json.dump(data, f)
+        self.token_data = data
+        
+    def refresh_token(self):
+        print("El token ha expirado. Refrescando...")
+        url = "https://api.etsy.com/v3/public/oauth/token"
+        data = urllib.parse.urlencode({
+            'grant_type': 'refresh_token',
+            'client_id': CLIENT_ID,
+            'refresh_token': self.token_data['refresh_token']
+        }).encode('ascii')
+        
+        req = urllib.request.Request(url, data=data)
+        try:
+            with urllib.request.urlopen(req) as response:
+                new_token_data = json.loads(response.read().decode('utf-8'))
+                self.save_tokens(new_token_data)
+                print("¡Token refrescado con éxito!")
+        except Exception as e:
+            print("Error al refrescar el token.")
+            if hasattr(e, 'read'):
+                print(e.read().decode('utf-8'))
+            raise Exception("No se pudo refrescar el token. Tendrás que volver a autenticarte.")
+
+    def _encode_multipart_formdata(self, fields, files):
+        boundary = uuid.uuid4().hex
+        body = bytearray()
+        
+        for key, value in fields.items():
+            body.extend(f'--{boundary}\r\n'.encode('utf-8'))
+            body.extend(f'Content-Disposition: form-data; name="{key}"\r\n\r\n'.encode('utf-8'))
+            body.extend(f'{value}\r\n'.encode('utf-8'))
+            
+        for key, file_info in files.items():
+            filename, content, content_type = file_info
+            body.extend(f'--{boundary}\r\n'.encode('utf-8'))
+            body.extend(f'Content-Disposition: form-data; name="{key}"; filename="{filename}"\r\n'.encode('utf-8'))
+            body.extend(f'Content-Type: {content_type}\r\n\r\n'.encode('utf-8'))
+            body.extend(content)
+            body.extend(b'\r\n')
+            
+        body.extend(f'--{boundary}--\r\n'.encode('utf-8'))
+        content_type = f'multipart/form-data; boundary={boundary}'
+        return content_type, body
+
+    def make_request(self, method, endpoint, payload=None, is_multipart=False, multipart_data=None, retry=True):
+        url = f"{self.base_url}{endpoint}"
+        
+        headers = {
+            'x-api-key': f"{CLIENT_ID}:{SHARED_SECRET}",
+            'Authorization': f"Bearer {self.token_data['access_token']}"
+        }
+        
+        data = None
+        if is_multipart and multipart_data:
+            fields, files = multipart_data
+            content_type, data = self._encode_multipart_formdata(fields, files)
+            headers['Content-Type'] = content_type
+        elif payload:
+            data = urllib.parse.urlencode(payload).encode('utf-8')
+            headers['Content-Type'] = 'application/x-www-form-urlencoded'
+            
+        req = urllib.request.Request(url, data=data, headers=headers, method=method)
+        
+        try:
+            with urllib.request.urlopen(req) as response:
+                raw = response.read().decode('utf-8')
+                return json.loads(raw) if raw.strip() else {}  # DELETE devuelve 204 sin cuerpo
+        except urllib.error.HTTPError as e:
+            if e.code == 401 and retry:
+                self.refresh_token()
+                return self.make_request(method, endpoint, payload, is_multipart, multipart_data, retry=False)
+            else:
+                print(f"Error de API ({e.code}) en {endpoint}:")
+                print(e.read().decode('utf-8'))
+                raise
+
+    def get_shop_id(self):
+        if self.shop_id:
+            return self.shop_id
+            
+        print("Obteniendo información de la tienda...")
+        me = self.make_request('GET', '/users/me')
+        user_id = me['user_id']
+        
+        shops = self.make_request('GET', f'/users/{user_id}/shops')
+        self.shop_id = shops['shop_id']
+        return self.shop_id
+        
+    def create_draft_listing(self, title, description, price, taxonomy_id, is_digital=True, quantity=999, tags=None):
+        shop_id = self.get_shop_id()
+        print(f"\nCreando borrador: {title[:30]}...")
+
+        payload = {
+            'quantity': quantity,
+            'title': title,
+            'description': description,
+            'price': price,
+            'who_made': 'i_did',
+            'when_made': '2020_2026',
+            'taxonomy_id': taxonomy_id,
+            'is_supply': 'false',
+            'state': 'draft',
+            'type': 'download' if is_digital else 'physical'
+        }
+        if tags:
+            # Etsy: máx 13 tags, cada una ≤20 chars; se envían separadas por comas
+            payload['tags'] = ','.join(t.strip() for t in tags[:13] if len(t.strip()) <= 20)
+
+        result = self.make_request('POST', f'/shops/{shop_id}/listings', payload=payload)
+        print(f"Borrador creado exitosamente con ID: {result['listing_id']}")
+        return result['listing_id']
+
+    def update_listing(self, listing_id, **fields):
+        """PATCH a un listing existente. Para tags pasar tags=[...]."""
+        shop_id = self.get_shop_id()
+        payload = {}
+        for k, v in fields.items():
+            if k == 'tags' and isinstance(v, (list, tuple)):
+                payload['tags'] = ','.join(t.strip() for t in v[:13] if len(t.strip()) <= 20)
+            else:
+                payload[k] = v
+        print(f"Actualizando listing {listing_id}: {list(payload.keys())}")
+        return self.make_request('PATCH', f'/shops/{shop_id}/listings/{listing_id}', payload=payload)
+
+    def upload_listing_image(self, listing_id, image_path, rank=1):
+        shop_id = self.get_shop_id()
+        print(f"Subiendo imagen {os.path.basename(image_path)} (rank {rank})...")
+        
+        mime_type, _ = mimetypes.guess_type(image_path)
+        if not mime_type:
+            mime_type = 'image/jpeg'
+            
+        with open(image_path, 'rb') as f:
+            content = f.read()
+            
+        fields = {'rank': str(rank)}
+        files = {'image': (os.path.basename(image_path), content, mime_type)}
+        
+        result = self.make_request('POST', f'/shops/{shop_id}/listings/{listing_id}/images', 
+                                 is_multipart=True, multipart_data=(fields, files))
+        print("Imagen subida con éxito.")
+        return result
+        
+    def upload_listing_file(self, listing_id, file_path):
+        shop_id = self.get_shop_id()
+        print(f"Subiendo archivo digital {os.path.basename(file_path)}...")
+        
+        mime_type, _ = mimetypes.guess_type(file_path)
+        if not mime_type:
+            mime_type = 'application/octet-stream'
+            
+        with open(file_path, 'rb') as f:
+            content = f.read()
+            
+        fields = {'name': os.path.basename(file_path)}
+        files = {'file': (os.path.basename(file_path), content, mime_type)}
+        
+        result = self.make_request('POST', f'/shops/{shop_id}/listings/{listing_id}/files', 
+                                 is_multipart=True, multipart_data=(fields, files))
+        print("Archivo digital subido con éxito.")
+        return result
+
+    def upload_listing_video(self, listing_id, video_path):
+        """Sube un video al endpoint /videos (NO al de imágenes).
+        Etsy: 1 video por listing, mp4, 5-15s aprox, <100MB."""
+        shop_id = self.get_shop_id()
+        print(f"Subiendo video {os.path.basename(video_path)}...")
+
+        with open(video_path, 'rb') as f:
+            content = f.read()
+
+        fields = {'name': os.path.basename(video_path)}
+        files = {'video': (os.path.basename(video_path), content, 'video/mp4')}
+
+        result = self.make_request('POST', f'/shops/{shop_id}/listings/{listing_id}/videos',
+                                 is_multipart=True, multipart_data=(fields, files))
+        print("Video subido con éxito.")
+        return result
+
+    def delete_listing_image(self, listing_id, listing_image_id):
+        shop_id = self.get_shop_id()
+        print(f"Eliminando imagen {listing_image_id} del listing {listing_id}...")
+        return self.make_request('DELETE', f'/shops/{shop_id}/listings/{listing_id}/images/{listing_image_id}')
+
+    def delete_listing_file(self, listing_id, listing_file_id):
+        shop_id = self.get_shop_id()
+        print(f"Eliminando archivo {listing_file_id} del listing {listing_id}...")
+        return self.make_request('DELETE', f'/shops/{shop_id}/listings/{listing_id}/files/{listing_file_id}')
+
+    def delete_listing(self, listing_id):
+        """Elimina un listing (útil para limpiar borradores fallidos)."""
+        print(f"Eliminando listing {listing_id}...")
+        return self.make_request('DELETE', f'/listings/{listing_id}')
+
+    def create_full_product(self, title, description, price, taxonomy_id, image_paths,
+                            digital_file_paths=None, video_path=None, tags=None):
+        is_digital = bool(digital_file_paths)
+        listing_id = self.create_draft_listing(title, description, price, taxonomy_id, is_digital, tags=tags)
+
+        for idx, img_path in enumerate(image_paths, start=1):
+            if os.path.exists(img_path):
+                self.upload_listing_image(listing_id, img_path, rank=idx)
+            else:
+                print(f"Advertencia: No se encontró la imagen {img_path}")
+
+        if video_path and os.path.exists(video_path):
+            try:
+                self.upload_listing_video(listing_id, video_path)
+            except Exception as e:
+                print(f"Advertencia: el video no se pudo subir ({e}). Continúo sin video.")
+
+        if digital_file_paths:
+            for file_path in digital_file_paths:
+                if os.path.exists(file_path):
+                    self.upload_listing_file(listing_id, file_path)
+                else:
+                    print(f"Advertencia: No se encontró el archivo digital {file_path}")
+
+        print(f"\n¡Proceso completado! El producto '{title[:30]}...' está en tus borradores de Etsy.")
+        return listing_id
+
+if __name__ == "__main__":
+    print("El módulo etsy_manager.py ha sido actualizado y está listo para usarse.")
