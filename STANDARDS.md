@@ -72,14 +72,21 @@ Implementaciones de referencia (copiar el patrón):
 - **Referencia**: `build_celtic_ipad.py` (+ `build_celtic_ipad_video.py` para el mp4).
 
 ### 4. Animación seamless loop — MP4
-- **Ejemplos**: Thomas / De Jong / Julia / Voronoi Cell attractors.
-- **Estructura**: MP4 1080×1080, ~60fps, loop perfecto. El **archivo de descarga
+- **Ejemplos**: Thomas / De Jong / Julia / Voronoi Cell attractors (los 4 ya construidos).
+- **Estructura**: MP4 1080×1080, ~30-60fps, loop perfecto. El **archivo de descarga
   es el MP4 limpio 1080p**; el **video del listing es un preview 540p CON marca de
   agua** (el producto ES un video → si subes el limpio como preview, lo copian).
+- **Loop perfecto**: variar el/los parámetro(s) del sistema con una frecuencia
+  angular entera respecto al total de frames (Voronoi), o recorrer una
+  trayectoria CIRCULAR en el espacio de parámetros con `cos`/`sin` de la misma
+  fase (De Jong) — nunca un solo `sin` en fase para dos parámetros distintos,
+  porque retraza la misma trayectoria de ida y vuelta en vez de mutar en una
+  sola dirección (bug detectado y corregido en `generate_dejong_loop.py`).
 - **Imágenes**: 3 previews (hero / specs / loop).
 - **Precio**: $4.99–5.99 · **taxonomy_id**: 2078 (`TAXONOMY["digital_art"]`).
 - **Builder**: usar `brand.encode_mp4` para el encode. (Sin plantilla dedicada aún;
-  seguir el patrón de `build_celtic_ipad_video.py` para frames + encode.)
+  seguir el patrón de `generate_dejong_loop.py` o `build_celtic_ipad_video.py` para
+  frames + encode.)
 
 ### 5. Art print generativo — imagen estática
 - **Ejemplos**: Newton / Clifford / Lorenz attractors.

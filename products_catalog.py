@@ -190,6 +190,24 @@ digital frames, or social media backgrounds.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
 
+    "de_jong_attractor": """\
+Instant download — seamless loop animation (MP4, 1080×1080, 30 fps, 8 s).
+The De Jong attractor — a chaotic dynamical system discovered by physicist \
+Peter de Jong — rendered as a glowing electric-cyan filament against deep \
+indigo. Every frame morphs continuously along a closed parameter path, so \
+the shape never stops evolving yet always returns exactly to where it began. \
+Loops perfectly for wallpapers, screensavers, digital frames, or social \
+media backgrounds.
+
+► What you get
+• 1 MP4 file — 1080×1080 px, 30 fps, 8-second seamless loop
+• Silent (add your own music or keep it ambient)
+
+► Art born from equations.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+mathrelaxing.store""",
+
     "voronoi_gardens_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
 50 mesmerizing Voronoi designs grown from pure mathematics: radial mandalas, \
@@ -644,6 +662,36 @@ PRODUCTS = {
                  "chaotic system art"],
         "notes": "Ya PUBLICADO (id=4528956373, activo). Video preview marcado añadido 2026-06-29. Archivo=mp4 limpio. "
                   "Tags añadidos solo al registro local; no se sincronizan automáticamente con el listing ya activo en Etsy.",
+    },
+
+    "de_jong_attractor": {
+        "title":       "De Jong Attractor — Seamless Loop Animation | 1080x1080 30fps Mathematical Art",
+        "description": DESCRIPTIONS["de_jong_attractor"],
+        "price":       4.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        # OJO animaciones: el video del listing = preview 540p CON marca de agua
+        # (el producto ES un video → si fuera el limpio, se podría robar desde el preview).
+        # El archivo de descarga ('files') sí es el MP4 limpio 1080p.
+        "video": p("dejong_loop", "DeJongAttractor_preview.mp4"),
+        "images": [
+            p("dejong_loop", "previews", "dejong_preview_1_hero.jpg"),
+            p("dejong_loop", "previews", "dejong_preview_2_specs.jpg"),
+            p("dejong_loop", "previews", "dejong_preview_3_loop.jpg"),
+        ],
+        "files": [
+            p("dejong_loop", "DeJongAttractor_loop.mp4"),
+        ],
+        "tags": ["de jong attractor","chaos theory art","fractal wallpaper","seamless loop",
+                 "mathematical art","neon math art","math wallpaper","digital wallpaper",
+                 "generative art","abstract animation","math art","screensaver loop",
+                 "cyan wallpaper"],
+        "notes": "Cuarto de la serie de animaciones seamless (Thomas/Julia/Voronoi Cell/De Jong), "
+                  "hueco documentado en STANDARDS.md nunca antes construido. Nicho 'de jong attractor' "
+                  "sin competencia dedicada en Etsy (research web 2026-07-05). Paleta cian/indigo "
+                  "deliberadamente distinta a Thomas (oro/aqua) para no canibalizar ventas. "
+                  "Generado con generate_dejong_loop.py (atractor caotico de Peter de Jong, "
+                  "mutacion continua via trayectoria circular en el espacio de parametros a/c). "
+                  "Listo para publicar como borrador.",
     },
 
     "voronoi_gardens_pdf": {
