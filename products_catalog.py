@@ -452,7 +452,7 @@ PRODUCTS = {
     "fractal_flora_pdf": {
         "title":       "Fractal Flora — Printable Coloring Book PDF | 50 Fractal & Botanical Line Art Designs",
         "description": DESCRIPTIONS["fractal_flora_pdf"],
-        "price":       4.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "video": p("fractal_flora_promo_etsy.mp4"),
         "images": [
@@ -469,13 +469,17 @@ PRODUCTS = {
         "files": [
             p("fractal_flora_digital.pdf"),
         ],
-        "notes": "Listo para publicar. Verificar taxonomy_id antes de activar.",
+        "tags": ["fractal coloring","botanical coloring","adult coloring book","printable coloring",
+                 "math coloring book","line art coloring","nature coloring","coloring book pdf",
+                 "mindful coloring","relaxing coloring","dragon curve art","julia set coloring",
+                 "geometric coloring"],
+        "notes": "Listo para publicar. Verificar taxonomy_id antes de activar. Precio nivelado a $3.99 (igual que el resto de libros PDF).",
     },
 
     "sacred_geometry_pdf": {
         "title":       "Sacred Geometry — Color by Number Coloring Book PDF | 50 Low-Poly Mandala Designs",
         "description": DESCRIPTIONS["sacred_geometry_pdf"],
-        "price":       4.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "video": p("sacred_geometry_promo_etsy.mp4"),
         "images": [
@@ -490,49 +494,65 @@ PRODUCTS = {
         "files": [
             p("sacred_geometry_digital.pdf"),
         ],
-        "notes": "Listo para publicar. Verificar taxonomy_id antes de activar.",
+        "tags": ["sacred geometry","color by number","low poly coloring","mandala coloring",
+                 "geometric coloring","adult coloring book","printable coloring","coloring book pdf",
+                 "platonic solids art","flower of life art","meditative coloring","math color number",
+                 "metatron cube art"],
+        "notes": "Listo para publicar. Verificar taxonomy_id antes de activar. Precio nivelado a $3.99 (igual que el resto de libros PDF).",
     },
 
     "hyperbolic_gardens_pdf": {
         "title":       "Hyperbolic Gardens — Printable Coloring Book PDF | 50 Escher-Style Tiling Designs",
         "description": DESCRIPTIONS["hyperbolic_gardens_pdf"],
-        "price":       4.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [],   # ← PENDIENTE: generar cover.jpg + page samples con make_samples.py
         "files": [
             p("hyperbolic_gardens_digital.pdf"),
         ],
-        "notes": "PENDIENTE: faltan imágenes de preview. Ejecutar make_samples.py para HG.",
+        "tags": ["hyperbolic coloring","escher coloring","tiling coloring","geometric coloring",
+                 "adult coloring book","printable coloring","math coloring book","coloring book pdf",
+                 "poincare disc art","infinite tiling art","mindful coloring","relaxing coloring",
+                 "geometric art"],
+        "notes": "PENDIENTE: faltan imágenes de preview. Ejecutar make_samples.py para HG. Precio nivelado a $3.99.",
     },
 
     "mathematical_tangle_art_pdf": {
         "title":       "Mathematical Tangle Art — Printable Coloring Book PDF | 50 Zentangle Math Designs",
         "description": DESCRIPTIONS["mathematical_tangle_art_pdf"],
-        "price":       4.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [],   # ← PENDIENTE: generar previews
         "files": [
             p("mathematical_tangle_art_digital.pdf"),
         ],
-        "notes": "PENDIENTE: faltan imágenes de preview.",
+        "tags": ["zentangle coloring","math tangle art","lissajous art","adult coloring book",
+                 "printable coloring","math coloring book","coloring book pdf","geometric coloring",
+                 "mindful coloring","relaxing coloring","spiral coloring","rose curve art",
+                 "meditative coloring"],
+        "notes": "PENDIENTE: faltan imágenes de preview. Precio nivelado a $3.99.",
     },
 
     "sacred_harmonics_pdf": {
         "title":       "Sacred Harmonics — Printable Coloring Book PDF | 50 Cymatics & Wave Geometry Designs",
         "description": DESCRIPTIONS["sacred_harmonics_pdf"],
-        "price":       4.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [],   # ← PENDIENTE: generar previews
         "files": [
             p("sacred_harmonics_digital.pdf"),
         ],
-        "notes": "PENDIENTE: faltan imágenes de preview.",
+        "tags": ["cymatics coloring","chladni figures","sacred harmonics","sound geometry art",
+                 "adult coloring book","printable coloring","math coloring book","coloring book pdf",
+                 "geometric coloring","mindful coloring","relaxing coloring","wave pattern art",
+                 "resonance mandala"],
+        "notes": "PENDIENTE: faltan imágenes de preview. Precio nivelado a $3.99.",
     },
 
     "neural_network_pdf": {
         "title":       "Neural Network & Tech Art — Printable Coloring Book PDF | 50 Cybernetic Circuit and AI Graph Designs",
         "description": DESCRIPTIONS["neural_network_pdf"],
-        "price":       4.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [
             p("neural_network_cover.jpg"),
@@ -547,13 +567,17 @@ PRODUCTS = {
         "files": [
             p("neural_network_digital.pdf"),
         ],
-        "notes": "Listo para publicar. Verificar taxonomy_id antes de activar.",
+        "tags": ["neural network art","tech coloring book","circuit coloring","ai art coloring",
+                 "adult coloring book","printable coloring","coloring book pdf","geometric coloring",
+                 "cyberpunk coloring","futuristic art","mindful coloring","relaxing coloring",
+                 "graph theory art"],
+        "notes": "Listo para publicar. Verificar taxonomy_id antes de activar. Precio nivelado a $3.99.",
     },
 
     "fractal_flora_ipad": {
         "title":       "Fractal Flora iPad Edition — Digital Coloring Bundle | GoodNotes Notability Procreate",
         "description": DESCRIPTIONS["fractal_flora_ipad"],
-        "price":       6.99,
+        "price":       5.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
         "video": ff("FractalFlora_iPad_promo.mp4"),
         "images": [
@@ -568,13 +592,17 @@ PRODUCTS = {
             ff("FractalFlora.swatches"),              # 4 — paleta Procreate
             ff("How_to_use_on_iPad.pdf"),             # 5 — guía
         ],
-        "notes": "5 archivos exactos = límite Etsy. Listo para publicar.",
+        "tags": ["fractal coloring","ipad coloring","goodnotes coloring","procreate coloring",
+                 "digital coloring","ipad coloring book","botanical coloring","nature coloring ipad",
+                 "geometric coloring","notability","procreate template","coloring book ipad",
+                 "fractal art ipad"],
+        "notes": "5 archivos exactos = límite Etsy. Listo para publicar. Precio nivelado a $5.99 (igual que el resto de bundles iPad).",
     },
 
     "sacred_geometry_ipad": {
         "title":       "Sacred Geometry iPad Edition — Color by Number Bundle | GoodNotes Notability Procreate",
         "description": DESCRIPTIONS["sacred_geometry_ipad"],
-        "price":       6.99,
+        "price":       5.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
         "video": sg("SacredGeometry_iPad_promo.mp4"),
         "images": [
@@ -589,7 +617,11 @@ PRODUCTS = {
             sg("SacredGeometry.swatches"),
             sg("How_to_use_on_iPad.pdf"),
         ],
-        "notes": "5 archivos exactos = límite Etsy. Listo para publicar.",
+        "tags": ["color by number ipad","procreate coloring","goodnotes coloring","ipad coloring page",
+                 "digital coloring","color by number","procreate template","sacred geometry",
+                 "geometric coloring","math color number","coloring page ipad","procreate palette",
+                 "mandala coloring"],
+        "notes": "5 archivos exactos = límite Etsy. Listo para publicar. Precio nivelado a $5.99 (igual que el resto de bundles iPad).",
     },
 
     "thomas_attractor": {
@@ -606,7 +638,12 @@ PRODUCTS = {
         "files": [
             p("thomas_attractor_loop.mp4"),
         ],
-        "notes": "Ya PUBLICADO (id=4528956373, activo). Video preview marcado añadido 2026-06-29. Archivo=mp4 limpio.",
+        "tags": ["attractor animation","chaos theory art","fractal wallpaper","seamless loop",
+                 "mathematical art","attractor art","math wallpaper","digital wallpaper",
+                 "generative art","abstract animation","math art","screensaver loop",
+                 "chaotic system art"],
+        "notes": "Ya PUBLICADO (id=4528956373, activo). Video preview marcado añadido 2026-06-29. Archivo=mp4 limpio. "
+                  "Tags añadidos solo al registro local; no se sincronizan automáticamente con el listing ya activo en Etsy.",
     },
 
     "voronoi_gardens_pdf": {
@@ -729,7 +766,7 @@ PRODUCTS = {
     "islamic_geometry_pdf": {
         "title":       "Islamic Star Geometry — Color by Number Coloring Book PDF | 50 Geometric Star Rosette Designs",
         "description": DESCRIPTIONS["islamic_geometry_pdf"],
-        "price":       4.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [
             p("islamic_geometry_cover.jpg"),
@@ -752,13 +789,14 @@ PRODUCTS = {
                   "tema distinto: rosetones de simetria radial n-fold (girih) en vez de mallas 3D. "
                   "Nicho 'islamic pattern color by number'=0 listings activos (research 2026-07-02). "
                   "Generado con generate_islamic_geometry.py. Subido como DRAFT (id=4531791578, 2026-07-02). "
-                  "Activacion manual pendiente desde el panel de Etsy.",
+                  "Activacion manual pendiente desde el panel de Etsy. Precio nivelado a $3.99: el draft "
+                  "ya creado en Etsy tiene el precio viejo, hay que actualizarlo manualmente o resubirlo.",
     },
 
     "islamic_geometry_ipad": {
         "title":       "Islamic Star Geometry iPad Edition — Color by Number Bundle | GoodNotes Notability Procreate",
         "description": DESCRIPTIONS["islamic_geometry_ipad"],
-        "price":       6.99,
+        "price":       5.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
         "images": [
             p("ipad_islamic", "previews", "ipad_preview_1_hero.jpg"),
@@ -778,13 +816,13 @@ PRODUCTS = {
                  "instant download"],
         "notes": "5 archivos exactos = limite Etsy. Bundle iPad companion de islamic_geometry_pdf. "
                   "Generado con build_islamic_ipad.py. Subido como DRAFT (id=4531778205, 2026-07-02). "
-                  "Activacion manual pendiente desde el panel de Etsy.",
+                  "Activacion manual pendiente desde el panel de Etsy. Precio nivelado a $5.99.",
     },
 
     "celtic_knot_pdf": {
         "title":       "Celtic Knot Mathematics — Printable Coloring Book PDF | 50 Interlace & Knotwork Designs",
         "description": DESCRIPTIONS["celtic_knot_pdf"],
-        "price":       4.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [
             p("celtic_knot_cover.jpg"),
@@ -802,13 +840,13 @@ PRODUCTS = {
         "tags": ["celtic knot","celtic coloring","knotwork coloring","irish coloring book",
                  "celtic mandala","adult coloring book","printable coloring","coloring book pdf",
                  "triskelion art","celtic pattern","mindful coloring","geometric coloring","meditative coloring"],
-        "notes": "Generado con generate_celtic_knots.py (algoritmo de grid propio). Listo para publicar como borrador.",
+        "notes": "Generado con generate_celtic_knots.py (algoritmo de grid propio). Listo para publicar como borrador. Precio nivelado a $3.99.",
     },
 
     "celtic_knot_ipad": {
         "title":       "Celtic Knot iPad Edition — Digital Coloring Bundle | GoodNotes Notability Procreate",
         "description": DESCRIPTIONS["celtic_knot_ipad"],
-        "price":       6.99,
+        "price":       5.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
         "video": p("ipad_celtic", "CelticKnot_iPad_promo.mp4"),
         "images": [
@@ -826,7 +864,7 @@ PRODUCTS = {
         "tags": ["celtic knot","ipad coloring","goodnotes coloring","procreate coloring",
                  "digital coloring","ipad coloring book","celtic mandala","knotwork coloring",
                  "geometric coloring","notability","procreate template","coloring book ipad","celtic pattern"],
-        "notes": "Generado con build_celtic_ipad.py. 5 archivos exactos = limite Etsy. Bundle iPad de los 50 nudos tejidos.",
+        "notes": "Generado con build_celtic_ipad.py. 5 archivos exactos = limite Etsy. Bundle iPad de los 50 nudos tejidos. Precio nivelado a $5.99.",
     },
 
     "voronoi_cell_garden": {
@@ -869,7 +907,7 @@ PRODUCTS = {
         "files": [
             p("quantified_self", "Quantified_Self_Journal.pdf"),
         ],
-        "tags": ["quantified self","data planner","agile sprint planner","programmer gift","software engineer gift","habit tracker","github heatmap","digital planner","goodnotes planner","ipad planner","dark mode planner","bullet journal","stem notebook"],
+        "tags": ["quantified self","data planner","agile sprint planner","programmer gift","engineer gift","habit tracker","github heatmap","digital planner","goodnotes planner","ipad planner","dark mode planner","bullet journal","stem notebook"],
         "notes": "Generado con build_quantified_self.py",
     },
 }

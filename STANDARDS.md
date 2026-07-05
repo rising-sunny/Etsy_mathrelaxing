@@ -49,7 +49,7 @@ Implementaciones de referencia (copiar el patrón):
 - **Estructura**: PDF 8.5×11, 52 págs (portada + "The Mathematics" + 50 diseños).
 - **Archivos Etsy**: 1 PDF (`<prefix>_digital.pdf`) + video promo opcional.
 - **Imágenes**: `<prefix>_cover.jpg` (cuadrada) + `<prefix>_page_01..07.jpg`.
-- **Precio**: $6.99 · **taxonomy_id**: 2078 (`TAXONOMY["coloring_book"]`).
+- **Precio**: $3.99 (nivelado — todos los libros PDF al mismo precio) · **taxonomy_id**: 2078 (`TAXONOMY["coloring_book"]`).
 - **Builder**: `template_coloring_book.build_book(cfg, render_design, emblem, watermark)`.
   El producto solo aporta: `render_design(n)->fig`, `emblem`, `watermark`, texto.
 - **Referencia**: `generate_celtic_knots.py`.
@@ -57,7 +57,7 @@ Implementaciones de referencia (copiar el patrón):
 ### 2. Libro color-by-number — PDF imprimible
 - **Ejemplo**: Sacred Geometry.
 - Igual que el tipo 1, pero `render_design(n)` dibuja facetas numeradas + una
-  pequeña guía de paleta. Mismo builder, mismo precio/taxonomy (a veces $8.99).
+  pequeña guía de paleta. Mismo builder, mismo precio ($3.99) y taxonomy.
 
 ### 3. Edición iPad — bundle GoodNotes/Notability/Procreate
 - **Ejemplos**: todos los `*_ipad`.
@@ -65,7 +65,7 @@ Implementaciones de referencia (copiar el patrón):
   50 diseños), 2 ZIPs de PNGs transparentes 300 dpi, `.swatches` (30 colores),
   `How_to_use_on_iPad.pdf`.
 - **Imágenes**: 3 previews navy (hero / included / two-ways) + video promo.
-- **Precio**: $9.99–11.99 · **taxonomy_id**: 339 (`TAXONOMY["ipad_coloring"]`).
+- **Precio**: $5.99 (nivelado — todos los bundles iPad al mismo precio) · **taxonomy_id**: 339 (`TAXONOMY["ipad_coloring"]`).
 - **Builder**: `template_ipad_bundle.build(cfg, render_design_fig, line_png, colored_png)`.
   El producto aporta: `render_design_fig(n)`, la paleta, y 2 showcases (línea +
   coloreado — el coloreo es específico del producto).
@@ -101,6 +101,8 @@ Implementaciones de referencia (copiar el patrón):
 2. Escribe una config delgada + `render_design` (patrón: los scripts `*_celtic*`).
 3. Genera archivos y **revisa visualmente** portada y previews antes de subir.
 4. Añade la entrada a `products_catalog.py` (title, description con © + store,
-   price, taxonomy_id, tags ≤13/≤20 chars, images, files, video).
+   price, taxonomy_id, **tags obligatorios** — exactamente 13, ≤20 chars cada uno —,
+   images, files, video). Sin tags el listing pierde SEO en Etsy; no se debe omitir
+   este campo aunque el producto se suba solo como borrador.
 5. `python products_catalog.py dry-run <slug>` → luego `upload <slug>`.
 6. Queda en **draft**; el usuario lo activa desde Etsy.

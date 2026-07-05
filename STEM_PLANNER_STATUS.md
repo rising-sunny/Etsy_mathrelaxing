@@ -1,7 +1,7 @@
 # STEM Focus Planner - Status & Continuation Guide
 
-**Última actualización:** 2026-07-02  
-**Estado:** Corregido y regenerado — pendiente resubir a Etsy
+**Última actualización:** 2026-07-05  
+**Estado:** v3 subida a Etsy como borrador (ID 4531825862) — activación manual pendiente
 
 ---
 
@@ -55,10 +55,10 @@ El usuario solicitó mejorar el STEM Focus Planner existente basándose en el an
 
 ## Estado Actual del Producto
 
-**PDF:** `stem_planner/STEM_Focus_Planner_v2.pdf` (35 páginas)
-**Stickers:** 14 archivos PNG en `stem_planner/stickers/`
-**Etsy:** Borrador anterior con datos incorrectos — necesita resubirse
-**Precio:** $11.99
+**PDF:** `stem_planner/STEM_Focus_Planner_v3.pdf` (35 páginas — v3 reemplazó a v2 por locks de archivo, ver checklist abajo)
+**Stickers:** 14 archivos PNG en `stem_planner/stickers/`, empaquetados en `stem_planner/math_stickers.zip` para respetar el límite de 5 archivos de Etsy
+**Etsy:** Subido como borrador (ID 4531825862) — activación manual pendiente desde el panel de Etsy
+**Precio:** $5.99 (ajustado para ser competitivo — ver `products_catalog.py`, nota del producto)
 
 ---
 
@@ -83,9 +83,7 @@ python products_catalog.py upload stem_focus_planner
 
 ## Pendiente
 
-1. **Resubir a Etsy** con previews y PDF corregidos
-2. **Empaquetar stickers en ZIP** para incluir los 14 (actualmente solo 4 sueltos por límite Etsy de 5 archivos)
-3. **Activar el listing** desde el panel de Etsy
+1. **Activar el listing** desde el panel de Etsy (borrador ID 4531825862 ya subido con PDF v3 y stickers en ZIP)
 
 ---
 
