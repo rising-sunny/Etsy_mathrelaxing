@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# MathRelaxing: frames intermedios de renders de animaciones (voronoi_loop/frames,
+# dejong_loop/frames, etc.) — solo se comitean los .mp4 y previews finales.
+frames/

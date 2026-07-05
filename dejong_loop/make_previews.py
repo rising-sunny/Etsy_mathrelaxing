@@ -73,7 +73,7 @@ def build_titled():
 # ── 3. LOOP EXPLAINER ────────────────────────────────────────────────────
 def build_loop():
     im = canvas()
-    art = load_frame(150, 1780)
+    art = load_frame(30, 1780)
     im.paste(art, ((CANVAS - 1780) // 2, 60))
     d = ImageDraw.Draw(im)
 
