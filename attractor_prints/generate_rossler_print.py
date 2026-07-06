@@ -24,7 +24,16 @@ Proyeccion: plano X-Y (la vista clasica que muestra la banda en espiral
 plegandose sobre si misma).
 
 Salida: 9000x12000 px (retrato, imprimible a 30x40in @300dpi — formato
-poster/canvas grande), 3 variantes de color.
+poster/canvas grande), 3 variantes de color. Por cada variante se generan
+DOS archivos:
+  - "*_print.jpg"   archivo vendible, resolucion completa, SIN marca de agua
+                     (va en "files" del catalogo -- lo que recibe el comprador).
+  - "*_preview.jpg" imagen de listing, reducida (lado largo ~3000px) y con
+                     marca de agua diagonal repetida (va en "images" del
+                     catalogo -- lo que ve cualquiera en la pagina de Etsy).
+Antes "images" y "files" apuntaban al MISMO archivo: el preview publico
+era identico al archivo vendible en resolucion completa, sin proteccion
+contra alguien que lo guarde directamente del listing.
 
 Uso:
   python generate_rossler_print.py                # render final 9000x12000
@@ -33,7 +42,7 @@ Uso:
   python generate_rossler_print.py --load-cache P  # salta la simulacion, renderiza desde P
 """
 import numpy as np
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageDraw, ImageFont
 import os
 import sys
 import time
@@ -75,6 +84,10 @@ A, B, C = 0.2, 0.2, 5.7
 # en el plano X-Y, con margen — evita tener que hacer una pasada de sondeo
 X_LO, X_HI = -11.5, 13.0
 Y_LO, Y_HI = -11.5, 9.0
+
+PREVIEW_LONG_EDGE = 3000  # lado largo del preview publico (vs. 12000 del vendible)
+WATERMARK_TEXT = "MATHRELAXING.STORE  ·  PREVIEW"
+FONT_PATH = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
 
 rng = np.random.default_rng(7)
 
@@ -170,6 +183,39 @@ def gradient_lut(stops, n=256):
     return lut
 
 
+def add_preview_watermark(img, text=WATERMARK_TEXT, opacity=46, angle=30):
+    """Marca de agua diagonal repetida (tileada) para el preview publico.
+    No se aplica nunca al archivo vendible."""
+    w, h = img.size
+    font_size = max(20, int(w * 0.028))
+    font = ImageFont.truetype(FONT_PATH, font_size)
+
+    tmp = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+    tw = int(tmp.textlength(text, font=font))
+    step_x, step_y = int(tw * 1.6), int(font_size * 5.5)
+
+    tile = Image.new("RGBA", (step_x, step_y), (0, 0, 0, 0))
+    ImageDraw.Draw(tile).text((step_x * 0.08, step_y * 0.28), text, font=font,
+                              fill=(255, 255, 255, opacity))
+    tile = tile.rotate(angle, expand=True, resample=Image.BICUBIC)
+
+    layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    for y in range(-tile.height, h, tile.height):
+        for x in range(-tile.width, w, tile.width):
+            layer.alpha_composite(tile, (x, y))
+
+    return Image.alpha_composite(img.convert("RGBA"), layer).convert("RGB")
+
+
+def make_preview(print_img, preview_path):
+    w, h = print_img.size
+    scale = PREVIEW_LONG_EDGE / h
+    preview = print_img.resize((int(w * scale), PREVIEW_LONG_EDGE), Image.LANCZOS)
+    preview = add_preview_watermark(preview)
+    preview.save(preview_path, quality=92)
+    print("Guardado:", preview_path)
+
+
 def render_from_hist(hist, palette_name, out_path):
     dens = np.log1p(hist)
     dmax = dens.max() if dens.max() > 0 else 1.0
@@ -197,9 +243,13 @@ def render_from_hist(hist, palette_name, out_path):
     screen = 255 - (255 - core_blur) * (255 - glow_blur) / 255.0
     final = np.clip(screen, 0, 255).astype(np.uint8)
 
+    print_img = Image.fromarray(final)
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
-    Image.fromarray(final).save(out_path, quality=95)
+    print_img.save(out_path, quality=95)
     print("Guardado:", out_path)
+
+    preview_path = out_path.replace("_print.jpg", "_preview.jpg")
+    make_preview(print_img, preview_path)
 
 
 def main():
@@ -212,9 +262,9 @@ def main():
             np.save(SAVE_CACHE, hist)
             print(f"Histograma cacheado en {SAVE_CACHE}")
     suffix = "_test" if TEST else ""
-    render_from_hist(hist, "classic_cyan", os.path.join(OUT, f"rossler_classic{suffix}.jpg"))
-    render_from_hist(hist, "violet_rose", os.path.join(OUT, f"rossler_violet{suffix}.jpg"))
-    render_from_hist(hist, "amber_gold", os.path.join(OUT, f"rossler_amber{suffix}.jpg"))
+    render_from_hist(hist, "classic_cyan", os.path.join(OUT, f"rossler_classic{suffix}_print.jpg"))
+    render_from_hist(hist, "violet_rose", os.path.join(OUT, f"rossler_violet{suffix}_print.jpg"))
+    render_from_hist(hist, "amber_gold", os.path.join(OUT, f"rossler_amber{suffix}_print.jpg"))
 
 
 if __name__ == "__main__":

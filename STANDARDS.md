@@ -108,19 +108,26 @@ Implementaciones de referencia (copiar el patrón):
   Rössler (`attractor_prints/generate_rossler_print.py`) es el primero
   construido y trackeado en el repo.
 - **Carpeta**: `attractor_prints/<nombre>/` — un subdirectorio por diseño.
-- **Estructura**: 3 archivos JPG (mismo diseño, 3 variantes de color) — NO 1
-  archivo. `images` y `files` en el catálogo apuntan a los mismos 3 JPG.
+- **Estructura**: 3 diseños de color, y por cada uno DOS archivos —
+  `*_print.jpg` (vendible, resolución completa, SIN marca de agua, va en
+  `files`) y `*_preview.jpg` (reducido ~3000px lado largo, CON marca de agua
+  diagonal tileada, va en `images`). Nunca deben apuntar al mismo archivo:
+  el preview público de un listing es exactamente lo que cualquiera puede
+  ver/guardar sin comprar, así que no puede ser el archivo vendible completo.
+  Ver `add_preview_watermark`/`make_preview` en `generate_rossler_print.py`.
 - **Sin franja/logo de marca** en el archivo vendible — a diferencia de TODO
   el resto del catálogo. Es a propósito: es wall art para enmarcar, no una
   página de muestra de un producto multi-página. No usar `brand.footer_band`
-  aquí.
+  aquí (la marca de agua del preview es un mecanismo aparte, solo anti-copia).
 - **Resolución**: print-ready a 300dpi, estándar actual 9000×12000 = 30×40in
   retrato (subido desde 5400×7200 = 18×24in tras pedido explícito de soportar
   poster/canvas grande) — la relación de aspecto depende de la forma natural
   del atractor, no hay que forzar un formato fijo. Al subir resolución, escalar
   `STEPS` en la misma proporción que el aumento de bins (W×H) para mantener la
-  densidad de puntos/bin; el radio de blur ya escala solo con `W`. Verificar
-  que el JPEG final de cada variante quede bajo el límite de 20MB por archivo
+  densidad de puntos/bin. El radio de blur NO debe escalar con `W` (o debe
+  escalar muy poco) — si escala 1:1 con la resolución, el zoom nunca revela
+  más detalle sin importar cuánto se agrande el archivo. Verificar que el
+  JPEG final de cada variante quede bajo el límite de 20MB por archivo
   digital de Etsy.
 - **Precio**: $8.99 (corregido desde $5.99 tras investigar competencia real:
   el nicho de "strange attractor print" soporta $10-18) · **taxonomy_id**:

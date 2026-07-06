@@ -574,9 +574,9 @@ PRODUCTS = {
         "price":       8.99,
         "taxonomy_id": TAXONOMY["digital_art"],
         "images": [
-            attractor("rossler", "rossler_classic_print.jpg"),
-            attractor("rossler", "rossler_violet_print.jpg"),
-            attractor("rossler", "rossler_amber_print.jpg"),
+            attractor("rossler", "rossler_classic_preview.jpg"),
+            attractor("rossler", "rossler_violet_preview.jpg"),
+            attractor("rossler", "rossler_amber_preview.jpg"),
         ],
         "files": [
             attractor("rossler", "rossler_classic_print.jpg"),
@@ -613,7 +613,11 @@ PRODUCTS = {
                   "miles de vistas -- el nicho soporta mas de lo que se penso al nivelar todo a $5.99 por "
                   "'competir bajo'. Lorenz/Clifford corregidos igual, ver sus notas). Subido como borrador "
                   "el 2026-07-06, listing_id=4533519822; imagenes/archivos reemplazados el mismo dia por "
-                  "la version de alta resolucion.",
+                  "la version de alta resolucion. 'images' y 'files' ya NO apuntan al mismo archivo: "
+                  "'images' usa *_preview.jpg (2250x3000, marca de agua diagonal tileada 'mathrelaxing.store "
+                  "· preview', ver add_preview_watermark en generate_rossler_print.py) y 'files' sigue "
+                  "usando el *_print.jpg limpio de 9000x12000 que recibe el comprador -- antes el preview "
+                  "publico del listing ERA el archivo vendible completo sin proteccion.",
     },
 
     "life_planner": {
