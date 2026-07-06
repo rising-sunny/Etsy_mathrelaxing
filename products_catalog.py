@@ -571,7 +571,7 @@ PRODUCTS = {
     "rossler_attractor_print": {
         "title":       "Rössler Attractor Art Print – Generative Code Mathematics Wall Art (Digital Download)",
         "description": DESCRIPTIONS["rossler_attractor_print"],
-        "price":       5.99,
+        "price":       8.99,
         "taxonomy_id": TAXONOMY["digital_art"],
         "images": [
             attractor("rossler", "rossler_classic_print.jpg"),
@@ -602,7 +602,11 @@ PRODUCTS = {
                   "es wall art para enmarcar, no una pagina de muestra de un producto multi-pagina; "
                   "sigue la convencion ya establecida por los prints de Lorenz/Clifford). Bio de 'about "
                   "the artist' reusada tal cual de los otros dos listings para mantener voz consistente "
-                  "de esta sub-linea. Listo para publicar como borrador.",
+                  "de esta sub-linea. Precio $8.99 (subido de $5.99 tras investigar competencia real via "
+                  "API: listings similares de 'strange attractor print' venden bien en $10-18 con miles "
+                  "de vistas -- el nicho soporta mas de lo que se penso al nivelar todo a $5.99 por "
+                  "'competir bajo'. Lorenz/Clifford corregidos igual, ver sus notas). Listo para publicar "
+                  "como borrador.",
     },
 
     "life_planner": {
