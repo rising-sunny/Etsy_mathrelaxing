@@ -72,7 +72,12 @@ Implementaciones de referencia (copiar el patrón):
 - **Referencia**: `build_celtic_ipad.py` (+ `build_celtic_ipad_video.py` para el mp4).
 
 ### 4. Animación seamless loop — MP4
-- **Ejemplos**: Thomas / De Jong / Julia / Voronoi Cell attractors (los 4 ya construidos).
+- **Ejemplos**: Thomas / De Jong / Julia / Voronoi Cell attractors + Phyllotaxis Bloom
+  (los 5 ya construidos). No todo tiene que ser un atractor caótico: Phyllotaxis
+  Bloom es un campo de partículas (posición fija por ángulo dorado, solo brillo/
+  radio animados) — más simple y rápido de renderizar que iterar un sistema
+  caótico, y una alternativa válida cuando se quiere un mood más "sereno" que
+  "caótico".
 - **Estructura**: MP4 1080×1080, ~30-60fps, loop perfecto. El **archivo de descarga
   es el MP4 limpio 1080p**; el **video del listing es un preview 540p CON marca de
   agua** (el producto ES un video → si subes el limpio como preview, lo copian).

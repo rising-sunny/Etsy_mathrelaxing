@@ -208,6 +208,24 @@ media backgrounds.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
 
+    "phyllotaxis_bloom": """\
+Instant download — seamless loop animation (MP4, 1080×1080, 30 fps, 8 s).
+700 particles of light, placed by the golden angle — the same rule that \
+arranges sunflower seeds and pinecone scales — breathing and twinkling in \
+warm gold and cream against near-black. Every particle keeps its place in \
+the spiral forever; only its glow rises and falls, so the bloom never stops \
+shimmering yet always returns exactly to where it began. Loops perfectly \
+for wallpapers, screensavers, digital frames, or social media backgrounds.
+
+► What you get
+• 1 MP4 file — 1080×1080 px, 30 fps, 8-second seamless loop
+• Silent (add your own music or keep it ambient)
+
+► Art born from equations.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+mathrelaxing.store""",
+
     "voronoi_gardens_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
 50 mesmerizing Voronoi designs grown from pure mathematics: radial mandalas, \
@@ -695,6 +713,41 @@ PRODUCTS = {
                   "no acepta .mp4 en 'Archivos digitales' (visto 2026-07-05), solo .mov/.mpeg para video. "
                   "DeJongAttractor_loop.mov es el mismo .mp4 remuxeado sin recodificar (ffmpeg -c copy), "
                   "cero perdida de calidad. Listo para publicar como borrador.",
+    },
+
+    "phyllotaxis_bloom": {
+        "title":       "Phyllotaxis Bloom — Seamless Loop Animation | Golden Particle Field | 1080x1080 30fps Mathematical Art",
+        "description": DESCRIPTIONS["phyllotaxis_bloom"],
+        "price":       4.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        # OJO animaciones: el video del listing = preview 540p CON marca de agua.
+        # El archivo de descarga ('files') es .mov (ver nota) del limpio 1080p.
+        "video": p("phyllotaxis_loop", "PhyllotaxisBloom_preview.mp4"),
+        "images": [
+            p("phyllotaxis_loop", "previews", "phyllotaxis_preview_1_hero.jpg"),
+            p("phyllotaxis_loop", "previews", "phyllotaxis_preview_2_specs.jpg"),
+            p("phyllotaxis_loop", "previews", "phyllotaxis_preview_3_loop.jpg"),
+        ],
+        "files": [
+            p("phyllotaxis_loop", "PhyllotaxisBloom_loop.mov"),   # .mov, no .mp4: ver nota
+        ],
+        "tags": ["phyllotaxis art","golden ratio art","particle animation","seamless loop",
+                 "mathematical art","stardust wallpaper","math wallpaper","digital wallpaper",
+                 "generative art","abstract animation","math art","screensaver loop",
+                 "fibonacci spiral art"],
+        "notes": "Quinto de la serie de animaciones seamless. Nacio de pedir 'algo similar' a un "
+                  "template generico de particle logo reveal (Pinterest) — investigue esa categoria "
+                  "en Etsy: esta saturada Y es mayormente un SERVICIO personalizado (subes tu logo, "
+                  "te lo entregan editado), no encaja con el modelo de instant-download fijo de la "
+                  "tienda. En vez de copiarlo, redirigi la tecnica visual (particulas) a lo que ya "
+                  "funciona: un wallpaper en loop infinito, sin personalizacion. 700 particulas "
+                  "ubicadas por angulo dorado (misma regla que las semillas de Voronoi Gardens), "
+                  "respirando/titilando con frecuencias enteras para loop perfecto. Paleta oro/crema "
+                  "pura (identidad central de marca), distinta de Thomas (oro+aqua, atractor) y "
+                  "De Jong (cian, atractor) — esta es la unica basada en un campo de particulas, no "
+                  "en una trayectoria caotica. Generado con generate_phyllotaxis_loop.py. "
+                  "Archivo de descarga en .mov (ver nota de De Jong sobre compatibilidad de Etsy). "
+                  "Listo para publicar como borrador.",
     },
 
     "voronoi_gardens_pdf": {
