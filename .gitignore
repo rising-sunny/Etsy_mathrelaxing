@@ -220,3 +220,8 @@ __marimo__/
 # MathRelaxing: frames intermedios de renders de animaciones (voronoi_loop/frames,
 # dejong_loop/frames, etc.) — solo se comitean los .mp4 y previews finales.
 frames/
+
+# MathRelaxing: credenciales de la API de Etsy (access_token/refresh_token en vivo).
+# NUNCA commitear este archivo — auth.py y etsy_manager.py lo generan/actualizan
+# localmente. Si no existe, correr auth.py primero.
+etsy_token.json
