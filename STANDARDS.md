@@ -132,7 +132,7 @@ Implementaciones de referencia (copiar el patrón):
   dependen del spine — si cambia el orden/conteo, reverificarlos.
 - **Archivo Etsy**: 1 PDF directo (formato aceptado, sin conversión a .mov). Vector,
   ~2 MB para 500 págs (muy por debajo del límite de 20 MB).
-- **Precio**: $9.99 (tentativo) · **taxonomy_id**: 12476 (`TAXONOMY["planner_template"]`).
+- **Precio**: $2.99 (competir bajo vs. best-seller ~EUR2) · **taxonomy_id**: 12476 (`TAXONOMY["planner_template"]`).
 - **Gotchas de PyMuPDF**: los textbox deben ser ≥ ~2× el fontsize de alto o el texto se
   descarta en silencio; times-roman base14 no tiene glifos como `›`/`‹`/emojis (usar
   ASCII `>`/`<` y texto plano).

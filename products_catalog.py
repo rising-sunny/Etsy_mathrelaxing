@@ -519,7 +519,7 @@ PRODUCTS = {
     "life_planner": {
         "title":       "Undated Digital Planner GoodNotes Notability iPad | All-in-One Life Planner | 500+ Hyperlinked Pages | Daily Weekly Monthly + 50 Trackers",
         "description": DESCRIPTIONS["life_planner"],
-        "price":       9.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["planner_template"],
         "images": [
             p("life_planner", "previews", "life_preview_1_hero.jpg"),
@@ -542,8 +542,9 @@ PRODUCTS = {
                   "en 5 categorias + notas), navegacion hub-and-spoke con pestañas laterales en cada "
                   "pagina. Landscape 4:3, identidad MathRelaxing (navy/oro/crema). 2.2 MB (bajo el "
                   "limite de Etsy). Archivo = 1 PDF (formato aceptado directamente, NO necesita .mov). "
-                  "Previews con build_previews.py. PENDIENTE decidir precio final ($9.99 tentativo; el "
-                  "best-seller cobra ~€2 pero es carrera al fondo). Posible mejora futura: 6 temas de "
+                  "Previews con build_previews.py. Precio $2.99: estrategia de competir bajo (decision "
+                  "del usuario), apenas arriba de los ~EUR2 del best-seller 4329390689 para entrar "
+                  "agresivo en el nicho sin ir a fondo absoluto. Posible mejora futura: 6 temas de "
                   "color (limite Etsy = 5 archivos) y set de stickers.",
     },
 
