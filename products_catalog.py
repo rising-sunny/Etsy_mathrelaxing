@@ -605,8 +605,8 @@ PRODUCTS = {
                   "de esta sub-linea. Precio $8.99 (subido de $5.99 tras investigar competencia real via "
                   "API: listings similares de 'strange attractor print' venden bien en $10-18 con miles "
                   "de vistas -- el nicho soporta mas de lo que se penso al nivelar todo a $5.99 por "
-                  "'competir bajo'. Lorenz/Clifford corregidos igual, ver sus notas). Listo para publicar "
-                  "como borrador.",
+                  "'competir bajo'. Lorenz/Clifford corregidos igual, ver sus notas). Subido como borrador "
+                  "el 2026-07-06, listing_id=4533519822.",
     },
 
     "life_planner": {
