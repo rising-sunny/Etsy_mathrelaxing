@@ -31,10 +31,12 @@ import etsy_manager
 BASE = os.path.dirname(os.path.abspath(__file__))
 FF   = os.path.join(BASE, "ipad_ff")
 SG   = os.path.join(BASE, "ipad_sg")
+ATTR = os.path.join(BASE, "attractor_prints")
 
 def p(*parts): return os.path.join(BASE, *parts)
 def ff(*parts): return os.path.join(FF, *parts)
 def sg(*parts): return os.path.join(SG, *parts)
+def attractor(*parts): return os.path.join(ATTR, *parts)
 
 # ── Taxonomy IDs verificados ──────────────────────────────────────────────────
 # Fuente: GET /application/seller-taxonomy/nodes (llamada al API de Etsy)
@@ -511,10 +513,97 @@ annotation app is required. Not designed for printing.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
+
+    "rossler_attractor_print": """\
+A Rössler strange attractor, rendered entirely with code.
+
+No AI image generators were used — this is pure mathematics
+made visible. The attractor is computed by solving this system
+of differential equations:
+
+  dx/dt = −y − z
+  dy/dt = x + a·y
+  dz/dt = b + z(x − c)
+
+  a = 0.2  ·  b = 0.2  ·  c = 5.7
+
+A single trajectory is followed for hundreds of thousands of steps,
+folding over itself again and again in a band that never quite
+closes and never quite repeats — deterministic chaos made visible
+as a spiral galaxy of light.
+
+────────────────────────
+WHAT YOU GET
+────────────────────────
+3 high-resolution JPG files (same design, 3 color variants):
+· Classic — electric cyan on black
+· Violet — soft magenta on black
+· Amber — warm gold on black
+
+Resolution: 5400 × 7200 px (print-ready up to 18×24 inches at 300dpi)
+Format: JPG, high quality
+
+────────────────────────
+PRINTING TIPS
+────────────────────────
+· Best printed on matte or satin paper
+· Works great as a poster, framed print, or canvas
+· A local print shop or online service (Printful, Canva Print,
+  Costco Photo) can handle this file easily
+
+────────────────────────
+INSTANT DOWNLOAD
+────────────────────────
+Files are available immediately after purchase.
+No physical item will be shipped.
+
+────────────────────────
+ABOUT THE ARTIST
+────────────────────────
+I'm an electrical engineer who got lost in recreational
+mathematics. Every piece in this shop is written from scratch
+in Python — equations, rendering, colors and all.""",
 }
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
 PRODUCTS = {
+
+    "rossler_attractor_print": {
+        "title":       "Rössler Attractor Art Print – Generative Code Mathematics Wall Art (Digital Download)",
+        "description": DESCRIPTIONS["rossler_attractor_print"],
+        "price":       5.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            attractor("rossler", "rossler_classic_print.jpg"),
+            attractor("rossler", "rossler_violet_print.jpg"),
+            attractor("rossler", "rossler_amber_print.jpg"),
+        ],
+        "files": [
+            attractor("rossler", "rossler_classic_print.jpg"),
+            attractor("rossler", "rossler_violet_print.jpg"),
+            attractor("rossler", "rossler_amber_print.jpg"),
+        ],
+        "tags": ["rossler attractor","math art print","generative art","strange attractor",
+                 "science wall art","math poster","dark wall art","printable wall art",
+                 "physics art print","stem wall decor","code art print","chaos theory art",
+                 "math gift"],
+        "notes": "Tipo 5 (STANDARDS.md, 'Art print generativo') — primer producto de este tipo "
+                  "construido y trackeado en el repo. Contexto: existian YA DOS listings live de este "
+                  "mismo tipo (Lorenz id=4528168404, Clifford id=4528164675, ambos $5.99, ambos 0 "
+                  "vistas/0 favs a 10 dias de publicados) que nunca se sincronizaron al catalogo local "
+                  "-- no hay script generador ni backup de sus archivos vendibles (el API no expone "
+                  "descarga de 'files' al dueño de la tienda, solo metadata: nombre/tamaño). Rossler es "
+                  "nuevo (no duplica Lorenz/Clifford). Generado con generate_rossler_print.py: a "
+                  "diferencia de un mapa discreto (De Jong/Clifford), un flujo continuo (ODE) necesita "
+                  "POCAS trayectorias x MUCHISIMOS pasos (no muchas trayectorias cortas) para revelar "
+                  "la estructura de bandas -- acumulado en histograma durante la integracion (streaming) "
+                  "para no acumular memoria. 3 variantes de color (mismo patron que Lorenz/Clifford), "
+                  "5400x7200px, ~1.5MB c/u. Sin franja/logo de marca en el archivo vendible (a proposito: "
+                  "es wall art para enmarcar, no una pagina de muestra de un producto multi-pagina; "
+                  "sigue la convencion ya establecida por los prints de Lorenz/Clifford). Bio de 'about "
+                  "the artist' reusada tal cual de los otros dos listings para mantener voz consistente "
+                  "de esta sub-linea. Listo para publicar como borrador.",
+    },
 
     "life_planner": {
         "title":       "Undated Digital Planner GoodNotes Notability iPad | All-in-One Life Planner | 500+ Hyperlinked Pages | Daily Weekly Monthly + 50 Trackers",

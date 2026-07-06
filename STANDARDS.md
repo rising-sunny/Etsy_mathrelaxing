@@ -102,10 +102,40 @@ Implementaciones de referencia (copiar el patrón):
   frames + encode.)
 
 ### 5. Art print generativo — imagen estática
-- **Ejemplos**: Newton / Clifford / Lorenz attractors.
-- **Estructura**: imagen de alta resolución (archivo de descarga) + previews.
-- **Precio**: $5.99–6.99 · **taxonomy_id**: 2078 (`TAXONOMY["digital_art"]`).
-- Reutiliza `brand` para previews/branding.
+- **Ejemplos**: Lorenz (id=4528168404) y Clifford (id=4528164675) — publicados
+  fuera de este pipeline, sin script generador ni backup local (ver gotcha de
+  API abajo: no se puede recuperar el archivo vendible original por API).
+  Rössler (`attractor_prints/generate_rossler_print.py`) es el primero
+  construido y trackeado en el repo.
+- **Carpeta**: `attractor_prints/<nombre>/` — un subdirectorio por diseño.
+- **Estructura**: 3 archivos JPG (mismo diseño, 3 variantes de color) — NO 1
+  archivo. `images` y `files` en el catálogo apuntan a los mismos 3 JPG.
+- **Sin franja/logo de marca** en el archivo vendible — a diferencia de TODO
+  el resto del catálogo. Es a propósito: es wall art para enmarcar, no una
+  página de muestra de un producto multi-página. No usar `brand.footer_band`
+  aquí.
+- **Resolución**: print-ready a 300dpi (ej. 5400×7200 = 18×24in retrato,
+  5400×5400 = 18×18in cuadrado — la relación de aspecto depende de la forma
+  natural del atractor, no hay que forzar un formato fijo).
+- **Precio**: $5.99 · **taxonomy_id**: 2078 (`TAXONOMY["digital_art"]`).
+- **Técnica de render** (`generate_rossler_print.py` como referencia):
+  - Mapas discretos (De Jong, Clifford, Voronoi) → MUCHAS trayectorias en
+    paralelo, POCAS iteraciones cada una (cada "kick" del mapa decorrelaciona
+    rápido).
+  - **Flujos continuos / ODEs (Lorenz, Rössler, Aizawa, Chen, Halvorsen...)
+    → al revés**: POCAS trayectorias, MUCHÍSIMOS pasos (cientos de miles) —
+    una trayectoria necesita dar muchas vueltas para revelar la estructura de
+    bandas plegadas; con pocos pasos solo se traza un anillo liso y borroso.
+  - Acumular en histograma DURANTE la integración (streaming, `np.add.at` en
+    cada paso), nunca guardar todos los puntos — con cientos de miles de
+    pasos la memoria explota si se guarda el historial completo.
+  - Proyección 2D: para cada atractor investigar cuál plano (X-Y, X-Z, Y-Z)
+    da la vista "clásica" reconocible — no es siempre la misma para todos los
+    sistemas (Rössler: X-Y; Lorenz: X-Z típicamente).
+  - Encuadre: usar percentiles de las coordenadas reales (no un bounding box
+    fijo adivinado) para centrar automáticamente. Un crop post-proceso al
+    bounding box del contenido (con margen ~20-25%) sirve si el encuadre
+    inicial quedó con demasiado espacio negro muerto.
 
 ### 6. Notebook digital STEM — PDF hipervinculado
 - **Ejemplo**: STEM Digital Notebook (grids con pestañas).
@@ -163,6 +193,18 @@ Implementaciones de referencia (copiar el patrón):
   reporta "muchas visitas" pero la API dice 2, confiar en la API y preguntar de
   dónde saca el otro número (Etsy Ads mide clics, no vistas orgánicas; el
   dashboard de Shop Manager a veces no coincide 1:1 con este campo).
+- **No se puede recuperar el archivo digital vendible de un listing por API.**
+  `GET /shops/{id}/listings/{id}/files` da metadata (nombre, tamaño, fecha) pero
+  ninguna URL de descarga del contenido — esa descarga firmada solo se genera
+  para el comprador después de pagar, no para el dueño de la tienda vía esta
+  API. `GET /shops/{id}/listings/{id}/images` sí trae URLs públicas
+  (`url_fullxfull`), pero son la miniatura de exhibición de Etsy (tope ~1200px
+  de lado), NO el archivo original en su resolución real. Conclusión: si un
+  producto se creó fuera de este repo (a mano, o en otra sesión) y no se
+  guardó el archivo fuente original en algún lado, **no hay forma de
+  recuperarlo** — ni por API ni scrapeando las imágenes del listing. Hay que
+  reconstruirlo desde cero (regenerar con un script) o pedirle al usuario que
+  lo suba si todavía lo tiene en su máquina.
 
 ---
 
