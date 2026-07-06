@@ -18,10 +18,13 @@ Tecnica del loop perfecto:
   ENTERO (distinto por particula, para que no titilen todas en sincronia).
   Ademas, el CAMPO ENTERO rota como un solo cuerpo GLOBAL_ROT_CYCLES vueltas
   completas a lo largo del loop (theta(t) = theta_home + 2*pi*GLOBAL_ROT_CYCLES*t/T),
-  y cada particula tiene un pequeño balanceo angular propio con frecuencia
-  entera encima de esa rotacion. Cualquier suma de senos/rotaciones con
-  frecuencia ENTERA respecto a T vuelve exactamente a su valor inicial en
-  t=T: frame 0 == frame T, sin importar cuantos terminos se sumen.
+  con ROTACION DIFERENCIAL: las particulas del centro dan hasta 3 vueltas
+  extra respecto a las del borde (extra_rot_cycles, entero por banda de
+  radio) — el mismo cizallamiento que se ve en una galaxia espiral real —
+  mas un pequeño balanceo angular propio con frecuencia entera encima de
+  todo eso. Cualquier suma de senos/rotaciones con frecuencia ENTERA
+  respecto a T vuelve exactamente a su valor inicial en t=T: frame 0 ==
+  frame T, sin importar cuantos terminos se sumen.
 
 Render: se escaturan las posiciones (un punto por particula) ponderadas por
 su brillo en un acumulador, y se aplican dos pasadas de blur (nucleo fino +
@@ -54,15 +57,15 @@ FPS = 30
 DURATION = 8
 T = FPS * DURATION if not TEST else 8
 
-N = 2200 if not TEST else 400
+N = 6000 if not TEST else 800
 SEED = 11
 R_MAX = 470 * (W / 1080)
 CX = CY = W / 2
 
 BREATHE_FREQ = 1        # respiracion radial: 1 ciclo completo por loop
-BREATHE_AMP = 0.16
-GLOBAL_ROT_CYCLES = 1   # el campo entero da 1 vuelta completa por loop
-WOBBLE_AMP = 0.09        # balanceo angular propio, encima de la rotacion global
+BREATHE_AMP = 0.22
+GLOBAL_ROT_CYCLES = 1   # vuelta base de todo el campo por loop
+WOBBLE_AMP = 0.13        # balanceo angular propio, encima de la rotacion global
 
 rng = np.random.default_rng(SEED)
 
@@ -73,11 +76,18 @@ theta_home = i * GOLDEN_ANGLE
 r_norm = r_home / R_MAX
 
 breathe_phase = rng.uniform(0, 2 * np.pi, size=N)
-twinkle_freq = rng.integers(1, 7, size=N)          # entero: 1 a 6
+twinkle_freq = rng.integers(1, 9, size=N)          # entero: 1 a 8
 twinkle_phase = rng.uniform(0, 2 * np.pi, size=N)
 wobble_freq = rng.integers(1, 4, size=N)           # entero: 1, 2 o 3
 wobble_phase = rng.uniform(0, 2 * np.pi, size=N)
-base_brightness = rng.uniform(0.55, 1.0, size=N)
+base_brightness = rng.uniform(0.45, 1.0, size=N)
+
+# rotacion diferencial: las particulas del centro dan MAS vueltas por loop
+# que las del borde (como el cizallamiento de una galaxia espiral real) —
+# sigue siendo un entero de vueltas por particula, asi que el loop cierra
+# perfecto igual. round() por banda de radio para que se vea un giro suave
+# en capas, no ruido individual.
+extra_rot_cycles = np.round(3 * (1 - r_norm))   # 3 vueltas extra en el centro, 0 en el borde
 
 # ── Paleta de densidad: ambar profundo -> oro -> crema (nucleo brillante) ───
 STOPS = [
@@ -110,7 +120,7 @@ particle_rgb = edge_color[None, :] * (1 - (1 - r_norm[:, None]) * 0.3) + \
                core_color[None, :] * ((1 - r_norm[:, None]) * 0.3)
 
 
-particle_radius = (0.8 + 2.0 * (1 - r_norm) ** 1.3) * (W / 1080)  # nucleo mas grande hacia el centro
+particle_radius = (0.55 + 1.5 * (1 - r_norm) ** 1.3) * (W / 1080)  # nucleo mas grande hacia el centro
 
 
 def render_frame(t):
@@ -118,7 +128,7 @@ def render_frame(t):
 
     r = r_home * (1 + BREATHE_AMP * np.sin(BREATHE_FREQ * theta_t + breathe_phase))
     theta = (theta_home
-             + GLOBAL_ROT_CYCLES * theta_t
+             + (GLOBAL_ROT_CYCLES + extra_rot_cycles) * theta_t
              + WOBBLE_AMP * np.sin(wobble_freq * theta_t + wobble_phase))
     twinkle = 0.5 + 0.5 * np.sin(twinkle_freq * theta_t + twinkle_phase)
     brightness = base_brightness * (0.15 + 0.85 * twinkle)
