@@ -114,10 +114,17 @@ Implementaciones de referencia (copiar el patrón):
   el resto del catálogo. Es a propósito: es wall art para enmarcar, no una
   página de muestra de un producto multi-página. No usar `brand.footer_band`
   aquí.
-- **Resolución**: print-ready a 300dpi (ej. 5400×7200 = 18×24in retrato,
-  5400×5400 = 18×18in cuadrado — la relación de aspecto depende de la forma
-  natural del atractor, no hay que forzar un formato fijo).
-- **Precio**: $5.99 · **taxonomy_id**: 2078 (`TAXONOMY["digital_art"]`).
+- **Resolución**: print-ready a 300dpi, estándar actual 9000×12000 = 30×40in
+  retrato (subido desde 5400×7200 = 18×24in tras pedido explícito de soportar
+  poster/canvas grande) — la relación de aspecto depende de la forma natural
+  del atractor, no hay que forzar un formato fijo. Al subir resolución, escalar
+  `STEPS` en la misma proporción que el aumento de bins (W×H) para mantener la
+  densidad de puntos/bin; el radio de blur ya escala solo con `W`. Verificar
+  que el JPEG final de cada variante quede bajo el límite de 20MB por archivo
+  digital de Etsy.
+- **Precio**: $8.99 (corregido desde $5.99 tras investigar competencia real:
+  el nicho de "strange attractor print" soporta $10-18) · **taxonomy_id**:
+  2078 (`TAXONOMY["digital_art"]`).
 - **Técnica de render** (`generate_rossler_print.py` como referencia):
   - Mapas discretos (De Jong, Clifford, Voronoi) → MUCHAS trayectorias en
     paralelo, POCAS iteraciones cada una (cada "kick" del mapa decorrelaciona

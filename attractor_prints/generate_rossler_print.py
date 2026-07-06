@@ -23,11 +23,11 @@ depende de la cantidad de pasos.
 Proyeccion: plano X-Y (la vista clasica que muestra la banda en espiral
 plegandose sobre si misma).
 
-Salida: 5400x7200 px (retrato, imprimible a 18x24in @300dpi — mismo formato
-que el print de Lorenz ya publicado), 3 variantes de color.
+Salida: 9000x12000 px (retrato, imprimible a 30x40in @300dpi — formato
+poster/canvas grande), 3 variantes de color.
 
 Uso:
-  python generate_rossler_print.py            # render final 5400x7200
+  python generate_rossler_print.py            # render final 9000x12000
   python generate_rossler_print.py --test      # 900x1200, rapido, para revisar
 """
 import numpy as np
@@ -46,9 +46,12 @@ if TEST:
     N_TRAJ = 300
     STEPS = 60_000
 else:
-    W, H = 5400, 7200
+    W, H = 9000, 12000
     N_TRAJ = 600
-    STEPS = 1_200_000
+    # ~2.78x mas bins que la version 5400x7200 original; steps escalados en la
+    # misma proporcion para mantener la densidad de puntos/bin (y por lo tanto
+    # el mismo nivel de detalle fino tras el blur, que tambien escala con W).
+    STEPS = 3_300_000
 
 DT = 0.006
 WARMUP = 2000        # pasos descartados para que decorrelacionen entre si
