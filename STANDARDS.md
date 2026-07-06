@@ -113,6 +113,30 @@ Implementaciones de referencia (copiar el patrón):
 - **Imágenes**: 4 previews + video.
 - **Precio**: $8.99 · **taxonomy_id**: 12476 (`TAXONOMY["planner_template"]`).
 
+### 7. Planner digital all-in-one — PDF hipervinculado masivo
+- **Ejemplo**: The Life Planner (`life_planner/`).
+- **Estructura**: PDF landscape 4:3, 500+ páginas 100% hipervinculadas. Navegación
+  **hub-and-spoke**: dashboard → hubs de sección → plantillas, con barra de pestañas
+  lateral fija en cada página + prev/next en el calendario. Calendario completo
+  (año/hub + Q1-Q4 + 12 meses + 52 semanas + 365 días) + 55 plantillas de tracker en
+  5 categorías de vida (Lifestyle/Wellness/Self-Care/Productivity/Finance) + notas.
+- **Builder**: `life_planner/build_life_planner.py`. Motor propio (no usa
+  `planner_framework.py`, demasiado simple para hubs + cross-links). **Hipervínculos
+  en 2 pasadas**: (1) construir el "spine" = lista ordenada de páginas con id único,
+  calcular `page_index[id]`; (2) crear páginas en blanco y renderizar con acceso al
+  index para linkear por id (nunca por número de página mágico). Plantillas declarativas
+  compuestas con primitivas (`tpl_table`, `tpl_checklist`, `tpl_month_grid_tracker`…).
+  Usar `--quick` para iterar rápido (reduce meses/semanas/días).
+- **Previews**: `life_planner/build_previews.py` (renderiza páginas del PDF a PNG y
+  compone 5 imágenes sobre navy con el branding). Los índices de página en `PAGES`
+  dependen del spine — si cambia el orden/conteo, reverificarlos.
+- **Archivo Etsy**: 1 PDF directo (formato aceptado, sin conversión a .mov). Vector,
+  ~2 MB para 500 págs (muy por debajo del límite de 20 MB).
+- **Precio**: $9.99 (tentativo) · **taxonomy_id**: 12476 (`TAXONOMY["planner_template"]`).
+- **Gotchas de PyMuPDF**: los textbox deben ser ≥ ~2× el fontsize de alto o el texto se
+  descarta en silencio; times-roman base14 no tiene glifos como `›`/`‹`/emojis (usar
+  ASCII `>`/`<` y texto plano).
+
 ---
 
 ## Checklist para publicar un producto nuevo

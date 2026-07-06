@@ -482,10 +482,70 @@ favorite IDE and reduce eye strain.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
+
+    "life_planner": """\
+Instant download — undated all-in-one digital planner for GoodNotes, Notability \
+& any PDF annotation app on iPad, Android & Windows tablets. 500+ fully \
+hyperlinked pages: one planner for every part of your life.
+
+► What's inside (500+ hyperlinked pages)
+• Full calendar system — year at a glance, 12 monthly spreads, 52 weekly \
+layouts & 365 daily pages (all undated, start any day)
+• Quarterly planners (Q1–Q4), yearly goals, year in review, key dates & highlights
+• 50+ life trackers & templates across 5 categories:
+   – Lifestyle: wishlist, contacts, book log, watchlist, trip planner, passwords, cleaning
+   – Wellness: meal planner, mood, sleep, water, workout, symptom, period & vitamin trackers
+   – Self-Care: gratitude, bucket list, vision board, dream journal, affirmations
+   – Productivity: to-do, priority matrix, habit tracker, time tracker, SMART goals, projects
+   – Finance: budget, expenses, savings, bills, subscriptions, debt payoff & investments
+• Note-taking pages — dot grid, squared, lined, Cornell & isometric
+• Tap-to-jump navigation on every page: category hubs + side tabs
+
+► How to use
+Import the PDF into GoodNotes, Notability, Penly, Xodo or any annotation app. \
+Tap any tab or link to jump instantly. Duplicate any page as many times as you \
+like — start any month, any year.
+
+This is a DIGITAL file — no physical product is shipped. A separate PDF \
+annotation app is required. Not designed for printing.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+mathrelaxing.store""",
 }
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
 PRODUCTS = {
+
+    "life_planner": {
+        "title":       "Undated Digital Planner GoodNotes Notability iPad | All-in-One Life Planner | 500+ Hyperlinked Pages | Daily Weekly Monthly + 50 Trackers",
+        "description": DESCRIPTIONS["life_planner"],
+        "price":       9.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("life_planner", "previews", "life_preview_1_hero.jpg"),
+            p("life_planner", "previews", "life_preview_2_calendar.jpg"),
+            p("life_planner", "previews", "life_preview_3_trackers.jpg"),
+            p("life_planner", "previews", "life_preview_4_navigation.jpg"),
+            p("life_planner", "previews", "life_preview_5_included.jpg"),
+        ],
+        "files": [
+            p("life_planner", "MathRelaxing_Life_Planner.pdf"),
+        ],
+        "tags": ["digital planner","undated planner","goodnotes planner","ipad planner",
+                 "notability planner","all in one planner","life planner","daily planner",
+                 "weekly planner","budget tracker","habit tracker","self care planner",
+                 "goodnotes template"],
+        "notes": "All-in-one undated digital planner al estilo del best-seller de Etsy 4329390689 "
+                  "(720 pags, €2, 281k vistas, 4390 favs, verificado via API de Etsy 2026-07-06). "
+                  "Construido con life_planner/build_life_planner.py: 501 paginas 100% hipervinculadas "
+                  "(dashboard + hub de año + Q1-Q4 + 12 meses + 52 semanas + 365 dias + 55 plantillas "
+                  "en 5 categorias + notas), navegacion hub-and-spoke con pestañas laterales en cada "
+                  "pagina. Landscape 4:3, identidad MathRelaxing (navy/oro/crema). 2.2 MB (bajo el "
+                  "limite de Etsy). Archivo = 1 PDF (formato aceptado directamente, NO necesita .mov). "
+                  "Previews con build_previews.py. PENDIENTE decidir precio final ($9.99 tentativo; el "
+                  "best-seller cobra ~€2 pero es carrera al fondo). Posible mejora futura: 6 temas de "
+                  "color (limite Etsy = 5 archivos) y set de stickers.",
+    },
 
     "fractal_flora_pdf": {
         "title":       "Fractal Flora — Printable Coloring Book PDF | 50 Fractal & Botanical Line Art Designs",
