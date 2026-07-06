@@ -731,7 +731,14 @@ PRODUCTS = {
                  "digital coloring","color by number","procreate template","sacred geometry",
                  "geometric coloring","math color number","coloring page ipad","procreate palette",
                  "mandala coloring"],
-        "notes": "5 archivos exactos = límite Etsy. Listo para publicar. Precio nivelado a $5.99 (igual que el resto de bundles iPad).",
+        "notes": "5 archivos exactos = límite Etsy. Precio nivelado a $5.99 (igual que el resto de bundles "
+                  "iPad). Ya PUBLICADO (id=4529089106, activo, creado 2026-06-27) con precio viejo $11.99 "
+                  "nunca sincronizado — corregido a $5.99 via API el 2026-07-06. En esa revisión: solo "
+                  "2 vistas / 0 favoritos desde creación (9 días) — el problema real de este listing es "
+                  "visibilidad/tráfico, no precio ni conversión. Bug de API descubierto y corregido: "
+                  "update_listing(price=...) NO actualiza el precio (Etsy ignora el campo en el PATCH "
+                  "del listing); el precio vive en /listings/{id}/inventory y hay que escribirlo con "
+                  "EtsyManager.update_price() (nuevo método, JSON real + limpieza de campos read-only).",
     },
 
     "thomas_attractor": {

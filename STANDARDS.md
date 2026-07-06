@@ -137,6 +137,33 @@ Implementaciones de referencia (copiar el patrón):
   descarta en silencio; times-roman base14 no tiene glifos como `›`/`‹`/emojis (usar
   ASCII `>`/`<` y texto plano).
 
+## Gotchas de la API de Etsy (etsy_manager.py)
+
+- **Cambiar el precio de un listing YA CREADO no es `update_listing(price=...)`.**
+  Ese PATCH le pega a `/shops/{id}/listings/{id}` y Etsy responde 200 OK sin error,
+  pero el precio queda igual (lo ignora en silencio). El precio real vive en el
+  **inventario** (`GET/PUT /listings/{id}/inventory`), y el PUT exige:
+  1. JSON real (`Content-Type: application/json`), NO form-urlencoded — mandar los
+     arrays anidados (`products`/`offerings`) url-encodeados falla con
+     `"Not a valid JSON string"`.
+  2. Solo los campos escribibles: cada `offering` acepta `price`/`quantity`/
+     `is_enabled` — si mandás de vuelta `offering_id`, `is_deleted` o
+     `readiness_state_id` (que sí vienen en el GET), Etsy rechaza con
+     `"Array contains invalid keys"`.
+  Usar **`EtsyManager.update_price(listing_id, price)`** (ya implementado: lee el
+  inventario, lo limpia, lo reenvía como JSON) — no reinventar esto con
+  `update_listing`.
+- **El token no tiene todos los scopes.** Actual: `listings_r listings_w shops_r`
+  (ver `auth.py`). Sin `transactions_r` no se pueden leer receipts/pedidos/ventas
+  (`GET /shops/{id}/receipts` → 403). Sin `listings_d` no se puede borrar un
+  listing por API (`DELETE /listings/{id}` → 403) — para reemplazar imágenes de
+  un listing ya creado hay que subir las nuevas ANTES de borrar las viejas,
+  porque Etsy exige que un listing tenga siempre ≥1 imagen.
+- **`views`/`num_favorers` del GET del listing son el dato real** — si el usuario
+  reporta "muchas visitas" pero la API dice 2, confiar en la API y preguntar de
+  dónde saca el otro número (Etsy Ads mide clics, no vistas orgánicas; el
+  dashboard de Shop Manager a veces no coincide 1:1 con este campo).
+
 ---
 
 ## Checklist para publicar un producto nuevo

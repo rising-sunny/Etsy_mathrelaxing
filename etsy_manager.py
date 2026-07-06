@@ -68,25 +68,32 @@ class EtsyManager:
         content_type = f'multipart/form-data; boundary={boundary}'
         return content_type, body
 
-    def make_request(self, method, endpoint, payload=None, is_multipart=False, multipart_data=None, retry=True):
+    def make_request(self, method, endpoint, payload=None, is_multipart=False, multipart_data=None,
+                     json_body=False, retry=True):
         url = f"{self.base_url}{endpoint}"
-        
+
         headers = {
             'x-api-key': f"{CLIENT_ID}:{SHARED_SECRET}",
             'Authorization': f"Bearer {self.token_data['access_token']}"
         }
-        
+
         data = None
         if is_multipart and multipart_data:
             fields, files = multipart_data
             content_type, data = self._encode_multipart_formdata(fields, files)
             headers['Content-Type'] = content_type
+        elif json_body and payload is not None:
+            # Algunos endpoints (ej. /inventory) exigen JSON real, no
+            # application/x-www-form-urlencoded: rechazan listas/objetos
+            # anidados con "Not a valid JSON string".
+            data = json.dumps(payload).encode('utf-8')
+            headers['Content-Type'] = 'application/json'
         elif payload:
             data = urllib.parse.urlencode(payload).encode('utf-8')
             headers['Content-Type'] = 'application/x-www-form-urlencoded'
-            
+
         req = urllib.request.Request(url, data=data, headers=headers, method=method)
-        
+
         try:
             with urllib.request.urlopen(req) as response:
                 raw = response.read().decode('utf-8')
@@ -94,7 +101,8 @@ class EtsyManager:
         except urllib.error.HTTPError as e:
             if e.code == 401 and retry:
                 self.refresh_token()
-                return self.make_request(method, endpoint, payload, is_multipart, multipart_data, retry=False)
+                return self.make_request(method, endpoint, payload, is_multipart, multipart_data,
+                                        json_body, retry=False)
             else:
                 print(f"Error de API ({e.code}) en {endpoint}:")
                 print(e.read().decode('utf-8'))
@@ -147,6 +155,36 @@ class EtsyManager:
                 payload[k] = v
         print(f"Actualizando listing {listing_id}: {list(payload.keys())}")
         return self.make_request('PATCH', f'/shops/{shop_id}/listings/{listing_id}', payload=payload)
+
+    def update_price(self, listing_id, price):
+        """
+        Cambia el precio de un listing. IMPORTANTE: el precio en Etsy API v3
+        vive en el INVENTARIO (/listings/{id}/inventory), no en el listing
+        mismo -- update_listing(price=...) hace un PATCH que Etsy acepta con
+        200 OK pero IGNORA en silencio (el precio no cambia). Hay que leer el
+        inventario, limpiar los campos de solo-lectura (product_id, is_deleted,
+        offering_id, readiness_state_id -- Etsy rechaza el PUT si van incluidos)
+        y reenviarlo como JSON real (no form-urlencoded: los arrays anidados
+        fallan con "Not a valid JSON string" si van url-encodeados).
+        """
+        inv = self.make_request('GET', f'/listings/{listing_id}/inventory')
+        clean_products = []
+        for prod in inv['products']:
+            offerings = [{
+                'price': price,
+                'quantity': off['quantity'],
+                'is_enabled': off['is_enabled'],
+            } for off in prod['offerings']]
+            clean_products.append({
+                'sku': prod.get('sku', ''),
+                'property_values': prod.get('property_values', []),
+                'offerings': offerings,
+            })
+        print(f"Actualizando precio de listing {listing_id} a {price}...")
+        result = self.make_request('PUT', f'/listings/{listing_id}/inventory',
+                                   payload={'products': clean_products}, json_body=True)
+        print("Precio actualizado con éxito.")
+        return result
 
     def upload_listing_image(self, listing_id, image_path, rank=1):
         shop_id = self.get_shop_id()
