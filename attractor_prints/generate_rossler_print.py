@@ -27,8 +27,10 @@ Salida: 9000x12000 px (retrato, imprimible a 30x40in @300dpi — formato
 poster/canvas grande), 3 variantes de color.
 
 Uso:
-  python generate_rossler_print.py            # render final 9000x12000
-  python generate_rossler_print.py --test      # 900x1200, rapido, para revisar
+  python generate_rossler_print.py                # render final 9000x12000
+  python generate_rossler_print.py --test          # 900x1200, rapido, para revisar
+  python generate_rossler_print.py --save-cache P  # ademas guarda el histograma crudo en P (.npy)
+  python generate_rossler_print.py --load-cache P  # salta la simulacion, renderiza desde P
 """
 import numpy as np
 from PIL import Image, ImageFilter
@@ -40,6 +42,18 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(BASE, "rossler")
 
 TEST = "--test" in sys.argv
+
+
+def _arg_after(flag):
+    if flag in sys.argv:
+        i = sys.argv.index(flag)
+        if i + 1 < len(sys.argv):
+            return sys.argv[i + 1]
+    return None
+
+
+SAVE_CACHE = _arg_after("--save-cache")
+LOAD_CACHE = _arg_after("--load-cache")
 
 if TEST:
     W, H = 900, 1200
@@ -165,13 +179,19 @@ def render_from_hist(hist, palette_name, out_path):
     idx = (dens_n * (len(lut) - 1)).astype(np.int32)
     rgb = lut[idx]
 
+    # El blur ANTES escalaba con W (1.4*W/1080 -> 12px a 9000px, glow 58px):
+    # a mayor resolucion, mas blur en pixeles absolutos, asi que el hilado fino
+    # de la trayectoria quedaba siempre borrado por igual sin importar cuanto
+    # zoom se hiciera. Aca el radio es casi fijo (solo antialiasing del
+    # binning), independiente de la resolucion de salida, para que las lineas
+    # finas del atractor sean visibles al hacer zoom en el print grande.
     core_img = Image.fromarray(np.clip(rgb, 0, 255).astype(np.uint8))
-    blur_r = max(1, int(round(1.4 * (W / 1080))))
+    blur_r = max(1, int(round(0.35 * (W / 1080))))
     core_blur = np.array(core_img.filter(ImageFilter.GaussianBlur(blur_r)), dtype=np.float32)
 
     bright = np.clip((dens_n - 0.45) / 0.55, 0, 1)[..., None] * rgb
     glow_img = Image.fromarray(np.clip(bright, 0, 255).astype(np.uint8))
-    glow_r = max(2, int(round(7 * (W / 1080))))
+    glow_r = max(2, int(round(1.8 * (W / 1080))))
     glow_blur = np.array(glow_img.filter(ImageFilter.GaussianBlur(glow_r)), dtype=np.float32)
 
     screen = 255 - (255 - core_blur) * (255 - glow_blur) / 255.0
@@ -183,7 +203,14 @@ def render_from_hist(hist, palette_name, out_path):
 
 
 def main():
-    hist = simulate_histogram()
+    if LOAD_CACHE:
+        print(f"Cargando histograma cacheado de {LOAD_CACHE}...")
+        hist = np.load(LOAD_CACHE)
+    else:
+        hist = simulate_histogram()
+        if SAVE_CACHE:
+            np.save(SAVE_CACHE, hist)
+            print(f"Histograma cacheado en {SAVE_CACHE}")
     suffix = "_test" if TEST else ""
     render_from_hist(hist, "classic_cyan", os.path.join(OUT, f"rossler_classic{suffix}.jpg"))
     render_from_hist(hist, "violet_rose", os.path.join(OUT, f"rossler_violet{suffix}.jpg"))
