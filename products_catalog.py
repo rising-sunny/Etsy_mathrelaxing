@@ -550,9 +550,13 @@ PRODUCTS = {
                   "Previews con build_previews.py. Precio $2.99: estrategia de competir bajo (decision "
                   "del usuario), apenas arriba de los ~EUR2 del best-seller 4329390689 para entrar "
                   "agresivo en el nicho sin ir a fondo absoluto. Subido como DRAFT (id=4533446838, "
-                  "2026-07-06) via API con las 5 imagenes + el PDF. Activacion manual pendiente desde "
-                  "el panel de Etsy. Posible mejora futura: 6 temas de color (limite Etsy = 5 archivos) "
-                  "y set de stickers.",
+                  "2026-07-06) via API. Assets actualizados el mismo dia: 9 previews grandes/legibles "
+                  "(build_previews.py) + video promo motion-graphics (build_promo_video.py, "
+                  "LifePlanner_promo.mp4) + el PDF. Nota API: el token solo tiene scope listings_r/w/"
+                  "shops_r (NO listings_d), asi que no se puede borrar un listing por API; para cambiar "
+                  "imagenes hay que subir las nuevas ANTES de borrar las viejas (Etsy exige >=1 imagen "
+                  "siempre). Activacion manual pendiente desde el panel de Etsy. Posible mejora futura: "
+                  "6 temas de color (limite Etsy = 5 archivos) y set de stickers.",
     },
 
     "fractal_flora_pdf": {
