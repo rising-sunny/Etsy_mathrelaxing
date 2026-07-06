@@ -16,8 +16,12 @@ Tecnica del loop perfecto:
   Cada particula respira con r(t) = r_home * (1 + amp*sin(2*pi*t/T + fase)) y
   titila con brillo(t) = 0.5 + 0.5*sin(2*pi*k*t/T + fase2), donde k es un
   ENTERO (distinto por particula, para que no titilen todas en sincronia).
-  Cualquier suma de senos con frecuencia entera respecto a T vuelve
-  exactamente a su valor inicial en t=T: frame 0 == frame T.
+  Ademas, el CAMPO ENTERO rota como un solo cuerpo GLOBAL_ROT_CYCLES vueltas
+  completas a lo largo del loop (theta(t) = theta_home + 2*pi*GLOBAL_ROT_CYCLES*t/T),
+  y cada particula tiene un pequeño balanceo angular propio con frecuencia
+  entera encima de esa rotacion. Cualquier suma de senos/rotaciones con
+  frecuencia ENTERA respecto a T vuelve exactamente a su valor inicial en
+  t=T: frame 0 == frame T, sin importar cuantos terminos se sumen.
 
 Render: se escaturan las posiciones (un punto por particula) ponderadas por
 su brillo en un acumulador, y se aplican dos pasadas de blur (nucleo fino +
@@ -50,13 +54,15 @@ FPS = 30
 DURATION = 8
 T = FPS * DURATION if not TEST else 8
 
-N = 700 if not TEST else 150
+N = 2200 if not TEST else 400
 SEED = 11
 R_MAX = 470 * (W / 1080)
 CX = CY = W / 2
 
 BREATHE_FREQ = 1        # respiracion radial: 1 ciclo completo por loop
-BREATHE_AMP = 0.05
+BREATHE_AMP = 0.16
+GLOBAL_ROT_CYCLES = 1   # el campo entero da 1 vuelta completa por loop
+WOBBLE_AMP = 0.09        # balanceo angular propio, encima de la rotacion global
 
 rng = np.random.default_rng(SEED)
 
@@ -67,8 +73,10 @@ theta_home = i * GOLDEN_ANGLE
 r_norm = r_home / R_MAX
 
 breathe_phase = rng.uniform(0, 2 * np.pi, size=N)
-twinkle_freq = rng.integers(1, 4, size=N)          # entero: 1, 2 o 3
+twinkle_freq = rng.integers(1, 7, size=N)          # entero: 1 a 6
 twinkle_phase = rng.uniform(0, 2 * np.pi, size=N)
+wobble_freq = rng.integers(1, 4, size=N)           # entero: 1, 2 o 3
+wobble_phase = rng.uniform(0, 2 * np.pi, size=N)
 base_brightness = rng.uniform(0.55, 1.0, size=N)
 
 # ── Paleta de densidad: ambar profundo -> oro -> crema (nucleo brillante) ───
@@ -102,18 +110,21 @@ particle_rgb = edge_color[None, :] * (1 - (1 - r_norm[:, None]) * 0.3) + \
                core_color[None, :] * ((1 - r_norm[:, None]) * 0.3)
 
 
-particle_radius = (1.1 + 2.6 * (1 - r_norm) ** 1.3) * (W / 1080)  # nucleo mas grande hacia el centro
+particle_radius = (0.8 + 2.0 * (1 - r_norm) ** 1.3) * (W / 1080)  # nucleo mas grande hacia el centro
 
 
 def render_frame(t):
     theta_t = 2 * np.pi * t / T
 
     r = r_home * (1 + BREATHE_AMP * np.sin(BREATHE_FREQ * theta_t + breathe_phase))
+    theta = (theta_home
+             + GLOBAL_ROT_CYCLES * theta_t
+             + WOBBLE_AMP * np.sin(wobble_freq * theta_t + wobble_phase))
     twinkle = 0.5 + 0.5 * np.sin(twinkle_freq * theta_t + twinkle_phase)
-    brightness = base_brightness * (0.35 + 0.65 * twinkle)
+    brightness = base_brightness * (0.15 + 0.85 * twinkle)
 
-    px = CX + r * np.cos(theta_home)
-    py = CY + r * np.sin(theta_home)
+    px = CX + r * np.cos(theta)
+    py = CY + r * np.sin(theta)
     valid = (px >= -6) & (px < W + 6) & (py >= -6) & (py < H + 6)
 
     # nucleo: circulos rellenos, tamaño y opacidad segun brillo/posicion
