@@ -523,10 +523,14 @@ PRODUCTS = {
         "taxonomy_id": TAXONOMY["planner_template"],
         "images": [
             p("life_planner", "previews", "life_preview_1_hero.jpg"),
-            p("life_planner", "previews", "life_preview_2_calendar.jpg"),
-            p("life_planner", "previews", "life_preview_3_trackers.jpg"),
-            p("life_planner", "previews", "life_preview_4_navigation.jpg"),
-            p("life_planner", "previews", "life_preview_5_included.jpg"),
+            p("life_planner", "previews", "life_preview_2_daily.jpg"),
+            p("life_planner", "previews", "life_preview_3_weekly.jpg"),
+            p("life_planner", "previews", "life_preview_4_monthyear.jpg"),
+            p("life_planner", "previews", "life_preview_5_trackers_a.jpg"),
+            p("life_planner", "previews", "life_preview_6_trackers_b.jpg"),
+            p("life_planner", "previews", "life_preview_7_navigation.jpg"),
+            p("life_planner", "previews", "life_preview_8_included.jpg"),
+            p("life_planner", "previews", "life_preview_9_compatibility.jpg"),
         ],
         "files": [
             p("life_planner", "MathRelaxing_Life_Planner.pdf"),
