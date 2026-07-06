@@ -521,6 +521,7 @@ PRODUCTS = {
         "description": DESCRIPTIONS["life_planner"],
         "price":       2.99,
         "taxonomy_id": TAXONOMY["planner_template"],
+        "video": p("life_planner", "LifePlanner_promo.mp4"),
         "images": [
             p("life_planner", "previews", "life_preview_1_hero.jpg"),
             p("life_planner", "previews", "life_preview_2_daily.jpg"),
