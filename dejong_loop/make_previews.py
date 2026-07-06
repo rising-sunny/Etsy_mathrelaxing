@@ -75,14 +75,12 @@ def build_loop():
     im = canvas()
     art = load_frame(30, 1780)
     im.paste(art, ((CANVAS - 1780) // 2, 60))
+
+    logo = Image.open(os.path.join(ROOT, "mathrelaxing_logo.png")).convert("RGBA")
+    logo = logo.resize((int(logo.width * 140 / logo.height), 140), Image.LANCZOS)
+    im.paste(logo, ((CANVAS - logo.width) // 2, 1790 - logo.height), logo)
+
     d = ImageDraw.Draw(im)
-
-    r = 62
-    cy = 1810
-    cx = CANVAS // 2
-    d.ellipse((cx - r * 2 - 10, cy - r, cx - 10, cy + r), outline=GOLD, width=9)
-    d.ellipse((cx + 10, cy - r, cx + r * 2 + 10, cy + r), outline=GOLD, width=9)
-
     center_text(d, 1905, "Plays forever — no visible seam", f_loop, (215, 210, 205))
     im.save(os.path.join(OUT, "dejong_preview_3_loop.jpg"), quality=92)
 
