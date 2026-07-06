@@ -544,8 +544,10 @@ PRODUCTS = {
                   "limite de Etsy). Archivo = 1 PDF (formato aceptado directamente, NO necesita .mov). "
                   "Previews con build_previews.py. Precio $2.99: estrategia de competir bajo (decision "
                   "del usuario), apenas arriba de los ~EUR2 del best-seller 4329390689 para entrar "
-                  "agresivo en el nicho sin ir a fondo absoluto. Posible mejora futura: 6 temas de "
-                  "color (limite Etsy = 5 archivos) y set de stickers.",
+                  "agresivo en el nicho sin ir a fondo absoluto. Subido como DRAFT (id=4533446838, "
+                  "2026-07-06) via API con las 5 imagenes + el PDF. Activacion manual pendiente desde "
+                  "el panel de Etsy. Posible mejora futura: 6 temas de color (limite Etsy = 5 archivos) "
+                  "y set de stickers.",
     },
 
     "fractal_flora_pdf": {
