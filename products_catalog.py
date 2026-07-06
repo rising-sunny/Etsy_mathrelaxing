@@ -598,15 +598,19 @@ PRODUCTS = {
                   "POCAS trayectorias x MUCHISIMOS pasos (no muchas trayectorias cortas) para revelar "
                   "la estructura de bandas -- acumulado en histograma durante la integracion (streaming) "
                   "para no acumular memoria. 3 variantes de color (mismo patron que Lorenz/Clifford), "
-                  "5400x7200px, ~1.5MB c/u. Sin franja/logo de marca en el archivo vendible (a proposito: "
-                  "es wall art para enmarcar, no una pagina de muestra de un producto multi-pagina; "
-                  "sigue la convencion ya establecida por los prints de Lorenz/Clifford). Bio de 'about "
-                  "the artist' reusada tal cual de los otros dos listings para mantener voz consistente "
-                  "de esta sub-linea. Precio $8.99 (subido de $5.99 tras investigar competencia real via "
-                  "API: listings similares de 'strange attractor print' venden bien en $10-18 con miles "
-                  "de vistas -- el nicho soporta mas de lo que se penso al nivelar todo a $5.99 por "
+                  "9000x12000px (30x40in @300dpi, listo para poster/canvas grande), ~3-3.3MB c/u "
+                  "(subido desde 5400x7200/~1.5MB tras pedido explicito de mayor resolucion para "
+                  "impresion grande; STEPS de la simulacion escalado en proporcion a los bins nuevos "
+                  "para mantener la densidad de puntos). Sin franja/logo de marca en el archivo vendible "
+                  "(a proposito: es wall art para enmarcar, no una pagina de muestra de un producto "
+                  "multi-pagina; sigue la convencion ya establecida por los prints de Lorenz/Clifford). "
+                  "Bio de 'about the artist' reusada tal cual de los otros dos listings para mantener voz "
+                  "consistente de esta sub-linea. Precio $8.99 (subido de $5.99 tras investigar competencia "
+                  "real via API: listings similares de 'strange attractor print' venden bien en $10-18 con "
+                  "miles de vistas -- el nicho soporta mas de lo que se penso al nivelar todo a $5.99 por "
                   "'competir bajo'. Lorenz/Clifford corregidos igual, ver sus notas). Subido como borrador "
-                  "el 2026-07-06, listing_id=4533519822.",
+                  "el 2026-07-06, listing_id=4533519822; imagenes/archivos reemplazados el mismo dia por "
+                  "la version de alta resolucion.",
     },
 
     "life_planner": {
