@@ -76,6 +76,14 @@ Implementaciones de referencia (copiar el patrón):
 - **Estructura**: MP4 1080×1080, ~30-60fps, loop perfecto. El **archivo de descarga
   es el MP4 limpio 1080p**; el **video del listing es un preview 540p CON marca de
   agua** (el producto ES un video → si subes el limpio como preview, lo copian).
+- **⚠️ El archivo de descarga debe subirse como .mov, no .mp4**: la app de Etsy
+  ("Archivos digitales" → subida manual, verificado 2026-07-05) solo acepta
+  `.bmp .doc .gif .jpeg .jpg .mobi .mov .mp3 .mpeg .pdf .png .psp .rtf .stl .txt
+  .zip .ePUB .iBook` — `.mp4` NO está en la lista. Convertir con
+  `ffmpeg -i archivo.mp4 -c copy archivo.mov` (remux, sin recodificar, cero
+  pérdida de calidad ni de tamaño). El video del listing (preview con marca de
+  agua) sí puede subirse como .mp4 normalmente — esto solo aplica al archivo
+  digital descargable.
 - **Loop perfecto**: variar el/los parámetro(s) del sistema con una frecuencia
   angular entera respecto al total de frames (Voronoi), o recorrer una
   trayectoria CIRCULAR en el espacio de parámetros con `cos`/`sin` de la misma

@@ -679,7 +679,7 @@ PRODUCTS = {
             p("dejong_loop", "previews", "dejong_preview_3_loop.jpg"),
         ],
         "files": [
-            p("dejong_loop", "DeJongAttractor_loop.mp4"),
+            p("dejong_loop", "DeJongAttractor_loop.mov"),   # .mov, no .mp4: ver nota
         ],
         "tags": ["de jong attractor","chaos theory art","fractal wallpaper","seamless loop",
                  "mathematical art","neon math art","math wallpaper","digital wallpaper",
@@ -691,7 +691,10 @@ PRODUCTS = {
                   "deliberadamente distinta a Thomas (oro/aqua) para no canibalizar ventas. "
                   "Generado con generate_dejong_loop.py (atractor caotico de Peter de Jong, "
                   "mutacion continua via trayectoria circular en el espacio de parametros a/c). "
-                  "Listo para publicar como borrador.",
+                  "IMPORTANTE: el archivo de descarga es .mov, no .mp4 — la app de Etsy (subida manual) "
+                  "no acepta .mp4 en 'Archivos digitales' (visto 2026-07-05), solo .mov/.mpeg para video. "
+                  "DeJongAttractor_loop.mov es el mismo .mp4 remuxeado sin recodificar (ffmpeg -c copy), "
+                  "cero perdida de calidad. Listo para publicar como borrador.",
     },
 
     "voronoi_gardens_pdf": {
