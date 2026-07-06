@@ -209,16 +209,18 @@ media backgrounds.
 mathrelaxing.store""",
 
     "phyllotaxis_bloom": """\
-Instant download — seamless loop animation (MP4, 1080×1080, 30 fps, 8 s).
-700 particles of light, placed by the golden angle — the same rule that \
-arranges sunflower seeds and pinecone scales — breathing and twinkling in \
-warm gold and cream against near-black. Every particle keeps its place in \
-the spiral forever; only its glow rises and falls, so the bloom never stops \
-shimmering yet always returns exactly to where it began. Loops perfectly \
-for wallpapers, screensavers, digital frames, or social media backgrounds.
+Instant download — seamless loop animation (MP4, 1600×1600, 60 fps, 8 s).
+15,000 particles of light, placed by the golden angle — the same rule that \
+arranges sunflower seeds and pinecone scales — breathing, twinkling, and \
+swirling in warm gold and cream against near-black. The whole field turns \
+like a single body while the core spins faster than the edge, the same \
+shearing motion you see in a spiral galaxy. Every particle keeps its place \
+in the spiral forever; the bloom never stops shimmering yet always returns \
+exactly to where it began. Loops perfectly for wallpapers, screensavers, \
+digital frames, or social media backgrounds.
 
 ► What you get
-• 1 MP4 file — 1080×1080 px, 30 fps, 8-second seamless loop
+• 1 MP4 file — 1600×1600 px, 60 fps, 8-second seamless loop, high resolution
 • Silent (add your own music or keep it ambient)
 
 ► Art born from equations.
@@ -716,7 +718,7 @@ PRODUCTS = {
     },
 
     "phyllotaxis_bloom": {
-        "title":       "Phyllotaxis Bloom — Seamless Loop Animation | Golden Particle Field | 1080x1080 30fps Mathematical Art",
+        "title":       "Phyllotaxis Bloom — Seamless Loop Animation | Golden Particle Field | 1600x1600 60fps Mathematical Art",
         "description": DESCRIPTIONS["phyllotaxis_bloom"],
         "price":       4.99,
         "taxonomy_id": TAXONOMY["digital_art"],
@@ -740,14 +742,23 @@ PRODUCTS = {
                   "en Etsy: esta saturada Y es mayormente un SERVICIO personalizado (subes tu logo, "
                   "te lo entregan editado), no encaja con el modelo de instant-download fijo de la "
                   "tienda. En vez de copiarlo, redirigi la tecnica visual (particulas) a lo que ya "
-                  "funciona: un wallpaper en loop infinito, sin personalizacion. 700 particulas "
-                  "ubicadas por angulo dorado (misma regla que las semillas de Voronoi Gardens), "
-                  "respirando/titilando con frecuencias enteras para loop perfecto. Paleta oro/crema "
+                  "funciona: un wallpaper en loop infinito, sin personalizacion. "
+                  "Iterado 3 veces a pedido del usuario ('mas dinamismo, mas particulas'): "
+                  "v1=700 particulas/1080p/30fps solo respirando+titilando (muy plano) -> "
+                  "v2=2200 particulas + rotacion global de 1 vuelta (mas vivo) -> "
+                  "v3=6000 particulas + rotacion DIFERENCIAL (centro hasta 3 vueltas mas que el "
+                  "borde, cizallamiento tipo galaxia espiral) -> v4 (final)=15000 particulas, "
+                  "1600x1600, 60fps. Particulas ubicadas por angulo dorado (misma regla que las "
+                  "semillas de Voronoi Gardens); todas las frecuencias de movimiento (respiracion, "
+                  "titileo, rotacion global+diferencial, balanceo) son ENTERAS respecto al total de "
+                  "frames -> loop perfecto sin importar cuantos terminos se sumen. Paleta oro/crema "
                   "pura (identidad central de marca), distinta de Thomas (oro+aqua, atractor) y "
                   "De Jong (cian, atractor) — esta es la unica basada en un campo de particulas, no "
                   "en una trayectoria caotica. Generado con generate_phyllotaxis_loop.py. "
-                  "Archivo de descarga en .mov (ver nota de De Jong sobre compatibilidad de Etsy). "
-                  "Listo para publicar como borrador.",
+                  "IMPORTANTE: a 1600x1600/60fps/8s el mp4 con crf=18 pesaba 30MB (excede el limite "
+                  "de 20MB de Etsy para 'Archivos digitales'); se subio crf a 23 -> 18.1MB, sin "
+                  "perdida de calidad visible. Archivo de descarga en .mov (ver nota de De Jong "
+                  "sobre compatibilidad de Etsy). Listo para publicar como borrador.",
     },
 
     "voronoi_gardens_pdf": {

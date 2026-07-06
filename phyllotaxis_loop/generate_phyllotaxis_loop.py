@@ -52,12 +52,12 @@ FRAMES_DIR = os.path.join(BASE, "frames")
 
 TEST = "--test" in sys.argv
 
-W = H = 1080 if not TEST else 360
-FPS = 30
+W = H = 1600 if not TEST else 360
+FPS = 60
 DURATION = 8
 T = FPS * DURATION if not TEST else 8
 
-N = 6000 if not TEST else 800
+N = 15000 if not TEST else 800
 SEED = 11
 R_MAX = 470 * (W / 1080)
 CX = CY = W / 2

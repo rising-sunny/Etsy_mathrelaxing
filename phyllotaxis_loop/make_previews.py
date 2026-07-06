@@ -60,8 +60,8 @@ def build_titled():
     im.paste(art, ((CANVAS - 1480) // 2, 330))
     d = ImageDraw.Draw(im)
     center_text(d, 95, "PHYLLOTAXIS BLOOM", f_title, WHITE)
-    center_text(d, 215, "Seamless 30 fps Animation Loop", f_sub, GOLD)
-    center_text(d, 1865, "1080 × 1080   ·   30 FPS   ·   8s PERFECT LOOP", f_specs, GREY)
+    center_text(d, 215, "Seamless 60 fps Animation Loop", f_sub, GOLD)
+    center_text(d, 1865, "1600 × 1600   ·   60 FPS   ·   8s PERFECT LOOP", f_specs, GREY)
     center_text(d, 1918, "Instant MP4 Digital Download", f_specs_small, GREY)
     im.save(os.path.join(OUT, "phyllotaxis_preview_2_specs.jpg"), quality=92)
 
