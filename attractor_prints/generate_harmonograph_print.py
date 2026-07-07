@@ -98,13 +98,18 @@ def simulate_histogram():
 # ── Paletas: negro -> color -> nucleo casi blanco. Elegidas para NO repetir las
 #    de Rossler (cyan/violet/amber) ni Vector Field (teal/copper/indigo);
 #    "verdigris" aporta el verde que faltaba en el catalogo de prints. ─────────
+# The bulk of the figure is a single-pass line that lands around the low-mid of
+# the (log) density scale, so the vivid, saturated colour is placed EARLY (low t)
+# and near-white is reserved for the very top (the self-crossing nodes only).
+# This keeps the whole curve reading as a bright coloured line on black instead
+# of a dim thread that only glows where it overlaps.
 PALETTES = {
-    "moonlit": [(0.00, (3, 5, 12)), (0.38, (18, 45, 95)),
-                 (0.70, (70, 150, 230)), (1.00, (235, 245, 255))],
-    "rose_gold": [(0.00, (10, 4, 8)), (0.36, (90, 25, 65)),
-                   (0.66, (210, 90, 130)), (0.86, (240, 180, 120)), (1.00, (255, 240, 225))],
-    "verdigris": [(0.00, (3, 10, 8)), (0.38, (12, 70, 60)),
-                   (0.70, (60, 190, 150)), (1.00, (230, 255, 245))],
+    "moonlit": [(0.00, (4, 8, 20)), (0.14, (30, 80, 170)),
+                 (0.42, (90, 180, 255)), (0.80, (170, 220, 255)), (1.00, (240, 250, 255))],
+    "rose_gold": [(0.00, (14, 5, 12)), (0.14, (150, 40, 95)),
+                   (0.42, (240, 90, 150)), (0.72, (250, 175, 120)), (1.00, (255, 240, 225))],
+    "verdigris": [(0.00, (4, 14, 11)), (0.14, (25, 120, 95)),
+                   (0.42, (70, 220, 165)), (0.80, (170, 240, 210)), (1.00, (235, 255, 245))],
 }
 
 
@@ -153,9 +158,10 @@ def render_from_hist(hist, palette_name, out_path):
     dens = np.log1p(hist)
     dmax = dens.max() if dens.max() > 0 else 1.0
     dens_n = np.clip(dens / dmax, 0, 1)
-    # the single-pass line sits low on the log scale; lift the gamma so the
-    # curve itself reads as a bright luminous line, not a faint thread.
-    dens_n = dens_n ** 0.72
+    # the single-pass line sits low on the log scale; lift it hard so the curve
+    # itself reads as a bright luminous line, not a faint thread. (0.72 left the
+    # bulk of the figure too dim against the black ground.)
+    dens_n = dens_n ** 0.45
 
     lut = gradient_lut(PALETTES[palette_name])
     idx = (dens_n * (len(lut) - 1)).astype(np.int32)

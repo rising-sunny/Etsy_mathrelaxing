@@ -227,3 +227,6 @@ frames/
 etsy_token.json
 
 lulu_books/output/
+
+# MathRelaxing: cache de histograma de los art prints generativos (grande, regenerable)
+_hist_cache.npy
