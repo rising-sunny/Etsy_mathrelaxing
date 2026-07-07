@@ -32,11 +32,13 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 FF   = os.path.join(BASE, "ipad_ff")
 SG   = os.path.join(BASE, "ipad_sg")
 ATTR = os.path.join(BASE, "attractor_prints")
+LULU = os.path.join(BASE, "lulu_books", "output")
 
 def p(*parts): return os.path.join(BASE, *parts)
 def ff(*parts): return os.path.join(FF, *parts)
 def sg(*parts): return os.path.join(SG, *parts)
 def attractor(*parts): return os.path.join(ATTR, *parts)
+def lulu(*parts): return os.path.join(LULU, *parts)
 
 # ── Taxonomy IDs verificados ──────────────────────────────────────────────────
 # Fuente: GET /application/seller-taxonomy/nodes (llamada al API de Etsy)
@@ -568,6 +570,63 @@ ABOUT THE ARTIST
 I'm an electrical engineer who got lost in recreational
 mathematics. Every piece in this shop is written from scratch
 in Python — equations, rendering, colors and all.""",
+
+    "hyperbolic_gardens_physical": """\
+PRINTED physical coloring book — ships to your door (50 designs, 8.5×11 in, perfect-bound).
+Journey into hyperbolic geometry with 50 intricate tiling designs inspired \
+by Escher's Circle Limit series and the Poincaré disc model. Each design repeats \
+toward infinity — a meditative coloring experience unlike any other.
+
+► What you get
+• A real printed book, 8.5×11 in, matte perfect-bound cover
+• 50 original hyperbolic tiling designs, printed on 60# (90 gsm) uncoated white paper
+• A blank page after every design, so pens/markers never bleed through to the next one
+• Made fresh for your order (print-on-demand) — ships in 3-5 business days
+
+© MathRelaxing. mathrelaxing.store""",
+
+    "fractal_flora_physical": """\
+PRINTED physical coloring book — ships to your door (50 designs, 8.5×11 in, perfect-bound).
+Lose yourself in 50 unique fractal & botanical line-art designs: Dragon Curves, \
+Julia Sets, Barnsley Ferns, twin fractals, and more — all drawn with mathematical \
+precision and free of color numbers.
+
+► What you get
+• A real printed book, 8.5×11 in, matte perfect-bound cover
+• 50 original fractal & botanical designs, printed on 60# (90 gsm) uncoated white paper
+• A blank page after every design, so pens/markers never bleed through to the next one
+• Made fresh for your order (print-on-demand) — ships in 3-5 business days
+
+© MathRelaxing. mathrelaxing.store""",
+
+    "sacred_math_physical": """\
+PRINTED physical coloring book — ships to your door (50 designs, 8.5×11 in, perfect-bound).
+Fifty 3D mathematical surfaces — tori, Möbius bands, helicoids, golden spirals \
+and faceted gems — projected into flat, numbered regions. Match the numbers to \
+the palette and watch the illusion of volume emerge as you color. Each model is \
+rendered from its real parametric equations, not traced by hand.
+
+► What you get
+• A real printed book, 8.5×11 in, matte perfect-bound cover
+• 50 original 3D color-by-number designs, printed on 60# (90 gsm) uncoated white paper
+• A blank page after every design, so pens/markers never bleed through to the next one
+• Made fresh for your order (print-on-demand) — ships in 3-5 business days
+
+© MathRelaxing. mathrelaxing.store""",
+
+    "voronoi_gardens_physical": """\
+PRINTED physical coloring book — ships to your door (50 designs, 8.5×11 in, perfect-bound).
+50 mesmerizing Voronoi designs grown from pure mathematics: radial mandalas, \
+golden-angle sunflower spirals, cathedral rose windows and softly relaxed organic \
+cells. Every cell is a closed region — perfect for clean, satisfying color fills.
+
+► What you get
+• A real printed book, 8.5×11 in, matte perfect-bound cover
+• 50 original Voronoi designs, printed on 60# (90 gsm) uncoated white paper
+• A blank page after every design, so pens/markers never bleed through to the next one
+• Made fresh for your order (print-on-demand) — ships in 3-5 business days
+
+© MathRelaxing. mathrelaxing.store""",
 }
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
@@ -1212,6 +1271,75 @@ PRODUCTS = {
         ],
         "tags": ["quantified self","data planner","agile sprint planner","programmer gift","engineer gift","habit tracker","github heatmap","digital planner","goodnotes planner","ipad planner","dark mode planner","bullet journal","stem notebook"],
         "notes": "Generado con build_quantified_self.py",
+    },
+
+    # ── Libros físicos (Lulu POD) — Tipo 8, ver STANDARDS.md ──────────────────
+    "hyperbolic_gardens_physical": {
+        "title":       "Hyperbolic Gardens Coloring Book – PRINTED Physical Edition | 50 Escher-Style Tessellation Designs | Perfect Bound",
+        "description": DESCRIPTIONS["hyperbolic_gardens_physical"],
+        "price":       18.99,
+        "taxonomy_id": TAXONOMY["coloring_book_physical"],
+        "images": [
+            lulu("hyperbolic_gardens_cover.png"),
+            lulu("listing_photos", "hyperbolic_sample1.jpg"),
+            lulu("listing_photos", "hyperbolic_sample2.jpg"),
+            lulu("listing_photos", "hyperbolic_sample3.jpg"),
+        ],
+        "files": [],
+        "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
+        "tags": ["hyperbolic geometry","tessellation art","escher inspired","printed book","adult coloring book","math coloring book","perfect bound book","stem gift","relaxation gift","geometric coloring","mandala coloring","math teacher gift","physical book gift"],
+        "notes": "Tipo 8 (libro fisico POD via Lulu, ver STANDARDS.md). Generado con lulu_books/generators/gen_hyperbolic_book.py + gen_hyperbolic_cover.py. 104 paginas (50 disenos + 50 blancas + frontmatter, ver commit de blank-after-each). Precio $18.99 + shipping profile Lulu Publishing ($5.99 EE.UU. / $9.99 resto via USPS Media Mail / Priority Intl). Sin archivo digital: se cumple imprimiendo bajo demanda con Lulu al recibir el pedido (flujo manual por ahora, ver lulu_api/lulu_publish.py).",
+    },
+
+    "fractal_flora_physical": {
+        "title":       "Fractal Flora Coloring Book – PRINTED Physical Edition | 50 Fractal & Botanical Designs | Perfect Bound",
+        "description": DESCRIPTIONS["fractal_flora_physical"],
+        "price":       18.99,
+        "taxonomy_id": TAXONOMY["coloring_book_physical"],
+        "images": [
+            lulu("fractal_flora_cover.png"),
+            lulu("listing_photos", "fractal_flora_sample1.jpg"),
+            lulu("listing_photos", "fractal_flora_sample2.jpg"),
+            lulu("listing_photos", "fractal_flora_sample3.jpg"),
+        ],
+        "files": [],
+        "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
+        "tags": ["fractal coloring","botanical art book","algorithmic art","printed book","adult coloring book","math coloring book","perfect bound book","stem gift","nature coloring","relaxation gift","math teacher gift","physical book gift","dragon curve art"],
+        "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/gen_l_systems_book.py + gen_l_systems_cover.py. 104 paginas. Precio $18.99 + shipping profile Lulu Publishing.",
+    },
+
+    "sacred_math_physical": {
+        "title":       "Sacred Geometry & Topology Coloring Book – 3D Color-by-Number | PRINTED Physical Edition | 50 Designs",
+        "description": DESCRIPTIONS["sacred_math_physical"],
+        "price":       18.99,
+        "taxonomy_id": TAXONOMY["coloring_book_physical"],
+        "images": [
+            lulu("sacred_math_cover.png"),
+            lulu("listing_photos", "sacred_math_sample1.jpg"),
+            lulu("listing_photos", "sacred_math_sample2.jpg"),
+            lulu("listing_photos", "sacred_math_sample3.jpg"),
+        ],
+        "files": [],
+        "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
+        "tags": ["3d coloring book","color by number","sacred geometry","topology art","printed book","adult coloring book","math coloring book","perfect bound book","stem gift","geometry gift","math teacher gift","physical book gift","torus mobius art"],
+        "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/gen_sacred_math_book.py + gen_sacred_math_cover.py (portada nueva, ver commit). 108 paginas. Distinto del 'sacred_geometry_pdf' ya existente (ese es low-poly mandala 2D; este es proyeccion 3D color-by-number). Precio $18.99 + shipping profile Lulu Publishing. Nota de calidad: el renderer de mallas 3D tiene un defecto residual conocido (ver fix commits) -- la mayoria de paginas quedan limpias tras la curacion multi-angulo pero algunas conservan pequenas astillas oscuras menores; las 3 fotos de muestra elegidas para el listing estan entre las mas limpias.",
+    },
+
+    "voronoi_gardens_physical": {
+        "title":       "Voronoi Gardens Coloring Book – PRINTED Physical Edition | 50 Mandala & Cell Tessellation Designs | Perfect Bound",
+        "description": DESCRIPTIONS["voronoi_gardens_physical"],
+        "price":       18.99,
+        "taxonomy_id": TAXONOMY["coloring_book_physical"],
+        "images": [
+            lulu("voronoi_gardens_cover.png"),
+            lulu("listing_photos", "voronoi_sample1.jpg"),
+            lulu("listing_photos", "voronoi_sample2.jpg"),
+            lulu("listing_photos", "voronoi_sample3.jpg"),
+        ],
+        "files": [],
+        "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
+        "tags": ["voronoi coloring","cell tessellation","mandala coloring","printed book","adult coloring book","math coloring book","perfect bound book","stem gift","phyllotaxis art","relaxation gift","math teacher gift","physical book gift","organic mandala"],
+        "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/make_voronoi_book.py (comando 'interior' con blank_after_each=True -> *_interior_print.pdf; portada reutiliza el cover.pdf ya existente del producto digital, rasterizado a PNG). 104 paginas. Precio $18.99 + shipping profile Lulu Publishing.",
     },
 }
 
