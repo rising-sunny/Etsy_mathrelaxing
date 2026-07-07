@@ -197,12 +197,23 @@ Implementaciones de referencia (copiar el patrón):
   Usar **`EtsyManager.update_price(listing_id, price)`** (ya implementado: lee el
   inventario, lo limpia, lo reenvía como JSON) — no reinventar esto con
   `update_listing`.
-- **El token no tiene todos los scopes.** Actual: `listings_r listings_w shops_r`
-  (ver `auth.py`). Sin `transactions_r` no se pueden leer receipts/pedidos/ventas
-  (`GET /shops/{id}/receipts` → 403). Sin `listings_d` no se puede borrar un
-  listing por API (`DELETE /listings/{id}` → 403) — para reemplazar imágenes de
-  un listing ya creado hay que subir las nuevas ANTES de borrar las viejas,
-  porque Etsy exige que un listing tenga siempre ≥1 imagen.
+- **El token no tiene todos los scopes.** Actual (post re-auth 2026-07-07):
+  `listings_r listings_w shops_r shops_w transactions_r` (ver `auth.py`). Sigue
+  sin `listings_d`, así que no se puede borrar un listing por API (`DELETE
+  /listings/{id}` → 403) — para reemplazar imágenes de un listing ya creado hay
+  que subir las nuevas ANTES de borrar las viejas, porque Etsy exige que un
+  listing tenga siempre ≥1 imagen. `shops_w` habilita crear shipping profiles
+  (`POST /shops/{id}/shipping-profiles`) y processing/readiness profiles
+  (`POST /shops/{id}/readiness-state-definitions`) por API en vez de a mano en
+  el dashboard — no migrado todavía, los que existen (ver `products_catalog.py`
+  `SHIPPING_PROFILE_LULU_BOOKS`/`READINESS_STATE_LULU_BOOKS`) se crearon a mano
+  antes de tener el scope.
+- **Un saldo pendiente de pago con Etsy suspende TODA la API key**, no solo
+  los endpoints de facturación — hasta `GET /seller-taxonomy/nodes` (público,
+  sin OAuth) responde 403 `"API key not found or not active, or incorrect
+  shared secret for API key."` mientras haya deuda. Este error NO tiene que
+  ver con scopes, tokens vencidos, ni el código: se soluciona pagando el saldo
+  en Etsy (Shop Manager > Finances), no reintentando ni re-autenticando.
 - **`views`/`num_favorers` del GET del listing son el dato real** — si el usuario
   reporta "muchas visitas" pero la API dice 2, confiar en la API y preguntar de
   dónde saca el otro número (Etsy Ads mide clics, no vistas orgánicas; el
