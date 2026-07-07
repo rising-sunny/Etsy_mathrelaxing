@@ -230,3 +230,6 @@ lulu_books/output/
 
 # MathRelaxing: cache de histograma de los art prints generativos (grande, regenerable)
 _hist_cache.npy
+
+# Printful API token
+printful/.env
