@@ -225,3 +225,5 @@ frames/
 # NUNCA commitear este archivo — auth.py y etsy_manager.py lo generan/actualizan
 # localmente. Si no existe, correr auth.py primero.
 etsy_token.json
+
+lulu_books/output/
