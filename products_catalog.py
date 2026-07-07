@@ -827,8 +827,12 @@ PRODUCTS = {
         "taxonomy_id": TAXONOMY["planner_template"],
         "images": [
             p("phd_planner", "previews", "phd_preview_1_hero.jpg"),
-            p("phd_planner", "previews", "phd_preview_2_roadmap.jpg"),
-            p("phd_planner", "previews", "phd_preview_3_tracking.jpg"),
+            p("phd_planner", "previews", "phd_preview_2_included.jpg"),
+            p("phd_planner", "previews", "phd_preview_3_roadmap.jpg"),
+            p("phd_planner", "previews", "phd_preview_4_literature.jpg"),
+            p("phd_planner", "previews", "phd_preview_5_weekly.jpg"),
+            p("phd_planner", "previews", "phd_preview_6_defense.jpg"),
+            p("phd_planner", "previews", "phd_preview_7_navigation.jpg"),
         ],
         "files": [
             p("phd_planner", "PhD_Dissertation_Planner.pdf"),
@@ -860,8 +864,14 @@ PRODUCTS = {
                   "al rango actual del catalogo $2.99-8.99). Subido como draft el 2026-07-07, "
                   "listing_id=4533973003. Titulo: 2 gotchas de Etsy en el titulo -- max 140 chars, y '&' "
                   "solo se puede usar UNA vez (por eso 'Thesis Tracker, Literature Log, Defense Prep' con "
-                  "comas en vez de '&'). Previews con build_phd_planner.py (3 imagenes sobre navy con "
-                  "branding). Activacion manual pendiente desde el panel de Etsy.",
+                  "comas en vez de '&'). Previews con build_phd_planner.py: 7 imagenes sobre navy con "
+                  "branding (hero/dashboard, tarjeta 'que incluye' con las 9 secciones + conteos, y 5 "
+                  "cards con 2 paginas reales grandes c/u: roadmap+chapters, literature+meetings, "
+                  "weekly+monthly, deadlines+defense, mas navegacion/compatibilidad). Se subio primero "
+                  "con 3 previews (2026-07-07) y se reemplazaron por estas 7 el mismo dia via script "
+                  "temporal (subir nuevas ANTES de borrar viejas, por el scope sin listings_d; GET de "
+                  "imagenes usa /listings/{id}/images SIN shop_id, el POST/DELETE si con shop_id). "
+                  "Activacion manual pendiente desde el panel de Etsy.",
     },
 
     "life_planner": {

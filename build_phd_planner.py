@@ -393,60 +393,144 @@ def _render_page_png(page_num, out_path):
 SECTION_START = {}
 
 
-def build_previews():
-    os.makedirs(PREV, exist_ok=True)
-    mock_idx = os.path.join(PREV, "_idx.png")
-    mock_road = os.path.join(PREV, "_road.png")
-    mock_chap = os.path.join(PREV, "_chap.png")
-    mock_read = os.path.join(PREV, "_read.png")
-    mock_week = os.path.join(PREV, "_week.png")
-
-    _render_page_png(0, mock_idx)
-    _render_page_png(SECTION_START["roadmap"], mock_road)
-    _render_page_png(SECTION_START["chapters"], mock_chap)
-    _render_page_png(SECTION_START["reading"], mock_read)
-    _render_page_png(SECTION_START["weekly"], mock_week)
-
-    # 1. Hero
+def _canvas():
     fig, ax = plt.subplots(figsize=(10, 8))
     fig.patch.set_facecolor(brand.IPAD_NAVY)
     ax.axis("off"); ax.set_xlim(0, 10); ax.set_ylim(0, 8)
+    return fig, ax
+
+
+def _framed(ax, png, extent, lw=1.2):
+    ax.imshow(mpimg.imread(png), extent=extent, zorder=3)
+    x0, x1, y0, y1 = extent
+    ax.add_patch(plt.Rectangle((x0, y0), x1 - x0, y1 - y0, fill=False,
+                               edgecolor=brand.GOLD, lw=lw, zorder=4))
+
+
+def _two_up(out_name, title, left_png, right_png, sub=None):
+    """Two page shots side by side under a title band — big and legible."""
+    fig, ax = _canvas()
+    ax.text(5, 7.35, title, ha="center", va="center", fontsize=22,
+            color=brand.CREAM, **brand.SERIF)
+    if sub:
+        ax.text(5, 6.75, sub, ha="center", va="center", fontsize=12.5,
+                color=brand.GOLD, **brand.SANS)
+    # 4:3 page -> width/height = 1.29; height 4.0 -> width ~5.16 too wide for
+    # two, so use height 3.6 -> width 4.65, gap between
+    h = 3.7; w = h * (PW / PH)
+    y0 = 1.9
+    _framed(ax, left_png, [0.35, 0.35 + w, y0, y0 + h])
+    _framed(ax, right_png, [9.65 - w, 9.65, y0, y0 + h])
+    brand.ipad_logo(ax, 5, 1.0, 1.1)
+    fig.savefig(os.path.join(PREV, out_name), dpi=200, facecolor=brand.IPAD_NAVY)
+    plt.close(fig)
+
+
+def _one_up(out_name, title, png, sub=None):
+    """A single page shot, large and centered."""
+    fig, ax = _canvas()
+    ax.text(5, 7.35, title, ha="center", va="center", fontsize=22,
+            color=brand.CREAM, **brand.SERIF)
+    if sub:
+        ax.text(5, 6.75, sub, ha="center", va="center", fontsize=12.5,
+                color=brand.GOLD, **brand.SANS)
+    h = 4.6; w = h * (PW / PH)
+    _framed(ax, png, [5 - w / 2, 5 + w / 2, 1.55, 1.55 + h], lw=1.5)
+    brand.ipad_logo(ax, 5, 0.85, 1.0)
+    fig.savefig(os.path.join(PREV, out_name), dpi=200, facecolor=brand.IPAD_NAVY)
+    plt.close(fig)
+
+
+def build_previews():
+    os.makedirs(PREV, exist_ok=True)
+
+    # render every page we want to feature to a PNG mock
+    mocks = {}
+    for key, pnum in {
+        "idx": 0,
+        "road": SECTION_START["roadmap"],
+        "chap": SECTION_START["chapters"],
+        "read": SECTION_START["reading"],
+        "mtg": SECTION_START["meetings"],
+        "week": SECTION_START["weekly"],
+        "mon": SECTION_START["monthly"],
+        "dl": SECTION_START["deadlines"],
+        "qual": SECTION_START["defense"],
+        "def": SECTION_START["defense"] + 1,
+        "note": SECTION_START["notes"],
+    }.items():
+        m = os.path.join(PREV, f"_{key}.png")
+        _render_page_png(pnum, m)
+        mocks[key] = m
+
+    # 1. Hero (title + dashboard)
+    fig, ax = _canvas()
     brand.ipad_logo(ax, 5, 1, 1.5)
     ax.text(5, 6.9, "PhD & DISSERTATION PLANNER", ha="center", va="center",
             fontsize=27, color=brand.CREAM, **brand.SERIF)
     ax.text(5, 6.4, "Undated Academic Planner for GoodNotes & Notability",
             ha="center", va="center", fontsize=15, color=brand.GOLD, **brand.SANS)
-    ax.imshow(mpimg.imread(mock_idx), extent=[2, 8, 2, 5.7], zorder=3)
-    ax.add_patch(plt.Rectangle((2, 2), 6, 3.7, fill=False, edgecolor=brand.GOLD, lw=2, zorder=4))
+    _framed(ax, mocks["idx"], [2, 8, 2, 5.7], lw=2)
     fig.savefig(os.path.join(PREV, "phd_preview_1_hero.jpg"), dpi=200, facecolor=brand.IPAD_NAVY)
     plt.close(fig)
 
-    # 2. Roadmap + chapters
-    fig, ax = plt.subplots(figsize=(10, 8))
-    fig.patch.set_facecolor(brand.IPAD_NAVY)
-    ax.axis("off"); ax.set_xlim(0, 10); ax.set_ylim(0, 8)
-    ax.text(5, 7.2, "FROM PROPOSAL TO DEFENSE", ha="center", va="center",
-            fontsize=23, color=brand.CREAM, **brand.SERIF)
-    ax.imshow(mpimg.imread(mock_road), extent=[0.7, 4.9, 2, 6], zorder=3)
-    ax.add_patch(plt.Rectangle((0.7, 2), 4.2, 4, fill=False, edgecolor=brand.GOLD, lw=1, zorder=4))
-    ax.imshow(mpimg.imread(mock_chap), extent=[5.1, 9.3, 2, 6], zorder=3)
-    ax.add_patch(plt.Rectangle((5.1, 2), 4.2, 4, fill=False, edgecolor=brand.GOLD, lw=1, zorder=4))
-    brand.ipad_logo(ax, 5, 1, 1.2)
-    fig.savefig(os.path.join(PREV, "phd_preview_2_roadmap.jpg"), dpi=200, facecolor=brand.IPAD_NAVY)
+    # 2. "What's included" summary card — so the buyer sees the full scope
+    fig, ax = _canvas()
+    ax.text(5, 7.3, "136 HYPERLINKED PAGES", ha="center", va="center",
+            fontsize=26, color=brand.CREAM, **brand.SERIF)
+    ax.text(5, 6.75, "Everything from first proposal to final defense",
+            ha="center", va="center", fontsize=13, color=brand.GOLD, **brand.SANS)
+    rows = [
+        ("Research Roadmap", "4 multi-year milestone Gantt charts"),
+        ("Chapter Progress Tracker", "draft / revised / sent / approved"),
+        ("Literature Log", "72 cards: citation, finding, relevance"),
+        ("Advisor & Committee Log", "24 agenda + action-item logs"),
+        ("Weekly Research Pages", "52 weeks: priorities & writing"),
+        ("Monthly Overviews", "12 months: objectives & review"),
+        ("Conferences & Deadlines", "submissions, travel & funding"),
+        ("Exams & Defense Prep", "qualifying exam + defense list"),
+        ("Research Notes", "12 dot-grid pages"),
+    ]
+    y = 5.85
+    for name, desc in rows:
+        ax.add_patch(plt.Rectangle((1.4, y - 0.06), 0.16, 0.16, color=brand.GOLD, zorder=3))
+        ax.text(1.75, y + 0.02, name, ha="left", va="center", fontsize=12,
+                color=brand.CREAM, **brand.SERIF)
+        ax.text(6.0, y + 0.02, desc, ha="left", va="center", fontsize=10,
+                color=(0.72, 0.74, 0.8), **brand.SANS)
+        y -= 0.58
+    brand.ipad_logo(ax, 5, 0.55, 1.0)
+    fig.savefig(os.path.join(PREV, "phd_preview_2_included.jpg"), dpi=200, facecolor=brand.IPAD_NAVY)
     plt.close(fig)
 
-    # 3. Literature + weekly
-    fig, ax = plt.subplots(figsize=(10, 8))
-    fig.patch.set_facecolor(brand.IPAD_NAVY)
-    ax.axis("off"); ax.set_xlim(0, 10); ax.set_ylim(0, 8)
-    ax.text(5, 7.2, "TRACK EVERY PAPER & EVERY WEEK", ha="center", va="center",
-            fontsize=21, color=brand.CREAM, **brand.SERIF)
-    ax.imshow(mpimg.imread(mock_read), extent=[0.7, 4.9, 2, 6], zorder=3)
-    ax.add_patch(plt.Rectangle((0.7, 2), 4.2, 4, fill=False, edgecolor=brand.GOLD, lw=1, zorder=4))
-    ax.imshow(mpimg.imread(mock_week), extent=[5.1, 9.3, 2, 6], zorder=3)
-    ax.add_patch(plt.Rectangle((5.1, 2), 4.2, 4, fill=False, edgecolor=brand.GOLD, lw=1, zorder=4))
-    brand.ipad_logo(ax, 5, 1, 1.2)
-    fig.savefig(os.path.join(PREV, "phd_preview_3_tracking.jpg"), dpi=200, facecolor=brand.IPAD_NAVY)
+    # 3..7 — each real section, big and legible
+    _two_up("phd_preview_3_roadmap.jpg", "PLAN THE WHOLE JOURNEY",
+            mocks["road"], mocks["chap"],
+            sub="Multi-year roadmap  ·  chapter-by-chapter progress")
+    _two_up("phd_preview_4_literature.jpg", "NEVER LOSE A PAPER AGAIN",
+            mocks["read"], mocks["mtg"],
+            sub="Literature log  ·  advisor meeting notes")
+    _two_up("phd_preview_5_weekly.jpg", "STAY ON TRACK EVERY WEEK",
+            mocks["week"], mocks["mon"],
+            sub="Weekly research pages  ·  monthly review")
+    _two_up("phd_preview_6_defense.jpg", "FROM DEADLINES TO DEFENSE",
+            mocks["dl"], mocks["def"],
+            sub="Conference deadlines  ·  defense checklist")
+
+    # 8. Navigation & compatibility card
+    fig, ax = _canvas()
+    ax.text(5, 7.3, "TAP TO JUMP ANYWHERE", ha="center", va="center",
+            fontsize=24, color=brand.CREAM, **brand.SERIF)
+    ax.text(5, 6.75, "Every page is hyperlinked — side tabs on all 136 pages",
+            ha="center", va="center", fontsize=12.5, color=brand.GOLD, **brand.SANS)
+    _framed(ax, mocks["idx"], [1.2, 5.0, 2.7, 5.15])
+    _framed(ax, mocks["note"], [5.2, 9.0, 2.7, 5.15])
+    ax.text(5, 2.15, "Works in GoodNotes · Notability · Xodo · Penly · any PDF app",
+            ha="center", va="center", fontsize=11.5, color=(0.72, 0.74, 0.8), **brand.SANS)
+    ax.text(5, 1.75, "iPad · Android · Windows tablets   |   Undated — start any day",
+            ha="center", va="center", fontsize=11.5, color=(0.72, 0.74, 0.8), **brand.SANS)
+    brand.ipad_logo(ax, 5, 0.85, 1.0)
+    fig.savefig(os.path.join(PREV, "phd_preview_7_navigation.jpg"), dpi=200, facecolor=brand.IPAD_NAVY)
     plt.close(fig)
 
     print(f"Previews creados en {PREV}/")
