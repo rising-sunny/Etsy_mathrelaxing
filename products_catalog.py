@@ -528,6 +528,40 @@ annotation app is required. Not designed for printing.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
 
+    "phd_planner": """\
+Instant download — undated digital planner for GoodNotes, Notability & any PDF \
+annotation app on iPad, Android & Windows tablets. Built for one job: getting \
+you from first proposal to final defense without losing track of anything.
+
+► What's inside (136 hyperlinked pages)
+• Research Roadmap — a multi-year milestone Gantt (coursework → lit review → \
+proposal → data → analysis → writing → revisions → defense), one grid per year
+• Chapter Progress tracker — draft / revised / sent to advisor / approved, \
+for every chapter and section
+• Literature Log — 70+ paper cards with citation, key finding, relevance \
+rating & themes, so your reading never turns into a pile of forgotten PDFs
+• Advisor & Committee Meeting log — agenda, discussion, decisions and action \
+items for 24 meetings (never show up unprepared again)
+• 52 Weekly Research pages — top 3 priorities, a daily writing-word tracker \
+and a 7-day task planner
+• 12 Monthly Overviews — objectives, milestones reached & a "what moved the \
+thesis forward?" review
+• Conferences & Deadlines — submissions, travel and funding, all in one table
+• Qualifying / Comprehensive Exam prep + a full Dissertation Defense checklist
+• Dot-grid Research Notes pages
+• Tap-to-jump navigation on every page: dashboard + side tabs
+
+► How to use
+Import the PDF into GoodNotes, Notability, Penly, Xodo or any annotation app. \
+Tap any tab or link to jump instantly. Undated — start any day, duplicate any \
+page as many times as you need.
+
+This is a DIGITAL file — no physical product is shipped. A separate PDF \
+annotation app is required.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+mathrelaxing.store""",
+
     "rossler_attractor_print": """\
 A Rössler strange attractor, rendered entirely with code.
 
@@ -784,6 +818,50 @@ PRODUCTS = {
                   "enmarcar). 'images' usa *_preview.jpg (marca de agua diagonal tileada) y 'files' usa el "
                   "*_print.jpg limpio de resolucion completa. Subido como borrador el 2026-07-07, "
                   "listing_id=4533974490.",
+    },
+
+    "phd_planner": {
+        "title":       "PhD & Dissertation Planner | Undated Digital GoodNotes Notability iPad | Thesis Tracker, Literature Log, Defense Prep",
+        "description": DESCRIPTIONS["phd_planner"],
+        "price":       6.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("phd_planner", "previews", "phd_preview_1_hero.jpg"),
+            p("phd_planner", "previews", "phd_preview_2_roadmap.jpg"),
+            p("phd_planner", "previews", "phd_preview_3_tracking.jpg"),
+        ],
+        "files": [
+            p("phd_planner", "PhD_Dissertation_Planner.pdf"),
+        ],
+        "tags": ["phd planner","dissertation planner","thesis planner","academic planner",
+                 "grad school planner","research planner","goodnotes planner","digital planner",
+                 "undated planner","ipad planner","phd student gift","literature review",
+                 "notability planner"],
+        "notes": "Tipo 7 (STANDARDS.md, 'Planner digital'), nicho elegido tras investigar el mercado "
+                  "via la API de Etsy (script _planner_research_tmp.py, borrado): 'phd planner digital' "
+                  "tiene solo ~189 listings activos pero el top (Ultimate PhD Planner Pack, $6.50) "
+                  "acumula 1.272 favs / ~39.7k vistas -> demanda real validada, poca oferta. En "
+                  "contraste, otros nichos de baja competencia (data science planner ~61, engineering "
+                  "student planner ~120, math teacher planner ~526) tienen favs/views casi nulos en su "
+                  "top = baja competencia porque nadie compra, no oportunidad. Ninguno de los planners "
+                  "actuales (life/stem_focus/stem_notebook/quantified_self) cubre el ciclo doctoral "
+                  "especificamente. Construido con build_phd_planner.py sobre planner_framework."
+                  "DigitalPlanner (mismo motor/estilo que quantified_self). 136 pags landscape 4:3, "
+                  "100% hipervinculadas (dashboard + tabs laterales): roadmap Gantt plurianual (4), "
+                  "chapter tracker (2), literature log 3 papers/pag (24 = 72 papers), advisor meeting "
+                  "log (24), weekly research (52), monthly (12), deadlines (3), qualifying exam + "
+                  "defense prep (2), notas dot-grid (12). 708 KB (muy bajo el limite de 20MB de Etsy). "
+                  "Archivo = 1 PDF directo (formato aceptado). Gotcha PyMuPDF corregido: guiones largos "
+                  "'—' en headers salian como '?' (base14 no tiene el glifo) -> reemplazados por '-'; "
+                  "rating de relevancia '○○○' idem -> dibujado con draw_circle. Feature set derivado de "
+                  "busqueda externa (Goodnotes 2026 + planners similares): navegacion hyperlinked, log "
+                  "de reuniones con director, tracker de papers, progreso por capitulo, Gantt de hitos, "
+                  "cuenta regresiva a defensa. Precio $6.99 (alineado al benchmark validado de $6.50 y "
+                  "al rango actual del catalogo $2.99-8.99). Subido como draft el 2026-07-07, "
+                  "listing_id=4533973003. Titulo: 2 gotchas de Etsy en el titulo -- max 140 chars, y '&' "
+                  "solo se puede usar UNA vez (por eso 'Thesis Tracker, Literature Log, Defense Prep' con "
+                  "comas en vez de '&'). Previews con build_phd_planner.py (3 imagenes sobre navy con "
+                  "branding). Activacion manual pendiente desde el panel de Etsy.",
     },
 
     "life_planner": {
