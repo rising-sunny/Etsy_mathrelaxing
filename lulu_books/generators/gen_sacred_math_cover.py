@@ -1,5 +1,6 @@
-"""Generate the Lulu wraparound cover (1255x810 pt = 17.43x11.25") for
-Sacred Geometry & Topology, plus a square web cover image of the front."""
+"""Generate the Lulu wraparound cover (~1264x810 pt, computed live from Lulu's
+/cover-dimensions/ for the actual page count) for Sacred Geometry & Topology,
+plus a square web cover image of the front."""
 import sys, os
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -41,13 +42,22 @@ def draw_mesh_motif(ax, idx, color):
     ax.set_aspect("equal"); ax.axis("off")
 
 
-def build_cover():
-    W, H = 1255 / 72.0, 810 / 72.0
+def build_cover(page_count=108):
+    """page_count must match the actual interior.pdf being paired with this
+    cover -- Lulu computes the spine width from it via /cover-dimensions/ and
+    rejects a cover that doesn't match exactly."""
+    sys.path.insert(0, os.path.join(_ROOT, "lulu_api"))
+    import lulu_publish as lp
+    client = lp.make_client()
+    dims = client.cover_dimensions(lp.PRESETS["letter_bw_pb"].pod_package_id, page_count, unit="pt")
+    total_w, total_h = float(dims["width"]), float(dims["height"])
+
+    W, H = total_w / 72.0, total_h / 72.0
     fig = plt.figure(figsize=(W, H))
     bg = fig.add_axes([0, 0, 1, 1]); bg.axis("off")
     bg.add_patch(plt.Rectangle((0, 0), 1, 1, color=BG))
-    fb = 9 / 1255.0; front_l = 634 / 1255.0; front_r = 1246 / 1255.0
-    spine_l = 621 / 1255.0; spine_r = 634 / 1255.0
+    fb = 9 / total_w; front_l = 634 / total_w; front_r = 1246 / total_w
+    spine_l = 621 / total_w; spine_r = 634 / total_w
 
     # FRONT motif: a clean Torus Topology
     axm = fig.add_axes([front_l + 0.055, 0.40, (front_r - front_l) - 0.11, 0.35])

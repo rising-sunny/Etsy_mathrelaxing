@@ -1,5 +1,6 @@
-"""Generate the Lulu wraparound cover (1255x810 pt = 17.43x11.25") for
-Fractal Flora, plus a square web cover image of the front."""
+"""Generate the Lulu wraparound cover (~1263x810 pt, computed live from Lulu's
+/cover-dimensions/ for the actual page count) for Fractal Flora, plus a
+square web cover image of the front."""
 import sys
 import os
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,12 +20,23 @@ _LOGO=mpimg.imread(LOGO_PATH)
 def place_logo(fig, rect):
     ax=fig.add_axes(rect); ax.axis("off"); ax.imshow(_LOGO, aspect="equal")
 
-def build_cover():
-    W,H=1255/72.0, 810/72.0
+def build_cover(page_count=104):
+    """page_count must match the actual interior.pdf being paired with this
+    cover -- Lulu computes the spine width from it via /cover-dimensions/ and
+    rejects a cover that doesn't match exactly."""
+    sys.path.insert(0, os.path.join(_ROOT, "lulu_api"))
+    import lulu_publish as lp
+    client = lp.make_client()
+    dims = client.cover_dimensions(lp.PRESETS["letter_bw_pb"].pod_package_id, page_count, unit="pt")
+    total_w, total_h = float(dims["width"]), float(dims["height"])
+
+    W, H = total_w / 72.0, total_h / 72.0
     fig=plt.figure(figsize=(W,H))
     bg=fig.add_axes([0,0,1,1]); bg.axis("off"); bg.add_patch(plt.Rectangle((0,0),1,1,color=BG))
-    # fractions
-    fb=9/1255.0; front_l=634/1255.0; front_r=1246/1255.0; spine_l=621/1255.0; spine_r=634/1255.0
+    # fractions (numerators are point positions from the reference
+    # 1255pt/104-page spread; dividing by the real total_w keeps them
+    # correct to within a point or two when the spine width shifts)
+    fb=9/total_w; front_l=634/total_w; front_r=1246/total_w; spine_l=621/total_w; spine_r=634/total_w
     
     # FRONT motif (Fractal Plant 1: SPECS[0])
     axm=fig.add_axes([front_l+0.055, 0.43, (front_r-front_l)-0.11, 0.32])
