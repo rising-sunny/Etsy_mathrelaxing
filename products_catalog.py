@@ -626,6 +626,54 @@ annotation app is required.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
 
+    "harmonograph_print": """\
+A harmonograph figure, rendered entirely with code.
+
+No AI image generators were used — this is pure mathematics made
+visible. A harmonograph is a Victorian drawing machine (c. 1870):
+a pen swung by two decaying pendulums traces a curve that loops
+over itself thousands of times. Here that curve is computed from
+its equations:
+
+  x(t) = a₁·sin(f₁t + p₁)·e^(−d₁t) + a₂·sin(f₂t + p₂)·e^(−d₂t)
+  y(t) = a₃·sin(f₃t + p₃)·e^(−d₃t) + a₄·sin(f₄t + p₄)·e^(−d₄t)
+
+The damping (e^−dt) shrinks each successive loop, nesting them into
+a delicate web of interference — brightest where the curve crosses
+itself, fading to a whisper at the edges.
+
+────────────────────────
+WHAT YOU GET
+────────────────────────
+3 high-resolution JPG files (same design, 3 color variants):
+· Moonlit — deep blue to glacial cyan
+· Rose Gold — plum & magenta with warm gold nodes
+· Verdigris — emerald to mint green
+
+Resolution: 9000 × 9000 px (square, print-ready up to 30×30 inches at 300dpi)
+Format: JPG, high quality
+
+────────────────────────
+PRINTING TIPS
+────────────────────────
+· Best printed on matte or satin paper
+· Stunning as a large framed square or canvas
+· A local print shop or online service (Printful, Canva Print,
+  Costco Photo) can handle this file easily
+
+────────────────────────
+INSTANT DOWNLOAD
+────────────────────────
+Files are available immediately after purchase.
+No physical item will be shipped.
+
+────────────────────────
+ABOUT THE ARTIST
+────────────────────────
+I'm an electrical engineer who got lost in recreational
+mathematics. Every piece in this shop is written from scratch
+in Python — equations, rendering, colors and all.""",
+
     "rossler_attractor_print": """\
 A Rössler strange attractor, rendered entirely with code.
 
@@ -785,6 +833,44 @@ cells. Every cell is a closed region — perfect for clean, satisfying color fil
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
 PRODUCTS = {
+
+    "harmonograph_print": {
+        "title":       "Harmonograph Art Print | Generative Math Wall Art from a Victorian Pendulum Curve | 3 Colors, 30x30in Digital Download",
+        "description": DESCRIPTIONS["harmonograph_print"],
+        "price":       8.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            attractor("harmonograph", "harmonograph_moonlit_preview.jpg"),
+            attractor("harmonograph", "harmonograph_rosegold_preview.jpg"),
+            attractor("harmonograph", "harmonograph_verdigris_preview.jpg"),
+        ],
+        "files": [
+            attractor("harmonograph", "harmonograph_moonlit_print.jpg"),
+            attractor("harmonograph", "harmonograph_rosegold_print.jpg"),
+            attractor("harmonograph", "harmonograph_verdigris_print.jpg"),
+        ],
+        "tags": ["harmonograph art","math art print","generative art","pendulum art",
+                 "science wall art","math poster","dark wall art","printable wall art",
+                 "physics art print","stem wall decor","code art print","lissajous art",
+                 "square print"],
+        "notes": "Tipo 5 (STANDARDS.md, 'Art print generativo'), tercer print trackeado (tras rossler y "
+                  "vector_field). Nicho elegido via API: 'harmonograph art' tiene solo ~44 listings (la "
+                  "competencia mas baja vista) pero demanda probada (top $9.37 con 1.081 vistas/12 favs; "
+                  "pen-plot a $90; poster a $32); 'lissajous art' ~11 (casi virgen, candidato futuro con "
+                  "el mismo motor). 100% on-brand (matematica hecha curva). Motor reusado de lulu_books/"
+                  "core/generate_harmonographs.py (4 pendulos amortiguados). Figura fija = seed 1 "
+                  "(freqs 3-3-4-5), elegida de un sheet de 12 semillas por ser la mas balanceada/"
+                  "gallery-worthy. Pipeline identico a vector_field/rossler: histograma de densidad de "
+                  "la curva (14M puntos, es UNA curva continua asi que necesita millones de muestras para "
+                  "linea continua a 9000px) + rampa negro->color->blanco + glow; gamma 0.72 para levantar "
+                  "la linea de un solo paso (log1p(1) es bajo) y que brille. Cuadrado 9000x9000 (30x30in "
+                  "@300dpi) porque la figura es ~circular -- primer print cuadrado del catalogo. 3 paletas "
+                  "NUEVAS para no repetir Rossler (cyan/violet/amber) ni Vector Field (teal/copper/indigo): "
+                  "moonlit (azul->cian), rose_gold (magenta/oro), verdigris (verde -- el que faltaba). "
+                  "~6MB c/u (q98, bajo el limite de 20MB). Bio de artista reusada. Sin franja/logo en el "
+                  "vendible (wall art). 'images'=*_preview.jpg (marca de agua diagonal), 'files'=*_print.jpg "
+                  "limpio. Subido como draft el 2026-07-07, listing_id=4534117446. Activacion manual pendiente.",
+    },
 
     "rossler_attractor_print": {
         "title":       "Rössler Attractor Art Print – Generative Code Mathematics Wall Art (Digital Download)",
