@@ -531,6 +531,35 @@ annotation app is required. Not designed for printing.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
 
+    "graph_paper": """\
+Instant download — printable graph & grid paper in 8 styles, US Letter + A4.
+
+Clean, edge-to-edge grids drawn from scratch (not scanned) — the ones you \
+actually need for math, engineering, drafting, bullet journaling and note-taking, \
+including the isometric and hexagonal sheets that are so hard to find printable.
+
+► What you get (2 PDFs — US Letter 8.5×11 in AND A4)
+Each PDF has all 8 styles, one per page:
+• Square grid — 5 mm (with darker major lines every 5th)
+• Square grid — 1/4 inch
+• Dot grid — 5 mm
+• Isometric — for 3D sketching & technical drawing
+• Triangular
+• Hexagonal — for organic chemistry, game maps, tiling
+• Cornell notes — cue column, notes area & summary
+• College ruled
+
+► How to use
+Open the PDF for your paper size and print the page you need at 100% / \
+"Actual size" (not "fit to page", so the grid keeps its true spacing). \
+Print as many as you like. Works on any printer, black & white is fine.
+
+This is a DIGITAL download — no physical item is shipped.
+
+© MathRelaxing. For personal & classroom use. Do not resell or redistribute \
+the files themselves.
+mathrelaxing.store""",
+
     "chaos_palettes": """\
 Instant download — 8 Procreate color palettes (.swatches), 30 colors each.
 
@@ -853,6 +882,42 @@ PRODUCTS = {
                   "enmarcar). 'images' usa *_preview.jpg (marca de agua diagonal tileada) y 'files' usa el "
                   "*_print.jpg limpio de resolucion completa. Subido como borrador el 2026-07-07, "
                   "listing_id=4533974490.",
+    },
+
+    "graph_paper": {
+        "title":       "STEM Graph Paper Bundle | 8 Printable Grid Styles: Isometric, Hexagonal, Dot, Square, Cornell | US Letter + A4 Digital Download",
+        "description": DESCRIPTIONS["graph_paper"],
+        "price":       1.50,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("graph_paper", "previews", "graph_preview_1_hero.jpg"),
+            p("graph_paper", "previews", "graph_preview_isometric.jpg"),
+            p("graph_paper", "previews", "graph_preview_hexagonal.jpg"),
+            p("graph_paper", "previews", "graph_preview_square.jpg"),
+            p("graph_paper", "previews", "graph_preview_cornell.jpg"),
+        ],
+        "files": [
+            p("graph_paper", "GraphPaper_Bundle.zip"),
+        ],
+        "tags": ["graph paper printable","isometric graph paper","hexagonal graph paper",
+                 "printable grid paper","dot grid printable","cornell notes template",
+                 "engineering paper","math paper printable","bullet journal paper",
+                 "printable stationery","grid paper a4","us letter graph paper","stem gift"],
+        "notes": "Digital ultra low-cost ($1.50), segundo producto de entrada (junto a chaos_palettes). "
+                  "Nicho elegido via API: 'isometric graph paper printable' tiene solo ~73 listings pero "
+                  "demanda fuerte (top $2.24 con 1.092 vistas/43 favs; $5.50 con 3.201 vistas); "
+                  "'printable dot grid paper' ~2.859. El bundle multi-estilo valida ($1.50 'Square, Dot, "
+                  "Isometric'). Construido con build_graph_paper.py (fitz directo, NO planner_framework: "
+                  "el papel cuadriculado necesita paginas portrait limpias de borde a borde, no el layout "
+                  "landscape con tabs del framework). 8 estilos: square 5mm (con lineas mayores c/5), "
+                  "square 1/4in, dot 5mm, isometrico, triangular, hexagonal, Cornell, ruled. En AMBOS "
+                  "tamanos (US Letter + A4) = 2 PDFs de 8 pags c/u. Isometrico/triangular/hexagonal "
+                  "dibujados con familias de lineas paralelas clippeadas (Liang-Barsky) al rect de "
+                  "contenido. Marca = firma diminuta y tenue en el margen inferior (el papel debe verse "
+                  "limpio, no una franja). Deliverable: 1 zip con los 2 PDFs + README (imprimir al 100%, "
+                  "no 'fit to page'). taxonomy 12476 (Planner Templates, printable stationery). 5 "
+                  "imagenes: hero con las 8 grillas + full-page de iso/hex/square/cornell. Subido como "
+                  "draft el 2026-07-07, listing_id=4534027247. Activacion manual pendiente.",
     },
 
     "chaos_palettes": {
