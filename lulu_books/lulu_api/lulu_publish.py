@@ -87,8 +87,10 @@ def _embed_textbox(page, rect, text, fontsize, *, bold=False,
 # Credentials / config
 # ---------------------------------------------------------------------------
 def load_env(path: Optional[str] = None) -> dict:
-    """Minimal .env loader (no external dependency)."""
-    path = path or os.path.join(HERE, ".env")
+    """Minimal .env loader (no external dependency). Looks in lulu_books/
+    (package root, next to .env.example) by default -- NOT lulu_api/,
+    matching where the README tells you to `cp .env.example .env`."""
+    path = path or os.path.join(_ROOT, ".env")
     env = {}
     if os.path.exists(path):
         with open(path) as f:
