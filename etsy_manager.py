@@ -121,7 +121,7 @@ class EtsyManager:
         return self.shop_id
         
     def create_draft_listing(self, title, description, price, taxonomy_id, is_digital=True, quantity=999,
-                             tags=None, shipping_profile_id=None):
+                             tags=None, shipping_profile_id=None, readiness_state_id=None):
         shop_id = self.get_shop_id()
         print(f"\nCreando borrador: {title[:30]}...")
 
@@ -140,7 +140,10 @@ class EtsyManager:
         if not is_digital:
             if not shipping_profile_id:
                 raise ValueError("shipping_profile_id es obligatorio para listings fisicos")
+            if not readiness_state_id:
+                raise ValueError("readiness_state_id es obligatorio para listings fisicos")
             payload['shipping_profile_id'] = shipping_profile_id
+            payload['readiness_state_id'] = readiness_state_id
         if tags:
             # Etsy: máx 13 tags, cada una ≤20 chars; se envían separadas por comas
             payload['tags'] = ','.join(t.strip() for t in tags[:13] if len(t.strip()) <= 20)
@@ -263,10 +266,11 @@ class EtsyManager:
 
     def create_full_product(self, title, description, price, taxonomy_id, image_paths,
                             digital_file_paths=None, video_path=None, tags=None,
-                            shipping_profile_id=None):
+                            shipping_profile_id=None, readiness_state_id=None):
         is_digital = bool(digital_file_paths)
         listing_id = self.create_draft_listing(title, description, price, taxonomy_id, is_digital, tags=tags,
-                                               shipping_profile_id=shipping_profile_id)
+                                               shipping_profile_id=shipping_profile_id,
+                                               readiness_state_id=readiness_state_id)
 
         for idx, img_path in enumerate(image_paths, start=1):
             if os.path.exists(img_path):
