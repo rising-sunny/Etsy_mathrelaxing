@@ -3,9 +3,10 @@ generate_receipt_banner.py — MathRelaxing's Etsy "receipt banner" (the small
 760x100px image Etsy shows on the thank-you/receipt page after checkout).
 
 Replaces the previous stock-photo-style purple texture with an on-brand
-banner: dark navy background, a faint De Jong attractor (the same chaotic
-math motif used in the DeJongAttractor print) rendered in gold as a subtle
-watermark, the MathRelaxing logo, and the existing copy.
+banner: dark navy background, a woven field of harmonic sine curves (a
+motif drawn to fit THIS exact 7.6:1 wide strip, rather than a square
+attractor squeezed into it) fading in gold behind the logo, and the
+existing copy.
 
 Usage:
   python generate_receipt_banner.py
@@ -18,6 +19,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import matplotlib.collections as mcoll
 from matplotlib.colors import to_rgb
 
 import brand
@@ -31,27 +33,39 @@ W_IN, H_IN = W_PX / DPI, H_PX / DPI
 
 BG = "#0d1120"
 
-# ── De Jong attractor, low-res density field used as a faint watermark ─────
-def dejong_field(nx=760, ny=100, n_points=90_000, warmup=40, iters=160, seed=11):
-    a, b, c, d = 1.641, 1.902, 0.316, 1.525
+
+# ── Harmonic weave: a handful of sine curves running the full width, each
+# with its own frequency/amplitude/phase, drawn as LineCollections so each
+# one can fade out (via a per-segment alpha) toward the right, where the
+# logo/text sit. Built for THIS 7.6:1 strip -- x runs edge to edge, y stays
+# a small fraction of the (short) banner height by construction. ─────────────
+def harmonic_weave(n_curves=8, seed=5):
     rng = np.random.default_rng(seed)
-    x = rng.uniform(-1, 1, size=n_points).astype(np.float32)
-    y = rng.uniform(-1, 1, size=n_points).astype(np.float32)
-    for _ in range(warmup):
-        x, y = np.sin(a * y) - np.cos(b * x), np.sin(c * x) - np.cos(d * y)
-    xs = np.empty(n_points * iters, dtype=np.float32)
-    ys = np.empty(n_points * iters, dtype=np.float32)
-    for i in range(iters):
-        x, y = np.sin(a * y) - np.cos(b * x), np.sin(c * x) - np.cos(d * y)
-        xs[i * n_points:(i + 1) * n_points] = x
-        ys[i * n_points:(i + 1) * n_points] = y
-    hist, _, _ = np.histogram2d(xs, ys, bins=(nx, ny),
-                                 range=[[xs.min(), xs.max()], [ys.min(), ys.max()]])
-    hist = hist.T
-    hist = np.log1p(hist)
-    hist /= hist.max()
-    hist = hist ** 1.7  # suppress the faint haze, keep only the crisp filaments
-    return hist
+    gold = np.array(to_rgb(brand.GOLD))
+    t = np.linspace(0, W_IN, 500)
+    collections = []
+    for i in range(n_curves):
+        freq = rng.uniform(1.3, 3.6)
+        phase = rng.uniform(0, 2 * np.pi)
+        amp = rng.uniform(0.08, 0.30) * H_IN
+        centre = H_IN * rng.uniform(0.35, 0.65)
+        lw = rng.uniform(0.6, 1.4)
+        base_alpha = rng.uniform(0.22, 0.5)
+
+        y = centre + amp * np.sin(2 * np.pi * freq * t / W_IN + phase)
+        pts = np.array([t, y]).T.reshape(-1, 1, 2)
+        segs = np.concatenate([pts[:-1], pts[1:]], axis=1)
+
+        # fade from full strength on the left (behind/around the logo) to
+        # ~0 by the time the text starts on the right
+        fade = np.clip(1.0 - (t[:-1] / W_IN) * 1.5, 0, 1)
+        colors = np.zeros((len(segs), 4))
+        colors[:, :3] = gold
+        colors[:, 3] = base_alpha * fade
+
+        lc = mcoll.LineCollection(segs, colors=colors, linewidths=lw, zorder=1)
+        collections.append(lc)
+    return collections
 
 
 def build():
@@ -60,19 +74,8 @@ def build():
     ax.set_xlim(0, W_IN); ax.set_ylim(0, H_IN)
     fig.patch.set_facecolor(BG); ax.set_facecolor(BG)
 
-    # faint gold attractor texture across the whole strip -- alpha-only field
-    # (colour stays a flat GOLD, density only ever controls opacity) so it
-    # reads as crisp fine filaments instead of a translucent brown wash.
-    field = dejong_field()
-    gold = np.array(to_rgb(brand.GOLD))
-    rgba = np.zeros((*field.shape, 4))
-    rgba[..., :3] = gold
-    # fade the field out from left to right so it stays a backdrop behind the
-    # logo and never competes with the text sitting on the right two-thirds
-    fade = np.clip(1.0 - np.linspace(0, 1, field.shape[1]) * 1.35, 0, 1)
-    rgba[..., 3] = np.clip(field * 0.95 * fade[None, :], 0, 1)
-    ax.imshow(rgba, extent=(0, W_IN, 0, H_IN), origin="lower",
-              zorder=1, aspect="auto")
+    for lc in harmonic_weave():
+        ax.add_collection(lc)
 
     # thin gold rule near the bottom, brand-style separation
     ax.add_patch(plt.Rectangle((0, 0.06), W_IN, 0.022, color=brand.GOLD,
