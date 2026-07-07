@@ -233,3 +233,6 @@ _hist_cache.npy
 
 # Printful API token
 printful/.env
+
+# Printify API token
+printify/.env
