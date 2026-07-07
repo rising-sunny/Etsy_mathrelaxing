@@ -578,6 +578,55 @@ I'm an electrical engineer who got lost in recreational
 mathematics. Every piece in this shop is written from scratch
 in Python — equations, rendering, colors and all.""",
 
+    "vector_field_print": """\
+A 2D vector field, rendered entirely with code.
+
+No AI image generators were used — this is pure mathematics
+made visible. Every curve on this poster is a streamline: at
+each point on the page an invisible arrow tells the flow which
+way to move, and the line simply follows those arrows.
+
+The flow is built from a handful of point singularities placed
+across the canvas — sources (flow radiating outward), sinks
+(flow draining inward), vortices (flow spinning around a point),
+and a saddle (flow diverging on one axis, converging on the
+other) — the same mathematics used to model wind, water currents,
+and magnetic fields. Thousands of streamlines, seeded across the
+full canvas and traced in both time directions, reveal how every
+point on the page connects to every singularity.
+
+────────────────────────
+WHAT YOU GET
+────────────────────────
+3 high-resolution JPG files (same design, 3 color variants):
+· Aurora Teal — electric cyan-teal on black
+· Ember Copper — warm copper-orange on black
+· Midnight Indigo — deep violet-blue on black
+
+Resolution: 9000 × 12000 px (print-ready up to 30×40 inches at 300dpi)
+Format: JPG, high quality
+
+────────────────────────
+PRINTING TIPS
+────────────────────────
+· Best printed on matte or satin paper
+· Works great as a poster, framed print, or canvas
+· A local print shop or online service (Printful, Canva Print,
+  Costco Photo) can handle this file easily
+
+────────────────────────
+INSTANT DOWNLOAD
+────────────────────────
+Files are available immediately after purchase.
+No physical item will be shipped.
+
+────────────────────────
+ABOUT THE ARTIST
+────────────────────────
+I'm an electrical engineer who got lost in recreational
+mathematics. Every piece in this shop is written from scratch
+in Python — equations, rendering, colors and all.""",
+
     "hyperbolic_gardens_physical": """\
 PRINTED physical coloring book — ships to your door (50 designs, 8.5×11 in, perfect-bound).
 Journey into hyperbolic geometry with 50 intricate tiling designs inspired \
@@ -689,6 +738,52 @@ PRODUCTS = {
                   "· preview', ver add_preview_watermark en generate_rossler_print.py) y 'files' sigue "
                   "usando el *_print.jpg limpio de 9000x12000 que recibe el comprador -- antes el preview "
                   "publico del listing ERA el archivo vendible completo sin proteccion.",
+    },
+
+    "vector_field_print": {
+        "title":       "Vector Field Art Print – Generative Code Mathematics Wall Art (Digital Download)",
+        "description": DESCRIPTIONS["vector_field_print"],
+        "price":       8.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            attractor("vector_field", "vectorfield_teal_preview.jpg"),
+            attractor("vector_field", "vectorfield_copper_preview.jpg"),
+            attractor("vector_field", "vectorfield_indigo_preview.jpg"),
+        ],
+        "files": [
+            attractor("vector_field", "vectorfield_teal_print.jpg"),
+            attractor("vector_field", "vectorfield_copper_print.jpg"),
+            attractor("vector_field", "vectorfield_indigo_print.jpg"),
+        ],
+        "tags": ["vector field art","math art print","generative art","flow field print",
+                 "fluid dynamics art","science wall art","math poster","dark wall art",
+                 "printable wall art","physics art print","stem wall decor","code art print",
+                 "math gift"],
+        "notes": "Tipo 5 (STANDARDS.md, 'Art print generativo'), segundo producto de este tipo "
+                  "trackeado en el repo (despues de rossler_attractor_print). Origen: se probo primero "
+                  "como libro para colorear (gen_vector_field.py, eliminado) pero las streamlines de un "
+                  "campo vectorial dejan demasiado espacio en blanco entre si para ese formato -- como "
+                  "poster de pared en cambio esa apertura es la composicion, no un defecto. Tecnica "
+                  "(generate_vector_field_print.py): superposicion de 7 singularidades puntuales "
+                  "(fuente/sumidero/vortice horario/vortice antihorario/silla) fijas a mano para que la "
+                  "composicion cubra todo el lienzo; miles de streamlines sembradas en grilla densa con "
+                  "jitter e integradas EN AMBAS direcciones de tiempo, todas EN PARALELO (arrays de numpy, "
+                  "no una por una) y acumuladas en histograma durante la integracion (mismo patron que "
+                  "Rossler). A diferencia de un atractor caotico, el flujo NO es recurrente -- la cobertura "
+                  "del lienzo viene de la CANTIDAD de lineas sembradas, no de que una sola trayectoria de "
+                  "muchas vueltas. Bug encontrado y corregido durante el prototipado: el campo de la silla "
+                  "usaba (strength*dx, -strength*dy) sin decaimiento por distancia, creciendo sin limite y "
+                  "tapando las otras 6 singularidades (todo el poster salia dominado por una sola cruz); "
+                  "corregido para decaer 1/r igual que fuente/sumidero/vortice. Resolucion 9000x12000 "
+                  "(30x40in @300dpi) directo, sin version previa de menor resolucion. calidad JPEG 98 "
+                  "elegida deliberadamente: quality=100 se pasaba el limite de 20MB de Etsy (27-30MB), "
+                  "quality=98 da 14-16MB por archivo con margen de sobra. 3 variantes de color (Aurora "
+                  "Teal, Ember Copper, Midnight Indigo). Bio de 'about the artist' reusada tal cual de "
+                  "rossler_attractor_print para mantener voz consistente de esta sub-linea. Sin franja/logo "
+                  "de marca en el archivo vendible (misma convencion que Rossler: es wall art para "
+                  "enmarcar). 'images' usa *_preview.jpg (marca de agua diagonal tileada) y 'files' usa el "
+                  "*_print.jpg limpio de resolucion completa. Subido como borrador el 2026-07-07, "
+                  "listing_id=4533974490.",
     },
 
     "life_planner": {
