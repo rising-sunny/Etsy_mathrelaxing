@@ -60,6 +60,11 @@ TAXONOMY = {
 SHIPPING_PROFILE_LULU_BOOKS = 310608167423
 # Processing profile ("Tus perfiles de preparacion"): hecho a pedido, 3-5 dias.
 READINESS_STATE_LULU_BOOKS = 1498071010932
+# Return policy del shop (unica existente, creada automaticamente por Etsy).
+# Los primeros 4 listings fisicos se crearon SIN esto (create_draft_listing no
+# lo pedia todavia) y quedaron con return_policy_id=None -- corregido a mano
+# via update_listing() el 2026-07-07. create_draft_listing ahora lo exige.
+RETURN_POLICY_ID = 1496849341269
 
 # ── Copy de productos ─────────────────────────────────────────────────────────
 DESCRIPTIONS = {
@@ -1290,6 +1295,7 @@ PRODUCTS = {
         "files": [],
         "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
         "readiness_state_id": READINESS_STATE_LULU_BOOKS,
+        "return_policy_id": RETURN_POLICY_ID,
         "tags": ["hyperbolic geometry","tessellation art","escher inspired","printed book","adult coloring book","math coloring book","perfect bound book","stem gift","relaxation gift","geometric coloring","mandala coloring","math teacher gift","physical book gift"],
         "notes": "Tipo 8 (libro fisico POD via Lulu, ver STANDARDS.md). Generado con lulu_books/generators/gen_hyperbolic_book.py + gen_hyperbolic_cover.py. 104 paginas (50 disenos + 50 blancas + frontmatter, ver commit de blank-after-each). Precio $18.99 + shipping profile Lulu Publishing ($5.99 EE.UU. / $9.99 resto via USPS Media Mail / Priority Intl). Sin archivo digital: se cumple imprimiendo bajo demanda con Lulu al recibir el pedido (flujo manual por ahora, ver lulu_api/lulu_publish.py). Subido como borrador el 2026-07-07, listing_id=4533722112.",
     },
@@ -1308,6 +1314,7 @@ PRODUCTS = {
         "files": [],
         "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
         "readiness_state_id": READINESS_STATE_LULU_BOOKS,
+        "return_policy_id": RETURN_POLICY_ID,
         "tags": ["fractal coloring","botanical art book","algorithmic art","printed book","adult coloring book","math coloring book","perfect bound book","stem gift","nature coloring","relaxation gift","math teacher gift","physical book gift","dragon curve art"],
         "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/gen_l_systems_book.py + gen_l_systems_cover.py. 104 paginas. Precio $18.99 + shipping profile Lulu Publishing. Subido como borrador el 2026-07-07, listing_id=4533708985.",
     },
@@ -1326,6 +1333,7 @@ PRODUCTS = {
         "files": [],
         "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
         "readiness_state_id": READINESS_STATE_LULU_BOOKS,
+        "return_policy_id": RETURN_POLICY_ID,
         "tags": ["3d coloring book","color by number","sacred geometry","topology art","printed book","adult coloring book","math coloring book","perfect bound book","stem gift","geometry gift","math teacher gift","physical book gift","torus mobius art"],
         "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/gen_sacred_math_book.py + gen_sacred_math_cover.py (portada nueva, ver commit). 108 paginas. Distinto del 'sacred_geometry_pdf' ya existente (ese es low-poly mandala 2D; este es proyeccion 3D color-by-number). Precio $18.99 + shipping profile Lulu Publishing. Nota de calidad: el renderer de mallas 3D tiene un defecto residual conocido (ver fix commits) -- la mayoria de paginas quedan limpias tras la curacion multi-angulo pero algunas conservan pequenas astillas oscuras menores; las 3 fotos de muestra elegidas para el listing estan entre las mas limpias. Subido como borrador el 2026-07-07, listing_id=4533709025.",
     },
@@ -1344,6 +1352,7 @@ PRODUCTS = {
         "files": [],
         "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
         "readiness_state_id": READINESS_STATE_LULU_BOOKS,
+        "return_policy_id": RETURN_POLICY_ID,
         "tags": ["voronoi coloring","cell tessellation","mandala coloring","printed book","adult coloring book","math coloring book","perfect bound book","stem gift","phyllotaxis art","relaxation gift","math teacher gift","physical book gift","organic mandala"],
         "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/make_voronoi_book.py (comando 'interior' con blank_after_each=True -> *_interior_print.pdf; portada reutiliza el cover.pdf ya existente del producto digital, rasterizado a PNG). 104 paginas. Precio $18.99 + shipping profile Lulu Publishing. Subido como borrador el 2026-07-07, listing_id=4533709063.",
     },
@@ -1413,6 +1422,7 @@ def upload_product(slug, dry_run=False):
         tags=prod.get("tags"),
         shipping_profile_id=prod.get("shipping_profile_id"),
         readiness_state_id=prod.get("readiness_state_id"),
+        return_policy_id=prod.get("return_policy_id"),
     )
     print(f"  -> Borrador creado: listing_id={listing_id}")
     return listing_id

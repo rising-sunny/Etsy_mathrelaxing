@@ -121,7 +121,8 @@ class EtsyManager:
         return self.shop_id
         
     def create_draft_listing(self, title, description, price, taxonomy_id, is_digital=True, quantity=999,
-                             tags=None, shipping_profile_id=None, readiness_state_id=None):
+                             tags=None, shipping_profile_id=None, readiness_state_id=None,
+                             return_policy_id=None):
         shop_id = self.get_shop_id()
         print(f"\nCreando borrador: {title[:30]}...")
 
@@ -142,6 +143,8 @@ class EtsyManager:
                 raise ValueError("shipping_profile_id es obligatorio para listings fisicos")
             if not readiness_state_id:
                 raise ValueError("readiness_state_id es obligatorio para listings fisicos")
+            if not return_policy_id:
+                raise ValueError("return_policy_id es obligatorio para listings fisicos")
             payload['shipping_profile_id'] = shipping_profile_id
             payload['readiness_state_id'] = readiness_state_id
         if tags:
@@ -150,6 +153,12 @@ class EtsyManager:
 
         result = self.make_request('POST', f'/shops/{shop_id}/listings', payload=payload)
         print(f"Borrador creado exitosamente con ID: {result['listing_id']}")
+        if not is_digital:
+            # return_policy_id no siempre se acepta en el POST de creacion (no
+            # verificado); el PATCH posterior SI esta confirmado que funciona
+            # (ver notas de products_catalog.py, 2026-07-07) asi que se aplica
+            # siempre aca para no repetir el hueco de los primeros 4 listings.
+            self.update_listing(result['listing_id'], return_policy_id=return_policy_id)
         return result['listing_id']
 
     def update_listing(self, listing_id, **fields):
@@ -266,11 +275,12 @@ class EtsyManager:
 
     def create_full_product(self, title, description, price, taxonomy_id, image_paths,
                             digital_file_paths=None, video_path=None, tags=None,
-                            shipping_profile_id=None, readiness_state_id=None):
+                            shipping_profile_id=None, readiness_state_id=None, return_policy_id=None):
         is_digital = bool(digital_file_paths)
         listing_id = self.create_draft_listing(title, description, price, taxonomy_id, is_digital, tags=tags,
                                                shipping_profile_id=shipping_profile_id,
-                                               readiness_state_id=readiness_state_id)
+                                               readiness_state_id=readiness_state_id,
+                                               return_policy_id=return_policy_id)
 
         for idx, img_path in enumerate(image_paths, start=1):
             if os.path.exists(img_path):
