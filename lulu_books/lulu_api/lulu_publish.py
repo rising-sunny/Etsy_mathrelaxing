@@ -839,8 +839,10 @@ if __name__ == "__main__":
 
     b = sub.add_parser("build", help="build interior + cover PDFs")
     b.add_argument("--preset", default="letter_bw_pb", choices=list(PRESETS))
-    b.add_argument("--blank-backs", action="store_true",
-                   help="insert a blank page after each coloring page")
+    b.add_argument("--no-blank-backs", dest="blank_backs", action="store_false",
+                   help="skip the blank page after each coloring page (on by "
+                        "default, so marker/pen ink doesn't bleed onto the next design)")
+    b.set_defaults(blank_backs=True)
     b.set_defaults(func=_cmd_build)
 
     t = sub.add_parser("token", help="test OAuth token")

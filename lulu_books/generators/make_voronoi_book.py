@@ -472,17 +472,26 @@ def build_cover():
 # INTERIOR (frontmatter + 50 disenos)
 # ══════════════════════════════════════════════════════════════════════════════
 
-def build_interior():
-    print("Interior (3 frontmatter + 50 disenos)...")
+def build_interior(blank_after_each=False, out_name=None):
+    """blank_after_each=True inserts a blank page after every design -- needed
+    for the physical Lulu print (so marker/pen ink doesn't bleed onto the
+    next page), not for the digital/iPad edition (no bleed-through, and it
+    would just double the page count for no reason)."""
+    print(f"Interior (3 frontmatter + 50 disenos{' + 50 blancas' if blank_after_each else ''})...")
     doc=fitz.open()
     page_title(doc); page_about(doc); page_math(doc)
     for i,cfg in enumerate(DESIGNS):
         pg=doc.new_page(width=PW,height=PH)
         draw_design(pg, cfg, i+1, seed=1000+i*7)
+        if blank_after_each:
+            doc.new_page(width=PW,height=PH)
         if (i+1)%10==0: print(f"  diseno {i+1}/50")
-    out=f"{OUT}/{NAME}_interior.pdf"
+    if blank_after_each and doc.page_count % 2 != 0:  # perfect binding needs an even page count
+        doc.new_page(width=PW,height=PH)
+    out=f"{OUT}/{out_name or NAME+'_interior'}.pdf"
+    n_pages = doc.page_count
     doc.save(out,deflate=True,garbage=4); doc.close()
-    print(f"  {out} ({os.path.getsize(out)/1024/1024:.1f} MB, {3+50} pags)")
+    print(f"  {out} ({os.path.getsize(out)/1024/1024:.1f} MB, {n_pages} pags)")
     return out
 
 def build_digital():
@@ -589,7 +598,7 @@ def build_sample():
 if __name__=="__main__":
     cmd=sys.argv[1] if len(sys.argv)>1 else "sample"
     if cmd=="sample":   build_sample()
-    elif cmd=="interior": build_interior()
+    elif cmd=="interior": build_interior(blank_after_each=True, out_name=NAME+"_interior_print")
     elif cmd=="cover":    build_cover()
     elif cmd=="digital":  build_interior(); build_cover(); build_digital()
     elif cmd=="ipad":     build_ipad()

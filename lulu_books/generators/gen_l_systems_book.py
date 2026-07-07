@@ -255,8 +255,9 @@ def main(test=False):
                 print(f"Error on {spec[0]}: {e}")
             _caption(fig, spec[0], spec[3], idx, len(specs))
             pdf.savefig(fig); plt.close(fig)
+            _blank(pdf)  # blank backing page so marker/pen ink doesn't bleed onto the next design
             print(f"page {idx}/{len(specs)} {spec[0]}", flush=True)
-        if not test:
+        if (3 + 2 * len(specs)) % 2 != 0:  # perfect binding needs an even page count
             _blank(pdf)
     print("DONE ->", out)
 

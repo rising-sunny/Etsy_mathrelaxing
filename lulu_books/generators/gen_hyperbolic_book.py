@@ -192,9 +192,10 @@ def main(test=False):
             draw_page(ax,p,q,dec)
             _caption(fig,p,q,dec,idx,len(specs))
             pdf.savefig(fig); plt.close(fig)
+            _blank(pdf)  # blank backing page so marker/pen ink doesn't bleed onto the next design
             print(f"page {idx}/{len(specs)} {{{p},{q}}} {dec}",flush=True)
-        if not test:
-            _blank(pdf)   # single trailing blank \u2192 title+intro+math+50+1 = 54 pages
+        if (3 + 2 * len(specs)) % 2 != 0:  # perfect binding needs an even page count
+            _blank(pdf)
     print("DONE ->",out)
 
 if __name__=="__main__":

@@ -365,7 +365,12 @@ def main():
             fig.text(0.5, 0.12, f"{idx+1}. {title}", ha='center', fontsize=12)
             pdf.savefig(fig)
             plt.close(fig)
-            
+
+            # Blank backing page so marker/pen ink doesn't bleed onto the next design.
+            blank_fig = plt.figure(figsize=(8.5, 11))
+            pdf.savefig(blank_fig)
+            plt.close(blank_fig)
+
         # 4. Solutions (Thumbnails)
         print("Generating Solution Keys...")
         thumbs_per_page = 9
