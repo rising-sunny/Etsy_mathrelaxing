@@ -46,11 +46,16 @@ def attractor(*parts): return os.path.join(ATTR, *parts)
 TAXONOMY = {
     "coloring_book":    2078,   # = "Art & Collectibles > Prints > Digital Prints" (lo usan FF/SG PDF)
     "ipad_coloring":    339,    # = "Books, Movies & Music > Books > Coloring Books" (ediciones iPad)
+    "coloring_book_physical": 339,  # mismo nodo que ipad_coloring -- Etsy no separa fisico/digital a nivel de categoria
     "digital_art":      2078,   # = Digital Prints (atractores/art prints)
     "planner_template": 12476,  # = "Paper > Stationery > Templates > Planner Templates" (notebooks/planners digitales)
     "journal_template": 12475,  # = "... > Templates > Journal Templates" (variante journal/cuaderno)
     "root":             1,      # fallback genérico
 }
+
+# Shipping profile para libros fisicos POD (Lulu) -- creado en Etsy Shop Manager
+# > Settings > Shipping, ver STANDARDS.md Tipo 8 para el detalle de destinos/costos.
+SHIPPING_PROFILE_LULU_BOOKS = 310608167423
 
 # ── Copy de productos ─────────────────────────────────────────────────────────
 DESCRIPTIONS = {
@@ -1272,6 +1277,7 @@ def upload_product(slug, dry_run=False):
         digital_file_paths=prod["files"],
         video_path=prod.get("video"),
         tags=prod.get("tags"),
+        shipping_profile_id=prod.get("shipping_profile_id"),
     )
     print(f"  -> Borrador creado: listing_id={listing_id}")
     return listing_id
