@@ -233,6 +233,27 @@ Implementaciones de referencia (copiar el patrón):
 
 ---
 
+## Gotchas del Print API de Lulu (lulu_books/fulfillment.py)
+
+- **No confundir el Print API puro (client_key/secret + OAuth client_credentials)
+  con "Lulu Direct"** (el producto de Lulu con conectores de tienda tipo
+  Etsy/Shopify y su propio dashboard "Store Settings"). Este repo usa el
+  primero — no hay ninguna tienda conectada dentro de Lulu, todo el polling
+  de pedidos de Etsy y el armado del payload lo hace nuestro propio código.
+- **Un print job creado vía API (`create_print_job`) nace en estado
+  `UNPAID`** y Lulu lo retiene fuera de producción hasta que un humano lo
+  paga a mano en el Print Job Portal (developers.lulu.com) — *salvo* que la
+  cuenta tenga una tarjeta guardada, en cuyo caso Lulu cobra y produce
+  automático. Confirmado 2026-07-07: la cuenta de MathRelaxing NO tiene
+  tarjeta cargada, así que `check_and_prepare()` en `fulfillment.py` llama a
+  `submit_order()` automáticamente para cada pedido nuevo sin pedir
+  confirmación en el chat — el gate real de "pagar y confirmar" es el Print
+  Job Portal de Lulu, no este código. **Si alguna vez se carga una tarjeta
+  en la cuenta de Lulu, este supuesto deja de ser válido** y hay que volver
+  a poner una confirmación manual antes de llamar a `submit_order()`.
+
+---
+
 ## Checklist para publicar un producto nuevo
 
 1. Identifica el tipo arriba e importa `brand` + la plantilla correspondiente.

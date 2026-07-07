@@ -12,24 +12,29 @@ Flow
    print-ready interior+cover PDFs to Cloudflare R2 (skipped if already
    uploaded -- content is static per book, not per order) and build the
    Lulu create_print_job payload (buyer address, quantity, file URLs).
-   Writes the staged order to output/pending_orders.json. Does NOT call Lulu.
-3. submit_order(receipt_id) -- the ONLY function that calls
-   LuluClient.create_print_job(), i.e. the only step that spends real money
-   and can't be undone. Must be invoked deliberately, one order at a time,
-   after a human has reviewed the staged summary from step 2.
+   Writes the staged order to output/pending_orders.json.
+3. submit_order(receipt_id) -- calls LuluClient.create_print_job(), sending
+   the interior/cover URLs and shipping address to Lulu. check_and_prepare()
+   calls this automatically for every new order -- no local confirmation
+   step. That's safe because a print job created via the Lulu Print API is
+   created in UNPAID status and Lulu holds it out of production until a
+   human pays it by hand in the Lulu Print Job Portal
+   (developers.lulu.com) -- confirmed 2026-07-07 there is no card on file,
+   so create_print_job() cannot auto-charge. The human confirmation/payment
+   step still happens, just on Lulu's side instead of in this chat.
 
 Safety
 ------
-check_and_prepare() (step 1+2, meant to run on a schedule) never submits to
-Lulu. A print job is only ever created by explicitly calling submit_order()
-with a specific receipt_id, so a bug in the polling/preparation path cannot
-accidentally place a real paid order.
+This only stays safe as long as no payment method is ever added to the Lulu
+account. If a card is added there, Lulu may auto-charge/auto-produce on
+create_print_job(), and the automatic check->submit call below would need a
+local confirmation gate added back in before running unattended again.
 
 Usage
 -----
-  python fulfillment.py check      # poll for new orders, stage them, print summary
-  python fulfillment.py list       # show currently staged (unsubmitted) orders
-  python fulfillment.py submit RECEIPT_ID   # actually place the Lulu print job
+  python fulfillment.py check      # poll for new orders, stage AND submit to Lulu (lands UNPAID)
+  python fulfillment.py list       # show staged/submitted orders and their Lulu job state
+  python fulfillment.py submit RECEIPT_ID   # (re)submit one order manually, e.g. after a partial failure
 """
 import json
 import os
@@ -158,7 +163,9 @@ def list_new_orders():
 
 
 def prepare_order(receipt, txn, book_cfg):
-    """Stage (but do not submit) a Lulu print-job payload for one line item."""
+    """Stage a Lulu print-job payload for one line item (upload files, build
+    the request body, record it in pending_orders.json). Does not itself
+    call Lulu -- see submit_order()."""
     state = _load_state()
     interior_url = upload_to_r2(book_cfg["interior"], f"{book_cfg['slug']}/interior.pdf", state)
     cover_url = upload_to_r2(book_cfg["cover"], f"{book_cfg['slug']}/cover.pdf", state)
@@ -203,27 +210,33 @@ def prepare_order(receipt, txn, book_cfg):
 
 
 def check_and_prepare():
-    """Poll + stage step. NEVER calls Lulu's create_print_job. Safe to run on
-    an unattended schedule."""
+    """Poll + stage + submit step, meant to run on a schedule. Automatically
+    submits every new order to Lulu (create_print_job) -- safe because Lulu
+    holds API-created print jobs UNPAID until a human pays them by hand in
+    the Lulu Print Job Portal (no card on file, confirmed 2026-07-07). See
+    module docstring."""
     new_orders = list_new_orders()
     if not new_orders:
         print("Sin pedidos nuevos.")
         return []
-    staged = []
+    submitted = []
     for receipt, txn, book_cfg in new_orders:
         print(f"\nPedido nuevo: receipt_id={receipt['receipt_id']} "
               f"libro={book_cfg['slug']} cant={txn['quantity']} "
               f"comprador={receipt['name']} ({receipt['city']}, {receipt['country_iso']})")
-        staged.append(prepare_order(receipt, txn, book_cfg))
-    print(f"\n{len(staged)} pedido(s) preparado(s) en {PENDING_PATH}.")
-    print("NADA se envio a Lulu todavia -- revisar y correr 'submit RECEIPT_ID' para confirmar cada uno.")
-    return staged
+        order = prepare_order(receipt, txn, book_cfg)
+        submit_order(order["receipt_id"])
+        submitted.append(order)
+    print(f"\n{len(submitted)} pedido(s) creados en Lulu (estado UNPAID).")
+    print("Entra a developers.lulu.com > Print Job Portal para pagarlos y confirmar el envio.")
+    return submitted
 
 
 def submit_order(receipt_id):
-    """THE ONLY function that spends real money: creates a real Lulu print
-    job and ships a real book to a real address. Call one receipt_id at a
-    time, only after reviewing its staged payload."""
+    """Calls Lulu's create_print_job -- sends the interior/cover URLs and
+    shipping address to Lulu, landing the job in UNPAID status. Does not
+    itself charge anything (see module docstring for the no-card-on-file
+    assumption this relies on)."""
     pending = _load_pending()
     order = pending.get(str(receipt_id))
     if not order:
@@ -234,14 +247,14 @@ def submit_order(receipt_id):
         return None
 
     client = lp.make_client()
-    print(f"Enviando a Lulu (PRODUCCION, esto genera un cargo real): {order['book']} "
+    print(f"Enviando a Lulu (queda UNPAID hasta que la pagues en el Print Job Portal): {order['book']} "
           f"x{order['quantity']} -> {order['buyer_name']} ({order['address_summary']})")
     result = client.create_print_job(**order["lulu_payload"])
     order["submitted"] = True
     order["lulu_job"] = result
     pending[str(receipt_id)] = order
     _save_pending(pending)
-    print("Print job creado:", json.dumps(result, indent=2)[:1000])
+    print("Print job creado (UNPAID):", json.dumps(result, indent=2)[:1000])
     return result
 
 
@@ -257,7 +270,7 @@ if __name__ == "__main__":
         if not pending:
             print("No hay pedidos preparados.")
         for rid, o in pending.items():
-            status = "ENVIADO A LULU" if o["submitted"] else "pendiente de confirmar"
+            status = "ENVIADO A LULU (revisa Print Job Portal)" if o["submitted"] else "pendiente de enviar a Lulu"
             print(f"receipt_id={rid}  libro={o['book']}  x{o['quantity']}  "
                   f"comprador={o['buyer_name']} ({o['address_summary']})  [{status}]")
     elif cmd == "submit":
