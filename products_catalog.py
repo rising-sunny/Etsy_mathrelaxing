@@ -33,12 +33,14 @@ FF   = os.path.join(BASE, "ipad_ff")
 SG   = os.path.join(BASE, "ipad_sg")
 ATTR = os.path.join(BASE, "attractor_prints")
 LULU = os.path.join(BASE, "lulu_books", "output")
+PAL  = os.path.join(BASE, "palettes")
 
 def p(*parts): return os.path.join(BASE, *parts)
 def ff(*parts): return os.path.join(FF, *parts)
 def sg(*parts): return os.path.join(SG, *parts)
 def attractor(*parts): return os.path.join(ATTR, *parts)
 def lulu(*parts): return os.path.join(LULU, *parts)
+def pal(*parts): return os.path.join(PAL, *parts)
 
 # ── Taxonomy IDs verificados ──────────────────────────────────────────────────
 # Fuente: GET /application/seller-taxonomy/nodes (llamada al API de Etsy)
@@ -50,6 +52,7 @@ TAXONOMY = {
     "ipad_coloring":    339,    # = "Books, Movies & Music > Books > Coloring Books" (ediciones iPad)
     "coloring_book_physical": 339,  # mismo nodo que ipad_coloring -- Etsy no separa fisico/digital a nivel de categoria
     "digital_art":      2078,   # = Digital Prints (atractores/art prints)
+    "digital_drawing":  77,     # = "Art & Collectibles > Drawing & Illustration > Digital" (assets tipo paletas Procreate)
     "planner_template": 12476,  # = "Paper > Stationery > Templates > Planner Templates" (notebooks/planners digitales)
     "journal_template": 12475,  # = "... > Templates > Journal Templates" (variante journal/cuaderno)
     "root":             1,      # fallback genérico
@@ -528,6 +531,38 @@ annotation app is required. Not designed for printing.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
 
+    "chaos_palettes": """\
+Instant download — 8 Procreate color palettes (.swatches), 30 colors each.
+
+Every palette here is the real color signature of a chaotic dynamical \
+system — a strange attractor or generative pattern rendered from its \
+equations in Python, then sampled color-by-color. No stock photos, no AI. \
+Just mathematics, turned into a palette you can paint with.
+
+► What you get (240 curated colors)
+• Rossler Amber — warm gold on black
+• Rossler Rose — deep magenta & plum
+• Vector Field Teal — electric cyan-teal
+• Vector Field Copper — molten rust & orange
+• Vector Field Indigo — violet & midnight blue
+• Voronoi Garden — plum → coral → gold (a full spectrum)
+• De Jong Ice — navy → glacial cyan
+• Julia Jade — teal → mint → warm jade
+
+8 .swatches files (30 swatches each), delivered in one .zip, plus an \
+install guide.
+
+► How to install (Procreate on iPad)
+Open Procreate → tap the color circle → Palettes → the + button → \
+"New from file" → pick a .swatches file. It loads as a ready-to-use \
+30-color palette. Works in any app that reads Procreate .swatches.
+
+This is a DIGITAL download — no physical item is shipped.
+
+© MathRelaxing. For personal & commercial artwork. Do not resell or \
+redistribute the palette files themselves.
+mathrelaxing.store""",
+
     "phd_planner": """\
 Instant download — undated digital planner for GoodNotes, Notability & any PDF \
 annotation app on iPad, Android & Windows tablets. Built for one job: getting \
@@ -818,6 +853,44 @@ PRODUCTS = {
                   "enmarcar). 'images' usa *_preview.jpg (marca de agua diagonal tileada) y 'files' usa el "
                   "*_print.jpg limpio de resolucion completa. Subido como borrador el 2026-07-07, "
                   "listing_id=4533974490.",
+    },
+
+    "chaos_palettes": {
+        "title":       "Chaos Theory Procreate Color Palettes | 8 Swatches Packs, 240 Colors from Real Strange Attractors | Generative Math Art Digital Download",
+        "description": DESCRIPTIONS["chaos_palettes"],
+        "price":       1.99,
+        "taxonomy_id": TAXONOMY["digital_drawing"],
+        "images": [
+            pal("previews", "palette_preview_1_hero.jpg"),
+            pal("previews", "palette_Voronoi_Garden.jpg"),
+            pal("previews", "palette_Rossler_Amber.jpg"),
+            pal("previews", "palette_Rossler_Rose.jpg"),
+            pal("previews", "palette_Vector_Field_Teal.jpg"),
+            pal("previews", "palette_Vector_Field_Copper.jpg"),
+            pal("previews", "palette_Vector_Field_Indigo.jpg"),
+            pal("previews", "palette_De_Jong_Ice.jpg"),
+            pal("previews", "palette_Julia_Jade.jpg"),
+        ],
+        "files": [
+            pal("ChaosTheory_Palettes.zip"),
+        ],
+        "tags": ["procreate palette","color palette","procreate color palette","digital art",
+                 "generative art","procreate swatches","math art","strange attractor",
+                 "color swatches","ipad art","abstract palette","digital download","artist gift"],
+        "notes": "Digital ultra low-cost ($1.99) -- puerta de entrada para atraer trafico/reseñas. "
+                  "Nicho elegido via API: 'procreate color palette' tiene demanda probada (top a $2.00 "
+                  "con 2.635 vistas/31 favs) y nuestro angulo (paletas extraidas de atractores caoticos "
+                  "reales) no lo ofrece nadie. Costo de produccion casi cero: brand.swatches_file() (el "
+                  "escritor de .swatches ya existia). build_palettes.py extrae 8 paletas de 30 colores de "
+                  "los renders reales (rossler amber/rose, vector field teal/copper/indigo, voronoi, "
+                  "de jong, julia) por quantizacion adaptativa (median-cut) sobre las zonas con tinta, "
+                  "filtrando pixeles grises de transicion (sat<0.18 y no-highlight) + anclas de "
+                  "sombra/luz, para paletas vividas y no lavadas. Se descartaron Thomas y Phyllotaxis "
+                  "(frames barrosos) a favor de De Jong (azul->cian) y Julia (teal->jade) para cubrir "
+                  "azul y verde. Deliverable: 1 zip con los 8 .swatches + 'HOW TO INSTALL.txt'. taxonomy "
+                  "77 (Art & Collectibles > Drawing & Illustration > Digital, no 'Digital Prints' porque "
+                  "no es un print). 9 imagenes: hero con las 8 rampas + 1 card por paleta (grilla 6x5). "
+                  "Subido como draft el 2026-07-07, listing_id=4534035590. Activacion manual pendiente.",
     },
 
     "phd_planner": {
