@@ -96,7 +96,25 @@ def render_mesh(idx, aspect=8.5/11.0):
     
     light_dir = np.array([1, 2, 1])
     light_dir = light_dir / np.linalg.norm(light_dir)
-    
+
+    # Real backface culling (skip faces whose normal points away from the
+    # camera) only for the Torus (idx 0-9): a smooth tube where the far side
+    # of the hole is genuinely hidden behind the near side, so culling
+    # removes it outright instead of relying on an unreliable-at-the-
+    # silhouette depth sort (see comment in the loop below).
+    #
+    # Every other family keeps the original double-sided, abs(dot)-shaded
+    # render: Mobius (10-19) and Helicoid (20-29) are open/non-orientable, so
+    # there's no consistent "outside" to cull to. The bumpy Sphere (40+,
+    # including the endless fallback for idx>=50) IS closed, but its
+    # self-occlusion comes from concave dimples BETWEEN bumps on the same
+    # front-facing hemisphere, not a hidden far side -- culling doesn't
+    # address that at all (verified empirically: culled and uncculled bumpy
+    # spheres show the same severity of dark, wrongly-ordered slivers). That
+    # residual defect needs real z-buffered rendering to fix properly, which
+    # is out of scope here.
+    cull_backfaces = idx < 10
+
     face_data = []
     for i, f in enumerate(faces):
         v0, v1, v2 = verts[f[0]], verts[f[1]], verts[f[2]]
@@ -104,10 +122,17 @@ def render_mesh(idx, aspect=8.5/11.0):
         n_len = np.linalg.norm(normal)
         if n_len == 0: continue
         normal = normal / n_len
-        
-        # Disable backface culling so open surfaces like Mobius strips render both sides
-        # Use absolute value of dot product to light both sides
-        intensity = max(0.1, abs(np.dot(normal, light_dir)))
+
+        centroid = (v0 + v1 + v2) / 3.0
+        view_dir = eye - centroid
+        view_dir = view_dir / (np.linalg.norm(view_dir) + 1e-9)
+        facing = np.dot(normal, view_dir)
+        if cull_backfaces:
+            if facing <= 0.02:
+                continue
+            intensity = max(0.1, np.dot(normal, light_dir))
+        else:
+            intensity = max(0.1, abs(np.dot(normal, light_dir)))
         z_depth = (verts_view[f[0], 2] + verts_view[f[1], 2] + verts_view[f[2], 2]) / 3
         
         pts_2d = verts_2d[f]
@@ -121,7 +146,17 @@ def render_mesh(idx, aspect=8.5/11.0):
             'r': incircle_r
         })
         
-    face_data.sort(key=lambda x: x['z'])
+    # Painter's algorithm: draw farthest-from-camera first, nearest last, so
+    # nearer faces correctly paint over farther ones. verts_view z grows with
+    # distance from the camera (see lookat/perspective above), so the list
+    # must be sorted FARTHEST-first (descending) -- downstream code treats
+    # "later in face_data" as "nearer / in front" for both zorder assignment
+    # and the occlusion-for-numbering check. Sorting ascending (nearest
+    # first) had it backwards: distant, hidden geometry (e.g. the far side of
+    # a torus's hole, or the opposite twist of a Mobius band) was assigned
+    # the highest zorder and painted OVER the correct near surface, showing
+    # up as dark, wrongly-shaded polygons cutting across the visible design.
+    face_data.sort(key=lambda x: x['z'], reverse=True)
     
     if len(face_data) > 0:
         intensities = np.array([fd['intensity'] for fd in face_data])
@@ -174,7 +209,7 @@ def main():
             idx += 1
             if len(face_data) == 0:
                 continue
-            
+
             fig = plt.figure(figsize=(8.5, 11))
             ax = fig.add_axes([0.05, 0.15, 0.9, 0.8])
             ax_legend = fig.add_axes([0.1, 0.05, 0.8, 0.05])
