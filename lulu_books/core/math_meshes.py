@@ -153,7 +153,12 @@ def get_mesh(idx):
     else:
         # Fallback to guaranteed well-behaved geometry (Spheres) to fill any gaps left by rejected models
         i = idx % 10
-        variation = idx // 10
+        # Capped: this fallback is called for as long as the caller keeps
+        # discarding candidates, which can run into the hundreds -- letting
+        # variation grow unbounded made the mesh (and therefore every
+        # downstream badness-score computation) keep getting bigger and
+        # slower forever with no corresponding quality improvement.
+        variation = min(idx // 10, 6)
         bumps = 3 + (i%3)
         depth = 0.15
         u = 12 + i + variation
