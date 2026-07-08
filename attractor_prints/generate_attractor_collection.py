@@ -21,7 +21,7 @@ Salida en collection/:
   StrangeAttractors_preview.jpg  (listing, con marca de agua diagonal)
 
 Uso:
-  python generate_attractor_collection.py            # 5400x7200 (18x24in @300dpi)
+  python generate_attractor_collection.py            # 9000x12000 (30x40in @300dpi)
   python generate_attractor_collection.py --test      # rapido, baja resolucion
 """
 import os
@@ -41,8 +41,10 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(BASE, "collection")
 
 TEST = "--test" in sys.argv
-TILE = 380 if TEST else 1500          # px per attractor tile
-POSTER_DPI = 60 if TEST else 300      # 18x24in -> 1080x1440 (test) or 5400x7200
+# larger tiles + higher poster dpi -> more detail for big-format printing.
+TILE = 380 if TEST else 2400          # px per attractor tile
+POSTER_DPI = 60 if TEST else 500      # 18x24in figure -> 1080x1440 (test) or 9000x12000
+#   (9000x12000 px = print-ready to 30x40 in at 300 dpi, matching the other big prints)
 
 NAVY = "#0d1124"
 GOLD = brand.GOLD
@@ -120,19 +122,19 @@ def _tile(xs, ys, W=TILE, gamma=0.52):
 
 def lorenz_tile():
     def f(v): x, y, z = v; return np.array([10 * (y - x), x * (28 - z) - y, x * y - 8 / 3 * z])
-    n = 60000 if TEST else 900000
+    n = 60000 if TEST else 1800000
     return _tile(*_ode_xy(f, [1, 1, 1], 0.005, n, proj=2))
 
 
 def rossler_tile():
     def f(v): x, y, z = v; return np.array([-y - z, x + 0.2 * y, 0.2 + z * (x - 5.7)])
-    n = 60000 if TEST else 900000
+    n = 60000 if TEST else 1800000
     return _tile(*_ode_xy(f, [1, 1, 1], 0.02, n, proj=1))
 
 
 def thomas_tile():
     def f(v): x, y, z = v; b = 0.208; return np.array([np.sin(y) - b * x, np.sin(z) - b * y, np.sin(x) - b * z])
-    n = 60000 if TEST else 900000
+    n = 60000 if TEST else 1800000
     return _tile(*_ode_xy(f, [1, 0, 1], 0.05, n, proj=1))
 
 
@@ -141,20 +143,20 @@ def aizawa_tile():
         x, y, z = v; a, b, c, d, e, g = 0.95, 0.7, 0.6, 3.5, 0.25, 0.1
         return np.array([(z - b) * x - d * y, d * x + (z - b) * y,
                          c + a * z - z**3 / 3 - (x**2 + y**2) * (1 + e * z) + g * z * x**3])
-    n = 60000 if TEST else 900000
+    n = 60000 if TEST else 1800000
     return _tile(*_ode_xy(f, [0.1, 0, 0], 0.01, n, proj=2))
 
 
 def dejong_tile():
     a, b, c, d = 1.641, 1.902, 0.316, 1.525
-    npts = 15000 if TEST else 90000
+    npts = 15000 if TEST else 140000
     return _tile(*_map_xy(lambda x, y: (np.sin(a * y) - np.cos(b * x), np.sin(c * x) - np.cos(d * y)),
                           7, npts, 60))
 
 
 def clifford_tile():
     a, b, c, d = -1.4, 1.6, 1.0, 0.7
-    npts = 15000 if TEST else 90000
+    npts = 15000 if TEST else 140000
     return _tile(*_map_xy(lambda x, y: (np.sin(a * y) + c * np.cos(a * x), np.sin(b * x) + d * np.cos(b * y)),
                           3, npts, 60))
 
@@ -215,14 +217,8 @@ def build_poster():
         ax.text(cx, ty - ch * 0.15, eq, ha="center", va="top", fontsize=12.5,
                 color=(0.80, 0.82, 0.88), zorder=4, linespacing=1.5)
 
-    # footer band with logo
-    ax.add_patch(plt.Rectangle((0, 0), 3, 0.30, color="black", zorder=5))
-    if os.path.exists(brand.LOGO_PATH):
-        logo = mpimg.imread(brand.LOGO_PATH)
-        lh = 0.20; lw = lh * logo.shape[1] / logo.shape[0]
-        ax.imshow(logo, extent=[1.5 - lw / 2, 1.5 + lw / 2, 0.05, 0.05 + lh], zorder=6)
-    ax.text(2.86, 0.15, "mathrelaxing.store", ha="right", va="center",
-            fontsize=10, color=(0.6, 0.62, 0.7), zorder=6, family="serif")
+    # No branding on the sellable file -- it's wall art for framing, same
+    # convention as the other Type-5 art prints (Rossler, Vector Field...).
 
     print_path = os.path.join(OUT, "StrangeAttractors_print.jpg")
     fig.savefig(print_path, dpi=POSTER_DPI, facecolor=NAVY,

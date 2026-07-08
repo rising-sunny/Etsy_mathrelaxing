@@ -644,7 +644,7 @@ This poster gathers six of the most beautiful, side by side.
 WHAT YOU GET
 ────────────────────────
 1 high-resolution JPG poster
-Resolution: 5400 × 7200 px (print-ready up to 18×24 inches at 300dpi)
+Resolution: 9000 × 12000 px (print-ready up to 30×40 inches at 300dpi)
 Format: JPG, high quality
 
 ────────────────────────
