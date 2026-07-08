@@ -626,6 +626,44 @@ annotation app is required.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
 
+    "attractor_collection": """\
+Six strange attractors of chaos theory, rendered entirely with code —
+a field-guide poster of deterministic chaos.
+
+No AI, no stock. Each attractor is computed from its own equations in
+Python and drawn as a luminous gold density map: the Lorenz butterfly,
+the Rössler band, the Thomas cyclically-symmetric loop, the Aizawa
+sphere, and the De Jong & Clifford iterated maps — each with its name
+and governing equations typeset beside it.
+
+A strange attractor is the shape a chaotic system is drawn toward:
+deterministic (no randomness at all) yet never exactly repeating.
+This poster gathers six of the most beautiful, side by side.
+
+────────────────────────
+WHAT YOU GET
+────────────────────────
+1 high-resolution JPG poster
+Resolution: 5400 × 7200 px (print-ready up to 18×24 inches at 300dpi)
+Format: JPG, high quality
+
+────────────────────────
+PRINTING TIPS
+────────────────────────
+· Best on matte or satin paper — stunning framed for a study, lab,
+  classroom or office
+· Any local print shop or online service (Printful, Canva Print,
+  Costco Photo) can handle this file
+
+────────────────────────
+INSTANT DOWNLOAD · No physical item is shipped.
+────────────────────────
+
+I'm an electrical engineer who got lost in recreational mathematics.
+Every piece in this shop is written from scratch in Python — equations,
+rendering, colours and all.
+mathrelaxing.store""",
+
     "harmonograph_print": """\
 A harmonograph figure, rendered entirely with code.
 
@@ -833,6 +871,39 @@ cells. Every cell is a closed region — perfect for clean, satisfying color fil
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
 PRODUCTS = {
+
+    "attractor_collection": {
+        "title":       "Strange Attractors Poster | Chaos Theory Math Wall Art, 6 Attractors with Equations | Science Physics Print Digital Download",
+        "description": DESCRIPTIONS["attractor_collection"],
+        "price":       12.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            attractor("collection", "StrangeAttractors_preview.jpg"),
+            attractor("collection", "StrangeAttractors_detail1.jpg"),
+            attractor("collection", "StrangeAttractors_detail2.jpg"),
+        ],
+        "files": [
+            attractor("collection", "StrangeAttractors_print.jpg"),
+        ],
+        "tags": ["strange attractor","chaos theory art","math poster","science wall art",
+                 "lorenz attractor","physics art print","generative art","math gift",
+                 "stem wall decor","dark academia print","dorm wall art","code art print",
+                 "differential equations"],
+        "notes": "Tipo 5 (art print generativo), pero NUEVO formato: POSTER-COLECCION (no un atractor "
+                  "suelto). Nicho validado via API: 'strange attractor poster' ~15 listings pero top $18 "
+                  "con 110 favs/1.459 vistas -> demanda fuerte, competencia minima. Producto de ticket mas "
+                  "alto ($12.99) reusando la tecnica de histograma de densidad ya perfeccionada. "
+                  "generate_attractor_collection.py renderiza 6 atractores clasicos en tratamiento "
+                  "cohesivo oro-sobre-navy (LUT[0]=navy del poster para que floten sin borde cuadrado): "
+                  "Lorenz, Rossler, Thomas, Aizawa (ODEs: pocas trayect x 900k pasos RK4), De Jong y "
+                  "Clifford (mapas 2D: 90k trayect x 60 iters). Cada tile con nombre + ecuaciones "
+                  "(matplotlib mathtext). Compuesto en poster 18x24 (5400x7200 @300dpi) con titulo 'A "
+                  "Field Guide to Deterministic Chaos' + footer con logo. Calidad JPEG 95 (1.66MB, bajo "
+                  "el limite). 3 imagenes: preview watermarkeada full + 2 crops de detalle. 'files' = "
+                  "poster limpio sin marca. Precio $12.99 (medio entre nuestros prints $8.99 y el top de "
+                  "$18 del nicho). Subido como draft el 2026-07-07, listing_id=4534313102. Activacion "
+                  "manual pendiente. Extensible: agregar mas atractores o vender variantes de color.",
+    },
 
     "harmonograph_print": {
         "title":       "Harmonograph Art Print | Generative Math Wall Art from a Victorian Pendulum Curve | 3 Colors, 30x30in Digital Download",
