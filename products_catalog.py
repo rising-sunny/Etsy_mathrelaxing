@@ -953,6 +953,34 @@ Features:
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
+
+    "sacred_geometry_ipad_svg": """\
+Color sacred geometry on your iPad — no printer, no app to install, no mess. A fully INTERACTIVE, app-like Color-by-Number experience that runs right in Safari.
+
+This digital bundle features 50 original low-poly sacred-geometry mandalas — rose windows, Flower-of-Life lattices, nested star rings and golden spirals, each generated from real mathematics. It is NOT a static PDF. You get 50 interactive HTML files that open directly in your iPad's Safari browser (no internet needed). Because they use vector SVG graphics, you can zoom in infinitely without ANY pixelation — no more blurry lines or numbers crashing into borders.
+
+Features:
+• Infinite zoom with perfectly crisp lines (true vector SVG)
+• Tap-to-fill: pick a color from the palette, tap a zone, done
+• Auto-hiding numbers: the number vanishes the moment you color its zone
+• Progress saves automatically — close the tab and pick up later
+• Works 100% offline, on iPad, iPhone, Android, Mac or PC
+• 50 unique mathematically-generated mandalas
+
+────────────────────────
+WHAT YOU GET · instant download
+────────────────────────
+• 50 interactive HTML designs (one file each) in a ZIP
+• A "How to Use on iPad" instructions PDF
+• No physical item is shipped
+
+────────────────────────
+ABOUT THE ART
+────────────────────────
+Every mandala is triangulated from a symmetric mathematical seed pattern — original code by the artist, never AI image generators.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+mathrelaxing.store""",
 }
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
@@ -1982,6 +2010,37 @@ PRODUCTS = {
         ],
         "tags": ["ipad coloring book","color by number","goodnotes planner","procreate coloring","digital mandala","spiral art","math art","pastel aesthetic","adult coloring pdf","procreate swatches","digital download","relaxing coloring","adhd coloring"],
         "notes": "Generado con build_spiral_ipad.py",
+    },
+
+    "sacred_geometry_ipad_svg": {
+        "title":       "Interactive Color By Number Sacred Geometry — iPad Safari SVG App | 50 Low Poly Mandala Designs",
+        "description": DESCRIPTIONS["sacred_geometry_ipad_svg"],
+        "price":       9.99,
+        "taxonomy_id": TAXONOMY["ipad_coloring"],
+        "video": p("ipad_sacred_cbn_svg", "SacredGeometry_SVG_promo.mp4"),
+        "images": [
+            p("ipad_sacred_cbn_svg", "previews", "ipad_svg_preview_1_hero.jpg"),
+            p("ipad_sacred_cbn_svg", "previews", "ipad_svg_preview_2_features.jpg"),
+            p("ipad_sacred_cbn_svg", "previews", "ipad_svg_preview_3_included.jpg"),
+        ],
+        "files": [
+            p("ipad_sacred_cbn_svg", "SacredGeometry_CBN_Interactive.zip"),
+            p("ipad_sacred_cbn_svg", "How_to_Use_Interactive_CBN.pdf"),
+        ],
+        "tags": ["ipad coloring book","color by number","sacred geometry","procreate coloring","digital mandala","mandala coloring","math art","low poly art","goodnotes coloring","flower of life","digital download","relaxing coloring","adhd coloring"],
+        "notes": "MIGRACION del listing INACTIVO 'Sacred Geometry Color by Number iPad Pages | 50 Low Poly "
+                  "Procreate Designs' (listing_id=4529089106, estado edit/inactive, $5.99, PNG+PDF "
+                  "GoodNotes/Procreate) al NUEVO formato SVG interactivo Safari (igual que spiral_tilings_ipad "
+                  "y voronoi SVG). El sacred original era pipeline raster (sin poligonos vectoriales "
+                  "reutilizables), asi que build_sacred_ipad_svg.py REGENERA 50 mandalas low-poly "
+                  "PARAMETRICAS: semillas k-fold simetricas (rose window, Flower-of-Life hex lattice, "
+                  "nested stars, phyllotaxis) trianguladas con Delaunay (scipy) y recortadas a disco "
+                  "(shapely), coloreadas con regla k-fold simetrica. Usa el framework template_ipad_svg_bundle "
+                  "-> 50 HTML interactivos + ZIP (0.5MB) + How_to_Use PDF. Previews/video con "
+                  "build_sacred_svg_previews.py. Verificado en Chromium: render SVG + tap-to-fill + zoom OK. "
+                  "Precio $9.99 (como spiral SVG; sube desde $5.99 del PNG original por mayor valor "
+                  "interactivo). Actualizar el listing 4529089106 en su lugar (mantener draft/inactive para "
+                  "activacion manual).",
     },
 
     "spiral_tilings_pdf": {
