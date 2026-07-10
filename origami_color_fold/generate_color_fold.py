@@ -35,9 +35,21 @@ from dataclasses import dataclass, field
 from typing import List, Tuple
 
 import numpy as np
-from shapely.geometry import Polygon, LineString, Point
+from shapely.geometry import Polygon, LineString, Point, MultiLineString
+from shapely.ops import unary_union, polygonize
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+
+# Color-by-number palette (shown as a legend; user colours each region by its
+# number). Kept to a friendly 6 so a child can colour it with a basic set.
+CBN_PALETTE = [
+    "#e0b23c",   # 1 gold
+    "#c0403a",   # 2 red
+    "#2f6fb0",   # 3 blue
+    "#4f9d69",   # 4 green
+    "#8d6bcf",   # 5 violet
+    "#e08a3c",   # 6 orange
+]
 
 # ── Print geometry (US-Letter friendly, mm) ───────────────────────────────────
 PAGE_W, PAGE_H = 215.9, 279.4       # US Letter in mm
@@ -197,6 +209,35 @@ def build_face_art(face: Face):
     return MOTIF_FN[face.motif](face, poly)
 
 
+def build_face_cells(face: Face):
+    """Split a visible face into its CLOSED colour-by-number regions.
+
+    The face boundary plus the motif's line-art are noded and polygonized
+    (shapely) into cells; each cell gets a colour number, assigned in bands by
+    distance from the face's focal point so the colouring reads as structured
+    (concentric / radial), and a centroid for the number label.
+    Returns list of {"poly": [(x,y)...], "n": int(1-based colour), "c": (cx,cy)}.
+    """
+    poly = Polygon(face.poly)
+    art = build_face_art(face)
+    boundary = LineString(list(poly.exterior.coords))
+    lines = [boundary] + [LineString(seg) for seg in art if len(seg) >= 2]
+    noded = unary_union(lines)                       # node all intersections
+    cells = [g for g in polygonize(noded) if g.area > 4.0]   # drop slivers
+
+    fx, fy = face.focus
+    if cells:
+        dists = [math.hypot(c.centroid.x - fx, c.centroid.y - fy) for c in cells]
+        dmax = max(dists) or 1.0
+    out = []
+    for cell, d in zip(cells, dists) if cells else []:
+        band = int((d / dmax) * (len(CBN_PALETTE) - 1) + 0.5)   # bands by radius
+        n = (band % len(CBN_PALETTE)) + 1
+        p = cell.representative_point()
+        out.append({"poly": list(cell.exterior.coords), "n": n, "c": (p.x, p.y)})
+    return out
+
+
 # ── Fase C: SVG + PNG rendering ───────────────────────────────────────────────
 
 def _poly_pts(poly):
@@ -221,6 +262,14 @@ def render_svg(model: FoldModel, path):
         for seg in build_face_art(f):
             out.append(f'<polyline points="{_poly_pts(seg)}"/>')
         out.append("</g>")
+
+    # colour-by-number: a small number in every closed region
+    for f in model.faces:
+        for cell in build_face_cells(f):
+            cx, cy = cell["c"]
+            out.append(f'<text x="{cx:.1f}" y="{cy:.1f}" font-size="3.4" '
+                       f'fill="#555" text-anchor="middle" dominant-baseline="central" '
+                       f'font-family="sans-serif">{cell["n"]}</text>')
 
     # structural crease layer
     def line(cr):
@@ -251,6 +300,17 @@ def render_svg(model: FoldModel, path):
                    f'stroke="{st["stroke"]}" stroke-width="{st["width"]}"{dash}/>')
         out.append(f'<text x="{lx+20}" y="{yy+2}" font-size="5.5" fill="#333" '
                    f'font-family="sans-serif">{name}</text>')
+    # colour-by-number palette legend (right of the fold legend)
+    px, py = OX + S - 6 * 14, OY + S + 12
+    out.append(f'<text x="{px:.1f}" y="{py-6:.1f}" font-size="5.5" fill="#333" '
+               f'font-family="sans-serif">Colour by number</text>')
+    for k, hexc in enumerate(CBN_PALETTE):
+        sx = px + k * 14
+        out.append(f'<rect x="{sx:.1f}" y="{py:.1f}" width="10" height="8" '
+                   f'rx="1.5" fill="{hexc}" stroke="#666" stroke-width="0.4"/>')
+        out.append(f'<text x="{sx+5:.1f}" y="{py+13:.1f}" font-size="5" fill="#333" '
+                   f'text-anchor="middle" font-family="sans-serif">{k+1}</text>')
+
     out.append(f'<text x="{OX+S}" y="{OY-6}" font-size="6" fill="#999" '
                f'text-anchor="end" font-family="sans-serif">MathRelaxing · Color &amp; Fold · Fortune Teller</text>')
 
@@ -281,15 +341,42 @@ def render_png(model: FoldModel, path, dpi=130):
         dash = (0, [4, 3]) if cr.kind == "valley" else ((0, [6, 2, 1, 2]) if cr.kind == "mountain" else None)
         ax.plot([cr.p0[0], cr.p1[0]], [cr.p0[1], cr.p1[1]], color=st["stroke"],
                 lw=st["width"], dashes=dash[1] if dash else [], solid_capstyle="round")
+    # colour-by-number labels in every closed region
     for f in model.faces:
-        if f.label:
-            cx = sum(p[0] for p in f.poly) / 3; cy = sum(p[1] for p in f.poly) / 3
-            ax.text(cx, cy, f.label, fontsize=7, color="#888", ha="center", va="center")
+        for cell in build_face_cells(f):
+            cx, cy = cell["c"]
+            ax.text(cx, cy, str(cell["n"]), fontsize=3.2, color="#555",
+                    ha="center", va="center")
     fig.savefig(path, dpi=dpi, facecolor="white"); plt.close(fig)
     print("PNG:", path)
+
+
+def render_png_colored(model: FoldModel, path, dpi=130):
+    """A 'solution' preview: every region filled with its palette colour."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Polygon as MPoly
+
+    fig = plt.figure(figsize=(PAGE_W / 25.4, PAGE_H / 25.4))
+    ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, PAGE_W); ax.set_ylim(PAGE_H, 0)
+    ax.set_aspect("equal"); ax.axis("off"); fig.patch.set_facecolor("white")
+    for f in model.faces:
+        for cell in build_face_cells(f):
+            ax.add_patch(MPoly(cell["poly"], closed=True,
+                         facecolor=CBN_PALETTE[cell["n"] - 1],
+                         edgecolor="#33333380", linewidth=0.3))
+    for cr in model.creases:
+        st = {"cut": CUT_STYLE, "valley": VALLEY_STYLE, "mountain": MOUNTAIN_STYLE}[cr.kind]
+        dash = [4, 3] if cr.kind == "valley" else ([6, 2, 1, 2] if cr.kind == "mountain" else [])
+        ax.plot([cr.p0[0], cr.p1[0]], [cr.p0[1], cr.p1[1]], color=st["stroke"],
+                lw=st["width"], dashes=dash, solid_capstyle="round")
+    fig.savefig(path, dpi=dpi, facecolor="white"); plt.close(fig)
+    print("PNG (colored):", path)
 
 
 if __name__ == "__main__":
     model = fortune_teller()
     render_svg(model, os.path.join(BASE, "fortune_teller.svg"))
     render_png(model, os.path.join(BASE, "fortune_teller_preview.png"))
+    render_png_colored(model, os.path.join(BASE, "fortune_teller_colored.png"))
