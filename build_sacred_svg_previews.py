@@ -101,9 +101,9 @@ def build_preview_2():
 
 def build_preview_3():
     fig, ax = brand.ipad_fig()
-    cells1, R1 = get_cells(2)
-    cells2, R2 = get_cells(24)
-    cells3, R3 = get_cells(45)
+    cells1, R1 = get_cells(5)     # torus
+    cells2, R2 = get_cells(30)    # faceted gem
+    cells3, R3 = get_cells(47)    # Möbius band
     ax.text(5, 9.0, "What's Included", ha="center", va="center",
             fontsize=45, color=brand.CREAM, **brand.SERIF_BOLD)
     cx, cy, cw, ch = brand.ipad_frame(ax, 2, 6.5, 3.5, 2.6)

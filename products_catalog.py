@@ -955,17 +955,18 @@ Features:
 mathrelaxing.store""",
 
     "sacred_geometry_ipad_svg": """\
-Color sacred geometry on your iPad — no printer, no app to install, no mess. A fully INTERACTIVE, app-like Color-by-Number experience that runs right in Safari.
+Color low-poly 3D sacred geometry on your iPad — no printer, no app to install, no mess. A fully INTERACTIVE, app-like Color-by-Number experience that runs right in Safari.
 
-This digital bundle features 50 original low-poly sacred-geometry mandalas — rose windows, Flower-of-Life lattices, nested star rings and golden spirals, each generated from real mathematics. It is NOT a static PDF. You get 50 interactive HTML files that open directly in your iPad's Safari browser (no internet needed). Because they use vector SVG graphics, you can zoom in infinitely without ANY pixelation — no more blurry lines or numbers crashing into borders.
+This digital bundle features 50 original three-dimensional designs — faceted tori, Möbius bands and geometric gems, each built from real mathematics and lit like a 3D object. Color the numbers from 1 (shadow) to 8 (highlight) and the flat facets pop into a shaded three-dimensional form. It is NOT a static PDF. You get 50 interactive HTML files that open directly in your iPad's Safari browser (no internet needed). Because they use vector SVG graphics, you can zoom in infinitely without ANY pixelation — no more blurry lines or numbers crashing into borders.
 
 Features:
+• A true low-poly 3D look — the numbers follow each facet's lighting, so coloring reveals depth and volume
 • Infinite zoom with perfectly crisp lines (true vector SVG)
-• Tap-to-fill: pick a color from the palette, tap a zone, done
-• Auto-hiding numbers: the number vanishes the moment you color its zone
+• Tap-to-fill: pick a shade from the palette, tap a facet, done
+• Auto-hiding numbers: the number vanishes the moment you color its facet
 • Progress saves automatically — close the tab and pick up later
 • Works 100% offline, on iPad, iPhone, Android, Mac or PC
-• 50 unique mathematically-generated mandalas
+• 50 unique mathematically-generated 3D surfaces
 
 ────────────────────────
 WHAT YOU GET · instant download
@@ -977,7 +978,7 @@ WHAT YOU GET · instant download
 ────────────────────────
 ABOUT THE ART
 ────────────────────────
-Every mandala is triangulated from a symmetric mathematical seed pattern — original code by the artist, never AI image generators.
+Every design is a real mathematical surface — a torus, a Möbius band, a faceted sphere — triangulated and shaded by light in code, never AI image generators.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
@@ -2013,7 +2014,7 @@ PRODUCTS = {
     },
 
     "sacred_geometry_ipad_svg": {
-        "title":       "Interactive Color By Number Sacred Geometry — iPad Safari SVG App | 50 Low Poly Mandala Designs",
+        "title":       "Interactive Color By Number Sacred Geometry — iPad Safari SVG App | 50 Low Poly 3D Topology Designs",
         "description": DESCRIPTIONS["sacred_geometry_ipad_svg"],
         "price":       9.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
@@ -2027,15 +2028,19 @@ PRODUCTS = {
             p("ipad_sacred_cbn_svg", "SacredGeometry_CBN_Interactive.zip"),
             p("ipad_sacred_cbn_svg", "How_to_Use_Interactive_CBN.pdf"),
         ],
-        "tags": ["ipad coloring book","color by number","sacred geometry","procreate coloring","digital mandala","mandala coloring","math art","low poly art","goodnotes coloring","flower of life","digital download","relaxing coloring","adhd coloring"],
+        "tags": ["ipad coloring book","color by number","sacred geometry","procreate coloring","3d coloring","low poly art","math art","topology art","goodnotes coloring","torus mobius","digital download","relaxing coloring","adhd coloring"],
         "notes": "MIGRACION del listing INACTIVO 'Sacred Geometry Color by Number iPad Pages | 50 Low Poly "
                   "Procreate Designs' (listing_id=4529089106, estado edit/inactive, $5.99, PNG+PDF "
                   "GoodNotes/Procreate) al NUEVO formato SVG interactivo Safari (igual que spiral_tilings_ipad "
-                  "y voronoi SVG). El sacred original era pipeline raster (sin poligonos vectoriales "
-                  "reutilizables), asi que build_sacred_ipad_svg.py REGENERA 50 mandalas low-poly "
-                  "PARAMETRICAS: semillas k-fold simetricas (rose window, Flower-of-Life hex lattice, "
-                  "nested stars, phyllotaxis) trianguladas con Delaunay (scipy) y recortadas a disco "
-                  "(shapely), coloreadas con regla k-fold simetrica. Usa el framework template_ipad_svg_bundle "
+                  "y voronoi SVG). El sacred original era 'Low Poly 3D' (superficies "
+                  "topologicas facetadas + color-by-number sombreado). PRIMERA version SVG fueron mandalas "
+                  "2D planas -> el usuario pidio recuperar la SENSACION 3D. build_sacred_ipad_svg.py ahora "
+                  "reutiliza las mallas 3D reales de lulu_books/core/math_meshes.py (gen_torus, "
+                  "gen_sphere_bumpy, gen_mobius): 22 toros + 22 gemas facetadas + 6 Mobius. Cada cara se "
+                  "rota a camara, se proyecta ortografico, se hace BACK-FACE CULLING (una sola capa limpia "
+                  "para el SVG) y se sombrea intensity=normal.luz -> indice en paleta 8 tonos navy->oro->crema "
+                  "ordenada por luminosidad (colorear 1->8 = sombra->brillo revela el 3D). Filtro de slivers "
+                  "para quitar spikes de silueta/polos. Usa el framework template_ipad_svg_bundle "
                   "-> 50 HTML interactivos + ZIP (0.5MB) + How_to_Use PDF. Previews/video con "
                   "build_sacred_svg_previews.py. Verificado en Chromium: render SVG + tap-to-fill + zoom OK. "
                   "Precio $9.99 (como spiral SVG; sube desde $5.99 del PNG original por mayor valor "

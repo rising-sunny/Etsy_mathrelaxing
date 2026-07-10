@@ -2,186 +2,178 @@
 build_sacred_ipad_svg.py — Interactive SVG edition of Sacred Geometry CBN
 =========================================================================
 Migrates the (inactive) "Sacred Geometry Color by Number iPad Pages"
-listing from static PNG/PDF pages to the interactive Safari-SVG format
-used by Voronoi Gardens & Spiral Tilings (template_ipad_svg_bundle).
+listing to the interactive Safari-SVG format (template_ipad_svg_bundle),
+KEEPING the original product's defining feature: a low-poly **3D** feel.
 
-Unlike Voronoi (parametric cells) the original Sacred Geometry art was a
-raster/PDF pipeline, so there were no vector polygons to reuse. Here the
-designs are regenerated PARAMETRICALLY as low-poly sacred mandalas:
-k-fold-symmetric seed points (rose windows, Flower-of-Life hex lattices,
-nested star rings, phyllotaxis) are Delaunay-triangulated into clean
-triangular cells — the literal "low poly" look — clipped to a disk and
-coloured with a k-fold-symmetric rule so the mandala reads as symmetric.
+The original Sacred Geometry & Topology art is a set of 50 three-dimensional
+mathematical surfaces (tori, Möbius bands, helicoids, seashells, faceted
+spheres — from lulu_books/core/math_meshes.py) rendered as low-poly 3D
+color-by-number: the numbers follow the LIGHTING of each facet, so colouring
+1→8 (shadow→highlight) reveals a shaded three-dimensional form.
 
-Because everything is true vector, the buyer gets infinite crisp zoom.
+This rebuild reproduces that in true vector SVG:
+  • get_mesh(idx) gives the 3D triangle mesh
+  • each face is rotated to a camera view, orthographically projected to 2D,
+    and back-face culled (front sheet only → a clean, non-overlapping SVG)
+  • face intensity = normal · light  →  shade index into an 8-step
+    dark→light palette, so tapping the numbers paints the 3D shading
+Because it is SVG the buyer gets infinite crisp zoom.
 
   python build_sacred_ipad_svg.py            # full 50-design bundle
-  python build_sacred_ipad_svg.py --sample   # 4 designs -> /tmp preview grid
+  python build_sacred_ipad_svg.py --sample   # 5 designs -> /tmp preview grid
 """
 import os
 import sys
 import math
 import numpy as np
 import shapely.geometry
-from scipy.spatial import Delaunay
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "lulu_books", "core"))
+from math_meshes import (gen_torus, gen_mobius, gen_seashell,
+                         gen_sphere_bumpy, add_noise)
 
 from template_ipad_svg_bundle import SvgBundleConfig, build_svg_bundle
 
-# ── Geometry constants (match the Voronoi SVG coordinate convention) ──────────
-RDISK = 250.0                 # design disk radius; coords centred at (0,0)
 
-# ── Sacred-geometry palette (jewel + metallic tones, hex) ─────────────────────
-SACRED_PALETTE = [
-    "#c9a24b", "#e0be6a", "#a5772e", "#6b4f1d",   # golds / bronze
-    "#4a7ba6", "#2e5a86", "#7fb0aa", "#356c78",   # blues / teals
-    "#8d6bcf", "#5a3fa0", "#b48ad4", "#3d2f6a",   # violets
-    "#c95a41", "#e07850", "#a83e3e", "#e8a24a",   # warm terracotta / amber
-    "#5a8f5a", "#356b45", "#8fbf7f", "#26332c",   # greens / forest
-    "#d9d7cf", "#b0a99a", "#ece9df", "#4a556b",   # neutrals / slate
-]
-
-PALETTE_N = len(SACRED_PALETTE)
-
-# ── k-fold-symmetric seed generators (all centred at origin) ──────────────────
-
-def _rose(k, rings, seed):
-    """Concentric rose window: k points per ring, alternating phase, denser out."""
-    rng = np.random.default_rng(seed)
-    pts = [(0.0, 0.0)]
-    for ri in range(1, rings + 1):
-        r = RDISK * (ri / (rings + 0.3))
-        r *= 1 + rng.uniform(-0.012, 0.012)              # symmetric ring jitter
-        phase = (ri % 2) * (math.pi / k)
-        kk = k * (1 if ri < rings * 0.6 else 2)          # more density outside
-        for j in range(kk):
-            a = phase + 2 * math.pi * j / kk
-            pts.append((r * math.cos(a), r * math.sin(a)))
-    return np.array(pts)
-
-def _mandala(k, rings, seed):
-    """k-fold mandala: seeds at fixed fractions of the fundamental wedge."""
-    rng = np.random.default_rng(seed)
-    wedge = 2 * math.pi / k
-    pts = [(0.0, 0.0)]
-    for ri in range(rings):
-        r = RDISK * ((ri + 0.6) / (rings + 0.5)) ** 0.95
-        r *= 1 + rng.uniform(-0.012, 0.012)
-        fracs = [0.5] if ri % 2 == 0 else [0.27, 0.73]
-        if ri == rings - 1:
-            fracs = [0.18, 0.5, 0.82]
-        for f in fracs:
-            a0 = f * wedge
-            for j in range(k):
-                a = a0 + j * wedge
-                pts.append((r * math.cos(a), r * math.sin(a)))
-    return np.array(pts)
-
-def _flower_of_life(rings, seed):
-    """Flower-of-Life hex lattice: circle centres on a triangular lattice,
-    kept inside the disk. Delaunay of a hex lattice gives equilateral low-poly."""
-    step = RDISK / (rings + 0.5)
-    pts = []
-    for i in range(-rings - 1, rings + 2):
-        for j in range(-rings - 1, rings + 2):
-            x = step * (i + 0.5 * j)
-            y = step * (math.sqrt(3) / 2) * j
-            if x * x + y * y <= (RDISK * 1.001) ** 2:
-                pts.append((x, y))
-    return np.array(pts)
-
-def _nested_stars(k, rings, seed):
-    """Nested rotating k-gons (star-of-David style layering)."""
-    pts = [(0.0, 0.0)]
-    for ri in range(1, rings + 1):
-        r = RDISK * (ri / (rings + 0.3))
-        rot = (ri % 2) * (math.pi / k)                   # alternate orientation
-        for j in range(k):
-            a = rot + 2 * math.pi * j / k
-            pts.append((r * math.cos(a), r * math.sin(a)))
-            # midpoint seed on each edge to enrich the triangulation
-            a2 = rot + 2 * math.pi * (j + 0.5) / k
-            r2 = r * 0.86
-            pts.append((r2 * math.cos(a2), r2 * math.sin(a2)))
-    return np.array(pts)
-
-def _phyllotaxis(n, seed):
-    """Golden-angle spiral (sunflower) — organic sacred spiral."""
-    golden = math.radians(137.50776405)
-    spread = RDISK / math.sqrt(n)
-    pts = [(0.0, 0.0)]
-    for i in range(1, n):
-        r = spread * math.sqrt(i)
-        a = i * golden
-        pts.append((r * math.cos(a), r * math.sin(a)))
-    return np.array(pts)
-
-
-# ── The 50 designs (name, generator, k for colour symmetry) ───────────────────
-
+# ── The 50 designs — curated toward the families that read as clean low-poly
+#    3D after front-face culling (closed tori & faceted spheres), plus twisted
+#    Möbius bands and a few golden-spiral seashells for topological variety. ──
 def _designs():
-    ks = [6, 8, 12, 5, 10, 9, 7, 16]
     ds = []
-    # Rose windows (12)
-    for i in range(12):
-        k = ks[i % len(ks)]
-        ds.append(dict(kind="rose", k=k, rings=5 + i % 3, seed=100 + i))
-    # k-fold mandalas (12)
-    for i in range(12):
-        k = ks[(i + 3) % len(ks)]
-        ds.append(dict(kind="mandala", k=k, rings=5 + i % 4, seed=200 + i))
-    # Flower of Life hex lattices (8) — 6-fold by construction
-    for i in range(8):
-        ds.append(dict(kind="flower", k=6, rings=4 + i % 4, seed=300 + i))
-    # Nested star rings (10)
-    for i in range(10):
-        k = ks[(i + 1) % len(ks)]
-        ds.append(dict(kind="nested", k=k, rings=5 + i % 3, seed=400 + i))
-    # Phyllotaxis spirals (8)
-    for i in range(8):
-        ds.append(dict(kind="phyllo", k=8, n=140 + 25 * (i % 4), seed=500 + i))
+    # 22 tori (Torus Topology)
+    for i in range(22):
+        ds.append(dict(kind="torus", title=f"Torus Topology {i+1}",
+                       R=1.0 + (i % 3) * 0.18, r=0.30 + (i % 3) * 0.06,
+                       u=22 + (i % 6) * 2, v=11 + (i % 3), tw=(i % 4 == 3),
+                       noise=0.016, seed=i))
+    # 22 faceted spheres (Geometric Gem)
+    for i in range(22):
+        ds.append(dict(kind="sphere", title=f"Geometric Gem {i+1}",
+                       bumps=2 + (i % 5), depth=0.12 + (i % 5) * 0.035,
+                       u=20 + (i % 5) * 2, v=16 + (i % 3) * 2,
+                       noise=0.018, seed=100 + i))
+    # 6 Möbius bands (wider so the twisted 3D band reads clearly)
+    for i in range(6):
+        ds.append(dict(kind="mobius", title=f"Möbius Band {i+1}",
+                       twists=1 + (i % 3), w=0.6, u=34 + (i % 4) * 2, v=9,
+                       noise=0.012, seed=200 + i))
     return ds[:50]
 
 DESIGNS = _designs()
 
-_GEN = {"rose": _rose, "mandala": _mandala, "nested": _nested_stars}
+
+def get_mesh(idx):
+    """Curated replacement for math_meshes.get_mesh: returns (verts, faces, title)."""
+    d = DESIGNS[idx]
+    if d["kind"] == "torus":
+        verts, faces = gen_torus(R=d["R"], r=d["r"], u_steps=d["u"],
+                                 v_steps=d["v"], twists=1 if d["tw"] else 0)
+    elif d["kind"] == "sphere":
+        verts, faces = gen_sphere_bumpy(bumps=d["bumps"], bump_depth=d["depth"],
+                                        u_steps=d["u"], v_steps=d["v"])
+    elif d["kind"] == "mobius":
+        verts, faces = gen_mobius(w=d.get("w", 0.4), u_steps=d["u"],
+                                  v_steps=d["v"], twists=d["twists"])
+    else:
+        verts, faces = gen_seashell(u_steps=d["u"], v_steps=d["v"])
+    verts = add_noise(verts, d["noise"], seed=d["seed"])
+    return verts, faces, d["title"]
+
+RDISK = 250.0                     # design half-size; coords centred at (0,0)
+N_SHADES = 8                      # palette steps (shadow -> highlight)
+
+# ── 8-step luminance ramp: deep navy shadow → gold → cream highlight.
+#    Strictly increasing lightness so pure shade variation reads as 3D form,
+#    with a subtle navy→gold hue drift for a lit "sacred gem" look. ────────────
+SACRED_PALETTE = [
+    "#0d1124",   # 1  deepest shadow (brand navy)
+    "#1b2440",   # 2
+    "#2f3d64",   # 3
+    "#4a5570",   # 4
+    "#7a7360",   # 5  (turn toward gold in the mid-tones)
+    "#a98d4e",   # 6
+    "#d0ab5f",   # 7
+    "#f2e6c4",   # 8  highlight (cream/gold)
+]
+PALETTE_N = len(SACRED_PALETTE)
+
+# camera light (upper-left, toward viewer) and view axis
+_LIGHT = np.array([-0.45, 0.55, 0.75]); _LIGHT = _LIGHT / np.linalg.norm(_LIGHT)
 
 
-def _seeds(d):
-    if d["kind"] == "flower":
-        return _flower_of_life(d["rings"], d["seed"])
-    if d["kind"] == "phyllo":
-        return _phyllotaxis(d["n"], d["seed"])
-    return _GEN[d["kind"]](d["k"], d["rings"], d["seed"])
+def _rot(ax, ay):
+    """Rotation: pitch ax about X then yaw ay about Y."""
+    cx, sx = math.cos(ax), math.sin(ax)
+    cy, sy = math.cos(ay), math.sin(ay)
+    Rx = np.array([[1, 0, 0], [0, cx, -sx], [0, sx, cx]])
+    Ry = np.array([[cy, 0, sy], [0, 1, 0], [-sy, 0, cy]])
+    return Ry @ Rx
 
 
 def get_polygons(n):
-    """For design n (1-based) → list of {"poly": Polygon, "color_idx": int}."""
-    d = DESIGNS[n - 1]
-    k = d["k"]
-    pts = _seeds(d)
-    # Delaunay (joggle a hair to avoid cocircular degeneracies from the rings)
-    tri = Delaunay(pts, qhull_options="QJ")
-    disk = shapely.geometry.Point(0, 0).buffer(RDISK, resolution=128)
-    wedge = 2 * math.pi / k
-    n_ring = 6
+    """For design n (1-based) → list of {"poly", "color_idx", "dist"}.
+    A low-poly 3D surface, front-face-culled and shaded by facet lighting."""
+    idx = n - 1
+    verts, faces, _title = get_mesh(idx)
+    verts = np.asarray(verts, dtype=float)
+    verts = verts - verts.mean(axis=0)
+    m = np.abs(verts).max()
+    if m > 0:
+        verts = verts / m                      # normalise to ~unit cube
+
+    # per-design camera so the 50 look varied
+    ax = math.radians(24 + (idx % 5) * 6)
+    ay = math.radians((idx * 37) % 360)
+    vv = verts @ _rot(ax, ay).T                # rotated into view space
+
+    # fit projected extent to the disk
+    ext = np.abs(vv[:, :2]).max()
+    scale = (RDISK * 0.92) / ext if ext > 0 else 1.0
+
+    faces_kept = []
+    for f in faces:
+        v0, v1, v2 = vv[f[0]], vv[f[1]], vv[f[2]]
+        nrm = np.cross(v1 - v0, v2 - v0)
+        nl = np.linalg.norm(nrm)
+        if nl < 1e-9:
+            continue
+        nrm = nrm / nl
+        if nrm[2] <= 0.08:                     # cull back + thin silhouette slivers
+            continue
+        intensity = max(0.04, float(np.dot(nrm, _LIGHT)))
+        z = (v0[2] + v1[2] + v2[2]) / 3.0
+        faces_kept.append((z, intensity, (v0[:2], v1[:2], v2[:2])))
+
+    if not faces_kept:
+        return []
+
+    ints = np.array([fi for _, fi, _ in faces_kept])
+    lo, hi = ints.min(), ints.max()
+    # painter's order: far first so nearer facets sit on top in the SVG
+    faces_kept.sort(key=lambda t: t[0])
+
     cells = []
-    for simplex in tri.simplices:
-        poly = shapely.geometry.Polygon(pts[simplex])
+    for z, inten, tri in faces_kept:
+        t = (inten - lo) / (hi - lo + 1e-6)
+        t = t ** 0.72                          # gamma: open up the shadows
+        cidx = min(N_SHADES - 1, int(t * N_SHADES))
+        pts = [(float(p[0]) * scale, float(p[1]) * scale) for p in tri]
+        # sliver filter: skip near-degenerate thin triangles (silhouette /
+        # pole spikes) — an equilateral has area ≈ 0.43·L²; keep only chunky ones
+        e = [math.dist(pts[a], pts[b]) for a, b in ((0, 1), (1, 2), (2, 0))]
+        L = max(e)
+        area2 = abs((pts[1][0]-pts[0][0])*(pts[2][1]-pts[0][1])
+                    - (pts[2][0]-pts[0][0])*(pts[1][1]-pts[0][1])) / 2.0
+        if L < 1e-6 or area2 < 0.07 * L * L:
+            continue
+        poly = shapely.geometry.Polygon(pts)
         if not poly.is_valid:
             poly = poly.buffer(0)
-        clipped = poly.intersection(disk)
-        if clipped.is_empty or clipped.area < 2.0:
+        if poly.is_empty or poly.area < 3.0:
             continue
-        # colour by a k-fold-symmetric rule: fold centroid angle into one wedge
         c = poly.centroid
-        r = math.hypot(c.x, c.y)
-        theta = math.atan2(c.y, c.x) % wedge
-        ring_band = min(n_ring - 1, int(r / RDISK * n_ring))
-        ang_band = int(theta / wedge * 3)                # 3 bands per wedge
-        color_idx = (ring_band * 5 + ang_band * 2 + d["seed"]) % PALETTE_N
-        # "dist" (centroid radius) is unused by the SVG framework but lets the
-        # preview builder colour cells centre-outward.
-        cells.append({"poly": clipped, "color_idx": color_idx, "dist": r})
+        cells.append({"poly": poly, "color_idx": cidx,
+                      "dist": math.hypot(c.x, c.y)})
     return cells
 
 
@@ -199,27 +191,29 @@ CFG = SvgBundleConfig(
 
 if __name__ == "__main__":
     if "--sample" in sys.argv:
-        # quick visual check: render 4 designs to an SVG-ish PNG grid via matplotlib
         import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
         from matplotlib.patches import Polygon as MPoly
-        fig, axes = plt.subplots(2, 2, figsize=(10, 10))
+        picks = [3, 20, 30, 44, 47]
+        fig, axes = plt.subplots(1, 5, figsize=(20, 4.2))
         fig.patch.set_facecolor("#0d1124")
-        picks = [1, 16, 30, 45]
-        for ax, npick in zip(axes.ravel(), picks):
+        for ax, npick in zip(axes, picks):
             ax.set_facecolor("#0d1124"); ax.set_xlim(-RDISK, RDISK)
             ax.set_ylim(-RDISK, RDISK); ax.set_aspect("equal"); ax.axis("off")
-            for cell in get_polygons(npick):
+            cells = get_polygons(npick)
+            for cell in cells:
                 g = cell["poly"]
                 geoms = [g] if g.geom_type == "Polygon" else list(g.geoms)
                 for gm in geoms:
                     xy = np.array(gm.exterior.coords)
                     ax.add_patch(MPoly(xy, closed=True,
                                  facecolor=SACRED_PALETTE[cell["color_idx"]],
-                                 edgecolor="#1A1D24", linewidth=0.4))
-            ax.set_title(f"#{npick}  {DESIGNS[npick-1]['kind']}", color="#c9a24b")
-        fig.savefig("/tmp/sacred_svg_sample.png", facecolor="#0d1124", dpi=90)
-        print("wrote /tmp/sacred_svg_sample.png")
+                                 edgecolor="#1A1D24", linewidth=0.3))
+            _, _, title = get_mesh(npick - 1)
+            ax.set_title(f"#{npick} {title}", color="#c9a24b", fontsize=10)
+        fig.savefig("/tmp/sacred_3d_sample.png", facecolor="#0d1124", dpi=90,
+                    bbox_inches="tight")
+        print("wrote /tmp/sacred_3d_sample.png")
     else:
         build_svg_bundle(CFG, get_polygons)
