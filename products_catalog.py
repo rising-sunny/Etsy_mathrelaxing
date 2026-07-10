@@ -533,6 +533,23 @@ annotation app is required. Not designed for printing.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
 
+    "spiral_tilings_pdf": """\
+Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
+50 mesmerizing spiral tilings generated from pure mathematics: complex exponential \
+mappings, logarithmic spirals, and interlocked radial mandalas. \
+Each design repeats and rotates seamlessly, offering an incredibly satisfying \
+coloring experience as you follow the fractal-like curves outward.
+
+► What you get
+• 1 high-resolution PDF (print-ready)
+• 50 original parametric spiral designs
+• "The mathematics" intro page explaining the mapping algorithms
+
+► Print it once, color it endlessly — or use it on your iPad with GoodNotes.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+mathrelaxing.store""",
+
     "graph_paper": """\
 Instant download — printable graph & grid paper in 8 styles, US Letter + A4.
 
@@ -922,6 +939,20 @@ cells. Every cell is a closed region — perfect for clean, satisfying color fil
 • Made fresh for your order (print-on-demand) — ships in 3-5 business days
 
 © MathRelaxing. mathrelaxing.store""",
+    "spiral_tilings_ipad": """\
+Experience the meditative flow of Color-by-Number with the endless mathematics of spirals, right on your iPad with this fully INTERACTIVE app-like experience.
+
+This digital bundle features 50 original radial designs. It is NOT a static PDF. Instead, you get 50 interactive HTML files that run directly in your iPad's Safari browser (no internet required). Because they use vector SVG graphics, you can zoom in infinitely without ANY pixelation. No more blurry lines or numbers crashing into borders!
+
+Features:
+• Infinite zoom with perfectly crisp lines (SVG format)
+• Tap-to-fill: Select a color from the palette and tap a cell to instantly fill it
+• Auto-hiding numbers: Numbers disappear magically when you color a cell
+• Save your progress offline
+• 50 unique mathematically-generated designs
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+mathrelaxing.store""",
 }
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
@@ -1620,27 +1651,22 @@ PRODUCTS = {
     },
 
     "voronoi_gardens_ipad": {
-        "title":       "Voronoi Gardens iPad Edition — Digital Coloring Bundle | GoodNotes Notability Procreate",
+        "title":       "Voronoi Gardens iPad Edition — Interactive Digital Coloring Bundle | Safari SVG",
         "description": DESCRIPTIONS["voronoi_gardens_ipad"],
-        "price":       5.99,
+        "price":       9.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
-        "video": p("ipad_voronoi", "VoronoiGardens_iPad_promo.mp4"),
+        "video": p("ipad_voronoi_cbn_svg", "VoronoiGardens_SVG_promo.mp4"),
         "images": [
-            p("ipad_voronoi", "previews", "ipad_preview_1_hero.jpg"),
-            p("ipad_voronoi", "previews", "ipad_preview_2_included.jpg"),
-            p("ipad_voronoi", "previews", "ipad_preview_3_twoways.jpg"),
+            p("ipad_voronoi_cbn_svg", "previews", "ipad_svg_preview_1_hero.jpg"),
+            p("ipad_voronoi_cbn_svg", "previews", "ipad_svg_preview_2_features.jpg"),
+            p("ipad_voronoi_cbn_svg", "previews", "ipad_svg_preview_3_included.jpg"),
         ],
         "files": [
-            p("ipad_voronoi", "VoronoiGardens_iPad_GoodNotes.pdf"),
-            p("ipad_voronoi", "VoronoiGardens_Procreate_PNG_part1.zip"),
-            p("ipad_voronoi", "VoronoiGardens_Procreate_PNG_part2.zip"),
-            p("ipad_voronoi", "VoronoiGardens.swatches"),
-            p("ipad_voronoi", "How_to_use_on_iPad.pdf"),
+            p("ipad_voronoi_cbn_svg", "VoronoiGardens_CBN_Interactive.zip"),
+            p("ipad_voronoi_cbn_svg", "How_to_Use_Interactive_CBN.pdf"),
         ],
-        "tags": ["voronoi coloring","ipad coloring","goodnotes coloring","procreate coloring",
-                 "digital coloring","ipad coloring book","mandala coloring","math coloring",
-                 "geometric coloring","notability","procreate template","coloring book ipad","voronoi mandala"],
-        "notes": "5 archivos exactos = límite Etsy. Bundle iPad nicho nuevo.",
+        "tags": ["ipad coloring book","color by number","voronoi diagram","math art","nature coloring","digital download","procreate swatches","goodnotes planner","interactive coloring","cellular automata","relaxing coloring"],
+        "notes": "Migrated to Interactive SVG framework via build_voronoi_ipad_svg.py",
     },
 
     "stem_focus_planner": {
@@ -1937,6 +1963,50 @@ PRODUCTS = {
         "return_policy_id": RETURN_POLICY_ID,
         "tags": ["voronoi coloring","cell tessellation","mandala coloring","printed book","adult coloring book","math coloring book","perfect bound book","stem gift","phyllotaxis art","relaxation gift","math teacher gift","physical book gift","organic mandala"],
         "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/make_voronoi_book.py (comando 'interior' con blank_after_each=True -> *_interior_print.pdf; portada reutiliza el cover.pdf ya existente del producto digital, rasterizado a PNG). 104 paginas. Precio $18.99 + shipping profile Lulu Publishing. Subido como borrador el 2026-07-07, listing_id=4533709063.",
+    },
+
+    "spiral_tilings_ipad": {
+        "title":       "Interactive Color By Number Spiral Tilings — iPad Safari SVG App | 50 Math Mandala Radial Designs",
+        "description": DESCRIPTIONS["spiral_tilings_ipad"],
+        "price":       9.99,
+        "taxonomy_id": TAXONOMY["ipad_coloring"],
+        "video": p("ipad_spiral_cbn_svg", "SpiralTilings_SVG_promo.mp4"),
+        "images": [
+            p("ipad_spiral_cbn_svg", "previews", "ipad_svg_preview_1_hero.jpg"),
+            p("ipad_spiral_cbn_svg", "previews", "ipad_svg_preview_2_features.jpg"),
+            p("ipad_spiral_cbn_svg", "previews", "ipad_svg_preview_3_included.jpg"),
+        ],
+        "files": [
+            p("ipad_spiral_cbn_svg", "SpiralTilings_CBN_Interactive.zip"),
+            p("ipad_spiral_cbn_svg", "How_to_Use_Interactive_CBN.pdf"),
+        ],
+        "tags": ["ipad coloring book","color by number","goodnotes planner","procreate coloring","digital mandala","spiral art","math art","pastel aesthetic","adult coloring pdf","procreate swatches","digital download","relaxing coloring","adhd coloring"],
+        "notes": "Generado con build_spiral_ipad.py",
+    },
+
+    "spiral_tilings_pdf": {
+        "title":       "Spiral Tilings — Printable Coloring Book PDF | 50 Math & Mandala Radial Designs",
+        "description": DESCRIPTIONS["spiral_tilings_pdf"],
+        "price":       6.99,
+        "taxonomy_id": TAXONOMY["coloring_book"],
+        "video": p("spiral_video_out", "SpiralTilings_promo.mp4"),
+        "images": [
+            p("spiral_tilings_cover.jpg"),
+            p("spiral_tilings_page_01.jpg"),
+            p("spiral_tilings_page_02.jpg"),
+            p("spiral_tilings_page_03.jpg"),
+            p("spiral_tilings_page_04.jpg"),
+            p("spiral_tilings_page_05.jpg"),
+            p("spiral_tilings_page_06.jpg"),
+            p("spiral_tilings_page_07.jpg"),
+        ],
+        "files": [
+            p("spiral_tilings_digital.pdf"),
+        ],
+        "tags": ["spiral coloring","mandala coloring","math coloring book","geometric coloring",
+                 "spiral mandala","printable coloring","adult coloring book","radial tessellation",
+                 "sacred geometry","mindful coloring","coloring book pdf","relaxing coloring","logarithmic spiral"],
+        "notes": "Generado con generate_spiral_tilings.py. Listo para publicar como borrador.",
     },
 }
 
