@@ -26,8 +26,8 @@ GOLD = "#c9a24b"
 MUTED = (0.68, 0.66, 0.60)
 
 TEST = "--test" in sys.argv
-TILE_N = 380 if TEST else 1200
-DPI = 90 if TEST else 300
+TILE_N = 460 if TEST else 2000
+DPI = 100 if TEST else 380          # 18x24 @380 = 6840x9120 (more grain detail)
 
 # 8 figures (mix of square & circular), each with a caption
 FIGS = [
@@ -47,7 +47,17 @@ def render_tile(kind, params, seed):
         W, m = ch.square_field(*params, N=TILE_N)
     else:
         W, m = ch.circular_field(*params, N=TILE_N)
-    return np.asarray(ch.render_sand(W, m, seed=seed))
+    return ch.sand_rgba(W, m, seed=seed)          # sand only, transparent bg
+
+
+def _plate_bg(N=1500):
+    """One shared, subtly textured dark plate for the whole poster (so figures
+    float on a single continuous background, not on per-figure tiles)."""
+    rng = np.random.default_rng(7)
+    plate = np.array([11, 12, 18], float)
+    tex = rng.normal(0, 4.5, (N, N, 1))
+    img = np.clip(plate[None, None, :] + tex, 0, 255).astype(np.uint8)
+    return img
 
 
 def build():
@@ -55,7 +65,12 @@ def build():
     W_IN, H_IN = 18.0, 24.0
     fig = plt.figure(figsize=(W_IN, H_IN))
     fig.patch.set_facecolor(PLATE)
-    bg = fig.add_axes([0, 0, 1, 1]); bg.axis("off"); bg.set_facecolor(PLATE)
+    # single continuous plate background behind everything
+    bgtex = fig.add_axes([0, 0, 1, 1]); bgtex.axis("off")
+    bgtex.imshow(_plate_bg(), extent=(0, 1, 0, 1), aspect="auto", zorder=0)
+    bgtex.set_xlim(0, 1); bgtex.set_ylim(0, 1)
+    bg = fig.add_axes([0, 0, 1, 1], zorder=1); bg.axis("off")
+    bg.patch.set_alpha(0.0)
 
     # ── header ──
     bg.text(0.5, 0.955, "C H L A D N I   F I G U R E S", ha="center", va="center",
@@ -78,8 +93,8 @@ def build():
         r, c = divmod(i, cols)
         ccx = gx0 + (c + 0.5) * cw
         ccy = gy1 - (r + 0.5) * ch_
-        ax = fig.add_axes([ccx - tile / 2, ccy - tile / 2 + 0.012, tile, tile])
-        ax.imshow(img); ax.axis("off")
+        ax = fig.add_axes([ccx - tile / 2, ccy - tile / 2 + 0.012, tile, tile], zorder=2)
+        ax.imshow(img); ax.axis("off"); ax.patch.set_alpha(0.0)
         bg.text(ccx, ccy - tile / 2 - 0.004, f"{name}   {label}",
                 ha="center", va="top", fontsize=12.5, color=CREAM, family="serif")
 

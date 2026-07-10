@@ -134,6 +134,61 @@ def render_sand(W, mask=None, line=2.4, gamma=1.4, grain_passes=14, seed=0,
     return Image.fromarray(img)
 
 
+def sand_rgba(W, mask=None, band=0.013, gamma=0.85, passes=42, seed=0,
+              grain_px=1.7, sand=GRAIN):
+    """Sand grains on a TRANSPARENT background (for compositing onto one shared
+    poster plate). The nodal set becomes a WIDE granular band (like a real pile
+    of sand): grains are rejection-sampled with a resolution-independent width,
+    splatted as small discrete specks, and left un-smoothed so the texture reads
+    unmistakably as sand rather than a clean line.
+
+    band      : half-width of the sand pile as a FRACTION of the plate (~1-2%).
+    grain_px  : grain splat radius in pixels.
+    """
+    from scipy.ndimage import gaussian_filter
+    N = W.shape[0]
+    rng = np.random.default_rng(seed)
+    Wf = np.nan_to_num(W, nan=1e3)
+    gy, gx = np.gradient(Wf, 1.0 / N)
+    dist = np.abs(Wf) / (np.hypot(gx, gy) + 1e-6)      # spatial dist to node, [0,1] units
+    dens = np.exp(-(dist / band) ** 2)                 # wide band, res-independent
+    if mask is not None:
+        dens = np.where(mask, dens, 0.0)
+    prob = dens ** gamma
+
+    acc = np.zeros((N, N), float)
+    M = N * N // 2
+    spread = max(1, int(round(band * N * 0.9)))        # scatter radius (px) ~ band
+    for _ in range(passes):
+        xs = rng.integers(0, N, M); ys = rng.integers(0, N, M)
+        keep = rng.random(M) < prob[ys, xs]
+        xk = xs[keep].astype(np.int64); yk = ys[keep].astype(np.int64)
+        # natural scatter across the width of the pile
+        jit = rng.random(xk.size) < 0.5
+        xk = xk + (jit * rng.integers(-spread, spread + 1, xk.size))
+        yk = yk + (jit * rng.integers(-spread, spread + 1, yk.size))
+        np.clip(xk, 0, N - 1, out=xk); np.clip(yk, 0, N - 1, out=yk)
+        w = 0.35 + 1.2 * rng.random(xk.size)
+        np.add.at(acc, (yk, xk), w)
+    # grains get a little body (splat), but NO heavy smoothing -> stays grainy
+    acc = gaussian_filter(acc, grain_px * 0.5)
+    if (acc > 0).any():
+        amt = np.clip(acc / np.percentile(acc[acc > 0], 80), 0, 1)
+    else:
+        amt = acc
+    # speckle: multiply by per-pixel noise so the pile breaks into visible grains
+    amt = amt * (0.55 + 0.75 * rng.random((N, N)))
+    amt = np.clip(amt, 0, 1) ** 0.9
+    if mask is not None:
+        amt = np.where(mask, amt, 0.0)
+
+    rgba = np.zeros((N, N, 4), float)
+    tint = sand[None, None, :] * (0.78 + 0.22 * rng.random((N, N, 1)))
+    rgba[..., :3] = tint
+    rgba[..., 3] = amt * 255
+    return rgba.astype(np.uint8)
+
+
 # ── Contact sheet of modes ───────────────────────────────────────────────────
 
 def contact_sheet(out=os.path.join(BASE, "_chladni_sheet.png")):
