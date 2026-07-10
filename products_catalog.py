@@ -463,11 +463,16 @@ coloring experience as you follow the fractal-like curves outward.
 mathrelaxing.store""",
 
     "spiral_tilings_ipad": """\
-Experience the meditative flow of Color-by-Number with the endless mathematics of spirals, right on your iPad.
+Experience the meditative flow of Color-by-Number with the endless mathematics of spirals, right on your iPad with this fully INTERACTIVE app-like experience.
 
-This digital bundle features 50 original radial designs, generated using complex conformal mappings. Each sweeping mandala is carefully segmented into a Color-By-Number canvas. Follow the included 30-color pastel palette, or invent your own vibrant combinations as you color from the center outward.
+This digital bundle features 50 original radial designs. It is NOT a static PDF. Instead, you get 50 interactive HTML files that run directly in your iPad's Safari browser (no internet required). Because they use vector SVG graphics, you can zoom in infinitely without ANY pixelation. No more blurry lines or numbers crashing into borders!
 
-Designed specifically for iPad, this bundle includes everything you need for GoodNotes, Notability, or Procreate.
+Features:
+• Infinite zoom with perfectly crisp lines (SVG format)
+• Tap-to-fill: Select a color from the palette and tap a cell to instantly fill it
+• Auto-hiding numbers: Numbers disappear magically when you color a cell
+• Save your progress offline
+• 50 unique mathematically-generated designs
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
@@ -659,27 +664,22 @@ PRODUCTS = {
     },
 
     "voronoi_gardens_ipad": {
-        "title":       "Voronoi Gardens iPad Edition — Digital Coloring Bundle | GoodNotes Notability Procreate",
+        "title":       "Voronoi Gardens iPad Edition — Interactive Digital Coloring Bundle | Safari SVG",
         "description": DESCRIPTIONS["voronoi_gardens_ipad"],
-        "price":       5.99,
+        "price":       9.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
-        "video": p("ipad_voronoi", "VoronoiGardens_iPad_promo.mp4"),
+        "video": p("ipad_voronoi_cbn_svg", "VoronoiGardens_SVG_promo.mp4"),
         "images": [
-            p("ipad_voronoi", "previews", "ipad_preview_1_hero.jpg"),
-            p("ipad_voronoi", "previews", "ipad_preview_2_included.jpg"),
-            p("ipad_voronoi", "previews", "ipad_preview_3_twoways.jpg"),
+            p("ipad_voronoi_cbn_svg", "previews", "ipad_svg_preview_1_hero.jpg"),
+            p("ipad_voronoi_cbn_svg", "previews", "ipad_svg_preview_2_features.jpg"),
+            p("ipad_voronoi_cbn_svg", "previews", "ipad_svg_preview_3_included.jpg"),
         ],
         "files": [
-            p("ipad_voronoi", "VoronoiGardens_iPad_GoodNotes.pdf"),
-            p("ipad_voronoi", "VoronoiGardens_Procreate_PNG_part1.zip"),
-            p("ipad_voronoi", "VoronoiGardens_Procreate_PNG_part2.zip"),
-            p("ipad_voronoi", "VoronoiGardens.swatches"),
-            p("ipad_voronoi", "How_to_use_on_iPad.pdf"),
+            p("ipad_voronoi_cbn_svg", "VoronoiGardens_CBN_Interactive.zip"),
+            p("ipad_voronoi_cbn_svg", "How_to_Use_Interactive_CBN.pdf"),
         ],
-        "tags": ["voronoi coloring","ipad coloring","goodnotes coloring","procreate coloring",
-                 "digital coloring","ipad coloring book","mandala coloring","math coloring",
-                 "geometric coloring","notability","procreate template","coloring book ipad","voronoi mandala"],
-        "notes": "5 archivos exactos = límite Etsy. Bundle iPad nicho nuevo.",
+        "tags": ["ipad coloring book","color by number","voronoi diagram","math art","nature coloring","digital download","procreate swatches","goodnotes planner","interactive coloring","cellular automata","relaxing coloring"],
+        "notes": "Migrated to Interactive SVG framework via build_voronoi_ipad_svg.py",
     },
 
     "stem_focus_planner": {
@@ -901,21 +901,19 @@ PRODUCTS = {
     },
 
     "spiral_tilings_ipad": {
-        "title":       "Color By Number Spiral Tilings — iPad Procreate GoodNotes Bundle | 50 Math & Mandala Radial Designs",
+        "title":       "Interactive Color By Number Spiral Tilings — iPad Safari SVG App | 50 Math Mandala Radial Designs",
         "description": DESCRIPTIONS["spiral_tilings_ipad"],
         "price":       9.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
+        "video": p("ipad_spiral_cbn_svg", "SpiralTilings_SVG_promo.mp4"),
         "images": [
-            p("ipad_spiral_cbn", "previews", "ipad_preview_1_hero.jpg"),
-            p("ipad_spiral_cbn", "previews", "ipad_preview_2_included.jpg"),
-            p("ipad_spiral_cbn", "previews", "ipad_preview_3_twoways.jpg"),
+            p("ipad_spiral_cbn_svg", "previews", "ipad_svg_preview_1_hero.jpg"),
+            p("ipad_spiral_cbn_svg", "previews", "ipad_svg_preview_2_features.jpg"),
+            p("ipad_spiral_cbn_svg", "previews", "ipad_svg_preview_3_included.jpg"),
         ],
         "files": [
-            p("ipad_spiral_cbn", "SpiralTilings_CBN_iPad_GoodNotes.pdf"),
-            p("ipad_spiral_cbn", "SpiralTilings_CBN_Procreate_PNG_part1.zip"),
-            p("ipad_spiral_cbn", "SpiralTilings_CBN_Procreate_PNG_part2.zip"),
-            p("ipad_spiral_cbn", "SpiralTilings_CBN.swatches"),
-            p("ipad_spiral_cbn", "How_to_use_on_iPad.pdf"),
+            p("ipad_spiral_cbn_svg", "SpiralTilings_CBN_Interactive.zip"),
+            p("ipad_spiral_cbn_svg", "How_to_Use_Interactive_CBN.pdf"),
         ],
         "tags": ["ipad coloring book","color by number","goodnotes planner","procreate coloring","digital mandala","spiral art","math art","pastel aesthetic","adult coloring pdf","procreate swatches","digital download","relaxing coloring","adhd coloring"],
         "notes": "Generado con build_spiral_ipad.py",

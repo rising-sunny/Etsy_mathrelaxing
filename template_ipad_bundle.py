@@ -261,7 +261,7 @@ def preview_twoways(cfg, line_png, colored_png):
 # ── orchestrator ─────────────────────────────────────────────────────────────
 def build(cfg, render_design_fig, showcase_line_png, showcase_colored_png):
     os.makedirs(cfg.out_dir, exist_ok=True)
-    pngs = render_pngs(cfg, render_design_fig)
+    pngs = render_pngs(cfg, render_design_fig, reuse=False)
     build_zips(cfg, pngs)
     brand.swatches_file(os.path.join(cfg.out_dir, f"{cfg.prefix}.swatches"),
                         cfg.palette_name, cfg.palette_hexes)

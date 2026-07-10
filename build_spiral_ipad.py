@@ -53,10 +53,19 @@ def render_showcase(colored, path, size_in=6.0, design_idx=14):
     
     clip_path = plt.Circle((cx, cy), R_out, transform=ax.transData)
     
+    import shapely.geometry
+    circle_shape = shapely.geometry.Point(cx, cy).buffer(R_out - 0.05)
+    
     for t in tiles:
+        poly_shape = shapely.geometry.Polygon(t["poly"]).buffer(0)  # fix self-intersections
+        if poly_shape.is_empty:
+            continue
+        clipped = poly_shape.intersection(circle_shape)
+        if clipped.is_empty or clipped.area < 0.005:
+            continue
+        
         c_idx = (t["ij"][0] * 3 + t["ij"][1] * 7) % len(gs.PASTEL_PALETTE)
-        x_c, y_c = t["centroid"]
-        d = math.hypot(x_c - cx, y_c - cy)
+        eroded = clipped.buffer(-0.12)
         
         if colored:
             fill_color = gs.PASTEL_PALETTE[c_idx]
@@ -64,13 +73,12 @@ def render_showcase(colored, path, size_in=6.0, design_idx=14):
             poly.set_clip_path(clip_path)
             ax.add_patch(poly)
         else:
-            if d < 1.2:
-                # Pre-color the center even in the line-art version to avoid clutter
+            if eroded.is_empty or eroded.area < 0.02:
+                # Cell too small — pre-color it
                 fill_color = gs.PASTEL_PALETTE[c_idx]
                 poly = Polygon(t["poly"], closed=True, fill=True, facecolor=fill_color, edgecolor=gs.LINE_COLOR, lw=lw, zorder=2)
                 poly.set_clip_path(clip_path)
                 ax.add_patch(poly)
-                # Ensure border is drawn on top
                 poly_border = Polygon(t["poly"], closed=True, fill=False, edgecolor=gs.LINE_COLOR, lw=lw, zorder=3)
                 poly_border.set_clip_path(clip_path)
                 ax.add_patch(poly_border)
@@ -79,9 +87,11 @@ def render_showcase(colored, path, size_in=6.0, design_idx=14):
                 poly.set_clip_path(clip_path)
                 ax.add_patch(poly)
                 
-                if d < R_out - 0.2:
-                    ax.text(x_c, y_c, str(c_idx + 1), ha="center", va="center", 
-                            fontsize=6, color="#808080", zorder=4, **brand.SANS)
+                pt = eroded.representative_point()
+                x_c, y_c = pt.x, pt.y
+                fs = max(2.0, min(7.0, math.sqrt(eroded.area) * 10))
+                ax.text(x_c, y_c, str(c_idx + 1), ha="center", va="center", 
+                        fontsize=fs, color="#808080", zorder=4, **brand.SANS)
                         
     circle = plt.Circle((cx, cy), 0.15, color="white", zorder=10)
     circle_outline = plt.Circle((cx, cy), 0.15, color=gs.LINE_COLOR, fill=False, lw=lw, zorder=11)

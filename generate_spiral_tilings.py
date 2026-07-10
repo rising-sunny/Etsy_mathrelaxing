@@ -155,29 +155,45 @@ def draw_spiral_tiling(ax, cx, cy, R_out, N, H, shift, edge_h_idx, edge_v_idx, l
         tiles = get_spiral_tiles(cx, cy, R_out, N, H, shift, edge_h_idx, edge_v_idx)
         clip_path = plt.Circle((cx, cy), R_out, transform=ax.transData)
         
+        import shapely.geometry
+        circle_shape = shapely.geometry.Point(cx, cy).buffer(R_out - 0.05)
+        
         for t in tiles:
-            x_c, y_c = t["centroid"]
-            d = math.hypot(x_c - cx, y_c - cy)
+            poly_shape = shapely.geometry.Polygon(t["poly"]).buffer(0)  # fix self-intersections
+            if poly_shape.is_empty:
+                continue
+            clipped = poly_shape.intersection(circle_shape)
+            
+            if clipped.is_empty or clipped.area < 0.005:
+                continue
+            
             c_idx = (t["ij"][0] * 3 + t["ij"][1] * 7) % len(PASTEL_PALETTE)
             
-            # If the cell is too close to the center, it's very small. We pre-color it.
-            if d < 1.2:
+            # Erode the clipped cell inward. If the eroded shape vanishes,
+            # the cell is too small/thin for a readable number → pre-color it.
+            eroded = clipped.buffer(-0.12)
+            
+            if eroded.is_empty or eroded.area < 0.02:
+                # Cell too small — pre-color it
                 fill_color = PASTEL_PALETTE[c_idx]
                 poly = Polygon(t["poly"], closed=True, fill=True, facecolor=fill_color, edgecolor=color, lw=lw, zorder=2)
                 poly.set_clip_path(clip_path)
                 ax.add_patch(poly)
-                # We still want the border on top
                 poly_border = Polygon(t["poly"], closed=True, fill=False, edgecolor=color, lw=lw, zorder=3)
                 poly_border.set_clip_path(clip_path)
                 ax.add_patch(poly_border)
             else:
+                # Cell big enough — draw border + number
                 poly = Polygon(t["poly"], closed=True, fill=False, edgecolor=color, lw=lw, zorder=3)
                 poly.set_clip_path(clip_path)
                 ax.add_patch(poly)
                 
-                if d < R_out - 0.2:
-                    ax.text(x_c, y_c, str(c_idx + 1), ha="center", va="center", 
-                            fontsize=5, color="#808080", zorder=4, **brand.SANS)
+                # Place number at eroded centroid — guaranteed away from edges
+                pt = eroded.representative_point()
+                x_c, y_c = pt.x, pt.y
+                fs = max(2.0, min(6.0, math.sqrt(eroded.area) * 10))
+                ax.text(x_c, y_c, str(c_idx + 1), ha="center", va="center", 
+                        fontsize=fs, color="#808080", zorder=4, **brand.SANS)
         return
         
     # Standard fast line-drawing

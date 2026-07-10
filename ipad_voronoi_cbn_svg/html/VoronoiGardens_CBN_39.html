@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Color By Number - Voronoi Gardens #39</title>
+    <style>
+        :root {
+            --bg-color: #1A1D24;
+            --text-color: #808080;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            touch-action: none;
+        }
+        
+        #svg-container {
+            width: 100vw;
+            height: calc(100vh - 80px);
+            overflow: hidden;
+            touch-action: none;
+            background-color: white;
+            position: relative;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .polygon {
+            stroke: black;
+            stroke-width: 1.5px;
+            vector-effect: non-scaling-stroke;
+            cursor: pointer;
+            transition: fill 0.1s ease;
+        }
+
+        .number-text {
+            fill: var(--text-color);
+            font-family: sans-serif;
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .number-text.hidden {
+            display: none;
+        }
+
+        /* Palette */
+        #palette-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 10px;
+            box-sizing: border-box;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 8px;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.1s ease, border 0.1s ease;
+            border: 2px solid transparent;
+        }
+
+        .color-swatch.selected {
+            transform: scale(1.15);
+            border: 2px solid white;
+        }
+
+        /* Controls */
+        #controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .btn {
+            background-color: var(--bg-color);
+            color: white;
+            border: 2px solid white;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .btn:active {
+            transform: scale(0.95);
+        }
+        
+        #zoom-controls {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+        .zoom-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--bg-color);
+            color: white;
+            border: 2px solid white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="controls">
+        <button class="btn" id="btn-undo">Undo</button>
+        <button class="btn" id="btn-clear">Clear All</button>
+    </div>
+
+    <div id="zoom-controls">
+        <button class="zoom-btn" id="btn-zoom-in">+</button>
+        <button class="zoom-btn" id="btn-zoom-out">-</button>
+    </div>
+
+    <div id="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg">
+  <g id="svg-group">
+    <path id="poly_0_0" class="polygon" d="M -50.1953 12.7575 L -90.2731 4.4051 L -107.0755 26.9330 L -79.0146 55.9184 L -42.5650 40.3139 L -50.1953 12.7575 Z" fill="white" stroke="#1A1D24" data-color-idx="0" data-filled="false"></path>
+    <path id="poly_1_0" class="polygon" d="M 104.5423 -116.5776 L 118.8998 -106.8115 L 155.6943 -121.8495 L 141.5295 -161.9234 L 107.3459 -162.0040 L 97.8847 -146.4705 L 104.5423 -116.5776 Z" fill="white" stroke="#1A1D24" data-color-idx="8" data-filled="false"></path>
+    <path id="poly_2_0" class="polygon" d="M -33.4660 194.0759 L -20.2316 206.6115 L -5.0079 208.8781 L 22.2404 192.0547 L 2.8629 154.6720 L -16.2679 151.8450 L -34.9673 177.5267 L -33.4660 194.0759 Z" fill="white" stroke="#1A1D24" data-color-idx="10" data-filled="false"></path>
+    <path id="poly_3_0" class="polygon" d="M 119.2492 -71.7146 L 118.8998 -106.8115 L 104.5423 -116.5776 L 66.0200 -99.5409 L 65.3196 -78.6871 L 73.9104 -68.9049 L 119.2492 -71.7146 Z" fill="white" stroke="#1A1D24" data-color-idx="18" data-filled="false"></path>
+    <path id="poly_4_0" class="polygon" d="M -71.8471 164.0444 L -71.4990 142.0960 L -95.6916 122.3981 L -111.1967 129.7897 L -116.7489 140.9465 L -101.8774 176.4232 L -87.7723 180.3613 L -71.8471 164.0444 Z" fill="white" stroke="#1A1D24" data-color-idx="26" data-filled="false"></path>
+    <path id="poly_5_0" class="polygon" d="M -3.5937 -12.7821 L -9.4860 -10.5232 L -3.2903 37.2961 L 9.6445 40.6914 L 26.3633 30.9640 L 33.2853 2.6314 L 32.0157 -0.1376 L -3.5937 -12.7821 Z" fill="white" stroke="#1A1D24" data-color-idx="28" data-filled="false"></path>
+    <path id="poly_6_0" class="polygon" d="M 124.8521 -11.3440 L 135.8531 5.5603 L 162.8320 10.4053 L 178.5955 -9.4349 L 163.7847 -53.0396 L 124.8521 -11.3440 Z" fill="white" stroke="#1A1D24" data-color-idx="6" data-filled="false"></path>
+    <path id="poly_7_0" class="polygon" d="M -83.9213 195.2043 L -87.7723 180.3613 L -101.8774 176.4232 L -123.8436 185.5821 L -131.3122 212.7199 L -130.6246 213.1600 L -122.1553 218.1240 L -113.4976 222.7516 L -105.9078 226.4330 L -83.9213 195.2043 Z" fill="white" stroke="#1A1D24" data-color-idx="1" data-filled="false"></path>
+    <path id="poly_8_0" class="polygon" d="M 162.8320 10.4053 L 180.1455 48.7662 L 180.7667 49.1029 L 236.2154 10.5561 L 213.0864 -9.3070 L 178.5955 -9.4349 L 162.8320 10.4053 Z" fill="white" stroke="#1A1D24" data-color-idx="9" data-filled="false"></path>
+    <path id="poly_9_0" class="polygon" d="M -20.2316 206.6115 L -33.4660 194.0759 L -61.8034 208.6284 L -61.7263 242.2144 L -58.3613 243.0925 L -48.7726 245.1963 L -39.5007 246.8521 L -20.2316 206.6115 Z" fill="white" stroke="#1A1D24" data-color-idx="25" data-filled="false"></path>
+    <path id="poly_10_0" class="polygon" d="M 6.6300 -203.0695 L -10.3244 -223.9327 L -44.2894 -204.4807 L -44.7625 -168.3175 L -25.8385 -162.6824 L 6.6300 -203.0695 Z" fill="white" stroke="#1A1D24" data-color-idx="3" data-filled="false"></path>
+    <path id="poly_11_0" class="polygon" d="M -29.1120 69.0288 L -54.2855 93.6069 L -35.9170 125.2014 L -31.4605 126.6590 L 0.8625 95.0699 L -29.1120 69.0288 Z" fill="white" stroke="#1A1D24" data-color-idx="11" data-filled="false"></path>
+    <path id="poly_12_0" class="polygon" d="M -52.8266 -105.0498 L -58.1603 -74.8568 L -38.6793 -51.5932 L -4.8085 -70.4116 L -24.9381 -108.4910 L -52.8266 -105.0498 Z" fill="white" stroke="#1A1D24" data-color-idx="19" data-filled="false"></path>
+    <path id="poly_13_0" class="polygon" d="M 119.2492 -71.7146 L 119.8348 -70.9614 L 161.7959 -57.5943 L 174.6326 -92.5964 L 164.3079 -118.5507 L 155.6943 -121.8495 L 118.8998 -106.8115 L 119.2492 -71.7146 Z" fill="white" stroke="#1A1D24" data-color-idx="27" data-filled="false"></path>
+    <path id="poly_14_0" class="polygon" d="M -136.8760 -52.5039 L -129.5958 -46.2551 L -109.6267 -45.6000 L -96.1562 -64.4110 L -101.7724 -110.7606 L -142.0576 -105.0400 L -136.8760 -52.5039 Z" fill="white" stroke="#1A1D24" data-color-idx="13" data-filled="false"></path>
+    <path id="poly_15_0" class="polygon" d="M -136.8760 -52.5039 L -186.1115 -56.7929 L -201.8402 -41.3372 L -188.0402 1.4545 L -159.4135 15.3521 L -129.5958 -46.2551 L -136.8760 -52.5039 Z" fill="white" stroke="#1A1D24" data-color-idx="21" data-filled="false"></path>
+    <path id="poly_16_0" class="polygon" d="M -9.4860 -10.5232 L -29.9521 -15.1784 L -50.1953 12.7575 L -42.5650 40.3139 L -30.0506 48.1431 L -3.2903 37.2961 L -9.4860 -10.5232 Z" fill="white" stroke="#1A1D24" data-color-idx="29" data-filled="false"></path>
+    <path id="poly_17_0" class="polygon" d="M 33.2853 2.6314 L 26.3633 30.9640 L 61.4988 46.5603 L 79.0757 25.2125 L 77.2608 13.7601 L 75.6842 12.1918 L 33.2853 2.6314 Z" fill="white" stroke="#1A1D24" data-color-idx="7" data-filled="false"></path>
+    <path id="poly_18_0" class="polygon" d="M 0.8625 95.0699 L -31.4605 126.6590 L -16.2679 151.8450 L 2.8629 154.6720 L 34.6137 127.1985 L 16.2203 94.1556 L 0.8625 95.0699 Z" fill="white" stroke="#1A1D24" data-color-idx="10" data-filled="false"></path>
+    <path id="poly_19_0" class="polygon" d="M 33.2853 2.6314 L 75.6842 12.1918 L 65.8223 -31.5267 L 46.1348 -29.6381 L 32.0157 -0.1376 L 33.2853 2.6314 Z" fill="white" stroke="#1A1D24" data-color-idx="18" data-filled="false"></path>
+    <path id="poly_20_0" class="polygon" d="M -14.5506 -121.0040 L 24.1618 -113.8172 L 39.7614 -124.4794 L 16.1301 -156.1682 L -16.2838 -152.9629 L -14.5506 -121.0040 Z" fill="white" stroke="#1A1D24" data-color-idx="26" data-filled="false"></path>
+    <path id="poly_21_0" class="polygon" d="M -96.1562 -64.4110 L -109.6267 -45.6000 L -93.0966 -26.4772 L -41.2667 -35.4255 L -38.6793 -51.5932 L -58.1603 -74.8568 L -96.1562 -64.4110 Z" fill="white" stroke="#1A1D24" data-color-idx="4" data-filled="false"></path>
+    <path id="poly_22_0" class="polygon" d="M 135.8531 5.5603 L 115.4929 41.4996 L 123.4269 63.7117 L 180.1455 48.7662 L 162.8320 10.4053 L 135.8531 5.5603 Z" fill="white" stroke="#1A1D24" data-color-idx="12" data-filled="false"></path>
+    <path id="poly_23_0" class="polygon" d="M 79.0757 25.2125 L 115.4929 41.4996 L 135.8531 5.5603 L 124.8521 -11.3440 L 114.5625 -15.7166 L 77.2608 13.7601 L 79.0757 25.2125 Z" fill="white" stroke="#1A1D24" data-color-idx="20" data-filled="false"></path>
+    <path id="poly_24_0" class="polygon" d="M 107.2172 -28.1588 L 119.8348 -70.9614 L 119.2492 -71.7146 L 73.9104 -68.9049 L 72.8162 -37.7918 L 107.2172 -28.1588 Z" fill="white" stroke="#1A1D24" data-color-idx="28" data-filled="false"></path>
+    <path id="poly_25_0" class="polygon" d="M 196.1133 83.1879 L 180.7667 49.1029 L 180.1455 48.7662 L 123.4269 63.7117 L 120.3618 72.1858 L 149.6834 116.6405 L 196.1133 83.1879 Z" fill="white" stroke="#1A1D24" data-color-idx="6" data-filled="false"></path>
+    <path id="poly_26_0" class="polygon" d="M 53.4092 -180.5203 L 76.2282 -192.8123 L 67.4397 -240.7235 L 58.3613 -243.0925 L 52.9990 -244.2690 L 25.9370 -197.1794 L 32.0027 -187.7286 L 53.4092 -180.5203 Z" fill="white" stroke="#1A1D24" data-color-idx="14" data-filled="false"></path>
+    <path id="poly_27_0" class="polygon" d="M -5.0079 208.8781 L 6.7254 249.8679 L 9.8150 249.8073 L 19.6148 249.2293 L 29.3843 248.2671 L 39.1086 246.9221 L 40.3736 246.6962 L 27.7452 193.4003 L 22.2404 192.0547 L -5.0079 208.8781 Z" fill="white" stroke="#1A1D24" data-color-idx="22" data-filled="false"></path>
+    <path id="poly_28_0" class="polygon" d="M 19.0714 -55.4454 L 17.6924 -62.7907 L 13.5176 -66.8287 L -4.8085 -70.4116 L -38.6793 -51.5932 L -41.2667 -35.4255 L -29.9521 -15.1784 L -9.4860 -10.5232 L -3.5937 -12.7821 L 19.0714 -55.4454 Z" fill="white" stroke="#1A1D24" data-color-idx="0" data-filled="false"></path>
+    <path id="poly_29_0" class="polygon" d="M 178.5955 -9.4349 L 213.0864 -9.3070 L 211.3886 -50.2173 L 163.8147 -53.2346 L 163.7847 -53.0396 L 178.5955 -9.4349 Z" fill="white" stroke="#1A1D24" data-color-idx="8" data-filled="false"></path>
+    <path id="poly_30_0" class="polygon" d="M 9.6445 40.6914 L -3.2903 37.2961 L -30.0506 48.1431 L -29.1120 69.0288 L 0.8625 95.0699 L 16.2203 94.1556 L 22.8839 82.5291 L 9.6445 40.6914 Z" fill="white" stroke="#1A1D24" data-color-idx="3" data-filled="false"></path>
+    <path id="poly_31_0" class="polygon" d="M -83.9213 195.2043 L -61.8034 208.6284 L -33.4660 194.0759 L -34.9673 177.5267 L -71.8471 164.0444 L -87.7723 180.3613 L -83.9213 195.2043 Z" fill="white" stroke="#1A1D24" data-color-idx="11" data-filled="false"></path>
+    <path id="poly_32_0" class="polygon" d="M 141.5295 -161.9234 L 163.0070 -189.5283 L 162.3620 -190.1015 L 154.7735 -196.3292 L 146.9463 -202.2542 L 138.8926 -207.8674 L 130.6246 -213.1600 L 122.1936 -218.1015 L 97.4675 -186.6609 L 107.3459 -162.0040 L 141.5295 -161.9234 Z" fill="white" stroke="#1A1D24" data-color-idx="19" data-filled="false"></path>
+    <path id="poly_33_0" class="polygon" d="M 63.4777 180.3965 L 102.9910 169.5650 L 112.4989 144.2026 L 79.4974 113.1301 L 46.1910 130.4884 L 63.4777 180.3965 Z" fill="white" stroke="#1A1D24" data-color-idx="27" data-filled="false"></path>
+    <path id="poly_34_0" class="polygon" d="M 61.4988 46.5603 L 61.2751 68.2395 L 84.0805 88.4791 L 120.3618 72.1858 L 123.4269 63.7117 L 115.4929 41.4996 L 79.0757 25.2125 L 61.4988 46.5603 Z" fill="white" stroke="#1A1D24" data-color-idx="5" data-filled="false"></path>
+    <path id="poly_35_0" class="polygon" d="M -16.2679 151.8450 L -31.4605 126.6590 L -35.9170 125.2014 L -71.4990 142.0960 L -71.8471 164.0444 L -34.9673 177.5267 L -16.2679 151.8450 Z" fill="white" stroke="#1A1D24" data-color-idx="29" data-filled="false"></path>
+    <path id="poly_36_0" class="polygon" d="M -29.9521 -15.1784 L -41.2667 -35.4255 L -93.0966 -26.4772 L -90.2731 4.4051 L -50.1953 12.7575 L -29.9521 -15.1784 Z" fill="white" stroke="#1A1D24" data-color-idx="7" data-filled="false"></path>
+    <path id="poly_37_0" class="polygon" d="M 34.6137 127.1985 L 2.8629 154.6720 L 22.2404 192.0547 L 27.7452 193.4003 L 62.9528 181.1537 L 63.4777 180.3965 L 46.1910 130.4884 L 34.6137 127.1985 Z" fill="white" stroke="#1A1D24" data-color-idx="15" data-filled="false"></path>
+    <path id="poly_38_0" class="polygon" d="M 77.2608 13.7601 L 114.5625 -15.7166 L 107.2172 -28.1588 L 72.8162 -37.7918 L 65.8223 -31.5267 L 75.6842 12.1918 L 77.2608 13.7601 Z" fill="white" stroke="#1A1D24" data-color-idx="23" data-filled="false"></path>
+    <path id="poly_39_0" class="polygon" d="M 24.1618 -113.8172 L 13.5176 -66.8287 L 17.6924 -62.7907 L 65.3196 -78.6871 L 66.0200 -99.5409 L 42.9201 -124.4828 L 39.7614 -124.4794 L 24.1618 -113.8172 Z" fill="white" stroke="#1A1D24" data-color-idx="1" data-filled="false"></path>
+    <path id="poly_40_0" class="polygon" d="M -154.1953 -114.2693 L -189.3165 -96.4497 L -186.1115 -56.7929 L -136.8760 -52.5039 L -142.0576 -105.0400 L -154.1953 -114.2693 Z" fill="white" stroke="#1A1D24" data-color-idx="9" data-filled="false"></path>
+    <path id="poly_41_0" class="polygon" d="M -137.4117 174.2075 L -135.0905 149.7829 L -159.8497 141.4706 L -172.7813 180.6182 L -172.5131 180.8761 L -137.4117 174.2075 Z" fill="white" stroke="#1A1D24" data-color-idx="12" data-filled="false"></path>
+    <path id="poly_42_0" class="polygon" d="M -204.1841 127.4913 L -162.3180 136.5912 L -146.8144 104.6376 L -149.0176 95.0753 L -182.0672 86.1639 L -204.1841 127.4913 Z" fill="white" stroke="#1A1D24" data-color-idx="20" data-filled="false"></path>
+    <path id="poly_43_0" class="polygon" d="M -87.8565 91.5166 L -131.3269 75.9635 L -149.0176 95.0753 L -146.8144 104.6376 L -111.1967 129.7897 L -95.6916 122.3981 L -87.8565 91.5166 Z" fill="white" stroke="#1A1D24" data-color-idx="28" data-filled="false"></path>
+    <path id="poly_44_0" class="polygon" d="M -79.0146 55.9184 L -107.0755 26.9330 L -133.8928 32.9458 L -131.3269 75.9635 L -87.8565 91.5166 L -82.3545 87.4934 L -79.0146 55.9184 Z" fill="white" stroke="#1A1D24" data-color-idx="6" data-filled="false"></path>
+    <path id="poly_45_0" class="polygon" d="M 16.2203 94.1556 L 34.6137 127.1985 L 46.1910 130.4884 L 79.4974 113.1301 L 84.0805 88.4791 L 61.2751 68.2395 L 22.8839 82.5291 L 16.2203 94.1556 Z" fill="white" stroke="#1A1D24" data-color-idx="14" data-filled="false"></path>
+    <path id="poly_46_0" class="polygon" d="M 163.8147 -53.2346 L 161.7959 -57.5943 L 119.8348 -70.9614 L 107.2172 -28.1588 L 114.5625 -15.7166 L 124.8521 -11.3440 L 163.7847 -53.0396 L 163.8147 -53.2346 Z" fill="white" stroke="#1A1D24" data-color-idx="8" data-filled="false"></path>
+    <path id="poly_47_0" class="polygon" d="M -101.8774 176.4232 L -116.7489 140.9465 L -135.0905 149.7829 L -137.4117 174.2075 L -123.8436 185.5821 L -101.8774 176.4232 Z" fill="white" stroke="#1A1D24" data-color-idx="16" data-filled="false"></path>
+    <path id="poly_48_0" class="polygon" d="M -149.0176 95.0753 L -131.3269 75.9635 L -133.8928 32.9458 L -156.2652 21.0054 L -191.4305 68.6926 L -182.0672 86.1639 L -149.0176 95.0753 Z" fill="white" stroke="#1A1D24" data-color-idx="24" data-filled="false"></path>
+    <path id="poly_49_0" class="polygon" d="M -101.7724 -110.7606 L -95.1511 -117.9570 L -109.2988 -159.8816 L -125.8031 -161.7993 L -154.9969 -130.5579 L -154.1953 -114.2693 L -142.0576 -105.0400 L -101.7724 -110.7606 Z" fill="white" stroke="#1A1D24" data-color-idx="2" data-filled="false"></path>
+    <path id="poly_50_0" class="polygon" d="M -109.2988 -159.8816 L -95.1511 -117.9570 L -65.9330 -117.7248 L -50.9778 -165.3470 L -91.4661 -174.3881 L -109.2988 -159.8816 Z" fill="white" stroke="#1A1D24" data-color-idx="5" data-filled="false"></path>
+    <path id="poly_51_0" class="polygon" d="M -71.4990 142.0960 L -35.9170 125.2014 L -54.2855 93.6069 L -82.3545 87.4934 L -87.8565 91.5166 L -95.6916 122.3981 L -71.4990 142.0960 Z" fill="white" stroke="#1A1D24" data-color-idx="13" data-filled="false"></path>
+    <path id="poly_52_0" class="polygon" d="M 61.2751 68.2395 L 61.4988 46.5603 L 26.3633 30.9640 L 9.6445 40.6914 L 22.8839 82.5291 L 61.2751 68.2395 Z" fill="white" stroke="#1A1D24" data-color-idx="21" data-filled="false"></path>
+    <path id="poly_53_0" class="polygon" d="M -44.7625 -168.3175 L -50.9778 -165.3470 L -65.9330 -117.7248 L -52.8266 -105.0498 L -24.9381 -108.4910 L -14.5506 -121.0040 L -16.2838 -152.9629 L -25.8385 -162.6824 L -44.7625 -168.3175 Z" fill="white" stroke="#1A1D24" data-color-idx="29" data-filled="false"></path>
+    <path id="poly_54_0" class="polygon" d="M -111.1967 129.7897 L -146.8144 104.6376 L -162.3180 136.5912 L -159.8497 141.4706 L -135.0905 149.7829 L -116.7489 140.9465 L -111.1967 129.7897 Z" fill="white" stroke="#1A1D24" data-color-idx="7" data-filled="false"></path>
+    <path id="poly_55_0" class="polygon" d="M 66.0200 -99.5409 L 104.5423 -116.5776 L 97.8847 -146.4705 L 61.3636 -146.8881 L 42.9201 -124.4828 L 66.0200 -99.5409 Z" fill="white" stroke="#1A1D24" data-color-idx="15" data-filled="false"></path>
+    <path id="poly_56_0" class="polygon" d="M 39.7614 -124.4794 L 42.9201 -124.4828 L 61.3636 -146.8881 L 53.4092 -180.5203 L 32.0027 -187.7286 L 16.1301 -156.1682 L 39.7614 -124.4794 Z" fill="white" stroke="#1A1D24" data-color-idx="1" data-filled="false"></path>
+    <path id="poly_57_0" class="polygon" d="M 211.3886 -50.2173 L 238.2912 -75.5166 L 237.7641 -77.2542 L 234.5478 -86.5293 L 233.7545 -88.5561 L 174.6326 -92.5964 L 161.7959 -57.5943 L 163.8147 -53.2346 L 211.3886 -50.2173 Z" fill="white" stroke="#1A1D24" data-color-idx="9" data-filled="false"></path>
+    <path id="poly_58_0" class="polygon" d="M -191.4305 68.6926 L -156.2652 21.0054 L -159.4135 15.3521 L -188.0402 1.4545 L -247.8291 32.5508 L -246.9221 39.1086 L -245.1963 48.7726 L -243.4473 56.7442 L -191.4305 68.6926 Z" fill="white" stroke="#1A1D24" data-color-idx="17" data-filled="false"></path>
+    <path id="poly_59_0" class="polygon" d="M -107.0755 26.9330 L -90.2731 4.4051 L -93.0966 -26.4772 L -109.6267 -45.6000 L -129.5958 -46.2551 L -159.4135 15.3521 L -156.2652 21.0054 L -133.8928 32.9458 L -107.0755 26.9330 Z" fill="white" stroke="#1A1D24" data-color-idx="25" data-filled="false"></path>
+    <path id="poly_60_0" class="polygon" d="M -65.9330 -117.7248 L -95.1511 -117.9570 L -101.7724 -110.7606 L -96.1562 -64.4110 L -58.1603 -74.8568 L -52.8266 -105.0498 L -65.9330 -117.7248 Z" fill="white" stroke="#1A1D24" data-color-idx="11" data-filled="false"></path>
+    <path id="poly_61_0" class="polygon" d="M 79.4974 113.1301 L 112.4989 144.2026 L 147.3004 129.4927 L 149.6834 116.6405 L 120.3618 72.1858 L 84.0805 88.4791 L 79.4974 113.1301 Z" fill="white" stroke="#1A1D24" data-color-idx="6" data-filled="false"></path>
+    <path id="poly_62_0" class="polygon" d="M -83.1143 -235.7321 L -86.5293 -234.5478 L -95.6078 -230.9946 L -91.4661 -174.3881 L -50.9778 -165.3470 L -44.7625 -168.3175 L -44.2894 -204.4807 L -83.1143 -235.7321 Z" fill="white" stroke="#1A1D24" data-color-idx="14" data-filled="false"></path>
+    <path id="poly_63_0" class="polygon" d="M 61.3636 -146.8881 L 97.8847 -146.4705 L 107.3459 -162.0040 L 97.4675 -186.6609 L 76.2282 -192.8123 L 53.4092 -180.5203 L 61.3636 -146.8881 Z" fill="white" stroke="#1A1D24" data-color-idx="0" data-filled="false"></path>
+    <path id="poly_64_0" class="polygon" d="M -16.2838 -152.9629 L 16.1301 -156.1682 L 32.0027 -187.7286 L 25.9370 -197.1794 L 6.6300 -203.0695 L -25.8385 -162.6824 L -16.2838 -152.9629 Z" fill="white" stroke="#1A1D24" data-color-idx="8" data-filled="false"></path>
+    <path id="poly_65_0" class="polygon" d="M -42.5650 40.3139 L -79.0146 55.9184 L -82.3545 87.4934 L -54.2855 93.6069 L -29.1120 69.0288 L -30.0506 48.1431 L -42.5650 40.3139 Z" fill="white" stroke="#1A1D24" data-color-idx="24" data-filled="false"></path>
+    <path id="poly_66_0" class="polygon" d="M 65.8223 -31.5267 L 72.8162 -37.7918 L 73.9104 -68.9049 L 65.3196 -78.6871 L 17.6924 -62.7907 L 19.0714 -55.4454 L 46.1348 -29.6381 L 65.8223 -31.5267 Z" fill="white" stroke="#1A1D24" data-color-idx="2" data-filled="false"></path>
+    <path id="poly_67_0" class="polygon" d="M -4.8085 -70.4116 L 13.5176 -66.8287 L 24.1618 -113.8172 L -14.5506 -121.0040 L -24.9381 -108.4910 L -4.8085 -70.4116 Z" fill="white" stroke="#1A1D24" data-color-idx="18" data-filled="false"></path>
+    <path id="poly_68_0" class="polygon" d="M 46.1348 -29.6381 L 19.0714 -55.4454 L -3.5937 -12.7821 L 32.0157 -0.1376 L 46.1348 -29.6381 Z" fill="white" stroke="#1A1D24" data-color-idx="4" data-filled="false"></path>
+    <text id="text-poly_0_0" class="number-text" x="-72.5080" y="33.6234" font-size="15.00000" text-anchor="middle" dominant-baseline="central">1</text>
+    <text id="text-poly_1_0" class="number-text" x="125.9847" y="-134.1600" font-size="15.00000" text-anchor="middle" dominant-baseline="central">9</text>
+    <text id="text-poly_2_0" class="number-text" x="-7.9166" y="184.7907" font-size="15.00000" text-anchor="middle" dominant-baseline="central">11</text>
+    <text id="text-poly_3_0" class="number-text" x="92.3729" y="-89.1140" font-size="15.00000" text-anchor="middle" dominant-baseline="central">19</text>
+    <text id="text-poly_4_0" class="number-text" x="-91.6699" y="153.0702" font-size="15.00000" text-anchor="middle" dominant-baseline="central">27</text>
+    <text id="text-poly_5_0" class="number-text" x="11.9391" y="16.7977" font-size="15.00000" text-anchor="middle" dominant-baseline="central">29</text>
+    <text id="text-poly_6_0" class="number-text" x="157.5921" y="-32.1918" font-size="11.64227" text-anchor="middle" dominant-baseline="central">7</text>
+    <text id="text-poly_7_0" class="number-text" x="-109.4946" y="203.9621" font-size="15.00000" text-anchor="middle" dominant-baseline="central">2</text>
+    <text id="text-poly_8_0" class="number-text" x="190.1280" y="29.6611" font-size="12.74395" text-anchor="middle" dominant-baseline="central">10</text>
+    <text id="text-poly_9_0" class="number-text" x="-45.5018" y="225.4214" font-size="15.00000" text-anchor="middle" dominant-baseline="central">26</text>
+    <text id="text-poly_10_0" class="number-text" x="-25.9372" y="-185.6935" font-size="15.00000" text-anchor="middle" dominant-baseline="central">4</text>
+    <text id="text-poly_11_0" class="number-text" x="-29.6146" y="110.1356" font-size="12.63240" text-anchor="middle" dominant-baseline="central">12</text>
+    <text id="text-poly_12_0" class="number-text" x="-35.3161" y="-89.9533" font-size="15.00000" text-anchor="middle" dominant-baseline="central">20</text>
+    <text id="text-poly_13_0" class="number-text" x="144.9744" y="-82.1555" font-size="15.00000" text-anchor="middle" dominant-baseline="central">28</text>
+    <text id="text-poly_14_0" class="number-text" x="-119.3359" y="-84.7255" font-size="15.00000" text-anchor="middle" dominant-baseline="central">14</text>
+    <text id="text-poly_15_0" class="number-text" x="-168.6359" y="-19.9414" font-size="15.00000" text-anchor="middle" dominant-baseline="central">22</text>
+    <text id="text-poly_16_0" class="number-text" x="-25.8389" y="25.0268" font-size="15.00000" text-anchor="middle" dominant-baseline="central">30</text>
+    <text id="text-poly_17_0" class="number-text" x="53.6678" y="19.4863" font-size="14.35042" text-anchor="middle" dominant-baseline="central">8</text>
+    <text id="text-poly_18_0" class="number-text" x="5.1112" y="110.8644" font-size="15.00000" text-anchor="middle" dominant-baseline="central">11</text>
+    <text id="text-poly_19_0" class="number-text" x="54.3254" y="-14.8878" font-size="15.00000" text-anchor="middle" dominant-baseline="central">19</text>
+    <text id="text-poly_20_0" class="number-text" x="6.8147" y="-138.7212" font-size="15.00000" text-anchor="middle" dominant-baseline="central">27</text>
+    <text id="text-poly_21_0" class="number-text" x="-73.3198" y="-48.5966" font-size="15.00000" text-anchor="middle" dominant-baseline="central">5</text>
+    <text id="text-poly_22_0" class="number-text" x="147.0748" y="25.9524" font-size="15.00000" text-anchor="middle" dominant-baseline="central">13</text>
+    <text id="text-poly_23_0" class="number-text" x="107.9897" y="9.6602" font-size="15.00000" text-anchor="middle" dominant-baseline="central">21</text>
+    <text id="text-poly_24_0" class="number-text" x="94.0030" y="-53.3483" font-size="15.00000" text-anchor="middle" dominant-baseline="central">29</text>
+    <text id="text-poly_25_0" class="number-text" x="158.8133" y="77.6868" font-size="15.00000" text-anchor="middle" dominant-baseline="central">7</text>
+    <text id="text-poly_26_0" class="number-text" x="54.9413" y="-218.9514" font-size="15.00000" text-anchor="middle" dominant-baseline="central">15</text>
+    <text id="text-poly_27_0" class="number-text" x="18.1490" y="227.7871" font-size="15.00000" text-anchor="middle" dominant-baseline="central">23</text>
+    <text id="text-poly_28_0" class="number-text" x="-13.6214" y="-43.5094" font-size="15.00000" text-anchor="middle" dominant-baseline="central">1</text>
+    <text id="text-poly_29_0" class="number-text" x="191.9521" y="-29.8261" font-size="15.00000" text-anchor="middle" dominant-baseline="central">9</text>
+    <text id="text-poly_30_0" class="number-text" x="-7.1371" y="58.5860" font-size="15.00000" text-anchor="middle" dominant-baseline="central">4</text>
+    <text id="text-poly_31_0" class="number-text" x="-60.0406" y="187.2186" font-size="15.00000" text-anchor="middle" dominant-baseline="central">12</text>
+    <text id="text-poly_32_0" class="number-text" x="131.3162" y="-189.8149" font-size="15.00000" text-anchor="middle" dominant-baseline="central">20</text>
+    <text id="text-poly_33_0" class="number-text" x="81.5393" y="156.8838" font-size="15.00000" text-anchor="middle" dominant-baseline="central">28</text>
+    <text id="text-poly_34_0" class="number-text" x="90.8870" y="55.1360" font-size="15.00000" text-anchor="middle" dominant-baseline="central">6</text>
+    <text id="text-poly_35_0" class="number-text" x="-45.3923" y="146.9705" font-size="15.00000" text-anchor="middle" dominant-baseline="central">30</text>
+    <text id="text-poly_36_0" class="number-text" x="-64.1079" y="-5.3867" font-size="15.00000" text-anchor="middle" dominant-baseline="central">8</text>
+    <text id="text-poly_37_0" class="number-text" x="34.2763" y="167.5342" font-size="15.00000" text-anchor="middle" dominant-baseline="central">16</text>
+    <text id="text-poly_38_0" class="number-text" x="84.7202" y="-1.7624" font-size="9.06479" text-anchor="middle" dominant-baseline="central">24</text>
+    <text id="text-poly_39_0" class="number-text" x="42.1178" y="-89.1140" font-size="15.00000" text-anchor="middle" dominant-baseline="central">2</text>
+    <text id="text-poly_40_0" class="number-text" x="-163.4843" y="-76.6213" font-size="15.00000" text-anchor="middle" dominant-baseline="central">10</text>
+    <text id="text-poly_41_0" class="number-text" x="-151.4403" y="161.9952" font-size="15.00000" text-anchor="middle" dominant-baseline="central">13</text>
+    <text id="text-poly_42_0" class="number-text" x="-175.2137" y="116.0644" font-size="15.00000" text-anchor="middle" dominant-baseline="central">21</text>
+    <text id="text-poly_43_0" class="number-text" x="-118.9442" y="99.8564" font-size="15.00000" text-anchor="middle" dominant-baseline="central">29</text>
+    <text id="text-poly_44_0" class="number-text" x="-105.9997" y="65.9409" font-size="15.00000" text-anchor="middle" dominant-baseline="central">7</text>
+    <text id="text-poly_45_0" class="number-text" x="51.3814" y="103.6429" font-size="15.00000" text-anchor="middle" dominant-baseline="central">15</text>
+    <text id="text-poly_46_0" class="number-text" x="131.5266" y="-40.5992" font-size="15.00000" text-anchor="middle" dominant-baseline="central">9</text>
+    <text id="text-poly_47_0" class="number-text" x="-122.0883" y="161.9952" font-size="15.00000" text-anchor="middle" dominant-baseline="central">17</text>
+    <text id="text-poly_48_0" class="number-text" x="-155.5385" y="50.8192" font-size="15.00000" text-anchor="middle" dominant-baseline="central">25</text>
+    <text id="text-poly_49_0" class="number-text" x="-122.8235" y="-145.2198" font-size="15.00000" text-anchor="middle" dominant-baseline="central">3</text>
+    <text id="text-poly_50_0" class="number-text" x="-80.7510" y="-138.9193" font-size="15.00000" text-anchor="middle" dominant-baseline="central">6</text>
+    <text id="text-poly_51_0" class="number-text" x="-68.9777" y="108.0025" font-size="15.00000" text-anchor="middle" dominant-baseline="central">14</text>
+    <text id="text-poly_52_0" class="number-text" x="38.1594" y="57.3999" font-size="15.00000" text-anchor="middle" dominant-baseline="central">22</text>
+    <text id="text-poly_53_0" class="number-text" x="-37.6511" y="-136.9835" font-size="15.00000" text-anchor="middle" dominant-baseline="central">30</text>
+    <text id="text-poly_54_0" class="number-text" x="-140.9609" y="117.2136" font-size="8.27557" text-anchor="middle" dominant-baseline="central">8</text>
+    <text id="text-poly_55_0" class="number-text" x="75.1214" y="-120.5302" font-size="15.00000" text-anchor="middle" dominant-baseline="central">16</text>
+    <text id="text-poly_56_0" class="number-text" x="39.9282" y="-151.5282" font-size="15.00000" text-anchor="middle" dominant-baseline="central">2</text>
+    <text id="text-poly_57_0" class="number-text" x="196.9223" y="-66.5554" font-size="15.00000" text-anchor="middle" dominant-baseline="central">10</text>
+    <text id="text-poly_58_0" class="number-text" x="-207.2862" y="35.8297" font-size="15.00000" text-anchor="middle" dominant-baseline="central">18</text>
+    <text id="text-poly_59_0" class="number-text" x="-119.1633" y="-11.0361" font-size="15.00000" text-anchor="middle" dominant-baseline="central">26</text>
+    <text id="text-poly_60_0" class="number-text" x="-77.3723" y="-89.9533" font-size="15.00000" text-anchor="middle" dominant-baseline="central">12</text>
+    <text id="text-poly_61_0" class="number-text" x="110.5136" y="100.8046" font-size="15.00000" text-anchor="middle" dominant-baseline="central">7</text>
+    <text id="text-poly_62_0" class="number-text" x="-68.5266" y="-189.4344" font-size="15.00000" text-anchor="middle" dominant-baseline="central">15</text>
+    <text id="text-poly_63_0" class="number-text" x="79.6178" y="-171.2621" font-size="15.00000" text-anchor="middle" dominant-baseline="central">1</text>
+    <text id="text-poly_64_0" class="number-text" x="4.9669" y="-175.2055" font-size="15.00000" text-anchor="middle" dominant-baseline="central">9</text>
+    <text id="text-poly_65_0" class="number-text" x="-54.5573" y="62.4736" font-size="15.00000" text-anchor="middle" dominant-baseline="central">25</text>
+    <text id="text-poly_66_0" class="number-text" x="50.7272" y="-46.6186" font-size="15.00000" text-anchor="middle" dominant-baseline="central">3</text>
+    <text id="text-poly_67_0" class="number-text" x="1.8845" y="-89.4513" font-size="15.00000" text-anchor="middle" dominant-baseline="central">19</text>
+    <text id="text-poly_68_0" class="number-text" x="21.4924" y="-21.2101" font-size="15.00000" text-anchor="middle" dominant-baseline="central">5</text>
+  </g>
+</svg>
+    </div>
+
+    <div id="palette-bar">
+        <div class="color-swatch" style="background-color: #dcc39b;" data-color="#dcc39b" data-idx="0">1</div>
+<div class="color-swatch" style="background-color: #be965a;" data-color="#be965a" data-idx="1">2</div>
+<div class="color-swatch" style="background-color: #a06e3c;" data-color="#a06e3c" data-idx="2">3</div>
+<div class="color-swatch" style="background-color: #e6aa50;" data-color="#e6aa50" data-idx="3">4</div>
+<div class="color-swatch" style="background-color: #c88232;" data-color="#c88232" data-idx="4">5</div>
+<div class="color-swatch" style="background-color: #64bec8;" data-color="#64bec8" data-idx="5">6</div>
+<div class="color-swatch" style="background-color: #3c91b9;" data-color="#3c91b9" data-idx="6">7</div>
+<div class="color-swatch" style="background-color: #50cdb4;" data-color="#50cdb4" data-idx="7">8</div>
+<div class="color-swatch" style="background-color: #287da0;" data-color="#287da0" data-idx="8">9</div>
+<div class="color-swatch" style="background-color: #78aad2;" data-color="#78aad2" data-idx="9">10</div>
+<div class="color-swatch" style="background-color: #91cd7d;" data-color="#91cd7d" data-idx="10">11</div>
+<div class="color-swatch" style="background-color: #64aa5a;" data-color="#64aa5a" data-idx="11">12</div>
+<div class="color-swatch" style="background-color: #3c8c50;" data-color="#3c8c50" data-idx="12">13</div>
+<div class="color-swatch" style="background-color: #b9e18c;" data-color="#b9e18c" data-idx="13">14</div>
+<div class="color-swatch" style="background-color: #50a046;" data-color="#50a046" data-idx="14">15</div>
+<div class="color-swatch" style="background-color: #a582cd;" data-color="#a582cd" data-idx="15">16</div>
+<div class="color-swatch" style="background-color: #7855b9;" data-color="#7855b9" data-idx="16">17</div>
+<div class="color-swatch" style="background-color: #cda5e1;" data-color="#cda5e1" data-idx="17">18</div>
+<div class="color-swatch" style="background-color: #9169c3;" data-color="#9169c3" data-idx="18">19</div>
+<div class="color-swatch" style="background-color: #6446a0;" data-color="#6446a0" data-idx="19">20</div>
+<div class="color-swatch" style="background-color: #e1a555;" data-color="#e1a555" data-idx="20">21</div>
+<div class="color-swatch" style="background-color: #f5cd4b;" data-color="#f5cd4b" data-idx="21">22</div>
+<div class="color-swatch" style="background-color: #55417d;" data-color="#55417d" data-idx="22">23</div>
+<div class="color-swatch" style="background-color: #cd5541;" data-color="#cd5541" data-idx="23">24</div>
+<div class="color-swatch" style="background-color: #f07864;" data-color="#f07864" data-idx="24">25</div>
+<div class="color-swatch" style="background-color: #e1d7cd;" data-color="#e1d7cd" data-idx="25">26</div>
+<div class="color-swatch" style="background-color: #b9afa5;" data-color="#b9afa5" data-idx="26">27</div>
+<div class="color-swatch" style="background-color: #f5ebd7;" data-color="#f5ebd7" data-idx="27">28</div>
+<div class="color-swatch" style="background-color: #91877d;" data-color="#91877d" data-idx="28">29</div>
+<div class="color-swatch" style="background-color: #41557d;" data-color="#41557d" data-idx="29">30</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const svgContainer = document.getElementById('svg-container');
+            const svgGroup = document.getElementById('svg-group');
+            const polygons = document.querySelectorAll('.polygon');
+            const swatches = document.querySelectorAll('.color-swatch');
+            const btnUndo = document.getElementById('btn-undo');
+            const btnClear = document.getElementById('btn-clear');
+            
+            const designId = 'VoronoiGardens_CBN_39';
+            const storageKey = `cbn_progress_${designId}`;
+            
+            let selectedColorIdx = -1;
+            let selectedColorHex = '';
+            let history = []; 
+
+            // --- Custom Pan & Zoom Logic (viewBox based) ---
+            const svg = document.querySelector('svg');
+            let vb = {x: 0, y: 0, w: 10, h: 10};
+            
+            function updateViewBox() {
+                svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+            }
+
+            let isDragging = false;
+            let startDragX = 0, startDragY = 0;
+            let startVbX = 0, startVbY = 0;
+            
+            let initialPinchDist = 0;
+            let initialVb = null;
+            let initialPinchCenter = null;
+
+            function getDistance(touches) {
+                const dx = touches[0].clientX - touches[1].clientX;
+                const dy = touches[0].clientY - touches[1].clientY;
+                return Math.sqrt(dx*dx + dy*dy);
+            }
+            function getCenter(touches) {
+                return {
+                    x: (touches[0].clientX + touches[1].clientX) / 2,
+                    y: (touches[0].clientY + touches[1].clientY) / 2
+                };
+            }
+            
+            // Helper to get SVG coords from screen coords
+            function getSvgPoint(clientX, clientY) {
+                const rect = svgContainer.getBoundingClientRect();
+                const rx = (clientX - rect.left) / rect.width;
+                const ry = (clientY - rect.top) / rect.height;
+                return {
+                    x: vb.x + rx * vb.w,
+                    y: vb.y + ry * vb.h
+                };
+            }
+
+            svgContainer.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startDragX = e.clientX;
+                startDragY = e.clientY;
+                startVbX = vb.x;
+                startVbY = vb.y;
+            });
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const rect = svgContainer.getBoundingClientRect();
+                    const dx = e.clientX - startDragX;
+                    const dy = e.clientY - startDragY;
+                    vb.x = startVbX - dx * (vb.w / rect.width);
+                    vb.y = startVbY - dy * (vb.h / rect.height);
+                    updateViewBox();
+                }
+            });
+            window.addEventListener('mouseup', () => { isDragging = false; });
+
+            svgContainer.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const zoomFactor = e.deltaY > 0 ? 1.1 : 0.9;
+                
+                // Point before zoom
+                const pt = getSvgPoint(e.clientX, e.clientY);
+                
+                vb.w *= zoomFactor;
+                vb.h *= zoomFactor;
+                
+                // Adjust x/y so the point under the mouse stays the same
+                const rect = svgContainer.getBoundingClientRect();
+                const rx = (e.clientX - rect.left) / rect.width;
+                const ry = (e.clientY - rect.top) / rect.height;
+                
+                vb.x = pt.x - rx * vb.w;
+                vb.y = pt.y - ry * vb.h;
+                
+                updateViewBox();
+            }, { passive: false });
+
+            svgContainer.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    isDragging = true;
+                    startDragX = e.touches[0].clientX;
+                    startDragY = e.touches[0].clientY;
+                    startVbX = vb.x;
+                    startVbY = vb.y;
+                } else if (e.touches.length === 2) {
+                    isDragging = false;
+                    initialPinchDist = getDistance(e.touches);
+                    initialVb = { ...vb };
+                    initialPinchCenter = getCenter(e.touches);
+                }
+            }, { passive: false });
+
+            svgContainer.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                if (e.touches.length === 1 && isDragging) {
+                    const rect = svgContainer.getBoundingClientRect();
+                    const dx = e.touches[0].clientX - startDragX;
+                    const dy = e.touches[0].clientY - startDragY;
+                    vb.x = startVbX - dx * (vb.w / rect.width);
+                    vb.y = startVbY - dy * (vb.h / rect.height);
+                    updateViewBox();
+                } else if (e.touches.length === 2) {
+                    const currentDist = getDistance(e.touches);
+                    const zoomFactor = initialPinchDist / currentDist;
+                    
+                    const rect = svgContainer.getBoundingClientRect();
+                    const currentCenter = getCenter(e.touches);
+                    
+                    // The point in SVG space that was initially under the pinch center
+                    const rxInitial = (initialPinchCenter.x - rect.left) / rect.width;
+                    const ryInitial = (initialPinchCenter.y - rect.top) / rect.height;
+                    const pt = {
+                        x: initialVb.x + rxInitial * initialVb.w,
+                        y: initialVb.y + ryInitial * initialVb.h
+                    };
+                    
+                    vb.w = initialVb.w * zoomFactor;
+                    vb.h = initialVb.h * zoomFactor;
+                    
+                    // The new pinch center in screen coords
+                    const rxCurrent = (currentCenter.x - rect.left) / rect.width;
+                    const ryCurrent = (currentCenter.y - rect.top) / rect.height;
+                    
+                    vb.x = pt.x - rxCurrent * vb.w;
+                    vb.y = pt.y - ryCurrent * vb.h;
+                    
+                    updateViewBox();
+                }
+            }, { passive: false });
+
+            svgContainer.addEventListener('touchend', (e) => {
+                if (e.touches.length === 0) {
+                    isDragging = false;
+                } else if (e.touches.length === 1) {
+                    isDragging = true;
+                    startDragX = e.touches[0].clientX;
+                    startDragY = e.touches[0].clientY;
+                    startVbX = vb.x;
+                    startVbY = vb.y;
+                }
+            });
+
+            document.getElementById('btn-zoom-in').addEventListener('click', () => {
+                const zoomFactor = 0.8;
+                const ptX = vb.x + vb.w / 2;
+                const ptY = vb.y + vb.h / 2;
+                vb.w *= zoomFactor;
+                vb.h *= zoomFactor;
+                vb.x = ptX - vb.w / 2;
+                vb.y = ptY - vb.h / 2;
+                updateViewBox();
+            });
+            document.getElementById('btn-zoom-out').addEventListener('click', () => {
+                const zoomFactor = 1.25;
+                const ptX = vb.x + vb.w / 2;
+                const ptY = vb.y + vb.h / 2;
+                vb.w *= zoomFactor;
+                vb.h *= zoomFactor;
+                vb.x = ptX - vb.w / 2;
+                vb.y = ptY - vb.h / 2;
+                updateViewBox();
+            });
+
+            // --- App Logic ---
+
+            function loadProgress() {
+                const saved = localStorage.getItem(storageKey);
+                if (saved) {
+                    try {
+                        const data = JSON.parse(saved);
+                        data.forEach(item => {
+                            const poly = document.getElementById(item.id);
+                            if (poly) {
+                                poly.style.fill = item.color;
+                                poly.dataset.filled = 'true';
+                                const textElement = document.getElementById(`text-${item.id}`);
+                                if (textElement) textElement.classList.add('hidden');
+                            }
+                        });
+                    } catch (e) {
+                        console.error('Failed to load progress', e);
+                    }
+                }
+            }
+
+            function saveProgress() {
+                const data = [];
+                polygons.forEach(poly => {
+                    if (poly.dataset.filled === 'true' && !poly.classList.contains('precolored')) {
+                        data.push({
+                            id: poly.id,
+                            color: poly.style.fill
+                        });
+                    }
+                });
+                localStorage.setItem(storageKey, JSON.stringify(data));
+            }
+
+            swatches.forEach(swatch => {
+                swatch.addEventListener('click', () => {
+                    swatches.forEach(s => s.classList.remove('selected'));
+                    swatch.classList.add('selected');
+                    selectedColorIdx = swatch.dataset.idx;
+                    selectedColorHex = swatch.dataset.color;
+                });
+            });
+
+            if (swatches.length > 0) {
+                swatches[0].click();
+            }
+
+            let touchMoved = false;
+            svgContainer.addEventListener('touchmove', () => { touchMoved = true; }, {passive: true});
+            
+            polygons.forEach(poly => {
+                if (poly.classList.contains('precolored')) return;
+
+                poly.addEventListener('touchstart', () => { touchMoved = false; }, {passive: true});
+
+                poly.addEventListener('touchend', (e) => {
+                    if (touchMoved) return;
+                    colorPolygon(poly);
+                });
+
+                poly.addEventListener('click', (e) => {
+                    if (isDragging && (Math.abs(e.clientX - startDragX) > 5 || Math.abs(e.clientY - startDragY) > 5)) {
+                        return;
+                    }
+                    colorPolygon(poly);
+                });
+            });
+
+            function colorPolygon(poly) {
+                if (selectedColorHex === '') return;
+                
+                const expectedIdx = parseInt(poly.dataset.colorIdx);
+                const currentSelIdx = parseInt(selectedColorIdx);
+                if (expectedIdx !== currentSelIdx) {
+                    poly.style.stroke = 'red';
+                    poly.style.strokeWidth = '3px';
+                    setTimeout(() => {
+                        poly.style.stroke = 'black';
+                        poly.style.strokeWidth = '1.5px';
+                    }, 300);
+                    return;
+                }
+
+                const prevColor = poly.style.fill;
+                const prevFilled = poly.dataset.filled;
+
+                poly.style.fill = selectedColorHex;
+                poly.dataset.filled = 'true';
+
+                const textElement = document.getElementById(`text-${poly.id}`);
+                if (textElement) textElement.classList.add('hidden');
+
+                history.push({
+                    id: poly.id,
+                    prevColor: prevColor || 'white',
+                    prevFilled: prevFilled
+                });
+
+                saveProgress();
+            }
+
+            btnUndo.addEventListener('click', () => {
+                if (history.length === 0) return;
+                const last = history.pop();
+                const poly = document.getElementById(last.id);
+                if (poly) {
+                    poly.style.fill = last.prevColor;
+                    if (last.prevFilled === 'true') {
+                        poly.dataset.filled = 'true';
+                    } else {
+                        poly.dataset.filled = 'false';
+                        const textElement = document.getElementById(`text-${poly.id}`);
+                        if (textElement) textElement.classList.remove('hidden');
+                    }
+                    saveProgress();
+                }
+            });
+
+            btnClear.addEventListener('click', () => {
+                if (confirm('Are you sure you want to clear all progress?')) {
+                    polygons.forEach(poly => {
+                        if (!poly.classList.contains('precolored')) {
+                            poly.style.fill = 'white';
+                            poly.dataset.filled = 'false';
+                            const textElement = document.getElementById(`text-${poly.id}`);
+                            if (textElement) textElement.classList.remove('hidden');
+                        }
+                    });
+                    history = [];
+                    localStorage.removeItem(storageKey);
+                }
+            });
+
+            loadProgress();
+            
+            // Adjust SVG sizing to viewport
+            const bbox = svgGroup.getBBox();
+            if (bbox.width > 0) {
+                // Add a small padding
+                vb.x = bbox.x - bbox.width * 0.05;
+                vb.y = bbox.y - bbox.height * 0.05;
+                vb.w = bbox.width * 1.1;
+                vb.h = bbox.height * 1.1;
+                updateViewBox();
+            }
+        });
+    </script>
+</body>
+</html>
