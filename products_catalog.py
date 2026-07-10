@@ -34,6 +34,7 @@ SG   = os.path.join(BASE, "ipad_sg")
 ATTR = os.path.join(BASE, "attractor_prints")
 LULU = os.path.join(BASE, "lulu_books", "output")
 PAL  = os.path.join(BASE, "palettes")
+BEQ  = os.path.join(BASE, "beautiful_equations")
 
 def p(*parts): return os.path.join(BASE, *parts)
 def ff(*parts): return os.path.join(FF, *parts)
@@ -41,6 +42,7 @@ def sg(*parts): return os.path.join(SG, *parts)
 def attractor(*parts): return os.path.join(ATTR, *parts)
 def lulu(*parts): return os.path.join(LULU, *parts)
 def pal(*parts): return os.path.join(PAL, *parts)
+def beq(*parts): return os.path.join(BEQ, *parts)
 
 # ── Taxonomy IDs verificados ──────────────────────────────────────────────────
 # Fuente: GET /application/seller-taxonomy/nodes (llamada al API de Etsy)
@@ -626,6 +628,59 @@ annotation app is required.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
 
+    "beautiful_equations": """\
+Eight of the most beautiful equations in mathematics, set as elegant
+typography — a gallery-style collection for anyone who loves math,
+physics, or the quiet order beneath the world.
+
+Each equation is typeset in Computer Modern (the classic typeface of
+LaTeX, the language mathematicians actually write in) on a deep navy
+ground, with its name and field. No AI, no clip-art — every poster is
+designed from scratch.
+
+────────────────────────
+THE EIGHT EQUATIONS
+────────────────────────
+· Euler's Identity — e^(iπ) + 1 = 0
+· The Pythagorean Theorem — a² + b² = c²
+· Mass–Energy Equivalence — E = mc²
+· The Golden Ratio — φ = (1 + √5) / 2
+· The Basel Problem — Σ 1/n² = π²/6
+· The Fundamental Theorem of Calculus
+· The Normal Distribution (the bell curve)
+· The Schrödinger Equation
+
+────────────────────────
+WHAT YOU GET · instant download
+────────────────────────
+One ZIP with all 8 designs in two formats:
+· 8 × PDF — vector, prints razor-sharp at ANY size
+· 8 × JPG — 7200 × 9000 px (print-ready up to 24×30 in at 300 dpi)
+Proportion 4:5 — frames beautifully in 8×10, 16×20 or 24×30 in.
+
+────────────────────────
+PERFECT FOR
+────────────────────────
+A study, classroom, lab or office · a gift for a mathematician,
+physicist, engineer, teacher or new graduate · dark-academia and
+minimalist interiors.
+
+────────────────────────
+PRINTING TIPS
+────────────────────────
+· Best on matte or satin paper, framed
+· Any local print shop or online service (Printful, Canva Print,
+  Costco Photo) can handle these files
+
+────────────────────────
+INSTANT DOWNLOAD · No physical item is shipped.
+────────────────────────
+
+I'm an electrical engineer who got lost in recreational mathematics.
+Every piece in this shop is written from scratch in Python — equations,
+typography, colours and all.
+mathrelaxing.store""",
+
     "attractor_collection": """\
 Six strange attractors of chaos theory, rendered entirely with code —
 a field-guide poster of deterministic chaos.
@@ -871,6 +926,43 @@ cells. Every cell is a closed region — perfect for clean, satisfying color fil
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
 PRODUCTS = {
+
+    "beautiful_equations": {
+        "title":       "Set of 8 Math Equation Art Prints, Minimalist Mathematics Wall Art | Euler Einstein Pythagoras Poster Bundle | Printable Digital Download",
+        "description": DESCRIPTIONS["beautiful_equations"],
+        "price":       13.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            beq("_hero.jpg"),
+            beq("euler_identity_preview.jpg"),
+            beq("pythagoras_preview.jpg"),
+            beq("mass_energy_preview.jpg"),
+            beq("golden_ratio_preview.jpg"),
+            beq("basel_preview.jpg"),
+            beq("fundamental_calculus_preview.jpg"),
+            beq("gaussian_preview.jpg"),
+            beq("schrodinger_preview.jpg"),
+            beq("_whatyouget.jpg"),
+        ],
+        "files": [
+            beq("BeautifulEquations_Set8.zip"),
+        ],
+        "tags": ["math wall art","equation art","mathematics poster","minimalist math",
+                 "science wall art","euler identity","physics poster","printable art",
+                 "math teacher gift","math art print","classroom decor","academic gift",
+                 "digital download"],
+        "notes": "Tipo 5 pero NUEVA LINEA: arte matematico CONCEPTUAL/tipografico (no histograma de "
+                  "densidad). 8 ecuaciones iconicas tipografiadas en Computer Modern (LaTeX real, "
+                  "mathtext.fontset='cm') sobre navy, estilo galeria navy/oro/serif coherente con la "
+                  "marca. beautiful_equations/generate_equations.py rinde c/u a 8x10 logico -> PDF "
+                  "VECTOR (imprime nitido a cualquier tamano, el gran plus tipografico) + JPG 7200x9000 "
+                  "(24x30@300dpi) + preview watermarkeado. build_bundle_and_assets.py empaqueta los 16 "
+                  "archivos (8 pdf+8 jpg) + READ_ME en UN zip de 3.6MB (Etsy limita 5 archivos/listing) "
+                  "y genera _hero.jpg (grid 2x4 de las 8) + _whatyouget.jpg. Bundle 'Set of 8' a $13.99: "
+                  "mayor ticket, mayor valor percibido. 10 imagenes (hero + 8 previews + whatyouget). "
+                  "Extensible: mas ecuaciones (Maxwell, Navier-Stokes, Fourier, Dirac) o variante pizarra. "
+                  "Subido como draft el 2026-07-10, listing_id=4535639595. Activacion manual pendiente.",
+    },
 
     "attractor_collection": {
         "title":       "Strange Attractors Poster | Chaos Theory Math Wall Art, 6 Attractors with Equations | Science Physics Print Digital Download",
