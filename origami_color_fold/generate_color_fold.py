@@ -375,8 +375,70 @@ def render_png_colored(model: FoldModel, path, dpi=130):
     print("PNG (colored):", path)
 
 
+def _affine_2d_to_3d(pt, s, t):
+    """Map a 2D point through the affine transform that sends 2D triangle
+    s=(s0,s1,s2) onto 3D triangle t=(t0,t1,t2) (barycentric)."""
+    s0, s1, s2 = np.asarray(s, float)
+    M = np.array([[s1[0] - s0[0], s2[0] - s0[0]],
+                  [s1[1] - s0[1], s2[1] - s0[1]]])
+    ab = np.linalg.solve(M, np.array([pt[0] - s0[0], pt[1] - s0[1]]))
+    t0, t1, t2 = np.asarray(t, float)
+    return t0 + ab[0] * (t1 - t0) + ab[1] * (t2 - t0)
+
+
+def render_3d_model(model: FoldModel, path, dpi=130):
+    """A 3-D preview of the FOLDED figure: a pinched fortune teller is a square
+    pyramid (its 4 corner flaps rise to a central apex). Each flap's
+    colour-by-number art is affine-mapped onto the matching 3-D triangle."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+
+    x0, y0 = OX, OY
+    mAB = (x0 + S / 2, y0); mBC = (x0 + S, y0 + S / 2)
+    mCD = (x0 + S / 2, y0 + S); mDA = (x0, y0 + S / 2)
+    # 3-D base square (diamond vertices) + apex
+    base = {  # key: rounded 2D edge-midpoint -> 3D base corner
+        (round(mAB[0], 1), round(mAB[1], 1)): np.array([0.0, 1.0, 0.0]),
+        (round(mBC[0], 1), round(mBC[1], 1)): np.array([1.0, 0.0, 0.0]),
+        (round(mCD[0], 1), round(mCD[1], 1)): np.array([0.0, -1.0, 0.0]),
+        (round(mDA[0], 1), round(mDA[1], 1)): np.array([-1.0, 0.0, 0.0]),
+    }
+    apex = np.array([0.0, 0.0, 1.15])
+
+    # pre-map every colour cell to a 3-D polygon once
+    polys, colors = [], []
+    for f in model.faces[-4:]:            # the 4 corner flaps
+        corner, e1, e2 = f.poly
+        t = (apex, base[(round(e1[0], 1), round(e1[1], 1))],
+                    base[(round(e2[0], 1), round(e2[1], 1))])
+        s = (corner, e1, e2)
+        for cell in build_face_cells(f):
+            polys.append([_affine_2d_to_3d(p, s, t) for p in cell["poly"]])
+            colors.append(CBN_PALETTE[cell["n"] - 1])
+    ring = [base[k] for k in base] + [list(base.values())[0]]
+
+    azims = [-55, 20, 110]                 # turntable-style views
+    fig = plt.figure(figsize=(13, 4.6)); fig.patch.set_facecolor("white")
+    for j, az in enumerate(azims):
+        ax = fig.add_subplot(1, 3, j + 1, projection="3d")
+        ax.set_facecolor("white")
+        ax.add_collection3d(Poly3DCollection([list(p) for p in polys],
+                            facecolors=colors, edgecolors="#33333355", linewidths=0.2))
+        ax.plot([p[0] for p in ring], [p[1] for p in ring], [p[2] for p in ring],
+                color="#555", lw=0.8)
+        ax.set_xlim(-1.2, 1.2); ax.set_ylim(-1.2, 1.2); ax.set_zlim(0, 1.4)
+        ax.set_box_aspect((1, 1, 0.9)); ax.view_init(elev=22, azim=az); ax.axis("off")
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0, wspace=0)
+    fig.savefig(path, dpi=dpi, facecolor="white", bbox_inches="tight")
+    plt.close(fig)
+    print("3D model:", path)
+
+
 if __name__ == "__main__":
     model = fortune_teller()
     render_svg(model, os.path.join(BASE, "fortune_teller.svg"))
     render_png(model, os.path.join(BASE, "fortune_teller_preview.png"))
     render_png_colored(model, os.path.join(BASE, "fortune_teller_colored.png"))
+    render_3d_model(model, os.path.join(BASE, "fortune_teller_3d.png"))
