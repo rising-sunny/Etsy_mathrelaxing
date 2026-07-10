@@ -36,6 +36,7 @@ LULU = os.path.join(BASE, "lulu_books", "output")
 PAL  = os.path.join(BASE, "palettes")
 BEQ  = os.path.join(BASE, "beautiful_equations")
 FRAC = os.path.join(BASE, "fractal_palettes")
+CHLA = os.path.join(BASE, "chladni", "collection")
 
 def p(*parts): return os.path.join(BASE, *parts)
 def ff(*parts): return os.path.join(FF, *parts)
@@ -45,6 +46,7 @@ def lulu(*parts): return os.path.join(LULU, *parts)
 def pal(*parts): return os.path.join(PAL, *parts)
 def beq(*parts): return os.path.join(BEQ, *parts)
 def frac(*parts): return os.path.join(FRAC, *parts)
+def chla(*parts): return os.path.join(CHLA, *parts)
 
 # ── Taxonomy IDs verificados ──────────────────────────────────────────────────
 # Fuente: GET /application/seller-taxonomy/nodes (llamada al API de Etsy)
@@ -733,6 +735,48 @@ Every piece in this shop is written from scratch in Python — equations,
 typography, colours and all.
 mathrelaxing.store""",
 
+    "chladni_collection": """\
+Chladni figures — the hidden geometry of sound, rendered entirely with code.
+
+When a metal plate is driven at a resonant frequency it vibrates in a
+standing-wave pattern. Sand sprinkled on top drifts away from the moving
+antinodes and settles along the still nodal lines — and those curves are the
+Chladni figure. First shown by Ernst Chladni in 1787, they are the visible
+shape of a sound.
+
+This poster is a field guide to eight of them — four square plates and four
+circular plates ("the rings of power") — each computed from its own equations
+in Python and rendered as fine sand on a dark plate. No AI, no stock.
+
+  Square plate:   W = cos(nπx)cos(mπy) − cos(mπx)cos(nπy)
+  Circular plate: W = Jₙ(k·r)·cos(nθ)   — Bessel modes: rings + spokes
+
+Sand settles where the plate is still — on the curves W = 0.
+
+────────────────────────
+WHAT YOU GET
+────────────────────────
+1 high-resolution JPG poster
+Resolution: 5400 × 7200 px (print-ready up to 18×24 inches at 300 dpi)
+Format: JPG, high quality
+
+────────────────────────
+PRINTING TIPS
+────────────────────────
+· Best on matte or satin paper — stunning framed in a study, lab,
+  classroom, studio or office
+· Any local print shop or online service (Printful, Canva Print,
+  Costco Photo) can handle this file
+
+────────────────────────
+INSTANT DOWNLOAD · No physical item is shipped.
+────────────────────────
+
+I'm an electrical engineer who got lost in recreational mathematics.
+Every piece in this shop is written from scratch in Python — equations,
+rendering, colours and all.
+mathrelaxing.store""",
+
     "attractor_collection": """\
 Six strange attractors of chaos theory, rendered entirely with code —
 a field-guide poster of deterministic chaos.
@@ -1069,6 +1113,36 @@ PRODUCTS = {
                   "(creado 2026-07-10, reescrito el mismo dia tras detectar el overlap). Activacion "
                   "manual pendiente. IMPORTANTE: revisar tambien los listings 4534820167 y 4534831774 "
                   "para agregarlos a este catalogo (no estaban trackeados).",
+    },
+
+    "chladni_collection": {
+        "title":       "Chladni Figures Poster | The Geometry of Sound, Vibrating Plate Nodal Patterns | Physics Math Science Wall Art Digital Download",
+        "description": DESCRIPTIONS["chladni_collection"],
+        "price":       9.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            chla("ChladniFigures_preview.jpg"),
+            chla("ChladniFigures_detail1.jpg"),
+            chla("ChladniFigures_detail2.jpg"),
+        ],
+        "files": [
+            chla("ChladniFigures_print.jpg"),
+        ],
+        "tags": ["chladni figures","physics wall art","science poster","sound art",
+                 "cymatics art","standing waves","math poster","vibration art",
+                 "acoustics gift","dark academia print","bessel functions","stem wall decor",
+                 "generative art"],
+        "notes": "Tipo 5 (art print generativo), NUEVA LINEA Chladni (figuras nodales de placas "
+                  "vibrantes, idea del usuario via culturacientifica.com 'los anillos de poder'). "
+                  "chladni/generate_chladni.py: placa cuadrada (aprox. Ritz cos*cos, nodos W=0) y placa "
+                  "circular (modos de Bessel J_n(k r)cos(n theta) -> anillos + radios). Render de ARENA "
+                  "real: rejection-sampling de granos que se acumulan en el conjunto nodal (distancia "
+                  "|W|/|grad W|) sobre placa oscura texturizada (veteado + vineta). build_chladni_poster.py "
+                  "compone 8 figuras (4 cuadradas + 4 circulares) en poster 18x24 (5400x7200@300dpi) estilo "
+                  "'field guide' como el de atractores: titulo + subtitulo + etiquetas de modo (mathtext) + "
+                  "las 2 ecuaciones al pie. Sin logo (convencion Type-5). 3 imagenes (preview watermark + 2 "
+                  "detail crops que muestran el grano) + print limpio. Precio $9.99. Extensible: mas modos, "
+                  "variantes de color, o posters individuales por figura. Subido como draft el 2026-07-10, listing_id=4535746170. Activacion manual pendiente.",
     },
 
     "attractor_collection": {

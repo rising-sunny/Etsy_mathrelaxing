@@ -83,6 +83,57 @@ def nodal_image(W, mask=None, line=1.6, glow=True, color=SAND):
     return img
 
 
+# ── Realistic "sand on a dark plate" rendering ───────────────────────────────
+
+PLATE = np.array([11, 12, 18], float)       # near-black plate (slight navy)
+GRAIN = np.array([233, 227, 210], float)    # warm off-white sand
+
+
+def render_sand(W, mask=None, line=2.4, gamma=1.4, grain_passes=14, seed=0,
+                plate=PLATE, sand=GRAIN):
+    """Scatter sand grains that pile up on the nodal set, on a textured dark
+    plate — the look of a real Chladni experiment."""
+    N = W.shape[0]
+    rng = np.random.default_rng(seed)
+    Wf = np.nan_to_num(W, nan=1e3)
+    gy, gx = np.gradient(Wf, 1.0 / N)
+    dist = np.abs(Wf) / (np.hypot(gx, gy) + 1e-6)
+    lw = line / N
+    dens = np.exp(-(dist / lw) ** 2)                 # 0..1 proximity to a node
+    if mask is not None:
+        dens = np.where(mask, dens, 0.0)
+    prob = dens ** gamma
+
+    # scatter grains by rejection sampling, accumulate with a tiny splat
+    acc = np.zeros((N, N), float)
+    M = N * N // 3
+    for _ in range(grain_passes):
+        xs = rng.integers(0, N, M); ys = rng.integers(0, N, M)
+        keep = rng.random(M) < prob[ys, xs]
+        xk, yk = xs[keep], ys[keep]
+        w = 0.6 + 0.8 * rng.random(xk.size)          # per-grain brightness
+        np.add.at(acc, (yk, xk), w)
+    from scipy.ndimage import gaussian_filter
+    acc = gaussian_filter(acc, 0.6)
+    sand_amt = np.clip(acc / np.percentile(acc[acc > 0], 92) if (acc > 0).any() else acc, 0, 1)
+    # a faint packed core so the lines never break up entirely
+    sand_amt = np.clip(sand_amt + 0.22 * dens, 0, 1)
+
+    # textured plate: brushed noise + radial vignette
+    tex = rng.normal(0, 6, (N, N))
+    yy, xx = np.mgrid[0:N, 0:N]
+    r = np.hypot(xx - N / 2, yy - N / 2) / (N / 2)
+    vig = np.clip(1.0 - 0.35 * r ** 2, 0, 1)
+    base = plate[None, None, :] * vig[..., None] + tex[..., None]
+
+    grain_tint = sand[None, None, :] * (0.85 + 0.15 * rng.random((N, N, 1)))
+    out = base + sand_amt[..., None] * (grain_tint - base)
+    img = np.clip(out, 0, 255).astype(np.uint8)
+    if mask is not None:
+        img[~mask] = plate.astype(np.uint8)
+    return Image.fromarray(img)
+
+
 # ── Contact sheet of modes ───────────────────────────────────────────────────
 
 def contact_sheet(out=os.path.join(BASE, "_chladni_sheet.png")):
