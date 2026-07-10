@@ -444,6 +444,33 @@ favorite IDE and reduce eye strain.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
+
+    "spiral_tilings_pdf": """\
+Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
+50 mesmerizing spiral tilings generated from pure mathematics: complex exponential \
+mappings, logarithmic spirals, and interlocked radial mandalas. \
+Each design repeats and rotates seamlessly, offering an incredibly satisfying \
+coloring experience as you follow the fractal-like curves outward.
+
+► What you get
+• 1 high-resolution PDF (print-ready)
+• 50 original parametric spiral designs
+• "The mathematics" intro page explaining the mapping algorithms
+
+► Print it once, color it endlessly — or use it on your iPad with GoodNotes.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+mathrelaxing.store""",
+
+    "spiral_tilings_ipad": """\
+Experience the meditative flow of Color-by-Number with the endless mathematics of spirals, right on your iPad.
+
+This digital bundle features 50 original radial designs, generated using complex conformal mappings. Each sweeping mandala is carefully segmented into a Color-By-Number canvas. Follow the included 30-color pastel palette, or invent your own vibrant combinations as you color from the center outward.
+
+Designed specifically for iPad, this bundle includes everything you need for GoodNotes, Notability, or Procreate.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+mathrelaxing.store""",
 }
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
@@ -871,6 +898,52 @@ PRODUCTS = {
         ],
         "tags": ["quantified self","data planner","agile sprint planner","programmer gift","software engineer gift","habit tracker","github heatmap","digital planner","goodnotes planner","ipad planner","dark mode planner","bullet journal","stem notebook"],
         "notes": "Generado con build_quantified_self.py",
+    },
+
+    "spiral_tilings_ipad": {
+        "title":       "Color By Number Spiral Tilings — iPad Procreate GoodNotes Bundle | 50 Math & Mandala Radial Designs",
+        "description": DESCRIPTIONS["spiral_tilings_ipad"],
+        "price":       9.99,
+        "taxonomy_id": TAXONOMY["ipad_coloring"],
+        "images": [
+            p("ipad_spiral_cbn", "previews", "ipad_preview_1_hero.jpg"),
+            p("ipad_spiral_cbn", "previews", "ipad_preview_2_included.jpg"),
+            p("ipad_spiral_cbn", "previews", "ipad_preview_3_twoways.jpg"),
+        ],
+        "files": [
+            p("ipad_spiral_cbn", "SpiralTilings_CBN_iPad_GoodNotes.pdf"),
+            p("ipad_spiral_cbn", "SpiralTilings_CBN_Procreate_PNG_part1.zip"),
+            p("ipad_spiral_cbn", "SpiralTilings_CBN_Procreate_PNG_part2.zip"),
+            p("ipad_spiral_cbn", "SpiralTilings_CBN.swatches"),
+            p("ipad_spiral_cbn", "How_to_use_on_iPad.pdf"),
+        ],
+        "tags": ["ipad coloring book","color by number","goodnotes planner","procreate coloring","digital mandala","spiral art","math art","pastel aesthetic","adult coloring pdf","procreate swatches","digital download","relaxing coloring","adhd coloring"],
+        "notes": "Generado con build_spiral_ipad.py",
+    },
+
+    "spiral_tilings_pdf": {
+        "title":       "Spiral Tilings — Printable Coloring Book PDF | 50 Math & Mandala Radial Designs",
+        "description": DESCRIPTIONS["spiral_tilings_pdf"],
+        "price":       6.99,
+        "taxonomy_id": TAXONOMY["coloring_book"],
+        "video": p("spiral_video_out", "SpiralTilings_promo.mp4"),
+        "images": [
+            p("spiral_tilings_cover.jpg"),
+            p("spiral_tilings_page_01.jpg"),
+            p("spiral_tilings_page_02.jpg"),
+            p("spiral_tilings_page_03.jpg"),
+            p("spiral_tilings_page_04.jpg"),
+            p("spiral_tilings_page_05.jpg"),
+            p("spiral_tilings_page_06.jpg"),
+            p("spiral_tilings_page_07.jpg"),
+        ],
+        "files": [
+            p("spiral_tilings_digital.pdf"),
+        ],
+        "tags": ["spiral coloring","mandala coloring","math coloring book","geometric coloring",
+                 "spiral mandala","printable coloring","adult coloring book","radial tessellation",
+                 "sacred geometry","mindful coloring","coloring book pdf","relaxing coloring","logarithmic spiral"],
+        "notes": "Generado con generate_spiral_tilings.py. Listo para publicar como borrador.",
     },
 }
 
