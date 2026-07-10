@@ -1,12 +1,21 @@
 """
 build_bundle_and_assets.py
 ==========================
-Packages the "Beautiful Equations" set of 8 into the single deliverable ZIP
-that Etsy hands the buyer, and builds the listing images (hero grid + a
-"what you get" card). Run AFTER generate_equations.py.
+Packages the "Physics & Calculus Equations" set of 8 into the single
+deliverable ZIP that Etsy hands the buyer, and builds the listing images
+(hero grid + a "what you get" card). Run AFTER generate_equations.py.
+
+NOTE ON NAMING: the shop already has two other navy/gold LaTeX-typography
+bundles that predate this one and are NOT tracked in products_catalog.py —
+"Mathematical Constants Bundle" (pi, e, phi, sqrt2, i, infinity, 0, 1) and
+"Beautiful Equations Bundle" (Euler's Identity, Pythagorean Theorem,
+Schrodinger, Maxwell's First Equation, E=mc^2, Gaussian Integral, Heat
+Equation, Bayes' Theorem). This set's 8 equations were chosen to have ZERO
+overlap with either, and it is named/packaged as a distinct "Physics &
+Calculus" companion rather than reusing the "Beautiful Equations" name.
 
   ZIP layout (one file, < 20 MB, so it fits Etsy's per-file limit):
-    Beautiful_Equations/
+    Physics_Calculus_Equations/
       PDF_vector_any_size/   8 × {slug}_print.pdf   (razor-sharp at any size)
       JPG_24x30in_300dpi/    8 × {slug}_print.jpg   (7200×9000)
       READ_ME.txt
@@ -33,7 +42,7 @@ NAVY, GOLD, CREAM, MUTED = G.NAVY, G.GOLD, G.CREAM, G.MUTED
 MUTED_PIL = tuple(int(c * 255) for c in MUTED)   # PIL needs 0-255 ints
 FONT = G.FONT_PATH
 
-READ_ME = """BEAUTIFUL EQUATIONS — The Set of 8
+READ_ME = """PHYSICS & CALCULUS EQUATIONS — The Set of 8
 MathRelaxing · mathrelaxing.store
 
 Thank you! This bundle contains 8 mathematical art prints, each set in
@@ -50,9 +59,10 @@ JPG_24x30in_300dpi/    8 JPG files, 7200 × 9000 px. Print-ready up to
 
 THE EQUATIONS
 -------------
-  Euler's Identity · The Pythagorean Theorem · Mass–Energy Equivalence
-  The Golden Ratio · The Basel Problem · The Fundamental Theorem of Calculus
-  The Normal Distribution · The Schrödinger Equation
+  Newton's Second Law · Universal Gravitation · The Ideal Gas Law
+  The Planck–Einstein Relation · The Basel Problem
+  The Fundamental Theorem of Calculus · The Uncertainty Principle
+  The Taylor Series
 
 PRINTING TIPS
 -------------
@@ -65,15 +75,15 @@ PRINTING TIPS
 """
 
 
-def build_zip(out=os.path.join(BASE, "BeautifulEquations_Set8.zip")):
+def build_zip(out=os.path.join(BASE, "PhysicsCalculusEquations_Set8.zip")):
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for spec in G.EQUATIONS:
             s = spec["slug"]
             z.write(os.path.join(BASE, f"{s}_print.pdf"),
-                    f"Beautiful_Equations/PDF_vector_any_size/{s}.pdf")
+                    f"Physics_Calculus_Equations/PDF_vector_any_size/{s}.pdf")
             z.write(os.path.join(BASE, f"{s}_print.jpg"),
-                    f"Beautiful_Equations/JPG_24x30in_300dpi/{s}.jpg")
-        z.writestr("Beautiful_Equations/READ_ME.txt", READ_ME)
+                    f"Physics_Calculus_Equations/JPG_24x30in_300dpi/{s}.jpg")
+        z.writestr("Physics_Calculus_Equations/READ_ME.txt", READ_ME)
     mb = os.path.getsize(out) / 1e6
     print(f"ZIP: {out}  ({mb:.1f} MB)")
     return out
@@ -105,7 +115,7 @@ def build_hero(out=os.path.join(BASE, "_hero.jpg"), W=2400, Hh=3000):
     f_eye = ImageFont.truetype(FONT, 46)
     f_ttl = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf", 120)
     f_sub = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf", 58)
-    eye = "T H E   M O S T   B E A U T I F U L   E Q U A T I O N S"
+    eye = "P H Y S I C S   &   C A L C U L U S   E Q U A T I O N S"
     d.text((W/2, 150), eye, font=f_eye, fill=GOLD, anchor="mm")
     d.text((W/2, 300), "The Set of 8", font=f_ttl, fill=CREAM, anchor="mm")
     d.text((W/2, 405), "mathematical art prints", font=f_sub, fill=MUTED_PIL, anchor="mm")

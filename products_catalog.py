@@ -628,10 +628,10 @@ annotation app is required.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
 
-    "beautiful_equations": """\
-Eight of the most beautiful equations in mathematics, set as elegant
-typography — a gallery-style collection for anyone who loves math,
-physics, or the quiet order beneath the world.
+    "physics_calculus_equations": """\
+Eight equations from physics and calculus, set as elegant typography —
+a gallery-style collection for anyone who loves science, mathematics,
+or the quiet order beneath the world.
 
 Each equation is typeset in Computer Modern (the classic typeface of
 LaTeX, the language mathematicians actually write in) on a deep navy
@@ -641,14 +641,14 @@ designed from scratch.
 ────────────────────────
 THE EIGHT EQUATIONS
 ────────────────────────
-· Euler's Identity — e^(iπ) + 1 = 0
-· The Pythagorean Theorem — a² + b² = c²
-· Mass–Energy Equivalence — E = mc²
-· The Golden Ratio — φ = (1 + √5) / 2
+· Newton's Second Law — F = ma
+· Universal Gravitation — F = G·m₁m₂/r²
+· The Ideal Gas Law — PV = nRT
+· The Planck–Einstein Relation — E = hν
 · The Basel Problem — Σ 1/n² = π²/6
 · The Fundamental Theorem of Calculus
-· The Normal Distribution (the bell curve)
-· The Schrödinger Equation
+· The Uncertainty Principle — ΔxΔp ≥ ℏ/2
+· The Taylor Series
 
 ────────────────────────
 WHAT YOU GET · instant download
@@ -927,41 +927,53 @@ cells. Every cell is a closed region — perfect for clean, satisfying color fil
 # ── Catálogo de productos ─────────────────────────────────────────────────────
 PRODUCTS = {
 
-    "beautiful_equations": {
-        "title":       "Set of 8 Math Equation Art Prints, Minimalist Mathematics Wall Art | Euler Einstein Pythagoras Poster Bundle | Printable Digital Download",
-        "description": DESCRIPTIONS["beautiful_equations"],
-        "price":       13.99,
+    "physics_calculus_equations": {
+        "title":       "Set of 8 Physics & Calculus Equation Art Prints, Minimalist Math Wall Art | Newton Heisenberg Poster Bundle | Printable Digital Download",
+        "description": DESCRIPTIONS["physics_calculus_equations"],
+        "price":       7.99,
         "taxonomy_id": TAXONOMY["digital_art"],
         "images": [
             beq("_hero.jpg"),
-            beq("euler_identity_preview.jpg"),
-            beq("pythagoras_preview.jpg"),
-            beq("mass_energy_preview.jpg"),
-            beq("golden_ratio_preview.jpg"),
+            beq("newton_second_law_preview.jpg"),
+            beq("gravitation_preview.jpg"),
+            beq("ideal_gas_preview.jpg"),
+            beq("planck_einstein_preview.jpg"),
             beq("basel_preview.jpg"),
             beq("fundamental_calculus_preview.jpg"),
-            beq("gaussian_preview.jpg"),
-            beq("schrodinger_preview.jpg"),
+            beq("heisenberg_preview.jpg"),
+            beq("taylor_series_preview.jpg"),
             beq("_whatyouget.jpg"),
         ],
         "files": [
-            beq("BeautifulEquations_Set8.zip"),
+            beq("PhysicsCalculusEquations_Set8.zip"),
         ],
-        "tags": ["math wall art","equation art","mathematics poster","minimalist math",
-                 "science wall art","euler identity","physics poster","printable art",
-                 "math teacher gift","math art print","classroom decor","academic gift",
+        "tags": ["math wall art","physics poster","mathematics poster","minimalist math",
+                 "science wall art","newton second law","physics art print","printable art",
+                 "math teacher gift","physics teacher gift","classroom decor","academic gift",
                  "digital download"],
         "notes": "Tipo 5 pero NUEVA LINEA: arte matematico CONCEPTUAL/tipografico (no histograma de "
-                  "densidad). 8 ecuaciones iconicas tipografiadas en Computer Modern (LaTeX real, "
-                  "mathtext.fontset='cm') sobre navy, estilo galeria navy/oro/serif coherente con la "
-                  "marca. beautiful_equations/generate_equations.py rinde c/u a 8x10 logico -> PDF "
+                  "densidad). ORIGINALMENTE llamado 'beautiful_equations' con Euler/Pitagoras/E=mc2/"
+                  "phi/Basel/FTC/Gaussiana/Schrodinger -- se descubrio DESPUES de crear el borrador "
+                  "que la tienda YA TENIA 2 listings activos no trackeados en este catalogo con el "
+                  "mismo concepto navy/oro/LaTeX: 'Mathematical Constants Bundle' (listing_id="
+                  "4534820167: pi,e,phi,sqrt2,i,infinity,0,1) y 'Beautiful Equations Bundle' "
+                  "(listing_id=4534831774: Euler's Identity, Pythagorean Theorem, Schrodinger, "
+                  "Maxwell's First Equation, E=mc^2, Gaussian Integral, Heat Equation, Bayes' "
+                  "Theorem) -- 6 de las 8 ecuaciones originales coincidian. Renombrado a "
+                  "'physics_calculus_equations' con set 100% sin overlap: Newton's Second Law, "
+                  "Universal Gravitation, Ideal Gas Law, Planck-Einstein, Basel Problem (unica que "
+                  "se mantuvo), Fundamental Theorem of Calculus (unica que se mantuvo), Heisenberg "
+                  "Uncertainty, Taylor Series. Precio $7.99 (los 2 listings hermanos estan a $6.99). "
+                  "beautiful_equations/generate_equations.py rinde c/u a 8x10 logico -> PDF "
                   "VECTOR (imprime nitido a cualquier tamano, el gran plus tipografico) + JPG 7200x9000 "
                   "(24x30@300dpi) + preview watermarkeado. build_bundle_and_assets.py empaqueta los 16 "
-                  "archivos (8 pdf+8 jpg) + READ_ME en UN zip de 3.6MB (Etsy limita 5 archivos/listing) "
-                  "y genera _hero.jpg (grid 2x4 de las 8) + _whatyouget.jpg. Bundle 'Set of 8' a $13.99: "
-                  "mayor ticket, mayor valor percibido. 10 imagenes (hero + 8 previews + whatyouget). "
-                  "Extensible: mas ecuaciones (Maxwell, Navier-Stokes, Fourier, Dirac) o variante pizarra. "
-                  "Subido como draft el 2026-07-10, listing_id=4535639595. Activacion manual pendiente.",
+                  "archivos (8 pdf+8 jpg) + READ_ME en UN zip de 3.7MB (Etsy limita 5 archivos/listing) "
+                  "y genera _hero.jpg (grid 2x4 de las 8) + _whatyouget.jpg. 10 imagenes (hero + 8 "
+                  "previews + whatyouget). Extensible: mas ecuaciones sin overlap (Fourier, Dirac, "
+                  "Coulomb, entropia de Shannon) o variante pizarra. Draft listing_id=4535639595 "
+                  "(creado 2026-07-10, reescrito el mismo dia tras detectar el overlap). Activacion "
+                  "manual pendiente. IMPORTANTE: revisar tambien los listings 4534820167 y 4534831774 "
+                  "para agregarlos a este catalogo (no estaban trackeados).",
     },
 
     "attractor_collection": {
