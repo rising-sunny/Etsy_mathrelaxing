@@ -641,8 +641,8 @@ designed from scratch.
 ────────────────────────
 THE EIGHT EQUATIONS
 ────────────────────────
-· Newton's Second Law — F = ma
-· Universal Gravitation — F = G·m₁m₂/r²
+· Newton's Second Law — 𝐅 = m𝐚 (full vector form)
+· Universal Gravitation — 𝐅 = −G·m₁m₂/r²·r̂ (full vector form)
 · The Ideal Gas Law — PV = nRT
 · The Planck–Einstein Relation — E = hν
 · The Basel Problem — Σ 1/n² = π²/6
