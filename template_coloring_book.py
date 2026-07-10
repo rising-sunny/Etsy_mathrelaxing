@@ -55,7 +55,8 @@ class BookConfig:
 def build_book(cfg: BookConfig,
                render_design: Callable[[int], "plt.Figure"],
                emblem: Callable = None,
-               watermark: Optional[Callable] = None):
+               watermark: Optional[Callable] = None,
+               back_cover: Optional[Callable] = None):
     pdf_path = os.path.join(cfg.out_dir, f"{cfg.prefix}_digital.pdf")
     previews = {}
 
@@ -77,6 +78,11 @@ def build_book(cfg: BookConfig,
                 previews[n] = fig
             else:
                 plt.close(fig)
+
+        # last page — optional back cover
+        if back_cover:
+            fig = back_cover()
+            pdf.savefig(fig); plt.close(fig)
 
     # SQUARE listing cover
     fig = brand.cover(cfg.theme_bg, emblem, cfg.title, cfg.subtitle,

@@ -76,7 +76,7 @@ def render_pngs(cfg, render_design_fig, reuse=True):
         p = os.path.join(d, f"{cfg.prefix}_{n:02d}.png")
         if not (reuse and os.path.exists(p)):
             fig = render_design_fig(n)
-            fig.savefig(p, dpi=300, transparent=True)
+            fig.savefig(p, dpi=200, transparent=True) # Reduced to 200 DPI to stay under 20MB zip limits
             plt.close(fig)
         paths.append(p)
     return paths
@@ -105,7 +105,16 @@ def build_goodnotes_pdf(cfg, png_paths):
         page = doc[n_index + idx]
         page.draw_rect(fitz.Rect(0, 0, PW, PH), color=None, fill=(1, 1, 1))
         m = 26
-        page.insert_image(fitz.Rect(m, m, PW - m, PH - m), filename=png, keep_proportion=True)
+        
+        # Open the image and convert to JPEG for the PDF to reduce size significantly (Etsy 20MB limit)
+        from PIL import Image
+        import io
+        img = Image.open(png).convert("RGB")
+        img.thumbnail((1536, 1980), Image.Resampling.LANCZOS) # reasonable resolution for iPad
+        img_bytes = io.BytesIO()
+        img.save(img_bytes, format="JPEG", quality=85)
+        
+        page.insert_image(fitz.Rect(m, m, PW - m, PH - m), stream=img_bytes.getvalue(), keep_proportion=True)
 
     for ip in range(n_index):
         page = doc[ip]
@@ -121,6 +130,8 @@ def build_goodnotes_pdf(cfg, png_paths):
         m_top, m_side, gap = 96, 46, 16
         cw = (PW - 2 * m_side - (cols - 1) * gap) / cols
         ch = (PH - m_top - 40 - (rows - 1) * gap) / rows
+        from PIL import Image
+        import io
         for k in range(per_page):
             idx = ip * per_page + k
             if idx >= len(png_paths):
@@ -128,7 +139,13 @@ def build_goodnotes_pdf(cfg, png_paths):
             r, c = divmod(k, cols)
             x = m_side + c * (cw + gap); y = m_top + r * (ch + gap)
             rect = fitz.Rect(x, y, x + cw, y + ch)
-            page.insert_image(rect, filename=png_paths[idx], keep_proportion=True)
+            
+            img = Image.open(png_paths[idx]).convert("RGB")
+            img.thumbnail((300, 300), Image.Resampling.LANCZOS)
+            img_bytes = io.BytesIO()
+            img.save(img_bytes, format="JPEG", quality=80)
+            
+            page.insert_image(rect, stream=img_bytes.getvalue(), keep_proportion=True)
             page.draw_rect(rect, color=(0.8, 0.8, 0.8), width=0.5)
             page.insert_textbox(fitz.Rect(x, y + ch - 12, x + cw, y + ch), f"{idx + 1}",
                                 fontsize=7, align=1, color=(0.4, 0.4, 0.4))
