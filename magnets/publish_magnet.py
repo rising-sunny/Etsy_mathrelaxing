@@ -29,7 +29,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(
 import printify_publish as pp
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ART = os.path.join(HERE, "Amethyst_Julia_1800.png")
+# labeled art carries the generating equation (see render_labeled_magnet.py)
+ART = os.path.join(HERE, "Amethyst_Julia_labeled.png")
 
 BLUEPRINT_MAGNET = 428
 PROVIDER_SPOKE = 1
