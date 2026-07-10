@@ -35,6 +35,7 @@ ATTR = os.path.join(BASE, "attractor_prints")
 LULU = os.path.join(BASE, "lulu_books", "output")
 PAL  = os.path.join(BASE, "palettes")
 BEQ  = os.path.join(BASE, "beautiful_equations")
+FRAC = os.path.join(BASE, "fractal_palettes")
 
 def p(*parts): return os.path.join(BASE, *parts)
 def ff(*parts): return os.path.join(FF, *parts)
@@ -43,6 +44,7 @@ def attractor(*parts): return os.path.join(ATTR, *parts)
 def lulu(*parts): return os.path.join(LULU, *parts)
 def pal(*parts): return os.path.join(PAL, *parts)
 def beq(*parts): return os.path.join(BEQ, *parts)
+def frac(*parts): return os.path.join(FRAC, *parts)
 
 # ── Taxonomy IDs verificados ──────────────────────────────────────────────────
 # Fuente: GET /application/seller-taxonomy/nodes (llamada al API de Etsy)
@@ -577,6 +579,39 @@ This is a DIGITAL download — no physical item is shipped.
 
 © MathRelaxing. For personal & classroom use. Do not resell or redistribute \
 the files themselves.
+mathrelaxing.store""",
+
+    "fractal_palettes": """\
+Instant download — 8 Procreate color palettes (.swatches), 30 colors each.
+
+Every palette here is the real color signature of a famous fractal — a \
+Mandelbrot, Julia or Burning Ship set computed from the escape-time \
+algorithm in Python, then sampled color-by-color into a smooth ramp. No \
+stock photos, no AI. Just mathematics, turned into a palette you can paint \
+with.
+
+► What you get (240 curated colors)
+• Ember Mandelbrot — maroon → red → orange → gold
+• Glacier Julia — midnight → blue → icy cyan → white
+• Jade Julia — deep forest → emerald → mint
+• Amethyst Julia — indigo → violet → lilac
+• Sunset Julia — plum → magenta → coral → amber
+• Molten Ship — black → rust → ember gold
+• Peacock Mandelbrot — deep teal → jade → soft gold
+• Rose Gold Julia — wine → rose → blush → cream
+
+8 .swatches files (30 swatches each), delivered in one .zip, plus an \
+install guide.
+
+► How to install (Procreate on iPad)
+Open Procreate → tap the color circle → Palettes → the + button → \
+"New from file" → pick a .swatches file. It loads as a ready-to-use \
+30-color palette. Works in any app that reads Procreate .swatches.
+
+This is a DIGITAL download — no physical item is shipped.
+
+© MathRelaxing. For personal & commercial artwork. Do not resell or \
+redistribute the palette files themselves.
 mathrelaxing.store""",
 
     "chaos_palettes": """\
@@ -1239,6 +1274,40 @@ PRODUCTS = {
                   "no 'fit to page'). taxonomy 12476 (Planner Templates, printable stationery). 5 "
                   "imagenes: hero con las 8 grillas + full-page de iso/hex/square/cornell. Subido como "
                   "draft el 2026-07-07, listing_id=4534027247. Activacion manual pendiente.",
+    },
+
+    "fractal_palettes": {
+        "title":       "Fractal Color Palettes for Procreate | 8 Swatch Packs, 240 Colors from Mandelbrot & Julia Sets | Generative Math Art Download",
+        "description": DESCRIPTIONS["fractal_palettes"],
+        "price":       1.99,
+        "taxonomy_id": TAXONOMY["digital_drawing"],
+        "images": [
+            frac("previews", "palette_preview_1_hero.jpg"),
+            frac("previews", "palette_preview_2_sources.jpg"),
+            frac("previews", "palette_Ember_Mandelbrot.jpg"),
+            frac("previews", "palette_Glacier_Julia.jpg"),
+            frac("previews", "palette_Jade_Julia.jpg"),
+            frac("previews", "palette_Amethyst_Julia.jpg"),
+            frac("previews", "palette_Sunset_Julia.jpg"),
+            frac("previews", "palette_Molten_Ship.jpg"),
+            frac("previews", "palette_Peacock_Mandelbrot.jpg"),
+            frac("previews", "palette_Rose_Gold_Julia.jpg"),
+        ],
+        "files": [
+            frac("FractalDreams_Palettes.zip"),
+        ],
+        "tags": ["procreate palette","color palette","procreate color palette","fractal art",
+                 "generative art","procreate swatches","math art","mandelbrot julia",
+                 "color swatches","ipad art","fractal palette","digital download","artist gift"],
+        "notes": "Segundo pack de paletas ultra low-cost ($1.99), hermano de chaos_palettes. Mismo motor "
+                  "(build_palettes.extract_palette + brand.swatches_file) pero tema NUEVO y muy vendible: "
+                  "fractales Mandelbrot/Julia/Burning Ship. build_fractal_palettes.py RENDERIZA 8 fractales "
+                  "coloridos (escape-time suave + colormap propio por familia: ember/glacier/jade/amethyst/"
+                  "sunset/molten/peacock/rosegold) y extrae 30 colores de cada uno -> 8 .swatches en 1 zip "
+                  "+ HOW TO INSTALL.txt. 10 imagenes: hero (8 rampas) + grid de los 8 renders fuente + 1 "
+                  "card por paleta. taxonomy 77 (digital_drawing, igual que chaos). Diferenciador vs miles "
+                  "de packs de paletas: colores de fractales REALES computados, no stock/AI. Extensible a "
+                  "mas fractales/zooms. Subido como draft el 2026-07-10, listing_id=4535716135. Activacion manual pendiente.",
     },
 
     "chaos_palettes": {
