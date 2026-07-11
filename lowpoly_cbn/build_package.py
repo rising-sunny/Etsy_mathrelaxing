@@ -18,6 +18,7 @@ Also writes a square listing cover JPG and design preview JPGs.
 """
 import io
 import os
+import textwrap
 
 import matplotlib
 matplotlib.use("Agg")
@@ -93,6 +94,25 @@ def _fig_to_pil(fig, facecolor):
     return Image.open(buf).convert("RGB")
 
 
+def _save_pdf(specs, pdf_path):
+    """specs = list of (PIL image, 'png'|'jpeg'). Line-art/text pages stay
+    lossless PNG (crisp numbers); photographic pages are JPEG-compressed so the
+    whole book fits under Etsy's 20 MB per-file limit."""
+    import fitz
+    doc = fitz.open()
+    rect = fitz.Rect(0, 0, 612, 792)                     # US Letter in points
+    for img, mode in specs:
+        page = doc.new_page(width=612, height=792)
+        buf = io.BytesIO()
+        if mode == "jpeg":
+            img.save(buf, format="JPEG", quality=82)
+        else:
+            img.save(buf, format="PNG", optimize=True)
+        page.insert_image(rect, stream=buf.getvalue())
+    doc.save(pdf_path, deflate=True, garbage=4)
+    doc.close()
+
+
 def howto_page():
     fig = plt.figure(figsize=(8.5, 11))
     ax = fig.add_axes([0, 0, 1, 1]); ax.axis("off")
@@ -102,8 +122,8 @@ def howto_page():
     y = 8.7
     for head, body in HOWTO_STEPS:
         ax.text(1.0, y, head, ha="left", fontsize=13.5, color=brand.GOLD, **brand.SERIF_BOLD)
-        ax.text(1.0, y - 0.42, body, ha="left", va="top", fontsize=11, wrap=True,
-                **brand.SERIF)
+        ax.text(1.0, y - 0.42, textwrap.fill(body, 74), ha="left", va="top",
+                fontsize=11, linespacing=1.5, **brand.SERIF)
         y -= 1.65
     ax.text(4.25, 0.65, brand.COPYRIGHT, ha="center", fontsize=9, color="#666666")
     return _fig_to_pil(fig, "white")
@@ -158,14 +178,18 @@ def build(out_dir=None):
         coloring_pages.append(info["coloring_img"])
         colored_pages.append(info["colored_img"])
         print(f"  {p['title']:22} {info['cells']:>5} cells, {p['colors']} colors")
-        if k in (1, 5, 6):
+        if k in (1, 6, 12, 18):     # a domain, a bloom, a Newton, a Julia
             pv = os.path.join(out_dir, f"preview_page_{k}.jpg")
             info["coloring_img"].save(pv, quality=90); preview_paths.append(pv)
 
-    pages = ([cover_pil, about_pil, howto_page()] + coloring_pages +
-             [divider_page()] + colored_pages + [back_cover()])
+    # line-art & text pages stay lossless PNG; photographic pages -> JPEG
+    specs = ([(cover_pil, "jpeg"), (about_pil, "png"), (howto_page(), "png")]
+             + [(im, "png") for im in coloring_pages]
+             + [(divider_page(), "png")]
+             + [(im, "jpeg") for im in colored_pages]
+             + [(back_cover(), "jpeg")])
     pdf_path = os.path.join(out_dir, "MathColorByNumber_Vol1.pdf")
-    pages[0].save(pdf_path, "PDF", save_all=True, append_images=pages[1:], resolution=300)
+    _save_pdf(specs, pdf_path)
 
     # square listing cover
     sq = brand.cover(THEME, emblem, TITLE, SUBTITLE, TAGLINE,
@@ -173,7 +197,7 @@ def build(out_dir=None):
     sq.savefig(os.path.join(out_dir, "listing_cover.jpg"), dpi=200, facecolor=THEME)
     plt.close(sq)
 
-    print(f"\nPDF: {pdf_path}  ({len(pages)} pages, {os.path.getsize(pdf_path)/1e6:.1f} MB)")
+    print(f"\nPDF: {pdf_path}  ({len(specs)} pages, {os.path.getsize(pdf_path)/1e6:.1f} MB)")
     return pdf_path
 
 
