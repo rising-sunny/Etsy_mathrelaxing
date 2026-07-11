@@ -89,7 +89,7 @@ def build_zip(out=os.path.join(BASE, "PhysicsCalculusEquations_Set8.zip")):
     return out
 
 
-def _light_watermark(img, text="MATHRELAXING.STORE", opacity=34, angle=30):
+def _light_watermark(img, text="MATHRELAXING", opacity=34, angle=30):
     w, h = img.size
     fs = max(16, int(w * 0.026))
     font = ImageFont.truetype(FONT, fs)
@@ -158,7 +158,7 @@ def build_whatyouget(out=os.path.join(BASE, "_whatyouget.jpg"), W=2400, Hh=3000)
         ax.text(1.5, y, big, ha="center", va="center", fontsize=29, color=CREAM, family="serif")
         ax.text(2.55, y, small, ha="left", va="center", fontsize=14.5, color=MUTED, family="serif")
         y -= 1.3
-    ax.text(4, 0.9, "MATHRELAXING.STORE", ha="center", fontsize=15, color=GOLD, family="sans-serif")
+    ax.text(4, 0.9, "MATHRELAXING", ha="center", fontsize=15, color=GOLD, family="sans-serif")
     fig.savefig(out, dpi=W/8, facecolor=NAVY, pil_kwargs={"quality": 92}); plt.close(fig)
     print("What-you-get:", out)
 

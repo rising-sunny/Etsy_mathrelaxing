@@ -70,7 +70,7 @@ SINGULARITIES = [
 ]
 
 PREVIEW_LONG_EDGE = 3000
-WATERMARK_TEXT = "MATHRELAXING.STORE  ·  PREVIEW"
+WATERMARK_TEXT = "MATHRELAXING  ·  PREVIEW"
 FONT_PATH = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
 
 rng = np.random.default_rng(11)

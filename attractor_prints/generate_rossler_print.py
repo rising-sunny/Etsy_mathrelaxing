@@ -86,7 +86,7 @@ X_LO, X_HI = -11.5, 13.0
 Y_LO, Y_HI = -11.5, 9.0
 
 PREVIEW_LONG_EDGE = 3000  # lado largo del preview publico (vs. 12000 del vendible)
-WATERMARK_TEXT = "MATHRELAXING.STORE  ·  PREVIEW"
+WATERMARK_TEXT = "MATHRELAXING  ·  PREVIEW"
 FONT_PATH = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
 
 rng = np.random.default_rng(7)

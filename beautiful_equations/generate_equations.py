@@ -51,7 +51,7 @@ MUTED = (0.70, 0.73, 0.80)  # poetic line
 W_IN, H_IN = 8.0, 10.0      # 4:5 logical canvas
 PRINT_DPI = 900             # 8x10 @ 900 -> 7200x9000 (24x30 in @ 300 dpi)
 PREVIEW_LONG_EDGE = 2000
-WATERMARK_TEXT = "MATHRELAXING.STORE  ·  PREVIEW"
+WATERMARK_TEXT = "MATHRELAXING  ·  PREVIEW"
 FONT_PATH = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
 
 # ── The eight equations. `size` is hand-tuned so each fills the same width band
