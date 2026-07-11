@@ -90,8 +90,7 @@ precision and free of color numbers.
 
 ► Print it once, color it endlessly — or use it on your iPad with GoodNotes.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "sacred_geometry_pdf": """\
 Instant download — color-by-number PDF coloring book (50 pages, 8.5×11 in).
@@ -104,8 +103,7 @@ always know exactly where each hue goes.
 • 50 color-by-number designs with palette guide
 • Meditative, screen-free relaxation
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "hyperbolic_gardens_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -118,8 +116,7 @@ unlike any other.
 • 1 high-resolution PDF (print-ready)
 • 50 original hyperbolic tiling designs
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "mathematical_tangle_art_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -131,8 +128,7 @@ dense, meditative patterns for hours of mindful coloring.
 • 1 high-resolution PDF (print-ready)
 • 50 original mathematical tangle designs
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "sacred_harmonics_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -144,8 +140,7 @@ geometry of vibration made visible and colorable.
 • 1 high-resolution PDF (print-ready)
 • 50 original cymatics & harmonic designs
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "neural_network_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -157,8 +152,7 @@ and anyone who loves high-tech geometry.
 • 1 high-resolution PDF (print-ready)
 • 50 original neural network & tech art designs
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "fractal_flora_ipad": """\
 Instant download — iPad coloring bundle for GoodNotes, Notability & Procreate.
@@ -178,8 +172,7 @@ Procreate palette.
 GoodNotes / Notability: open the PDF, tap a thumbnail, color right on top.
 Procreate: import a PNG, paint on a layer below the linework.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "sacred_geometry_ipad": """\
 Instant download — iPad coloring bundle for GoodNotes, Notability & Procreate.
@@ -198,8 +191,7 @@ no bleeding, no guesswork. Tap any thumbnail to navigate instantly.
 GoodNotes / Notability: open the PDF, tap a thumbnail, color right on top.
 Procreate: import a PNG, paint on a layer below the numbered linework.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "thomas_attractor": """\
 Instant download — seamless loop animation (MP4, 1080×1080, 60 fps, 12 s).
@@ -212,8 +204,7 @@ digital frames, or social media backgrounds.
 • 1 MP4 file — 1080×1080 px, 60 fps, 12-second seamless loop
 • Silent (add your own music or keep it ambient)
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "de_jong_attractor": """\
 Instant download — seamless loop animation (MP4, 1080×1080, 30 fps, 8 s).
@@ -230,8 +221,7 @@ media backgrounds.
 
 ► Art born from equations.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "phyllotaxis_bloom": """\
 Instant download — seamless loop animation (MP4, 1600×1600, 60 fps, 8 s).
@@ -250,8 +240,7 @@ digital frames, or social media backgrounds.
 
 ► Art born from equations.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "voronoi_gardens_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -267,8 +256,7 @@ color fills.
 
 ► Print it once, color it endlessly — or use it on your iPad with GoodNotes.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "stem_focus_planner": """\
 Instant download — undated STEM focus planner for GoodNotes, Notability & any PDF app. \
@@ -290,8 +278,7 @@ side tabs to jump. Duplicate any page as often as you like — start any month, 
 Use the included stickers to mark important equations, deadlines, or achievements.
 
 This is a DIGITAL file — no physical product is shipped.
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "stem_notebook": """\
 Instant download — hyperlinked STEM digital notebook for GoodNotes, Notability \
@@ -313,8 +300,7 @@ Import the PDF into GoodNotes or Notability (or any annotation app), open it, \
 and tap the side tabs to navigate. Write with your Apple Pencil on any page.
 
 This is a DIGITAL file — no physical product is shipped.
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "voronoi_gardens_ipad": """\
 Instant download — iPad coloring bundle for GoodNotes, Notability & Procreate.
@@ -334,8 +320,7 @@ layers with the included palette.
 GoodNotes / Notability: open the PDF, tap a thumbnail, color right on top.
 Procreate: import a PNG, paint on a layer below the cell outlines.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "julia_morph_01": """\
 Instant download — seamless loop animation (MP4, 1080×1080, 60 fps, ~12 s).
@@ -349,8 +334,7 @@ Every frame is mathematically generated; the loop is perfect, with no visible cu
 
 ► Art born from equations.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "islamic_geometry_pdf": """\
 Instant download — color-by-number PDF coloring book (50 pages, 8.5×11 in).
@@ -364,8 +348,7 @@ color guide so every facet is exactly where it belongs.
 • 50 color-by-number star rosette designs with palette guide
 • Meditative, screen-free relaxation
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "celtic_knot_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -382,8 +365,7 @@ intricate weaves
 
 ► Print it once, color it endlessly — or use it on your iPad with GoodNotes.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "islamic_geometry_ipad": """\
 Color by number on your iPad — no printer, no mess.
@@ -434,8 +416,7 @@ included Celtic palette.
 GoodNotes / Notability: open the PDF, tap a thumbnail, color right on top.
 Procreate: import a PNG, paint on a layer below the woven bands.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "voronoi_cell_garden": """\
 A living mosaic that never stops breathing.
@@ -505,8 +486,7 @@ WHAT YOU GET
 Designed with our elegant Dark Mode (Navy & Gold) aesthetic to match your \
 favorite IDE and reduce eye strain.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "life_planner": """\
 Instant download — undated all-in-one digital planner for GoodNotes, Notability \
@@ -534,8 +514,7 @@ like — start any month, any year.
 This is a DIGITAL file — no physical product is shipped. A separate PDF \
 annotation app is required. Not designed for printing.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "spiral_tilings_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -551,8 +530,7 @@ coloring experience as you follow the fractal-like curves outward.
 
 ► Print it once, color it endlessly — or use it on your iPad with GoodNotes.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "graph_paper": """\
 Instant download — printable graph & grid paper in 8 styles, US Letter + A4.
@@ -580,8 +558,7 @@ Print as many as you like. Works on any printer, black & white is fine.
 This is a DIGITAL download — no physical item is shipped.
 
 © MathRelaxing. For personal & classroom use. Do not resell or redistribute \
-the files themselves.
-mathrelaxing.store""",
+the files themselves.""",
 
     "fractal_palettes": """\
 Instant download — 8 Procreate color palettes (.swatches), 30 colors each.
@@ -613,8 +590,7 @@ Open Procreate → tap the color circle → Palettes → the + button → \
 This is a DIGITAL download — no physical item is shipped.
 
 © MathRelaxing. For personal & commercial artwork. Do not resell or \
-redistribute the palette files themselves.
-mathrelaxing.store""",
+redistribute the palette files themselves.""",
 
     "chaos_palettes": """\
 Instant download — 8 Procreate color palettes (.swatches), 30 colors each.
@@ -645,8 +621,7 @@ Open Procreate → tap the color circle → Palettes → the + button → \
 This is a DIGITAL download — no physical item is shipped.
 
 © MathRelaxing. For personal & commercial artwork. Do not resell or \
-redistribute the palette files themselves.
-mathrelaxing.store""",
+redistribute the palette files themselves.""",
 
     "phd_planner": """\
 Instant download — undated digital planner for GoodNotes, Notability & any PDF \
@@ -679,8 +654,7 @@ page as many times as you need.
 This is a DIGITAL file — no physical product is shipped. A separate PDF \
 annotation app is required.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "physics_calculus_equations": """\
 Eight equations from physics and calculus, set as elegant typography —
@@ -732,8 +706,7 @@ INSTANT DOWNLOAD · No physical item is shipped.
 
 I'm an electrical engineer who got lost in recreational mathematics.
 Every piece in this shop is written from scratch in Python — equations,
-typography, colours and all.
-mathrelaxing.store""",
+typography, colours and all.""",
 
     "chladni_collection": """\
 Chladni figures — the hidden geometry of sound, rendered entirely with code.
@@ -774,8 +747,7 @@ INSTANT DOWNLOAD · No physical item is shipped.
 
 I'm an electrical engineer who got lost in recreational mathematics.
 Every piece in this shop is written from scratch in Python — equations,
-rendering, colours and all.
-mathrelaxing.store""",
+rendering, colours and all.""",
 
     "attractor_collection": """\
 Six strange attractors of chaos theory, rendered entirely with code —
@@ -812,8 +784,7 @@ INSTANT DOWNLOAD · No physical item is shipped.
 
 I'm an electrical engineer who got lost in recreational mathematics.
 Every piece in this shop is written from scratch in Python — equations,
-rendering, colours and all.
-mathrelaxing.store""",
+rendering, colours and all.""",
 
     "harmonograph_print": """\
 A harmonograph figure, rendered entirely with code.
@@ -974,7 +945,7 @@ toward infinity — a meditative coloring experience unlike any other.
 • A blank page after every design, so pens/markers never bleed through to the next one
 • Made fresh for your order (print-on-demand) — ships in 3-5 business days
 
-© MathRelaxing. mathrelaxing.store""",
+© MathRelaxing.""",
 
     "fractal_flora_physical": """\
 PRINTED physical coloring book — ships to your door (50 designs, 8.5×11 in, perfect-bound).
@@ -988,7 +959,7 @@ precision and free of color numbers.
 • A blank page after every design, so pens/markers never bleed through to the next one
 • Made fresh for your order (print-on-demand) — ships in 3-5 business days
 
-© MathRelaxing. mathrelaxing.store""",
+© MathRelaxing.""",
 
     "sacred_math_physical": """\
 PRINTED physical coloring book — ships to your door (50 designs, 8.5×11 in, perfect-bound).
@@ -1003,7 +974,7 @@ rendered from its real parametric equations, not traced by hand.
 • A blank page after every design, so pens/markers never bleed through to the next one
 • Made fresh for your order (print-on-demand) — ships in 3-5 business days
 
-© MathRelaxing. mathrelaxing.store""",
+© MathRelaxing.""",
 
     "voronoi_gardens_physical": """\
 PRINTED physical coloring book — ships to your door (50 designs, 8.5×11 in, perfect-bound).
@@ -1017,7 +988,7 @@ cells. Every cell is a closed region — perfect for clean, satisfying color fil
 • A blank page after every design, so pens/markers never bleed through to the next one
 • Made fresh for your order (print-on-demand) — ships in 3-5 business days
 
-© MathRelaxing. mathrelaxing.store""",
+© MathRelaxing.""",
     "spiral_tilings_ipad": """\
 Experience the meditative flow of Color-by-Number with the endless mathematics of spirals, right on your iPad with this fully INTERACTIVE app-like experience.
 
@@ -1030,8 +1001,7 @@ Features:
 • Save your progress offline
 • 50 unique mathematically-generated designs
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "cbn_3d": """\
 Color by number in TRUE 3D on your iPad — rotate, zoom and colour a real three-dimensional shape, right in Safari. No app to install, no printer, no mess.
@@ -1064,8 +1034,7 @@ ABOUT
 ────────────────────────
 Every shape is built from its real geometry and lit in code — original work by the artist, never AI image generators.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
     "sacred_geometry_ipad_svg": """\
 Color low-poly 3D sacred geometry on your iPad — no printer, no app to install, no mess. A fully INTERACTIVE, app-like Color-by-Number experience that runs right in Safari.
@@ -1093,8 +1062,7 @@ ABOUT THE ART
 ────────────────────────
 Every design is a real mathematical surface — a torus, a Möbius band, a faceted sphere — triangulated and shaded by light in code, never AI image generators.
 
-© MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
 }
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
