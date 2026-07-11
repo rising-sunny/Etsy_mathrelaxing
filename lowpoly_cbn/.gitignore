@@ -1,3 +1,5 @@
 # regenerable prototype artifacts
 out/
 source_domain_coloring.png
+pkg_src/
+pkg_out/
