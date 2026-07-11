@@ -69,24 +69,26 @@ def build_all(out_dir):
     r4 = [1, -1, 1j, -1j]
     r3 = [np.exp(2j * np.pi * k / 3) for k in range(3)]
     pieces = [
-        ("trefoil", "Trefoil Field",
+        ("trefoil", "Trefoil Field", "domain colouring of (z³−1)/(z²+c)",
          lambda p: domain_coloring(lambda z: (z**3 - 1) / (z**2 + (0.35 + 0.5j)), p, hue_shift=0.6), 88, 12),
-        ("rosette5", "Pentafoil Rosette",
+        ("rosette5", "Pentafoil Rosette", "domain colouring of z⁵−1",
          lambda p: domain_coloring(lambda z: z**5 - 1, p, span=1.6), 88, 10),
-        ("dipole", "Dipole",
+        ("dipole", "Dipole", "domain colouring of (z²−1)/(z²+1)",
          lambda p: domain_coloring(lambda z: (z**2 - 1) / (z**2 + 1), p, span=2.2, hue_shift=1.2), 92, 10),
-        ("wave", "Standing Wave",
+        ("wave", "Standing Wave", "domain colouring of sin(z)",
          lambda p: domain_coloring(lambda z: np.sin(z * 1.4), p, span=3.0), 92, 12),
-        ("newton3", "Newton Basins  z³−1",
+        ("newton3", "Newton Basins  z³−1", "Newton's-method basins of attraction",
          lambda p: newton_fractal(r3, p, span=1.5), 82, 9),
-        ("newton5", "Newton Basins  z⁵−1",
+        ("newton5", "Newton Basins  z⁵−1", "Newton's-method basins of attraction",
          lambda p: newton_fractal(r5, p, span=1.5, hue0=0.15), 82, 11),
     ]
     made = []
-    for key, title, builder, side, ncol in pieces:
+    for key, title, desc, builder, side, ncol in pieces:
         src = os.path.join(out_dir, f"src_{key}.png")
-        builder(src)
-        made.append({"key": key, "title": title, "src": src, "side": side, "colors": ncol})
+        if not os.path.exists(src):          # sources are deterministic; reuse if present
+            builder(src)
+        made.append({"key": key, "title": title, "desc": desc, "src": src,
+                     "side": side, "colors": ncol})
     return made
 
 

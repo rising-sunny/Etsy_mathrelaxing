@@ -3,19 +3,17 @@ lowpoly_core.py — headless "geometric color-by-number" generator.
 
 Extracted and cleaned from the desktop Tkinter tool (ingramspark_kdp_video.py):
 no GUI, no CMYK/print-book pipeline. Takes ONE full-colour source image and
-produces digital, Etsy-ready deliverables:
+produces digital, Etsy-ready deliverables styled to match the MathRelaxing
+coloring books (serif titles, gold rules, "COLOR KEY" legend):
 
-  * <name>_coloring.png  — the printable page: white cells, grid outlines,
-    a number in every cell, and a numbered colour legend.
-  * <name>_colored.png   — the solution (cells filled with their colour) + legend.
+  * <name>_coloring.png  — printable page: title, tessellated numbered cells,
+    numbered colour key, page label.
+  * <name>_colored.png   — the full-colour solution.
   * <name>_coloring.pdf  — the coloring page as a single 300 dpi US-Letter PDF.
 
-Fixes vs the original: numbers are now drawn for triangular and hexagonal
-tilings too (the original only numbered squares); nearest-colour matching and
-font loading are robust and dependency-light (PIL + numpy + scikit-learn).
-
-    from lowpoly_core import generate_cbn
-    generate_cbn("art.png", "out/", poly_type="triangular", side_length=46, num_colors=12)
+Fixes vs the original: numbers are drawn for triangular/hexagonal tilings too
+(original numbered squares only) and the triangular tiling is a true gap-free
+tessellation (original left diamond gaps). Uses PIL median-cut quantization.
 """
 import os
 import math
@@ -24,12 +22,21 @@ from PIL import Image, ImageDraw, ImageFont
 
 DPI = 300
 LETTER_PX = (int(8.5 * DPI), int(11 * DPI))   # 2550 x 3300
+GOLD = (201, 162, 75)
+INK = (38, 38, 38)
+GRID = (170, 170, 170)
+NUM = (110, 110, 110)
 
 
-def _font(size):
-    for name in ("DejaVuSans-Bold.ttf", "Arial Bold.ttf", "arialbd.ttf", "arial.ttf"):
+def _font(size, bold=True, serif=False):
+    if serif:
+        names = ("DejaVuSerif-Bold.ttf",) if bold else ("DejaVuSerif.ttf",)
+    else:
+        names = ("DejaVuSans-Bold.ttf", "arialbd.ttf", "arial.ttf") if bold else \
+                ("DejaVuSans.ttf", "arial.ttf")
+    for n in names:
         try:
-            return ImageFont.truetype(name, size)
+            return ImageFont.truetype(n, size)
         except Exception:
             continue
     return ImageFont.load_default()
@@ -55,41 +62,49 @@ def _nearest_number(color, palette):
     return int(np.argmin(d)) + 1
 
 
-def _centered_text(draw, text, cx, cy, font, fill):
+def _centered(draw, text, cx, cy, font, fill):
     l, t, r, b = draw.textbbox((0, 0), text, font=font)
     draw.text((cx - (r - l) / 2 - l, cy - (b - t) / 2 - t), text, font=font, fill=fill)
 
 
-def _draw_legend(draw, palette, x, y, max_w, sw=64, gap=26, font=None):
-    font = font or _font(40)
-    cx = x
-    cy = y
-    for i, col in enumerate(palette, start=1):
-        label = str(i)
-        lb = draw.textbbox((0, 0), label, font=font)
-        cell_w = sw + 14 + (lb[2] - lb[0]) + gap
-        if cx + cell_w > x + max_w:
-            cx = x
-            cy += sw + gap
-        draw.rectangle([cx, cy, cx + sw, cy + sw], fill=tuple(int(c) for c in col),
-                       outline=(60, 60, 60), width=3)
-        _centered_text(draw, label, cx + sw + 14 + (lb[2] - lb[0]) / 2, cy + sw / 2,
-                       font, (30, 30, 30))
-        cx += cell_w
-    return cy + sw
+def _draw_key(draw, palette, cx, top, max_w):
+    """Centered numbered colour key with a small serif heading."""
+    head = _font(40, serif=True)
+    _centered(draw, "COLOR KEY", cx, top, head, GOLD)
+    sw, pad, gap = 60, 12, 46
+    lf = _font(38, serif=True)
+    # lay swatches out centered, wrapping rows
+    items = []
+    for i, col in enumerate(palette, 1):
+        lb = draw.textbbox((0, 0), str(i), font=lf)
+        items.append((str(i), tuple(int(c) for c in col), sw + pad + (lb[2] - lb[0])))
+    rows, cur, cw = [], [], 0
+    for it in items:
+        w = it[2] + gap
+        if cw + w > max_w and cur:
+            rows.append((cur, cw)); cur, cw = [], 0
+        cur.append(it); cw += w
+    if cur:
+        rows.append((cur, cw))
+    y = top + 60
+    for row, rw in rows:
+        x = cx - (rw - gap) / 2
+        for label, col, w in row:
+            draw.rectangle([x, y, x + sw, y + sw], fill=col, outline=(70, 70, 70), width=3)
+            lb = draw.textbbox((0, 0), label, font=lf)
+            _centered(draw, label, x + sw + pad + (lb[2] - lb[0]) / 2, y + sw / 2, lf, INK)
+            x += w + gap
+        y += sw + 30
+    return y
 
 
 def _iter_cells(poly_type, art_w, art_h, s):
-    """Yield (points, sample_xy) for each tile fully inside the art box."""
     if poly_type == "square":
         for y in range(0, art_h - s + 1, s):
             for x in range(0, art_w - s + 1, s):
                 pts = [(x, y), (x + s, y), (x + s, y + s), (x, y + s)]
                 yield pts, (x + s / 2, y + s / 2)
     elif poly_type == "triangular":
-        # proper tessellation: each horizontal strip is height th; triangles of
-        # base s are placed every s/2, alternating point-up / point-down so they
-        # interlock with no gaps.
         th = s * math.sqrt(3) / 2
         half = s / 2
         rows = int(art_h / th) + 1
@@ -98,9 +113,9 @@ def _iter_cells(poly_type, art_w, art_h, s):
             y = r * th
             for i in range(cols):
                 left = i * half
-                if (i + r) % 2 == 0:                       # point-up
+                if (i + r) % 2 == 0:
                     pts = [(left, y + th), (left + s, y + th), (left + half, y)]
-                else:                                       # point-down
+                else:
                     pts = [(left, y), (left + s, y), (left + half, y + th)]
                 if min(p[0] for p in pts) >= 0 and max(p[0] for p in pts) <= art_w \
                    and min(p[1] for p in pts) >= 0 and max(p[1] for p in pts) <= art_h:
@@ -125,42 +140,50 @@ def _iter_cells(poly_type, art_w, art_h, s):
         raise ValueError("poly_type must be square|triangular|hexagonal")
 
 
+def _page(page_px, title, subtitle, page_label):
+    """Blank branded page with serif title, gold rule, subtitle, page label.
+    Returns (image, draw, content_top_y, content_bottom_y)."""
+    img = Image.new("RGB", page_px, "white")
+    d = ImageDraw.Draw(img)
+    W, H = page_px
+    _centered(d, title, W / 2, 150, _font(66, serif=True), INK)
+    d.line([(W / 2 - 320, 232), (W / 2 + 320, 232)], fill=GOLD, width=4)
+    if subtitle:
+        _centered(d, subtitle, W / 2, 285, _font(34, bold=False, serif=True), (120, 120, 120))
+    if page_label:
+        _centered(d, page_label, W / 2, H - 90, _font(30, serif=True), (150, 150, 150))
+    top = 340 if subtitle else 300
+    return img, d, top, H - 150
+
+
 def generate_cbn(src_path, out_dir, poly_type="triangular", side_length=46,
-                 num_colors=12, page_px=LETTER_PX, margin=110, legend_gap=70,
-                 title="MathRelaxing  ·  Color by Number"):
+                 num_colors=12, page_px=LETTER_PX, margin=150,
+                 title="Color by Number", subtitle=None, page_label=None):
     os.makedirs(out_dir, exist_ok=True)
     src = Image.open(src_path).convert("RGB")
     quant, palette = quantize(src, num_colors)
-
     page_w, page_h = page_px
-    # reserve space: top title, side margins, bottom legend
-    title_h = 130
-    legend_rows_guess = max(1, math.ceil(num_colors / 8))
-    legend_h = 60 + legend_rows_guess * (64 + 26) + 40
-    avail_w = page_w - 2 * margin
-    avail_h = page_h - 2 * margin - title_h - legend_h - legend_gap
 
+    legend_rows = max(1, math.ceil(num_colors / 8))
+    legend_h = 60 + 60 + legend_rows * (60 + 30) + 30
+    gap = 70
+
+    coloring, dc, top, bottom = _page(page_px, title, subtitle, page_label)
+    colored, dk, _, _ = _page(page_px, title, subtitle, page_label)
+
+    avail_w = page_w - 2 * margin
+    avail_h = (bottom - legend_h - gap) - top
     ar = quant.width / quant.height
-    if avail_w / avail_h > ar:      # height-bound
-        art_h = avail_h
-        art_w = int(art_h * ar)
-    else:                            # width-bound
-        art_w = avail_w
-        art_h = int(art_w / ar)
+    if avail_w / avail_h > ar:
+        art_h = int(avail_h); art_w = int(art_h * ar)
+    else:
+        art_w = int(avail_w); art_h = int(art_w / ar)
     art = quant.resize((art_w, art_h), Image.Resampling.LANCZOS)
     art_px = np.asarray(art)
 
     off_x = (page_w - art_w) // 2
-    off_y = margin + title_h
-
-    coloring = Image.new("RGB", page_px, "white")
-    colored = Image.new("RGB", page_px, "white")
-    dc = ImageDraw.Draw(coloring)
-    dk = ImageDraw.Draw(colored)
-
-    grid_rgb = (165, 165, 165)
+    off_y = top
     num_font = _font(max(14, int(side_length * (0.42 if poly_type != "triangular" else 0.34))))
-    num_rgb = (95, 95, 95)
 
     ncells = 0
     for pts, (sx, sy) in _iter_cells(poly_type, art_w, art_h, side_length):
@@ -169,20 +192,14 @@ def generate_cbn(src_path, out_dir, poly_type="triangular", side_length=46,
         color = tuple(int(c) for c in art_px[iy, ix])
         n = _nearest_number(color, palette)
         shifted = [(off_x + px, off_y + py) for px, py in pts]
-        dc.polygon(shifted, fill="white", outline=grid_rgb)
-        _centered_text(dc, str(n), off_x + sx, off_y + sy, num_font, num_rgb)
+        dc.polygon(shifted, fill="white", outline=GRID)
+        _centered(dc, str(n), off_x + sx, off_y + sy, num_font, NUM)
         dk.polygon(shifted, fill=color)
         ncells += 1
 
-    # title
-    tf = _font(64)
-    _centered_text(dc, title, page_w / 2, margin + title_h / 2 - 10, tf, (40, 40, 40))
-    _centered_text(dk, title, page_w / 2, margin + title_h / 2 - 10, tf, (40, 40, 40))
-
-    # legend
-    ly = off_y + art_h + legend_gap
-    _draw_legend(dc, palette, margin, ly, avail_w, font=_font(40))
-    _draw_legend(dk, palette, margin, ly, avail_w, font=_font(40))
+    key_top = off_y + art_h + gap
+    _draw_key(dc, palette, page_w / 2, key_top, avail_w)
+    _draw_key(dk, palette, page_w / 2, key_top, avail_w)
 
     base = os.path.splitext(os.path.basename(src_path))[0]
     p_color = os.path.join(out_dir, f"{base}_coloring.png")
@@ -192,11 +209,10 @@ def generate_cbn(src_path, out_dir, poly_type="triangular", side_length=46,
     colored.save(p_sol, dpi=(DPI, DPI))
     coloring.save(p_pdf, "PDF", resolution=DPI)
     return {"coloring": p_color, "colored": p_sol, "pdf": p_pdf,
-            "cells": ncells, "colors": num_colors, "art_size": (art_w, art_h)}
+            "cells": ncells, "colors": num_colors, "art_size": (art_w, art_h),
+            "coloring_img": coloring, "colored_img": colored}
 
 
 if __name__ == "__main__":
     import sys
-    src = sys.argv[1]
-    info = generate_cbn(src, os.path.join(os.path.dirname(__file__), "out"))
-    print(info)
+    print(generate_cbn(sys.argv[1], os.path.join(os.path.dirname(__file__), "out")))
