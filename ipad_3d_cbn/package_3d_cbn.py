@@ -22,8 +22,8 @@ PREV = os.path.join(HERE, "previews")
 APP = os.path.join(HERE, "MathRelaxing_3D_CBN.html")
 os.makedirs(PREV, exist_ok=True)
 
-FIG_ORDER = ["Tetrahedron", "Cube", "Octahedron", "Dodecahedron",
-             "Icosahedron", "GeodesicSphere", "Torus", "Gem"]
+FIG_ORDER = ["GeodesicSphere", "FacetedGem", "Torus", "Dodecahedron",
+             "Icosahedron", "Octahedron", "Cube", "Tetrahedron"]
 
 
 def cap(name):
@@ -126,8 +126,8 @@ def preview_how():
 def preview_included():
     fig, ax = brand.ipad_fig()
     ax.text(5, 9.4, "8 Interactive 3D Figures", ha="center", fontsize=38, color=brand.CREAM, **brand.SERIF_BOLD)
-    labels = ["Tetrahedron", "Cube", "Octahedron", "Dodecahedron",
-              "Icosahedron", "Geodesic Sphere", "Torus", "Gem"]
+    labels = ["Geodesic Sphere", "Faceted Gem", "Torus", "Dodecahedron",
+              "Icosahedron", "Octahedron", "Cube", "Tetrahedron"]
     cols = 4
     xs = [1.55, 3.75, 6.25, 8.45]
     rows_y = [6.7, 3.9]

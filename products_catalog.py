@@ -2199,9 +2199,9 @@ PRODUCTS = {
             p("ipad_3d_cbn", "previews", "prev_1_hero.jpg"),
             p("ipad_3d_cbn", "previews", "prev_2_how.jpg"),
             p("ipad_3d_cbn", "previews", "prev_3_included.jpg"),
-            p("ipad_3d_cbn", "_caps", "fig_5_GeodesicSphere.png"),
-            p("ipad_3d_cbn", "_caps", "fig_6_Torus.png"),
-            p("ipad_3d_cbn", "_caps", "fig_3_Dodecahedron.png"),
+            p("ipad_3d_cbn", "_caps", "fig_0_GeodesicSphere.png"),
+            p("ipad_3d_cbn", "_caps", "fig_1_FacetedGem.png"),
+            p("ipad_3d_cbn", "_caps", "fig_2_Torus.png"),
         ],
         "files": [
             p("ipad_3d_cbn", "MathRelaxing_3D_CBN.zip"),

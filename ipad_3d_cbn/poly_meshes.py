@@ -121,19 +121,17 @@ def figure_library():
         v = v / np.abs(v).max()
         figs.append((name, v, f))
 
-    v, f = subdivide(*tetrahedron(), n=2);        add("Tetrahedron", v, f)   # 64
-    v, f = subdivide(*cube(), n=2);               add("Cube", v, f)          # 192
-    v, f = subdivide(*octahedron(), n=2);         add("Octahedron", v, f)    # 128
+    # ── led by the COMPLEX, richly-faceted figures (best lighting payoff) ──
+    v, f = subdivide(*icosahedron(), n=2, project=True); add("Geodesic Sphere", v, f)  # 320
+    vg, fg = gen_sphere_bumpy(bumps=6, bump_depth=0.09, u_steps=15, v_steps=12)
+    add("Faceted Gem", add_noise(vg, 0.005, seed=2), fg)                    # ~336, convex crystal
+    vt, ft = gen_torus(R=1.0, r=0.42, u_steps=15, v_steps=9)
+    add("Torus", add_noise(vt, 0.015, seed=1), ft)                          # ~252
     v, f = dodecahedron();                        add("Dodecahedron", v, f)  # 60
     v, f = subdivide(*icosahedron(), n=1);        add("Icosahedron", v, f)   # 80
-    v, f = subdivide(*icosahedron(), n=1, project=True); add("Geodesic Sphere", v, f)  # 80
-    # parametric surfaces (verts already Nx3, faces triangles) — kept ~200 faces
-    vt, ft = gen_torus(R=1.0, r=0.42, u_steps=12, v_steps=8)
-    add("Torus", add_noise(vt, 0.015, seed=1), ft)                          # ~192
-    vg, fg = gen_sphere_bumpy(bumps=5, bump_depth=0.13, u_steps=13, v_steps=10)
-    add("Gem", add_noise(vg, 0.006, seed=2), fg)                            # ~216, smoother
-    # (Möbius band omitted: a thin strip crowds the numbers — kept in the
-    #  generators for a future wide-band variant.)
+    v, f = subdivide(*octahedron(), n=2);         add("Octahedron", v, f)    # 128
+    v, f = subdivide(*cube(), n=2);               add("Cube", v, f)          # 192
+    v, f = subdivide(*tetrahedron(), n=2);        add("Tetrahedron", v, f)   # 64
     return figs
 
 

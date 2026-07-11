@@ -40,10 +40,15 @@ def mesh_data(name, verts, faces):
     L = np.array(light); H = np.array(height)
     Ln = (L - L.min()) / (np.ptp(L) + 1e-9)
     Hn = (H - H.min()) / (np.ptp(H) + 1e-9)
-    # lighting reveals the 3-D form; the height gradient makes flat faces vary
-    # (so a Platonic face isn't a single number) and widens the shade range.
-    comb = 0.6 * Ln + 0.4 * Hn
-    idx = np.clip(comb ** 0.9 * N_SHADES, 0, N_SHADES - 1).astype(int)
+    # lighting drives the 3-D reveal (heavy weight); the height term just breaks
+    # ties on flat faces so a Platonic face isn't one single number.
+    comb = 0.82 * Ln + 0.18 * Hn
+    # rank/histogram equalisation: order faces by brightness and spread them
+    # evenly across the 8 shades, so EVERY figure uses the full palette (the
+    # brightest faces still become cream, the darkest navy — the 3-D reveal is
+    # preserved — but no figure comes out muddy/all-dark regardless of geometry).
+    ranks = np.argsort(np.argsort(comb))
+    idx = np.clip(ranks / max(1, len(comb) - 1) * N_SHADES, 0, N_SHADES - 1).astype(int)
     return {
         "name": name,
         "positions": [round(x, 4) for x in positions],
@@ -104,8 +109,10 @@ renderer.setPixelRatio(Math.min(2,devicePixelRatio));
 const scene = new THREE.Scene(); scene.background = new THREE.Color(0x14151b);
 const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 100);
 let camDist = 3.9;
-scene.add(new THREE.AmbientLight(0xffffff,0.55));
-const dl = new THREE.DirectionalLight(0xffffff,0.8); dl.position.set(-4,5,7); scene.add(dl);
+// dramatic lighting so the coloured faces show strong 3-D relief
+scene.add(new THREE.AmbientLight(0xffffff,0.30));
+const dl = new THREE.DirectionalLight(0xffffff,1.15); dl.position.set(-4,6,7); scene.add(dl);
+const dl2 = new THREE.DirectionalLight(0x88a0ff,0.30); dl2.position.set(5,-3,-5); scene.add(dl2);  // cool rim
 
 // shared number textures (1..NS)
 function numTexture(n){const s=128,cv=document.createElement('canvas');cv.width=cv.height=s;const x=cv.getContext('2d');
@@ -129,7 +136,9 @@ function loadFigure(idx){
   geo.computeVertexNormals();
   mesh=new THREE.Mesh(geo,new THREE.MeshLambertMaterial({vertexColors:true,flatShading:true,side:THREE.DoubleSide}));
   group.add(mesh);
-  group.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo,1),new THREE.LineBasicMaterial({color:0x0c0d12})));
+  // WIREFRAME (every triangle edge) so all colour-by-number regions are outlined
+  group.add(new THREE.LineSegments(new THREE.WireframeGeometry(geo),
+     new THREE.LineBasicMaterial({color:0x5a5e6c,transparent:true,opacity:0.55})));
   sprites=[];normVecs=[];
   for(let f=0;f<nF;f++){
     const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:numTex[M.faceColor[f]],depthTest:true,transparent:true}));
@@ -198,7 +207,7 @@ function animate(){requestAnimationFrame(animate);
     sprites[f].visible = colored[f]<0 && wn.z>0.15;}   // hide coloured & back-facing numbers
   if(flashT>0){flashT--;scene.background.setHex(flashT%2?0x3a1414:0x14151b);}else scene.background.setHex(0x14151b);
   renderer.render(scene,camera);}
-loadFigure(4);   // start on the Icosahedron
+loadFigure(0);   // start on the complex Geodesic Sphere
 animate();
 </script></body></html>"""
 
