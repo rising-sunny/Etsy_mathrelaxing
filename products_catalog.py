@@ -1033,6 +1033,40 @@ Features:
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 mathrelaxing.store""",
 
+    "cbn_3d": """\
+Color by number in TRUE 3D on your iPad — rotate, zoom and colour a real three-dimensional shape, right in Safari. No app to install, no printer, no mess.
+
+This is not a flat picture. It's an interactive 3D app: a low-poly figure floats on screen with every face numbered. Pick a colour, spin the shape to any numbered face, tap it — the colour lands and the number disappears. Colour it in and the figure lights up as a shaded three-dimensional object.
+
+────────────────────────
+8 INTERACTIVE 3D FIGURES
+────────────────────────
+The five Platonic solids — Tetrahedron, Cube, Octahedron, Dodecahedron, Icosahedron — plus a Geodesic Sphere, a Torus and a faceted Gem. Every figure is generated from real mathematics (no AI, no clip-art).
+
+────────────────────────
+HOW IT WORKS
+────────────────────────
+• Drag to rotate · pinch to zoom · tap a numbered face to fill it
+• Numbers only show on the faces turned toward you — no clutter
+• Progress saves automatically, per figure
+• Undo, Clear and Reset-view buttons
+• Runs 100% offline in Safari — also works on iPhone, Android, Mac & PC
+
+────────────────────────
+WHAT YOU GET · instant download
+────────────────────────
+• 1 self-contained HTML app (all 8 figures inside)
+• A "How to Use on iPad" instructions PDF
+• No physical item is shipped
+
+────────────────────────
+ABOUT
+────────────────────────
+Every shape is built from its real geometry and lit in code — original work by the artist, never AI image generators.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+mathrelaxing.store""",
+
     "sacred_geometry_ipad_svg": """\
 Color low-poly 3D sacred geometry on your iPad — no printer, no app to install, no mess. A fully INTERACTIVE, app-like Color-by-Number experience that runs right in Safari.
 
@@ -2154,6 +2188,40 @@ PRODUCTS = {
         ],
         "tags": ["ipad coloring book","color by number","goodnotes planner","procreate coloring","digital mandala","spiral art","math art","pastel aesthetic","adult coloring pdf","procreate swatches","digital download","relaxing coloring","adhd coloring"],
         "notes": "Generado con build_spiral_ipad.py",
+    },
+
+    "cbn_3d": {
+        "title":       "Interactive 3D Color By Number for iPad — Rotate Zoom & Colour 8 Math Solids | Platonic Polyhedra Torus Sphere Digital Download",
+        "description": DESCRIPTIONS["cbn_3d"],
+        "price":       12.99,
+        "taxonomy_id": TAXONOMY["ipad_coloring"],
+        "images": [
+            p("ipad_3d_cbn", "previews", "prev_1_hero.jpg"),
+            p("ipad_3d_cbn", "previews", "prev_2_how.jpg"),
+            p("ipad_3d_cbn", "previews", "prev_3_included.jpg"),
+            p("ipad_3d_cbn", "_caps", "fig_5_GeodesicSphere.png"),
+            p("ipad_3d_cbn", "_caps", "fig_6_Torus.png"),
+            p("ipad_3d_cbn", "_caps", "fig_3_Dodecahedron.png"),
+        ],
+        "files": [
+            p("ipad_3d_cbn", "MathRelaxing_3D_CBN.zip"),
+        ],
+        "tags": ["ipad coloring book","color by number","3d coloring","interactive art",
+                 "platonic solids","math art","geometry gift","stem gift","low poly art",
+                 "polyhedron art","digital download","relaxing coloring","adhd coloring"],
+        "notes": "NUEVA LINEA: color-by-number 3D INTERACTIVO (Three.js/WebGL) — el usuario rota, zoom "
+                  "y colorea una figura 3D poligonal numerada en Safari (offline, sin app). Diferenciador "
+                  "fuerte: casi nadie vende CBN 3D interactivo. ipad_3d_cbn/poly_meshes.py (solidos "
+                  "platonicos via dual del icosaedro + subdivision + esfera geodesica) + math_meshes "
+                  "(toro, gema). build_3d_cbn.py genera UNA app HTML autocontenida (three.min.js inline "
+                  "una vez ~603KB) con menu de 8 figuras, caras numeradas por iluminacion+gradiente de "
+                  "altura, tap-to-fill por raycasting, oclusion de numeros traseros, guardado por figura, "
+                  "undo/clear/reset. Verificado en Chromium (WebGL, switch, fill, occlusion, sin errores). "
+                  "package_3d_cbn.py: How_to_Use PDF + ZIP (0.2MB: app+pdf) + 3 previews (hero/how/included) "
+                  "con capturas reales via Playwright. 6 imagenes. Precio $12.99 (premium sobre SVG $9.99 "
+                  "por novedad/interactividad 3D). Requiere Safari moderno (iPad lo tiene). Extensible: mas "
+                  "poliedros (arquimedianos, estrellados), variantes de paleta. Pendiente: subir draft + "
+                  "activacion manual. Subido draft 2026-07-11, listing_id=4535962223.",
     },
 
     "sacred_geometry_ipad_svg": {
