@@ -51,7 +51,7 @@ function numTexture(n){const s=128,cv=document.createElement('canvas');cv.width=
   x.fillText(n,s/2,s/2+4);const t=new THREE.CanvasTexture(cv);t.anisotropy=4;return t;}
 const numTex=[];for(let i=0;i<NS;i++)numTex.push(numTexture(i+1));
 
-let group,mesh,geo,col,sprites,normVecs,colored,history,cur=-1,selected=null;
+let group,mesh,geo,col,sprites,centV,colored,history,cur=-1,selected=null,visDirty=true;
 
 function loadFigure(idx){
   if(group){scene.remove(group);geo.dispose();
@@ -70,19 +70,20 @@ function loadFigure(idx){
   // WIREFRAME (every triangle edge) so all colour-by-number regions are outlined
   group.add(new THREE.LineSegments(new THREE.WireframeGeometry(geo),
      new THREE.LineBasicMaterial({color:0x5a5e6c,transparent:true,opacity:0.55})));
-  sprites=[];normVecs=[];
+  sprites=[];centV=[];
   for(let f=0;f<nF;f++){
-    // depthTest:false — a bumpy/non-convex figure (the gem) otherwise occludes
-    // its own numbers; back-face culling (wn.z>0.15 in animate) already hides
-    // numbers on faces pointing away, so only front numbers ever draw.
+    // depthTest:false — the GPU depth test is unreliable for these sprites on
+    // some mobile GL stacks (numbers vanish or bleed through), so we decide
+    // visibility ourselves by raycasting camera->face each view change (recomputeVis).
     const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:numTex[M.faceColor[f]],depthTest:false,transparent:true}));
-    const c=M.centroids[f],n=M.normals[f];
+    const c=M.centroids[f];
     // size each number to its own face (inscribed-circle radius) so numbers on
     // small faces stay inside their cell instead of overlapping neighbours.
     const sc=Math.max(0.03,Math.min(0.14,M.faceSize[f]*1.5));
-    sp.position.set(c[0]+n[0]*0.02,c[1]+n[1]*0.02,c[2]+n[2]*0.02);sp.scale.setScalar(sc);
-    group.add(sp);sprites.push(sp);normVecs.push(new THREE.Vector3(n[0],n[1],n[2]));
+    sp.position.set(c[0],c[1],c[2]);sp.scale.setScalar(sc);
+    group.add(sp);sprites.push(sp);centV.push(new THREE.Vector3(c[0],c[1],c[2]));
   }
+  visDirty=true;
   scene.add(group);
   colored=new Array(nF).fill(-1);history=[];
   try{const s=JSON.parse(localStorage.getItem(key())||'[]');s.forEach((ci,f)=>{if(ci>=0)paint(f,ci);});}catch(e){}
@@ -91,9 +92,9 @@ function loadFigure(idx){
 function key(){return 'cbn3d_'+MESHES[cur].name;}
 function paint(f,ci){const c=new THREE.Color(PAL[ci]);
   for(let k=0;k<3;k++){col[f*9+k*3]=c.r;col[f*9+k*3+1]=c.g;col[f*9+k*3+2]=c.b;}
-  geo.attributes.color.needsUpdate=true;colored[f]=ci;}
+  geo.attributes.color.needsUpdate=true;colored[f]=ci;visDirty=true;}
 function unpaint(f){for(let k=0;k<3;k++){col[f*9+k*3]=UNCOLORED.r;col[f*9+k*3+1]=UNCOLORED.g;col[f*9+k*3+2]=UNCOLORED.b;}
-  geo.attributes.color.needsUpdate=true;colored[f]=-1;}
+  geo.attributes.color.needsUpdate=true;colored[f]=-1;visDirty=true;}
 function save(){try{localStorage.setItem(key(),JSON.stringify(colored));}catch(e){}}
 function updateProg(){const n=colored.filter(x=>x>=0).length;
   document.getElementById('prog').textContent=MESHES[cur].name+' — '+Math.round(100*n/colored.length)+'%';}
@@ -136,12 +137,32 @@ addEventListener('touchend',e=>{if(e.changedTouches.length)up(e.changedTouches[0
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
 renderer.setSize(innerWidth,innerHeight);
 
-const q=new THREE.Quaternion(),wn=new THREE.Vector3();
+// Show a number only when its face is actually visible: cast a ray from the
+// camera to the face centroid and hide the number if the mesh blocks the line
+// of sight (a nearer face is in front). This is done on the CPU so it behaves
+// the same on every device, regardless of the GPU depth test. Recomputed only
+// when the view changes (rotate/zoom) or a face is painted, and throttled.
+const q=new THREE.Quaternion(),occRay=new THREE.Raycaster(),
+  _cam=new THREE.Vector3(),_cw=new THREE.Vector3(),_dir=new THREE.Vector3();
+let lastVisKey='',lastVisT=0;
+function recomputeVis(){
+  group.updateMatrixWorld(true);group.getWorldQuaternion(q);
+  _cam.set(0,0,camDist);
+  for(let f=0;f<sprites.length;f++){
+    if(colored[f]>=0){sprites[f].visible=false;continue;}
+    _cw.copy(centV[f]).applyQuaternion(q);
+    const dc=_cam.distanceTo(_cw);
+    _dir.copy(_cw).sub(_cam).multiplyScalar(1/dc);
+    occRay.set(_cam,_dir);occRay.far=dc+1;
+    const hit=occRay.intersectObject(mesh,false);
+    sprites[f].visible = !(hit.length && hit[0].distance < dc-0.02);  // blocked -> hide
+  }
+}
 function animate(){requestAnimationFrame(animate);
   camera.position.set(0,0,camDist);camera.lookAt(0,0,0);
-  group.getWorldQuaternion(q);
-  for(let f=0;f<sprites.length;f++){wn.copy(normVecs[f]).applyQuaternion(q);
-    sprites[f].visible = colored[f]<0 && wn.z>0.15;}   // hide coloured & back-facing numbers
+  const vk=group.rotation.x.toFixed(3)+','+group.rotation.y.toFixed(3)+','+camDist.toFixed(2);
+  const now=performance.now();
+  if((visDirty||vk!==lastVisKey)&&now-lastVisT>60){lastVisKey=vk;lastVisT=now;visDirty=false;recomputeVis();}
   if(flashT>0){flashT--;scene.background.setHex(flashT%2?0x3a1414:0x14151b);}else scene.background.setHex(0x14151b);
   renderer.render(scene,camera);}
 loadFigure(0);   // start on the complex Geodesic Sphere
