@@ -24,7 +24,7 @@ LIGHT = np.array([-0.45, 0.55, 0.75]); LIGHT = LIGHT / np.linalg.norm(LIGHT)
 
 
 def mesh_data(name, verts, faces):
-    positions, centroids, normals, light, height = [], [], [], [], []
+    positions, centroids, normals, light, height, insize = [], [], [], [], [], []
     for f in faces:
         v0, v1, v2 = verts[f[0]], verts[f[1]], verts[f[2]]
         nrm = np.cross(v1 - v0, v2 - v0)
@@ -37,6 +37,11 @@ def mesh_data(name, verts, faces):
         centroids.append(list(ct)); normals.append(list(nrm))
         light.append(max(0.05, float(np.dot(nrm, LIGHT))))
         height.append(float(np.dot(ct, LIGHT)))       # gradient along the light axis
+        # inradius (radius of the inscribed circle) = 2*area / perimeter — a
+        # robust "how big is this face" measure that drives the number size.
+        per = (np.linalg.norm(v1 - v0) + np.linalg.norm(v2 - v1)
+               + np.linalg.norm(v0 - v2))
+        insize.append(float(nl / (per + 1e-9)))        # = 2*area/perimeter
     L = np.array(light); H = np.array(height)
     Ln = (L - L.min()) / (np.ptp(L) + 1e-9)
     Hn = (H - H.min()) / (np.ptp(H) + 1e-9)
@@ -55,6 +60,7 @@ def mesh_data(name, verts, faces):
         "faceColor": idx.tolist(),
         "centroids": [[round(c, 4) for c in ct] for ct in centroids],
         "normals": [[round(n, 3) for n in nm] for nm in normals],
+        "faceSize": [round(s, 4) for s in insize],
     }
 
 
@@ -141,9 +147,15 @@ function loadFigure(idx){
      new THREE.LineBasicMaterial({color:0x5a5e6c,transparent:true,opacity:0.55})));
   sprites=[];normVecs=[];
   for(let f=0;f<nF;f++){
-    const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:numTex[M.faceColor[f]],depthTest:true,transparent:true}));
+    // depthTest:false — a bumpy/non-convex figure (the gem) otherwise occludes
+    // its own numbers; back-face culling (wn.z>0.15 in animate) already hides
+    // numbers on faces pointing away, so only front numbers ever draw.
+    const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:numTex[M.faceColor[f]],depthTest:false,transparent:true}));
     const c=M.centroids[f],n=M.normals[f];
-    sp.position.set(c[0]+n[0]*0.02,c[1]+n[1]*0.02,c[2]+n[2]*0.02);sp.scale.setScalar(0.12);
+    // size each number to its own face (inscribed-circle radius) so numbers on
+    // small faces stay inside their cell instead of overlapping neighbours.
+    const sc=Math.max(0.03,Math.min(0.14,M.faceSize[f]*1.5));
+    sp.position.set(c[0]+n[0]*0.02,c[1]+n[1]*0.02,c[2]+n[2]*0.02);sp.scale.setScalar(sc);
     group.add(sp);sprites.push(sp);normVecs.push(new THREE.Vector3(n[0],n[1],n[2]));
   }
   scene.add(group);
@@ -189,12 +201,12 @@ function up(x,y){drag=false;if(moved>7||selected===null)return;
 addEventListener('mousedown',e=>down(e.clientX,e.clientY));
 addEventListener('mousemove',e=>move(e.clientX,e.clientY));
 addEventListener('mouseup',e=>up(e.clientX,e.clientY));
-addEventListener('wheel',e=>{camDist=Math.max(1.6,Math.min(7,camDist+e.deltaY*0.002));},{passive:true});
+addEventListener('wheel',e=>{camDist=Math.max(1.15,Math.min(7,camDist+e.deltaY*0.002));},{passive:true});
 addEventListener('touchstart',e=>{if(e.touches.length===1)down(e.touches[0].clientX,e.touches[0].clientY);
   else if(e.touches.length===2){pinchD=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);drag=false;}},{passive:true});
 addEventListener('touchmove',e=>{if(e.touches.length===1)move(e.touches[0].clientX,e.touches[0].clientY);
   else if(e.touches.length===2){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
-    camDist=Math.max(1.6,Math.min(7,camDist*(pinchD/d)));pinchD=d;}},{passive:true});
+    camDist=Math.max(1.15,Math.min(7,camDist*(pinchD/d)));pinchD=d;}},{passive:true});
 addEventListener('touchend',e=>{if(e.changedTouches.length)up(e.changedTouches[0].clientX,e.changedTouches[0].clientY);});
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
 renderer.setSize(innerWidth,innerHeight);
