@@ -65,6 +65,18 @@ LISTINGS = {
         "price": 9.99,
         "listing_id": 4536831020,   # already published
     },
+    "cool": {
+        "title": ("Set of 6 Japandi Printable Wall Art | Sage Green Minimalist Line Art Gallery Wall Set | "
+                  "Cool Neutral Zen Decor | Mathematical Prints"),
+        "tags": ["japandi wall art", "printable wall art", "gallery wall set", "set of 6 prints",
+                 "sage green art", "minimalist print", "zen wall art", "abstract line art",
+                 "neutral wall art", "digital download", "scandinavian art", "living room decor",
+                 "math wall art"],
+        "description": _description("in a cool, muted Japandi palette", "Japandi / zen",
+                                    "Soft cool greige ground with sage, slate and charcoal line work"),
+        "price": 9.99,
+        "listing_id": 4536825589,   # draft published 2026-07-12 (activation manual)
+    },
     "mono": {
         "title": ("Set of 6 Black and White Printable Wall Art | Minimalist Line Art Gallery Wall Set | "
                   "Scandinavian Abstract Decor | Mathematical Prints"),
