@@ -16,8 +16,9 @@ import matplotlib.pyplot as plt
 from matplotlib import font_manager
 from PIL import Image, ImageDraw, ImageFilter
 
+import designs
 from render import render
-from designs import DESIGNS, COL, BG
+from designs import DESIGNS
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 LST = os.path.join(HERE, "out", "listing")
@@ -139,12 +140,12 @@ def detail_trio():
 
 def included():
     fig = plt.figure(figsize=(16, 12), dpi=125)
-    fig.patch.set_facecolor(BG)
+    fig.patch.set_facecolor(designs.BG)
     fig.suptitle("Six original designs — drawn from real mathematics",
                  y=0.98, fontproperties=SERIF, fontsize=26, color="#3a3733")
     for i, n in enumerate(NAMES):
         ax = fig.add_subplot(2, 3, i + 1)
-        ax.set_facecolor(BG)
+        ax.set_facecolor(designs.BG)
         ax.axis("off")
         ax.set_aspect("equal")
         xs, ys = DESIGNS[n]["fn"](ax, lw_scale=1.6)
@@ -158,7 +159,7 @@ def included():
                      fontsize=14, color="#4a463f", pad=8, linespacing=1.4)
     fig.subplots_adjust(left=0.02, right=0.98, top=0.85, bottom=0.03,
                         wspace=0.12, hspace=0.40)
-    fig.savefig(os.path.join(LST, "04_included.jpg"), facecolor=BG)
+    fig.savefig(os.path.join(LST, "04_included.jpg"), facecolor=designs.BG)
     plt.close(fig)
     print("04 included")
 
@@ -172,31 +173,31 @@ def sizes_chart():
         ("ISO/A", 1/np.sqrt(2), ["A5", "A4", "A3", "A2", "A1"]),
     ]
     fig = plt.figure(figsize=(16, 11), dpi=125)
-    fig.patch.set_facecolor(BG)
+    fig.patch.set_facecolor(designs.BG)
     fig.suptitle("Five aspect ratios included — print almost any size",
                  y=0.95, fontproperties=SERIF, fontsize=25, color="#3a3733")
     fig.text(0.5, 0.885, "Each of the 6 designs comes in all five ratios · 300 DPI · inches",
              ha="center", fontproperties=SERIF, fontsize=14, color="#6b6458")
     for i, (lab, a, sizes) in enumerate(ratios):
         ax = fig.add_subplot(1, 5, i + 1)
-        ax.set_facecolor(BG); ax.axis("off"); ax.set_aspect("equal")
+        ax.set_facecolor(designs.BG); ax.axis("off"); ax.set_aspect("equal")
         w = a; h = 1.0
         ax.add_patch(plt.Rectangle((-w/2, -h/2), w, h, fill=False,
-                     edgecolor=COL["terracotta"], lw=2.2))
+                     edgecolor=designs.accent(), lw=2.2))
         ax.text(0, 0.62, lab, ha="center", fontproperties=SERIF, fontsize=17,
                 color="#4a463f")
         ax.text(0, -0.66, "\n".join(sizes), ha="center", va="top",
                 fontproperties=SERIF, fontsize=12.5, color="#6b6458", linespacing=1.6)
         ax.set_xlim(-0.6, 0.6); ax.set_ylim(-1.15, 0.85)
     fig.subplots_adjust(left=0.02, right=0.98, top=0.84, bottom=0.05)
-    fig.savefig(os.path.join(LST, "05_sizes.jpg"), facecolor=BG)
+    fig.savefig(os.path.join(LST, "05_sizes.jpg"), facecolor=designs.BG)
     plt.close(fig)
     print("05 sizes")
 
 
 def how_it_works():
     fig = plt.figure(figsize=(16, 11), dpi=125)
-    fig.patch.set_facecolor(BG)
+    fig.patch.set_facecolor(designs.BG)
     ax = fig.add_axes([0, 0, 1, 1]); ax.axis("off")
     ax.text(0.5, 0.9, "How it works", ha="center", fontproperties=SERIF,
             fontsize=30, color="#3a3733")
@@ -208,8 +209,8 @@ def how_it_works():
     ]
     y = 0.72
     for num, head, body in steps:
-        ax.add_patch(plt.Circle((0.12, y), 0.045, color=COL["terracotta"]))
-        ax.text(0.12, y, num, ha="center", va="center", color=BG,
+        ax.add_patch(plt.Circle((0.12, y), 0.045, color=designs.accent()))
+        ax.text(0.12, y, num, ha="center", va="center", color=designs.BG,
                 fontproperties=SERIF, fontsize=22)
         ax.text(0.20, y+0.02, head, va="center", fontproperties=SERIF,
                 fontsize=20, color="#3a3733")
@@ -219,7 +220,7 @@ def how_it_works():
     ax.text(0.5, 0.05, "Instant digital download · for personal use",
             ha="center", fontproperties=SERIF, fontsize=13, color="#8a8478")
     ax.set_xlim(0, 1); ax.set_ylim(0, 1)
-    fig.savefig(os.path.join(LST, "06_how.jpg"), facecolor=BG)
+    fig.savefig(os.path.join(LST, "06_how.jpg"), facecolor=designs.BG)
     plt.close(fig)
     print("06 how")
 

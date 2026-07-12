@@ -19,14 +19,36 @@ Palette: warm cream ground, muted earth-tone line work (2026 Japandi/boho).
 import math
 import numpy as np
 
-BG = "#f2ebdd"
-COL = {
-    "terracotta": "#b5715a",
-    "sage":       "#7f9070",
-    "gold":       "#c2a05f",
-    "charcoal":   "#4a463f",
-    "clay":       "#a9765c",
+# Palettes. Each maps the ground ("bg"), a representative "accent" (used by the
+# listing mockups) and a colour per design. Switch with use_palette(name).
+PALETTES = {
+    # Listing 1 — warm earth-tone / boho (published).
+    "earth": {"bg": "#f2ebdd", "accent": "#b5715a",
+              "maurer": "#b5715a", "phyllotaxis": "#c2a05f", "hilbert": "#4a463f",
+              "cardioid": "#a9765c", "euler": "#4a463f", "fern": "#7f9070"},
+    # Cool Japandi — soft cool greige ground, slate / sage / charcoal line work.
+    "cool":  {"bg": "#e9e9e3", "accent": "#6d8b84",
+              "maurer": "#6f7d84", "phyllotaxis": "#8a9284", "hilbert": "#3d4340",
+              "cardioid": "#6d8b84", "euler": "#3d4340", "fern": "#7e8f76"},
+    # Cream & black monochrome — charcoal line art on warm ivory.
+    "mono":  {"bg": "#f4efe4", "accent": "#2b2823",
+              "maurer": "#2b2823", "phyllotaxis": "#2b2823", "hilbert": "#2b2823",
+              "cardioid": "#2b2823", "euler": "#2b2823", "fern": "#2b2823"},
 }
+
+BG = PALETTES["earth"]["bg"]
+_C = dict(PALETTES["earth"])
+
+
+def use_palette(name):
+    """Switch the active palette (mutates module state read by the designs)."""
+    global BG, _C
+    _C = dict(PALETTES[name])
+    BG = _C["bg"]
+
+
+def accent():
+    return _C["accent"]
 
 
 def d_maurer(ax, lw_scale=1.0):
@@ -35,11 +57,11 @@ def d_maurer(ax, lw_scale=1.0):
     th = np.radians(k * d)
     r = np.sin(n * th)
     x, y = r * np.cos(th), r * np.sin(th)
-    ax.plot(x, y, lw=0.5 * lw_scale, color=COL["terracotta"], alpha=0.75)
+    ax.plot(x, y, lw=0.5 * lw_scale, color=_C["maurer"], alpha=0.75)
     th2 = np.radians(np.arange(0, 361))
     r2 = np.sin(n * th2)
     ax.plot(r2 * np.cos(th2), r2 * np.sin(th2), lw=1.1 * lw_scale,
-            color=COL["terracotta"], alpha=0.5)
+            color=_C["maurer"], alpha=0.5)
     return x, y
 
 
@@ -49,7 +71,7 @@ def d_phyllotaxis(ax, lw_scale=1.0):
     a = k * np.radians(137.507)
     r = np.sqrt(k)
     x, y = r * np.cos(a), r * np.sin(a)
-    ax.scatter(x, y, s=((k / N) * 7 + 1) * lw_scale ** 2, color=COL["gold"],
+    ax.scatter(x, y, s=((k / N) * 7 + 1) * lw_scale ** 2, color=_C["phyllotaxis"],
                alpha=0.85, linewidths=0)
     return x, y
 
@@ -76,7 +98,7 @@ def d_hilbert(ax, lw_scale=1.0):
             s *= 2
         pts.append((x, y))
     p = np.array(pts, dtype=float)
-    ax.plot(p[:, 0], p[:, 1], lw=1.0 * lw_scale, color=COL["charcoal"],
+    ax.plot(p[:, 0], p[:, 1], lw=1.0 * lw_scale, color=_C["hilbert"],
             alpha=0.9, solid_capstyle="round")
     return p[:, 0], p[:, 1]
 
@@ -87,7 +109,7 @@ def d_cardioid(ax, lw_scale=1.0):
     th = np.linspace(0, 2 * np.pi, N, endpoint=False)
     px, py = np.cos(th), np.sin(th)
     segs = [[(px[i], py[i]), (px[(i * m) % N], py[(i * m) % N])] for i in range(N)]
-    ax.add_collection(LineCollection(segs, colors=COL["clay"],
+    ax.add_collection(LineCollection(segs, colors=_C["cardioid"],
                                      linewidths=0.4 * lw_scale, alpha=0.4))
     return px, py
 
@@ -99,7 +121,7 @@ def d_euler(ax, lw_scale=1.0):
     y = np.cumsum(np.sin(t * t)) * dt
     x -= x.mean()
     y -= y.mean()
-    ax.plot(x, y, lw=1.2 * lw_scale, color=COL["charcoal"], alpha=0.9,
+    ax.plot(x, y, lw=1.2 * lw_scale, color=_C["euler"], alpha=0.9,
             solid_capstyle="round")
     return x, y
 
@@ -123,7 +145,7 @@ def d_fern(ax, lw_scale=1.0):
             x, y = -0.15 * x + 0.28 * y, 0.26 * x + 0.24 * y + 0.44
         xs[i] = x
         ys[i] = y
-    ax.scatter(xs, ys, s=0.11 * lw_scale ** 2, color=COL["sage"], alpha=0.7,
+    ax.scatter(xs, ys, s=0.11 * lw_scale ** 2, color=_C["fern"], alpha=0.7,
                linewidths=0)
     return xs, ys
 

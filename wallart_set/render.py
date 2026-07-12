@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
-from designs import DESIGNS, RATIOS, BG
+import designs
+from designs import DESIGNS, RATIOS
 
 
 def render(name, px_w, px_h, pad=None, lw_scale=None):
@@ -24,9 +25,9 @@ def render(name, px_w, px_h, pad=None, lw_scale=None):
         lw_scale = px_h / 600.0
     dpi = 100.0
     fig = plt.figure(figsize=(px_w / dpi, px_h / dpi), dpi=dpi)
-    fig.patch.set_facecolor(BG)
+    fig.patch.set_facecolor(designs.BG)
     ax = fig.add_axes([0, 0, 1, 1])
-    ax.set_facecolor(BG)
+    ax.set_facecolor(designs.BG)
     ax.axis("off")
     ax.set_aspect("equal")
 
@@ -50,7 +51,7 @@ def render(name, px_w, px_h, pad=None, lw_scale=None):
     ax.set_ylim(cy - HH, cy + HH)
 
     buf = io.BytesIO()
-    fig.savefig(buf, format="png", facecolor=BG, dpi=dpi)
+    fig.savefig(buf, format="png", facecolor=designs.BG, dpi=dpi)
     plt.close(fig)
     buf.seek(0)
     return Image.open(buf).convert("RGB")
