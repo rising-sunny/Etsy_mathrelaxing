@@ -74,8 +74,11 @@ FILES = [
     os.path.join(ZIPS, "QuietMathematics_5x7.zip"),
     os.path.join(ZIPS, "QuietMathematics_ISO.zip"),
 ]
-PRICE = 12.00
+PRICE = 9.99
 TAXONOMY_ID = 2078   # Art & Collectibles > Prints > Digital Prints
+
+# Draft published 2026-07-12 (activation manual). 6 images + 5 per-ratio zips.
+LISTING_ID = 4536831020
 
 
 def main():
