@@ -119,3 +119,64 @@ history. Everything below is reflected in committed code on branch
 2. **Deliverables backup** — `private_downloads/` + `static/downloads/` (paid
    product files) also VPS-only; rsync to offsite storage.
 3. Etsy re-auth with `transactions_r`; then `export_catalog.py` / `etsy_orders.py`.
+
+---
+
+## Update 2026-07-12 (2) — 12 Etsy products replicated to the web
+
+- Compared the 42-product Etsy catalog against the web's seed files; found the
+  web already had 5 coloring-book PDFs + a few attractor animations, but was
+  missing most prints, both Procreate palette packs, all iPad/interactive
+  bundles, planners, and the newest listings (incl. the just-published
+  Geometric CBN and CBN 3D).
+- Replicated the "easy" tier first: 5 more coloring-book PDFs (Voronoi,
+  Islamic Geometry, Celtic Knot, Spiral Tilings, Neural Network), the Physics
+  & Calculus Equations print set, the Chladni poster, and the Rössler /
+  Harmonograph / Vector Field prints (each zipped as its 3 color variants),
+  plus both Procreate palette packs. 12 products total.
+- Pushed to `rising-sunny/mathrelaxing.store` (commit 4cead9a): new
+  `seed_etsy_digital_batch2.py` (same idempotent upsert-by-slug pattern as the
+  existing `seed_etsy_digital.py`) + ~113 MB of assets under
+  `static/downloads/` and `static/img/` (force-added past the binary
+  gitignore rules — that blanket rule still correctly blocks everything else,
+  e.g. the DB, `.codex-backups`, unrelated large mockup zips).
+- **Still needs a manual step ON THE VPS** to actually go live (git push does
+  not touch the live `mathrelaxing.db`):
+  ```bash
+  cd /var/www/mathrelaxing.store
+  git pull origin main
+  source .venv/bin/activate    # if the seed script needs the venv's deps
+  python seed_etsy_digital_batch2.py
+  ```
+  No service restart needed — it's a DB write, not a code change the running
+  process needs reloaded. Verify at https://mathrelaxing.store/collection/coloring-books
+  (and /collection/strange-attractors, /collection/harmonic-geometry,
+  /collection/flow-fields, /collection/chladni-figures, /collection/digital-downloads).
+
+### Deferred to a later batch (not yet replicated)
+- iPad/interactive bundles (Fractal Flora iPad, Sacred Geometry iPad+SVG,
+  Voronoi iPad, Celtic Knot iPad, Islamic Geometry iPad, Spiral Tilings iPad,
+  Geometric CBN, **CBN 3D**) — these are self-contained HTML apps; need a
+  decision on how the web serves/sells them (probably same thematic_bundle
+  pattern, file_url -> the .html, but worth confirming the download/delivery
+  flow handles a single large HTML file gracefully).
+- Planners (PhD, Life, STEM Focus, Quantified Self, STEM Notebook) — GoodNotes/
+  Notability format, same simple pattern should work, just not done yet.
+- Physical Lulu POD products (Hyperbolic Gardens, Fractal Flora, Sacred Math,
+  Voronoi Gardens physical editions) — needs real fulfillment wiring, more
+  involved than a static-file digital download.
+
+### Web catalog conventions discovered (useful for future replication rounds)
+- `main.py` has a fixed `COLLECTIONS` dict — a product's `collection` value
+  MUST be one of its keys or it won't surface correctly in collection
+  browsing. Valid keys seen: strange-attractors, de-jong-attractors,
+  complex-plane-geometry, radial-symmetry, reaction-diffusion, fractal-series,
+  turing-patterns, voronoi-organics, chladni-figures, flow-fields,
+  fractal-flames, harmonic-geometry, notebooks, coloring-books, coloring-book,
+  desk-mats, apparel, digital-downloads (generic catch-all bucket).
+- `seed_digital.py`'s entries (image_pack/creator_assets/animation_pack, the
+  ones with `/api/render/preview?product=...` covers) mostly have EMPTY
+  `file_url` — that catalog looks half-wired, not a proven delivery path.
+  The proven, working pattern is `seed_etsy_digital.py`'s: real static
+  `cover_image` + real static `file_url`, `product_type="thematic_bundle"`.
+  Stick to that pattern for future replications.
