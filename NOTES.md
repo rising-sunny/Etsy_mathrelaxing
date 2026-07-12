@@ -223,3 +223,47 @@ history. Everything below is reflected in committed code on branch
   `static/previews/<slug>.jpg`, `<slug>_clean.jpg`, and per contents_json item
   `<slug>_<i>.jpg` / `<slug>_<i>_clean.jpg` — never rely on the dynamic
   equation renderer for non-generative (uploaded file) products.
+
+---
+
+## Update 2026-07-12 (4) — filled the empty "iPad Coloring Bundles" section
+
+- User pointed out products missing from "iPad Coloring Bundle (GoodNotes ·
+  Procreate)". Root cause: `main.py`'s `/collection/digital-downloads` page
+  groups products into sections by `product_type` (DIGITAL_GROUPS dict);
+  `"ipad_bundle" -> "iPad Coloring Bundles"` was defined in the code but ZERO
+  products ever used that product_type — the section always rendered empty.
+  This was exactly the deferred "iPad/interactive bundles" item from the
+  first replication batch.
+- Added all 9 iPad products from Etsy (commit 28f843e), `product_type=
+  "ipad_bundle"`, `collection="digital-downloads"` (both required for the
+  section to populate): 4 GoodNotes/Procreate bundles (Fractal Flora, Sacred
+  Geometry, Celtic Knot, Islamic Geometry — each a combined zip merging what
+  were separate Etsy files: GoodNotes PDF + Procreate PNG set + .swatches +
+  how-to PDF) and 4 interactive Safari SVG apps (Voronoi Gardens, Spiral
+  Tilings, Geometric CBN, Sacred Geometry SVG) + **CBN 3D** (zip copied as-is,
+  already self-contained).
+- **Important template-routing discovery**: `collection == "digital-downloads"`
+  routes the detail page to `bundle_download.html`, a DIFFERENT template from
+  the generic `bundle.html` used for everything else. `bundle_download.html`'s
+  image gallery comes from listing files in `static/digital/<slug>/`
+  (hero/cover-named files bubble first) — it does NOT use contents_json items
+  as images, and does NOT use static/previews/<slug>_<i>.jpg. contents_json
+  there is shown only as a plain "What you get" text list.
+  This meant the earlier commit's (6fb8083) per-item sample-gallery-with-zoom
+  work was WASTED on the 3 pre-existing digital-downloads products (Physics
+  print set, both Procreate palette packs) — their real gallery mechanism
+  needed static/digital/<slug>/ populated instead, which is now done too
+  (retrofitted in the same commit, no DB change needed for those 3).
+  **Rule of thumb for any future digital-downloads-collection product**:
+  populate static/digital/<slug>/ for the gallery, static/previews/<slug>.jpg
+  (+_clean.jpg) for the collection-grid thumbnail, and static/img/<slug>_
+  cover.jpg for the DB cover_image field — three different asset locations
+  for three different rendering paths.
+- **VPS activation** (git pull + re-run — new products need the seed script):
+  ```bash
+  cd /var/www/mathrelaxing.store
+  git pull origin main
+  source .venv/bin/activate
+  python seed_etsy_digital_batch3.py
+  ```
