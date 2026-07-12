@@ -180,3 +180,46 @@ history. Everything below is reflected in committed code on branch
   The proven, working pattern is `seed_etsy_digital.py`'s: real static
   `cover_image` + real static `file_url`, `product_type="thematic_bundle"`.
   Stick to that pattern for future replications.
+
+---
+
+## Update 2026-07-12 (3) — sample galleries + zoom for the 12 replicated products
+
+- User reported the /collection/digital-downloads previews were slow/broken.
+  Root cause: `/api/render/preview` checks `static/previews/<slug>.jpg` FIRST;
+  if absent it live-renders by `equation_type` — 6 of the 12 products had a
+  made-up `equation_type` not in the renderer's registry (raised -> generic
+  47,781-byte fallback image for all 6), the other 6 had valid-but-unrelated
+  types (rendered a generic pattern, not the real cover). Fixed by dropping
+  the real cover at `static/previews/<slug>.jpg` for all 12 (commit de7f208),
+  and downsizing the 5 heaviest (up to 1.5 MB) to 60-190 KB to match the
+  site's own preview convention.
+- Then, per user request, added real sample-page galleries with zoom
+  (commit 6fb8083): `bundle.html`'s per-item thumbnails use
+  `static/previews/<slug>_<index>.jpg` + zoom target
+  `static/previews/<slug>_<index>_clean.jpg` (checked first, same pattern as
+  the main preview), and the main hero's zoom needs `static/previews/
+  <slug>_clean.jpg`. None of these existed for the 12 new products (item
+  thumbnails were returning 21-byte errors, hero zoom 404'd). Rewrote each
+  product's `contents_json` in `seed_etsy_digital_batch2.py` to list real
+  sample items (5-7 interior pages per coloring book, 8 equation designs for
+  Physics set, 2 detail crops for Chladni, 3 color variants each for Rössler/
+  Harmonograph/Vector Field, 8 swatch packs per palette pack) backed by real
+  source images from the Etsy repo — 148 new preview files (~15 MB).
+- **Still needs the VPS activation step** (git pull + re-run seed, same as
+  before — contents_json changed so the seed script MUST be re-run, not just
+  git pulled):
+  ```bash
+  cd /var/www/mathrelaxing.store
+  git pull origin main
+  source .venv/bin/activate
+  python seed_etsy_digital_batch2.py
+  ```
+- Learned: `bundle.html` (thematic_bundle/generic products) is entirely
+  different from `bundle_download.html` (gated on `collection ==
+  "digital-downloads"` only) — but BOTH support the same static-preview-first
+  pattern for images via `/api/render/preview` and `/api/render/bundle-item`.
+  For any future product with real sample content, always populate
+  `static/previews/<slug>.jpg`, `<slug>_clean.jpg`, and per contents_json item
+  `<slug>_<i>.jpg` / `<slug>_<i>_clean.jpg` — never rely on the dynamic
+  equation renderer for non-generative (uploaded file) products.
