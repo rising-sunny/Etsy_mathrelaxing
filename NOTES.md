@@ -84,3 +84,38 @@ history. Everything below is reflected in committed code on branch
 - Headless Chromium for WebGL/Playwright captures: args
   `--use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader`.
 - All drafts stay **draft** — activation is always manual by the owner.
+
+---
+
+## Update 2026-07-12 — web is now on GitHub ✅
+
+- **`rising-sunny/mathrelaxing.store` now contains the site code** (commit 4d9b1bb,
+  345 files, code-only). Independently verified clean: no `.env`, no DB, no
+  token files, no `.codex-backups`, no hardcoded keys. Force-pushed over the
+  empty placeholder. The #1 continuity gap (code only on the VPS) is CLOSED.
+- **VPS facts:** Hetzner Ubuntu, IP 5.78.125.169, `root@`. Site at
+  `/var/www/mathrelaxing.store/`. FastAPI + uvicorn (127.0.0.1:8000) via systemd
+  `mathrelaxing.service`; nginx TLS reverse proxy. SQLite `mathrelaxing.db`.
+  venv `.venv`, secrets in `.env`. Payments: **PayPal** (digital + physical),
+  token-gated `private_downloads/`. POD via Printful/Gelato/Lulu. Also sells on
+  Bonanza/eBay/Gumroad/Whop; social auto-posting (Pinterest/TikTok/Meta).
+- **What is deliberately NOT in git** (gitignored): `.env`, `*.db*`, all
+  `*_token.json`, `.codex-backups-*/`, big media (`static/videos|previews|
+  downloads|digital|bonanza|...`, `*.mp4/*.psd/*.pdf/*.zip`), print images.
+  These must be backed up SEPARATELY (they are not in the repo).
+- **Web catalog = `seed.py`** — `PRODUCTS = [{slug, name, collection,
+  equation_type, description, price_usd, params_json, active}, ...]`, seeds the
+  DB. It is RICHER than the Etsy `products_catalog.py` (desk mats, image/loop
+  packs, apparel...). The export_catalog bridge must reconcile the two, not
+  blind-copy. Open question: which is master, or keep separate + sync.
+- **2 utility scripts excluded** because they had a hardcoded Printful key
+  (`check_notebook_variants.py`, `fetch_mockup.py`). Recommend rotating that
+  Printful key and moving it to `.env`, then cleaning + re-adding the scripts.
+
+### Remaining continuity gaps (next priorities)
+1. **DB backup** — `mathrelaxing.db` (orders + customer PII) still lives ONLY on
+   the VPS. Set up a cron `sqlite3 .backup` dump + offsite copy (NOT git).
+   This is now the biggest single point of failure.
+2. **Deliverables backup** — `private_downloads/` + `static/downloads/` (paid
+   product files) also VPS-only; rsync to offsite storage.
+3. Etsy re-auth with `transactions_r`; then `export_catalog.py` / `etsy_orders.py`.
