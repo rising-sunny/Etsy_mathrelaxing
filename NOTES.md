@@ -267,3 +267,39 @@ history. Everything below is reflected in committed code on branch
   source .venv/bin/activate
   python seed_etsy_digital_batch3.py
   ```
+
+---
+
+## Update 2026-07-12 (5) — fixed duplicate iPad products + deactivated CBN 3D
+
+- User reported repeated products on /collection/digital-downloads and asked
+  to remove cbn-3d-ipad (not ready to publish). Investigated by curling the
+  live page: found the site ALREADY had real, working iPad bundles under
+  different slugs — `fractal-flora-ipad-coloring` and `sacred-geometry-ipad-
+  coloring` ($10.99, same GoodNotes+Procreate content) — that predate this
+  session and aren't defined in any committed seed script (likely added via
+  admin or an uncommitted script). Batch 3 accidentally duplicated these two.
+  `voronoi-gardens-ipad-coloring` also pre-existed, but it's a GoodNotes/
+  Procreate bundle — genuinely different from the new `voronoi-gardens-ipad-
+  interactive` (the Safari app), so that one was KEPT (flagged to the user
+  in case they'd rather not sell both formats).
+- Fix (commit 779175d): removed fractal-flora-ipad-bundle and sacred-
+  geometry-ipad-bundle entirely from `seed_etsy_digital_batch3.py` + deleted
+  their static assets; added `deactivate_batch3_duplicates.py` (one-off, sets
+  active=False for those 2 already-live rows). Set `cbn-3d-ipad`'s "active"
+  to False directly in the seed script (kept its files for a future publish
+  — just flip to True + re-run when ready).
+- **VPS activation** (run BOTH — the seed re-run applies the cbn-3d-ipad
+  deactivation + the trimmed product list; the one-off script deactivates the
+  2 removed duplicates that aren't in the script anymore to be upserted):
+  ```bash
+  cd /var/www/mathrelaxing.store
+  git pull origin main
+  source .venv/bin/activate
+  python seed_etsy_digital_batch3.py
+  python deactivate_batch3_duplicates.py
+  ```
+- **Lesson**: before replicating a product from Etsy to the web, check the
+  live site first (curl the collection page / search by expected slug
+  patterns) — not every existing web product is in a committed seed script,
+  some predate the repo's git history.
