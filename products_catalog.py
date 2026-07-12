@@ -1003,6 +1003,35 @@ Features:
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.""",
 
+    "geometric_cbn_ipad": """\
+Color generative math art on your iPad — no printer, no app to install, no mess. A fully INTERACTIVE Color-by-Number experience that runs right in Safari.
+
+This is the interactive companion to our Geometric Color by Number printable book. You get 20 original designs built from real mathematics: domain colourings of complex functions, Newton fractal basins, and Julia sets. Each image is broken into a low-poly triangular mosaic — tap a numbered polygon to fill it and watch the math artwork emerge facet by facet.
+
+It is NOT a static PDF. You get 20 interactive HTML files that open directly in your iPad's Safari browser (no internet needed). Because they use true vector SVG graphics, you can zoom in infinitely without any pixelation — no blurry lines, no crushed numbers.
+
+Features:
+• Tap-to-fill: pick a colour from the palette bar, tap matching polygons
+• Auto-hiding numbers: the number vanishes when you colour its cell
+• Infinite SVG zoom with perfectly crisp edges
+• Progress saves automatically offline
+• 20 unique designs (domain colourings · Newton basins · Julia sets)
+• Works on iPad Safari — also iPhone, Android, Mac & PC
+
+────────────────────────
+WHAT YOU GET · instant download
+────────────────────────
+• ZIP with 20 interactive HTML colouring pages
+• How to Use on iPad instructions PDF
+• No physical item is shipped
+
+────────────────────────
+ABOUT THE ART
+────────────────────────
+Every design is generated from mathematical equations and tessellated into numbered triangles in code — original work by the artist, never AI image generators. Perfect for adults who love STEM, fractals, and mindful colouring.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.""",
+
     "cbn_3d": """\
 Color by number in TRUE 3D on your iPad — rotate, zoom and colour a real three-dimensional shape, right in Safari. No app to install, no printer, no mess.
 
@@ -2156,6 +2185,33 @@ PRODUCTS = {
         ],
         "tags": ["ipad coloring book","color by number","goodnotes planner","procreate coloring","digital mandala","spiral art","math art","pastel aesthetic","adult coloring pdf","procreate swatches","digital download","relaxing coloring","adhd coloring"],
         "notes": "Generado con build_spiral_ipad.py",
+    },
+
+    "geometric_cbn_ipad": {
+        "title":       "Interactive Geometric Color by Number — iPad Safari SVG | 20 Low Poly Math Fractal Designs",
+        "description": DESCRIPTIONS["geometric_cbn_ipad"],
+        "price":       9.99,
+        "taxonomy_id": TAXONOMY["ipad_coloring"],
+        "video": p("ipad_lowpoly_cbn_svg", "GeometricCBN_SVG_promo.mp4"),
+        "images": [
+            p("ipad_lowpoly_cbn_svg", "previews", "ipad_svg_preview_1_hero.jpg"),
+            p("ipad_lowpoly_cbn_svg", "previews", "ipad_svg_preview_2_features.jpg"),
+            p("ipad_lowpoly_cbn_svg", "previews", "ipad_svg_preview_3_included.jpg"),
+        ],
+        "files": [
+            p("ipad_lowpoly_cbn_svg", "GeometricCBN_Interactive.zip"),
+            p("ipad_lowpoly_cbn_svg", "How_to_Use_Interactive_CBN.pdf"),
+        ],
+        "tags": ["ipad coloring book","color by number","low poly art","fractal coloring",
+                 "math art","geometric coloring","julia set art","newton fractal",
+                 "digital download","relaxing coloring","adult coloring","svg coloring",
+                 "stem gift"],
+        "notes": "Companion iPad SVG interactivo del listing PDF 4536173762 (Geometric Color by Number). "
+                  "build_lowpoly_ipad_svg.py reutiliza art_gallery + tessellation triangular de lowpoly_cbn/ "
+                  "y el framework template_ipad_svg_bundle (tap-to-fill, paleta por diseno). 20 HTML + ZIP + "
+                  "How_to_Use PDF + 3 previews (build_lowpoly_svg_previews.py). Precio $9.99 alineado con "
+                  "spiral/voronoi/sacred SVG. Subido como DRAFT 2026-07-12, listing_id=4536485252. "
+                  "Activacion manual pendiente.",
     },
 
     "cbn_3d": {
