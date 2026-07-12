@@ -236,3 +236,7 @@ printful/.env
 
 # Printify API token
 printify/.env
+
+# Wall-art set — generated print files, mockups & zips (regenerable from scripts)
+wallart_set/out/
+wallart_set/__pycache__/
