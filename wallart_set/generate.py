@@ -1,17 +1,27 @@
 """
-generate.py — produce the 30 print-ready files (6 designs x 5 aspect ratios,
-300 DPI) plus a master preview per design for the listing mockups.
+generate.py — produce the print-ready files for a palette: 6 designs x 5 aspect
+ratios @ 300 DPI, a master preview per design, and 5 per-ratio delivery ZIPs.
+
+    WALLART_PALETTE=mono python generate.py      # default: earth
 """
 import os
 import time
+import zipfile
+
+import designs
 from render import render
 from designs import DESIGNS
 
+PAL = os.environ.get("WALLART_PALETTE", "earth")
+designs.use_palette(PAL)
+
 HERE = os.path.dirname(os.path.abspath(__file__))
-PRINTS = os.path.join(HERE, "out", "prints")
-LISTING = os.path.join(HERE, "out", "listing")
-os.makedirs(PRINTS, exist_ok=True)
-os.makedirs(LISTING, exist_ok=True)
+BASE = os.path.join(HERE, "out", PAL)
+PRINTS = os.path.join(BASE, "prints")
+LISTING = os.path.join(BASE, "listing")
+ZIPS = os.path.join(BASE, "zips")
+for d in (PRINTS, LISTING, ZIPS):
+    os.makedirs(d, exist_ok=True)
 
 # 300 DPI pixel sizes per ratio (inches noted).
 RATIO_PX = {
@@ -21,23 +31,38 @@ RATIO_PX = {
     "5x7": (4500, 6300),   # 15x21 in
     "ISO": (4961, 7016),   # A2
 }
+NAMES = list(DESIGNS.keys())
+FILE_TITLE = {
+    "maurer": "Maurer-Rose", "phyllotaxis": "Golden-Spiral", "hilbert": "Hilbert-Curve",
+    "cardioid": "Cardioid-Weave", "euler": "Euler-Spiral", "fern": "Barnsley-Fern",
+}
+READ_ME = ("QUIET MATHEMATICS - Printable Wall Art Set of 6\n"
+           "300 DPI. Personal use only; not for resale or redistribution.\n"
+           "This ZIP contains all 6 designs in the {r} aspect ratio.\n"
+           "Print at home, a print shop, or an online lab. Trim to your frame.\n")
 
 
 def main():
     t0 = time.time()
-    total = 0
-    for name in DESIGNS:
+    for name in NAMES:
         for rk, (pw, ph) in RATIO_PX.items():
             im = render(name, pw, ph)
-            out = os.path.join(PRINTS, f"{name}_{rk}.jpg")
-            im.save(out, "JPEG", quality=92, dpi=(300, 300))
-            mb = os.path.getsize(out) / 1e6
-            total += 1
-            print(f"  {name:12s} {rk:4s} {pw}x{ph}  {mb:.1f} MB")
-        # master preview (4:5) for mockups / individual listing images
-        prev = render(name, 1080, 1350)
-        prev.save(os.path.join(LISTING, f"master_{name}.jpg"), "JPEG", quality=94)
-    print(f"\nDONE {total} print files in {time.time()-t0:.0f}s")
+            im.save(os.path.join(PRINTS, f"{name}_{rk}.jpg"), "JPEG",
+                    quality=92, dpi=(300, 300))
+        render(name, 1080, 1350).save(
+            os.path.join(LISTING, f"master_{name}.jpg"), "JPEG", quality=94)
+        print(f"  {name} done")
+
+    for rk in RATIO_PX:
+        zpath = os.path.join(ZIPS, f"QuietMathematics_{PAL}_{rk}.zip")
+        with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
+            for name in NAMES:
+                z.write(os.path.join(PRINTS, f"{name}_{rk}.jpg"),
+                        f"{FILE_TITLE[name]}_{rk}.jpg")
+            z.writestr("READ-ME.txt", READ_ME.format(r=rk))
+        print(f"  zip {rk}  {os.path.getsize(zpath)/1e6:.1f} MB")
+
+    print(f"\nDONE [{PAL}] in {time.time()-t0:.0f}s -> {BASE}")
 
 
 if __name__ == "__main__":

@@ -20,8 +20,11 @@ import designs
 from render import render
 from designs import DESIGNS
 
+PAL = os.environ.get("WALLART_PALETTE", "earth")
+designs.use_palette(PAL)
+
 HERE = os.path.dirname(os.path.abspath(__file__))
-LST = os.path.join(HERE, "out", "listing")
+LST = os.path.join(HERE, "out", PAL, "listing")
 os.makedirs(LST, exist_ok=True)
 
 NAMES = ["maurer", "phyllotaxis", "hilbert", "cardioid", "euler", "fern"]

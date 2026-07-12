@@ -1,8 +1,8 @@
 """
-publish_listing.py — create the Etsy DRAFT for the "Quiet Mathematics" printable
-wall-art set (6 designs x 5 ratios). Draft only; activation stays manual.
+publish_listing.py — create the Etsy DRAFT for a "Quiet Mathematics" printable
+wall-art set. One entry per palette; draft only, activation stays manual.
 
-    python publish_listing.py
+    WALLART_PALETTE=mono python wallart_set/publish_listing.py   # run from repo root
 """
 import os
 import sys
@@ -10,20 +10,13 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import etsy_manager
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-LST = os.path.join(HERE, "out", "listing")
-ZIPS = os.path.join(HERE, "out", "zips")
+TAXONOMY_ID = 2078   # Art & Collectibles > Prints > Digital Prints
 
-TITLE = ("Set of 6 Printable Wall Art | Boho Abstract Line Art Gallery Wall Set | "
-         "Neutral Earth Tone Japandi Decor | Mathematical Minimalist Prints")
 
-TAGS = ["printable wall art", "gallery wall set", "set of 6 prints", "boho wall art",
-        "abstract line art", "neutral wall art", "earth tone art", "japandi wall art",
-        "minimalist print", "digital download", "terracotta decor", "living room decor",
-        "math wall art"]
+def _description(palette_line, style, color_line):
+    return f"""QUIET MATHEMATICS — a set of 6 printable wall art prints.
 
-DESCRIPTION = """QUIET MATHEMATICS — a set of 6 printable wall art prints.
-
-Six original designs, each drawn from a real mathematical curve and rendered as calm, minimalist line art in a warm earth-tone palette. Not AI images and not clip art — every piece is generated from its equation, then composed for a Japandi / boho gallery wall.
+Six original designs, each drawn from a real mathematical curve and rendered as calm, minimalist line art {palette_line}. Not AI images and not clip art — every piece is generated from its equation, then composed for a {style} gallery wall.
 
 THE SIX DESIGNS
 • Maurer Rose — a rose curve walked in straight steps into a lace of interference
@@ -37,7 +30,7 @@ WHAT YOU GET (instant digital download)
 • All 6 designs in 5 aspect ratios — 2:3, 3:4, 4:5, 5:7 and ISO/A
 • 300 DPI, high resolution — print small or large
 • Delivered as 5 ZIP files (one per ratio), 30 files in total
-• Warm cream ground with muted terracotta, sage, gold and charcoal line work
+• {color_line}
 
 PRINT ALMOST ANY SIZE
 2:3 → 4x6, 8x12, 12x18, 16x24, 20x30, 24x36 in
@@ -58,44 +51,60 @@ TERMS — For personal use only. Please do not resell, redistribute or share the
 
 (c) MathRelaxing"""
 
-# Listing photos in rank order (first = thumbnail).
-IMAGES = [
-    os.path.join(LST, "01_hero_gallery.jpg"),
-    os.path.join(LST, "02_room.jpg"),
-    os.path.join(LST, "04_included.jpg"),
-    os.path.join(LST, "03_detail.jpg"),
-    os.path.join(LST, "05_sizes.jpg"),
-    os.path.join(LST, "06_how.jpg"),
-]
-FILES = [
-    os.path.join(ZIPS, "QuietMathematics_2x3.zip"),
-    os.path.join(ZIPS, "QuietMathematics_3x4.zip"),
-    os.path.join(ZIPS, "QuietMathematics_4x5.zip"),
-    os.path.join(ZIPS, "QuietMathematics_5x7.zip"),
-    os.path.join(ZIPS, "QuietMathematics_ISO.zip"),
-]
-PRICE = 9.99
-TAXONOMY_ID = 2078   # Art & Collectibles > Prints > Digital Prints
 
-# Draft published 2026-07-12 (activation manual). 6 images + 5 per-ratio zips.
-LISTING_ID = 4536831020
+LISTINGS = {
+    "earth": {
+        "title": ("Set of 6 Printable Wall Art | Boho Abstract Line Art Gallery Wall Set | "
+                  "Neutral Earth Tone Japandi Decor | Mathematical Minimalist Prints"),
+        "tags": ["printable wall art", "gallery wall set", "set of 6 prints", "boho wall art",
+                 "abstract line art", "neutral wall art", "earth tone art", "japandi wall art",
+                 "minimalist print", "digital download", "terracotta decor", "living room decor",
+                 "math wall art"],
+        "description": _description("in a warm earth-tone palette", "Japandi / boho",
+                                    "Warm cream ground with muted terracotta, sage, gold and charcoal line work"),
+        "price": 9.99,
+        "listing_id": 4536831020,   # already published
+    },
+    "mono": {
+        "title": ("Set of 6 Black and White Printable Wall Art | Minimalist Line Art Gallery Wall Set | "
+                  "Scandinavian Abstract Decor | Mathematical Prints"),
+        "tags": ["black and white art", "printable wall art", "gallery wall set", "set of 6 prints",
+                 "minimalist print", "line art print", "scandinavian art", "abstract wall art",
+                 "modern wall art", "digital download", "monochrome print", "living room decor",
+                 "math wall art"],
+        "description": _description("in black and white", "Scandinavian / minimalist",
+                                    "Warm ivory ground with charcoal line work — a true black-and-white set"),
+        "price": 9.99,
+        "listing_id": 4536834070,   # draft published 2026-07-12 (activation manual)
+    },
+}
+
+IMG_ORDER = ["01_hero_gallery", "02_room", "04_included", "03_detail", "05_sizes", "06_how"]
+RATIOS = ["2x3", "3x4", "4x5", "5x7", "ISO"]
 
 
 def main():
-    assert len(TITLE) <= 140, f"title too long: {len(TITLE)}"
-    assert TITLE.count("&") <= 1, "more than one & in title"
-    assert len(TAGS) <= 13 and all(len(t) <= 20 for t in TAGS), "tag limits"
-    for f in IMAGES + FILES:
+    pal = os.environ.get("WALLART_PALETTE", "earth")
+    cfg = LISTINGS[pal]
+    base = os.path.join(HERE, "out", pal)
+    images = [os.path.join(base, "listing", f"{n}.jpg") for n in IMG_ORDER]
+    files = [os.path.join(base, "zips", f"QuietMathematics_{pal}_{r}.zip") for r in RATIOS]
+
+    assert len(cfg["title"]) <= 140, f"title too long: {len(cfg['title'])}"
+    assert cfg["title"].count("&") <= 1, "more than one & in title"
+    assert len(cfg["tags"]) <= 13 and all(len(t) <= 20 for t in cfg["tags"]), "tag limits"
+    for f in images + files:
         assert os.path.exists(f), f"missing {f}"
+
     m = etsy_manager.EtsyManager()
-    lid = m.create_draft_listing(TITLE, DESCRIPTION, PRICE, TAXONOMY_ID,
-                                 is_digital=True, tags=TAGS)
-    for rank, img in enumerate(IMAGES, start=1):
+    lid = m.create_draft_listing(cfg["title"], cfg["description"], cfg["price"],
+                                 TAXONOMY_ID, is_digital=True, tags=cfg["tags"])
+    for rank, img in enumerate(images, start=1):
         m.upload_listing_image(lid, img, rank=rank)
-    for f in FILES:
+    for f in files:
         m.upload_listing_file(lid, f)
-    print(f"\nDRAFT LISTING creado: {lid}  (${PRICE}, {len(IMAGES)} imagenes, {len(FILES)} zips)")
-    print(f"title chars: {len(TITLE)}")
+    print(f"\nDRAFT [{pal}] creado: {lid}  (${cfg['price']}, {len(images)} imagenes, {len(files)} zips)")
+    print(f"title chars: {len(cfg['title'])}")
     return lid
 
 
