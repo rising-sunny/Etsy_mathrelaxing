@@ -141,30 +141,37 @@ def fig_pi(ax, box, W):
 
 def fig_ulam(ax, box, W):
     x0, x1, y0, y1 = box
-    S = 121                       # ~14,600 numbers: the diagonal prime streaks emerge
+    S = 251                       # ~63,000 numbers: the diagonal prime lines are unmistakable
     cell = min(x1 - x0, y1 - y0) / S
     gx = (x0 + x1) / 2 - S * cell / 2
     gy = (y0 + y1) / 2 - S * cell / 2
-    # spiral coordinates (increasing run lengths: 1,1,2,2,3,3,…)
-    pts = {1: (0, 0)}
+    NN = S * S
+    sieve = np.ones(NN + 1, bool); sieve[:2] = False
+    for p in range(2, int(NN ** 0.5) + 1):
+        if sieve[p]:
+            sieve[p * p::p] = False
+    cxc = cyc = S // 2
+    px, py = [], []
+
+    def put(n, ix, iy):
+        if sieve[n]:
+            fx, fy = cxc + ix, cyc + iy
+            if 0 <= fx < S and 0 <= fy < S:
+                px.append(gx + (fx + 0.5) * cell)
+                py.append(gy + (fy + 0.5) * cell)
     x = y = 0; n = 1; step = 1; d = 0
     dirs = [(1, 0), (0, 1), (-1, 0), (0, -1)]
-    while n < S * S:
+    put(1, 0, 0)
+    while n < NN:
         for _ in range(2):
             dx, dy = dirs[d % 4]
             for _ in range(step):
-                if n >= S * S:
+                if n >= NN:
                     break
-                x += dx; y += dy; n += 1; pts[n] = (x, y)
+                x += dx; y += dy; n += 1; put(n, x, y)
             d += 1
         step += 1
-    cxc = cyc = S // 2
-    px, py = [], []
-    for m, (ix, iy) in pts.items():
-        if _prime(m) and 0 <= cxc + ix < S and 0 <= cyc + iy < S:
-            px.append(gx + (cxc + ix + 0.5) * cell)
-            py.append(gy + (cyc + iy + 0.5) * cell)
-    ax.scatter(px, py, s=(cell * 72) ** 2 * 0.5, color=INK, zorder=4, marker="s", linewidths=0)
+    ax.scatter(px, py, s=(cell * 72) ** 2 * 0.8, color=INK, zorder=4, marker="s", linewidths=0)
     ax.add_patch(mp.Rectangle((gx, gy), S * cell, S * cell, fill=False, edgecolor=SUB, lw=0.6))
     ax.text((x0 + x1) / 2, y0 + 0.02, "each dot is a prime  ·  the diagonals are its hidden order",
             fontproperties=SANS, fontsize=W * 0.9, color=SUB, ha="center", va="bottom")
