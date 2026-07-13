@@ -15,8 +15,15 @@ from PIL import Image, ImageDraw
 
 import gridpaper as gp
 
+PAL = os.environ.get("GRIDPAPER_PALETTE", "earth")
+EDITION = os.environ.get("GRIDPAPER_EDITION", PAL)
+_feat = os.environ.get("GRIDPAPER_FEATURED")     # "Label|module|design"
+gp.use_palette(PAL)
+if _feat:
+    gp.set_featured(*_feat.split("|"))
+
 HERE = os.path.dirname(os.path.abspath(__file__))
-BASE = os.path.join(HERE, "out", "gridpaper", "earth")
+BASE = os.path.join(HERE, "out", "gridpaper", EDITION)
 PNG = os.path.join(BASE, "png")
 LST = os.path.join(BASE, "listing")
 for d in (BASE, PNG, LST):
@@ -46,7 +53,7 @@ def build_files():
         fig.savefig(os.path.join(PNG, style.replace(" ", "_").replace("+", "and") + ".png"),
                     facecolor=PAPER, dpi=300)
         plt.close(fig)
-    zpath = os.path.join(BASE, "AestheticGridPaper_earth.zip")
+    zpath = os.path.join(BASE, f"AestheticGridPaper_{EDITION}.zip")
     with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
         for label in ("US_Letter", "A4"):
             z.write(os.path.join(BASE, f"AestheticGridPaper_{label}.pdf"),
@@ -117,7 +124,7 @@ def img_ipad():
 
 
 def img_closeups():
-    picks = ["Square Grid", "Penrose Grid", "Cornell Notes", "Polar Grid"]
+    picks = ["Square Grid", gp.FEATURED[0], "Cornell Notes", "Polar Grid"]
     ths = [thumb(s, dpi=150) for s in picks]
     tw = 520
     ths = [t.resize((tw, int(t.height * tw / t.width))) for t in ths]

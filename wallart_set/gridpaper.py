@@ -16,11 +16,30 @@ from matplotlib.collections import LineCollection
 
 import designs_geo
 
-PAPER = "#fbf8f1"
-GRID = "#dcc9ae"
-ACC = "#b5715a"
-TXT = "#7a614c"
 SERIF = font_manager.FontProperties(family="DejaVu Serif")
+
+# palettes: paper ground, grid line, accent, text
+PALETTES = {
+    "earth": {"paper": "#fbf8f1", "grid": "#dcc9ae", "acc": "#b5715a", "txt": "#7a614c"},
+    "mono":  {"paper": "#f7f4ee", "grid": "#d5cec2", "acc": "#4a463f", "txt": "#3a3733"},
+    "cool":  {"paper": "#eef0ec", "grid": "#ccd4cc", "acc": "#6d8b84", "txt": "#43505a"},
+}
+PAPER, GRID, ACC, TXT = (PALETTES["earth"][k] for k in ("paper", "grid", "acc", "txt"))
+
+# featured decorative page: (label, module_name, design_name)
+FEATURED = ("Penrose Grid", "designs_geo", "penrose")
+
+
+def use_palette(name):
+    global PAPER, GRID, ACC, TXT
+    p = PALETTES[name]
+    PAPER, GRID, ACC, TXT = p["paper"], p["grid"], p["acc"], p["txt"]
+
+
+def set_featured(label, module_name, design_name):
+    global FEATURED
+    FEATURED = (label, module_name, design_name)
+    _build_styles()
 
 # margins (inches): left, right, bottom, top(header)
 ML, MR, MB, MT = 0.6, 0.6, 0.55, 1.15
@@ -142,17 +161,40 @@ def s_cornell(ax, box, s=0.34):
             fontproperties=SERIF, fontsize=10, color=GRID)
 
 
-def s_penrose(ax, box):
+def draw_in_box(ax, module_name, name, box, color, lw=0.35):
+    """Draw any of our designs (from designs / designs_geo) scaled into `box`."""
+    import importlib
+    mod = importlib.import_module(module_name)
+    if hasattr(mod, "data"):                      # geo: (kind, xs, ys, items, lw)
+        kind, xs, ys, items, _ = mod.data(name)
+    else:                                          # quiet: anim_data
+        kind, xs, ys, items, _ = mod.anim_data(name)
+    xs = np.asarray(xs); ys = np.asarray(ys)
     x0, x1, y0, y1 = box
-    designs_geo.use_palette("earth")
-    _, xs, ys, segs, _ = designs_geo.data("penrose")
-    xs = np.array(xs); ys = np.array(ys)
     sc = min((x1 - x0) / (xs.max() - xs.min()), (y1 - y0) / (ys.max() - ys.min())) * 0.98
     cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
     mx, my = (xs.min() + xs.max()) / 2, (ys.min() + ys.max()) / 2
-    ns = [[(cx + (a[0] - mx) * sc, cy + (a[1] - my) * sc),
-           (cx + (b[0] - mx) * sc, cy + (b[1] - my) * sc)] for a, b in segs]
-    ax.add_collection(LineCollection(ns, colors=GRID, linewidths=0.35))
+    T = lambda x, y: (cx + (x - mx) * sc, cy + (y - my) * sc)
+    if kind == "segs":
+        ax.add_collection(LineCollection([[T(*a), T(*b)] for a, b in items],
+                                         colors=color, linewidths=lw))
+    elif kind == "circles":
+        for ccx, ccy, r in items:
+            ax.add_patch(plt.Circle(T(ccx, ccy), r * sc, fill=False,
+                                    edgecolor=color, lw=lw))
+    elif kind == "poly":
+        X, Y = items
+        P = [T(x, y) for x, y in zip(X, Y)]
+        ax.plot([p[0] for p in P], [p[1] for p in P], color=color, lw=lw)
+    elif kind == "scatter":
+        X, Y, _S = items
+        P = [T(x, y) for x, y in zip(X, Y)]
+        ax.scatter([p[0] for p in P], [p[1] for p in P], s=0.5, color=color, linewidths=0)
+
+
+def s_featured(ax, box):
+    _, module_name, name = FEATURED
+    draw_in_box(ax, module_name, name, box, GRID, lw=0.35)
 
 
 def s_polar(ax, box):
@@ -175,19 +217,18 @@ def s_sketch(ax, box, s=0.34):
         ax.plot([x0, x1], [y, y], color=GRID, lw=0.5)
 
 
-STYLES = {
-    "Square Grid": s_square,
-    "Dot Grid": s_dot,
-    "Isometric": s_isometric,
-    "Triangular": s_triangular,
-    "Hexagonal": s_hexagonal,
-    "Ruled Notes": s_ruled,
-    "Cornell Notes": s_cornell,
-    "Penrose Grid": s_penrose,
-    "Polar Grid": s_polar,
-    "Sketch + Notes": s_sketch,
-}
-ORDER = list(STYLES.keys())
+def _build_styles():
+    global STYLES, ORDER
+    STYLES = {
+        "Square Grid": s_square, "Dot Grid": s_dot, "Isometric": s_isometric,
+        "Triangular": s_triangular, "Hexagonal": s_hexagonal, "Ruled Notes": s_ruled,
+        "Cornell Notes": s_cornell, FEATURED[0]: s_featured, "Polar Grid": s_polar,
+        "Sketch + Notes": s_sketch,
+    }
+    ORDER = list(STYLES.keys())
+
+
+_build_styles()
 
 LETTER = (8.5, 11.0)
 A4 = (8.27, 11.69)

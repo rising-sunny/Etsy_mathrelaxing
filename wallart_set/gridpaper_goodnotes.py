@@ -21,18 +21,27 @@ from matplotlib.patches import FancyBboxPatch
 import gridpaper as gp
 import designs_geo
 
+PAL = os.environ.get("GRIDPAPER_PALETTE", "earth")
+EDITION = os.environ.get("GRIDPAPER_EDITION", PAL)
+_feat = os.environ.get("GRIDPAPER_FEATURED")
+gp.use_palette(PAL)
+if _feat:
+    gp.set_featured(*_feat.split("|"))
+
 HERE = os.path.dirname(os.path.abspath(__file__))
-BASE = os.path.join(HERE, "out", "gridpaper", "earth")
+BASE = os.path.join(HERE, "out", "gridpaper", EDITION)
 os.makedirs(BASE, exist_ok=True)
 SERIF = font_manager.FontProperties(family="DejaVu Serif")
 PAPER, GRID, ACC, TXT = gp.PAPER, gp.GRID, gp.ACC, gp.TXT
 
 W, H = gp.LETTER
 PER = 4                                  # template pages per section
-TABS = [("Square Grid", "Square"), ("Dot Grid", "Dot"), ("Isometric", "Iso"),
-        ("Triangular", "Tri"), ("Hexagonal", "Hex"), ("Ruled Notes", "Ruled"),
-        ("Cornell Notes", "Cornell"), ("Penrose Grid", "Penrose"),
-        ("Polar Grid", "Polar"), ("Sketch + Notes", "Sketch")]
+_ABBREV = {"Square Grid": "Square", "Dot Grid": "Dot", "Isometric": "Iso",
+           "Triangular": "Tri", "Hexagonal": "Hex", "Ruled Notes": "Ruled",
+           "Cornell Notes": "Cornell", "Penrose Grid": "Penrose", "Polar Grid": "Polar",
+           "Sketch + Notes": "Sketch", "Flower of Life": "Flower", "Golden Spiral": "Spiral",
+           "Maurer Rose": "Maurer", "Barnsley Fern": "Fern", "Sierpinski": "Sierp"}
+TABS = [(lbl, _ABBREV.get(lbl, lbl.split()[0])) for lbl in gp.ORDER]
 N = len(TABS)
 
 # page index helpers
@@ -153,7 +162,7 @@ def build():
             rect = fitz.Rect(x0 * 72, (H - y1) * 72, x1 * 72, (H - y0) * 72)
             page.insert_link({"kind": fitz.LINK_GOTO, "from": rect, "page": target})
 
-    out = os.path.join(BASE, "AestheticGridNotebook_GoodNotes.pdf")
+    out = os.path.join(BASE, f"AestheticGridNotebook_{EDITION}_GoodNotes.pdf")
     doc.save(out, deflate=True)
     doc.close()
     print(f"notebook: {out}  ({os.path.getsize(out)/1e6:.2f} MB, {COVER + CONTENTS + 1 + N*PER} pages)")
