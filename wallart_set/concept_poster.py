@@ -55,36 +55,41 @@ def fig_harmonic(ax, box, W):
 
 def fig_golden(ax, box, W):
     x0, x1, y0, y1 = box
-    phi = (1 + 5 ** 0.5) / 2
-    sizes = [1, 2, 3, 5, 8, 13, 21]
-    squares = [(0.0, 0.0, 1.0)]; bx0 = by0 = 0.0; bx1 = by1 = 1.0
-    arcs = [(0.0, 0.0, 1.0, 90, 180)]
-    side = 0
-    for s in sizes:
-        if side == 0:      # top
-            squares.append((bx0, by1, s)); arcs.append((bx0, by1, s, 0, 90)); by1 += s
-        elif side == 1:    # left
-            squares.append((bx0 - s, by0, s)); arcs.append((bx0, by0, s, 90, 180)); bx0 -= s
-        elif side == 2:    # bottom
-            squares.append((bx0, by0 - s, s)); arcs.append((bx0 + s, by0, s, 180, 270)); by0 -= s
-        else:              # right
-            squares.append((bx1, by0, s)); arcs.append((bx1, by0 + s, s, 270, 360)); bx1 += s
-        side = (side + 1) % 4
-    tw, th = bx1 - bx0, by1 - by0
-    sc = min((x1 - x0) / tw, (y1 - y0) / th) * 0.9
-    ox = (x0 + x1) / 2 - (bx0 + bx1) / 2 * sc
-    oy = (y0 + y1) / 2 - (by0 + by1) / 2 * sc
+    fib = [1, 1, 2, 3, 5, 8, 13, 21, 34]
+    # Walk a spiral of quarter-circle arcs: at each step the centre sits one
+    # radius to the LEFT of travel; a 90° CCW sweep advances the pen and rotates
+    # the heading +90°. Fibonacci radii make consecutive arcs tangent -> smooth.
+    P = np.array([0.0, 0.0]); T = np.array([1.0, 0.0])
+    arcs = []; squares = []; pts = [P.copy()]
+    for s in fib:
+        left = np.array([-T[1], T[0]])
+        C = P + left * s
+        a0 = np.degrees(np.arctan2(P[1] - C[1], P[0] - C[0]))
+        arcs.append((C.copy(), s, a0, a0 + 90))
+        # square containing this quarter arc
+        ar = np.radians(a0 + 90)
+        P2 = C + s * np.array([np.cos(ar), np.sin(ar)])
+        xs_ = [C[0], P[0], P2[0]]; ys_ = [C[1], P[1], P2[1]]
+        squares.append((min(xs_), min(ys_), s))
+        P = P2; T = np.array([-T[1], T[0]]); pts.append(P.copy())
+    pts = np.array(pts)
+    # fit into box
+    allx = [c[0] - r for c, r, _, _ in arcs] + [c[0] + r for c, r, _, _ in arcs]
+    ally = [c[1] - r for c, r, _, _ in arcs] + [c[1] + r for c, r, _, _ in arcs]
+    minx, maxx, miny, maxy = min(allx), max(allx), min(ally), max(ally)
+    sc = min((x1 - x0) / (maxx - minx), (y1 - y0) / (maxy - miny)) * 0.88
+    ox = (x0 + x1) / 2 - (minx + maxx) / 2 * sc
+    oy = (y0 + y1) / 2 - (miny + maxy) / 2 * sc
     for (sx, sy, s) in squares:
         ax.add_patch(mp.Rectangle((ox + sx * sc, oy + sy * sc), s * sc, s * sc,
                                   fill=False, edgecolor=SUB, lw=0.7))
-    for (ax_, ay_, r, a0, a1) in arcs:
-        ax.add_patch(mp.Arc((ox + ax_ * sc, oy + ay_ * sc), 2 * r * sc, 2 * r * sc,
-                            angle=0, theta1=a0, theta2=a1, color=ACC, lw=1.6))
-    fl = [1, 1, 2, 3, 5, 8, 13, 21]
-    ax.text(x0 + 0.1, y1, "1, 1, 2, 3, 5, 8, 13, 21, …",
-            fontproperties=MONO, fontsize=W * 1.1, color=SUB, va="top")
-    ax.text(x1 - 0.1, y0 + 0.1, "φ = 1.6180339887…",
-            fontproperties=MONO, fontsize=W * 1.25, color=ACC, ha="right", va="bottom")
+    for (C, r, a0, a1) in arcs:
+        ax.add_patch(mp.Arc((ox + C[0] * sc, oy + C[1] * sc), 2 * r * sc, 2 * r * sc,
+                            angle=0, theta1=a0, theta2=a1, color=ACC, lw=1.7))
+    ax.text(x0 + 0.1, y1, "1, 1, 2, 3, 5, 8, 13, 21, …", fontproperties=MONO,
+            fontsize=W * 1.1, color=SUB, va="top")
+    ax.text(x1 - 0.1, y0 + 0.1, "φ = 1.6180339887…", fontproperties=MONO,
+            fontsize=W * 1.25, color=ACC, ha="right", va="bottom")
 
 
 def fig_euler(ax, box, W):
