@@ -141,7 +141,7 @@ def fig_pi(ax, box, W):
 
 def fig_ulam(ax, box, W):
     x0, x1, y0, y1 = box
-    S = 25
+    S = 121                       # ~14,600 numbers: the diagonal prime streaks emerge
     cell = min(x1 - x0, y1 - y0) / S
     gx = (x0 + x1) / 2 - S * cell / 2
     gy = (y0 + y1) / 2 - S * cell / 2
@@ -164,10 +164,10 @@ def fig_ulam(ax, box, W):
         if _prime(m) and 0 <= cxc + ix < S and 0 <= cyc + iy < S:
             px.append(gx + (cxc + ix + 0.5) * cell)
             py.append(gy + (cyc + iy + 0.5) * cell)
-    ax.scatter(px, py, s=W * 1.5, color=INK, zorder=4)
+    ax.scatter(px, py, s=(cell * 72) ** 2 * 0.5, color=INK, zorder=4, marker="s", linewidths=0)
     ax.add_patch(mp.Rectangle((gx, gy), S * cell, S * cell, fill=False, edgecolor=SUB, lw=0.6))
-    ax.text((x0 + x1) / 2, y0 + 0.05, "each dot is a prime", fontproperties=SANS,
-            fontsize=W * 0.95, color=SUB, ha="center", va="bottom")
+    ax.text((x0 + x1) / 2, y0 + 0.02, "each dot is a prime  ·  the diagonals are its hidden order",
+            fontproperties=SANS, fontsize=W * 0.9, color=SUB, ha="center", va="bottom")
 
 
 def fig_fourier(ax, box, W):
