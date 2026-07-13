@@ -3,14 +3,17 @@ render.py — render a design into a given pixel size, framing the artwork to th
 target aspect ratio with padded negative space (centered composition).
 """
 import io
+import os
+import importlib
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
-import designs
-from designs import DESIGNS, RATIOS
+designs = importlib.import_module(os.environ.get("WALLART_MODULE", "designs"))
+DESIGNS = designs.DESIGNS
+RATIOS = designs.RATIOS
 
 
 def render(name, px_w, px_h, pad=None, lw_scale=None):

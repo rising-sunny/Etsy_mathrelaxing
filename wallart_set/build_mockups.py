@@ -16,27 +16,21 @@ import matplotlib.pyplot as plt
 from matplotlib import font_manager
 from PIL import Image, ImageDraw, ImageFilter
 
-import designs
+import importlib
+designs = importlib.import_module(os.environ.get("WALLART_MODULE", "designs"))
 from render import render
-from designs import DESIGNS
+DESIGNS = designs.DESIGNS
 
 PAL = os.environ.get("WALLART_PALETTE", "earth")
 designs.use_palette(PAL)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-LST = os.path.join(HERE, "out", PAL, "listing")
+LST = os.path.join(HERE, "out", designs.COLLECTION, PAL, "listing")
 os.makedirs(LST, exist_ok=True)
 
-NAMES = ["maurer", "phyllotaxis", "hilbert", "cardioid", "euler", "fern"]
+NAMES = designs.ORDER
 TITLES = {n: DESIGNS[n]["title"] for n in NAMES}
-SUB = {
-    "maurer": "Maurer rose · r = sin(6θ)",
-    "phyllotaxis": "Golden angle · 137.5°",
-    "hilbert": "Space-filling curve",
-    "cardioid": "Modular circle · ×2",
-    "euler": "Clothoid · Fresnel integrals",
-    "fern": "Iterated function system",
-}
+SUB = designs.SUB
 WALL_TOP = (222, 214, 200)
 WALL_BOT = (208, 199, 185)
 SERIF = font_manager.FontProperties(family="DejaVu Serif")
@@ -114,7 +108,7 @@ def room():
         ey = ty-150 - np.cos(ang)*ln
         d.line([(px-18, ty-150), (ex, ey)], fill=(126, 144, 112), width=4)
     # framed trio above console
-    trio = ["cardioid", "phyllotaxis", "euler"]
+    trio = [NAMES[3], NAMES[1], NAMES[4]]
     cards = [framed(n, 620) for n in trio]
     cw, ch = cards[0].size
     gap = 48
@@ -128,7 +122,7 @@ def room():
 
 
 def detail_trio():
-    trio = ["maurer", "fern", "hilbert"]
+    trio = [NAMES[0], NAMES[5], NAMES[2]]
     cards = [framed(n, 1150) for n in trio]
     cw, ch = cards[0].size
     gap, margin = 70, 130
@@ -144,7 +138,7 @@ def detail_trio():
 def included():
     fig = plt.figure(figsize=(16, 12), dpi=125)
     fig.patch.set_facecolor(designs.BG)
-    fig.suptitle("Six original designs — drawn from real mathematics",
+    fig.suptitle(designs.GRID_TITLE,
                  y=0.98, fontproperties=SERIF, fontsize=26, color="#3a3733")
     for i, n in enumerate(NAMES):
         ax = fig.add_subplot(2, 3, i + 1)
