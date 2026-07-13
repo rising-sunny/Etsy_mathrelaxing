@@ -55,13 +55,16 @@ def fig_harmonic(ax, box, W):
 
 def fig_golden(ax, box, W):
     x0, x1, y0, y1 = box
-    fib = [1, 1, 2, 3, 5, 8, 13, 21, 34]
-    # Walk a spiral of quarter-circle arcs: at each step the centre sits one
-    # radius to the LEFT of travel; a 90° CCW sweep advances the pen and rotates
-    # the heading +90°. Fibonacci radii make consecutive arcs tangent -> smooth.
+    phi = (1 + 5 ** 0.5) / 2
+    # Exact golden spiral: quarter-circle arcs whose radius grows by φ each turn
+    # (geometric, not Fibonacci) so it keeps winding inward with ever-smaller
+    # arcs — more turns toward the centre. The walk keeps the arcs tangent:
+    # centre one radius to the LEFT of travel, 90° CCW sweep, heading +90°.
+    radii = [phi ** k for k in range(-7, 12)]   # inner arcs added in ×4 counts
+    #                                             so the composition stays landscape
     P = np.array([0.0, 0.0]); T = np.array([1.0, 0.0])
     arcs = []; squares = []; pts = [P.copy()]
-    for s in fib:
+    for s in radii:
         left = np.array([-T[1], T[0]])
         C = P + left * s
         a0 = np.degrees(np.arctan2(P[1] - C[1], P[0] - C[0]))
@@ -81,11 +84,14 @@ def fig_golden(ax, box, W):
     ox = (x0 + x1) / 2 - (minx + maxx) / 2 * sc
     oy = (y0 + y1) / 2 - (miny + maxy) / 2 * sc
     for (sx, sy, s) in squares:
+        if s * sc < 0.06:      # skip the tiniest squares near the eye (clutter)
+            continue
         ax.add_patch(mp.Rectangle((ox + sx * sc, oy + sy * sc), s * sc, s * sc,
-                                  fill=False, edgecolor=SUB, lw=0.7))
+                                  fill=False, edgecolor=SUB, lw=0.6))
     for (C, r, a0, a1) in arcs:
+        lw = max(0.7, min(1.7, r * sc * 1.1))     # thinner as the arc shrinks
         ax.add_patch(mp.Arc((ox + C[0] * sc, oy + C[1] * sc), 2 * r * sc, 2 * r * sc,
-                            angle=0, theta1=a0, theta2=a1, color=ACC, lw=1.7))
+                            angle=0, theta1=a0, theta2=a1, color=ACC, lw=lw))
     ax.text(x0 + 0.1, y1, "1, 1, 2, 3, 5, 8, 13, 21, …", fontproperties=MONO,
             fontsize=W * 1.1, color=SUB, va="top")
     ax.text(x1 - 0.1, y0 + 0.1, "φ = 1.6180339887…", fontproperties=MONO,
