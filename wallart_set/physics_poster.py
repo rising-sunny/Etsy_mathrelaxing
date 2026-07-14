@@ -76,26 +76,39 @@ def fig_blackhole(ax, box, W):
     for k in range(14, 0, -1):
         rr = u * (1.0 + k * 0.16)
         ax.add_patch(mp.Circle((cx, cy), rr, fill=False, edgecolor=SUB,
-                     lw=0.5, alpha=0.05 + 0.03 * (14 - k) / 14))
+                     lw=0.5, alpha=0.05 + 0.03 * (14 - k) / 14, zorder=0))
+    # accretion disk: an inclined annulus of warm material. Draw the FAR half
+    # (behind the hole) first, the horizon over it, then the NEAR half in front —
+    # the ring that appears to pass over the top is the lensing signature.
+    tilt = 0.30                              # vertical squash → seen almost edge-on
+    def disk(front):
+        phis = np.linspace(0, np.pi, 80) if not front else np.linspace(np.pi, 2 * np.pi, 80)
+        for r in np.linspace(2.6 * u, 5.6 * u, 22):
+            xr = cx + r * np.cos(phis); yr = cy + r * tilt * np.sin(phis)
+            a = 0.5 - 0.42 * (r - 2.6 * u) / (3.0 * u)     # brighter inside
+            ax.plot(xr, yr, color=ACC, lw=1.3, alpha=max(0.05, a),
+                    zorder=1.5 if not front else 2.5, solid_capstyle="round")
+    disk(front=False)
     # ISCO (innermost stable circular orbit) at 3 r_s
     ax.add_patch(mp.Circle((cx, cy), 3 * u, fill=False, edgecolor=SUB,
-                 lw=0.9, ls=(0, (5, 4))))
+                 lw=0.9, ls=(0, (5, 4)), zorder=1))
     # photon sphere at 1.5 r_s
     ax.add_patch(mp.Circle((cx, cy), 1.5 * u, fill=False, edgecolor=ACC,
-                 lw=1.2, ls=(0, (4, 3))))
+                 lw=1.2, ls=(0, (4, 3)), zorder=1))
     # event horizon: solid black disk at r_s
-    ax.add_patch(mp.Circle((cx, cy), u, facecolor=INK, edgecolor=INK, lw=0))
+    ax.add_patch(mp.Circle((cx, cy), u, facecolor=INK, edgecolor=INK, lw=0, zorder=2))
+    disk(front=True)
     # radius marker
     ax.annotate("", xy=(cx + u, cy), xytext=(cx, cy),
                 arrowprops=dict(arrowstyle="-|>", color=PAPER, lw=1.4))
     ax.text(cx + u * 0.5, cy + 0.12, "rₛ", fontproperties=MONO,
-            fontsize=W * 1.0, color=PAPER, ha="center")
+            fontsize=W * 1.0, color=PAPER, ha="center", zorder=3)
     # labels with leader lines
     def label(r, text, color, dy):
         px = cx + r * np.cos(np.radians(58)); py = cy + r * np.sin(np.radians(58))
-        ax.plot([px, cx + span * 0.42], [py, cy + r + dy], color=color, lw=0.6)
+        ax.plot([px, cx + span * 0.42], [py, cy + r + dy], color=color, lw=0.6, zorder=3)
         ax.text(cx + span * 0.44, cy + r + dy, text, fontproperties=SANS,
-                fontsize=W * 0.85, color=color, va="center")
+                fontsize=W * 0.85, color=color, va="center", zorder=3)
     label(u, "event horizon  ·  rₛ = 2GM/c²", INK, 0.02)
     label(1.5 * u, "photon sphere  ·  1.5 rₛ", ACC, 0.05)
     label(3 * u, "innermost stable orbit  ·  3 rₛ", SUB, 0.05)
@@ -142,42 +155,57 @@ def fig_quantum(ax, box, W):
 
 
 def fig_maxwell(ax, box, W):
-    """A travelling EM wave: E and B fields, transverse and in phase."""
+    """A travelling EM wave in 3D: E and B on perpendicular planes, in phase.
+
+    Isometric projection — ẑ propagates to the right, Ê points 'up' in the page,
+    B̂ recedes along a diagonal 'into the page'. Each field is a sine on its own
+    plane, sharing the propagation axis."""
     x0, x1, y0, y1 = box
-    cy = (y0 + y1) / 2
-    xa, xb = x0 + 0.3, x1 - 0.35
-    z = np.linspace(0, 1, 600)
-    L = xb - xa
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2 + 0.05
+    Lz = (x1 - x0) * 0.80                    # propagation extent
     amp = (y1 - y0) * 0.30
-    skew = 0.34                              # depth direction for B (drawn skew)
+    dz = np.array([1.0, 0.0])                # propagation → right
+    de = np.array([0.0, 1.0])               # E → up (in page)
+    db = np.array([0.52, 0.30])             # B → receding diagonal (into page)
+    O = np.array([cx - Lz / 2, cy])         # world origin on screen
+
+    def P(z, e, b):                          # (z,e,b) → screen xy
+        p = O + z * Lz * dz + e * amp * de + b * amp * db
+        return p[0], p[1]
+
+    z = np.linspace(0, 1, 600)
     wave = np.sin(2 * np.pi * 2 * z)
     # propagation axis
-    ax.annotate("", xy=(xb + 0.12, cy), xytext=(xa - 0.05, cy),
+    axx0, axy0 = P(0, 0, 0); axx1, axy1 = P(1.04, 0, 0)
+    ax.annotate("", xy=(axx1, axy1), xytext=(axx0, axy0),
                 arrowprops=dict(arrowstyle="-|>", color=SUB, lw=1.0))
-    ax.text(xb + 0.14, cy - 0.12, "propagation", fontproperties=SANS,
-            fontsize=W * 0.85, color=SUB, va="top")
-    # E field: vertical (in the page)
-    Ex = xa + z * L; Ey = cy + wave * amp
-    ax.plot(Ex, Ey, color=ACC, lw=1.9)
-    for i in range(0, len(z), 26):
-        ax.plot([Ex[i], Ex[i]], [cy, Ey[i]], color=ACC, lw=0.7, alpha=0.55)
-    # B field: perpendicular, drawn skew to fake the 3rd axis
-    Bx = xa + z * L + wave * amp * skew
-    By = cy + wave * amp * skew
-    ax.plot(Bx, By, color=INK, lw=1.5, alpha=0.9)
-    for i in range(0, len(z), 26):
-        ax.plot([xa + z[i] * L, Bx[i]], [cy, By[i]], color=INK, lw=0.6, alpha=0.4)
-    # one wavelength bracket
-    z0, z1 = 0.0, 0.5
-    yb = cy - amp - 0.28
-    ax.annotate("", xy=(xa + z1 * L, yb), xytext=(xa + z0 * L, yb),
+    ax.text(axx1 + 0.04, axy1 - 0.06, "direction of travel", fontproperties=SANS,
+            fontsize=W * 0.82, color=SUB, va="top")
+    # B first (further back), then E in front
+    Bpts = np.array([P(zz, 0, ww) for zz, ww in zip(z, wave)])
+    ax.plot(Bpts[:, 0], Bpts[:, 1], color=INK, lw=1.5, alpha=0.9)
+    for i in range(0, len(z), 30):
+        base = P(z[i], 0, 0); tip = P(z[i], 0, wave[i])
+        ax.plot([base[0], tip[0]], [base[1], tip[1]], color=INK, lw=0.6, alpha=0.4)
+    Epts = np.array([P(zz, ww, 0) for zz, ww in zip(z, wave)])
+    ax.plot(Epts[:, 0], Epts[:, 1], color=ACC, lw=2.0)
+    for i in range(0, len(z), 30):
+        base = P(z[i], 0, 0); tip = P(z[i], wave[i], 0)
+        ax.plot([base[0], tip[0]], [base[1], tip[1]], color=ACC, lw=0.7, alpha=0.55)
+    # field labels at a crest
+    ic = int(np.argmax(wave[:150]))
+    ex, ey = P(z[ic], 1, 0); bx, by = P(z[ic], 0, 1)
+    ax.text(ex - 0.14, ey + 0.02, "E", fontproperties=SANS, weight="bold",
+            fontsize=W * 1.35, color=ACC, va="bottom", ha="right")
+    ax.text(bx + 0.06, by, "B", fontproperties=SANS, weight="bold",
+            fontsize=W * 1.2, color=INK, va="center")
+    # one wavelength bracket along the axis
+    yb = cy - amp - 0.30
+    xL0, _ = P(0.0, 0, 0); xL1, _ = P(0.5, 0, 0)
+    ax.annotate("", xy=(xL1, yb), xytext=(xL0, yb),
                 arrowprops=dict(arrowstyle="<->", color=SUB, lw=0.8))
-    ax.text(xa + 0.25 * L, yb - 0.03, "λ", fontproperties=MONO,
+    ax.text((xL0 + xL1) / 2, yb - 0.03, "λ", fontproperties=MONO,
             fontsize=W * 1.1, color=SUB, ha="center", va="top")
-    ax.text(xa + 0.02, cy + amp + 0.06, "E", fontproperties=SANS, weight="bold",
-            fontsize=W * 1.3, color=ACC, va="bottom")
-    ax.text(xa + 0.02 + amp * skew, cy + amp * skew + 0.06, "B",
-            fontproperties=SANS, weight="bold", fontsize=W * 1.15, color=INK, va="bottom")
 
 
 def fig_planck(ax, box, W):
