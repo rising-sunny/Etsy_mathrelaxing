@@ -245,7 +245,11 @@ CONCEPTS = {
 
 
 def render(key, W, H, dpi=110):
-    c = CONCEPTS[key]
+    return render_plate(CONCEPTS[key], W, H, dpi)
+
+
+def render_plate(c, W, H, dpi=110):
+    """Draw one scientific plate from a spec dict (shared by the physics line)."""
     fig = plt.figure(figsize=(W, H), dpi=dpi); fig.patch.set_facecolor(PAPER)
     ax = fig.add_axes([0, 0, 1, 1]); ax.set_facecolor(PAPER); ax.axis("off")
     ax.set_xlim(0, W); ax.set_ylim(0, H)
