@@ -66,7 +66,7 @@ precision and free of color numbers.
 ► Print it once, color it endlessly — or use it on your iPad with GoodNotes.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "sacred_geometry_pdf": """\
 Instant download — color-by-number PDF coloring book (50 pages, 8.5×11 in).
@@ -80,7 +80,7 @@ always know exactly where each hue goes.
 • Meditative, screen-free relaxation
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "hyperbolic_gardens_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -94,7 +94,7 @@ unlike any other.
 • 50 original hyperbolic tiling designs
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "mathematical_tangle_art_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -107,7 +107,7 @@ dense, meditative patterns for hours of mindful coloring.
 • 50 original mathematical tangle designs
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "sacred_harmonics_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -120,7 +120,7 @@ geometry of vibration made visible and colorable.
 • 50 original cymatics & harmonic designs
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "neural_network_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -133,7 +133,7 @@ and anyone who loves high-tech geometry.
 • 50 original neural network & tech art designs
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "fractal_flora_ipad": """\
 Instant download — iPad coloring bundle for GoodNotes, Notability & Procreate.
@@ -154,7 +154,7 @@ GoodNotes / Notability: open the PDF, tap a thumbnail, color right on top.
 Procreate: import a PNG, paint on a layer below the linework.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "sacred_geometry_ipad": """\
 Instant download — iPad coloring bundle for GoodNotes, Notability & Procreate.
@@ -174,7 +174,7 @@ GoodNotes / Notability: open the PDF, tap a thumbnail, color right on top.
 Procreate: import a PNG, paint on a layer below the numbered linework.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "thomas_attractor": """\
 Instant download — seamless loop animation (MP4, 1080×1080, 60 fps, 12 s).
@@ -188,7 +188,7 @@ digital frames, or social media backgrounds.
 • Silent (add your own music or keep it ambient)
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "voronoi_gardens_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -205,7 +205,7 @@ color fills.
 ► Print it once, color it endlessly — or use it on your iPad with GoodNotes.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "stem_focus_planner": """\
 Instant download — undated STEM focus planner for GoodNotes, Notability & any PDF app. \
@@ -228,7 +228,7 @@ Use the included stickers to mark important equations, deadlines, or achievement
 
 This is a DIGITAL file — no physical product is shipped.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "stem_notebook": """\
 Instant download — hyperlinked STEM digital notebook for GoodNotes, Notability \
@@ -251,7 +251,7 @@ and tap the side tabs to navigate. Write with your Apple Pencil on any page.
 
 This is a DIGITAL file — no physical product is shipped.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "voronoi_gardens_ipad": """\
 Instant download — iPad coloring bundle for GoodNotes, Notability & Procreate.
@@ -272,7 +272,7 @@ GoodNotes / Notability: open the PDF, tap a thumbnail, color right on top.
 Procreate: import a PNG, paint on a layer below the cell outlines.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "julia_morph_01": """\
 Instant download — seamless loop animation (MP4, 1080×1080, 60 fps, ~12 s).
@@ -287,7 +287,7 @@ Every frame is mathematically generated; the loop is perfect, with no visible cu
 ► Art born from equations.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "islamic_geometry_pdf": """\
 Instant download — color-by-number PDF coloring book (50 pages, 8.5×11 in).
@@ -302,7 +302,7 @@ color guide so every facet is exactly where it belongs.
 • Meditative, screen-free relaxation
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "celtic_knot_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -320,7 +320,7 @@ intricate weaves
 ► Print it once, color it endlessly — or use it on your iPad with GoodNotes.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "islamic_geometry_ipad": """\
 Color by number on your iPad — no printer, no mess.
@@ -372,7 +372,7 @@ GoodNotes / Notability: open the PDF, tap a thumbnail, color right on top.
 Procreate: import a PNG, paint on a layer below the woven bands.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "voronoi_cell_garden": """\
 A living mosaic that never stops breathing.
@@ -443,7 +443,7 @@ Designed with our elegant Dark Mode (Navy & Gold) aesthetic to match your \
 favorite IDE and reduce eye strain.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "spiral_tilings_pdf": """\
 Instant download — printable coloring book PDF (50 pages, 8.5×11 in).
@@ -460,7 +460,7 @@ coloring experience as you follow the fractal-like curves outward.
 ► Print it once, color it endlessly — or use it on your iPad with GoodNotes.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
 
     "spiral_tilings_ipad": """\
 Experience the meditative flow of Color-by-Number with the endless mathematics of spirals, right on your iPad with this fully INTERACTIVE app-like experience.
@@ -475,7 +475,53 @@ Features:
 • 50 unique mathematically-generated designs
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
-mathrelaxing.store""",
+""",
+
+    "happy_chemicals_prints": """\
+Instant download — Happy Chemicals print set (4 science wall-art posters).
+
+Four minimalist molecular structure prints on a warm paper aesthetic — \
+clean ink lines, generous negative space, gallery-ready:
+
+• Serotonin — the happiness chemical
+• Dopamine — the reward chemical
+• Oxytocin — the bonding hormone
+• Caffeine — the focus molecule
+
+Perfect for therapy offices, psychology & neuroscience spaces, coffee nooks, \
+classrooms, dorms, and science-lover gifts.
+
+► What you get
+• 4 original molecule art prints (JPG, 300 dpi)
+• Multiple sizes per print: 5×7, 8×10, 11×14, 16×20, A4, A3
+• Print at home or any print shop (matte / textured paper looks best)
+• Instant download ZIP — no physical item ships
+
+► Style
+Warm paper background with a soft color wash, double decorative frame, \
+rich atom colors (N blue, O coral, S gold), charcoal bonds, italic titles.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "schrodinger_equation_print": """\
+Instant download — Physics Wall Art.
+
+The Shape Of Probability - a scientific-plate art print.
+
+The Schrödinger equation says a particle is a wave of probability ψ. Squaring it gives |ψ|² — the chance of finding the particle at each place. In a one-dimensional box the allowed waves are standing modes: higher n, more nodes, higher energy. This plate shows the ground state and first two excited states with their probability densities.
+
+Every line is computed from the physics - not stock art, not AI.
+
+WHAT YOU GET (instant download)
+- 5 aspect ratios: 2:3, 3:4, 4:5, 5:7 and ISO/A
+- 300 DPI - print small or large
+- Delivered as one ZIP
+
+Print at home, a print shop, or an online lab. For personal use. Frame not included.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
 }
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
@@ -942,6 +988,89 @@ PRODUCTS = {
                  "spiral mandala","printable coloring","adult coloring book","radial tessellation",
                  "sacred geometry","mindful coloring","coloring book pdf","relaxing coloring","logarithmic spiral"],
         "notes": "Generado con generate_spiral_tilings.py. Listo para publicar como borrador.",
+    },
+
+    "happy_chemicals_prints": {
+        "title": (
+            "Happy Chemicals Print Set | Serotonin Dopamine Oxytocin Caffeine "
+            "Molecule Wall Art | Science Printable Digital Download"
+        ),
+        "description": DESCRIPTIONS["happy_chemicals_prints"],
+        "price":       8.99,
+        "taxonomy_id": TAXONOMY["digital_art"],  # 2078 Digital Prints
+        "images": [
+            p("happy_chemicals", "previews", "happy_chemicals_preview_1_hero.jpg"),
+            p("happy_chemicals", "previews", "happy_chemicals_preview_2_set.jpg"),
+            p("happy_chemicals", "previews", "happy_chemicals_preview_3_included.jpg"),
+            p("happy_chemicals", "previews", "happy_chemicals_preview_4_serotonin.jpg"),
+            p("happy_chemicals", "previews", "happy_chemicals_preview_5_dopamine.jpg"),
+            p("happy_chemicals", "previews", "happy_chemicals_preview_6_oxytocin.jpg"),
+            p("happy_chemicals", "previews", "happy_chemicals_preview_7_caffeine.jpg"),
+        ],
+        "files": [
+            # Combined pack kept under Etsy ~20MB digital limit (JPEG q=80)
+            p("happy_chemicals", "Happy_Chemicals_Print_Set.zip"),
+        ],
+        "tags": [
+            "molecule wall art",
+            "serotonin print",
+            "dopamine poster",
+            "oxytocin art",
+            "caffeine molecule",
+            "science wall art",
+            "therapy office art",
+            "printable wall art",
+            "chemistry poster",
+            "mental health art",
+            "happiness hormones",
+            "digital download",
+            "psychology gift",
+        ],
+        "notes": (
+            "Validado eRank (Tier A). RDKit color + frames. "
+            "Draft listing_id=4538046387. ZIP q=80 ~11MB under Etsy limit."
+        ),
+    },
+
+    "schrodinger_equation_print": {
+        "title": (
+            "Physics Wall Art | Schrödinger Equation Print | Quantum Mechanics "
+            "Particle in a Box STEM Art (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["schrodinger_equation_print"],
+        "price":       5.50,
+        "taxonomy_id": TAXONOMY["digital_art"],  # 2078 Digital Prints
+        "images": [
+            p("schrodinger_equation", "previews", "schrodinger_preview_1_hero.jpg"),
+            p("schrodinger_equation", "previews", "schrodinger_preview_2_detail.jpg"),
+            p("schrodinger_equation", "previews", "schrodinger_preview_3_included.jpg"),
+            p("schrodinger_equation", "previews", "schrodinger_preview_4_plate.jpg"),
+            p("schrodinger_equation", "previews", "schrodinger_preview_5_equation.jpg"),
+        ],
+        "files": [
+            p("schrodinger_equation", "Schrodinger_Equation_Physics_Wall_Art.zip"),
+        ],
+        "tags": [
+            "physics wall art",
+            "schrodinger equation",
+            "quantum physics art",
+            "science poster",
+            "physics poster",
+            "math wall art",
+            "stem wall art",
+            "educational poster",
+            "digital download",
+            "classroom decor",
+            "nerd gift",
+            "teacher gift",
+            "quantum mechanics",
+        ],
+        "notes": (
+            "eRank wave2 pick: ~9 listings, avg 144 favs, med $5.50, 78% digital. "
+            "Competition <20 on long-tail; rides physics wall art cluster (Maxwell #1). "
+            "Scientific plate style matching Maxwell/Black Hole. "
+            "Draft listing_id=4538061513."
+        ),
     },
 }
 

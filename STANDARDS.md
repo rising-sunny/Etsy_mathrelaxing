@@ -34,7 +34,8 @@ Implementaciones de referencia (copiar el patrón):
 - **Previews de bundles iPad**: fondo fijo `brand.IPAD_NAVY`, acento
   `brand.IPAD_TEAL`. Usar los scaffolds `brand.ipad_fig/ipad_frame/ipad_logo`.
 - **Descripciones** (en `products_catalog.py`) terminan con la línea
-  `brand.COPYRIGHT` y `brand.STORE` (mathrelaxing.store).
+  `brand.COPYRIGHT`. **No** incluir `mathrelaxing.store` ni URLs externas
+  en copy de Etsy (política de la plataforma / riesgo de flags).
 - **Publicación**: SIEMPRE se crea el listing en `draft`. La activación es manual.
 - **Cover del listing = cuadrada** (8×8 → Etsy recorta 1:1). La página 1 del PDF
   es la versión portrait; son distintas a propósito.

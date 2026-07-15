@@ -218,3 +218,9 @@ __marimo__/
 .streamlit/secrets.toml
 
 lulu_books/output/
+
+# Secrets / local auth (never commit tokens)
+etsy_token.json
+
+# Playwright MCP session artifacts
+.playwright-mcp/

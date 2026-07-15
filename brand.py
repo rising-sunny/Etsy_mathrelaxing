@@ -40,7 +40,8 @@ IPAD_TEAL = "#7fb0aa"     # iPad app-name accent
 IPAD_GOLD = "#c7ad7c"     # iPad subtitle gold
 
 # ── Copy constants ───────────────────────────────────────────────────────────
-STORE = "mathrelaxing.store"
+# Do NOT put STORE in Etsy listing descriptions (off-platform link risk).
+STORE = "mathrelaxing.store"  # only for non-Etsy assets if needed
 COPYRIGHT = "© MathRelaxing. For personal use only. Not for redistribution or resale."
 
 # ── Typography helpers (matplotlib kwargs) ───────────────────────────────────

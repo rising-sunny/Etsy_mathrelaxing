@@ -1,0 +1,3 @@
+﻿Generated: 2026-07-14 22:48:36
+Engine: RDKit saturated color + double frames + accent wash
+Molecules validated: serotonin dopamine caffeine oxytocin (formulas + InChI alts)
