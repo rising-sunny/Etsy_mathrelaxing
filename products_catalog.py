@@ -504,6 +504,60 @@ rich atom colors (N blue, O coral, S gold), charcoal bonds, italic titles.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "cs_poster_set": """\
+Instant download — Computer Science educational wall-art poster set (7 scientific plates).
+
+Seven clean classroom-ready diagrams in the MathRelaxing scientific-plate style — \
+cream graph paper, LaTeX equations, and a soft color palette:
+
+1. How Algorithms Grow — Big-O complexity curves
+2. Ordered by Comparison — Binary search tree
+3. Sorted by Comparison — Bubble vs merge sort
+4. Boolean Building Blocks — Logic gates (AND, OR, NOT, XOR, NAND, NOR)
+5. Seven Layers of the Network — OSI model
+6. LIFO and FIFO — Stack and queue
+7. States and Transitions — Finite state machine (turnstile)
+
+► What you get
+• 7 original educational posters (JPG)
+• Multiple aspect ratios: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Print-ready resolution for home or print shop
+• Delivered as one ZIP — instant download
+
+Perfect for CS classrooms, coding bootcamps, home offices, and STEM gifts.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "stem_lab_notebook": """\
+Instant download — STEM Lab Notebook printable PDF (48 pages, US Letter).
+
+A clean scientific notebook for real experiments — not a generic planner. Built for \
+students, teachers, undergrads, and makers who want the scientific method laid out \
+clearly on paper or iPad.
+
+► What's inside
+• 12 scientific-method experiment logs (hypothesis → procedure → data → conclusion)
+• Data tables for raw measurements
+• Observation + sketch pages
+• 5 mm graph paper and dot grid
+• Chemistry, Physics, and Biology note layouts
+• Lab inventory + pre-lab safety checklist
+• Lined notes for freeform writing
+• Hyperlinked index and side tabs for GoodNotes / Notability
+
+► Print or digital
+Print at home (letter 8.5×11 in) or import the PDF into GoodNotes, Notability, or \
+any PDF annotation app. Undated — duplicate any page as many times as you need.
+
+► Perfect for
+High school & college labs, AP science, research notebooks, homeschool science, \
+and STEM gifts.
+
+This is a DIGITAL file — no physical product is shipped.
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "schrodinger_equation_print": """\
 Instant download — Physics Wall Art.
 
@@ -1032,11 +1086,100 @@ PRODUCTS = {
         ),
     },
 
+    "cs_poster_set": {
+        "title": (
+            "Computer Science Poster Set | Big O Algorithm Binary Tree Logic Gates "
+            "OSI STEM Wall Art Printable (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["cs_poster_set"],
+        "price":       9.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("cs_poster_set", "previews", "cs_preview_1_hero.jpg"),
+            p("cs_poster_set", "previews", "cs_preview_2_set.jpg"),
+            p("cs_poster_set", "previews", "cs_preview_3_included.jpg"),
+            p("cs_poster_set", "previews", "cs_preview_big_o.jpg"),
+            p("cs_poster_set", "previews", "cs_preview_bst.jpg"),
+            p("cs_poster_set", "previews", "cs_preview_sorting.jpg"),
+            p("cs_poster_set", "previews", "cs_preview_logic.jpg"),
+            p("cs_poster_set", "previews", "cs_preview_osi.jpg"),
+            p("cs_poster_set", "previews", "cs_preview_stack_queue.jpg"),
+            p("cs_poster_set", "previews", "cs_preview_fsm.jpg"),
+        ],
+        "files": [
+            p("cs_poster_set", "Computer_Science_Poster_Set.zip"),
+        ],
+        "tags": [
+            "computer science poster",
+            "algorithm poster",
+            "big o notation",
+            "binary search tree",
+            "logic gates poster",
+            "osi model poster",
+            "stem wall art",
+            "coding classroom",
+            "programming gift",
+            "data structure art",
+            "cs teacher gift",
+            "digital download",
+            "science wall art",
+        ],
+        "notes": (
+            "eRank wave4: computer science poster ~127 searches, 870 comp, 68% CTR. "
+            "7 plates: matplotlib+networkx + circuitikz gates + TikZ automata FSM. "
+            "Draft listing_id=4538180109. Ads OFF until organic signal."
+        ),
+        "listing_id": 4538180109,
+    },
+
+    "stem_lab_notebook": {
+        "title": (
+            "Lab Notebook Printable | STEM Science Experiment Log PDF | "
+            "GoodNotes Notability Digital Lab Journal (Digital Download)"
+        ),
+
+        "description": DESCRIPTIONS["stem_lab_notebook"],
+        "price":       7.99,
+        "taxonomy_id": TAXONOMY["planner_template"],  # 12476 Planner Templates
+        "images": [
+            p("lab_notebook", "previews", "lab_notebook_preview_1_hero.jpg"),
+            p("lab_notebook", "previews", "lab_notebook_preview_2_pages.jpg"),
+            p("lab_notebook", "previews", "lab_notebook_preview_3_included.jpg"),
+            p("lab_notebook", "previews", "lab_notebook_preview_4_experiment.jpg"),
+            p("lab_notebook", "previews", "lab_notebook_preview_5_graph.jpg"),
+            p("lab_notebook", "previews", "lab_notebook_preview_6_chemistry.jpg"),
+        ],
+        "files": [
+            p("lab_notebook", "STEM_Lab_Notebook.pdf"),
+        ],
+        "tags": [
+            "lab notebook printable",
+            "science notebook",
+            "lab journal",
+            "stem notebook",
+            "experiment log",
+            "goodnotes notebook",
+            "scientific method",
+            "digital lab notebook",
+            "printable lab report",
+            "chemistry notebook",
+            "physics notebook",
+            "student lab book",
+            "notability notebook",
+        ],
+        "notes": (
+            "eRank wave3 pick: lab notebook printable ~98 searches, 55 competition, "
+            "99% CTR. 48-page PDF US Letter, hyperlinked. "
+            "Draft listing_id=4538070573."
+        ),
+    },
+
     "schrodinger_equation_print": {
         "title": (
             "Physics Wall Art | Schrödinger Equation Print | Quantum Mechanics "
             "Particle in a Box STEM Art (Digital Download)"
         ),
+
         "description": DESCRIPTIONS["schrodinger_equation_print"],
         "price":       5.50,
         "taxonomy_id": TAXONOMY["digital_art"],  # 2078 Digital Prints

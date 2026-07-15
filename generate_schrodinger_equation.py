@@ -1,24 +1,28 @@
 """
 generate_schrodinger_equation.py — Schrödinger Equation scientific-plate wall art
 =================================================================================
-Matches the MathRelaxing physics-plate language (Maxwell, Black Hole):
-  cream graph paper · bold title · rust accents · educational caption · multi-ratio ZIP
+Scientific-plate style (Maxwell / Black Hole family):
+  cream graph paper · serif titles · true LaTeX equations (MiKTeX) · elegant modes
+
+Requires: matplotlib, numpy, pillow, and a working LaTeX (MiKTeX / TeX Live).
 
   python generate_schrodinger_equation.py
   python generate_schrodinger_equation.py --preview-only
+  python generate_schrodinger_equation.py --no-latex   # mathtext fallback
 """
 from __future__ import annotations
 
 import argparse
 import os
+import shutil
 import zipfile
 
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.patches import FancyBboxPatch, Rectangle
+from matplotlib.patches import Rectangle, FancyBboxPatch
+from matplotlib.gridspec import GridSpec
 import numpy as np
 from PIL import Image
 
@@ -29,402 +33,500 @@ PREVIEWS = os.path.join(OUT, "previews")
 
 # Palette — match Maxwell / Black Hole plates
 CREAM = "#F4F1EA"
-GRID = "#E4E0D6"
+GRID = "#E6E2D8"
+GRID_FINE = "#EDEAE3"
 INK = "#1A1A1A"
-INK_SOFT = "#4A4A4A"
+INK_SOFT = "#555555"
+INK_FAINT = "#8A857C"
 RUST = "#B85C38"
 RUST_SOFT = "#C4785A"
-LINE_DARK = "#2C2C2C"
+RUST_FILL = "#B85C38"
+LINE_DARK = "#222222"
+WELL_BG = "#FBF9F4"
 
 DPI_PRINT = 300
 DPI_PREVIEW = 150
 
-# Aspect ratios Maxwell ships: 2:3, 3:4, 4:5, 5:7, ISO/A
-# (width_in, height_in) portrait prints
 SIZES = {
-    "2x3": (12.0, 18.0),   # 2:3
-    "3x4": (12.0, 16.0),   # 3:4
-    "4x5": (16.0, 20.0),   # 4:5
-    "5x7": (10.0, 14.0),   # 5:7
-    "A4": (8.27, 11.69),   # ISO
-    "A3": (11.69, 16.54),  # ISO large
+    "2x3": (12.0, 18.0),
+    "3x4": (12.0, 16.0),
+    "4x5": (16.0, 20.0),
+    "5x7": (10.0, 14.0),
+    "A4": (8.27, 11.69),
+    "A3": (11.69, 16.54),
 }
 
+# Global: whether usetex is active for this run
+_USE_LATEX = False
 
-def _draw_graph_paper(ax, xmin, xmax, ymin, ymax, step=1.0):
-    """Subtle engineering-grid background (data coords)."""
-    for x in np.arange(xmin, xmax + step * 0.5, step):
+
+def configure_matplotlib(use_latex: bool = True) -> bool:
+    """
+    Prefer true LaTeX (Computer Modern) when a TeX engine is available.
+    Falls back to matplotlib mathtext + STIX / DejaVu Serif.
+    Returns True if usetex is on.
+    """
+    global _USE_LATEX
+    has_tex = bool(shutil.which("latex") or shutil.which("pdflatex"))
+    use_latex = use_latex and has_tex
+
+    if use_latex:
+        try:
+            plt.rcParams.update(
+                {
+                    "text.usetex": True,
+                    "font.family": "serif",
+                    "font.serif": ["Computer Modern Roman", "cmr10", "Times New Roman"],
+                    "mathtext.fontset": "cm",
+                    "axes.unicode_minus": False,
+                    "axes.formatter.use_mathtext": True,
+                    "text.latex.preamble": r"""
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{helvet}
+""",
+                    "pgf.texsystem": "pdflatex",
+                }
+            )
+            # Probe LaTeX once (catches missing packages early)
+            fig = plt.figure(figsize=(1, 1))
+            fig.text(0.5, 0.5, r"$i\hbar$")
+            fig.canvas.draw()
+            plt.close(fig)
+            _USE_LATEX = True
+            print("  math rendering: LaTeX (usetex / Computer Modern)")
+            return True
+        except Exception as exc:
+            print(f"  LaTeX probe failed ({exc}); falling back to mathtext")
+            plt.rcParams["text.usetex"] = False
+
+    plt.rcParams.update(
+        {
+            "text.usetex": False,
+            "font.family": "serif",
+            "font.serif": ["STIXGeneral", "DejaVu Serif", "Times New Roman", "Georgia"],
+            "mathtext.fontset": "stix",  # closest to LaTeX without TeX
+            "axes.unicode_minus": False,
+        }
+    )
+    _USE_LATEX = False
+    print("  math rendering: mathtext STIX (LaTeX-like, no TeX engine)")
+    return False
+
+
+def L(s: str) -> str:
+    """
+    Normalize math strings: with usetex leave as-is; without, keep $...$ mathtext.
+    Pass full strings including non-math for plain text.
+    """
+    return s
+
+
+def _draw_graph_paper(ax, xmin, xmax, ymin, ymax, major=5.0, minor=1.25):
+    """Subtle engineering grid (major + faint minor)."""
+    for x in np.arange(xmin, xmax + minor * 0.5, minor):
+        ax.axvline(x, color=GRID_FINE, lw=0.35, zorder=0)
+    for y in np.arange(ymin, ymax + minor * 0.5, minor):
+        ax.axhline(y, color=GRID_FINE, lw=0.35, zorder=0)
+    for x in np.arange(xmin, xmax + major * 0.5, major):
         ax.axvline(x, color=GRID, lw=0.55, zorder=0)
-    for y in np.arange(ymin, ymax + step * 0.5, step):
+    for y in np.arange(ymin, ymax + major * 0.5, major):
         ax.axhline(y, color=GRID, lw=0.55, zorder=0)
+
+
+def _fs(fig_w_in: float, frac: float) -> float:
+    return max(7.0, fig_w_in * 72 * frac)
+
+
+def _psi(n: int, x: np.ndarray, L: float = 1.0) -> np.ndarray:
+    return np.sqrt(2.0 / L) * np.sin(n * np.pi * x / L)
+
+
+def _draw_mode_panel(ax_psi, ax_prob, n: int, label: str, sub: str, fig_w: float):
+    """
+    Elegant dual-axis panel (open plate, no card chrome):
+      top  — wavefunction ψ_n(x) with zero line + infinite walls
+      bottom — probability density |ψ|² as filled curve
+    """
+    Lbox = 1.0
+    x = np.linspace(0, Lbox, 800)
+    psi = _psi(n, x, Lbox)
+    prob = psi ** 2
+
+    psi_n = psi / np.max(np.abs(psi))
+    prob_n = prob / np.max(prob)
+
+    for a in (ax_psi, ax_prob):
+        a.set_facecolor("none")  # open on cream graph paper
+        a.patch.set_alpha(0.0)
+        a.set_xlim(-0.06, 1.10)
+        for spine in a.spines.values():
+            spine.set_visible(False)
+        a.set_xticks([])
+        a.set_yticks([])
+        a.tick_params(length=0)
+        a.set_clip_on(False)
+
+    ax_psi.set_ylim(-1.42, 1.42)
+
+    # Infinite square-well walls (open style — walls only, no card frame)
+    wall_kw = dict(color=LINE_DARK, lw=1.55, solid_capstyle="projecting", zorder=6)
+    y_top, y_bot = 1.28, -1.28
+    ax_psi.plot([0, 0], [y_bot, y_top], **wall_kw)
+    ax_psi.plot([1, 1], [y_bot, y_top], **wall_kw)
+    # small outward ticks at top of walls (infinite V → ∞ cue)
+    tick = 0.045
+    for xw in (0.0, 1.0):
+        ax_psi.plot([xw - tick, xw + tick], [y_top, y_top], color=LINE_DARK, lw=1.55, zorder=6)
+
+    # Zero line for ψ
+    ax_psi.axhline(0, color=INK_FAINT, lw=0.65, ls=(0, (1.2, 2.0)), zorder=2, xmin=0.05, xmax=0.88)
+
+    # ψ curve
+    ax_psi.plot(
+        x,
+        psi_n,
+        color=LINE_DARK,
+        lw=2.15,
+        solid_capstyle="round",
+        solid_joinstyle="round",
+        zorder=5,
+        antialiased=True,
+    )
+    # node markers
+    if n > 1:
+        for k in range(1, n):
+            xn = k / n
+            ax_psi.plot(
+                xn, 0, "o", color=RUST, ms=3.4, zorder=7,
+                markeredgewidth=0, clip_on=False,
+            )
+
+    ax_psi.text(
+        0.5,
+        1.18,
+        rf"$n = {n}$",
+        transform=ax_psi.transAxes,
+        ha="center",
+        va="bottom",
+        fontsize=_fs(fig_w, 0.014),
+        color=INK,
+        clip_on=False,
+    )
+    ax_psi.text(
+        0.5,
+        1.05,
+        r"\textit{" + sub + "}",
+        transform=ax_psi.transAxes,
+        ha="center",
+        va="bottom",
+        fontsize=_fs(fig_w, 0.0095),
+        color=INK_SOFT,
+        clip_on=False,
+    )
+    ax_psi.text(
+        1.02,
+        0.88,
+        r"$\psi$",
+        transform=ax_psi.transAxes,
+        ha="left",
+        va="center",
+        fontsize=_fs(fig_w, 0.012),
+        color=LINE_DARK,
+        clip_on=False,
+    )
+
+    # ── Probability density ─────────────────────────────────────────────────
+    ax_prob.set_ylim(-0.08, 1.28)
+    ax_prob.plot([0, 0], [0, 1.18], **wall_kw)
+    ax_prob.plot([1, 1], [0, 1.18], **wall_kw)
+    ax_prob.plot([0, 1], [0, 0], color=LINE_DARK, lw=1.15, zorder=6, solid_capstyle="butt")
+
+    ax_prob.fill_between(
+        x, 0, prob_n,
+        color=RUST, alpha=0.20, linewidth=0, zorder=3, antialiased=True,
+    )
+    ax_prob.plot(
+        x, prob_n,
+        color=RUST, lw=1.65, solid_capstyle="round", zorder=4, antialiased=True,
+    )
+    ax_prob.text(
+        1.02,
+        0.78,
+        r"$|\psi|^{2}$",
+        transform=ax_prob.transAxes,
+        ha="left",
+        va="center",
+        fontsize=_fs(fig_w, 0.0105),
+        color=RUST,
+        clip_on=False,
+    )
+    # Energy under each column (clear of center band label)
+    ax_prob.text(
+        0.5,
+        -0.28,
+        rf"$E_{{{n}}}\propto n^{{2}}$",
+        transform=ax_prob.transAxes,
+        ha="center",
+        va="top",
+        fontsize=_fs(fig_w, 0.011),
+        color=RUST,
+        clip_on=False,
+    )
 
 
 def compose_plate(width_in: float, height_in: float, dpi: int = DPI_PRINT) -> Image.Image:
     """
-    Scientific plate: particle-in-a-box modes ψₙ + |ψ|² under the
-    time-dependent Schrödinger equation branding.
+    Full scientific plate with nested axes for true curve quality + LaTeX math.
+    Layout (figure fractions, top→bottom):
+      header · rule · 3 mode columns (ψ + |ψ|²) · caption · key equations
     """
     fig_w, fig_h = width_in, height_in
     fig = plt.figure(figsize=(fig_w, fig_h), dpi=dpi, facecolor=CREAM)
-    ax = fig.add_axes([0, 0, 1, 1])
-    ax.set_xlim(0, 100)
-    ax.set_ylim(0, 100)
-    ax.set_axis_off()
-    ax.set_facecolor(CREAM)
 
-    # Graph paper (whole plate)
-    _draw_graph_paper(ax, 0, 100, 0, 100, step=2.5)
+    # Background plate axes (grid + typography only)
+    ax_bg = fig.add_axes([0, 0, 1, 1], zorder=0)
+    ax_bg.set_xlim(0, 100)
+    ax_bg.set_ylim(0, 100)
+    ax_bg.set_axis_off()
+    ax_bg.set_facecolor(CREAM)
+    _draw_graph_paper(ax_bg, 0, 100, 0, 100, major=5.0, minor=1.25)
 
-    # Outer soft margin frame
-    margin = 3.2
-    ax.add_patch(
+    margin = 3.0
+    ax_bg.add_patch(
         Rectangle(
             (margin, margin),
             100 - 2 * margin,
             100 - 2 * margin,
             fill=False,
             edgecolor=GRID,
-            lw=1.0,
+            lw=0.9,
             zorder=1,
         )
     )
 
-    # ── Header ──────────────────────────────────────────────────────────────
-    title_y = 92.5
-    ax.text(
-        6.5,
-        title_y,
-        "THE SHAPE OF PROBABILITY",
-        fontsize=_fs(fig_w, 0.042),
-        fontweight="bold",
-        fontfamily="sans-serif",
+    # ── Header (plate coordinates) ──────────────────────────────────────────
+    # Bold Helvetica via LaTeX for Maxwell-like display title
+    ax_bg.text(
+        6.2,
+        93.2,
+        r"\textsf{\textbf{THE SHAPE OF PROBABILITY}}",
+        fontsize=_fs(fig_w, 0.038),
         color=INK,
         va="center",
         ha="left",
         zorder=5,
     )
-    ax.text(
-        93.5,
-        title_y,
-        "FIG. 1",
-        fontsize=_fs(fig_w, 0.018),
-        fontfamily="sans-serif",
+    ax_bg.text(
+        93.8,
+        93.2,
+        r"\textsf{FIG.\ 1}",
+        fontsize=_fs(fig_w, 0.015),
         color=INK_SOFT,
         va="center",
         ha="right",
         zorder=5,
     )
 
-    # Subtitle line
-    ax.text(
-        6.5,
-        88.2,
-        r"SCHRÖDINGER EQUATION  ·  $i\hbar\,\partial\psi/\partial t = \hat{H}\psi$",
-        fontsize=_fs(fig_w, 0.016),
-        fontfamily="sans-serif",
+    # Subtitle — true LaTeX equation (Computer Modern)
+    ax_bg.text(
+        6.2,
+        88.8,
+        r"\textsf{SCHR\"ODINGER EQUATION}"
+        r"  $\cdot$  "
+        r"$i\hbar\,\dfrac{\partial\psi}{\partial t}=\hat{H}\psi$",
+        fontsize=_fs(fig_w, 0.0135),
         color=RUST,
         va="center",
         ha="left",
         zorder=5,
     )
-    # Rule under header
-    ax.plot([6.5, 93.5], [85.5, 85.5], color=INK, lw=0.9, solid_capstyle="butt", zorder=5)
+    ax_bg.plot([6.2, 93.8], [86.0, 86.0], color=INK, lw=0.85, solid_capstyle="butt", zorder=5)
 
-    # ── Main diagram: infinite square well modes n=1,2,3 ────────────────────
-    # Layout in plate % coords — three panels side by side
-    panel_bottom = 28.0
-    panel_top = 80.0
-    panel_h = panel_top - panel_bottom
-    gap = 2.2
-    left0 = 7.5
-    right0 = 92.5
-    usable_w = right0 - left0
-    n_panels = 3
-    pw = (usable_w - gap * (n_panels - 1)) / n_panels
-
-    L = 1.0  # well width (dimensionless)
-    x = np.linspace(0, L, 400)
-
+    # ── Mode panels ─────────────────────────────────────────────────────────
     modes = [
-        (1, "n = 1", "ground state"),
-        (2, "n = 2", "first excited"),
-        (3, "n = 3", "second excited"),
+        (1, "ground state"),
+        (2, "first excited"),
+        (3, "second excited"),
     ]
+    left, right = 0.075, 0.925
+    # Raise panels slightly; leave room under for energy + band label
+    bottom_panels, top_panels = 0.34, 0.83
+    width_total = right - left
+    gap = 0.04
+    col_w = (width_total - 2 * gap) / 3.0
+    for i, (n, sub) in enumerate(modes):
+        x0 = left + i * (col_w + gap)
+        band = top_panels - bottom_panels
+        h_psi = band * 0.56
+        h_prob = band * 0.26
+        gap_inner = band * 0.08
+        y_prob = bottom_panels
+        y_psi = bottom_panels + h_prob + gap_inner
 
-    for i, (n, label, sub) in enumerate(modes):
-        x0 = left0 + i * (pw + gap)
-        # Panel axes as inset in figure fractions
-        # Convert plate % → figure fraction (axes is full figure)
-        # We'll draw in data coords of main ax using transformed local coords.
+        ax_psi = fig.add_axes([x0, y_psi, col_w, h_psi], zorder=3)
+        ax_prob = fig.add_axes([x0, y_prob, col_w, h_prob], zorder=3)
+        _draw_mode_panel(ax_psi, ax_prob, n, f"n={n}", sub, fig_w)
 
-        # Local box for this panel
-        bx0, by0 = x0, panel_bottom
-        bw, bh = pw, panel_h
-
-        # Subtle panel fill
-        ax.add_patch(
-            FancyBboxPatch(
-                (bx0, by0),
-                bw,
-                bh,
-                boxstyle="round,pad=0.15,rounding_size=0.4",
-                facecolor=CREAM,
-                edgecolor=GRID,
-                lw=0.8,
-                zorder=2,
-            )
-        )
-
-        # Well walls
-        wall_lw = max(1.2, fig_w * 0.06)
-        y_well_bot = by0 + bh * 0.12
-        y_well_top = by0 + bh * 0.78
-        x_left = bx0 + bw * 0.12
-        x_right = bx0 + bw * 0.88
-        well_w = x_right - x_left
-        well_h = y_well_top - y_well_bot
-
-        # Floor of well
-        ax.plot(
-            [x_left, x_right],
-            [y_well_bot, y_well_bot],
-            color=LINE_DARK,
-            lw=wall_lw,
-            zorder=4,
-        )
-        # Walls
-        ax.plot(
-            [x_left, x_left],
-            [y_well_bot, y_well_top],
-            color=LINE_DARK,
-            lw=wall_lw,
-            zorder=4,
-        )
-        ax.plot(
-            [x_right, x_right],
-            [y_well_bot, y_well_top],
-            color=LINE_DARK,
-            lw=wall_lw,
-            zorder=4,
-        )
-
-        # Wavefunction ψ_n(x) = √(2/L) sin(nπx/L)
-        psi = np.sqrt(2.0 / L) * np.sin(n * np.pi * x / L)
-        # Normalize visual amplitude to ~35% of well height
-        amp = well_h * 0.38
-        y_base = y_well_bot + well_h * 0.48  # center line for ψ
-        xs = x_left + x * well_w
-        ys = y_base + (psi / np.max(np.abs(psi))) * amp
-
-        # |ψ|² as filled bars under zero of probability axis (bottom third of well)
-        prob = psi ** 2
-        prob_n = prob / np.max(prob)
-        y_prob0 = y_well_bot + well_h * 0.02
-        y_prob_h = well_h * 0.22
-
-        # Draw |ψ|² as a continuous fill (probability density)
-        ys_prob = y_prob0 + prob_n * y_prob_h
-        ax.fill_between(
-            xs,
-            y_prob0,
-            ys_prob,
-            color=RUST,
-            alpha=0.22,
-            zorder=3,
-            linewidth=0,
-        )
-        ax.plot(xs, ys_prob, color=RUST_SOFT, lw=1.0, zorder=3)
-
-        # ψ curve
-        ax.plot(xs, ys, color=LINE_DARK, lw=1.8, zorder=5, solid_capstyle="round")
-        # zero line for ψ
-        ax.plot(
-            [x_left, x_right],
-            [y_base, y_base],
-            color=INK_SOFT,
-            lw=0.5,
-            ls=(0, (2, 2)),
-            zorder=3,
-            alpha=0.55,
-        )
-
-        # Labels
-        ax.text(
-            bx0 + bw * 0.5,
-            by0 + bh * 0.92,
-            label,
-            fontsize=_fs(fig_w, 0.015),
-            fontweight="bold",
-            fontfamily="sans-serif",
-            color=INK,
-            ha="center",
-            va="center",
-            zorder=5,
-        )
-        ax.text(
-            bx0 + bw * 0.5,
-            by0 + bh * 0.86,
-            sub,
-            fontsize=_fs(fig_w, 0.011),
-            fontfamily="sans-serif",
-            color=INK_SOFT,
-            ha="center",
-            va="center",
-            zorder=5,
-        )
-
-        # ψ and |ψ|² annotations on first panel only
-        if i == 0:
-            ax.text(
-                x_right + bw * 0.02,
-                y_base + amp * 0.55,
-                r"$\psi$",
-                fontsize=_fs(fig_w, 0.013),
-                color=LINE_DARK,
-                ha="left",
-                va="center",
-                zorder=5,
-            )
-            ax.text(
-                x_right + bw * 0.02,
-                y_prob0 + y_prob_h * 0.7,
-                r"$|\psi|^2$",
-                fontsize=_fs(fig_w, 0.011),
-                color=RUST,
-                ha="left",
-                va="center",
-                zorder=5,
-            )
-
-        # Energy label E_n ∝ n²
-        ax.text(
-            bx0 + bw * 0.5,
-            by0 + bh * 0.05,
-            rf"$E_{n} \propto n^{{2}}$",
-            fontsize=_fs(fig_w, 0.012),
-            fontfamily="sans-serif",
-            color=RUST,
-            ha="center",
-            va="center",
-            zorder=5,
-        )
-
-    # Well label under panels
-    ax.text(
+    # Band label — below energy labels so they don't collide
+    ax_bg.text(
         50,
-        25.5,
-        "particle in a one-dimensional box  ·  infinite square well",
-        fontsize=_fs(fig_w, 0.011),
-        fontfamily="sans-serif",
+        27.8,
+        r"\textit{particle in a one-dimensional box  $\cdot$  infinite square well}",
+        fontsize=_fs(fig_w, 0.010),
         color=INK_SOFT,
         ha="center",
         va="center",
-        style="italic",
         zorder=5,
     )
 
     # ── Caption ─────────────────────────────────────────────────────────────
-    caption = (
-        "The Schrödinger equation says a particle is a wave of probability ψ. "
-        "Squaring it gives |\u03c8|\u00b2 — the chance of finding the particle at each place. "
-        "In a box the allowed waves are standing modes: higher n, more nodes, higher energy."
-    )
-    # Manual wrap for consistent plate look
-    wrapped = _wrap(caption, width=88)
-    y_cap = 20.5
-    for line in wrapped:
-        ax.text(
-            6.5,
+    caption_lines = [
+        r"The Schr\"odinger equation says a particle is a wave of probability $\psi$.",
+        r"Squaring it gives $|\psi|^{2}$ --- the chance of finding the particle at each place.",
+        r"In a box the allowed waves are standing modes: higher $n$, more nodes, higher energy.",
+    ]
+    y_cap = 23.2
+    for line in caption_lines:
+        ax_bg.text(
+            6.2,
             y_cap,
             line,
-            fontsize=_fs(fig_w, 0.0125),
-            fontfamily="sans-serif",
+            fontsize=_fs(fig_w, 0.0112),
             color=INK_SOFT,
             ha="left",
             va="top",
             zorder=5,
         )
-        y_cap -= 2.35
+        y_cap -= 2.55
 
-    # Key equation bottom-right
-    ax.text(
-        93.5,
-        8.5,
-        r"$i\hbar\,\partial\psi/\partial t = \hat{H}\psi$",
+    # ── Key equations (footer) ──────────────────────────────────────────────
+    ax_bg.text(
+        6.2,
+        11.0,
+        r"$\hat{H}\psi = E\psi$",
         fontsize=_fs(fig_w, 0.016),
-        fontfamily="sans-serif",
+        color=INK_SOFT,
+        ha="left",
+        va="center",
+        zorder=5,
+    )
+    ax_bg.text(
+        6.2,
+        8.0,
+        r"\textsf{stationary states}",
+        fontsize=_fs(fig_w, 0.0088),
+        color=INK_FAINT,
+        ha="left",
+        va="center",
+        zorder=5,
+    )
+
+    ax_bg.text(
+        50,
+        11.0,
+        r"$\displaystyle\psi_n(x)=\sqrt{\dfrac{2}{L}}\,"
+        r"\sin\!\left(\dfrac{n\pi x}{L}\right)$",
+        fontsize=_fs(fig_w, 0.0135),
+        color=INK,
+        ha="center",
+        va="center",
+        zorder=5,
+    )
+    ax_bg.text(
+        50,
+        8.0,
+        r"\textsf{eigenfunctions of the infinite well}",
+        fontsize=_fs(fig_w, 0.0088),
+        color=INK_FAINT,
+        ha="center",
+        va="center",
+        zorder=5,
+    )
+
+    ax_bg.text(
+        93.8,
+        11.0,
+        r"$i\hbar\,\dfrac{\partial\psi}{\partial t}=\hat{H}\psi$",
+        fontsize=_fs(fig_w, 0.015),
         color=RUST,
         ha="right",
         va="center",
         zorder=5,
     )
-    ax.text(
-        93.5,
-        6.0,
-        "time-dependent form",
-        fontsize=_fs(fig_w, 0.0095),
-        fontfamily="sans-serif",
-        color=INK_SOFT,
+    ax_bg.text(
+        93.8,
+        8.0,
+        r"\textsf{time-dependent form}",
+        fontsize=_fs(fig_w, 0.0088),
+        color=INK_FAINT,
         ha="right",
         va="center",
         zorder=5,
     )
 
-    # Stationary form hint bottom-left
-    ax.text(
-        6.5,
-        8.5,
-        r"$\hat{H}\psi = E\psi$",
-        fontsize=_fs(fig_w, 0.014),
-        fontfamily="sans-serif",
-        color=INK_SOFT,
-        ha="left",
-        va="center",
-        zorder=5,
-    )
-    ax.text(
-        6.5,
-        6.0,
-        "stationary states",
-        fontsize=_fs(fig_w, 0.0095),
-        fontfamily="sans-serif",
-        color=INK_SOFT,
-        ha="left",
-        va="center",
-        zorder=5,
-    )
-
-    # Rasterize
+    # Rasterize to RGB
     fig.canvas.draw()
-    w_px, h_px = fig.canvas.get_width_height()
     buf = np.asarray(fig.canvas.buffer_rgba())
     img = Image.fromarray(buf[:, :, :3].copy(), "RGB")
     plt.close(fig)
     return img
 
 
-def _fs(fig_w_in: float, frac: float) -> float:
-    """Font size in points roughly proportional to figure width."""
-    return max(7.0, fig_w_in * 72 * frac)
+def compose_equation_card(width_in: float, height_in: float, dpi: int = DPI_PREVIEW) -> Image.Image:
+    """Clean equation-only listing image with display LaTeX."""
+    fig = plt.figure(figsize=(width_in, height_in), dpi=dpi, facecolor=CREAM)
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.set_xlim(0, 100)
+    ax.set_ylim(0, 100)
+    ax.set_axis_off()
+    ax.set_facecolor(CREAM)
+    _draw_graph_paper(ax, 0, 100, 0, 100, major=5.0, minor=1.25)
+
+    ax.text(
+        50,
+        72,
+        r"\textsf{\textbf{THE SCHR\"ODINGER EQUATION}}",
+        fontsize=_fs(width_in, 0.026),
+        color=INK,
+        ha="center",
+    )
+    ax.text(
+        50,
+        54,
+        r"$i\hbar\,\dfrac{\partial\psi}{\partial t} = \hat{H}\psi$",
+        fontsize=_fs(width_in, 0.042),
+        color=RUST,
+        ha="center",
+        va="center",
+    )
+    ax.text(
+        50,
+        38,
+        r"\textsf{time-dependent form  $\cdot$  quantum mechanics}",
+        fontsize=_fs(width_in, 0.013),
+        color=INK_SOFT,
+        ha="center",
+    )
+    ax.text(
+        50,
+        26,
+        r"stationary states:\quad $\hat{H}\psi = E\psi$",
+        fontsize=_fs(width_in, 0.018),
+        color=INK_SOFT,
+        ha="center",
+    )
+    fig.canvas.draw()
+    buf = np.asarray(fig.canvas.buffer_rgba())
+    img = Image.fromarray(buf[:, :, :3].copy(), "RGB")
+    plt.close(fig)
+    return img
 
 
-def _wrap(text: str, width: int = 90) -> list[str]:
-    words = text.split()
-    lines, cur = [], []
-    for w in words:
-        trial = (" ".join(cur + [w])) if cur else w
-        if len(trial) <= width:
-            cur.append(w)
-        else:
-            if cur:
-                lines.append(" ".join(cur))
-            cur = [w]
-    if cur:
-        lines.append(" ".join(cur))
-    return lines
-
-
-def save_rgb(img: Image.Image, path: str, dpi: int = DPI_PRINT, quality: int = 88):
+def save_rgb(img: Image.Image, path: str, dpi: int = DPI_PRINT, quality: int = 90):
     os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
     img.convert("RGB").save(
         path, "JPEG", quality=quality, optimize=True, progressive=True, dpi=(dpi, dpi)
@@ -438,7 +540,7 @@ def build_prints():
         print(f"print {name} ({w}×{h} in @ {DPI_PRINT} dpi)…")
         img = compose_plate(w, h, dpi=DPI_PRINT)
         path = os.path.join(PRINTS, f"schrodinger_equation_{name}_{DPI_PRINT}dpi.jpg")
-        save_rgb(img, path, DPI_PRINT, quality=88)
+        save_rgb(img, path, DPI_PRINT, quality=90)
 
 
 def build_zip():
@@ -452,6 +554,7 @@ MathRelaxing scientific plate
 THE SHAPE OF PROBABILITY
 Particle in a one-dimensional box (infinite square well):
 wavefunctions ψ_n and probability densities |ψ|² for n = 1, 2, 3.
+Equations rendered with LaTeX (Computer Modern).
 
 WHAT YOU GET
 High-resolution JPG prints at 300 dpi, multiple aspect ratios:
@@ -473,165 +576,83 @@ Frame not included. For personal use only.
     size_mb = os.path.getsize(zip_path) / (1024 * 1024)
     print(f"ZIP: {zip_path}  ({size_mb:.1f} MB)")
     if size_mb > 19.5:
-        print("WARNING: ZIP near Etsy 20MB digital-file limit — lower JPEG quality.")
+        print("WARNING: ZIP near Etsy 20MB digital-file limit.")
     return zip_path
 
 
 def build_previews():
     os.makedirs(PREVIEWS, exist_ok=True)
 
-    # 1 Hero — square-ish crop of plate branding
     print("preview 1 hero…")
     hero = compose_plate(10.0, 12.5, dpi=DPI_PREVIEW)
-    # crop top branding + main diagram
-    W, H = hero.size
-    # full plate as hero (slightly tighter top)
-    save_rgb(
-        hero,
-        os.path.join(PREVIEWS, "schrodinger_preview_1_hero.jpg"),
-        DPI_PREVIEW,
-        quality=90,
-    )
+    save_rgb(hero, os.path.join(PREVIEWS, "schrodinger_preview_1_hero.jpg"), DPI_PREVIEW, 92)
 
-    # 2 Close-up of n=2 panel area (detail)
     print("preview 2 detail…")
     detail = compose_plate(14.0, 10.0, dpi=DPI_PREVIEW)
-    # center crop
     dw, dh = detail.size
-    crop = detail.crop((int(dw * 0.05), int(dh * 0.18), int(dw * 0.95), int(dh * 0.78)))
-    # pad to square-ish on cream
+    # crop the three mode panels band
+    crop = detail.crop((int(dw * 0.04), int(dh * 0.16), int(dw * 0.96), int(dh * 0.74)))
     side = max(crop.size)
-    pad = Image.new("RGB", (side, side), (244, 241, 234))
-    pad.paste(crop, ((side - crop.size[0]) // 2, (side - crop.size[1]) // 2))
-    save_rgb(
-        pad,
-        os.path.join(PREVIEWS, "schrodinger_preview_2_detail.jpg"),
-        DPI_PREVIEW,
-        quality=90,
-    )
+    pad = Image.new("RGB", (side, int(side * 0.85)), (244, 241, 234))
+    pad.paste(crop, ((pad.size[0] - crop.size[0]) // 2, (pad.size[1] - crop.size[1]) // 2))
+    save_rgb(pad, os.path.join(PREVIEWS, "schrodinger_preview_2_detail.jpg"), DPI_PREVIEW, 92)
 
-    # 3 Included / sizes card
     print("preview 3 included…")
-    card_w, card_h = 10 * DPI_PREVIEW, 10 * DPI_PREVIEW
-    card = Image.new("RGB", (card_w, card_h), (244, 241, 234))
-    # left: mini plate
-    mini = compose_plate(5.0, 7.0, dpi=DPI_PREVIEW)
-    mini = mini.resize((int(card_w * 0.44), int(card_h * 0.70)), Image.Resampling.LANCZOS)
-    card.paste(mini, (int(card_w * 0.05), int(card_h * 0.14)))
-    # right text via matplotlib overlay
+    # left plate + right included card
     fig = plt.figure(figsize=(10, 10), dpi=DPI_PREVIEW, facecolor=CREAM)
     ax = fig.add_axes([0, 0, 1, 1])
     ax.set_xlim(0, 100)
     ax.set_ylim(0, 100)
     ax.set_axis_off()
     ax.set_facecolor(CREAM)
-    _draw_graph_paper(ax, 0, 100, 0, 100, step=2.5)
-    ax.text(55, 78, "included", fontsize=28, fontweight="bold", color=INK, ha="left")
+    _draw_graph_paper(ax, 0, 100, 0, 100, major=5.0, minor=1.25)
+    ax.text(55, 78, r"\textsf{\textbf{included}}", fontsize=24, color=INK, ha="left")
     lines = [
-        "1 scientific-plate print",
-        "Schrödinger equation",
-        "particle-in-a-box modes",
-        "",
-        "Aspect ratios:",
-        "2:3 · 3:4 · 4:5 · 5:7",
-        "ISO A4 · A3",
-        "",
-        "300 dpi JPG · ZIP",
-        "",
-        "Best on matte paper",
-        "Instant download",
+        r"1 scientific-plate print",
+        r"Schr\"odinger equation",
+        r"particle-in-a-box modes",
+        r"",
+        r"Aspect ratios:",
+        r"2:3 $\cdot$ 3:4 $\cdot$ 4:5 $\cdot$ 5:7",
+        r"ISO A4 $\cdot$ A3",
+        r"",
+        r"300 dpi JPG $\cdot$ ZIP",
+        r"equations in \LaTeX{}",
+        r"",
+        r"Best on matte paper",
+        r"Instant download",
     ]
     y = 68
     for line in lines:
-        ax.text(55, y, line, fontsize=14, color=INK_SOFT, ha="left", fontfamily="sans-serif")
-        y -= 4.2
+        ax.text(55, y, line, fontsize=12.5, color=INK_SOFT, ha="left")
+        y -= 4.0
     fig.canvas.draw()
     buf = np.asarray(fig.canvas.buffer_rgba())
     base = Image.fromarray(buf[:, :, :3].copy(), "RGB")
     plt.close(fig)
-    # composite mini plate onto left of base
-    base.paste(mini, (int(card_w * 0.05), int(card_h * 0.14)))
-    save_rgb(
-        base,
-        os.path.join(PREVIEWS, "schrodinger_preview_3_included.jpg"),
-        DPI_PREVIEW,
-        quality=90,
-    )
+    mini = compose_plate(5.0, 7.0, dpi=DPI_PREVIEW)
+    mini = mini.resize((int(base.size[0] * 0.44), int(base.size[1] * 0.70)), Image.Resampling.LANCZOS)
+    base.paste(mini, (int(base.size[0] * 0.05), int(base.size[1] * 0.14)))
+    save_rgb(base, os.path.join(PREVIEWS, "schrodinger_preview_3_included.jpg"), DPI_PREVIEW, 92)
 
-    # 4 Full plate again (listing image 4)
     print("preview 4 plate…")
     plate = compose_plate(8.0, 10.0, dpi=DPI_PREVIEW)
-    save_rgb(
-        plate,
-        os.path.join(PREVIEWS, "schrodinger_preview_4_plate.jpg"),
-        DPI_PREVIEW,
-        quality=90,
-    )
+    save_rgb(plate, os.path.join(PREVIEWS, "schrodinger_preview_4_plate.jpg"), DPI_PREVIEW, 92)
 
-    # 5 Equation callout
     print("preview 5 equation…")
-    fig = plt.figure(figsize=(10, 8), dpi=DPI_PREVIEW, facecolor=CREAM)
-    ax = fig.add_axes([0, 0, 1, 1])
-    ax.set_xlim(0, 100)
-    ax.set_ylim(0, 100)
-    ax.set_axis_off()
-    ax.set_facecolor(CREAM)
-    _draw_graph_paper(ax, 0, 100, 0, 100, step=2.5)
-    ax.text(
-        50,
-        68,
-        "THE SCHRÖDINGER EQUATION",
-        fontsize=18,
-        fontweight="bold",
-        color=INK,
-        ha="center",
-        fontfamily="sans-serif",
-    )
-    ax.text(
-        50,
-        52,
-        r"$i\hbar\,\dfrac{\partial\psi}{\partial t} = \hat{H}\psi$",
-        fontsize=28,
-        color=RUST,
-        ha="center",
-        va="center",
-    )
-    ax.text(
-        50,
-        36,
-        "time-dependent form  ·  quantum mechanics",
-        fontsize=12,
-        color=INK_SOFT,
-        ha="center",
-        fontfamily="sans-serif",
-    )
-    ax.text(
-        50,
-        26,
-        r"stationary:  $\hat{H}\psi = E\psi$",
-        fontsize=14,
-        color=INK_SOFT,
-        ha="center",
-    )
-    fig.canvas.draw()
-    buf = np.asarray(fig.canvas.buffer_rgba())
-    eq = Image.fromarray(buf[:, :, :3].copy(), "RGB")
-    plt.close(fig)
-    save_rgb(
-        eq,
-        os.path.join(PREVIEWS, "schrodinger_preview_5_equation.jpg"),
-        DPI_PREVIEW,
-        quality=90,
-    )
+    eq = compose_equation_card(10.0, 8.0, dpi=DPI_PREVIEW)
+    save_rgb(eq, os.path.join(PREVIEWS, "schrodinger_preview_5_equation.jpg"), DPI_PREVIEW, 92)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--preview-only", action="store_true")
+    ap.add_argument("--no-latex", action="store_true", help="Force mathtext STIX fallback")
     args = ap.parse_args()
 
     print("=== Schrödinger Equation physics plate ===")
     os.makedirs(OUT, exist_ok=True)
+    configure_matplotlib(use_latex=not args.no_latex)
 
     if not args.preview_only:
         build_prints()
