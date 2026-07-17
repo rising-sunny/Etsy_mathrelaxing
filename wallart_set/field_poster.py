@@ -89,6 +89,129 @@ def bh_struct_tile(hi_r, hi_style):
     return draw
 
 
+# --- special relativity: Minkowski diagram ----------------------------------
+def relativity_hero(fig, rect):
+    a = _tile_ax(fig, rect); a.set_xlim(-1.15, 1.15); a.set_ylim(-1.15, 1.15); a.set_aspect("equal")
+    a.fill([0, 1.15, -1.15], [0, 1.15, 1.15], color=ACC, alpha=0.05)
+    a.fill([0, 1.15, -1.15], [0, -1.15, -1.15], color=ACC, alpha=0.05)
+    a.plot([-1.12, 1.12], [-1.12, 1.12], color="#ffe2b0", lw=1.4)
+    a.plot([-1.12, 1.12], [1.12, -1.12], color="#ffe2b0", lw=1.4)
+    xx = np.linspace(-1.12, 1.12, 300)
+    for k in (0.3, 0.6, 0.9):
+        a.plot(xx, np.sqrt(xx ** 2 + k ** 2), color=SUB, lw=0.7, alpha=0.55)
+        a.plot(xx, -np.sqrt(xx ** 2 + k ** 2), color=SUB, lw=0.7, alpha=0.55)
+        a.plot(np.sqrt(xx ** 2 + k ** 2), xx, color=LINE, lw=0.6, alpha=0.5)
+        a.plot(-np.sqrt(xx ** 2 + k ** 2), xx, color=LINE, lw=0.6, alpha=0.5)
+    a.axhline(0, color=SUB, lw=0.6); a.axvline(0, color=SUB, lw=0.6)
+    b = 0.45
+    a.plot([-1.12, 1.12], [-1.12 * b, 1.12 * b], color=INK, lw=1.3)
+    a.plot([-1.12 * b, 1.12 * b], [-1.12, 1.12], color=INK, lw=1.3)
+
+
+def sr_boost_tile(b):
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect); a.set_xlim(-1.05, 1.05); a.set_ylim(-1.05, 1.05); a.set_aspect("equal")
+        a.plot([-1, 1], [-1, 1], color="#ffe2b0", lw=1.0); a.plot([-1, 1], [1, -1], color="#ffe2b0", lw=1.0)
+        a.axhline(0, color=SUB, lw=0.5); a.axvline(0, color=SUB, lw=0.5)
+        a.plot([-1, 1], [-b, b], color=ACC, lw=1.3); a.plot([-b, b], [-1, 1], color=ACC, lw=1.3)
+    return draw
+
+
+# --- electromagnetism: field lines via streamplot ---------------------------
+def _stream(a, charges, ext=1.5, res=200, dens=1.3):
+    Y, X = np.mgrid[-ext:ext:res * 1j, -ext:ext:res * 1j]
+    Ex = np.zeros_like(X); Ey = np.zeros_like(X)
+    for qx, qy, q in charges:
+        dx = X - qx; dy = Y - qy; r = (dx ** 2 + dy ** 2 + 2e-3) ** 1.5
+        Ex += q * dx / r; Ey += q * dy / r
+    mag = np.hypot(Ex, Ey)
+    a.set_xlim(-ext, ext); a.set_ylim(-ext, ext); a.set_aspect("equal")
+    a.streamplot(X, Y, Ex, Ey, color=np.log(mag + 1), cmap="plasma", density=dens,
+                 linewidth=0.7, arrowsize=0.55)
+    for qx, qy, q in charges:
+        a.scatter([qx], [qy], c="#ff7a7a" if q > 0 else "#7ab5ff", s=26, zorder=5, edgecolors="none")
+
+
+def em_hero(fig, rect):
+    _stream(_tile_ax(fig, rect), [(0.45, 0, 1), (-0.45, 0, -1)], ext=1.5, res=240, dens=1.5)
+
+
+def em_tile(charges):
+    def draw(fig, rect):
+        _stream(_tile_ax(fig, rect), charges, ext=1.4, res=130, dens=1.0)
+    return draw
+
+
+# --- thermodynamics: Maxwell-Boltzmann + PV processes -----------------------
+def thermo_hero(fig, rect):
+    a = _tile_ax(fig, rect); v = np.linspace(0, 3.2, 500)
+    a.set_xlim(0, 3.2); a.set_ylim(0, 1.15)
+    for T, col in [(0.35, "#6fb1ff"), (0.8, "#c77dff"), (1.6, "#ff8a5c")]:
+        f = v ** 2 * np.exp(-v ** 2 / (2 * T)); f /= f.max()
+        a.plot(v, f, color=col, lw=2.3, alpha=0.95)
+    a.plot([0, 3.2], [0, 0], color=SUB, lw=0.7); a.plot([0, 0], [0, 1.15], color=SUB, lw=0.7)
+
+
+def pv_tile(kind):
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect); V = np.linspace(0.35, 2.1, 200)
+        a.set_xlim(0.15, 2.2); a.set_ylim(0, 3.2)
+        if kind == "iso":
+            for c in (0.6, 1.1, 1.7):
+                a.plot(V, c / V, color=ACC, lw=1.1, alpha=0.85)
+        elif kind == "adia":
+            for c in (0.5, 0.9, 1.4):
+                a.plot(V, c / V ** 1.667, color="#ff8a5c", lw=1.1, alpha=0.85)
+        else:  # iso-P / iso-V
+            for p in (0.8, 1.6, 2.4):
+                a.plot([0.35, 2.1], [p, p], color=ACC, lw=1.0, alpha=0.8)
+            for vv in (0.6, 1.1, 1.6):
+                a.plot([vv, vv], [0.2, 3.0], color="#ff8a5c", lw=1.0, alpha=0.7)
+        a.plot([0.15, 2.2], [0, 0], color=SUB, lw=0.5); a.plot([0.15, 0.15], [0, 3.2], color=SUB, lw=0.5)
+    return draw
+
+
+# --- classical mechanics: pendulum phase portrait ---------------------------
+def mechanics_hero(fig, rect):
+    a = _tile_ax(fig, rect)
+    th = np.linspace(-np.pi, np.pi, 400); p = np.linspace(-3, 3, 400)
+    TH, P = np.meshgrid(th, p)
+    E = 0.5 * P ** 2 - np.cos(TH)
+    a.set_xlim(-np.pi, np.pi); a.set_ylim(-3, 3)
+    a.contour(TH, P, E, levels=np.linspace(-0.9, 3.0, 13), cmap="magma", linewidths=0.8)
+    a.contour(TH, P, E, levels=[1.0], colors="#ffe2b0", linewidths=1.5)     # separatrix
+    a.axhline(0, color=SUB, lw=0.5)
+
+
+def sho_tile():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect); a.set_xlim(-1.2, 1.2); a.set_ylim(-1.2, 1.2); a.set_aspect("equal")
+        t = np.linspace(0, 2 * np.pi, 200)
+        for r in (0.35, 0.65, 0.95):
+            a.plot(r * np.cos(t), r * np.sin(t), color=ACC, lw=1.0, alpha=0.85)
+        a.axhline(0, color=SUB, lw=0.5); a.axvline(0, color=SUB, lw=0.5)
+    return draw
+
+
+def kepler_tile():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect); a.set_aspect("equal"); a.set_xlim(-1.35, 1.15); a.set_ylim(-1.1, 1.1)
+        t = np.linspace(0, 2 * np.pi, 300); e = 0.6; A = 1.0; B = A * np.sqrt(1 - e ** 2)
+        a.plot(A * np.cos(t) - A * e, B * np.sin(t), color=ACC, lw=1.3)
+        a.scatter([0], [0], c="#ffcf6b", s=26, zorder=5, edgecolors="none")
+    return draw
+
+
+def projectile_tile():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect); x = np.linspace(0, 1, 100)
+        for v in (0.55, 0.78, 1.0):
+            a.plot(x, v * 4 * x * (1 - x), color="#ff8a5c", lw=1.2, alpha=0.9)
+        a.plot([0, 1], [0, 0], color=SUB, lw=0.6)
+        a.set_xlim(-0.03, 1.03); a.set_ylim(-0.02, 1.08)
+    return draw
+
+
 # --- fields ------------------------------------------------------------------
 QUANTUM = {
     "title": "QUANTUM MECHANICS", "eyebrow": "THE PHYSICS OF THE VERY SMALL", "plate": "PLATE I",
@@ -131,7 +254,83 @@ BLACKHOLE = {
     "footnote": "Hero: the shadow, photon ring and inclined accretion disk of a Schwarzschild black hole.",
 }
 
-FIELDS = {"quantum": QUANTUM, "blackhole": BLACKHOLE}
+RELATIVITY = {
+    "title": "SPECIAL RELATIVITY", "eyebrow": "SPACE, TIME AND LIGHT", "plate": "PLATE III",
+    "hero": relativity_hero, "hero_caption": "MINKOWSKI SPACETIME  ·  LIGHT CONE & BOOST",
+    "strip": [(sr_boost_tile(0.3), "β = 0.3"), (sr_boost_tile(0.6), "β = 0.6"), (sr_boost_tile(0.85), "β = 0.85")],
+    "eqs": [
+        (r"$E = mc^{2}$", "mass–energy equivalence"),
+        (r"$\Delta t = \gamma\,\Delta\tau$", "time dilation"),
+        (r"$\gamma = \frac{1}{\sqrt{1-v^{2}/c^{2}}}$", "the Lorentz factor"),
+        (r"$L = L_{0}/\gamma$", "length contraction"),
+        (r"$E^{2} = (pc)^{2} + (mc^{2})^{2}$", "energy–momentum relation"),
+        (r"$s^{2} = (ct)^{2} - x^{2}$", "invariant interval"),
+        (r"$p = \gamma m v$", "relativistic momentum"),
+        (r"$u' = \frac{u+v}{1 + uv/c^{2}}$", "velocity addition"),
+    ],
+    "constants": r"$c = 2.998\times10^{8}\ \mathrm{m/s}$        $E = mc^{2}$",
+    "footnote": "Hero: a Minkowski diagram — the light cone, invariant hyperbolae and a boosted frame.",
+}
+
+ELECTROMAGNETISM = {
+    "title": "ELECTROMAGNETISM", "eyebrow": "FIELDS, CHARGES AND LIGHT", "plate": "PLATE IV",
+    "hero": em_hero, "hero_caption": "ELECTRIC DIPOLE  ·  FIELD LINES",
+    "strip": [(em_tile([(0, 0, 1)]), "point charge"),
+              (em_tile([(0.4, 0, 1), (-0.4, 0, -1)]), "dipole"),
+              (em_tile([(0.4, 0, 1), (-0.4, 0, 1)]), "like charges")],
+    "eqs": [
+        (r"$\nabla\cdot\mathbf{E} = \frac{\rho}{\varepsilon_{0}}$", "Gauss's law"),
+        (r"$\nabla\times\mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}$", "Faraday's law"),
+        (r"$\nabla\cdot\mathbf{B} = 0$", "no magnetic monopoles"),
+        (r"$\nabla\times\mathbf{B} = \mu_{0}\mathbf{J} + \mu_{0}\varepsilon_{0}\,\partial_{t}\mathbf{E}$", "Ampère–Maxwell law"),
+        (r"$\mathbf{F} = q(\mathbf{E} + \mathbf{v}\times\mathbf{B})$", "Lorentz force"),
+        (r"$c = 1/\sqrt{\mu_{0}\varepsilon_{0}}$", "speed of light"),
+        (r"$\mathbf{S} = \frac{1}{\mu_{0}}\mathbf{E}\times\mathbf{B}$", "Poynting vector"),
+        (r"$u = \frac{1}{2}\left(\varepsilon_{0}E^{2} + \frac{B^{2}}{\mu_{0}}\right)$", "field energy density"),
+    ],
+    "constants": r"$\varepsilon_{0} = 8.854\times10^{-12}$        $\mu_{0} = 1.257\times10^{-6}$",
+    "footnote": "Hero: the electric field lines of a dipole — streamlines computed from Coulomb's law.",
+}
+
+THERMODYNAMICS = {
+    "title": "THERMODYNAMICS", "eyebrow": "HEAT, ENTROPY AND ENERGY", "plate": "PLATE V",
+    "hero": thermo_hero, "hero_caption": "MAXWELL–BOLTZMANN  ·  SPEED DISTRIBUTION",
+    "strip": [(pv_tile("iso"), "isothermal"), (pv_tile("adia"), "adiabatic"), (pv_tile("isoPV"), "iso-P / iso-V")],
+    "eqs": [
+        (r"$dU = \delta Q - \delta W$", "first law"),
+        (r"$dS \geq 0$", "second law"),
+        (r"$PV = N k_{B} T$", "ideal gas law"),
+        (r"$S = k_{B}\ln\Omega$", "Boltzmann entropy"),
+        (r"$\eta = 1 - \frac{T_{c}}{T_{h}}$", "Carnot efficiency"),
+        (r"$j = \sigma T^{4}$", "Stefan–Boltzmann law"),
+        (r"$G = H - TS$", "Gibbs free energy"),
+        (r"$\langle E\rangle = \frac{3}{2}k_{B}T$", "equipartition"),
+    ],
+    "constants": r"$k_{B} = 1.381\times10^{-23}\ \mathrm{J/K}$        $\sigma = 5.67\times10^{-8}$",
+    "footnote": "Hero: the Maxwell–Boltzmann speed distribution at three temperatures.",
+}
+
+MECHANICS = {
+    "title": "CLASSICAL MECHANICS", "eyebrow": "MOTION, FORCE AND ENERGY", "plate": "PLATE VI",
+    "hero": mechanics_hero, "hero_caption": "PENDULUM PHASE PORTRAIT  ·  SEPARATRIX",
+    "strip": [(sho_tile(), "phase space"), (kepler_tile(), "orbit"), (projectile_tile(), "projectile")],
+    "eqs": [
+        (r"$\mathbf{F} = \frac{d\mathbf{p}}{dt}$", "Newton's second law"),
+        (r"$F = \frac{G m_{1} m_{2}}{r^{2}}$", "law of gravitation"),
+        (r"$\frac{d}{dt}\frac{\partial L}{\partial \dot{q}} = \frac{\partial L}{\partial q}$", "Euler–Lagrange equation"),
+        (r"$E = \frac{1}{2}mv^{2} + V$", "total energy"),
+        (r"$\dot{q} = \partial_{p}H,\ \ \dot{p} = -\partial_{q}H$", "Hamilton's equations"),
+        (r"$\mathbf{L} = \mathbf{r}\times\mathbf{p}$", "angular momentum"),
+        (r"$\omega = \sqrt{k/m}$", "harmonic oscillator"),
+        (r"$T^{2} \propto a^{3}$", "Kepler's third law"),
+    ],
+    "constants": r"$G = 6.674\times10^{-11}\ \mathrm{m^{3}kg^{-1}s^{-2}}$",
+    "footnote": "Hero: the phase portrait of a pendulum — trajectories and the separatrix (E = 1).",
+}
+
+FIELDS = {"quantum": QUANTUM, "blackhole": BLACKHOLE, "relativity": RELATIVITY,
+          "electromagnetism": ELECTROMAGNETISM, "thermodynamics": THERMODYNAMICS,
+          "mechanics": MECHANICS}
 
 
 def render(field, W=10.0, H=12.5, dpi=200):
