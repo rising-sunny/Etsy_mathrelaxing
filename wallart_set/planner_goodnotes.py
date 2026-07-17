@@ -12,6 +12,7 @@ Structure (undated):
 """
 import io
 import os
+import calendar as _cal
 import fitz
 import numpy as np
 import matplotlib
@@ -24,8 +25,16 @@ import gridpaper as gp
 import designs_geo
 
 PAL = os.environ.get("PLANNER_PALETTE", "earth")
-EDITION = os.environ.get("PLANNER_EDITION", PAL)
 gp.use_palette(PAL)
+
+# Dated academic mode: PLANNER_DATED=1 fills real month calendars, starting at
+# PLANNER_START (YYYY-MM, default the Aug-start academic year). Undated is default.
+DATED = os.environ.get("PLANNER_DATED", "") in ("1", "true", "yes")
+_sy, _sm = (int(x) for x in os.environ.get("PLANNER_START", "2026-08").split("-"))
+SEQ = [(( _sy * 12 + (_sm - 1) + k) // 12, (_sy * 12 + (_sm - 1) + k) % 12 + 1)
+       for k in range(12)]                 # 12 (year, month) pairs from the start
+ACAD = f"{SEQ[0][0]}-{SEQ[-1][0]}"          # e.g. 2026-2027
+EDITION = os.environ.get("PLANNER_EDITION", f"academic-{ACAD}" if DATED else PAL)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = os.path.join(HERE, "out", "planner", EDITION)
@@ -41,6 +50,22 @@ ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 WKD = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 NWEEK = 5                                 # weekly pages per month
+
+
+def mname(i):                             # full month name for month index i
+    return MONTHS[SEQ[i][1] - 1] if DATED else MONTHS[i]
+
+
+def mabbr(i):
+    return ABBR[SEQ[i][1] - 1] if DATED else ABBR[i]
+
+
+def mlabel(i):                            # "August 2026" (dated) or "August"
+    return f"{MONTHS[SEQ[i][1] - 1]} {SEQ[i][0]}" if DATED else MONTHS[i]
+
+
+def mym(i):                               # (year, month) to fill, or None
+    return SEQ[i] if DATED else None
 
 # ----- page-index map --------------------------------------------------------
 COVER, YEAR, MONTH0 = 0, 1, 2
@@ -95,7 +120,7 @@ def draw_tabs(ax, active):
         ax.add_patch(FancyBboxPatch((TAB_X0, y0), TAB_X1 - TAB_X0, y1 - y0,
                      boxstyle="round,pad=0.01,rounding_size=0.05", linewidth=0.8,
                      edgecolor=ACC if act else GRID, facecolor=ACC if act else PAPER))
-        ax.text((TAB_X0 + TAB_X1) / 2, (y0 + y1) / 2, ABBR[i], ha="center", va="center",
+        ax.text((TAB_X0 + TAB_X1) / 2, (y0 + y1) / 2, mabbr(i), ha="center", va="center",
                 rotation=90, fontproperties=SERIF, fontsize=8,
                 color="#fbf8f1" if act else TXT)
         links.append((month_page(i), (TAB_X0, y0, TAB_X1, y1)))
@@ -121,13 +146,14 @@ def top_nav(ax, back=None):
 
 
 # ----- calendar grid ---------------------------------------------------------
-def calendar(ax, x0, x1, ytop, ybot, header=True, faint=False):
+def calendar(ax, x0, x1, ytop, ybot, header=True, ym=None, mini=False):
+    """Draw a month grid. If ym=(year, month) is given, fill the real day
+    numbers (Monday-first); otherwise leave blank cells (undated)."""
     cols, rows = 7, 6
     cw = (x1 - x0) / cols
-    hh = 0.30 if header else 0.0
+    hh = (0.16 if mini else 0.30) if header else 0.0
     gtop = ytop - hh
     ch = (gtop - ybot) / rows
-    lc = GRID
     if header:
         for c in range(cols):
             ax.text(x0 + (c + 0.5) * cw, ytop - hh * 0.5, WKD[c] if cw > 0.35 else WKD[c][0],
@@ -135,15 +161,19 @@ def calendar(ax, x0, x1, ytop, ybot, header=True, faint=False):
                     fontsize=9 if cw > 0.5 else 6, color=ACC)
     for r in range(rows + 1):
         y = gtop - r * ch
-        ax.plot([x0, x1], [y, y], color=lc, lw=0.6)
+        ax.plot([x0, x1], [y, y], color=GRID, lw=0.6)
     for c in range(cols + 1):
         x = x0 + c * cw
-        ax.plot([x, x], [ybot, gtop], color=lc, lw=0.6)
-    if not faint:                          # tiny date corner in each cell
-        for r in range(rows):
-            for c in range(cols):
-                ax.text(x0 + c * cw + 0.06, gtop - r * ch - 0.06, "",
-                        fontproperties=SERIF, fontsize=6, color=GRID, va="top")
+        ax.plot([x, x], [ybot, gtop], color=GRID, lw=0.6)
+    if ym is not None:                     # fill real dates
+        year, month = ym
+        weeks = _cal.Calendar(firstweekday=0).monthdayscalendar(year, month)
+        fs = (5.5 if mini else 10) if cw > 0.5 else 5.5
+        for r, week in enumerate(weeks[:rows]):
+            for c, day in enumerate(week):
+                if day:
+                    ax.text(x0 + c * cw + 0.05, gtop - r * ch - 0.05, str(day),
+                            fontproperties=SERIF, fontsize=fs, color=TXT, va="top", ha="left")
 
 
 # ----- pages -----------------------------------------------------------------
@@ -158,8 +188,9 @@ def page_cover():
                                  edgecolor=GRID, lw=0.5, alpha=0.85))
     ax.text(W / 2, 3.0, "The Relaxing Planner", ha="center", fontproperties=SERIF,
             fontsize=32, color=TXT)
-    ax.text(W / 2, 2.5, "Undated · Hyperlinked · GoodNotes & iPad", ha="center",
-            fontproperties=SERIF, fontsize=14, color=ACC)
+    sub = (f"Academic {ACAD} · Hyperlinked · GoodNotes"
+           if DATED else "Undated · Hyperlinked · GoodNotes & iPad")
+    ax.text(W / 2, 2.5, sub, ha="center", fontproperties=SERIF, fontsize=14, color=ACC)
     # "open" button → year
     ax.add_patch(FancyBboxPatch((W / 2 - 0.9, 1.5), 1.8, 0.5,
                  boxstyle="round,pad=0.02,rounding_size=0.08", linewidth=1.0,
@@ -175,7 +206,8 @@ def page_cover():
 def page_year():
     fig, ax = _fig()
     ax.text(ML, H - 0.75, "Year at a Glance", fontproperties=SERIF, fontsize=24, color=TXT)
-    ax.text(ML, H - 1.1, "20 ____", fontproperties=SERIF, fontsize=13, color=ACC)
+    ax.text(ML, H - 1.1, f"Academic Year {ACAD}" if DATED else "20 ____",
+            fontproperties=SERIF, fontsize=13, color=ACC)
     links = draw_tabs(ax, active=-1) + top_nav(ax)
     cols, rows = 3, 4
     gx0, gx1 = ML, TAB_X0 - 0.2
@@ -187,23 +219,24 @@ def page_year():
         bx = gx0 + c * cw
         by = gy1 - (r + 1) * chh
         pad = 0.14
-        ax.text(bx + pad, by + chh - 0.16, MONTHS[i], fontproperties=SERIF,
+        ax.text(bx + pad, by + chh - 0.16, mname(i), fontproperties=SERIF,
                 fontsize=11, color=ACC)
         calendar(ax, bx + pad, bx + cw - pad, by + chh - 0.34, by + pad,
-                 header=False, faint=True)
+                 header=False, ym=mym(i), mini=True)
         links.append((month_page(i), (bx, by, bx + cw, by + chh)))
     return _pdf_bytes(fig), links
 
 
 def page_month(i):
     fig, ax = _fig()
-    ax.text(ML, H - 0.72, MONTHS[i].upper(), fontproperties=SERIF, fontsize=26, color=TXT)
-    ax.text(ML + 0.02, H - 1.02, "20 ____", fontproperties=SERIF, fontsize=12, color=ACC)
+    ax.text(ML, H - 0.72, mlabel(i).upper(), fontproperties=SERIF, fontsize=26, color=TXT)
+    ax.text(ML + 0.02, H - 1.02, "" if DATED else "20 ____",
+            fontproperties=SERIF, fontsize=12, color=ACC)
     links = draw_tabs(ax, active=i) + top_nav(ax)
     # calendar
     cal_top = H - 1.35
     cal_bot = 3.0
-    calendar(ax, ML, TAB_X0 - 0.2, cal_top, cal_bot, header=True)
+    calendar(ax, ML, TAB_X0 - 0.2, cal_top, cal_bot, header=True, ym=mym(i))
     # weekly buttons
     ax.text(ML, cal_bot - 0.4, "Weekly pages", fontproperties=SERIF, fontsize=12, color=TXT)
     bw = (TAB_X0 - 0.2 - ML - (NWEEK - 1) * 0.15) / NWEEK
@@ -226,9 +259,9 @@ def page_month(i):
 
 def page_week(i, w):
     fig, ax = _fig()
-    ax.text(ML, H - 0.72, f"{MONTHS[i]} · Week {w+1}", fontproperties=SERIF,
+    ax.text(ML, H - 0.72, f"{mlabel(i)} · Week {w+1}", fontproperties=SERIF,
             fontsize=20, color=TXT)
-    links = draw_tabs(ax, active=i) + top_nav(ax, back=(month_page(i), "◂ " + ABBR[i]))
+    links = draw_tabs(ax, active=i) + top_nav(ax, back=(month_page(i), "◂ " + mabbr(i)))
     # 7 day rows on the left, a to-do / notes column on the right
     day_x0 = ML
     day_x1 = TAB_X0 - 2.35
@@ -301,7 +334,9 @@ def build():
             rect = fitz.Rect(x0 * 72, (H - y1) * 72, x1 * 72, (H - y0) * 72)
             page.insert_link({"kind": fitz.LINK_GOTO, "from": rect, "page": target})
 
-    out = os.path.join(BASE, f"RelaxingPlanner_{EDITION}_GoodNotes.pdf")
+    fname = (f"RelaxingPlanner_Academic_{ACAD}_GoodNotes.pdf" if DATED
+             else f"RelaxingPlanner_{EDITION}_GoodNotes.pdf")
+    out = os.path.join(BASE, fname)
     doc.save(out, deflate=True)
     doc.close()
     print(f"planner: {out}  ({os.path.getsize(out)/1e6:.2f} MB, {NPAGES} pages)")
