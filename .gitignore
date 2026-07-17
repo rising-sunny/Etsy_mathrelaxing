@@ -224,3 +224,12 @@ etsy_token.json
 
 # Playwright MCP session artifacts
 .playwright-mcp/
+
+# Local eRank Edge browser profile (cookies/session — never commit)
+research/.edge_erank_profile/
+
+# Backups / local dumps
+*.bak
+batch3_downloads/
+_live_listings.json
+_batch3_remaining.json

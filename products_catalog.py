@@ -576,6 +576,255 @@ Print at home, a print shop, or an online lab. For personal use. Frame not inclu
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
+
+    "unit_circle_print": """\
+Instant download — Unit Circle trigonometry wall art (scientific plate).
+
+A clean educational reference for high school, precalculus, and college trig: \
+degrees, radians, and exact coordinates (x, y) = (cos θ, sin θ) on the unit circle.
+
+Styled as a MathRelaxing scientific plate — cream graph paper, LaTeX math, \
+and a soft teal/rust palette (not a generic gray classroom cheat sheet).
+
+► What you get
+• 1 original unit-circle plate (JPG)
+• Multiple aspect ratios: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• 300 dpi print-ready files
+• Instant download ZIP — no physical item ships
+
+Perfect for math classrooms, tutoring walls, dorm STEM decor, and teacher gifts.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "sage_neutral_print_set": """\
+Instant download — Sage Green Neutral Abstract print set (6 posters).
+
+Six quiet-luxury abstract compositions in sage, cream, stone, and soft clay — \
+calm gallery wall art for modern, Japandi, and neutral interiors. Clean forms, \
+generous space, museum-soft palette (not busy pattern clutter).
+
+1. Balance Forms — monumental soft disc + spine + horizon bar
+2. Stacked Horizon — layered bands with floating ring
+3. Arch Still — architectural arch and clay block
+4. Rings Field — concentric meditative rings
+5. Grid Calm — modular study board (form · space · calm)
+6. Path Stone — zen stepping path through sage field
+
+► What you get
+• 6 original abstract posters (high-quality JPG)
+• Sizes @ 300 dpi: 24×36, 18×24, 16×20, 12×18, A4
+• Scale 24×36 down for other frames
+• Instant download ZIP — folders per design + README
+• No physical item ships
+
+► Perfect for
+Living rooms, bedrooms, entryways, offices, and soft modern interiors. \
+Matte or lightly textured paper looks best.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "morris_botanical_print_set": """\
+Instant download — William Morris–inspired botanical print set (6 posters).
+
+Six original Arts & Crafts botanical compositions in the spirit of William Morris — \
+willow boughs, strawberry garden, trellis rose, pimpernel field, honeysuckle, and \
+acanthus scroll. Rich indigo, cream, sage, and rose tones for a timeless gallery wall.
+
+Original drawings (not wallpaper scans). Built for LARGE posters: true 300 dpi \
+masters up to 24×36 in and ISO A1.
+
+1. Willow Boughs — interlaced green leaves on cream
+2. Strawberry Garden — indigo field with thrushes and berries
+3. Trellis Rose — diamond lattice with climbing roses
+4. Pimpernel Field — dense all-over floral
+5. Honeysuckle — trailing vines and ochre blooms
+6. Acanthus Scroll — formal indigo & cream medallion
+
+► What you get
+• 6 original botanical posters (high-quality JPG)
+• Large poster sizes @ 300 dpi: 24×36, 18×24, 16×20
+• Home sizes @ 300 dpi: 12×18, A4 (scale 24×36 down for any other frame)
+• Instant download — 5 ZIPs (one pack family per design group)
+• Dense Arts & Crafts pattern work — original code-drawn compositions
+• No physical item ships
+
+► Perfect for
+Living rooms, bedrooms, reading nooks, cottage & traditional interiors, and gifts. \
+Use a print shop for 24×36 / A1; matte or lightly textured paper looks best.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "bauhaus_print_set": """\
+Instant download — Bauhaus geometric wall-art print set (6 posters).
+
+Six gallery-grade compositions inspired by Bauhaus form, color, and balance — \
+navy, cream, and gold with classic Bauhaus red and blue. Clean geometry, \
+intentional asymmetry, and museum-wall presence (not cluttered clip-art).
+
+Built for LARGE posters: true 300 dpi masters up to 24×36 in and ISO A1.
+
+1. Circles & Bars — monumental red disc, navy spine, blue mass
+2. Triangles — dark-field tension with cream mountain and blue core
+3. Grid Modules — 3×4 modular study board (form · color · balance)
+4. Arcs — architectural pies and counterweights
+5. Form & Type — manifesto typography + geometry
+6. Balance — asymmetric column vs stacked primary forms
+
+► What you get
+• 6 original geometric posters (high-quality JPG)
+• Large poster sizes @ 300 dpi: 24×36, 18×24, 24×30, 20×28, A1, A2
+• Standard / home sizes @ 300 dpi: 12×18, 12×16, 16×20, 10×14, A3, A4
+• 12 sizes per design — scale large files down for smaller frames
+• Instant download ZIP(s) — folders per design + README
+• No physical item ships
+
+► Perfect for
+Living rooms, home offices, studios, galleries-at-home, modern interiors, \
+and design-lover gifts. Use a print shop for 24×36 / A1; matte paper looks best.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "emergency_binder": """\
+Instant download — Family Emergency Binder (printable PDF organizer).
+
+When something goes wrong, you should not be hunting for phone numbers, \
+insurance cards, or school pickup rules. This calm, editorial binder helps \
+your household put the essentials in one place — and keep them updated.
+
+► 13+ sections (US Letter)
+• Quick start & first-10-minutes checklist
+• Emergency contacts · household members
+• Medical · insurance · important documents checklist
+• Home & utilities · finances snapshot · pets
+• Digital access notes (privacy-aware — no master passwords)
+• Evacuation / go-bag · meeting place & school plans
+• Quarterly update checklist · spine labels
+
+► Designed for real use
+Navy · gold · cream MathRelaxing layout. Fill-in fields and checklists. \
+Print, put in a 1–2\" binder with tabs and sheet protectors, tell trusted people where it lives.
+
+► Not included (on purpose)
+This is an organizational tool — not medical, legal, or financial advice. \
+End-of-life / funeral planning is a different product category; this pack focuses \
+on household readiness and document location.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "lor_template_pack": """\
+Instant download — Letter of Recommendation Template Pack (6 situations).
+
+Write a strong recommendation in minutes — without starting from a blank page. \
+Six editorial Word templates with filled samples and a practical writing guide.
+
+► 6 letter types (blank + SAMPLE each)
+• Job / Employee (manager voice)
+• Academic / Graduate school
+• Teacher → Student
+• Character / Personal reference
+• Scholarship
+• Coworker / Peer
+
+► What winners on Etsy include — we go further
+Competitors often sell one plain Word file for $2–5. This pack gives you six \
+situations, polished samples with specific praise and metrics, navy/gold \
+editorial letterhead, and a how-to PDF (structure, tone, what to avoid).
+
+► Formats
+Microsoft Word (.docx) · US Letter · Instant download
+
+Not legal advice. For court or immigration letters, consult appropriate counsel.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "atelier_resume_kit": """\
+Instant download — Atelier Resume Kit (premium editorial system).
+
+A complete application toolkit — not a single template. Five distinct layouts, \
+five Atelier background styles, and a full set of matching career documents.
+
+► 5 resume layouts
+• Atelier — letterspaced name, double gold rules, magazine air
+• Gallery — left-aligned modern with gold top bar
+• Manuscript — literary centered classic
+• Architect — geometric asymmetric presence
+• ATS — portal-safe Calibri single column
+
+► 5 Atelier background styles (already in Word)
+Cream Veil · Scientific Grid · Gold Geometry · Phi Whisper · Navy Edge
+(semi-transparent plates + free PNG pack to restyle)
+
+► Full application set
+• Cover letter · References · Thank-you note
+• LinkedIn pack (headline + About)
+• Portfolio one-pager
+• How-to PDF + filled sample PDF (Celine Mora persona)
+• Blank + filled SAMPLE for every major document
+
+Built for product, research, strategy, and STEM professionals who want quiet \
+luxury on the page — without Canva florals.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "geometric_wedding_suite": """\
+Instant download — Geometric Wedding Seating Suite (printables).
+
+A modern editorial wedding set in navy, gold & cream — designed with calm \
+geometry (golden-ratio corner marks, circle table badges) instead of generic florals.
+
+► What you get
+• Seating chart (blank + sample) — landscape US Letter, 6 tables
+• Table numbers 1–12 (print & cut cards)
+• Place cards (blank + sample names)
+• Day-of timeline card
+• Menu card
+• Guest list CSV (plan tables in Sheets/Excel)
+• How-to PDF
+
+► Perfect for
+Modern, minimal, architectural, museum, conservatory, or STEM-couple weddings \
+that want structure and elegance without clip-art roses.
+
+► How it works
+Assign guests in the CSV → edit blank PDFs in Acrobat/Preview/Canva → print on \
+cardstock or poster paper.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "editorial_resume_kit": """\
+Instant download — Editorial Resume Kit (ATS + 5 elegant background styles).
+
+Built for engineers, scientists, analysts, and precision professionals — \
+navy, gold & cream MathRelaxing elegance, not floral Canva clutter.
+
+► ATS Clean
+Single-column, pure white, portal-safe (Word / Google Docs / Pages).
+
+► Editorial suite — 5 semi-transparent backgrounds
+Already embedded behind the text (swap anytime from the backgrounds folder):
+• Cream Veil · Scientific Grid · Gold Geometry · Phi Whisper · Navy Edge
+
+► Full kit
+• ATS + Editorial resumes (blank + filled STEM sample)
+• Cover letter + references
+• Sample PDF + how-to guide
+• PNG background pack to restyle in Word
+
+► Formats
+Editable .docx. Open in Word, Google Docs, or Pages. \
+For company portals use ATS; for email/networking use Editorial.
+
+Instant download ZIP. Personal use only.
+© MathRelaxing.
+""",
 }
 
 # ── Catálogo de productos ─────────────────────────────────────────────────────
@@ -1214,6 +1463,415 @@ PRODUCTS = {
             "Scientific plate style matching Maxwell/Black Hole. "
             "Draft listing_id=4538061513."
         ),
+    },
+
+    "unit_circle_print": {
+        "title": (
+            "Unit Circle Poster | Trigonometry Reference Wall Art | "
+            "Degrees Radians Cos Sin STEM Print (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["unit_circle_print"],
+        "price": 5.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("unit_circle", "previews", "unit_circle_preview_1_hero.jpg"),
+            p("unit_circle", "previews", "unit_circle_preview_2_detail.jpg"),
+            p("unit_circle", "previews", "unit_circle_preview_3_included.jpg"),
+            p("unit_circle", "previews", "unit_circle_preview_4_plate.jpg"),
+            p("unit_circle", "previews", "unit_circle_preview_5_equation.jpg"),
+        ],
+        "files": [
+            p("unit_circle", "Unit_Circle_Trigonometry_Wall_Art.zip"),
+        ],
+        "tags": [
+            "unit circle",
+            "unit circle poster",
+            "trigonometry poster",
+            "math wall art",
+            "trig reference",
+            "precalculus poster",
+            "stem wall art",
+            "math classroom",
+            "degrees radians",
+            "digital download",
+            "teacher gift",
+            "science wall art",
+            "educational poster",
+        ],
+        "notes": (
+            "eRank wave5: unit circle 108 searches, 457 competition, KD 31, CTR 146%. "
+            "Scientific plate (LaTeX). Draft listing_id=4538562680. Ads OFF until organic signal."
+        ),
+        "listing_id": 4538562680,
+    },
+
+    "editorial_resume_kit": {
+        "title": (
+            "ATS Resume Template | Editorial Professional CV Word Google Docs | "
+            "Cover Letter & References STEM Modern (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["editorial_resume_kit"],
+        "price": 8.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("resume_kit", "previews", "resume_preview_1_hero.jpg"),
+            p("resume_kit", "previews", "resume_preview_2_styles.jpg"),
+            p("resume_kit", "previews", "resume_preview_3_included.jpg"),
+            p("resume_kit", "previews", "resume_preview_4_detail.jpg"),
+            p("resume_kit", "previews", "resume_preview_5_features.jpg"),
+            p("resume_kit", "previews", "resume_preview_6_backgrounds.jpg"),
+        ],
+        "files": [
+            p("resume_kit", "MathRelaxing_Editorial_Resume_Kit.zip"),
+        ],
+        "video": p("resume_kit", "Editorial_Resume_Kit_promo.mp4"),
+        "tags": [
+            "resume template",
+            "ats resume template",
+            "modern resume",
+            "cv template",
+            "cover letter",
+            "google docs resume",
+            "word resume",
+            "professional resume",
+            "minimalist resume",
+            "tech resume",
+            "digital download",
+            "job application",
+            "career template",
+        ],
+        "notes": (
+            "eRank wave7: resume template 6,264 searches, 32.8k comp, KD 36, CTR 104%. "
+            "ATS + 5 Editorial background styles (semi-transparent watermarks). "
+            "Promo video: Word demo cursor/type. Draft listing_id=4538574036. "
+            "Ads OFF until organic signal."
+        ),
+        "listing_id": 4538574036,
+    },
+
+    "atelier_resume_kit": {
+        "title": (
+            "Luxury Resume Template Kit | 5 Editorial Layouts + ATS | "
+            "Cover Letter LinkedIn Thank You Portfolio (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["atelier_resume_kit"],
+        "price": 12.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("resume_luxe_kit", "previews", "luxe_preview_01_hero.jpg"),
+            p("resume_luxe_kit", "previews", "luxe_preview_02_layouts.jpg"),
+            p("resume_luxe_kit", "previews", "luxe_preview_03_styles.jpg"),
+            p("resume_luxe_kit", "previews", "luxe_preview_04_application.jpg"),
+            p("resume_luxe_kit", "previews", "luxe_preview_05_skills.jpg"),
+            p("resume_luxe_kit", "previews", "luxe_preview_06_blank_sample.jpg"),
+            p("resume_luxe_kit", "previews", "luxe_preview_07_more_layouts.jpg"),
+            p("resume_luxe_kit", "previews", "luxe_preview_08_inventory.jpg"),
+            p("resume_luxe_kit", "previews", "luxe_preview_09_usecases.jpg"),
+            p("resume_luxe_kit", "previews", "luxe_preview_10_value.jpg"),
+        ],
+        "files": [
+            p("resume_luxe_kit", "MathRelaxing_Atelier_Resume_Kit.zip"),
+        ],
+        "tags": [
+            "luxury resume",
+            "editorial resume",
+            "ats resume template",
+            "modern cv template",
+            "professional resume",
+            "cover letter",
+            "word resume",
+            "minimalist resume",
+            "executive resume",
+            "linkedin template",
+            "digital download",
+            "job application",
+            "resume kit",
+        ],
+        "notes": (
+            "Expanded premium kit: 5 layouts + 5 bg styles + cover/refs/thankyou/"
+            "linkedin/portfolio. 10 listing previews. Persona Celine Mora. $12.99. "
+            "generate_resume_luxe_kit.py + build_atelier_previews.py. "
+            "Draft listing_id=4538604802. Ads OFF."
+        ),
+        "listing_id": 4538604802,
+    },
+
+    "lor_template_pack": {
+        "title": (
+            "Letter of Recommendation Template Pack | Job Academic Teacher "
+            "Character Scholarship Coworker | Editable Word (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["lor_template_pack"],
+        "price": 7.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("lor_pack", "previews", "lor_preview_1_hero.jpg"),
+            p("lor_pack", "previews", "lor_preview_2_types.jpg"),
+            p("lor_pack", "previews", "lor_preview_3_why.jpg"),
+            p("lor_pack", "previews", "lor_preview_4_detail.jpg"),
+            p("lor_pack", "previews", "lor_preview_5_included.jpg"),
+            p("lor_pack", "previews", "lor_preview_6_value.jpg"),
+        ],
+        "files": [
+            p("lor_pack", "MathRelaxing_Letter_of_Recommendation_Pack.zip"),
+        ],
+        "tags": [
+            "recommendation letter",
+            "letter of recommend",
+            "reference letter",
+            "job reference letter",
+            "teacher recommend",
+            "academic letter",
+            "character reference",
+            "scholarship letter",
+            "employee reference",
+            "word template",
+            "digital download",
+            "editable template",
+            "reference template",
+        ],
+        "notes": (
+            "eRank NOW: letter of recommendation Jun 1160 · mom 1.15 · KD 1 · 605 comp. "
+            "SERP: tops ~$2–7 single letters, few multi-packs, plain design. "
+            "Our edge: 6 situations + samples + guide + editorial letterhead. "
+            "generate_lor_pack.py. Draft listing_id=4539149064. Ads OFF."
+        ),
+        "listing_id": 4539149064,
+    },
+
+    "emergency_binder": {
+        "title": (
+            "Family Emergency Binder Printable | ICE Household Organizer PDF | "
+            "Contacts Medical Insurance Documents Go-Bag (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["emergency_binder"],
+        "price": 9.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("emergency_binder", "previews", "eb_preview_1_hero.jpg"),
+            p("emergency_binder", "previews", "eb_preview_2_sections.jpg"),
+            p("emergency_binder", "previews", "eb_preview_3_why.jpg"),
+            p("emergency_binder", "previews", "eb_preview_4_detail.jpg"),
+            p("emergency_binder", "previews", "eb_preview_5_how.jpg"),
+            p("emergency_binder", "previews", "eb_preview_6_value.jpg"),
+            p("emergency_binder", "previews", "eb_preview_7_spine.jpg"),
+        ],
+        "files": [
+            p("emergency_binder", "MathRelaxing_Family_Emergency_Binder.zip"),
+        ],
+        "tags": [
+            "emergency binder",
+            "family emergency",
+            "ice binder",
+            "home binder",
+            "document organizer",
+            "emergency planner",
+            "printable binder",
+            "medical binder",
+            "go bag checklist",
+            "household binder",
+            "digital download",
+            "preparedness",
+            "family organizer",
+        ],
+        "notes": (
+            "eRank NOW: emergency binder mom 1.70 · KD 33 · ~3k comp. "
+            "SERP mixes ICE binders ($8–18 digital) with end-of-life planners; "
+            "we position household readiness (not funeral). "
+            "generate_emergency_binder.py. Draft listing_id=4539135067. "
+            "7 previews incl. spine cut labels. Ads OFF."
+        ),
+        "listing_id": 4539135067,
+    },
+
+    "sage_neutral_print_set": {
+        "title": (
+            "Sage Green Wall Art Print Set | Neutral Abstract Posters | "
+            "Japandi Cream Gallery Bundle (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["sage_neutral_print_set"],
+        "price": 9.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("sage_set", "previews", "sage_preview_1_hero.jpg"),
+            p("sage_set", "previews", "sage_preview_2_set.jpg"),
+            p("sage_set", "previews", "sage_preview_3_included.jpg"),
+            p("sage_set", "previews", "sage_preview_4_balance_forms.jpg"),
+            p("sage_set", "previews", "sage_preview_5_stacked_horizon.jpg"),
+            p("sage_set", "previews", "sage_preview_6_arch_still.jpg"),
+            p("sage_set", "previews", "sage_preview_7_rings_field.jpg"),
+            p("sage_set", "previews", "sage_preview_8_grid_calm.jpg"),
+            p("sage_set", "previews", "sage_preview_9_path_stone.jpg"),
+            p("sage_set", "previews", "sage_preview_10_all.jpg"),
+        ],
+        "files": [
+            # filled after generate — may be 1 combined or 2 packs
+            p("sage_set", "MathRelaxing_Sage_Neutral_Print_Set.zip"),
+        ],
+        "tags": [
+            "sage green wall art",
+            "neutral wall art",
+            "sage green print",
+            "japandi wall art",
+            "abstract wall art",
+            "cream wall art",
+            "minimalist print",
+            "gallery wall set",
+            "printable wall art",
+            "modern wall art",
+            "digital download",
+            "quiet luxury",
+            "abstract poster",
+        ],
+        "notes": (
+            "eRank wave9 #3: sage green wall art Jun 2130 · mom 1.56 · KD 72. "
+            "v2 LETHAL artistic compositions. generate_sage_set.py. "
+            "Draft listing_id=4539181090. Ads OFF until organic signal."
+        ),
+        "listing_id": 4539181090,
+    },
+
+    "morris_botanical_print_set": {
+        "title": (
+            "William Morris Print Set | Botanical Wall Art Printable | "
+            "Arts Crafts Floral Poster Bundle (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["morris_botanical_print_set"],
+        "price": 9.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("morris_set", "previews", "morris_preview_1_hero.jpg"),
+            p("morris_set", "previews", "morris_preview_2_set.jpg"),
+            p("morris_set", "previews", "morris_preview_3_included.jpg"),
+            p("morris_set", "previews", "morris_preview_4_willow_boughs.jpg"),
+            p("morris_set", "previews", "morris_preview_5_strawberry_garden.jpg"),
+            p("morris_set", "previews", "morris_preview_6_trellis_rose.jpg"),
+            p("morris_set", "previews", "morris_preview_7_pimpernel_field.jpg"),
+            p("morris_set", "previews", "morris_preview_8_honeysuckle.jpg"),
+            p("morris_set", "previews", "morris_preview_9_acanthus_scroll.jpg"),
+            p("morris_set", "previews", "morris_preview_10_all.jpg"),
+        ],
+        "files": [
+            p("morris_set", "MathRelaxing_Morris_01_Willow.zip"),
+            p("morris_set", "MathRelaxing_Morris_02_Strawberry.zip"),
+            p("morris_set", "MathRelaxing_Morris_03_Trellis.zip"),
+            p("morris_set", "MathRelaxing_Morris_04_05_Pimpernel_Honeysuckle.zip"),
+            p("morris_set", "MathRelaxing_Morris_06_Acanthus.zip"),
+        ],
+        "tags": [
+            "william morris print",
+            "morris wall art",
+            "botanical wall art",
+            "arts crafts print",
+            "floral wall art",
+            "vintage floral print",
+            "printable wall art",
+            "strawberry thief",
+            "willow bough print",
+            "cottage decor",
+            "digital download",
+            "gallery wall set",
+            "large wall art",
+        ],
+        "notes": (
+            "eRank wave9 #2 after Bauhaus: william morris print "
+            "Jun 1630 · mom 1.35 · KD 64. "
+            "v2 LETHAL dense Arts & Crafts (code-drawn). "
+            "generate_morris_set.py + _pack_morris_zips.py (5 packs <20MB). "
+            "Draft listing_id=4539170520. Ads OFF until organic signal."
+        ),
+        "listing_id": 4539170520,
+    },
+
+    "bauhaus_print_set": {
+        "title": (
+            "Bauhaus Wall Art Print Set | 6 Geometric Modern Posters | "
+            "Navy Cream Gold Printable Decor (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["bauhaus_print_set"],
+        "price": 9.99,
+        "taxonomy_id": TAXONOMY["digital_art"],  # 2078 Digital Prints
+        "video": p("bauhaus_set", "Bauhaus_Print_Set_promo.mp4"),
+        "images": [
+            p("bauhaus_set", "previews", "bauhaus_preview_1_hero.jpg"),
+            p("bauhaus_set", "previews", "bauhaus_preview_2_set.jpg"),
+            p("bauhaus_set", "previews", "bauhaus_preview_3_included.jpg"),
+            p("bauhaus_set", "previews", "bauhaus_preview_4_circles_bars.jpg"),
+            p("bauhaus_set", "previews", "bauhaus_preview_5_triangles.jpg"),
+            p("bauhaus_set", "previews", "bauhaus_preview_6_grid_modules.jpg"),
+            p("bauhaus_set", "previews", "bauhaus_preview_7_arcs.jpg"),
+            p("bauhaus_set", "previews", "bauhaus_preview_8_form_type.jpg"),
+            p("bauhaus_set", "previews", "bauhaus_preview_9_balance.jpg"),
+            p("bauhaus_set", "previews", "bauhaus_preview_10_all.jpg"),
+        ],
+        "files": [
+            p("bauhaus_set", "MathRelaxing_Bauhaus_Print_Set.zip"),
+        ],
+        "tags": [
+            "bauhaus wall art",
+            "bauhaus poster",
+            "geometric wall art",
+            "modern wall art",
+            "mid century print",
+            "abstract wall art",
+            "printable wall art",
+            "large wall art",
+            "gallery wall set",
+            "minimalist print",
+            "digital download",
+            "poster print set",
+            "geometric poster",
+        ],
+        "notes": (
+            "eRank art/décor lead: Bauhaus-style geometric set. "
+            "6 compositions × large poster 300 dpi (up to 24×36 / A1) + standard sizes. "
+            "generate_bauhaus_set.py + build_bauhaus_video.py. "
+            "Draft listing_id=4539161960. Ads OFF until organic signal."
+        ),
+        "listing_id": 4539161960,
+    },
+
+    "geometric_wedding_suite": {
+        "title": (
+            "Wedding Seating Chart Template | Geometric Modern Printable Suite | "
+            "Table Numbers Place Cards Timeline Menu (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["geometric_wedding_suite"],
+        "price": 11.99,
+        "taxonomy_id": TAXONOMY["digital_art"],  # Digital Prints — verify party/wedding node later
+        "images": [
+            p("wedding_seating_suite", "previews", "wedding_preview_1_hero.jpg"),
+            p("wedding_seating_suite", "previews", "wedding_preview_2_included.jpg"),
+            p("wedding_seating_suite", "previews", "wedding_preview_3_detail.jpg"),
+            p("wedding_seating_suite", "previews", "wedding_preview_4_edit.jpg"),
+            p("wedding_seating_suite", "previews", "wedding_preview_5_features.jpg"),
+        ],
+        "files": [
+            p("wedding_seating_suite", "MathRelaxing_Geometric_Wedding_Suite.zip"),
+        ],
+        "tags": [
+            "wedding seating chart",
+            "seating chart template",
+            "wedding table numbers",
+            "place cards wedding",
+            "wedding printables",
+            "modern wedding",
+            "geometric wedding",
+            "minimalist wedding",
+            "wedding timeline",
+            "reception seating",
+            "digital download",
+            "printable wedding",
+            "table assignment",
+        ],
+        "notes": (
+            "eRank wave7: wedding seating chart 4,197 searches, 28.1k comp, KD 41. "
+            "MathRelaxing angle: geometric editorial navy/gold/cream (not florals). "
+            "Generator: generate_wedding_seating_suite.py. Draft listing_id=4538602540. "
+            "STAND-BY — not prioritizing; focus elsewhere. Ads OFF."
+        ),
+        "listing_id": 4538602540,
+        "status": "standby",
     },
 }
 

@@ -1,0 +1,18 @@
+MathRelaxing Atelier Resume Kit — How to use
+============================================
+
+1. Start with a SAMPLE file to see finished spacing and tone.
+2. Open the matching blank TEMPLATE and replace placeholders.
+3. Choose a system:
+   · Atelier — centered, letterspaced name, double gold rules (most elegant)
+   · Gallery — left-aligned, modern, gold top bar
+   · ATS — use for online portals that strip design
+4. Cover letter + references match the Atelier header language.
+5. Export PDF from Word (File → Save As → PDF) for email applications.
+
+Tips
+· Keep one page for most industry roles; two only if senior with deep research.
+· Prefer metrics over adjectives.
+· Do not convert Atelier/Gallery through aggressive ATS parsers — use the ATS file.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
