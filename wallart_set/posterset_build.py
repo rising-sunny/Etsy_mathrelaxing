@@ -141,7 +141,7 @@ def img_included():
     fig = plt.figure(figsize=(12.8, 10.24), dpi=125); fig.patch.set_facecolor(PAPER)
     fig.text(0.5, 0.9, f"The {SET_NAME} Set — 6 prints", ha="center",
              fontproperties=SERIF, fontsize=27, color=INK)
-    titles = [MOD.CONCEPTS[k]["title"].title() for k in KEYS]
+    titles = [MOD.CONCEPTS[k]["title"].title().replace("'S ", "'s ") for k in KEYS]
     for i, t in enumerate(titles):
         r, c = divmod(i, 2)
         fig.text(0.1 + c * 0.5, 0.74 - r * 0.13, f"·  {t}", fontproperties=SERIF,
