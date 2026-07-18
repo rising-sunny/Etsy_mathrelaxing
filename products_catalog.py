@@ -577,6 +577,191 @@ Print at home, a print shop, or an online lab. For personal use. Frame not inclu
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "fourier_series_print": """\
+Instant download — Math Wall Art scientific plate.
+
+The Shape of Waves — Fourier series building a square wave from pure sinusoids \
+(partial sums N = 1, 3, 7, 25). Cream graph paper, true LaTeX equations, rust accent.
+
+Every curve is computed from the math — not stock art, not AI.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+Perfect for STEM classrooms, offices, dorms, and math-lover gifts. Matte paper looks best.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "wave_equation_print": """\
+Instant download — Physics Wall Art scientific plate.
+
+The Traveling Wave — the 1D wave equation with standing-wave modes n = 1, 2, 3 \
+on a fixed string (nodes, antinodes, harmonics). Cream graph paper + LaTeX.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+Perfect for physics classrooms, labs, and STEM wall galleries.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "dirac_equation_print": """\
+Instant download — Physics Wall Art scientific plate.
+
+Matter and Antimatter — the Dirac equation with the relativistic ± energy continuum \
+and mass gap. Cream graph paper, LaTeX typography, rust accent.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+For quantum / relativity fans, physics offices, and classroom walls.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "navier_stokes_print": """\
+Instant download — Physics Wall Art scientific plate.
+
+The Equations of Flow — Navier–Stokes with potential-flow streamlines past a cylinder. \
+Cream graph paper, LaTeX equations, engineering-plate style.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+Ideal for engineers, fluid-dynamics students, and modern STEM decor.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "euler_identity_print": """\
+Instant download — Math Wall Art scientific plate.
+
+The Most Beautiful Equation — Euler's identity e^(iπ)+1=0 on the complex unit circle. \
+Cream graph paper, LaTeX math, minimal editorial layout.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+A classic for math classrooms, study nooks, and gifts for number lovers.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "mandelbrot_set_print": """\
+Instant download — Math Wall Art scientific plate.
+
+The Geometry of Chaos — Mandelbrot set escape-time portrait with z→z²+c. \
+Scientific cream / ink / rust palette (not neon fractal kitsch). LaTeX equations.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+For chaos-theory fans, coders, and modern math wall galleries.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "bessel_functions_print": """\
+Instant download — Physics Wall Art scientific plate.
+
+Waves in a Circle — Bessel functions J0, J1, J2 with zeros marked (circular drum \
+modes / cylindrical waves). Cream graph paper, true LaTeX, computed with scipy.special.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+Perfect for physics classrooms, acoustics, and STEM gallery walls.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "hermite_qho_print": """\
+Instant download — Physics Wall Art scientific plate.
+
+The Quantum Spring — harmonic oscillator states n = 0..3 with Hermite × Gaussian \
+wavefunctions and |ψ|² densities. Energies E = ℏω(n+1/2). LaTeX + scipy.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+For quantum mechanics students, physics offices, and STEM gifts.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "legendre_polynomials_print": """\
+Instant download — Math Wall Art scientific plate.
+
+Polynomials on the Sphere — Legendre P0..P4 on [-1,1], the orthogonal basis behind \
+multipoles and spherical harmonics. Cream graph paper, LaTeX, scipy.special.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+Ideal for math classrooms, gravity/electrostatics context, and modern STEM decor.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "mandelbrot_zoom_print": """\
+Instant download — Math Wall Art scientific plate.
+
+Infinite Coastline — deep Mandelbrot zoom (seahorse valley) with smooth escape-time \
+coloring. Companion plate to the classic full-set Mandelbrot portrait. Cream/ink/rust.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+For chaos-theory fans, fractal lovers, and math gallery walls.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "famous_equations_set": """\
+Instant download — Famous Equations wall art set of 6 scientific plates.
+
+Six MathRelaxing gallery prints in one download:
+1. Fourier Series — square-wave harmonics
+2. Wave Equation — standing modes on a string
+3. Dirac Equation — matter & antimatter continuum
+4. Navier–Stokes — flow past a cylinder
+5. Euler's Identity — complex unit circle
+6. Mandelbrot Set — geometry of chaos
+
+Same cream graph-paper family as our Maxwell / Schrödinger plates. LaTeX equations.
+
+► What you get
+• 6 scientific-plate designs
+• Masters @ 300 dpi (12×18 / 2:3 + A4 per design)
+• Instant download ZIP — no physical item ships
+
+Build a STEM gallery wall in one click. Matte paper recommended.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "unit_circle_print": """\
 Instant download — Unit Circle trigonometry wall art (scientific plate).
 
@@ -593,6 +778,44 @@ and a soft teal/rust palette (not a generic gray classroom cheat sheet).
 • Instant download ZIP — no physical item ships
 
 Perfect for math classrooms, tutoring walls, dorm STEM decor, and teacher gifts.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "reader_os_stickers": """\
+Instant download — Reader OS digital sticker system for iPad readers.
+
+Made for digital reading logs on iPad (GoodNotes, Notability, Procreate, Freeform) \
+and other tablet / e-reader journals. Not a random cute pack — a functional sticker \
+system for your reading life.
+
+Six modules that work together:
+• STATUS — Currently Reading, TBR, DNF, Finished, On Hold, Reread, Up Next, Book Mail
+• PROGRESS — 10%–100% rings, Last Chapter, Cliffhanger
+• RATING — 1–5 stars with labels + Life Changing
+• GENRE — Fantasy, Romance, Thriller, Sci-Fi, Litfic, Memoir, Mystery, Horror, YA...
+• ANNOTATION — Plot Twist, Highlight, Bookmark, Foreshadowing, Trope Unlocked...
+• MOOD — Cozy, Spicy, Dark Academia, Mind Blown, Slow Burn...
+• Plus chips (iPad session, GoodNotes log, e-reader night...) & mini book icons
+
+► What you get
+• 61 individual PNG stickers (transparent, 900×900 — crisp on retina iPad)
+• Organized by module folders for easy import
+• Master sheet (optional print on sticker paper)
+• README with iPad / GoodNotes / Notability / Procreate how-to
+• Instant download ZIP — no physical item ships
+
+► How to use on iPad
+1. Download & unzip in the Files app
+2. GoodNotes: Insert image → pin as Element for reuse
+3. Notability: Add photo → resize & duplicate
+4. Procreate: Import PNG as a stamp layer
+5. Stack STATUS + GENRE + RATING on each book entry
+
+Also works in Canva, Freeform, and other digital planners. Optional print sheet \
+if you ever want paper stickers.
+
+Editorial navy / cream / gold — calm and intentional, not clutter.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
@@ -833,7 +1056,7 @@ PRODUCTS = {
     "fractal_flora_pdf": {
         "title":       "Fractal Flora — Printable Coloring Book PDF | 50 Fractal & Botanical Line Art Designs",
         "description": DESCRIPTIONS["fractal_flora_pdf"],
-        "price":       4.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "video": p("fractal_flora_promo_etsy.mp4"),
         "images": [
@@ -856,7 +1079,7 @@ PRODUCTS = {
     "sacred_geometry_pdf": {
         "title":       "Sacred Geometry — Color by Number Coloring Book PDF | 50 Low-Poly Mandala Designs",
         "description": DESCRIPTIONS["sacred_geometry_pdf"],
-        "price":       4.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "video": p("sacred_geometry_promo_etsy.mp4"),
         "images": [
@@ -877,7 +1100,7 @@ PRODUCTS = {
     "hyperbolic_gardens_pdf": {
         "title":       "Hyperbolic Gardens — Printable Coloring Book PDF | 50 Escher-Style Tiling Designs",
         "description": DESCRIPTIONS["hyperbolic_gardens_pdf"],
-        "price":       4.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [],   # ← PENDIENTE: generar cover.jpg + page samples con make_samples.py
         "files": [
@@ -889,7 +1112,7 @@ PRODUCTS = {
     "mathematical_tangle_art_pdf": {
         "title":       "Mathematical Tangle Art — Printable Coloring Book PDF | 50 Zentangle Math Designs",
         "description": DESCRIPTIONS["mathematical_tangle_art_pdf"],
-        "price":       4.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [],   # ← PENDIENTE: generar previews
         "files": [
@@ -901,7 +1124,7 @@ PRODUCTS = {
     "sacred_harmonics_pdf": {
         "title":       "Sacred Harmonics — Printable Coloring Book PDF | 50 Cymatics & Wave Geometry Designs",
         "description": DESCRIPTIONS["sacred_harmonics_pdf"],
-        "price":       4.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [],   # ← PENDIENTE: generar previews
         "files": [
@@ -913,7 +1136,7 @@ PRODUCTS = {
     "neural_network_pdf": {
         "title":       "Neural Network & Tech Art — Printable Coloring Book PDF | 50 Cybernetic Circuit and AI Graph Designs",
         "description": DESCRIPTIONS["neural_network_pdf"],
-        "price":       4.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [
             p("neural_network_cover.jpg"),
@@ -934,7 +1157,7 @@ PRODUCTS = {
     "fractal_flora_ipad": {
         "title":       "Fractal Flora iPad Edition — Digital Coloring Bundle | GoodNotes Notability Procreate",
         "description": DESCRIPTIONS["fractal_flora_ipad"],
-        "price":       6.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
         "video": ff("FractalFlora_iPad_promo.mp4"),
         "images": [
@@ -955,7 +1178,7 @@ PRODUCTS = {
     "sacred_geometry_ipad": {
         "title":       "Sacred Geometry iPad Edition — Color by Number Bundle | GoodNotes Notability Procreate",
         "description": DESCRIPTIONS["sacred_geometry_ipad"],
-        "price":       6.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
         "video": sg("SacredGeometry_iPad_promo.mp4"),
         "images": [
@@ -976,7 +1199,7 @@ PRODUCTS = {
     "thomas_attractor": {
         "title":       "Thomas Attractor — Seamless Loop Animation | 1080x1080 60fps Mathematical Art",
         "description": DESCRIPTIONS["thomas_attractor"],
-        "price":       4.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["digital_art"],
         "video": p("thomas", "Thomas_preview.mp4"),   # preview 540p con marca de agua
         "images": [
@@ -993,7 +1216,7 @@ PRODUCTS = {
     "voronoi_gardens_pdf": {
         "title":       "Voronoi Gardens — Printable Coloring Book PDF | 50 Mandala & Cell Tessellation Designs",
         "description": DESCRIPTIONS["voronoi_gardens_pdf"],
-        "price":       3.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [
             p("voronoi_cover.jpg"),
@@ -1015,7 +1238,7 @@ PRODUCTS = {
     "voronoi_gardens_ipad": {
         "title":       "Voronoi Gardens iPad Edition — Interactive Digital Coloring Bundle | Safari SVG",
         "description": DESCRIPTIONS["voronoi_gardens_ipad"],
-        "price":       9.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
         "video": p("ipad_voronoi_cbn_svg", "VoronoiGardens_SVG_promo.mp4"),
         "images": [
@@ -1034,7 +1257,7 @@ PRODUCTS = {
     "stem_focus_planner": {
         "title":       "STEM Focus Planner Undated Digital | GoodNotes Notability iPad | Research Cornell Habit Tracker | Math Stickers",
         "description": DESCRIPTIONS["stem_focus_planner"],
-        "price":       5.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["planner_template"],
         "images": [
             p("stem_planner", "previews", "stem_planner_preview_1_hero.jpg"),
@@ -1061,7 +1284,7 @@ PRODUCTS = {
     "stem_notebook": {
         "title":       "STEM Digital Notebook for GoodNotes Notability | Hexagonal Isometric Dot Graph Cornell | 142 Pages iPad",
         "description": DESCRIPTIONS["stem_notebook"],
-        "price":       8.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["planner_template"],   # 12476 Planner Templates (categoría correcta para notebook digital)
         "video": p("stem_notebook", "STEM_Notebook_promo.mp4"),
         "images": [
@@ -1082,7 +1305,7 @@ PRODUCTS = {
     "julia_morph_01": {
         "title":       "Julia Set Animation Seamless Loop | Fractal Wallpaper | Mathematical Art | 1080x1080 60fps MP4",
         "description": DESCRIPTIONS["julia_morph_01"],
-        "price":       4.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["digital_art"],   # 2078 Digital Prints (igual que atractores)
         # OJO animaciones: el video del listing = preview 540p CON marca de agua
         # (el producto ES un video → si fuera el limpio, se podría robar desde el preview).
@@ -1105,7 +1328,7 @@ PRODUCTS = {
     "islamic_geometry_pdf": {
         "title":       "Islamic Star Geometry — Color by Number Coloring Book PDF | 50 Geometric Star Rosette Designs",
         "description": DESCRIPTIONS["islamic_geometry_pdf"],
-        "price":       4.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [
             p("islamic_geometry_cover.jpg"),
@@ -1134,7 +1357,7 @@ PRODUCTS = {
     "islamic_geometry_ipad": {
         "title":       "Islamic Star Geometry iPad Edition — Color by Number Bundle | GoodNotes Notability Procreate",
         "description": DESCRIPTIONS["islamic_geometry_ipad"],
-        "price":       6.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
         "images": [
             p("ipad_islamic", "previews", "ipad_preview_1_hero.jpg"),
@@ -1160,7 +1383,7 @@ PRODUCTS = {
     "celtic_knot_pdf": {
         "title":       "Celtic Knot Mathematics — Printable Coloring Book PDF | 50 Interlace & Knotwork Designs",
         "description": DESCRIPTIONS["celtic_knot_pdf"],
-        "price":       4.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "images": [
             p("celtic_knot_cover.jpg"),
@@ -1184,7 +1407,7 @@ PRODUCTS = {
     "celtic_knot_ipad": {
         "title":       "Celtic Knot iPad Edition — Digital Coloring Bundle | GoodNotes Notability Procreate",
         "description": DESCRIPTIONS["celtic_knot_ipad"],
-        "price":       6.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
         "video": p("ipad_celtic", "CelticKnot_iPad_promo.mp4"),
         "images": [
@@ -1208,7 +1431,7 @@ PRODUCTS = {
     "voronoi_cell_garden": {
         "title":       "Voronoi Cell Garden Seamless Loop | Organic Mosaic Animation | Math Art Digital Download | 30fps MP4 | Ambient Stained Glass Screensaver",
         "description": DESCRIPTIONS["voronoi_cell_garden"],
-        "price":       4.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["digital_art"],   # 2078 Digital Prints (misma categoria que las otras animaciones)
         # OJO animaciones: el video del listing = preview 540p CON marca de agua.
         # El archivo de descarga ('files') es el MP4 limpio 1080p.
@@ -1231,7 +1454,7 @@ PRODUCTS = {
     "quantified_self_planner": {
         "title":       "The Quantified Self Journal — Digital Data Planner | GitHub Heatmap & Agile Sprint Trackers | GoodNotes Notability iPad Notebook",
         "description": DESCRIPTIONS["quantified_self_planner"],
-        "price":       7.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["planner_template"],
         "images": [
             p("quantified_self", "previews", "qs_preview_1_hero.jpg"),
@@ -1252,7 +1475,7 @@ PRODUCTS = {
     "spiral_tilings_ipad": {
         "title":       "Interactive Color By Number Spiral Tilings — iPad Safari SVG App | 50 Math Mandala Radial Designs",
         "description": DESCRIPTIONS["spiral_tilings_ipad"],
-        "price":       9.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["ipad_coloring"],
         "video": p("ipad_spiral_cbn_svg", "SpiralTilings_SVG_promo.mp4"),
         "images": [
@@ -1271,7 +1494,7 @@ PRODUCTS = {
     "spiral_tilings_pdf": {
         "title":       "Spiral Tilings — Printable Coloring Book PDF | 50 Math & Mandala Radial Designs",
         "description": DESCRIPTIONS["spiral_tilings_pdf"],
-        "price":       6.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["coloring_book"],
         "video": p("spiral_video_out", "SpiralTilings_promo.mp4"),
         "images": [
@@ -1299,7 +1522,7 @@ PRODUCTS = {
             "Molecule Wall Art | Science Printable Digital Download"
         ),
         "description": DESCRIPTIONS["happy_chemicals_prints"],
-        "price":       8.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["digital_art"],  # 2078 Digital Prints
         "images": [
             p("happy_chemicals", "previews", "happy_chemicals_preview_1_hero.jpg"),
@@ -1341,7 +1564,7 @@ PRODUCTS = {
             "OSI STEM Wall Art Printable (Digital Download)"
         ),
         "description": DESCRIPTIONS["cs_poster_set"],
-        "price":       9.99,
+        "price":       3.99,
         "taxonomy_id": TAXONOMY["digital_art"],
         "images": [
             p("cs_poster_set", "previews", "cs_preview_1_hero.jpg"),
@@ -1388,7 +1611,7 @@ PRODUCTS = {
         ),
 
         "description": DESCRIPTIONS["stem_lab_notebook"],
-        "price":       7.99,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["planner_template"],  # 12476 Planner Templates
         "images": [
             p("lab_notebook", "previews", "lab_notebook_preview_1_hero.jpg"),
@@ -1430,7 +1653,7 @@ PRODUCTS = {
         ),
 
         "description": DESCRIPTIONS["schrodinger_equation_print"],
-        "price":       5.50,
+        "price":       2.99,
         "taxonomy_id": TAXONOMY["digital_art"],  # 2078 Digital Prints
         "images": [
             p("schrodinger_equation", "previews", "schrodinger_preview_1_hero.jpg"),
@@ -1471,7 +1694,7 @@ PRODUCTS = {
             "Degrees Radians Cos Sin STEM Print (Digital Download)"
         ),
         "description": DESCRIPTIONS["unit_circle_print"],
-        "price": 5.99,
+        "price": 2.99,
         "taxonomy_id": TAXONOMY["digital_art"],
         "images": [
             p("unit_circle", "previews", "unit_circle_preview_1_hero.jpg"),
@@ -1511,7 +1734,7 @@ PRODUCTS = {
             "Cover Letter & References STEM Modern (Digital Download)"
         ),
         "description": DESCRIPTIONS["editorial_resume_kit"],
-        "price": 8.99,
+        "price": 3.99,
         "taxonomy_id": TAXONOMY["planner_template"],
         "images": [
             p("resume_kit", "previews", "resume_preview_1_hero.jpg"),
@@ -1555,7 +1778,7 @@ PRODUCTS = {
             "Cover Letter LinkedIn Thank You Portfolio (Digital Download)"
         ),
         "description": DESCRIPTIONS["atelier_resume_kit"],
-        "price": 12.99,
+        "price": 4.99,
         "taxonomy_id": TAXONOMY["planner_template"],
         "images": [
             p("resume_luxe_kit", "previews", "luxe_preview_01_hero.jpg"),
@@ -1602,7 +1825,7 @@ PRODUCTS = {
             "Character Scholarship Coworker | Editable Word (Digital Download)"
         ),
         "description": DESCRIPTIONS["lor_template_pack"],
-        "price": 7.99,
+        "price": 2.99,
         "taxonomy_id": TAXONOMY["planner_template"],
         "images": [
             p("lor_pack", "previews", "lor_preview_1_hero.jpg"),
@@ -1645,7 +1868,7 @@ PRODUCTS = {
             "Contacts Medical Insurance Documents Go-Bag (Digital Download)"
         ),
         "description": DESCRIPTIONS["emergency_binder"],
-        "price": 9.99,
+        "price": 3.99,
         "taxonomy_id": TAXONOMY["planner_template"],
         "images": [
             p("emergency_binder", "previews", "eb_preview_1_hero.jpg"),
@@ -1684,13 +1907,56 @@ PRODUCTS = {
         "listing_id": 4539135067,
     },
 
+    "reader_os_stickers": {
+        "title": (
+            "Reader OS iPad Stickers | GoodNotes Bookish Sticker System | "
+            "Digital Reading Journal PNG Pack (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["reader_os_stickers"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("reader_os", "previews", "reader_os_preview_1_hero.jpg"),
+            p("reader_os", "previews", "reader_os_preview_2_ipad.jpg"),
+            p("reader_os", "previews", "reader_os_preview_3_modules.jpg"),
+            p("reader_os", "previews", "reader_os_preview_4_included.jpg"),
+            p("reader_os", "previews", "reader_os_preview_5_howto.jpg"),
+            p("reader_os", "previews", "reader_os_preview_6_sheet.jpg"),
+        ],
+        "files": [
+            p("reader_os", "MathRelaxing_Reader_OS_Stickers.zip"),
+        ],
+        "tags": [
+            "goodnotes stickers",
+            "ipad stickers",
+            "digital stickers",
+            "bookish stickers",
+            "reading journal",
+            "kindle stickers",
+            "tbr stickers",
+            "book stickers",
+            "notability sticker",
+            "digital download",
+            "reading tracker",
+            "planner stickers",
+            "book lover gift",
+        ],
+        "notes": (
+            "Novel angle: functional Reader OS system for digital readers (iPad first). "
+            "eRank: bookish stickers / kindle stickers / goodnotes stickers. "
+            "generate_reader_os.py (Playwright HTML/CSS premium). "
+            "Draft listing_id=4540003882. Ads OFF."
+        ),
+        "listing_id": 4540003882,
+    },
+
     "sage_neutral_print_set": {
         "title": (
             "Sage Green Wall Art Print Set | Neutral Abstract Posters | "
             "Japandi Cream Gallery Bundle (Digital Download)"
         ),
         "description": DESCRIPTIONS["sage_neutral_print_set"],
-        "price": 9.99,
+        "price": 3.99,
         "taxonomy_id": TAXONOMY["digital_art"],
         "images": [
             p("sage_set", "previews", "sage_preview_1_hero.jpg"),
@@ -1737,7 +2003,7 @@ PRODUCTS = {
             "Arts Crafts Floral Poster Bundle (Digital Download)"
         ),
         "description": DESCRIPTIONS["morris_botanical_print_set"],
-        "price": 9.99,
+        "price": 3.99,
         "taxonomy_id": TAXONOMY["digital_art"],
         "images": [
             p("morris_set", "previews", "morris_preview_1_hero.jpg"),
@@ -1789,7 +2055,7 @@ PRODUCTS = {
             "Navy Cream Gold Printable Decor (Digital Download)"
         ),
         "description": DESCRIPTIONS["bauhaus_print_set"],
-        "price": 9.99,
+        "price": 3.99,
         "taxonomy_id": TAXONOMY["digital_art"],  # 2078 Digital Prints
         "video": p("bauhaus_set", "Bauhaus_Print_Set_promo.mp4"),
         "images": [
@@ -1837,7 +2103,7 @@ PRODUCTS = {
             "Table Numbers Place Cards Timeline Menu (Digital Download)"
         ),
         "description": DESCRIPTIONS["geometric_wedding_suite"],
-        "price": 11.99,
+        "price": 4.99,
         "taxonomy_id": TAXONOMY["digital_art"],  # Digital Prints — verify party/wedding node later
         "images": [
             p("wedding_seating_suite", "previews", "wedding_preview_1_hero.jpg"),
@@ -1872,6 +2138,393 @@ PRODUCTS = {
         ),
         "listing_id": 4538602540,
         "status": "standby",
+    },
+
+    # ── Equation scientific plates (scale Maxwell/Ulam cluster) ───────────────
+    "fourier_series_print": {
+        "title": (
+            "Math Wall Art | Fourier Series Print | Square Wave Harmonics "
+            "STEM Mathematics Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["fourier_series_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("equation_plates", "fourier_series", "previews", "fourier_series_preview_1_hero.jpg"),
+            p("equation_plates", "fourier_series", "previews", "fourier_series_preview_2_detail.jpg"),
+            p("equation_plates", "fourier_series", "previews", "fourier_series_preview_3_included.jpg"),
+            p("equation_plates", "fourier_series", "previews", "fourier_series_preview_4_plate.jpg"),
+            p("equation_plates", "fourier_series", "previews", "fourier_series_preview_5_equation.jpg"),
+        ],
+        "files": [p("equation_plates", "fourier_series", "Fourier_Series_Math_Wall_Art.zip")],
+        "tags": [
+            "math wall art",
+            "fourier series",
+            "mathematics poster",
+            "stem wall art",
+            "science poster",
+            "calculus art",
+            "educational poster",
+            "classroom decor",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "signal processing",
+            "math print",
+        ],
+        "notes": "generate_equation_plates.py. Scale math wall art cluster. $2.99.",
+        "listing_id": 4540082127,
+    },
+    "wave_equation_print": {
+        "title": (
+            "Physics Wall Art | Wave Equation Print | Standing Waves on a String "
+            "STEM Science Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["wave_equation_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("equation_plates", "wave_equation", "previews", "wave_equation_preview_1_hero.jpg"),
+            p("equation_plates", "wave_equation", "previews", "wave_equation_preview_2_detail.jpg"),
+            p("equation_plates", "wave_equation", "previews", "wave_equation_preview_3_included.jpg"),
+            p("equation_plates", "wave_equation", "previews", "wave_equation_preview_4_plate.jpg"),
+            p("equation_plates", "wave_equation", "previews", "wave_equation_preview_5_equation.jpg"),
+        ],
+        "files": [p("equation_plates", "wave_equation", "Wave_Equation_Physics_Wall_Art.zip")],
+        "tags": [
+            "physics wall art",
+            "wave equation",
+            "physics poster",
+            "stem wall art",
+            "science poster",
+            "math wall art",
+            "educational poster",
+            "classroom decor",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "standing waves",
+            "science wall art",
+        ],
+        "notes": "generate_equation_plates.py. Scale physics wall art (Maxwell). $2.99.",
+        "listing_id": 4540099296,
+    },
+    "dirac_equation_print": {
+        "title": (
+            "Physics Wall Art | Dirac Equation Print | Matter Antimatter "
+            "Relativistic Quantum Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["dirac_equation_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("equation_plates", "dirac_equation", "previews", "dirac_equation_preview_1_hero.jpg"),
+            p("equation_plates", "dirac_equation", "previews", "dirac_equation_preview_2_detail.jpg"),
+            p("equation_plates", "dirac_equation", "previews", "dirac_equation_preview_3_included.jpg"),
+            p("equation_plates", "dirac_equation", "previews", "dirac_equation_preview_4_plate.jpg"),
+            p("equation_plates", "dirac_equation", "previews", "dirac_equation_preview_5_equation.jpg"),
+        ],
+        "files": [p("equation_plates", "dirac_equation", "Dirac_Equation_Physics_Wall_Art.zip")],
+        "tags": [
+            "physics wall art",
+            "dirac equation",
+            "quantum physics art",
+            "physics poster",
+            "antimatter art",
+            "stem wall art",
+            "science poster",
+            "educational poster",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "relativity art",
+            "science wall art",
+        ],
+        "notes": "generate_equation_plates.py. Quantum/relativity cluster. $2.99.",
+        "listing_id": 4540082241,
+    },
+    "navier_stokes_print": {
+        "title": (
+            "Physics Wall Art | Navier-Stokes Equations Print | Fluid Dynamics "
+            "Streamlines STEM Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["navier_stokes_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("equation_plates", "navier_stokes", "previews", "navier_stokes_preview_1_hero.jpg"),
+            p("equation_plates", "navier_stokes", "previews", "navier_stokes_preview_2_detail.jpg"),
+            p("equation_plates", "navier_stokes", "previews", "navier_stokes_preview_3_included.jpg"),
+            p("equation_plates", "navier_stokes", "previews", "navier_stokes_preview_4_plate.jpg"),
+            p("equation_plates", "navier_stokes", "previews", "navier_stokes_preview_5_equation.jpg"),
+        ],
+        "files": [p("equation_plates", "navier_stokes", "Navier_Stokes_Physics_Wall_Art.zip")],
+        "tags": [
+            "physics wall art",
+            "navier stokes",
+            "fluid dynamics art",
+            "physics poster",
+            "stem wall art",
+            "science poster",
+            "math wall art",
+            "educational poster",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "engineering art",
+            "science wall art",
+        ],
+        "notes": "generate_equation_plates.py. Engineering/fluids angle. $2.99.",
+        "listing_id": 4540082293,
+    },
+    "euler_identity_print": {
+        "title": (
+            "Math Wall Art | Euler Identity Print | Complex Plane Beautiful Equation "
+            "STEM Mathematics Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["euler_identity_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("equation_plates", "euler_identity", "previews", "euler_identity_preview_1_hero.jpg"),
+            p("equation_plates", "euler_identity", "previews", "euler_identity_preview_2_detail.jpg"),
+            p("equation_plates", "euler_identity", "previews", "euler_identity_preview_3_included.jpg"),
+            p("equation_plates", "euler_identity", "previews", "euler_identity_preview_4_plate.jpg"),
+            p("equation_plates", "euler_identity", "previews", "euler_identity_preview_5_equation.jpg"),
+        ],
+        "files": [p("equation_plates", "euler_identity", "Euler_Identity_Math_Wall_Art.zip")],
+        "tags": [
+            "math wall art",
+            "eulers identity",
+            "euler formula",
+            "mathematics poster",
+            "complex numbers",
+            "stem wall art",
+            "science poster",
+            "educational poster",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "math print",
+            "classroom decor",
+        ],
+        "notes": "generate_equation_plates.py. Classic math identity. $2.99.",
+        "listing_id": 4540099676,
+    },
+    "mandelbrot_set_print": {
+        "title": (
+            "Math Wall Art | Mandelbrot Set Print | Fractal Chaos Theory "
+            "Complex Dynamics STEM Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["mandelbrot_set_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("equation_plates", "mandelbrot_set", "previews", "mandelbrot_set_preview_1_hero.jpg"),
+            p("equation_plates", "mandelbrot_set", "previews", "mandelbrot_set_preview_2_detail.jpg"),
+            p("equation_plates", "mandelbrot_set", "previews", "mandelbrot_set_preview_3_included.jpg"),
+            p("equation_plates", "mandelbrot_set", "previews", "mandelbrot_set_preview_4_plate.jpg"),
+            p("equation_plates", "mandelbrot_set", "previews", "mandelbrot_set_preview_5_equation.jpg"),
+        ],
+        "files": [p("equation_plates", "mandelbrot_set", "Mandelbrot_Set_Math_Wall_Art.zip")],
+        "tags": [
+            "math wall art",
+            "mandelbrot set",
+            "fractal art",
+            "mathematics poster",
+            "chaos theory",
+            "stem wall art",
+            "generative art",
+            "educational poster",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "complex dynamics",
+            "math print",
+        ],
+        "notes": "generate_equation_plates.py. Chaos/fractal scientific plate. $2.99.",
+        "listing_id": 4540082547,
+    },
+    "famous_equations_set": {
+        "title": (
+            "Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | "
+            "Fourier Dirac Euler STEM Gallery (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["famous_equations_set"],
+        "price": 3.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("equation_plates", "famous_equations_set", "previews", "famous_equations_preview_1_hero.jpg"),
+            p("equation_plates", "famous_equations_set", "previews", "famous_equations_preview_2_included.jpg"),
+            p("equation_plates", "famous_equations_set", "previews", "famous_equations_preview_3_eq.jpg"),
+            p("equation_plates", "famous_equations_set", "previews", "famous_equations_preview_4_eq.jpg"),
+            p("equation_plates", "famous_equations_set", "previews", "famous_equations_preview_5_eq.jpg"),
+            p("equation_plates", "famous_equations_set", "previews", "famous_equations_preview_6_eq.jpg"),
+        ],
+        "files": [
+            p("equation_plates", "famous_equations_set", "Famous_Equations_Wall_Art_Set_of_6.zip"),
+        ],
+        "tags": [
+            "math wall art",
+            "physics wall art",
+            "equation poster",
+            "stem wall art",
+            "science poster set",
+            "gallery wall set",
+            "educational poster",
+            "classroom decor",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "math print set",
+            "science wall art",
+        ],
+        "notes": (
+            "Bundle of 6 equation plates. generate_equation_plates.py. $3.99. "
+            "Scales math/physics wall art set demand."
+        ),
+        "listing_id": 4540082607,
+    },
+
+    # ── Special-function plates (scipy) — new listings ───────────────────────
+    "bessel_functions_print": {
+        "title": (
+            "Physics Wall Art | Bessel Functions Print | Circular Drum Modes "
+            "Jn STEM Mathematics Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["bessel_functions_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("special_plates", "bessel_functions", "previews", "bessel_functions_preview_1_hero.jpg"),
+            p("special_plates", "bessel_functions", "previews", "bessel_functions_preview_2_detail.jpg"),
+            p("special_plates", "bessel_functions", "previews", "bessel_functions_preview_3_included.jpg"),
+            p("special_plates", "bessel_functions", "previews", "bessel_functions_preview_4_plate.jpg"),
+            p("special_plates", "bessel_functions", "previews", "bessel_functions_preview_5_equation.jpg"),
+        ],
+        "files": [p("special_plates", "bessel_functions", "Bessel_Functions_Physics_Wall_Art.zip")],
+        "tags": [
+            "physics wall art",
+            "bessel function",
+            "math wall art",
+            "stem wall art",
+            "science poster",
+            "mathematics poster",
+            "educational poster",
+            "classroom decor",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "wave equation",
+            "science wall art",
+        ],
+        "notes": "generate_special_plates.py + scipy.special. NEW listing. $2.99.",
+        "listing_id": 4540091753,
+    },
+    "hermite_qho_print": {
+        "title": (
+            "Physics Wall Art | Quantum Harmonic Oscillator Print | Hermite "
+            "Wavefunctions STEM Science Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["hermite_qho_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("special_plates", "hermite_qho", "previews", "hermite_qho_preview_1_hero.jpg"),
+            p("special_plates", "hermite_qho", "previews", "hermite_qho_preview_2_detail.jpg"),
+            p("special_plates", "hermite_qho", "previews", "hermite_qho_preview_3_included.jpg"),
+            p("special_plates", "hermite_qho", "previews", "hermite_qho_preview_4_plate.jpg"),
+            p("special_plates", "hermite_qho", "previews", "hermite_qho_preview_5_equation.jpg"),
+        ],
+        "files": [p("special_plates", "hermite_qho", "Hermite_QHO_Physics_Wall_Art.zip")],
+        "tags": [
+            "physics wall art",
+            "quantum physics art",
+            "harmonic oscillator",
+            "math wall art",
+            "stem wall art",
+            "science poster",
+            "hermite polynomial",
+            "educational poster",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "quantum mechanics",
+            "science wall art",
+        ],
+        "notes": "generate_special_plates.py + scipy Hermite QHO. NEW listing. $2.99.",
+        "listing_id": 4540091851,
+    },
+    "legendre_polynomials_print": {
+        "title": (
+            "Math Wall Art | Legendre Polynomials Print | Orthogonal Polynomials "
+            "Spherical STEM Mathematics Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["legendre_polynomials_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("special_plates", "legendre_polynomials", "previews", "legendre_polynomials_preview_1_hero.jpg"),
+            p("special_plates", "legendre_polynomials", "previews", "legendre_polynomials_preview_2_detail.jpg"),
+            p("special_plates", "legendre_polynomials", "previews", "legendre_polynomials_preview_3_included.jpg"),
+            p("special_plates", "legendre_polynomials", "previews", "legendre_polynomials_preview_4_plate.jpg"),
+            p("special_plates", "legendre_polynomials", "previews", "legendre_polynomials_preview_5_equation.jpg"),
+        ],
+        "files": [p("special_plates", "legendre_polynomials", "Legendre_Polynomials_Math_Wall_Art.zip")],
+        "tags": [
+            "math wall art",
+            "legendre polynomial",
+            "mathematics poster",
+            "stem wall art",
+            "science poster",
+            "spherical harmonics",
+            "educational poster",
+            "classroom decor",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "math print",
+            "physics wall art",
+        ],
+        "notes": "generate_special_plates.py + scipy Legendre. NEW listing. $2.99.",
+        "listing_id": 4540091917,
+    },
+    "mandelbrot_zoom_print": {
+        "title": (
+            "Math Wall Art | Mandelbrot Zoom Print | Seahorse Valley Fractal "
+            "Detail Chaos STEM Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["mandelbrot_zoom_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("special_plates", "mandelbrot_zoom", "previews", "mandelbrot_zoom_preview_1_hero.jpg"),
+            p("special_plates", "mandelbrot_zoom", "previews", "mandelbrot_zoom_preview_2_detail.jpg"),
+            p("special_plates", "mandelbrot_zoom", "previews", "mandelbrot_zoom_preview_3_included.jpg"),
+            p("special_plates", "mandelbrot_zoom", "previews", "mandelbrot_zoom_preview_4_plate.jpg"),
+            p("special_plates", "mandelbrot_zoom", "previews", "mandelbrot_zoom_preview_5_equation.jpg"),
+        ],
+        "files": [p("special_plates", "mandelbrot_zoom", "Mandelbrot_Zoom_Math_Wall_Art.zip")],
+        "tags": [
+            "math wall art",
+            "mandelbrot set",
+            "fractal art",
+            "chaos theory",
+            "mathematics poster",
+            "stem wall art",
+            "generative art",
+            "educational poster",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "complex dynamics",
+            "math print",
+        ],
+        "notes": (
+            "generate_special_plates.py Mandelbrot seahorse zoom. "
+            "Companion NEW listing to mandelbrot_set_print (classic view). $2.99."
+        ),
+        "listing_id": 4540109240,
     },
 }
 

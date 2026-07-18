@@ -1,0 +1,47 @@
+[
+  {
+    "type": "poster",
+    "key": "fourier",
+    "printify_id": "6a5bf0f381cebb5bdd03a737",
+    "blueprint": 282
+  },
+  {
+    "type": "poster",
+    "key": "euler",
+    "printify_id": "6a5bf105dde591a5200a7d9d",
+    "blueprint": 282
+  },
+  {
+    "type": "poster",
+    "key": "wave",
+    "printify_id": "6a5bf113dde591a5200a7da6",
+    "blueprint": 282
+  },
+  {
+    "type": "poster",
+    "key": "mandelbrot",
+    "printify_id": "6a5bf124ca82e4a6d2013421",
+    "blueprint": 282
+  },
+  {
+    "type": "poster",
+    "key": "bauhaus_circles",
+    "printify_id": "6a5bf199f45e269c8f0106f0",
+    "title": "Bauhaus Poster | Geometric Wall Art Circles and Bars | Navy Cream Modern Math Print",
+    "blueprint": 282
+  },
+  {
+    "type": "magnet",
+    "key": "mandelbrot_magnet",
+    "printify_id": "6a5bf1a032a5c3424f0f46a4",
+    "title": "Mandelbrot Fractal Fridge Magnet | Math Art | Chaos Theory Science Gift STEM Decor",
+    "blueprint": 428
+  },
+  {
+    "type": "magnet",
+    "key": "euler_magnet",
+    "printify_id": "6a5bf1b3dde591a5200a7e08",
+    "title": "Euler Identity Fridge Magnet | Math Art Complex Plane | STEM Science Gift Teacher",
+    "blueprint": 428
+  }
+]

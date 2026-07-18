@@ -156,9 +156,9 @@ def poster_01_circles_bars() -> Image.Image:
         )
         d.line([(0, y), (W, y)], fill=col)
 
-    # Monumental red circle — left weight, slightly off-center (optical)
-    r = 520
-    cx, cy = 480, 780
+    # Monumental red circle — full disc inside left safe margin (was clipped)
+    r = 472
+    cx, cy = 576, 780  # left = 104 ≈ 6.5% of W
     d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=RED)
     # Inner soft ring suggestion (cream arc cut via smaller offset ellipse outline)
     d.ellipse([cx - r + 28, cy - r + 28, cx + r - 28, cy + r - 28], outline=RED_DEEP, width=2)

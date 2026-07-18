@@ -1,0 +1,95 @@
+# Wave 11 — physical / low-cost / POD (shop-agnostic)
+# Prefer: Printify/Printful, print-on-demand, stickers, small home goods
+# Avoid: heavy inventory, furniture, high shipping risk
+
+# apparel POD
+teacher sweatshirt
+bookish sweatshirt
+nurse shirt
+dog mom shirt
+cat mom shirt
+funny tshirt
+custom name shirt
+bridal party shirts
+sports mom shirt
+coffee lover shirt
+mama sweatshirt
+mental health shirt
+plant lady shirt
+book lover shirt
+hiking shirt
+
+# bags / soft goods POD
+nurse tote bag
+teacher tote bag
+canvas tote bag custom
+makeup bag personalized
+gym bag personalized
+laptop sleeve custom
+
+# home POD / print physical
+funny doormat
+monogram doormat
+welcome doormat
+custom name doormat
+throw pillow cover
+wall tapestry custom
+shower curtain funny
+kitchen towel funny
+canvas print custom
+poster print custom
+
+# stickers physical
+kindle stickers
+laptop stickers
+water bottle stickers
+hydroflask stickers
+car stickers funny
+vinyl stickers pack
+sticker sheet cute
+bookish stickers
+planner stickers
+
+# small gifts / low ship weight
+keychain custom
+acrylic keychain
+car charm hanging
+magnet custom
+button pin pack
+bookmark personalized
+enamel pin cute
+ornament personalized
+coaster set custom
+candle label only
+
+# printables that often ship physical too (cards)
+greeting card funny
+thank you card set
+baby milestone cards
+party invitation printed
+postcard set art
+
+# jewelry / accessories low cost materials
+beaded bracelet
+friendship bracelet
+earring set dangle
+necklace personalized
+hair clip cute
+
+# pet / niche POD
+dog bandana custom
+pet mom shirt
+cat dad shirt
+dog dad shirt
+
+# seasonal light physical
+halloween doormat
+christmas ornament personalized
+teacher gift mug
+bridesmaid gift pouch
+
+# low-cost craft supplies resale-ish
+gift wrap stickers
+packaging stickers
+thank you stickers
+business sticker packaging

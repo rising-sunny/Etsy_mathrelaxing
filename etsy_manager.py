@@ -137,16 +137,107 @@ class EtsyManager:
         return result['listing_id']
 
     def update_listing(self, listing_id, **fields):
-        """PATCH a un listing existente. Para tags pasar tags=[...]."""
+        """PATCH a un listing existente. Para tags pasar tags=[...].
+        Nota: el precio NO se actualiza aquí — usar update_listing_price()."""
         shop_id = self.get_shop_id()
         payload = {}
         for k, v in fields.items():
             if k == 'tags' and isinstance(v, (list, tuple)):
                 payload['tags'] = ','.join(t.strip() for t in v[:13] if len(t.strip()) <= 20)
+            elif k == 'price':
+                # Etsy ignores price on PATCH for inventory listings — route correctly
+                continue
             else:
                 payload[k] = v
+        if not payload:
+            return {}
         print(f"Actualizando listing {listing_id}: {list(payload.keys())}")
         return self.make_request('PATCH', f'/shops/{shop_id}/listings/{listing_id}', payload=payload)
+
+    def update_listing_price(self, listing_id, price, quantity=None):
+        """Update listing price via inventory API (required for most listings).
+
+        PUT /listings/{listing_id}/inventory with JSON body.
+        Preserves existing products/offerings structure when possible.
+        """
+        inv = self.make_request('GET', f'/listings/{listing_id}/inventory')
+        products_out = []
+        for prod in inv.get('products') or []:
+            offerings_out = []
+            for off in prod.get('offerings') or []:
+                if off.get('is_deleted'):
+                    continue
+                qty = quantity if quantity is not None else off.get('quantity', 999)
+                offerings_out.append({
+                    'price': float(price),
+                    'quantity': int(qty),
+                    'is_enabled': bool(off.get('is_enabled', True)),
+                })
+            if not offerings_out:
+                offerings_out = [{
+                    'price': float(price),
+                    'quantity': int(quantity if quantity is not None else 999),
+                    'is_enabled': True,
+                }]
+            # property_values: keep property_id + value_ids shape Etsy expects
+            pvs = []
+            for pv in prod.get('property_values') or []:
+                pvs.append({
+                    'property_id': pv.get('property_id'),
+                    'value_ids': pv.get('value_ids') or [],
+                    'values': pv.get('values') or [],
+                    'property_name': pv.get('property_name') or '',
+                    'scale_id': pv.get('scale_id'),
+                })
+            products_out.append({
+                'sku': prod.get('sku') or '',
+                'property_values': pvs,
+                'offerings': offerings_out,
+            })
+        if not products_out:
+            products_out = [{
+                'sku': '',
+                'property_values': [],
+                'offerings': [{
+                    'price': float(price),
+                    'quantity': int(quantity if quantity is not None else 999),
+                    'is_enabled': True,
+                }],
+            }]
+
+        body = {'products': products_out}
+        # Optional property arrays if present
+        for key in ('price_on_property', 'quantity_on_property', 'sku_on_property'):
+            if inv.get(key):
+                body[key] = inv[key]
+
+        url = f"{self.base_url}/listings/{listing_id}/inventory"
+        data = json.dumps(body).encode('utf-8')
+        headers = {
+            'x-api-key': f"{CLIENT_ID}:{SHARED_SECRET}",
+            'Authorization': f"Bearer {self.token_data['access_token']}",
+            'Content-Type': 'application/json',
+        }
+        req = urllib.request.Request(url, data=data, headers=headers, method='PUT')
+        try:
+            with urllib.request.urlopen(req) as response:
+                raw = response.read().decode('utf-8')
+                result = json.loads(raw) if raw.strip() else {}
+                print(f"Precio listing {listing_id} → ${float(price):.2f}")
+                return result
+        except urllib.error.HTTPError as e:
+            if e.code == 401:
+                self.refresh_token()
+                headers['Authorization'] = f"Bearer {self.token_data['access_token']}"
+                req = urllib.request.Request(url, data=data, headers=headers, method='PUT')
+                with urllib.request.urlopen(req) as response:
+                    raw = response.read().decode('utf-8')
+                    result = json.loads(raw) if raw.strip() else {}
+                    print(f"Precio listing {listing_id} → ${float(price):.2f}")
+                    return result
+            print(f"Error de API ({e.code}) al actualizar precio de {listing_id}:")
+            print(e.read().decode('utf-8'))
+            raise
 
     def upload_listing_image(self, listing_id, image_path, rank=1):
         shop_id = self.get_shop_id()

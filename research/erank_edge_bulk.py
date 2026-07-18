@@ -23,6 +23,7 @@ PROFILE = BASE / ".edge_erank_profile"
 OUT_JSON = BASE / "wave8_erank_bulk.json"
 OUT_CSV = BASE / "wave8_erank_bulk.csv"
 OUT_MD = BASE / "wave8_opportunity_report.md"
+# Overridden by --out-prefix (e.g. wave10 → wave10_erank_bulk.json)
 
 BULK_URL = "https://members.erank.com/bulk-keyword-tool"
 # fallback marketing URL redirects if not logged in
@@ -380,12 +381,15 @@ def write_report(rows: list[dict]):
     months = [r.get("trend_month") for r in ranked if r.get("trend_month")]
     trend_month = months[0] if months else "unknown"
 
+    wave_label = OUT_MD.stem.replace("_opportunity_report", "").replace("_", " ").title()
     lines = [
-        "# Wave 8 — eRank Bulk (Edge)",
+        f"# {wave_label} — eRank Bulk (Edge)",
         "",
         f"**Source:** eRank Bulk Keyword Tool via Edge Playwright  ",
         f"**Keywords queried:** {len(rows)}  ",
         f"**Profile:** `research/.edge_erank_profile`",
+        "",
+        "**Scope:** shop-agnostic “sell now” scan — not limited to math/STEM.",
         "",
         "## Time window (important)",
         "",
@@ -533,7 +537,9 @@ def run_batches(page, keywords: list[str], batch_size: int = 20) -> list[dict]:
         page.goto(BULK_URL, wait_until="domcontentloaded", timeout=60000)
         page.wait_for_timeout(1500)
         fill_bulk_and_search(page, batch)
-        shot = BASE / f"wave8_erank_batch{bi}.png"
+        # screenshot name uses OUT_CSV stem prefix when available
+        pref = OUT_CSV.stem.replace("_erank_bulk", "") if OUT_CSV else "wave8"
+        shot = BASE / f"{pref}_erank_batch{bi}.png"
         page.screenshot(path=str(shot), full_page=True)
         print(f"    screenshot {shot.name}")
         rows = extract_table(page)
@@ -545,11 +551,18 @@ def run_batches(page, keywords: list[str], batch_size: int = 20) -> list[dict]:
 
 
 def main():
+    global OUT_JSON, OUT_CSV, OUT_MD
     ap = argparse.ArgumentParser()
     ap.add_argument("--keywords-file", help="Optional text file, one keyword per line")
+    ap.add_argument("--out-prefix", default="wave8", help="Output file prefix (default wave8)")
     ap.add_argument("--headed", action="store_true", default=True)
     ap.add_argument("--login-wait", type=int, default=90, help="Seconds to wait if login needed")
     args = ap.parse_args()
+
+    prefix = args.out_prefix.strip() or "wave8"
+    OUT_JSON = BASE / f"{prefix}_erank_bulk.json"
+    OUT_CSV = BASE / f"{prefix}_erank_bulk.csv"
+    OUT_MD = BASE / f"{prefix}_opportunity_report.md"
 
     if args.keywords_file:
         keywords = [

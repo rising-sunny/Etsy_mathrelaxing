@@ -167,8 +167,15 @@ def poster_01_circles_bars(W: int, H: int) -> Image.Image:
         col = (int(CREAM[0] - 6 * t), int(CREAM[1] - 5 * t), int(CREAM[2] - 4 * t))
         d.line([(0, y), (W, y)], fill=col)
 
-    r = int(u * 0.325)
-    cx, cy = int(W * 0.30), int(H * 0.325)
+    # Full disc inside safe margin (old cx/r clipped left edge by ~2.5% of width)
+    margin = int(u * 0.065)
+    r = int(u * 0.295)
+    cx = margin + r  # left edge of circle sits on margin
+    cy = int(H * 0.325)
+    bar_x0_safe = int(W * 0.675)
+    if cx + r > bar_x0_safe - margin:
+        r = max(int(u * 0.25), bar_x0_safe - margin - cx)
+        cx = margin + r
     d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=RED)
     # nested precision rings (read at poster distance)
     d.ellipse([cx - r + int(u * 0.014), cy - r + int(u * 0.014),

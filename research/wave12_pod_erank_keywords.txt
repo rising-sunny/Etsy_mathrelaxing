@@ -1,0 +1,61 @@
+# Wave 12 — POD blanks crossed with Printify catalog + MathRelaxing brand
+# Max 20 per eRank bulk batch (script auto-batches)
+
+# Posters (bp 282)
+math wall art
+physics wall art
+science poster
+math poster
+fractal wall art
+geometric wall art
+bauhaus poster
+equation poster
+stem wall art
+office wall art
+
+# Magnets (bp 428)
+math magnet
+fridge magnet
+science magnet
+fractal magnet
+teacher magnet
+
+# Totes (bp 5113)
+teacher tote bag
+canvas tote bag
+tote bag
+math tote bag
+stem tote bag
+
+# Doormats (bp 1346)
+halloween doormat
+funny doormat
+welcome doormat
+custom doormat
+
+# Stickers (bp 600)
+bookish stickers
+kindle stickers
+math stickers
+science stickers
+die cut stickers
+
+# Mousepad / desk (bp 582)
+mouse pad
+math mouse pad
+gaming mouse pad
+desk mat
+
+# Apparel / gifts (secondary)
+teacher sweatshirt
+science shirt
+math teacher gift
+stem gift
+engineer gift
+
+# Journals / mugs
+hardcover journal
+custom journal
+science mug
+math mug
+custom mug
