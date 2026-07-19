@@ -69,8 +69,6 @@ def render(W=6.0, dpi=300, card=True):
         gx, gw = 0.585, 0.20
         gax = fig.add_axes([gx, yc - 0.075, gw, 0.15]); gax.axis("off")
         gax.set_aspect("equal"); plotter(gax)
-    ax.text(0.5, 0.11, "m a t h r e l a x i n g", ha="center", va="center",
-            fontproperties=SANS, fontsize=W * 1.5, color=SUB)
     return fig
 
 
