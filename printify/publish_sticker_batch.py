@@ -88,8 +88,11 @@ def fix_etsy(lid, tags):
 
 
 def main():
+    only = set(sys.argv[1:])
     results = []
     for name, (title, tags) in DESIGNS.items():
+        if only and name not in only:
+            continue
         print(f"\n=== {name} ===")
         pid, ext = make(name, title, tags)
         if not ext:
