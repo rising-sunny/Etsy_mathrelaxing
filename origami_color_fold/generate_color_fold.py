@@ -1,0 +1,444 @@
+"""
+generate_color_fold.py — "Color & Fold" origami PoC
+===================================================
+Proof of concept for a printable product line that combines an origami
+CREASE PATTERN with generative COLORING art placed only on the faces that
+end up visible on the folded 3-D figure. Print → color → fold → 3-D toy.
+
+Pipeline (matches the project spec):
+
+  Fase A · Ingesta de datos geométricos
+      A FoldModel defines, for one classic figure, its square size, the
+      crease segments (each tagged valley / mountain / cut) and the polygons
+      of the visible faces (a hand-curated "mask" — the reliable approach; a
+      general 2-D→3-D visibility solver is a research problem on its own).
+
+  Fase B · Lógica de arte generativo
+      For every visible face a procedural line-art motif (rays / arcs /
+      weave) is generated and CLIPPED (shapely intersection) strictly to the
+      face polygon, so no ink lands on areas hidden inside the fold.
+
+  Fase C · Renderizado y exportación
+      The structural layer (fold lines, standard conventions) is composited
+      over the art layer and written to a scalable, print-ready .svg
+      (also a .png preview for review).
+
+This PoC ships one model: the classic fortune-teller ("comecocos"). The
+FoldModel abstraction is built so more figures (masu box, pajarita, cube…)
+are just more entries — i.e. one generator, many listings.
+
+  python generate_color_fold.py           # -> fortune_teller.svg + .png
+"""
+import math
+import os
+from dataclasses import dataclass, field
+from typing import List, Tuple
+
+import numpy as np
+from shapely.geometry import Polygon, LineString, Point, MultiLineString
+from shapely.ops import unary_union, polygonize
+
+BASE = os.path.dirname(os.path.abspath(__file__))
+
+# Color-by-number palette (shown as a legend; user colours each region by its
+# number). Kept to a friendly 6 so a child can colour it with a basic set.
+CBN_PALETTE = [
+    "#e0b23c",   # 1 gold
+    "#c0403a",   # 2 red
+    "#2f6fb0",   # 3 blue
+    "#4f9d69",   # 4 green
+    "#8d6bcf",   # 5 violet
+    "#e08a3c",   # 6 orange
+]
+
+# ── Print geometry (US-Letter friendly, mm) ───────────────────────────────────
+PAGE_W, PAGE_H = 215.9, 279.4       # US Letter in mm
+S = 180.0                           # paper square side (mm)
+OX = (PAGE_W - S) / 2               # square origin (left)
+OY = (PAGE_H - S) / 2               # square origin (top); SVG y grows downward
+
+# Standard origami diagram conventions
+CUT_STYLE = dict(stroke="#111111", width=1.4, dash=None)          # solid
+VALLEY_STYLE = dict(stroke="#2f6fb0", width=0.8, dash="4,3")      # dashed
+MOUNTAIN_STYLE = dict(stroke="#c0403a", width=0.8, dash="6,2,1,2")  # dash-dot
+ART_STROKE = "#1b1b1b"
+ART_WIDTH = 0.6
+
+
+@dataclass
+class Crease:
+    p0: Tuple[float, float]
+    p1: Tuple[float, float]
+    kind: str            # "cut" | "valley" | "mountain"
+
+
+@dataclass
+class Face:
+    poly: List[Tuple[float, float]]
+    motif: str           # "rays" | "arcs" | "weave"
+    focus: Tuple[float, float]   # focal point for the motif
+    label: str = ""      # optional number/letter drawn small
+
+
+@dataclass
+class FoldModel:
+    name: str
+    creases: List[Crease] = field(default_factory=list)
+    faces: List[Face] = field(default_factory=list)
+    border: List[Tuple[float, float]] = field(default_factory=list)
+
+
+# ── Fase A: the fortune teller ("comecocos") crease pattern ───────────────────
+
+def fortune_teller() -> FoldModel:
+    """Classic cootie-catcher. Real fold sequence → crease pattern on the sheet:
+      · both diagonals              (mountain)
+      · both mid-lines              (valley)
+      · blintz diamond (edge mids)  (valley)
+      · inner square (2nd blintz)   (valley)
+    Visible colouring faces: the 8 inner triangles of the diamond (the number
+    faces) + the 4 corner flaps (the 'pick-a-colour' flaps)."""
+    x0, y0 = OX, OY
+    c = (x0 + S / 2, y0 + S / 2)                       # centre
+    # square corners
+    A, B, C_, D = (x0, y0), (x0 + S, y0), (x0 + S, y0 + S), (x0, y0 + S)
+    # edge midpoints (diamond vertices)
+    mAB = (x0 + S / 2, y0)
+    mBC = (x0 + S, y0 + S / 2)
+    mCD = (x0 + S / 2, y0 + S)
+    mDA = (x0, y0 + S / 2)
+    # diamond edge midpoints (inner square corners)
+    q1 = (x0 + 3 * S / 4, y0 + S / 4)
+    q2 = (x0 + 3 * S / 4, y0 + 3 * S / 4)
+    q3 = (x0 + S / 4, y0 + 3 * S / 4)
+    q4 = (x0 + S / 4, y0 + S / 4)
+
+    creases = [
+        # cut border
+        Crease(A, B, "cut"), Crease(B, C_, "cut"),
+        Crease(C_, D, "cut"), Crease(D, A, "cut"),
+        # diagonals (mountain)
+        Crease(A, C_, "mountain"), Crease(B, D, "mountain"),
+        # mid-lines (valley)
+        Crease(mAB, mCD, "valley"), Crease(mDA, mBC, "valley"),
+        # blintz diamond (valley)
+        Crease(mAB, mBC, "valley"), Crease(mBC, mCD, "valley"),
+        Crease(mCD, mDA, "valley"), Crease(mDA, mAB, "valley"),
+        # inner square / 2nd blintz (valley)
+        Crease(q1, q2, "valley"), Crease(q2, q3, "valley"),
+        Crease(q3, q4, "valley"), Crease(q4, q1, "valley"),
+    ]
+
+    faces = []
+    # 8 inner triangles of the diamond (centre + diamond vertex + edge midpoint)
+    diamond_seq = [(mAB, q1), (q1, mBC), (mBC, q2), (q2, mCD),
+                   (mCD, q3), (q3, mDA), (mDA, q4), (q4, mAB)]
+    motifs = ["rays", "arcs", "weave"]
+    for i, (v, e) in enumerate(diamond_seq):
+        # focus each motif on the face's OWN outer tip (the diamond vertex/edge
+        # point nearest the paper edge) so every visible face is a self-contained
+        # little design that lines up when folded — not one shared starburst.
+        tip = v if i % 2 == 0 else e
+        faces.append(Face(poly=[c, v, e], motif=motifs[i % 3], focus=tip,
+                          label=str(i + 1)))
+    # 4 corner flaps (square corner + its two edge midpoints)
+    corners = [(A, mAB, mDA), (B, mBC, mAB), (C_, mCD, mBC), (D, mDA, mCD)]
+    for i, (corner, e1, e2) in enumerate(corners):
+        faces.append(Face(poly=[corner, e1, e2], motif="arcs", focus=corner))
+
+    return FoldModel("Fortune Teller", creases, faces, border=[A, B, C_, D])
+
+
+# ── Fase B: generative line-art motifs, clipped to a face polygon ─────────────
+
+def _clip(lines, poly: Polygon):
+    out = []
+    for ls in lines:
+        inter = LineString(ls).intersection(poly)
+        if inter.is_empty:
+            continue
+        geoms = [inter] if inter.geom_type == "LineString" else list(getattr(inter, "geoms", []))
+        for g in geoms:
+            if g.geom_type == "LineString" and g.length > 0.5:
+                out.append(list(g.coords))
+    return out
+
+
+def motif_rays(face: Face, poly: Polygon, n=13):
+    """Fan of straight rays from the focal point across the face."""
+    fx, fy = face.focus
+    minx, miny, maxx, maxy = poly.bounds
+    R = math.hypot(maxx - minx, maxy - miny) * 1.6
+    lines = []
+    for k in range(n):
+        a = math.pi * k / (n - 1) - math.pi / 2      # spread ~180°
+        lines.append([(fx, fy), (fx + R * math.cos(a), fy + R * math.sin(a))])
+    return _clip(lines, poly)
+
+
+def motif_arcs(face: Face, poly: Polygon, n=7):
+    """Concentric arcs around the focal point."""
+    fx, fy = face.focus
+    minx, miny, maxx, maxy = poly.bounds
+    Rmax = math.hypot(maxx - minx, maxy - miny) * 1.15
+    lines = []
+    for k in range(1, n + 1):
+        r = Rmax * k / n
+        pts = [(fx + r * math.cos(t), fy + r * math.sin(t))
+               for t in np.linspace(0, 2 * math.pi, 80)]
+        lines.append(pts)
+    return _clip(lines, poly)
+
+
+def motif_weave(face: Face, poly: Polygon, step=9.0):
+    """Cross-hatch weave (two families of parallel lines)."""
+    minx, miny, maxx, maxy = poly.bounds
+    lines = []
+    d = max(maxx - minx, maxy - miny)
+    for off in np.arange(-d, d, step):
+        lines.append([(minx + off, miny - d), (minx + off + 2 * d, maxy + d)])   # /
+        lines.append([(minx + off, maxy + d), (minx + off + 2 * d, miny - d)])   # \
+    return _clip(lines, poly)
+
+
+MOTIF_FN = {"rays": motif_rays, "arcs": motif_arcs, "weave": motif_weave}
+
+
+def build_face_art(face: Face):
+    poly = Polygon(face.poly)
+    return MOTIF_FN[face.motif](face, poly)
+
+
+def build_face_cells(face: Face):
+    """Split a visible face into its CLOSED colour-by-number regions.
+
+    The face boundary plus the motif's line-art are noded and polygonized
+    (shapely) into cells; each cell gets a colour number, assigned in bands by
+    distance from the face's focal point so the colouring reads as structured
+    (concentric / radial), and a centroid for the number label.
+    Returns list of {"poly": [(x,y)...], "n": int(1-based colour), "c": (cx,cy)}.
+    """
+    poly = Polygon(face.poly)
+    art = build_face_art(face)
+    boundary = LineString(list(poly.exterior.coords))
+    lines = [boundary] + [LineString(seg) for seg in art if len(seg) >= 2]
+    noded = unary_union(lines)                       # node all intersections
+    cells = [g for g in polygonize(noded) if g.area > 4.0]   # drop slivers
+
+    fx, fy = face.focus
+    if cells:
+        dists = [math.hypot(c.centroid.x - fx, c.centroid.y - fy) for c in cells]
+        dmax = max(dists) or 1.0
+    out = []
+    for cell, d in zip(cells, dists) if cells else []:
+        band = int((d / dmax) * (len(CBN_PALETTE) - 1) + 0.5)   # bands by radius
+        n = (band % len(CBN_PALETTE)) + 1
+        p = cell.representative_point()
+        out.append({"poly": list(cell.exterior.coords), "n": n, "c": (p.x, p.y)})
+    return out
+
+
+# ── Fase C: SVG + PNG rendering ───────────────────────────────────────────────
+
+def _poly_pts(poly):
+    return " ".join(f"{x:.2f},{y:.2f}" for x, y in poly)
+
+
+def render_svg(model: FoldModel, path):
+    W, H = PAGE_W, PAGE_H
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}mm" height="{H}mm" '
+           f'viewBox="0 0 {W} {H}">']
+    out.append(f'<rect x="0" y="0" width="{W}" height="{H}" fill="white"/>')
+
+    # clip defs + art layer
+    out.append("<defs>")
+    for i, f in enumerate(model.faces):
+        out.append(f'<clipPath id="f{i}"><polygon points="{_poly_pts(f.poly)}"/></clipPath>')
+    out.append("</defs>")
+
+    for i, f in enumerate(model.faces):
+        out.append(f'<g clip-path="url(#f{i})" stroke="{ART_STROKE}" '
+                   f'stroke-width="{ART_WIDTH}" fill="none" stroke-linecap="round">')
+        for seg in build_face_art(f):
+            out.append(f'<polyline points="{_poly_pts(seg)}"/>')
+        out.append("</g>")
+
+    # colour-by-number: a small number in every closed region
+    for f in model.faces:
+        for cell in build_face_cells(f):
+            cx, cy = cell["c"]
+            out.append(f'<text x="{cx:.1f}" y="{cy:.1f}" font-size="3.4" '
+                       f'fill="#555" text-anchor="middle" dominant-baseline="central" '
+                       f'font-family="sans-serif">{cell["n"]}</text>')
+
+    # structural crease layer
+    def line(cr):
+        st = {"cut": CUT_STYLE, "valley": VALLEY_STYLE, "mountain": MOUNTAIN_STYLE}[cr.kind]
+        dash = f' stroke-dasharray="{st["dash"]}"' if st["dash"] else ""
+        return (f'<line x1="{cr.p0[0]:.2f}" y1="{cr.p0[1]:.2f}" '
+                f'x2="{cr.p1[0]:.2f}" y2="{cr.p1[1]:.2f}" '
+                f'stroke="{st["stroke"]}" stroke-width="{st["width"]}"{dash}/>')
+    for cr in model.creases:
+        out.append(line(cr))
+
+    # face number labels
+    for f in model.faces:
+        if f.label:
+            cx = sum(p[0] for p in f.poly) / 3
+            cy = sum(p[1] for p in f.poly) / 3
+            out.append(f'<text x="{cx:.1f}" y="{cy:.1f}" font-size="7" '
+                       f'fill="#888" text-anchor="middle" font-family="sans-serif">{f.label}</text>')
+
+    # legend
+    lx, ly = OX, OY + S + 12
+    legend = [("Cut / edge", CUT_STYLE), ("Valley fold", VALLEY_STYLE),
+              ("Mountain fold", MOUNTAIN_STYLE)]
+    for k, (name, st) in enumerate(legend):
+        yy = ly + k * 7
+        dash = f' stroke-dasharray="{st["dash"]}"' if st["dash"] else ""
+        out.append(f'<line x1="{lx}" y1="{yy}" x2="{lx+16}" y2="{yy}" '
+                   f'stroke="{st["stroke"]}" stroke-width="{st["width"]}"{dash}/>')
+        out.append(f'<text x="{lx+20}" y="{yy+2}" font-size="5.5" fill="#333" '
+                   f'font-family="sans-serif">{name}</text>')
+    # colour-by-number palette legend (right of the fold legend)
+    px, py = OX + S - 6 * 14, OY + S + 12
+    out.append(f'<text x="{px:.1f}" y="{py-6:.1f}" font-size="5.5" fill="#333" '
+               f'font-family="sans-serif">Colour by number</text>')
+    for k, hexc in enumerate(CBN_PALETTE):
+        sx = px + k * 14
+        out.append(f'<rect x="{sx:.1f}" y="{py:.1f}" width="10" height="8" '
+                   f'rx="1.5" fill="{hexc}" stroke="#666" stroke-width="0.4"/>')
+        out.append(f'<text x="{sx+5:.1f}" y="{py+13:.1f}" font-size="5" fill="#333" '
+                   f'text-anchor="middle" font-family="sans-serif">{k+1}</text>')
+
+    out.append(f'<text x="{OX+S}" y="{OY-6}" font-size="6" fill="#999" '
+               f'text-anchor="end" font-family="sans-serif">MathRelaxing · Color &amp; Fold · Fortune Teller</text>')
+
+    out.append("</svg>")
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(out))
+    print("SVG:", path)
+
+
+def render_png(model: FoldModel, path, dpi=130):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Polygon as MPoly
+
+    fig = plt.figure(figsize=(PAGE_W / 25.4, PAGE_H / 25.4))
+    ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, PAGE_W); ax.set_ylim(PAGE_H, 0)
+    ax.set_aspect("equal"); ax.axis("off"); fig.patch.set_facecolor("white")
+
+    for f in model.faces:
+        clip = MPoly(f.poly, closed=True, transform=ax.transData)
+        for seg in build_face_art(f):
+            xs = [p[0] for p in seg]; ys = [p[1] for p in seg]
+            ln, = ax.plot(xs, ys, color=ART_STROKE, lw=ART_WIDTH, solid_capstyle="round")
+            ln.set_clip_path(clip)
+    for cr in model.creases:
+        st = {"cut": CUT_STYLE, "valley": VALLEY_STYLE, "mountain": MOUNTAIN_STYLE}[cr.kind]
+        dash = (0, [4, 3]) if cr.kind == "valley" else ((0, [6, 2, 1, 2]) if cr.kind == "mountain" else None)
+        ax.plot([cr.p0[0], cr.p1[0]], [cr.p0[1], cr.p1[1]], color=st["stroke"],
+                lw=st["width"], dashes=dash[1] if dash else [], solid_capstyle="round")
+    # colour-by-number labels in every closed region
+    for f in model.faces:
+        for cell in build_face_cells(f):
+            cx, cy = cell["c"]
+            ax.text(cx, cy, str(cell["n"]), fontsize=3.2, color="#555",
+                    ha="center", va="center")
+    fig.savefig(path, dpi=dpi, facecolor="white"); plt.close(fig)
+    print("PNG:", path)
+
+
+def render_png_colored(model: FoldModel, path, dpi=130):
+    """A 'solution' preview: every region filled with its palette colour."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Polygon as MPoly
+
+    fig = plt.figure(figsize=(PAGE_W / 25.4, PAGE_H / 25.4))
+    ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, PAGE_W); ax.set_ylim(PAGE_H, 0)
+    ax.set_aspect("equal"); ax.axis("off"); fig.patch.set_facecolor("white")
+    for f in model.faces:
+        for cell in build_face_cells(f):
+            ax.add_patch(MPoly(cell["poly"], closed=True,
+                         facecolor=CBN_PALETTE[cell["n"] - 1],
+                         edgecolor="#33333380", linewidth=0.3))
+    for cr in model.creases:
+        st = {"cut": CUT_STYLE, "valley": VALLEY_STYLE, "mountain": MOUNTAIN_STYLE}[cr.kind]
+        dash = [4, 3] if cr.kind == "valley" else ([6, 2, 1, 2] if cr.kind == "mountain" else [])
+        ax.plot([cr.p0[0], cr.p1[0]], [cr.p0[1], cr.p1[1]], color=st["stroke"],
+                lw=st["width"], dashes=dash, solid_capstyle="round")
+    fig.savefig(path, dpi=dpi, facecolor="white"); plt.close(fig)
+    print("PNG (colored):", path)
+
+
+def _affine_2d_to_3d(pt, s, t):
+    """Map a 2D point through the affine transform that sends 2D triangle
+    s=(s0,s1,s2) onto 3D triangle t=(t0,t1,t2) (barycentric)."""
+    s0, s1, s2 = np.asarray(s, float)
+    M = np.array([[s1[0] - s0[0], s2[0] - s0[0]],
+                  [s1[1] - s0[1], s2[1] - s0[1]]])
+    ab = np.linalg.solve(M, np.array([pt[0] - s0[0], pt[1] - s0[1]]))
+    t0, t1, t2 = np.asarray(t, float)
+    return t0 + ab[0] * (t1 - t0) + ab[1] * (t2 - t0)
+
+
+def render_3d_model(model: FoldModel, path, dpi=130):
+    """A 3-D preview of the FOLDED figure: a pinched fortune teller is a square
+    pyramid (its 4 corner flaps rise to a central apex). Each flap's
+    colour-by-number art is affine-mapped onto the matching 3-D triangle."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+
+    x0, y0 = OX, OY
+    mAB = (x0 + S / 2, y0); mBC = (x0 + S, y0 + S / 2)
+    mCD = (x0 + S / 2, y0 + S); mDA = (x0, y0 + S / 2)
+    # 3-D base square (diamond vertices) + apex
+    base = {  # key: rounded 2D edge-midpoint -> 3D base corner
+        (round(mAB[0], 1), round(mAB[1], 1)): np.array([0.0, 1.0, 0.0]),
+        (round(mBC[0], 1), round(mBC[1], 1)): np.array([1.0, 0.0, 0.0]),
+        (round(mCD[0], 1), round(mCD[1], 1)): np.array([0.0, -1.0, 0.0]),
+        (round(mDA[0], 1), round(mDA[1], 1)): np.array([-1.0, 0.0, 0.0]),
+    }
+    apex = np.array([0.0, 0.0, 1.15])
+
+    # pre-map every colour cell to a 3-D polygon once
+    polys, colors = [], []
+    for f in model.faces[-4:]:            # the 4 corner flaps
+        corner, e1, e2 = f.poly
+        t = (apex, base[(round(e1[0], 1), round(e1[1], 1))],
+                    base[(round(e2[0], 1), round(e2[1], 1))])
+        s = (corner, e1, e2)
+        for cell in build_face_cells(f):
+            polys.append([_affine_2d_to_3d(p, s, t) for p in cell["poly"]])
+            colors.append(CBN_PALETTE[cell["n"] - 1])
+    ring = [base[k] for k in base] + [list(base.values())[0]]
+
+    azims = [-55, 20, 110]                 # turntable-style views
+    fig = plt.figure(figsize=(13, 4.6)); fig.patch.set_facecolor("white")
+    for j, az in enumerate(azims):
+        ax = fig.add_subplot(1, 3, j + 1, projection="3d")
+        ax.set_facecolor("white")
+        ax.add_collection3d(Poly3DCollection([list(p) for p in polys],
+                            facecolors=colors, edgecolors="#33333355", linewidths=0.2))
+        ax.plot([p[0] for p in ring], [p[1] for p in ring], [p[2] for p in ring],
+                color="#555", lw=0.8)
+        ax.set_xlim(-1.2, 1.2); ax.set_ylim(-1.2, 1.2); ax.set_zlim(0, 1.4)
+        ax.set_box_aspect((1, 1, 0.9)); ax.view_init(elev=22, azim=az); ax.axis("off")
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0, wspace=0)
+    fig.savefig(path, dpi=dpi, facecolor="white", bbox_inches="tight")
+    plt.close(fig)
+    print("3D model:", path)
+
+
+if __name__ == "__main__":
+    model = fortune_teller()
+    render_svg(model, os.path.join(BASE, "fortune_teller.svg"))
+    render_png(model, os.path.join(BASE, "fortune_teller_preview.png"))
+    render_png_colored(model, os.path.join(BASE, "fortune_teller_colored.png"))
+    render_3d_model(model, os.path.join(BASE, "fortune_teller_3d.png"))

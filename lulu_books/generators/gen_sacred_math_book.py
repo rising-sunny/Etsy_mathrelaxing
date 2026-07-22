@@ -68,7 +68,7 @@ def get_incenter(pts):
     r = area / s if s > 0 else 0
     return np.array([Ix, Iy]), r
 
-def render_mesh(idx, aspect=8.5/11.0):
+def render_mesh(idx, aspect=8.5/11.0, angle=None):
     verts, faces, title = get_mesh(idx)
     # Center and normalize
     verts = verts - np.mean(verts, axis=0)
@@ -76,7 +76,8 @@ def render_mesh(idx, aspect=8.5/11.0):
     verts = verts / (max_rad + 0.001)
 
     # Make the camera circle around slightly to give different angles for different models
-    angle = idx * 0.5
+    if angle is None:
+        angle = idx * 0.5
     cam_dist = 2.8
     eye = np.array([math.cos(angle)*cam_dist, 1.2, math.sin(angle)*cam_dist])
     target = np.array([0, 0, 0])
@@ -96,7 +97,25 @@ def render_mesh(idx, aspect=8.5/11.0):
     
     light_dir = np.array([1, 2, 1])
     light_dir = light_dir / np.linalg.norm(light_dir)
-    
+
+    # Real backface culling (skip faces whose normal points away from the
+    # camera) only for the Torus (idx 0-9): a smooth tube where the far side
+    # of the hole is genuinely hidden behind the near side, so culling
+    # removes it outright instead of relying on an unreliable-at-the-
+    # silhouette depth sort (see comment in the loop below).
+    #
+    # Every other family keeps the original double-sided, abs(dot)-shaded
+    # render: Mobius (10-19) and Helicoid (20-29) are open/non-orientable, so
+    # there's no consistent "outside" to cull to. The bumpy Sphere (40+,
+    # including the endless fallback for idx>=50) IS closed, but its
+    # self-occlusion comes from concave dimples BETWEEN bumps on the same
+    # front-facing hemisphere, not a hidden far side -- culling doesn't
+    # address that at all (verified empirically: culled and uncculled bumpy
+    # spheres show the same severity of dark, wrongly-ordered slivers). That
+    # residual defect needs real z-buffered rendering to fix properly, which
+    # is out of scope here.
+    cull_backfaces = idx < 10
+
     face_data = []
     for i, f in enumerate(faces):
         v0, v1, v2 = verts[f[0]], verts[f[1]], verts[f[2]]
@@ -104,10 +123,17 @@ def render_mesh(idx, aspect=8.5/11.0):
         n_len = np.linalg.norm(normal)
         if n_len == 0: continue
         normal = normal / n_len
-        
-        # Disable backface culling so open surfaces like Mobius strips render both sides
-        # Use absolute value of dot product to light both sides
-        intensity = max(0.1, abs(np.dot(normal, light_dir)))
+
+        centroid = (v0 + v1 + v2) / 3.0
+        view_dir = eye - centroid
+        view_dir = view_dir / (np.linalg.norm(view_dir) + 1e-9)
+        facing = np.dot(normal, view_dir)
+        if cull_backfaces:
+            if facing <= 0.02:
+                continue
+            intensity = max(0.1, np.dot(normal, light_dir))
+        else:
+            intensity = max(0.1, abs(np.dot(normal, light_dir)))
         z_depth = (verts_view[f[0], 2] + verts_view[f[1], 2] + verts_view[f[2], 2]) / 3
         
         pts_2d = verts_2d[f]
@@ -121,7 +147,17 @@ def render_mesh(idx, aspect=8.5/11.0):
             'r': incircle_r
         })
         
-    face_data.sort(key=lambda x: x['z'])
+    # Painter's algorithm: draw farthest-from-camera first, nearest last, so
+    # nearer faces correctly paint over farther ones. verts_view z grows with
+    # distance from the camera (see lookat/perspective above), so the list
+    # must be sorted FARTHEST-first (descending) -- downstream code treats
+    # "later in face_data" as "nearer / in front" for both zorder assignment
+    # and the occlusion-for-numbering check. Sorting ascending (nearest
+    # first) had it backwards: distant, hidden geometry (e.g. the far side of
+    # a torus's hole, or the opposite twist of a Mobius band) was assigned
+    # the highest zorder and painted OVER the correct near surface, showing
+    # up as dark, wrongly-shaded polygons cutting across the visible design.
+    face_data.sort(key=lambda x: x['z'], reverse=True)
     
     if len(face_data) > 0:
         intensities = np.array([fd['intensity'] for fd in face_data])
@@ -134,6 +170,96 @@ def render_mesh(idx, aspect=8.5/11.0):
             fd['color_idx'] = min(7, color_idx) + 1
             
     return face_data, title
+
+def compute_bounds(face_data):
+    all_pts = np.vstack([fd['pts_2d'] for fd in face_data])
+    min_x, max_x = all_pts[:, 0].min(), all_pts[:, 0].max()
+    min_y, max_y = all_pts[:, 1].min(), all_pts[:, 1].max()
+    w, h = max_x - min_x, max_y - min_y
+    margin = max(w, h) * 0.05
+    data_w = (max_x + margin) - (min_x - margin)
+    data_h = (max_y + margin) - (min_y - margin)
+    axes_w, axes_h = 0.9 * 8.5, 0.8 * 11.0
+    if data_h / data_w > axes_h / axes_w:
+        scale_pts = (axes_h / data_h) * 72.0
+    else:
+        scale_pts = (axes_w / data_w) * 72.0
+    return min_x, max_x, min_y, max_y, margin, scale_pts
+
+
+def number_faces(face_data, scale_pts):
+    """Pass 1: decide which faces are large/unoccluded enough to carry a
+    number (left white for the reader) vs. small pre-coloured accents.
+    Mutates face_data in place; returns how many got numbered."""
+    for fd in face_data:
+        fd['path'] = mpath.Path(fd['pts_2d'])
+        fd['has_number'] = False
+
+    numbered_count = 0
+    for idx_z, fd in enumerate(face_data):
+        ic_x, ic_y = fd['incenter']
+        r = fd['r']
+        font_size = min(9, 2 * r * scale_pts * 0.35)
+        fd['font_size'] = font_size
+        if font_size >= 4.5:
+            occluded = any(fd_front['path'].contains_point((ic_x, ic_y))
+                           for fd_front in face_data[idx_z + 1:])
+            if not occluded:
+                fd['has_number'] = True
+                numbered_count += 1
+    return numbered_count
+
+
+def badness_score(face_data):
+    """Estimate how much of the page is marred by the residual painter's-
+    algorithm defect: a thin, dark, wrongly-ordered sliver poking over the
+    correct surface (see gen_sacred_math_book fix notes). Legitimate small
+    pre-coloured accents tend to be reasonably compact triangles; the buggy
+    ones are near-degenerate slivers (a face seen edge-on at a self-
+    occluding silhouette) that also land in the darkest palette bins.
+    Returns the fraction of total drawn area covered by such slivers."""
+    total_area = 0.0
+    bad_area = 0.0
+    for fd in face_data:
+        pts = fd['pts_2d']
+        area = 0.5 * abs((pts[1, 0] - pts[0, 0]) * (pts[2, 1] - pts[0, 1])
+                         - (pts[2, 0] - pts[0, 0]) * (pts[1, 1] - pts[0, 1]))
+        if area <= 0:
+            continue
+        total_area += area
+        if fd['has_number']:
+            continue
+        perim = (np.linalg.norm(pts[1] - pts[0]) + np.linalg.norm(pts[2] - pts[1])
+                 + np.linalg.norm(pts[0] - pts[2]))
+        if perim <= 0:
+            continue
+        compactness = (4 * math.sqrt(3) * area) / (perim * perim)
+        if fd['color_idx'] >= 6 and compactness < 0.22:
+            bad_area += area
+    return (bad_area / total_area) if total_area > 0 else 0.0
+
+
+def best_candidate(idx, n_angles=10):
+    """Try several camera angles for this mesh index and keep the cleanest
+    one (lowest badness_score) that still has enough numbered regions.
+    Different angles change how much the mesh self-occludes in projection
+    -- this is a much cheaper way to dodge the residual painter's-algorithm
+    ambiguity (see fix notes above) than a real z-buffered renderer."""
+    best = None
+    for a in range(n_angles):
+        angle = idx * 0.5 + a * (2 * math.pi / n_angles)
+        face_data, title = render_mesh(idx, aspect=8.5 / 11.0, angle=angle)
+        if len(face_data) == 0:
+            continue
+        _, _, _, _, _, scale_pts = compute_bounds(face_data)
+        numbered_count = number_faces(face_data, scale_pts)
+        if numbered_count < 20:
+            continue
+        score = badness_score(face_data)
+        if best is None or score < best[0]:
+            best = (score, face_data, title, numbered_count)
+    return best
+
 
 def main():
     out_dir = os.path.join(_ROOT, "output", "sacred-math-coloring-book")
@@ -169,69 +295,39 @@ def main():
         # 3. Coloring Pages
         all_data = []
         idx = 0
+        BADNESS_LIMIT = 0.06
+        MAX_ATTEMPTS = 250  # safety valve: guarantee termination even if
+        # clean candidates run scarce late in the endless sphere fallback
         while len(all_data) < 50:
-            face_data, title = render_mesh(idx, aspect=8.5/11.0)
+            # Past MAX_ATTEMPTS, stop being picky -- relax the limit so the
+            # remaining slots still get filled with whatever's best available
+            # instead of searching indefinitely.
+            limit = BADNESS_LIMIT if idx < MAX_ATTEMPTS else 1.0
+            result = best_candidate(idx)
             idx += 1
-            if len(face_data) == 0:
+            if result is None:
                 continue
-            
+            score, face_data, title, numbered_count = result
+            if score > limit:
+                print(f"Discarding model '{title}' (best angle still {score:.1%} "
+                      f"residual-glitch area).")
+                continue
+
             fig = plt.figure(figsize=(8.5, 11))
             ax = fig.add_axes([0.05, 0.15, 0.9, 0.8])
             ax_legend = fig.add_axes([0.1, 0.05, 0.8, 0.05])
             ax.set_aspect('equal')
             ax.axis('off')
             ax_legend.axis('off')
-            
-            # Auto-fit bounds
-            all_pts = np.vstack([fd['pts_2d'] for fd in face_data])
-            min_x, max_x = all_pts[:,0].min(), all_pts[:,0].max()
-            min_y, max_y = all_pts[:,1].min(), all_pts[:,1].max()
-            w, h = max_x - min_x, max_y - min_y
-            margin = max(w, h) * 0.05
-            data_w = (max_x + margin) - (min_x - margin)
-            data_h = (max_y + margin) - (min_y - margin)
-            
-            axes_w = 0.9 * 8.5
-            axes_h = 0.8 * 11.0
-            
-            if data_h / data_w > axes_h / axes_w:
-                scale_pts = (axes_h / data_h) * 72.0
-            else:
-                scale_pts = (axes_w / data_w) * 72.0
-                
+
+            min_x, max_x, min_y, max_y, margin, scale_pts = compute_bounds(face_data)
             ax.set_xlim(min_x - margin, max_x + margin)
             ax.set_ylim(min_y - margin, max_y + margin)
-            
-            # Pass 1: Pre-compute paths and determine number placement
-            for fd in face_data:
-                fd['path'] = mpath.Path(fd['pts_2d'])
-                fd['has_number'] = False
-            
-            numbered_count = 0
-            for idx_z, fd in enumerate(face_data):
-                ic_x, ic_y = fd['incenter']
-                r = fd['r']
-                font_size = 2 * r * scale_pts * 0.35 
-                font_size = min(9, font_size)
-                fd['font_size'] = font_size
-                if font_size >= 4.5:
-                    occluded = False
-                    for fd_front in face_data[idx_z+1:]:
-                        if fd_front['path'].contains_point((ic_x, ic_y)):
-                            occluded = True
-                            break
-                    if not occluded:
-                        fd['has_number'] = True
-                        numbered_count += 1
-                        
-            if numbered_count < 20:
-                plt.close(fig)
-                print(f"Discarding model '{title}' (only {numbered_count} numbers).")
-                continue
-                
-            print(f"Generating page {len(all_data)+1}/50: {title} ({numbered_count} numbers)")
+
+            print(f"Generating page {len(all_data)+1}/50: {title} "
+                  f"({numbered_count} numbers, {score:.1%} residual)")
             all_data.append((face_data, title))
-            
+
             # Pass 2: Draw polygons and text
             palette = get_palette(idx)
             for idx_z, fd in enumerate(face_data):
@@ -269,7 +365,12 @@ def main():
             fig.text(0.5, 0.12, f"{idx+1}. {title}", ha='center', fontsize=12)
             pdf.savefig(fig)
             plt.close(fig)
-            
+
+            # Blank backing page so marker/pen ink doesn't bleed onto the next design.
+            blank_fig = plt.figure(figsize=(8.5, 11))
+            pdf.savefig(blank_fig)
+            plt.close(blank_fig)
+
         # 4. Solutions (Thumbnails)
         print("Generating Solution Keys...")
         thumbs_per_page = 9

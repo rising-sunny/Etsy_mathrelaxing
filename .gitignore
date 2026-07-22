@@ -217,6 +217,15 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+# MathRelaxing: frames intermedios de renders de animaciones (voronoi_loop/frames,
+# dejong_loop/frames, etc.) — solo se comitean los .mp4 y previews finales.
+frames/
+
+# MathRelaxing: credenciales de la API de Etsy (access_token/refresh_token en vivo).
+# NUNCA commitear este archivo — auth.py y etsy_manager.py lo generan/actualizan
+# localmente. Si no existe, correr auth.py primero.
+etsy_token.json
+
 lulu_books/output/
 
 # Secrets / local auth (never commit tokens)
@@ -233,3 +242,16 @@ research/.edge_erank_profile/
 batch3_downloads/
 _live_listings.json
 _batch3_remaining.json
+
+# MathRelaxing: cache de histograma de los art prints generativos (grande, regenerable)
+_hist_cache.npy
+
+# Printful API token
+printful/.env
+
+# Printify API token
+printify/.env
+
+# Wall-art set — generated print files, mockups & zips (regenerable from scripts)
+wallart_set/out/
+wallart_set/__pycache__/

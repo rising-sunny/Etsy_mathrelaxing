@@ -468,21 +468,101 @@ def build_cover():
     return out
 
 
+def build_cover_print(page_count=104):
+    """Wraparound Lulu print cover (back | spine | front), dimensions computed
+    live from Lulu's /cover-dimensions/ for the actual page count -- unlike
+    build_cover() above, which only draws a single front-facing panel for the
+    digital product page and isn't sized for physical printing at all."""
+    print("Portada (wraparound impresion)...")
+    sys.path.insert(0, os.path.join(ROOT, "lulu_api"))
+    import lulu_publish as lp
+    client = lp.make_client()
+    spec = lp.PRESETS["letter_bw_pb"]
+    dims = client.cover_dimensions(spec.pod_package_id, page_count, unit="pt")
+    total_w, total_h = float(dims["width"]), float(dims["height"])
+
+    panel_w = (8.5 + 0.125) * 72.0  # trim + bleed on the outer edge = 621pt
+    spine_w = total_w - 2 * panel_w
+    front_x0 = panel_w + spine_w
+    front_cx = front_x0 + panel_w / 2
+    back_cx = panel_w / 2
+
+    doc = fitz.open()
+    pg = doc.new_page(width=total_w, height=total_h)
+    pg.draw_rect(pg.rect, color=None, fill=C_BG)
+
+    # FRONT: hero mandala + title (same motif/layout as the digital cover)
+    sh = pg.new_shape()
+    for rad in (188, 168):
+        sh.draw_circle((front_cx, total_h * 0.47), rad)
+    sh.finish(color=C_DIMGREEN, width=0.4); sh.commit()
+    _voronoi_motif(pg, front_cx, total_h * 0.47, C_GOLD, seed=3)
+    T(pg, front_x0 + 20, total_h * 0.085, panel_w - 40, TITLE_1, CINZEL, 42, C_WHITE, align=1)
+    T(pg, front_x0 + 20, total_h * 0.085 + 54, panel_w - 40, TITLE_2, CINZEL, 42, C_GOLD, align=1)
+    T(pg, front_x0 + 30, total_h * 0.775, panel_w - 60, SUB_ITALIC, RALEWAY_IT, 13, C_WHITE, align=1)
+    T(pg, front_x0 + 30, total_h * 0.822, panel_w - 60, SUB_SMALL, RALEWAY, 10, C_GOLD, align=1)
+
+    # FRONT — black band + logo across the bottom (matches the other 3 covers)
+    band_h = total_h * 0.155
+    sh = pg.new_shape()
+    sh.draw_rect(fitz.Rect(front_x0, total_h - band_h, total_w, total_h))
+    sh.finish(color=None, fill=(0, 0, 0)); sh.commit()
+    lw, lh = 86, 62
+    pg.insert_image(fitz.Rect(front_cx - lw / 2, total_h - band_h * 0.86,
+                              front_cx + lw / 2, total_h - band_h * 0.86 + lh),
+                    filename=LOGO, keep_proportion=True)
+
+    # SPINE (rotated 90deg to run top-to-bottom along the narrow spine strip)
+    from mathrelaxing_kit import _PDF_FONTNAME
+    spine_text = f"{TITLE_1} {TITLE_2}   \xb7   MATHRELAXING"
+    pg.insert_textbox(fitz.Rect(panel_w, total_h * 0.3, panel_w + spine_w, total_h * 0.7),
+                      spine_text, fontname=_PDF_FONTNAME.get(CINZEL, "mrf0"), fontfile=CINZEL,
+                      fontsize=9, color=C_WHITE, align=1, rotate=90)
+
+    # BACK: faint accent motif + blurb
+    axb_cx, axb_cy = back_cx, total_h * 0.30
+    _voronoi_motif(pg, axb_cx, axb_cy, C_DIMGREEN, seed=11)
+    blurb = ("Grown from pure mathematics: every cell in this book is a\n"
+             "region of a Voronoi diagram, the tessellation formed when\n"
+             "space is divided by proximity to a set of seed points.\n\n"
+             "50 designs -- radial mandalas, golden-angle phyllotaxis\n"
+             "spirals, cathedral rose windows and softly relaxed organic\n"
+             "cells -- each one a closed region ready for your colour.\n\n"
+             "Perfect-bound - 8.5 x 11 in - matte cover - printed on demand.")
+    put_text(pg, fitz.Rect(30, total_h * 0.48, panel_w - 20, total_h * 0.92),
+            blurb, RALEWAY, 9.5, C_WHITE, align=0, lineheight=1.5)
+    T(pg, 20, total_h * 0.955, panel_w - 40, "mathrelaxing.store", CINZEL, 9, C_GOLD, align=1)
+
+    out = f"{OUT}/{NAME}_cover_print.pdf"
+    doc.save(out); doc.close()
+    print(f"  {out}  ({total_w:.0f}x{total_h:.0f}pt, {page_count} paginas)")
+    return out
+
+
 # ══════════════════════════════════════════════════════════════════════════════
 # INTERIOR (frontmatter + 50 disenos)
 # ══════════════════════════════════════════════════════════════════════════════
 
-def build_interior():
-    print("Interior (3 frontmatter + 50 disenos)...")
+def build_interior(blank_after_each=False, out_name=None):
+    """blank_after_each=True inserts a blank page after every design -- needed
+    for the physical Lulu print (so marker/pen ink doesn't bleed onto the
+    next page), not for the digital/iPad edition (no bleed-through, and it
+    would just double the page count for no reason)."""
+    print(f"Interior (3 frontmatter + 50 disenos{' + 50 blancas' if blank_after_each else ''})...")
     doc=fitz.open()
     page_title(doc); page_about(doc); page_math(doc)
     for i,cfg in enumerate(DESIGNS):
         pg=doc.new_page(width=PW,height=PH)
         draw_design(pg, cfg, i+1, seed=1000+i*7)
+        if blank_after_each:
+            doc.new_page(width=PW,height=PH)
         if (i+1)%10==0: print(f"  diseno {i+1}/50")
-    out=f"{OUT}/{NAME}_interior.pdf"
+    if blank_after_each and doc.page_count % 2 != 0:  # perfect binding needs an even page count
+        doc.new_page(width=PW,height=PH)
+    out=f"{OUT}/{out_name or NAME+'_interior'}.pdf"
+    n_pages = doc.page_count
     doc.save(out,deflate=True,garbage=4); doc.close()
-    print(f"  {out} ({os.path.getsize(out)/1024/1024:.1f} MB, {3+50} pags)")
+    print(f"  {out} ({os.path.getsize(out)/1024/1024:.1f} MB, {n_pages} pags)")
     return out
 
 def build_digital():
@@ -589,8 +669,9 @@ def build_sample():
 if __name__=="__main__":
     cmd=sys.argv[1] if len(sys.argv)>1 else "sample"
     if cmd=="sample":   build_sample()
-    elif cmd=="interior": build_interior()
+    elif cmd=="interior": build_interior(blank_after_each=True, out_name=NAME+"_interior_print")
     elif cmd=="cover":    build_cover()
+    elif cmd=="cover_print": build_cover_print()
     elif cmd=="digital":  build_interior(); build_cover(); build_digital()
     elif cmd=="ipad":     build_ipad()
     elif cmd=="previews": build_previews()

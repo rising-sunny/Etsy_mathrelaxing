@@ -283,15 +283,34 @@ def build_svg_bundle(cfg, get_polygons):
     os.makedirs(html_dir, exist_ok=True)
 
     print(f"Generating {cfg.n_designs} interactive SVG HTMLs...")
+    saved_palette = list(cfg.palette)
     for n in range(1, cfg.n_designs + 1):
-        cells = get_polygons(n)
+        result = get_polygons(n)
+        # Allow per-design palette: return (cells, palette_hex) or
+        # {"cells": [...], "palette": [...]}. Global cfg.palette is the default.
+        design_palette = None
+        if isinstance(result, dict):
+            cells = result["cells"]
+            design_palette = result.get("palette")
+        elif isinstance(result, tuple) and len(result) == 2:
+            cells, design_palette = result
+        else:
+            cells = result
+
+        if design_palette:
+            cfg.palette = list(design_palette)
+        else:
+            cfg.palette = saved_palette
+
         svg_paths, svg_texts = polygons_to_svg(cells, cfg)
         html = build_html(n, svg_paths, svg_texts, cfg)
 
         path = os.path.join(html_dir, f"{cfg.prefix}_{n:02d}.html")
         with open(path, "w", encoding="utf-8") as f:
             f.write(html)
-        print(f"  [{n}/{cfg.n_designs}] {os.path.basename(path)}")
+        print(f"  [{n}/{cfg.n_designs}] {os.path.basename(path)}  "
+              f"({len(svg_paths)} polys, {len(cfg.palette)} colors)")
+    cfg.palette = saved_palette
 
     # Package ZIP
     zip_base = os.path.join(cfg.out_dir, f"{cfg.prefix}_Interactive")

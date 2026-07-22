@@ -8,10 +8,10 @@ import json
 import os
 
 CLIENT_ID = "1nkkipgbsfholyrhfkqqqkjj"
-# Scopes necesarios para administrar listings
+# Scopes necesarios para administrar listings + leer pedidos (Lulu POD fulfillment)
 # shops_w required to create/update processing profiles (readiness states)
-# and shipping profile destinations
-SCOPES = "listings_r listings_w shops_r shops_w"
+# y shipping profile destinations; transactions_r para leer pedidos.
+SCOPES = "listings_r listings_w shops_r shops_w transactions_r"
 REDIRECT_URI = "https://mathrelaxing.store/callback"
 TOKEN_FILE = "etsy_token.json"
 
