@@ -11,20 +11,26 @@ import etsy_manager
 
 LDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "listing")
 
-TITLE = ("Custom Pet Paint by Numbers from Your Photo | Personalized Dog Cat Portrait "
-         "| Printable Paint by Number Kit | Digital Pet Gift")
+TITLE = ("Custom Pet Portrait Paint by Numbers from Your Photo | "
+         "Personalized Dog & Cat Paint by Number Kit | Printable Pet Memorial Gift")
 
 PRICE = 12.99
 TAXONOMY = 2078  # Digital Prints
 
+# Tags optimized with eRank (Jul 2026). All <=20 chars (Etsy hard limit).
+# Strong low-comp: paint by numbers (15.6k) / paint by number kit (11.8k).
+# High demand: custom pet portrait (5.3k) / pet portrait (9k) / pet memorial gift (5.5k).
 TAGS = [
-    "custom pet portrait", "pet paint by number", "paint by numbers", "custom dog gift",
-    "personalized pet", "pet coloring page", "digital download", "custom cat gift",
-    "pet lover gift", "dog mom gift", "printable pet art", "pet memorial gift",
-    "paint by number kit",
+    "paint by numbers", "paint by number kit", "custom pet portrait",
+    "custom pet painting", "pet memorial gift", "custom cat portrait",
+    "custom dog portrait", "pet coloring page", "pet portrait",
+    "portrait from photo", "dog portrait", "cat portrait", "personalized pet",
 ]
 
-DESC = """Turn your favorite pet photo into a custom paint-by-numbers you can print and paint at home. A personalized, hand-painted keepsake — and a one-of-a-kind gift for any dog or cat lover.
+DESC = """Turn your favorite pet photo into a custom paint-by-numbers you can print and paint at home. A personalized, hand-painted keepsake — a one-of-a-kind gift for any dog or cat lover, and a heartfelt pet memorial to honor a companion you'll always remember.
+
+— A MEANINGFUL PET MEMORIAL —
+Painting your pet, square by square, is a calm and personal way to remember them. The finished piece becomes a lasting custom portrait to frame — a thoughtful memorial gift for yourself or for anyone grieving a beloved dog or cat.
 
 — WHAT YOU GET —
 - 6 print sizes in one bundle: A3, A2, A1 and US 14x11, 20x16, 24x18 inches
