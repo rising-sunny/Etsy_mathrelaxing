@@ -17,12 +17,16 @@ mapas 2D -> MUCHAS trayectorias x POCAS iteraciones, per STANDARDS.md), se
 acumula en un histograma de densidad, y se colorea negro->oro->crema con glow.
 
 Salida en collection/:
-  StrangeAttractors_print.jpg    (vendible, alta resolucion, sin marca)
-  StrangeAttractors_preview.jpg  (listing, con marca de agua diagonal)
+  StrangeAttractors_print.jpg         (vendible, navy, sin marca)
+  StrangeAttractors_preview.jpg       (listing, watermark)
+  StrangeAttractors_Light_print.jpg   (--light: cream paper + dark ink)
+  StrangeAttractors_Light_preview.jpg
 
 Uso:
   python generate_attractor_collection.py            # 9000x12000 (30x40in @300dpi)
+  python generate_attractor_collection.py --light    # cream / ink customer swap
   python generate_attractor_collection.py --test      # rapido, baja resolucion
+  python generate_attractor_collection.py --light --test
 """
 import os
 import sys
@@ -41,6 +45,7 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(BASE, "collection")
 
 TEST = "--test" in sys.argv
+LIGHT = "--light" in sys.argv
 # larger tiles + higher poster dpi -> more detail for big-format printing.
 TILE = 380 if TEST else 2400          # px per attractor tile
 POSTER_DPI = 60 if TEST else 500      # 18x24in figure -> 1080x1440 (test) or 9000x12000
@@ -49,13 +54,30 @@ POSTER_DPI = 60 if TEST else 500      # 18x24in figure -> 1080x1440 (test) or 90
 NAVY = "#0d1124"
 GOLD = brand.GOLD
 CREAM = brand.CREAM
+INK = "#1a1a1a"
+SUB_LIGHT = "#555555"
+EQ_LIGHT = "#3a3a42"
 
-# gold ramp: NAVY (= the poster background, so density-0 pixels blend in and the
-# attractors float without a visible square edge) -> gold -> cream. Consistent
-# across every tile so the six read as one designed collection.
-LUT_STOPS = [(0.00, (13, 17, 36)), (0.32, (120, 85, 30)),
-             (0.66, (201, 162, 75)), (1.00, (248, 244, 235))]
 
+def _hex_rgb(hex_color):
+    h = hex_color.lstrip("#")
+    return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16))
+
+
+POSTER_BG = CREAM if LIGHT else NAVY
+BG_RGB = _hex_rgb(POSTER_BG)  # density-0 MUST match page facecolor exactly
+
+# stop 0 = poster background so attractors float (no square "card" per figure).
+LUT_STOPS_DARK = [(0.00, (13, 17, 36)), (0.32, (120, 85, 30)),
+                  (0.66, (201, 162, 75)), (1.00, (248, 244, 235))]
+LUT_STOPS_LIGHT = [(0.00, BG_RGB), (0.28, (220, 190, 140)),
+                   (0.58, (160, 100, 45)), (1.00, (26, 26, 26))]
+LUT_STOPS = LUT_STOPS_LIGHT if LIGHT else LUT_STOPS_DARK
+TITLE_C = INK if LIGHT else CREAM
+SUB_C = "#8a6a28" if LIGHT else GOLD  # slightly deeper gold on cream
+EQ_C = EQ_LIGHT if LIGHT else (0.80, 0.82, 0.88)
+PRINT_NAME = "StrangeAttractors_Light_print.jpg" if LIGHT else "StrangeAttractors_print.jpg"
+PREVIEW_NAME = "StrangeAttractors_Light_preview.jpg" if LIGHT else "StrangeAttractors_preview.jpg"
 
 # ── attractors: (name, subtitle, equation-mathtext, renderer) ────────────────
 def _lut(stops, n=256):
@@ -110,6 +132,26 @@ def _tile(xs, ys, W=TILE, gamma=0.52):
     h = np.log1p(h); h = (h / h.max()) ** gamma
     lut = _lut(LUT_STOPS)
     rgb = lut[(h * 255).astype(np.int32)]
+    bg = np.array(BG_RGB, dtype=np.float32)
+
+    if LIGHT:
+        # Composite trails onto pure page color so empty pixels == poster bg
+        # (no square "card" behind each attractor). Soften only the figure.
+        core = Image.fromarray(np.clip(rgb, 0, 255).astype(np.uint8))
+        br = max(1, W // 500)
+        fig = np.array(core.filter(ImageFilter.GaussianBlur(br)), dtype=np.float32)
+        # alpha from density: 0 → fully page bg, 1 → full figure color
+        a = np.clip(h * 1.15, 0, 1).astype(np.float32)[..., None]
+        # light blur on alpha so trails feather into the page (still no tile edge)
+        a_img = Image.fromarray((a[..., 0] * 255).astype(np.uint8), mode="L")
+        a = np.array(a_img.filter(ImageFilter.GaussianBlur(max(1, W // 400))),
+                     dtype=np.float32)[..., None] / 255.0
+        out = bg * (1.0 - a) + fig * a
+        # hard guarantee: true empty stays exact bg (no JPEG-ish drift later in tile)
+        empty = h < 1e-6
+        out[empty] = bg
+        return np.clip(out, 0, 255).astype(np.uint8)
+
     core = Image.fromarray(np.clip(rgb, 0, 255).astype(np.uint8))
     br = max(1, W // 500)
     core_b = np.array(core.filter(ImageFilter.GaussianBlur(br)), dtype=np.float32)
@@ -117,7 +159,10 @@ def _tile(xs, ys, W=TILE, gamma=0.52):
     glow_b = np.array(Image.fromarray(np.clip(glow, 0, 255).astype(np.uint8))
                       .filter(ImageFilter.GaussianBlur(max(2, W // 120))), dtype=np.float32)
     screen = 255 - (255 - core_b) * (255 - glow_b) / 255.0
-    return np.clip(screen, 0, 255).astype(np.uint8)
+    # keep density-0 locked to navy so tiles float on the page
+    out = np.clip(screen, 0, 255)
+    out[h < 1e-6] = bg
+    return out.astype(np.uint8)
 
 
 def lorenz_tile():
@@ -179,18 +224,21 @@ ATTRACTORS = [
 
 def build_poster():
     os.makedirs(OUT, exist_ok=True)
+    theme = "light" if LIGHT else "dark"
+    print(f"Building Strange Attractors poster ({theme}) TILE={TILE} DPI={POSTER_DPI}")
     W_IN, H_IN = 18.0, 24.0
     fig = plt.figure(figsize=(W_IN, H_IN))
-    fig.patch.set_facecolor(NAVY)
+    fig.patch.set_facecolor(POSTER_BG)
     ax = fig.add_axes([0, 0, 1, 1]); ax.axis("off")
+    ax.set_facecolor(POSTER_BG)
     ax.set_xlim(0, 3); ax.set_ylim(0, 4)
 
     # title block
     ax.text(1.5, 3.80, "STRANGE ATTRACTORS", ha="center", va="center",
-            fontsize=42, color=CREAM, family="serif", fontweight="bold")
+            fontsize=42, color=TITLE_C, family="serif", fontweight="bold")
     ax.text(1.5, 3.63, "A Field Guide to Deterministic Chaos", ha="center", va="center",
-            fontsize=19, color=GOLD, family="serif", style="italic")
-    ax.plot([0.55, 2.45], [3.52, 3.52], color=GOLD, lw=1.2, alpha=0.7)
+            fontsize=19, color=SUB_C, family="serif", style="italic")
+    ax.plot([0.55, 2.45], [3.52, 3.52], color=SUB_C, lw=1.2, alpha=0.7)
 
     # 2 columns x 3 rows grid of tiles
     cols, rows = 2, 3
@@ -207,21 +255,23 @@ def build_poster():
         img_h = ch * 0.62
         img_w = img_h  # square
         ext = [cx - img_w / 2, cx + img_w / 2, cy + ch * 0.30 - img_h / 2, cy + ch * 0.30 + img_h / 2]
-        ax.imshow(tile, extent=ext, zorder=3)
+        # nearest avoids resampling fringe; density-0 == page color so no card edge
+        ax.imshow(tile, extent=ext, zorder=3, interpolation="bilinear",
+                  origin="upper", aspect="auto")
         # name + subtitle + equation under the tile
         ty = cy - ch * 0.09
-        ax.text(cx, ty, name, ha="center", va="top", fontsize=21, color=CREAM,
+        ax.text(cx, ty, name, ha="center", va="top", fontsize=21, color=TITLE_C,
                 family="serif", fontweight="bold", zorder=4)
         ax.text(cx, ty - ch * 0.075, sub, ha="center", va="top", fontsize=11,
-                color=GOLD, family="serif", style="italic", zorder=4)
+                color=SUB_C, family="serif", style="italic", zorder=4)
         ax.text(cx, ty - ch * 0.15, eq, ha="center", va="top", fontsize=12.5,
-                color=(0.80, 0.82, 0.88), zorder=4, linespacing=1.5)
+                color=EQ_C, zorder=4, linespacing=1.5)
 
     # No branding on the sellable file -- it's wall art for framing, same
     # convention as the other Type-5 art prints (Rossler, Vector Field...).
 
-    print_path = os.path.join(OUT, "StrangeAttractors_print.jpg")
-    fig.savefig(print_path, dpi=POSTER_DPI, facecolor=NAVY,
+    print_path = os.path.join(OUT, PRINT_NAME)
+    fig.savefig(print_path, dpi=POSTER_DPI, facecolor=POSTER_BG,
                 pil_kwargs={"quality": 95})
     plt.close(fig)
     print("Guardado:", print_path)
@@ -230,7 +280,22 @@ def build_poster():
 
 PREVIEW_LONG_EDGE = 3000
 WATERMARK_TEXT = "MATHRELAXING  ·  PREVIEW"
-FONT_PATH = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
+
+
+def _font_path():
+    candidates = [
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+        r"C:\Windows\Fonts\arialbd.ttf",
+        r"C:\Windows\Fonts\arial.ttf",
+        r"C:\Windows\Fonts\segoeui.ttf",
+    ]
+    for p in candidates:
+        if os.path.isfile(p):
+            return p
+    return None
+
+
+FONT_PATH = _font_path()
 
 
 def make_preview(print_path):
@@ -240,20 +305,24 @@ def make_preview(print_path):
     scale = PREVIEW_LONG_EDGE / h
     prev = img.resize((int(w * scale), PREVIEW_LONG_EDGE), Image.LANCZOS).convert("RGB")
     # diagonal tiled watermark
-    fs = max(20, int(prev.width * 0.030))
-    font = ImageFont.truetype(FONT_PATH, fs)
-    tmp = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
-    tw = int(tmp.textlength(WATERMARK_TEXT, font=font))
-    sx, sy = int(tw * 1.5), int(fs * 6)
-    tile = Image.new("RGBA", (sx, sy), (0, 0, 0, 0))
-    ImageDraw.Draw(tile).text((sx * 0.06, sy * 0.3), WATERMARK_TEXT, font=font, fill=(255, 255, 255, 42))
-    tile = tile.rotate(30, expand=True, resample=Image.BICUBIC)
-    layer = Image.new("RGBA", prev.size, (0, 0, 0, 0))
-    for yy in range(-tile.height, prev.height, tile.height):
-        for xx in range(-tile.width, prev.width, tile.width):
-            layer.alpha_composite(tile, (xx, yy))
-    out = Image.alpha_composite(prev.convert("RGBA"), layer).convert("RGB")
-    pp = os.path.join(OUT, "StrangeAttractors_preview.jpg")
+    if FONT_PATH:
+        fs = max(20, int(prev.width * 0.030))
+        font = ImageFont.truetype(FONT_PATH, fs)
+        tmp = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+        tw = int(tmp.textlength(WATERMARK_TEXT, font=font))
+        sx, sy = int(tw * 1.5), int(fs * 6)
+        tile = Image.new("RGBA", (sx, sy), (0, 0, 0, 0))
+        wm_fill = (40, 40, 40, 38) if LIGHT else (255, 255, 255, 42)
+        ImageDraw.Draw(tile).text((sx * 0.06, sy * 0.3), WATERMARK_TEXT, font=font, fill=wm_fill)
+        tile = tile.rotate(30, expand=True, resample=Image.BICUBIC)
+        layer = Image.new("RGBA", prev.size, (0, 0, 0, 0))
+        for yy in range(-tile.height, prev.height, tile.height):
+            for xx in range(-tile.width, prev.width, tile.width):
+                layer.alpha_composite(tile, (xx, yy))
+        out = Image.alpha_composite(prev.convert("RGBA"), layer).convert("RGB")
+    else:
+        out = prev
+    pp = os.path.join(OUT, PREVIEW_NAME)
     out.save(pp, quality=92)
     print("Guardado:", pp)
 
