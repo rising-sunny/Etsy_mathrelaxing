@@ -1527,6 +1527,71 @@ Do not share photos of filled pages.
 For personal use only. Not for redistribution or resale.
 """,
 
+    "poincare_disk": """\
+Instant download — Poincaré Disk hyperbolic tiling print (digital wall art).
+
+A classic non-Euclidean geometry poster: the regular hyperbolic tiling {7,3} \
+drawn in the Poincaré unit disk. Every edge is a true geodesic — a circular arc \
+orthogonal to the boundary — so tiles shrink toward the circle at infinity. \
+Not AI, not clip art — recursive reflection of a regular heptagon.
+
+► The mathematics
+• Model: Poincaré disk (open unit disk = hyperbolic plane)
+• Tiling: {7,3} — heptagons, three meeting at each vertex
+• Edges: hyperbolic straight lines (geodesics)
+• Boundary circle = infinity of the hyperbolic plane
+
+► What you get
+• 5 aspect ratios @ 300 DPI (2:3, 3:4, 4:5, 5:7, ISO/A)
+• High-resolution JPG print files in one ZIP
+• Fine charcoal line work on warm ivory — light minimalist gallery look
+• Instant digital download — no physical item ships
+
+► Print sizes (examples)
+2:3 → 8×12, 12×18, 16×24, 24×36 in
+3:4 → 9×12, 12×16, 18×24 in
+4:5 → 8×10, 16×20, 24×30 in
+5:7 → 5×7, 10×14, 15×21 in
+ISO/A → A4, A3, A2, A1
+
+Print at home, a local shop, or an online lab. Frame not included. \
+Colours may vary slightly between screens and printers.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "metatron_cube": """\
+Instant download — Metatron's Cube geometric line art print (digital wall art).
+
+An ultra-precise Metatron's Cube drawn from real sacred geometry — not AI, not \
+clip art. Built from the Fruit of Life: 13 equal circles, every centre connected, \
+with solid faces for the star tetrahedron (Merkaba) and isometric cube rhombi.
+
+► The construction
+• 13 Fruit-of-Life centres (1 + 6 + 6)
+• Full wireframe — every centre joined to every other
+• Soft solid faces: Merkaba triangles + cube silhouette + rhombi
+• Node discs on all 13 vertices · outer containing circle
+• Charcoal ink on warm ivory — minimalist / Scandinavian gallery look
+
+► What you get
+• 5 aspect ratios @ 300 DPI (2:3, 3:4, 4:5, 5:7, ISO/A)
+• High-resolution JPG print files in one ZIP
+• Instant digital download — no physical item ships
+
+► Print sizes (examples)
+2:3 → 8×12, 12×18, 16×24, 24×36 in
+3:4 → 9×12, 12×16, 18×24 in
+4:5 → 8×10, 16×20, 24×30 in
+5:7 → 5×7, 10×14, 15×21 in
+ISO/A → A4, A3, A2, A1
+
+Print at home, a local shop, or an online lab. Frame not included. \
+Colours may vary slightly between screens and printers.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "stem_ipad_kit": """\
 Instant download — STEM Study OS iPad stickers for GoodNotes, Notability & Procreate.
 
@@ -3546,6 +3611,98 @@ PRODUCTS = {
             "generate_stem_ipad_kit.py. $4.99. Draft listing_id=4544037066. Ads OFF."
         ),
         "listing_id": 4544037066,
+    },
+
+    "poincare_disk": {
+        "title": (
+            "Poincaré Disk Print | Hyperbolic Geometry Wall Art | "
+            "Non-Euclidean Tessellation Math Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["poincare_disk"],
+        "price": 3.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("wallart_set", "out", "poincare", "mono_wire_7_3", "listing", "01_hero.jpg"),
+            p("wallart_set", "out", "poincare", "mono_wire_7_3", "listing", "02_detail.jpg"),
+            p("wallart_set", "out", "poincare", "mono_wire_7_3", "listing", "03_framed.jpg"),
+            p("wallart_set", "out", "poincare", "mono_wire_7_3", "listing", "04_math.jpg"),
+            p("wallart_set", "out", "poincare", "mono_wire_7_3", "listing", "05_included.jpg"),
+            p("wallart_set", "out", "poincare", "mono_wire_7_3", "listing", "06_howto.jpg"),
+        ],
+        "files": [
+            p("wallart_set", "out", "poincare", "mono_wire_7_3", "Poincare_Disk_7_3_prints.zip"),
+        ],
+        "tags": [
+            "poincare disk",
+            "hyperbolic geometry",
+            "math wall art",
+            "non euclidean",
+            "geometric wall art",
+            "tessellation art",
+            "escher style",
+            "line art print",
+            "minimalist print",
+            "science poster",
+            "digital download",
+            "math poster",
+            "printable wall art",
+        ],
+        "notes": (
+            "Poincaré disk {7,3} mono wire (light gallery line art). "
+            "wallart_set/poincare_disc.py + poincare_build.py mono wire. $3.99. "
+            "Digital listing_id=4544049593 (active). "
+            "POD Printify matte poster printify_id=6a65242fadecc050d80b24ad "
+            "etsy_pod=4544054415 (active). create_geo_atelier_pod.py."
+        ),
+        "listing_id": 4544049593,
+        "pod_listing_id": 4544054415,
+        "printify_id": "6a65242fadecc050d80b24ad",
+    },
+
+    "metatron_cube": {
+        "title": (
+            "Metatron's Cube Print | Sacred Geometry Line Art Poster | "
+            "Minimalist Black White Geometric Wall Art (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["metatron_cube"],
+        "price": 3.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("wallart_set", "out", "metatron", "mono_atelier", "listing", "01_hero.jpg"),
+            p("wallart_set", "out", "metatron", "mono_atelier", "listing", "02_detail.jpg"),
+            p("wallart_set", "out", "metatron", "mono_atelier", "listing", "03_framed.jpg"),
+            p("wallart_set", "out", "metatron", "mono_atelier", "listing", "04_layers.jpg"),
+            p("wallart_set", "out", "metatron", "mono_atelier", "listing", "05_included.jpg"),
+            p("wallart_set", "out", "metatron", "mono_atelier", "listing", "06_howto.jpg"),
+        ],
+        "files": [
+            p("wallart_set", "out", "metatron", "mono_atelier", "Metatrons_Cube_prints.zip"),
+        ],
+        "tags": [
+            "metatron cube",
+            "sacred geometry",
+            "geometric wall art",
+            "line art print",
+            "minimalist print",
+            "flower of life",
+            "math wall art",
+            "black and white art",
+            "printable wall art",
+            "scandinavian decor",
+            "digital download",
+            "merkaba art",
+            "geometric poster",
+        ],
+        "notes": (
+            "Premium mono Metatron's Cube — wire + solid faces from Fruit of Life. "
+            "wallart_set/metatron_cube.py + metatron_build.py mono atelier. "
+            "$3.99. Digital listing_id=4544059606 (active). "
+            "POD Printify matte poster printify_id=6a6524251da841f1d10c10ff "
+            "etsy_pod=4544068954 (active). create_geo_atelier_pod.py."
+        ),
+        "listing_id": 4544059606,
+        "pod_listing_id": 4544068954,
+        "printify_id": "6a6524251da841f1d10c10ff",
     },
 
     "emergency_binder": {
