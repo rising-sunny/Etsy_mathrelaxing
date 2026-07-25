@@ -255,3 +255,7 @@ printify/.env
 # Wall-art set — generated print files, mockups & zips (regenerable from scripts)
 wallart_set/out/
 wallart_set/__pycache__/
+
+# OAuth PKCE pending state (never commit)
+_oauth_pending.json
+

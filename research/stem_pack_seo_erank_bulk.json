@@ -1,0 +1,156 @@
+[
+  {
+    "keyword": "lab report template",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": 20.0,
+    "clicks": null,
+    "ctr": null,
+    "competition": null,
+    "kd": null,
+    "momentum": 0.0,
+    "raw": [
+      "lab report template",
+      "Jun 2026",
+      "0",
+      "< 20",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "-",
+      "syllabus template"
+    ]
+  },
+  {
+    "keyword": "study template",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": 20.0,
+    "clicks": 20.0,
+    "ctr": 20.0,
+    "competition": 49978.0,
+    "kd": 100.0,
+    "momentum": 0.0,
+    "raw": [
+      "study template",
+      "Jun 2026",
+      "0",
+      "< 20",
+      "< 20",
+      "< 20%",
+      "49,978",
+      "100",
+      "-"
+    ]
+  },
+  {
+    "keyword": "cornell notes template",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": 20.0,
+    "clicks": null,
+    "ctr": null,
+    "competition": 1943.0,
+    "kd": 100.0,
+    "momentum": 0.0,
+    "raw": [
+      "cornell notes template",
+      "Jun 2026",
+      "0",
+      "< 20",
+      "Unknown",
+      "Unknown",
+      "1,943",
+      "100",
+      "-"
+    ]
+  },
+  {
+    "keyword": "cornell notes printable",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": 20.0,
+    "clicks": null,
+    "ctr": null,
+    "competition": 623.0,
+    "kd": 100.0,
+    "momentum": 0.0,
+    "raw": [
+      "cornell notes printable",
+      "Jun 2026",
+      "0",
+      "< 20",
+      "Unknown",
+      "Unknown",
+      "623",
+      "100",
+      "-"
+    ]
+  },
+  {
+    "keyword": "student notes template",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 10.0,
+    "searches": 20.0,
+    "clicks": null,
+    "ctr": null,
+    "competition": 9822.0,
+    "kd": 100.0,
+    "momentum": 0.5,
+    "raw": [
+      "student notes template",
+      "Jun 2026",
+      "10",
+      "< 20",
+      "Unknown",
+      "Unknown",
+      "9,822",
+      "100",
+      "40"
+    ]
+  },
+  {
+    "keyword": "college syllabus",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": null,
+    "clicks": null,
+    "ctr": null,
+    "competition": 184.0,
+    "kd": null,
+    "momentum": null,
+    "raw": [
+      "college syllabus",
+      "Jun 2026",
+      "0",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "184",
+      "-",
+      "lecture notes template"
+    ]
+  },
+  {
+    "keyword": "stem study",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": null,
+    "clicks": null,
+    "ctr": null,
+    "competition": 2874.0,
+    "kd": null,
+    "momentum": null,
+    "raw": [
+      "stem study",
+      "Jun 2026",
+      "0",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "2,874",
+      "-",
+      "academic template"
+    ]
+  }
+]

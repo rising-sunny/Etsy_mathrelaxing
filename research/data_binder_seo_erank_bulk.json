@@ -1,0 +1,200 @@
+[
+  {
+    "keyword": "back to school",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 10740.0,
+    "searches": 9961.0,
+    "clicks": 10162.0,
+    "ctr": 102.0,
+    "competition": 1293671.0,
+    "kd": 100.0,
+    "momentum": 1.08,
+    "raw": [
+      "back to school",
+      "Jun 2026",
+      "10,740",
+      "9,961",
+      "10,162",
+      "102%",
+      "1,293,671",
+      "100",
+      "74.000"
+    ]
+  },
+  {
+    "keyword": "seating chart",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 1360.0,
+    "searches": 4488.0,
+    "clicks": 5049.0,
+    "ctr": 113.0,
+    "competition": 31624.0,
+    "kd": 42.0,
+    "momentum": 0.3,
+    "raw": [
+      "seating chart",
+      "Jun 2026",
+      "1,360",
+      "4,488",
+      "5,049",
+      "113%",
+      "31,624",
+      "42",
+      "18.100"
+    ]
+  },
+  {
+    "keyword": "teacher data binder",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 10.0,
+    "searches": 20.0,
+    "clicks": null,
+    "ctr": null,
+    "competition": 121.0,
+    "kd": 89.0,
+    "momentum": 0.5,
+    "raw": [
+      "teacher data binder",
+      "Jun 2026",
+      "10",
+      "< 20",
+      "Unknown",
+      "Unknown",
+      "121",
+      "89",
+      "70"
+    ]
+  },
+  {
+    "keyword": "attendance sheet",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": 20.0,
+    "clicks": 20.0,
+    "ctr": 20.0,
+    "competition": 1250.0,
+    "kd": 100.0,
+    "momentum": 0.0,
+    "raw": [
+      "attendance sheet",
+      "Jun 2026",
+      "0",
+      "< 20",
+      "< 20",
+      "< 20%",
+      "1,250",
+      "100",
+      "-"
+    ]
+  },
+  {
+    "keyword": "teacher printable",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": 20.0,
+    "clicks": null,
+    "ctr": null,
+    "competition": 202139.0,
+    "kd": 100.0,
+    "momentum": 0.0,
+    "raw": [
+      "teacher printable",
+      "Jun 2026",
+      "0",
+      "< 20",
+      "Unknown",
+      "Unknown",
+      "202,139",
+      "100",
+      "-"
+    ]
+  },
+  {
+    "keyword": "parent communication",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": 20.0,
+    "clicks": null,
+    "ctr": null,
+    "competition": 2941.0,
+    "kd": 100.0,
+    "momentum": 0.0,
+    "raw": [
+      "parent communication",
+      "Jun 2026",
+      "0",
+      "< 20",
+      "Unknown",
+      "Unknown",
+      "2,941",
+      "100",
+      "-"
+    ]
+  },
+  {
+    "keyword": "teacher binder",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 10.0,
+    "searches": 20.0,
+    "clicks": 20.0,
+    "ctr": 20.0,
+    "competition": 5272.0,
+    "kd": 100.0,
+    "momentum": 0.5,
+    "raw": [
+      "teacher binder",
+      "Jun 2026",
+      "10",
+      "< 20",
+      "< 20",
+      "< 20%",
+      "5,272",
+      "100",
+      "390"
+    ]
+  },
+  {
+    "keyword": "homeschool binder",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 10.0,
+    "searches": 20.0,
+    "clicks": 20.0,
+    "ctr": 20.0,
+    "competition": 8984.0,
+    "kd": 100.0,
+    "momentum": 0.5,
+    "raw": [
+      "homeschool binder",
+      "Jun 2026",
+      "10",
+      "< 20",
+      "< 20",
+      "< 20%",
+      "8,984",
+      "100",
+      "110"
+    ]
+  },
+  {
+    "keyword": "classroom organizer",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": null,
+    "clicks": null,
+    "ctr": null,
+    "competition": 4878.0,
+    "kd": null,
+    "momentum": null,
+    "raw": [
+      "classroom organizer",
+      "Jun 2026",
+      "0",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "4,878",
+      "-",
+      "gradebook printable"
+    ]
+  }
+]

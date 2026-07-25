@@ -1,0 +1,302 @@
+{
+  "generated_at": "2026-07-25T18:59:44.022669+00:00",
+  "n_orders": 7,
+  "n_line_items": 9,
+  "total_grandtotal_usd": 56.75,
+  "total_subtotal_usd": 42.94,
+  "total_discount_usd": 9.49,
+  "total_vat_usd": 0.8,
+  "avg_order_value": 8.11,
+  "multi_item_orders": 1,
+  "orders_with_discount": 2,
+  "countries": {
+    "GB": 1,
+    "CN": 2,
+    "US": 4
+  },
+  "products": [
+    {
+      "title": "Penrose Tiling Poster | Geometric Math Line Art Print | Scandinavian Decor",
+      "listing_id": 4536912921,
+      "qty": 1,
+      "gross": 26.0,
+      "orders": 1,
+      "is_digital": false,
+      "views": 12,
+      "favorers": 0,
+      "active": true
+    },
+    {
+      "title": "Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | Fourier Dirac Euler ",
+      "listing_id": 4540082607,
+      "qty": 2,
+      "gross": 7.98,
+      "orders": 2,
+      "is_digital": false,
+      "views": 30,
+      "favorers": 3,
+      "active": true
+    },
+    {
+      "title": "Physics Wall Art | Chaos Theory Strange Attractors Poster | Six Math Equations, Physics Sc",
+      "listing_id": 4534313102,
+      "qty": 1,
+      "gross": 3.99,
+      "orders": 1,
+      "is_digital": false,
+      "views": 6,
+      "favorers": 0,
+      "active": true
+    },
+    {
+      "title": "Set of 8 Minimalist Math Posters – Navy Gold LaTeX Typography (Digital Download)",
+      "listing_id": 4534831774,
+      "qty": 1,
+      "gross": 3.99,
+      "orders": 1,
+      "is_digital": true,
+      "views": 5,
+      "favorers": 0,
+      "active": true
+    },
+    {
+      "title": "Physics Poster Set of 6 | Field Equations Wall Art | Quantum Relativity Black Holes | Scie",
+      "listing_id": 4539473180,
+      "qty": 1,
+      "gross": 3.99,
+      "orders": 1,
+      "is_digital": false,
+      "views": 24,
+      "favorers": 2,
+      "active": true
+    },
+    {
+      "title": "Unit Circle Poster | Trigonometry Reference Wall Art | Degrees Radians Cos Sin STEM Print ",
+      "listing_id": 4538562680,
+      "qty": 1,
+      "gross": 2.99,
+      "orders": 1,
+      "is_digital": false,
+      "views": 23,
+      "favorers": 0,
+      "active": true
+    },
+    {
+      "title": "Chaos Theory Procreate Color Palettes | Math Art Swatches (Digital Download)",
+      "listing_id": 4534035590,
+      "qty": 1,
+      "gross": 1.99,
+      "orders": 1,
+      "is_digital": true,
+      "views": 9,
+      "favorers": 0,
+      "active": true
+    },
+    {
+      "title": "STEM Graph Paper Bundle | 8 Styles: Isometric, Hexagonal, Dot, Square, Cornell (Digital Do",
+      "listing_id": 4534027247,
+      "qty": 1,
+      "gross": 1.5,
+      "orders": 1,
+      "is_digital": true,
+      "views": 13,
+      "favorers": 1,
+      "active": true
+    }
+  ],
+  "orders": [
+    {
+      "receipt_id": 4111581082,
+      "date": "2026-07-10T03:46:54+00:00",
+      "date_local": "2026-07-10 03:46 UTC",
+      "buyer_name": "Pamela speshock",
+      "country": "US",
+      "city": "Interlachen",
+      "status": "Completed",
+      "grandtotal": 1.99,
+      "subtotal": 1.99,
+      "discount": 0.0,
+      "vat": 0.0,
+      "payment_method": "cc",
+      "items": [
+        {
+          "listing_id": 4534035590,
+          "title": "Chaos Theory Procreate Color Palettes | Math Art Swatches (Digital Download)",
+          "qty": 1,
+          "price": 1.99,
+          "line": 1.99,
+          "transaction_id": 5141122717
+        }
+      ],
+      "n_items": 1
+    },
+    {
+      "receipt_id": 4113864496,
+      "date": "2026-07-12T19:18:49+00:00",
+      "date_local": "2026-07-12 19:18 UTC",
+      "buyer_name": "Kelly  Willmon",
+      "country": "US",
+      "city": "Amarillo",
+      "status": "Completed",
+      "grandtotal": 1.62,
+      "subtotal": 1.5,
+      "discount": 0.0,
+      "vat": 0.0,
+      "payment_method": "cc",
+      "items": [
+        {
+          "listing_id": 4534027247,
+          "title": "STEM Graph Paper Bundle | 8 Styles: Isometric, Hexagonal, Dot, Square, Cornell (Digital Do",
+          "qty": 1,
+          "price": 1.5,
+          "line": 1.5,
+          "transaction_id": 5143856465
+        }
+      ],
+      "n_items": 1
+    },
+    {
+      "receipt_id": 4123503283,
+      "date": "2026-07-22T01:56:44+00:00",
+      "date_local": "2026-07-22 01:56 UTC",
+      "buyer_name": "Andrea Colwell",
+      "country": "US",
+      "city": "Mountlake Terrace",
+      "status": "Paid",
+      "grandtotal": 32.14,
+      "subtotal": 19.5,
+      "discount": 6.5,
+      "vat": 0.0,
+      "payment_method": "cc",
+      "items": [
+        {
+          "listing_id": 4536912921,
+          "title": "Penrose Tiling Poster | Geometric Math Line Art Print | Scandinavian Decor",
+          "qty": 1,
+          "price": 26.0,
+          "line": 26.0,
+          "transaction_id": 5149191954
+        }
+      ],
+      "n_items": 1
+    },
+    {
+      "receipt_id": 4122631536,
+      "date": "2026-07-22T09:57:17+00:00",
+      "date_local": "2026-07-22 09:57 UTC",
+      "buyer_name": "Herón Gómez Eddy",
+      "country": "US",
+      "city": "Mission",
+      "status": "Completed",
+      "grandtotal": 3.24,
+      "subtotal": 2.99,
+      "discount": 0.0,
+      "vat": 0.0,
+      "payment_method": "cc",
+      "items": [
+        {
+          "listing_id": 4538562680,
+          "title": "Unit Circle Poster | Trigonometry Reference Wall Art | Degrees Radians Cos Sin STEM Print ",
+          "qty": 1,
+          "price": 2.99,
+          "line": 2.99,
+          "transaction_id": 5154767389
+        }
+      ],
+      "n_items": 1
+    },
+    {
+      "receipt_id": 4124507381,
+      "date": "2026-07-23T07:42:26+00:00",
+      "date_local": "2026-07-23 07:42 UTC",
+      "buyer_name": "冯 小辉",
+      "country": "CN",
+      "city": "台州市",
+      "status": "Completed",
+      "grandtotal": 3.99,
+      "subtotal": 3.99,
+      "discount": 0.0,
+      "vat": 0.0,
+      "payment_method": "cc",
+      "items": [
+        {
+          "listing_id": 4539473180,
+          "title": "Physics Poster Set of 6 | Field Equations Wall Art | Quantum Relativity Black Holes | Scie",
+          "qty": 1,
+          "price": 3.99,
+          "line": 3.99,
+          "transaction_id": 5150623130
+        }
+      ],
+      "n_items": 1
+    },
+    {
+      "receipt_id": 4125528649,
+      "date": "2026-07-24T14:30:44+00:00",
+      "date_local": "2026-07-24 14:30 UTC",
+      "buyer_name": "冯 小辉",
+      "country": "CN",
+      "city": "台州市",
+      "status": "Completed",
+      "grandtotal": 8.98,
+      "subtotal": 8.98,
+      "discount": 2.99,
+      "vat": 0.0,
+      "payment_method": "cc",
+      "items": [
+        {
+          "listing_id": 4534313102,
+          "title": "Physics Wall Art | Chaos Theory Strange Attractors Poster | Six Math Equations, Physics Sc",
+          "qty": 1,
+          "price": 3.99,
+          "line": 3.99,
+          "transaction_id": 5157120787
+        },
+        {
+          "listing_id": 4540082607,
+          "title": "Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | Fourier Dirac Euler ",
+          "qty": 1,
+          "price": 3.99,
+          "line": 3.99,
+          "transaction_id": 5152069982
+        },
+        {
+          "listing_id": 4534831774,
+          "title": "Set of 8 Minimalist Math Posters – Navy Gold LaTeX Typography (Digital Download)",
+          "qty": 1,
+          "price": 3.99,
+          "line": 3.99,
+          "transaction_id": 5152069980
+        }
+      ],
+      "n_items": 3
+    },
+    {
+      "receipt_id": 4125033802,
+      "date": "2026-07-24T21:14:06+00:00",
+      "date_local": "2026-07-24 21:14 UTC",
+      "buyer_name": "Jawaad Ahmed",
+      "country": "GB",
+      "city": "Peterborough",
+      "status": "Completed",
+      "grandtotal": 4.79,
+      "subtotal": 3.99,
+      "discount": 0.0,
+      "vat": 0.8,
+      "payment_method": "cc",
+      "items": [
+        {
+          "listing_id": 4540082607,
+          "title": "Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | Fourier Dirac Euler ",
+          "qty": 1,
+          "price": 3.99,
+          "line": 3.99,
+          "transaction_id": 5152540060
+        }
+      ],
+      "n_items": 1
+    }
+  ],
+  "buyer_messages": [],
+  "active_listings": 106
+}

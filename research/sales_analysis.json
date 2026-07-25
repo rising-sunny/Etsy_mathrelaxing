@@ -1,0 +1,210 @@
+{
+  "shop": {
+    "shop_id": 66586766,
+    "shop_name": "TheMathRelaxing",
+    "transaction_sold_count": 9,
+    "listing_active_count": 105,
+    "digital_listing_count": 83,
+    "num_favorers": 6,
+    "review_count": 0,
+    "review_average": 0,
+    "currency_code": "USD",
+    "url": "https://www.etsy.com/shop/TheMathRelaxing",
+    "created_timestamp": 1782361219,
+    "is_vacation": false
+  },
+  "limitation": "OAuth token lacks transactions_r — cannot read receipts, buyer, dates, or which listing sold. Only shop.transaction_sold_count + listing views/favorers.",
+  "active_listings": 105,
+  "total_views_active": 378,
+  "sum_listing_favorers_active": 22,
+  "price_bands_active": {
+    "$5–10": 1,
+    "$0–5": 87,
+    "$25–50": 1,
+    "$15–25": 15,
+    "$10–15": 1
+  },
+  "top_by_views": [
+    {
+      "listing_id": 4540082607,
+      "title": "Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | Fourier Dirac Euler STEM Gallery (Digital Download)",
+      "views": 30,
+      "num_favorers": 3,
+      "price_usd": 3.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4540082607/famous-equations-wall-art-set-of-6-math"
+    },
+    {
+      "listing_id": 4537362085,
+      "title": "Math Wall Art | Golden Ratio Art Print | Fibonacci Spiral Math Poster (Digital Download)",
+      "views": 28,
+      "num_favorers": 2,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4537362085/math-wall-art-golden-ratio-art-print"
+    },
+    {
+      "listing_id": 4539473180,
+      "title": "Physics Poster Set of 6 | Field Equations Wall Art | Quantum Relativity Black Holes | Science Gallery Set | Digital Download",
+      "views": 24,
+      "num_favorers": 2,
+      "price_usd": 3.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4539473180/physics-poster-set-of-6-field-equations"
+    },
+    {
+      "listing_id": 4538562680,
+      "title": "Unit Circle Poster | Trigonometry Reference Wall Art | Degrees Radians Cos Sin STEM Print (Digital Download)",
+      "views": 23,
+      "num_favorers": 0,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4538562680/unit-circle-poster-trigonometry"
+    },
+    {
+      "listing_id": 4538070573,
+      "title": "Lab Notebook Printable | STEM Science Experiment Log PDF | GoodNotes Notability Digital Lab Journal (Digital Download)",
+      "views": 14,
+      "num_favorers": 2,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4538070573/lab-notebook-printable-stem-science"
+    },
+    {
+      "listing_id": 4534027247,
+      "title": "Digital Notebook | STEM Graph Paper Bundle | 8 Styles: Isometric, Hexagonal, Dot, Square, Cornell (Digital Download)",
+      "views": 13,
+      "num_favorers": 1,
+      "price_usd": 1.5,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4534027247/digital-notebook-stem-graph-paper-bundle"
+    },
+    {
+      "listing_id": 4536912921,
+      "title": "Penrose Tiling Poster | Geometric Math Line Art Print | Scandinavian Decor",
+      "views": 12,
+      "num_favorers": 0,
+      "price_usd": 15.0,
+      "type": "physical",
+      "url": "https://www.etsy.com/listing/4536912921/penrose-tiling-poster-geometric-math"
+    },
+    {
+      "listing_id": 4536971373,
+      "title": "Hyperlinked Digital Notebook | Boho Earth-Tone Grid Paper (Digital Download)",
+      "views": 12,
+      "num_favorers": 0,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4536971373/hyperlinked-digital-notebook-boho-earth"
+    },
+    {
+      "listing_id": 4536990226,
+      "title": "Black White Hyperlinked Digital Notebook | 10 Sections, Grid Paper Tabs (Digital Download)",
+      "views": 12,
+      "num_favorers": 0,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4536990226/black-white-hyperlinked-digital-notebook"
+    },
+    {
+      "listing_id": 4537937498,
+      "title": "Digital Planner | Engineering Graph Paper Bundle | 8 STEM Grids: Log-Log, Semi-Log, Millimeter, Polar, Cartesian | Printable GoodNotes",
+      "views": 11,
+      "num_favorers": 0,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4537937498/digital-planner-engineering-graph-paper"
+    },
+    {
+      "listing_id": 4537377786,
+      "title": "Math Wall Art | Euler&#39;s Identity Art Print | Complex Plane Unit Circle Math Poster (Digital Download)",
+      "views": 11,
+      "num_favorers": 0,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4537377786/math-wall-art-eulers-identity-art-print"
+    },
+    {
+      "listing_id": 4536990190,
+      "title": "Grid Paper Bundle | 10 Styles, Cornell, Dot, Hexagonal (Digital Download)",
+      "views": 11,
+      "num_favorers": 0,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4536990190/grid-paper-bundle-10-styles-cornell-dot"
+    },
+    {
+      "listing_id": 4531245868,
+      "title": "Celtic Knot Mathematics — Printable Coloring Book PDF | 50 Interlace & Knotwork Designs",
+      "views": 11,
+      "num_favorers": 0,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4531245868/celtic-knot-mathematics-printable"
+    },
+    {
+      "listing_id": 4535746170,
+      "title": "Chladni Figures Poster | Sound Geometry, Vibrating Plate Patterns (Digital Download)",
+      "views": 9,
+      "num_favorers": 0,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4535746170/chladni-figures-poster-sound-geometry"
+    },
+    {
+      "listing_id": 4534035590,
+      "title": "Chaos Theory Procreate Color Palettes | Math Art Swatches (Digital Download)",
+      "views": 9,
+      "num_favorers": 0,
+      "price_usd": 1.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4534035590/chaos-theory-procreate-color-palettes"
+    },
+    {
+      "listing_id": 4533973003,
+      "title": "PhD & Dissertation Planner | Undated Digital GoodNotes Notability iPad | Thesis Tracker, Literature Log, Defense Prep",
+      "views": 9,
+      "num_favorers": 1,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4533973003/phd-dissertation-planner-undated-digital"
+    },
+    {
+      "listing_id": 4535639595,
+      "title": "Physics Wall Art | Set of 8 Physics Calculus Equation Art Prints, Minimalist Math Wall Art (Digital Download)",
+      "views": 8,
+      "num_favorers": 0,
+      "price_usd": 3.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4535639595/physics-wall-art-set-of-8-physics"
+    },
+    {
+      "listing_id": 4534820167,
+      "title": "Mathematical Constants Bundle | Set of 8 Minimalist Math Posters | Digital Download",
+      "views": 7,
+      "num_favorers": 1,
+      "price_usd": 3.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4534820167/mathematical-constants-bundle-set-of-8"
+    },
+    {
+      "listing_id": 4528196710,
+      "title": "Seamless Loop | De Jong Attractor Loop | Downloadable Mathematical Animation, Generative Art Video, Seamless Loop",
+      "views": 7,
+      "num_favorers": 0,
+      "price_usd": 2.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4528196710/seamless-loop-de-jong-attractor-loop"
+    },
+    {
+      "listing_id": 4534313102,
+      "title": "Physics Wall Art | Chaos Theory Strange Attractors Poster | Six Math Equations, Physics Science Print (Digital Download)",
+      "views": 6,
+      "num_favorers": 0,
+      "price_usd": 3.99,
+      "type": "download",
+      "url": "https://www.etsy.com/listing/4534313102/physics-wall-art-chaos-theory-strange"
+    }
+  ],
+  "generated_at": "2026-07-25T14:17:07.157260+00:00"
+}

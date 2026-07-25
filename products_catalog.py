@@ -1455,6 +1455,114 @@ and design-lover gifts. Use a print shop for 24×36 / A1; matte paper looks best
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "calculus_formula_sheet": """\
+Instant download — Calculus Formula Sheet (differential & integral reference plate).
+
+A clean scientific-plate formula reference for Calc I / II study, exams, and classroom walls. \
+Cream graph paper, LaTeX-style math, organized by topic: limits, derivatives, integrals, FTC, series.
+
+► What you get
+• High-resolution printable plate @ 300 dpi
+• Sizes: US Letter, A4, 12×18 (2:3), 12×16 (3:4), 16×20 (4:5)
+• Instant digital download (ZIP)
+
+Print desk-size for homework or large for the wall. Personal study use.
+
+For personal use only. Not for redistribution or resale.
+""",
+
+    "linear_algebra_formula_sheet": """\
+Instant download — Linear Algebra Formula Sheet (vectors, matrices, eigenvalues).
+
+Scientific-plate reference for linear algebra: dot/cross products, matrix algebra, determinants, \
+rank–nullity, eigenvalues, and orthogonality. Same cream graph-paper family as our STEM plates.
+
+► What you get
+• High-resolution printable plate @ 300 dpi
+• Sizes: US Letter, A4, 12×18, 12×16, 16×20
+• Instant digital download (ZIP)
+
+For personal use only. Not for redistribution or resale.
+""",
+
+    "vector_calculus_formula_sheet": """\
+Instant download — Vector Calculus Formula Sheet (grad, div, curl, integral theorems).
+
+Reference plate for multivariable / vector calculus: gradient, divergence, curl, line & surface \
+integrals, Green / Stokes / Divergence theorems, and coordinate Jacobians. Cream scientific-plate style.
+
+► What you get
+• High-resolution printable plate @ 300 dpi
+• Sizes: US Letter, A4, 12×18, 12×16, 16×20
+• Instant digital download (ZIP)
+
+For personal use only. Not for redistribution or resale.
+""",
+
+    "password_tracker": """\
+Instant download — Password & Login Tracker (printable PDF password book).
+
+Keep website logins, Wi-Fi, apps, and recovery notes in one calm, private place. \
+A dedicated password log — separate from household emergency organizers \
+(which should only note where digital access lives, not full credentials).
+
+► What's inside (US Letter PDF)
+• How to use + privacy-aware security notes
+• Master recovery sheet (manager name, recovery channels — not master passwords)
+• Home network & Wi-Fi sheet
+• 9 categories: email, banking, shopping, streaming, social, work/school, \
+devices, utilities, general logs
+• Elegant card-style entries: site · username · password · 2FA · notes
+• Password change history table
+• Quick notes pages
+
+► Use it your way
+Print and hole-punch for a binder, or open in GoodNotes / Notability on iPad. \
+Update the change log when you rotate passwords.
+
+► Privacy
+For personal offline use. Not a substitute for a modern password manager. \
+Do not share photos of filled pages.
+
+For personal use only. Not for redistribution or resale.
+""",
+
+    "stem_ipad_kit": """\
+Instant download — STEM Study OS iPad stickers for GoodNotes, Notability & Procreate.
+
+A functional digital sticker system for STEM students — not random cute icons. \
+Status, subjects, math symbols, progress rings, annotation flags, mood chips, \
+and planner tabs that stack cleanly on lecture notes and study planners.
+
+Eight modules that work together:
+• STATUS — Studying, Exam Week, Problem Set, Lab Day, Office Hours, Done, Stuck…
+• SUBJECTS — Calculus, Linear Algebra, Vector Calc, Physics, Chemistry, CS, Stats, Biology
+• SYMBOLS — π ∫ Σ ∞ √ Δ ∇ θ λ ≈ ≠ ∈
+• PROGRESS — 0% → 100% rings for problem sets and review cycles
+• NOTES — Important, Formula, Theorem, Prove later, Check work, Definition, Example…
+• MOOD — Focused, Deep work, Coffee first, Brain fog, In flow, Deadline
+• TABS — Mon–Sun + weeks W1–W8 for digital planners
+• UTILITY — Due today, Midterm, Final, No class, OH booked…
+
+► What you get
+• 70+ transparent PNG stickers (512×512 — crisp on retina iPad)
+• Organized by module folders for easy import
+• Printable contact sheet (optional paper stickers)
+• README with GoodNotes / Notability / Procreate how-to
+• Instant download ZIP — no physical item ships
+
+► How to use on iPad
+1. Download & unzip in the Files app
+2. GoodNotes: Elements → + → Import images (or insert as photo)
+3. Notability: Add photo → resize & duplicate
+4. Procreate: Import PNG as a stamp layer
+5. Stack STATUS + SUBJECT + PROGRESS on each study block
+
+Editorial navy / cream / gold — calm and intentional for serious study notes.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "emergency_binder": """\
 Instant download — Family Emergency Binder (printable PDF organizer).
 
@@ -3242,6 +3350,202 @@ PRODUCTS = {
             "generate_lor_pack.py. Draft listing_id=4539149064. Ads OFF."
         ),
         "listing_id": 4539149064,
+    },
+
+    "calculus_formula_sheet": {
+        "title": (
+            "Calculus Formula Sheet | Differential Integral Reference Print | "
+            "Derivatives Integrals FTC STEM Study Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["calculus_formula_sheet"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("formula_sheets", "calculus_formula_sheet", "previews", "calculus_formula_sheet_preview_1_hero.jpg"),
+            p("formula_sheets", "calculus_formula_sheet", "previews", "calculus_formula_sheet_preview_2_square.jpg"),
+            p("formula_sheets", "calculus_formula_sheet", "previews", "calculus_formula_sheet_preview_3_detail.jpg"),
+            p("formula_sheets", "calculus_formula_sheet", "previews", "calculus_formula_sheet_preview_4_included.jpg"),
+            p("formula_sheets", "calculus_formula_sheet", "previews", "calculus_formula_sheet_preview_5_use.jpg"),
+        ],
+        "files": [
+            p("formula_sheets", "calculus_formula_sheet", "calculus_formula_sheet_prints.zip"),
+        ],
+        "tags": [
+            "calculus formula sheet",
+            "calculus cheat sheet",
+            "derivatives integrals",
+            "math study guide",
+            "stem poster",
+            "college math",
+            "exam prep",
+            "math wall art",
+            "educational poster",
+            "digital download",
+            "teacher gift",
+            "classroom decor",
+            "calculus reference",
+        ],
+        "notes": "generate_formula_sheets.py. Wave14 thin-market STEM utility. $2.99.",
+        "listing_id": 4543997737,
+    },
+
+    "linear_algebra_formula_sheet": {
+        "title": (
+            "Linear Algebra Formula Sheet | Matrix Eigenvalue Reference Print | "
+            "Vectors Determinants STEM Study Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["linear_algebra_formula_sheet"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("formula_sheets", "linear_algebra_formula_sheet", "previews", "linear_algebra_formula_sheet_preview_1_hero.jpg"),
+            p("formula_sheets", "linear_algebra_formula_sheet", "previews", "linear_algebra_formula_sheet_preview_2_square.jpg"),
+            p("formula_sheets", "linear_algebra_formula_sheet", "previews", "linear_algebra_formula_sheet_preview_3_detail.jpg"),
+            p("formula_sheets", "linear_algebra_formula_sheet", "previews", "linear_algebra_formula_sheet_preview_4_included.jpg"),
+            p("formula_sheets", "linear_algebra_formula_sheet", "previews", "linear_algebra_formula_sheet_preview_5_use.jpg"),
+        ],
+        "files": [
+            p("formula_sheets", "linear_algebra_formula_sheet", "linear_algebra_formula_sheet_prints.zip"),
+        ],
+        "tags": [
+            "linear algebra",
+            "matrix formula sheet",
+            "eigenvalues",
+            "math study guide",
+            "stem poster",
+            "college math",
+            "exam prep",
+            "math wall art",
+            "educational poster",
+            "digital download",
+            "teacher gift",
+            "linear algebra cheat sheet",
+            "vectors matrices",
+        ],
+        "notes": "generate_formula_sheets.py. $2.99.",
+        "listing_id": 4543997825,
+    },
+
+    "vector_calculus_formula_sheet": {
+        "title": (
+            "Vector Calculus Formula Sheet | Grad Div Curl Green Stokes | "
+            "Multivariable Calculus STEM Study Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["vector_calculus_formula_sheet"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("formula_sheets", "vector_calculus_formula_sheet", "previews", "vector_calculus_formula_sheet_preview_1_hero.jpg"),
+            p("formula_sheets", "vector_calculus_formula_sheet", "previews", "vector_calculus_formula_sheet_preview_2_square.jpg"),
+            p("formula_sheets", "vector_calculus_formula_sheet", "previews", "vector_calculus_formula_sheet_preview_3_detail.jpg"),
+            p("formula_sheets", "vector_calculus_formula_sheet", "previews", "vector_calculus_formula_sheet_preview_4_included.jpg"),
+            p("formula_sheets", "vector_calculus_formula_sheet", "previews", "vector_calculus_formula_sheet_preview_5_use.jpg"),
+        ],
+        "files": [
+            p("formula_sheets", "vector_calculus_formula_sheet", "vector_calculus_formula_sheet_prints.zip"),
+        ],
+        "tags": [
+            "vector calculus",
+            "grad div curl",
+            "stokes theorem",
+            "multivariable calculus",
+            "math study guide",
+            "stem poster",
+            "college math",
+            "exam prep",
+            "math wall art",
+            "educational poster",
+            "digital download",
+            "teacher gift",
+            "green theorem",
+        ],
+        "notes": "generate_formula_sheets.py. $2.99.",
+        "listing_id": 4543997899,
+    },
+
+    "password_tracker": {
+        "title": (
+            "Password Tracker Printable | Login Password Book PDF | "
+            "WiFi Website App Log Change History (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["password_tracker"],
+        "price": 5.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("password_tracker", "previews", "pt_preview_1_hero.jpg"),
+            p("password_tracker", "previews", "pt_preview_2_sections.jpg"),
+            p("password_tracker", "previews", "pt_preview_3_why.jpg"),
+            p("password_tracker", "previews", "pt_preview_4_wifi.jpg"),
+            p("password_tracker", "previews", "pt_preview_5_how.jpg"),
+            p("password_tracker", "previews", "pt_preview_6_value.jpg"),
+        ],
+        "files": [
+            p("password_tracker", "Password_Login_Tracker.zip"),
+        ],
+        "tags": [
+            "password tracker",
+            "password book",
+            "password log",
+            "login tracker",
+            "password printable",
+            "wifi password log",
+            "website password",
+            "password organizer",
+            "internet password book",
+            "password keeper printable",
+            "digital download",
+            "home organizer",
+            "printable planner",
+        ],
+        "notes": (
+            "eRank Wave14: password tracker KD 27 · ~1.2k Jun · mom 1.2 · ~3.4k comp. "
+            "Unbranded elegant stationery design (Cinzel/Georgia/Raleway). "
+            "DISTINCT from emergency_binder. generate_password_tracker.py + kit.py. "
+            "Draft listing_id=4543988357. Ads OFF."
+        ),
+        "listing_id": 4543988357,
+    },
+
+    "stem_ipad_kit": {
+        "title": (
+            "STEM Study OS iPad Stickers | GoodNotes Math Science Stickers | "
+            "Digital Planner PNG Pack (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["stem_ipad_kit"],
+        "price": 4.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("stem_ipad_kit", "previews", "stem_ipad_preview_1_hero.jpg"),
+            p("stem_ipad_kit", "previews", "stem_ipad_preview_2_ipad.jpg"),
+            p("stem_ipad_kit", "previews", "stem_ipad_preview_3_modules.jpg"),
+            p("stem_ipad_kit", "previews", "stem_ipad_preview_4_sheet.jpg"),
+            p("stem_ipad_kit", "previews", "stem_ipad_preview_5_included.jpg"),
+            p("stem_ipad_kit", "previews", "stem_ipad_preview_6_howto.jpg"),
+        ],
+        "files": [
+            p("stem_ipad_kit", "STEM_Study_OS_iPad_Stickers.zip"),
+        ],
+        "tags": [
+            "goodnotes stickers",
+            "ipad stickers",
+            "digital stickers",
+            "stem stickers",
+            "math stickers",
+            "study stickers",
+            "notability sticker",
+            "digital planner",
+            "science stickers",
+            "student stickers",
+            "digital download",
+            "procreate stickers",
+            "planner stickers",
+        ],
+        "notes": (
+            "Phase 1 digital iPad accessories (market research + eRank). "
+            "Functional STEM Study OS: 72 PNG stickers, 8 modules. "
+            "generate_stem_ipad_kit.py. $4.99. Draft listing_id=4544037066. Ads OFF."
+        ),
+        "listing_id": 4544037066,
     },
 
     "emergency_binder": {

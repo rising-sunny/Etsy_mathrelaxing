@@ -21,7 +21,6 @@ Traffic Stats
 Spotted on Etsy
 Tag Report
 Sales Map
-Delivery Status
 Trends
 Trend Buzz
 Monthly Trends
@@ -36,24 +35,23 @@ TheMathRelaxing
 Etsy
 USA
 Searches:
-11/100
+14/100
 Sync Listings
-Synced 3 days ago
+Synced 10 days ago
 Bulk Keyword Tool
-Quota 11/100
+Quota 14/100
 
 Lookup the estimated search volumes and trends for keywords on Etsy and other marketplaces, 20 keywords at a time.
 
-3/20
+19/20
 USA
 Analyze
 0
+1,000
+2,000
 3,000
-6,000
-9,000
-12,000
-15,000
-18,000
+4,000
+5,000
 Mar 25
 Apr 25
 May 25
@@ -69,9 +67,25 @@ Feb 26
 Mar 26
 Apr 26
 May 26
-science mug
-math mug
-custom mug
+rugged ipad case
+ipad armor case
+ipad folio leather
+ipad suede sleeve
+ipad neoprene sleeve
+ipad organizer
+ipad portfolio binder
+ipad notepad cover
+remarkable 2 case
+remarkable accessories
+supernote case
+boox case
+android tablet case
+samsung tab case
+ipad mini 6 case
+ipad mini 7 case
+ipad air m2 case
+ipad pro m4 case
+remarkable case
 Columns
 Export
 	
@@ -111,17 +125,102 @@ Google Searches
 
 
 	
-	science mug	
+	rugged ipad case	
 Jun 2026
 0
 	
-21
+Unknown
+	
+Unknown
+	
+Unknown
+	
+< 20
+	
+	
+-
+
+
+	
+	ipad armor case	
+Jun 2026
+0
 	
 Unknown
 	
 Unknown
 	
-15,840
+Unknown
+	
+Unknown
+	
+	
+-
+
+
+	
+	ipad folio leather	
+Jun 2026
+0
+	
+Unknown
+	
+Unknown
+	
+Unknown
+	
+307
+	
+	
+-
+
+
+	
+	ipad suede sleeve	
+Jun 2026
+0
+	
+Unknown
+	
+Unknown
+	
+Unknown
+	
+Unknown
+	
+	
+-
+
+
+	
+	ipad neoprene sleeve	
+Jun 2026
+0
+	
+Unknown
+	
+Unknown
+	
+Unknown
+	
+757
+	
+	
+-
+
+
+	
+	ipad organizer	
+Jun 2026
+0
+	
+< 20
+	
+Unknown
+	
+Unknown
+	
+8,225
 	
 100
 	
@@ -129,7 +228,167 @@ Unknown
 
 
 	
-	math mug	
+	ipad portfolio binder	
+Jun 2026
+0
+	
+Unknown
+	
+Unknown
+	
+Unknown
+	
+Unknown
+	
+	
+-
+
+
+	
+	ipad notepad cover	
+Jun 2026
+0
+	
+Unknown
+	
+Unknown
+	
+Unknown
+	
+Unknown
+	
+	
+-
+
+
+	
+	remarkable 2 case	
+Jun 2026
+10
+	
+1,778
+	
+1,984
+	
+112%
+	
+155
+	
+1
+	
+1.000
+
+
+	
+	remarkable accessories	
+Jun 2026
+0
+	
+< 20
+	
+Unknown
+	
+Unknown
+	
+545
+	
+100
+	
+-
+
+
+	
+	supernote case	
+Jun 2026
+0
+	
+125
+	
+176
+	
+141%
+	
+205
+	
+11
+	
+-
+
+
+	
+	boox case	
+Jun 2026
+0
+	
+< 20
+	
+26
+	
+137%
+	
+132
+	
+42
+	
+-
+
+
+	
+	android tablet case	
+Jun 2026
+60
+	
+24
+	
+< 20
+	
+67%
+	
+161
+	
+41
+	
+720
+
+
+	
+	samsung tab case	
+Jun 2026
+0
+	
+< 20
+	
+Unknown
+	
+Unknown
+	
+237
+	
+100
+	
+-
+
+
+	
+	ipad mini 6 case	
+Jun 2026
+0
+	
+< 20
+	
+Unknown
+	
+Unknown
+	
+7,359
+	
+100
+	
+-
+
+
+	
+	ipad mini 7 case	
 Jun 2026
 10
 	
@@ -137,31 +396,66 @@ Jun 2026
 	
 < 20
 	
-25%
+108%
 	
-3,796
+8,126
 	
 100
 	
-170
+1.600
 
 
 	
-	custom mug	
+	ipad air m2 case	
 Jun 2026
-6,730
+0
 	
-5,735
+Unknown
 	
-6,290
+Unknown
 	
-110%
+Unknown
 	
-394,377
+Unknown
 	
-92
 	
-22.200
+-
+
+
+	
+	ipad pro m4 case	
+Jun 2026
+0
+	
+< 20
+	
+Unknown
+	
+Unknown
+	
+326
+	
+96
+	
+-
+
+
+	
+	remarkable case	
+Jun 2026
+10
+	
+202
+	
+193
+	
+96%
+	
+306
+	
+9
+	
+590
 Copyright © 2015-2026. All rights reserved.
 
 eRank® is an affiliate of and operated by ERANK LTD, an Ohio Limited Liability Company.
