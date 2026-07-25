@@ -19,13 +19,46 @@ from matplotlib.colors import PowerNorm
 from scipy.special import genlaguerre, eval_legendre, factorial
 from PIL import Image
 
-# --- premium dark palette + LaTeX-look math ---------------------------------
-BG = "#0a0c12"; PANEL = "#11141d"; LINE = "#2b3242"
-INK = "#e9ecf5"; SUB = "#828aa0"; ACC = "#6fc9d8"
+# --- palettes + LaTeX-look math ---------------------------------------------
+# Dark (default product): deep observatory black.
+# Light: cream paper + dark ink — same family as the equation_plates line;
+#        built for readability when the black ground is too heavy.
+PALETTES = {
+    "dark": {
+        "BG": "#0a0c12", "PANEL": "#11141d", "LINE": "#2b3242",
+        "INK": "#e9ecf5", "SUB": "#828aa0", "ACC": "#6fc9d8",
+        "GOLD": "#ffe2b0",  # highlight strokes on dark ground
+    },
+    "light": {
+        "BG": "#F4F1EA", "PANEL": "#EDEAE3", "LINE": "#C8C2B4",
+        "INK": "#1A1A1A", "SUB": "#555555", "ACC": "#1A7A8A",
+        "GOLD": "#B85C38",  # rust highlight — readable on cream
+    },
+}
+
+BG = PALETTES["dark"]["BG"]
+PANEL = PALETTES["dark"]["PANEL"]
+LINE = PALETTES["dark"]["LINE"]
+INK = PALETTES["dark"]["INK"]
+SUB = PALETTES["dark"]["SUB"]
+ACC = PALETTES["dark"]["ACC"]
+GOLD = PALETTES["dark"]["GOLD"]
+
 SANS = font_manager.FontProperties(family="DejaVu Sans")
 MONO = font_manager.FontProperties(family="DejaVu Sans Mono")
 plt.rcParams["mathtext.fontset"] = "cm"
 plt.rcParams["mathtext.rm"] = "serif"
+
+
+def set_theme(name="dark"):
+    """Switch global palette. Call before render/build. name: 'dark' | 'light'."""
+    global BG, PANEL, LINE, INK, SUB, ACC, GOLD
+    if name not in PALETTES:
+        raise ValueError(f"unknown theme {name!r}; expected one of {list(PALETTES)}")
+    p = PALETTES[name]
+    BG, PANEL, LINE = p["BG"], p["PANEL"], p["LINE"]
+    INK, SUB, ACC, GOLD = p["INK"], p["SUB"], p["ACC"], p["GOLD"]
+    return name
 
 
 def _tile_ax(fig, rect):
@@ -71,7 +104,7 @@ def blackhole_hero(fig, rect):
                    zorder=3 if front else 1, solid_capstyle="round")
     disk(front=False)
     a.add_patch(plt.Circle((0, 0), rs, facecolor="#000000", edgecolor="none", zorder=2))
-    a.add_patch(plt.Circle((0, 0), rs * 1.03, fill=False, edgecolor="#ffe2b0",
+    a.add_patch(plt.Circle((0, 0), rs * 1.03, fill=False, edgecolor=GOLD,
                 lw=1.6, alpha=0.95, zorder=2.6))           # photon ring
     disk(front=True)
 
@@ -94,8 +127,8 @@ def relativity_hero(fig, rect):
     a = _tile_ax(fig, rect); a.set_xlim(-1.15, 1.15); a.set_ylim(-1.15, 1.15); a.set_aspect("equal")
     a.fill([0, 1.15, -1.15], [0, 1.15, 1.15], color=ACC, alpha=0.05)
     a.fill([0, 1.15, -1.15], [0, -1.15, -1.15], color=ACC, alpha=0.05)
-    a.plot([-1.12, 1.12], [-1.12, 1.12], color="#ffe2b0", lw=1.4)
-    a.plot([-1.12, 1.12], [1.12, -1.12], color="#ffe2b0", lw=1.4)
+    a.plot([-1.12, 1.12], [-1.12, 1.12], color=GOLD, lw=1.4)
+    a.plot([-1.12, 1.12], [1.12, -1.12], color=GOLD, lw=1.4)
     xx = np.linspace(-1.12, 1.12, 300)
     for k in (0.3, 0.6, 0.9):
         a.plot(xx, np.sqrt(xx ** 2 + k ** 2), color=SUB, lw=0.7, alpha=0.55)
@@ -111,7 +144,7 @@ def relativity_hero(fig, rect):
 def sr_boost_tile(b):
     def draw(fig, rect):
         a = _tile_ax(fig, rect); a.set_xlim(-1.05, 1.05); a.set_ylim(-1.05, 1.05); a.set_aspect("equal")
-        a.plot([-1, 1], [-1, 1], color="#ffe2b0", lw=1.0); a.plot([-1, 1], [1, -1], color="#ffe2b0", lw=1.0)
+        a.plot([-1, 1], [-1, 1], color=GOLD, lw=1.0); a.plot([-1, 1], [1, -1], color=GOLD, lw=1.0)
         a.axhline(0, color=SUB, lw=0.5); a.axvline(0, color=SUB, lw=0.5)
         a.plot([-1, 1], [-b, b], color=ACC, lw=1.3); a.plot([-b, b], [-1, 1], color=ACC, lw=1.3)
     return draw
@@ -179,7 +212,7 @@ def mechanics_hero(fig, rect):
     E = 0.5 * P ** 2 - np.cos(TH)
     a.set_xlim(-np.pi, np.pi); a.set_ylim(-3, 3)
     a.contour(TH, P, E, levels=np.linspace(-0.9, 3.0, 13), cmap="magma", linewidths=0.8)
-    a.contour(TH, P, E, levels=[1.0], colors="#ffe2b0", linewidths=1.5)     # separatrix
+    a.contour(TH, P, E, levels=[1.0], colors=[GOLD], linewidths=1.5)     # separatrix
     a.axhline(0, color=SUB, lw=0.5)
 
 

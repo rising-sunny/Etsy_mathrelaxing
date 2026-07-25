@@ -1,0 +1,196 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# MathRelaxing — discovery config for find_winners.py
+# Edit THIS file (not the .py) to change what we hunt for.
+# ─────────────────────────────────────────────────────────────────────────────
+
+profile: mathrelaxing
+
+# Core ideas / parent keywords (short). The pipeline expands them.
+seeds:
+  # Brand core
+  - sacred geometry
+  - fractal art
+  - physics poster
+  - math wall art
+  - molecule art
+  - dna art
+  - neural network art
+  - strange attractor
+  - chladni
+  - bauhaus wall art
+  - william morris
+  # Career / systems (proven demand)
+  - letter of recommendation
+  - resume template
+  - emergency binder
+  - password tracker
+  - medication tracker
+  - price list template
+  - social media planner
+  # STEM extensions
+  - medical student planner
+  - calculus formula sheet
+  - circuit board art
+  - periodic table
+  - science fair board
+  # POD-oriented (cross with Printify blanks offline)
+  - math magnet
+  - physics poster
+  - teacher tote bag
+  - funny doormat
+  - math sticker
+  - stem mousepad
+  - nurse shirt
+  - bookish stickers
+  - throw pillow cover
+
+# Turn seeds into long-tails without listing every phrase by hand.
+# Each seed is combined with applicable modifiers (skip if already present).
+modifiers:
+  suffixes:
+    - printable
+    - digital download
+    - wall art
+    - poster
+    - template
+    - planner
+    - coloring book
+  # Only attach a suffix if the seed does NOT already contain one of these stems
+  product_stems:
+    - printable
+    - digital
+    - download
+    - wall art
+    - poster
+    - template
+    - planner
+    - coloring
+    - notebook
+    - sticker
+    - brush
+    - journal
+    - binder
+    - tracker
+    - chart
+    - log
+
+expansion:
+  # Hard cap after expansion + tag mining (quota-friendly)
+  max_keywords: 60
+  # Always keep pure seeds even if over cap (ranked first)
+  keep_seeds: true
+  # From each seed's top Etsy listings, mine tags as extra candidates
+  mine_tags: true
+  mine_per_seed: 8
+  min_tag_chars: 4
+  max_tag_words: 4
+  # Drop tags that look like noise
+  tag_blocklist:
+    - etsy
+    - gift
+    - handmade
+    - custom
+    - personalized
+    - instant
+    - download
+    - digital
+    - printable
+    - pdf
+
+# Tokens that boost / kill brand fit (override product_finder defaults if set)
+fit:
+  positive:
+    - math
+    - mathematical
+    - geometry
+    - geometric
+    - sacred
+    - fractal
+    - physics
+    - science
+    - stem
+    - molecule
+    - dna
+    - neural
+    - circuit
+    - planner
+    - printable
+    - digital
+    - wall art
+    - poster
+    - tracker
+    - binder
+    - template
+    - coloring
+    - attractor
+    - chladni
+    - bauhaus
+    # POD blanks we can print via Printify
+    - magnet
+    - sticker
+    - tote
+    - doormat
+    - mousepad
+    - mouse pad
+    - pillow
+    - nurse
+    - teacher
+    - bookish
+    - formula
+    - periodic
+    - fair board
+  negative:
+    - jewelry
+    - necklace
+    - crochet
+    - knit
+    - candle
+    - soap
+    - baby shower
+    - wedding invitation
+    # note: shirt/hoodie/mug NOT auto-killed — POD apparel is allowed when STEM-tagged
+
+# Drop candidates before scoring if keyword contains these
+exclude_if_contains:
+  - onlyfans
+  - nft
+  - crypto coin
+
+# Shop awareness: pull active titles and down-rank "already covered"
+shop:
+  mark_owned: true
+  owned_score_factor: 0.55   # multiply total score if shop already covers it
+  # Extra phrases treated as "we already sell this" (substring match on titles)
+  owned_aliases:
+    - letter of recommendation
+    - emergency binder
+    - resume
+    - paint by number
+    - pet portrait
+    - bauhaus
+    - william morris
+    - physics field
+    - equation
+    - happy chemical
+    - molecule
+
+etsy:
+  sample: 25
+  sleep: 0.35
+
+# After Etsy ranking, optionally open eRank Edge for top N only (saves quota)
+erank:
+  enabled: false          # set true or pass --erank on CLI
+  top_n: 15
+  login_wait: 90
+  batch_size: 20
+
+scoring:
+  # Soft filters applied after score (still listed, tagged)
+  min_listings_for_empty_check: 3
+  # Prefer digital-heavy SERPs for our model
+  prefer_digital_share_above: 0.4
+
+output:
+  # Files written under research/ with this prefix + timestamp if auto
+  prefix: winners

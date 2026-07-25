@@ -1,0 +1,200 @@
+[
+  {
+    "keyword": "binder covers",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 10.0,
+    "searches": 110.0,
+    "clicks": 158.0,
+    "ctr": 144.0,
+    "competition": 9613.0,
+    "kd": 97.0,
+    "momentum": 0.09,
+    "raw": [
+      "binder covers",
+      "Jun 2026",
+      "10",
+      "110",
+      "158",
+      "144%",
+      "9,613",
+      "97",
+      "1.600"
+    ]
+  },
+  {
+    "keyword": "binder inserts",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 10.0,
+    "searches": 20.0,
+    "clicks": 20.0,
+    "ctr": 20.0,
+    "competition": 15898.0,
+    "kd": 100.0,
+    "momentum": 0.5,
+    "raw": [
+      "binder inserts",
+      "Jun 2026",
+      "10",
+      "< 20",
+      "< 20",
+      "< 20%",
+      "15,898",
+      "100",
+      "480"
+    ]
+  },
+  {
+    "keyword": "homeschool binder",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 10.0,
+    "searches": 20.0,
+    "clicks": 20.0,
+    "ctr": 20.0,
+    "competition": 8984.0,
+    "kd": 100.0,
+    "momentum": 0.5,
+    "raw": [
+      "homeschool binder",
+      "Jun 2026",
+      "10",
+      "< 20",
+      "< 20",
+      "< 20%",
+      "8,984",
+      "100",
+      "110"
+    ]
+  },
+  {
+    "keyword": "subject binder covers",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": null,
+    "clicks": null,
+    "ctr": null,
+    "competition": null,
+    "kd": null,
+    "momentum": null,
+    "raw": [
+      "subject binder covers",
+      "Jun 2026",
+      "0",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "-",
+      "binder cover printable"
+    ]
+  },
+  {
+    "keyword": "math binder cover",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": null,
+    "clicks": null,
+    "ctr": null,
+    "competition": 57.0,
+    "kd": null,
+    "momentum": null,
+    "raw": [
+      "math binder cover",
+      "Jun 2026",
+      "0",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "57",
+      "-",
+      "stem binder"
+    ]
+  },
+  {
+    "keyword": "classroom binder",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": null,
+    "clicks": null,
+    "ctr": null,
+    "competition": 2312.0,
+    "kd": null,
+    "momentum": null,
+    "raw": [
+      "classroom binder",
+      "Jun 2026",
+      "0",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "2,312",
+      "-",
+      "school binder covers"
+    ]
+  },
+  {
+    "keyword": "teacher binder covers",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": null,
+    "clicks": null,
+    "ctr": null,
+    "competition": 1483.0,
+    "kd": null,
+    "momentum": null,
+    "raw": [
+      "teacher binder covers",
+      "Jun 2026",
+      "0",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "1,483",
+      "-",
+      "printable binder covers"
+    ]
+  },
+  {
+    "keyword": "subject dividers",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": null,
+    "clicks": null,
+    "ctr": null,
+    "competition": 102.0,
+    "kd": null,
+    "momentum": null,
+    "raw": [
+      "subject dividers",
+      "Jun 2026",
+      "0",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "102",
+      "-",
+      "back to school binder"
+    ]
+  },
+  {
+    "keyword": "physics binder",
+    "trend_month": "Jun 2026",
+    "latest_month_searches": 0.0,
+    "searches": null,
+    "clicks": null,
+    "ctr": null,
+    "competition": null,
+    "kd": null,
+    "momentum": null,
+    "raw": [
+      "physics binder",
+      "Jun 2026",
+      "0",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "Unknown",
+      "-",
+      "chemistry binder cover"
+    ]
+  }
+]

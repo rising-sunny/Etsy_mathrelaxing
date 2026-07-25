@@ -1,8 +1,35 @@
 # Product Opportunity Strategy — MathRelaxing
 
 **Shop:** TheMathRelaxing (Etsy shop_id `66586766`)  
-**Stack:** Etsy API v3 (`product_finder.py`) + eRank (Playwright session)  
-**Wave 1:** 2026-07-14 — 60 keywords Etsy + 20 bulk eRank
+**Stack:** Etsy API v3 + eRank (Playwright) + **config-driven discovery**  
+**Wave 1:** 2026-07-14 — 60 keywords Etsy + 20 bulk eRank  
+
+## Pipeline recomendado (desde 2026-07-24)
+
+Ya no hace falta editar listas hardcodeadas en tres `.py`. Flujo único:
+
+| Pieza | Rol |
+|-------|-----|
+| `research/config/winners.yaml` | Seeds, modifiers, fit, umbrales, shop aliases — **editas aquí** |
+| `research/find_winners.py` | Orquestador: expande → mine tags → API Etsy → marca “ya en tienda” → rank → informe |
+| `product_finder.py` | Scoring / analyze_keyword (motor reutilizado) |
+| `research/erank_edge_bulk.py` | eRank Edge (llamado opcionalmente solo para top-N) |
+
+```bash
+# Solo ver keywords generadas (sin gastar API)
+python research/find_winners.py --expand-only
+
+# Scan Etsy completo desde config
+python research/find_winners.py
+
+# Añadir semillas al vuelo + eRank en top 15
+python research/find_winners.py --seeds "adhd planner" "habit tracker" --erank
+
+# Solo un archivo de ideas, sin expansión
+python research/find_winners.py --file research/my_ideas.txt --no-expand --no-mine
+```
+
+Salida: `research/winners_YYYYMMDD_HHMM.{json,csv,_report.md}`
 
 ## Estado de la tienda (eRank dashboard)
 

@@ -1,0 +1,18 @@
+{
+  "primary": {
+    "product_id": "6a64933f1724bbc1a60cc085",
+    "blueprint": 1092,
+    "retail": 39.99,
+    "cost_approx": 10.39,
+    "title": "Math Teacher Tote Bag | STEM Classroom Canvas Tote | Equation Art Teacher Gift | Back to School"
+  },
+  "premium": {
+    "product_id": "6a64932d5dd9517265068053",
+    "blueprint": 5113,
+    "retail": 54.99,
+    "cost_approx": 36.94
+  },
+  "art": "printify\\_tote_art\\math_teacher_tote_exclusive_3000.png",
+  "published_to_etsy": false,
+  "art_style": "exclusive transparent \u2014 orbit line art + Euler mathtext, no plate bg"
+}

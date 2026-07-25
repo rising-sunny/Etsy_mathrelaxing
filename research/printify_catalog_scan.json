@@ -1,20 +1,20 @@
 {
   "shop_id": "28170054",
-  "blueprint_count": 1797,
+  "blueprint_count": 1908,
   "family_counts": {
-    "apparel": 625,
-    "other": 608,
-    "headwear": 140,
-    "drinkware": 94,
+    "apparel": 718,
+    "other": 625,
+    "headwear": 136,
+    "drinkware": 96,
     "poster_print": 70,
-    "tote_bag": 53,
+    "tote_bag": 54,
     "textile_home": 45,
     "ornament": 30,
     "pillow": 25,
     "sticker": 23,
-    "card": 17,
+    "card": 18,
     "notebook": 14,
-    "magnet": 13,
+    "magnet": 14,
     "calendar": 10,
     "socks": 8,
     "mousepad": 8,
@@ -6692,13 +6692,13 @@
     },
     {
       "id": 1183,
-      "title": "Wall Calendars (2026)",
+      "title": "Wall Calendars (2027)",
       "brand": "Generic brand",
       "model": "",
       "family": "calendar",
       "brand_fit": 0,
       "images": [
-        "https://images.printify.com/68d12b13a85c313529033d02"
+        "https://images.printify.com/6a54ae91fe8d68574b072860"
       ]
     },
     {
@@ -7869,13 +7869,13 @@
     },
     {
       "id": 1353,
-      "title": "Desktop Calendar (2026 grid)",
+      "title": "Desktop Calendar (2027 grid)",
       "brand": "Generic brand",
       "model": "",
       "family": "calendar",
       "brand_fit": 0,
       "images": [
-        "https://images.printify.com/68d3fcdd907eb8a1370f57a2"
+        "https://images.printify.com/6a54bf3bbb2aec5efb049574"
       ]
     },
     {
@@ -9053,72 +9053,6 @@
       "brand_fit": 0,
       "images": [
         "https://images.printify.com/66d5c253f5e18fc79a0c51e7"
-      ]
-    },
-    {
-      "id": 1542,
-      "title": "Brain Support Complex Supplement (60 Capsules)",
-      "brand": "Generic brand",
-      "model": "",
-      "family": "headwear",
-      "brand_fit": 0,
-      "images": [
-        "https://images.printify.com/66c4523667fe3582a206dad7"
-      ]
-    },
-    {
-      "id": 1543,
-      "title": "ION + Select Electrolyte Supplement (225g, 7.9oz)",
-      "brand": "Generic brand",
-      "model": "",
-      "family": "other",
-      "brand_fit": 0,
-      "images": [
-        "https://images.printify.com/66c451ee559ef7646905fd79"
-      ]
-    },
-    {
-      "id": 1549,
-      "title": "Beetroot Supplement (60 Capsules)",
-      "brand": "Generic brand",
-      "model": "",
-      "family": "headwear",
-      "brand_fit": 0,
-      "images": [
-        "https://images.printify.com/66c450079300f4368609f4a5"
-      ]
-    },
-    {
-      "id": 1550,
-      "title": "Sea Moss Supplement (60 Capsules)",
-      "brand": "Generic brand",
-      "model": "",
-      "family": "headwear",
-      "brand_fit": 0,
-      "images": [
-        "https://images.printify.com/66c44fbac7a64ba44703b9c3"
-      ]
-    },
-    {
-      "id": 1556,
-      "title": "CoQ10 (Ubiquinone) Supplement (30 Capsules)",
-      "brand": "Generic brand",
-      "model": "",
-      "family": "headwear",
-      "brand_fit": 0,
-      "images": [
-        "https://images.printify.com/66c44954a9f8644df4021b96"
-      ]
-    },
-    {
-      "id": 1563,
-      "title": "Magnesium Glycinate Supplement (60 Capsules)",
-      "brand": "Generic brand",
-      "model": "",
-      "family": "headwear",
-      "brand_fit": 0,
-      "images": [
-        "https://images.printify.com/66c34df9f9b353eb100c82d2"
       ]
     },
     {
@@ -10960,7 +10894,7 @@
     },
     {
       "id": 1910,
-      "title": "Bucket Hat (Embroidery)",
+      "title": "Big Accessories Bucket Hat",
       "brand": "Big Accessories",
       "model": "BX003",
       "family": "headwear",
@@ -12532,6 +12466,17 @@
       ]
     },
     {
+      "id": 2713,
+      "title": "Finn Two-Tone Nylon Cap",
+      "brand": "AS Colour",
+      "model": "1105",
+      "family": "headwear",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/68fb7e7f215838042703ca12"
+      ]
+    },
+    {
       "id": 2714,
       "title": "Premium Jersey Infant Blanket (Embroidery)",
       "brand": "Rabbit Skins",
@@ -13676,6 +13621,116 @@
       ]
     },
     {
+      "id": 2978,
+      "title": "Unisex Cotton Long Sleeve Hooded T-Shirt",
+      "brand": "JERZEES",
+      "model": "363LH",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698729c571000543230a8ccc"
+      ]
+    },
+    {
+      "id": 2979,
+      "title": "Unisex Cotton T-Shirt",
+      "brand": "JERZEES",
+      "model": "363M",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6987ff021d4e087a9e07a37c"
+      ]
+    },
+    {
+      "id": 2980,
+      "title": "Premium Blend Ring Spun Long Sleeve T-Shirt",
+      "brand": "JERZEES",
+      "model": "560LS",
+      "family": "apparel",
+      "brand_fit": 4,
+      "images": [
+        "https://images.printify.com/69878dae26199a52550ea452"
+      ]
+    },
+    {
+      "id": 2981,
+      "title": "Premium Blend Ring Spun T-Shirt",
+      "brand": "JERZEES",
+      "model": "560M",
+      "family": "apparel",
+      "brand_fit": 4,
+      "images": [
+        "https://images.printify.com/698805fbac9569c6c202c4bc"
+      ]
+    },
+    {
+      "id": 2983,
+      "title": "Unisex Premium Combed Ring Spun Cotton Tee",
+      "brand": "JERZEES",
+      "model": "570M",
+      "family": "apparel",
+      "brand_fit": 4,
+      "images": [
+        "https://images.printify.com/69878df38b00d9698505d734"
+      ]
+    },
+    {
+      "id": 2984,
+      "title": "Compression Muscle Tee",
+      "brand": "A4",
+      "model": "A4N2306",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69861b2b9e2504f5ca0e4362"
+      ]
+    },
+    {
+      "id": 2985,
+      "title": "Sprint Performance Tee",
+      "brand": "A4",
+      "model": "A4N3402",
+      "family": "poster_print",
+      "brand_fit": 5,
+      "images": [
+        "https://images.printify.com/69861b4075850500a4083213"
+      ]
+    },
+    {
+      "id": 2986,
+      "title": "AirFlex Short Sleeve Tee",
+      "brand": "A4",
+      "model": "A4N3531",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69861b653e5add6b890f62c6"
+      ]
+    },
+    {
+      "id": 2989,
+      "title": "Women's Relaxed Tri-Blend Scoop Neck Tee",
+      "brand": "Allmade",
+      "model": "AL2015",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69861bc2e37b8a6be2011c2d"
+      ]
+    },
+    {
+      "id": 2990,
+      "title": "Unisex Mineral Dye Organic Cotton Tee",
+      "brand": "Allmade",
+      "model": "AL2400",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69878a28106efa8fb60bd16f"
+      ]
+    },
+    {
       "id": 2991,
       "title": "Unisex Heavyweight Recycled Cotton Tee",
       "brand": "Allmade",
@@ -13695,6 +13750,72 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/69863d4198e099407d073c62"
+      ]
+    },
+    {
+      "id": 2993,
+      "title": "Unisex Long Sleeve Organic Cotton Tee",
+      "brand": "Allmade",
+      "model": "AL6104",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69871e9cf7090fd51b0cea66"
+      ]
+    },
+    {
+      "id": 2994,
+      "title": "Unisex Long Sleeve Recycled Blend Tee",
+      "brand": "Allmade",
+      "model": "AL6204",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69861c2e322fc904df066f3e"
+      ]
+    },
+    {
+      "id": 2995,
+      "title": "Compression Short Sleeve Tee",
+      "brand": "A4",
+      "model": "A4N3130",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69861b32a61896b8b9039473"
+      ]
+    },
+    {
+      "id": 2998,
+      "title": "Cooling Performance Long Sleeve Hooded Tee",
+      "brand": "A4",
+      "model": "A4N3409",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69861b51bbf6af7651097774"
+      ]
+    },
+    {
+      "id": 2999,
+      "title": "Softek Long Sleeve Hooded Tee",
+      "brand": "A4",
+      "model": "A4N3528",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69861b60c3f56b780d03d054"
+      ]
+    },
+    {
+      "id": 3001,
+      "title": "Short Sleeve Full-Button Baseball Top",
+      "brand": "A4",
+      "model": "A4N4184",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/69871dd6d72c787cce0ac9e2"
       ]
     },
     {
@@ -13830,6 +13951,28 @@
       ]
     },
     {
+      "id": 3044,
+      "title": "Women's Jersey Long Sleeve Tee",
+      "brand": "Bella+Canvas",
+      "model": "BC6500",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6989917c9c65cc3ba00b92b2"
+      ]
+    },
+    {
+      "id": 3050,
+      "title": "Softek Short Sleeve Tee",
+      "brand": "A4",
+      "model": "A4N3013",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69861b30f7976721e10704d2"
+      ]
+    },
+    {
       "id": 3051,
       "title": "Women's Cooling Performance Short Sleeve Tee",
       "brand": "A4",
@@ -13863,6 +14006,94 @@
       ]
     },
     {
+      "id": 3056,
+      "title": "ANSI 107 Class 3 Long Sleeve Snag-Resistant Reflective T-Shirt",
+      "brand": "CornerStone\u00ae",
+      "model": "CS409",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69861f5bdaeb7442090c855c"
+      ]
+    },
+    {
+      "id": 3059,
+      "title": "Workwear Pro Long Sleeve Pocket Tee",
+      "brand": "CornerStone\u00ae",
+      "model": "CS440LSP",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69878ae2b9aed480540cac07"
+      ]
+    },
+    {
+      "id": 3061,
+      "title": "Workwear Pro Short Sleeve Tee",
+      "brand": "CornerStone\u00ae",
+      "model": "CS440",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69861f9e4294bac2ea07aa7f"
+      ]
+    },
+    {
+      "id": 3062,
+      "title": "Tall Workwear Pro Short Sleeve Pocket Tee",
+      "brand": "CornerStone\u00ae",
+      "model": "TLCS440P",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698620b7487e8bfbc10f7ff8"
+      ]
+    },
+    {
+      "id": 3065,
+      "title": "Women's Perfect Tri Long Sleeve V-Neck Tee",
+      "brand": "District",
+      "model": "DT135",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69878b24ff7772662c0ddd03"
+      ]
+    },
+    {
+      "id": 3067,
+      "title": "Women's Perfect Tri Relaxed Tank",
+      "brand": "District",
+      "model": "DT151",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69878b597660ba97f301ad77"
+      ]
+    },
+    {
+      "id": 3069,
+      "title": "Women's Perfect Tri Muscle Tank",
+      "brand": "District",
+      "model": "DT153",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69872478f661de2c7a02a650"
+      ]
+    },
+    {
+      "id": 3070,
+      "title": "Women's Fitted Perfect Tri Tee",
+      "brand": "District",
+      "model": "DT155",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698724770f7e6df84e0fa8f7"
+      ]
+    },
+    {
       "id": 3071,
       "title": "Perfect Weight CVC Long Sleeve Tee",
       "brand": "District",
@@ -13871,6 +14102,39 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/69878b6e7660ba97f301ad7a"
+      ]
+    },
+    {
+      "id": 3072,
+      "title": "Women's Perfect Weight CVC Tee",
+      "brand": "District",
+      "model": "DT188",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69878b87a142ff3da101e59e"
+      ]
+    },
+    {
+      "id": 3073,
+      "title": "Long Sleeve Tee",
+      "brand": "District",
+      "model": "DT2103",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698724e8e25b5b109709399b"
+      ]
+    },
+    {
+      "id": 3075,
+      "title": "Women's Fitted The Concert Tee",
+      "brand": "District",
+      "model": "DT5001",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69872561615d4ddd5a050e80"
       ]
     },
     {
@@ -13893,6 +14157,83 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/6987fe6b76ce91a56e026847"
+      ]
+    },
+    {
+      "id": 3078,
+      "title": "V.I.T. Muscle Tank",
+      "brand": "District",
+      "model": "DT6300",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69878bf4ffb05641f30c0511"
+      ]
+    },
+    {
+      "id": 3079,
+      "title": "Heavyweight Very Important Tee",
+      "brand": "District",
+      "model": "DT6065",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69878bbfcf14eb7bac009071"
+      ]
+    },
+    {
+      "id": 3081,
+      "title": "Women's Very Important Tee V-Neck",
+      "brand": "District",
+      "model": "DT6503",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698726d6880a79bdce045e25"
+      ]
+    },
+    {
+      "id": 3085,
+      "title": "Unisex Ring Spun Long Sleeve T-Shirt",
+      "brand": "JERZEES",
+      "model": "IC46L",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69872ca4727bbfc668063f61"
+      ]
+    },
+    {
+      "id": 3086,
+      "title": "Unisex Ring Spun T-Shirt",
+      "brand": "JERZEES",
+      "model": "IC46M",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69878e7079ed0ace52083a78"
+      ]
+    },
+    {
+      "id": 3087,
+      "title": "Stretch Jersey Crew",
+      "brand": "Mercer+Mettle\u2122",
+      "model": "MM1016",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/69872d4793708918bc031ec0"
+      ]
+    },
+    {
+      "id": 3088,
+      "title": "Women's Stretch Jersey Relaxed Scoop",
+      "brand": "Mercer+Mettle\u2122",
+      "model": "MM1017",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/69872d515002f076a708063a"
       ]
     },
     {
@@ -13951,6 +14292,17 @@
       ]
     },
     {
+      "id": 3112,
+      "title": "Garment-Dyed V-Neck Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "LPC099V",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69873c2fac4faf66c10fad66"
+      ]
+    },
+    {
       "id": 3113,
       "title": "Garment-Dyed Tank",
       "brand": "Port & Company\u00ae",
@@ -13959,6 +14311,28 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/69873c16432d94dbd406e519"
+      ]
+    },
+    {
+      "id": 3114,
+      "title": "Women's Fan Favorite Blend V-Neck Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "LPC455V",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862aa01ff5de727e0fef90"
+      ]
+    },
+    {
+      "id": 3115,
+      "title": "Garment-Dyed Pullover Hooded Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "PC099H",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6987912672f76d7a6702a528"
       ]
     },
     {
@@ -13973,6 +14347,39 @@
       ]
     },
     {
+      "id": 3118,
+      "title": "Garment-Dyed Pocket Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "PC099P",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862abbe72a17fb420d702b"
+      ]
+    },
+    {
+      "id": 3120,
+      "title": "Window Tie-Dye Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "PC149",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862ad833df7b1c4f061bca"
+      ]
+    },
+    {
+      "id": 3123,
+      "title": "Heather Performance Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "PC390",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69875a90e24072d5f4029503"
+      ]
+    },
+    {
       "id": 3125,
       "title": "Youth Easy Cotton Tee",
       "brand": "Port & Company\u00ae",
@@ -13981,6 +14388,17 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/6987918bd46b9cb7660627bb"
+      ]
+    },
+    {
+      "id": 3126,
+      "title": "Easy Cotton Long Sleeve Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "PC43LS",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69879148537f20535d0903cd"
       ]
     },
     {
@@ -13995,6 +14413,17 @@
       ]
     },
     {
+      "id": 3128,
+      "title": "Fan Favorite Blend Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "PC455",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69875b56fb3245cba00d72e5"
+      ]
+    },
+    {
       "id": 3130,
       "title": "Core Cotton Camo Tee",
       "brand": "Port & Company\u00ae",
@@ -14003,6 +14432,39 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/6a4df5cf9ed06207200becc2"
+      ]
+    },
+    {
+      "id": 3131,
+      "title": "Core Cotton DTG Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "PC54DTG",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69875be7b867a1f88404f3c9"
+      ]
+    },
+    {
+      "id": 3133,
+      "title": "Core Cotton Sleeveless Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "PC54SL",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862b258dbbfe7b4105aede"
+      ]
+    },
+    {
+      "id": 3136,
+      "title": "Long Sleeve Core Blend Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "PC55LS",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69863403a2586a058a0f7d72"
       ]
     },
     {
@@ -14017,6 +14479,105 @@
       ]
     },
     {
+      "id": 3139,
+      "title": "Long Sleeve Bouncer Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "PC600LS",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862b4f3d6f90d8410d3a5b"
+      ]
+    },
+    {
+      "id": 3141,
+      "title": "Tall Long Sleeve Essential Pocket Tee",
+      "brand": "Port & Company\u00ae",
+      "model": "PC61LSPT",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69875c8c5d6ee19414033b18"
+      ]
+    },
+    {
+      "id": 3142,
+      "title": "Essential Mock Turtleneck",
+      "brand": "Port & Company\u00ae",
+      "model": "PC61M",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/69875ca71d39a6d8a00d3bda"
+      ]
+    },
+    {
+      "id": 3146,
+      "title": "Performance Long Sleeve Tee",
+      "brand": "Russell Outdoors\u2122",
+      "model": "RU150LS",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6986349e8e0794364204e0f7"
+      ]
+    },
+    {
+      "id": 3149,
+      "title": "Women's Halftime Stripe Long Sleeve V-Neck Tee",
+      "brand": "Sport-Tek",
+      "model": "LST6043",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698794d5e716ac63dd001b15"
+      ]
+    },
+    {
+      "id": 3150,
+      "title": "Women's Micropique Sport-Wick 1/4-Zip",
+      "brand": "Sport-Tek",
+      "model": "LST672",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/698794e93ceafc194207ca32"
+      ]
+    },
+    {
+      "id": 3151,
+      "title": "Women's Ultimate Performance V-Neck",
+      "brand": "Sport-Tek",
+      "model": "LST700",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/6986305deef6e5a0cc017835"
+      ]
+    },
+    {
+      "id": 3152,
+      "title": "Digi Camo Tee",
+      "brand": "Sport-Tek",
+      "model": "ST460",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69877c3dbac40141540df670"
+      ]
+    },
+    {
+      "id": 3153,
+      "title": "Long Sleeve Digi Camo Tee",
+      "brand": "Sport-Tek",
+      "model": "ST460LS",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698801c50fca50d12b012746"
+      ]
+    },
+    {
       "id": 3155,
       "title": "Halftime Long Sleeve Hoodie",
       "brand": "Sport-Tek",
@@ -14028,6 +14589,28 @@
       ]
     },
     {
+      "id": 3156,
+      "title": "Micropique Sport-Wick 1/4-Zip",
+      "brand": "Sport-Tek",
+      "model": "ST672",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/69877da4643c790e210e086f"
+      ]
+    },
+    {
+      "id": 3157,
+      "title": "Long Sleeve Ultimate Performance Crew",
+      "brand": "Sport-Tek",
+      "model": "ST700LS",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/698796127e88fd2e92027df4"
+      ]
+    },
+    {
       "id": 3158,
       "title": "Dry Zone Short Sleeve Raglan T-Shirt",
       "brand": "Sport-Tek",
@@ -14036,6 +14619,17 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/698796a557bfdd32a70b8095"
+      ]
+    },
+    {
+      "id": 3159,
+      "title": "Tall Heather Contender Tee",
+      "brand": "Sport-Tek",
+      "model": "TST360",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698780689da8e7e28e0913d8"
       ]
     },
     {
@@ -14102,6 +14696,94 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/69879801efc4e63aa401d327"
+      ]
+    },
+    {
+      "id": 3174,
+      "title": "Women's Daily V-Neck Tee",
+      "brand": "Volunteer Knitwear",
+      "model": "LVL45V",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698788670c06ed409301dc43"
+      ]
+    },
+    {
+      "id": 3175,
+      "title": "All-American Long Sleeve Tee",
+      "brand": "Volunteer Knitwear",
+      "model": "VL100LS",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698788753576c66bd00640c6"
+      ]
+    },
+    {
+      "id": 3176,
+      "title": "All-American Pocket Tee",
+      "brand": "Volunteer Knitwear",
+      "model": "VL100P",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6986330ba9e133ec6c08f7d4"
+      ]
+    },
+    {
+      "id": 3177,
+      "title": "Tri Tee",
+      "brand": "Volunteer Knitwear",
+      "model": "VL40",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698788922bbba106cf0e0c0d"
+      ]
+    },
+    {
+      "id": 3178,
+      "title": "Daily Tee",
+      "brand": "Volunteer Knitwear",
+      "model": "VL45",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698798942a85292dab016a57"
+      ]
+    },
+    {
+      "id": 3179,
+      "title": "Chore Tee",
+      "brand": "Volunteer Knitwear",
+      "model": "VL60",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698798997f09a3a515058443"
+      ]
+    },
+    {
+      "id": 3180,
+      "title": "Chore Long Sleeve Tee",
+      "brand": "Volunteer Knitwear",
+      "model": "VL60LS",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69863316f21726c6b8006c69"
+      ]
+    },
+    {
+      "id": 3183,
+      "title": "Women's V.I.T. Racerback Tank",
+      "brand": "District",
+      "model": "DT6302",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862209964a4dd63305e9f6"
       ]
     },
     {
@@ -14743,6 +15425,17 @@
       ]
     },
     {
+      "id": 3933,
+      "title": "Women's Dri-Mesh Pro Polo",
+      "brand": "Sport-Tek",
+      "model": "L474",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/698774dd8ab8971e84069a2d"
+      ]
+    },
+    {
       "id": 3936,
       "title": "Women's Competitor United Polo",
       "brand": "Sport-Tek",
@@ -14776,6 +15469,28 @@
       ]
     },
     {
+      "id": 3958,
+      "title": "Women's PosiCharge Active Textured Polo",
+      "brand": "Sport-Tek",
+      "model": "LST690",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/698794f66bdaabe0400b8f62"
+      ]
+    },
+    {
+      "id": 3959,
+      "title": "Women's Exchange 1.5 Long Sleeve Crew",
+      "brand": "Sport-Tek",
+      "model": "LST710",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/69877825f4b0dfdfef0f8f20"
+      ]
+    },
+    {
       "id": 3965,
       "title": "Women's Stella Ida Full-Zip Hooded Sweatshirt",
       "brand": "Stanley Stella",
@@ -14795,6 +15510,413 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/6a3e3a0242c44f2ece0ccb12"
+      ]
+    },
+    {
+      "id": 4008,
+      "title": "Long Sleeve Modern Oxford Shirt",
+      "brand": "Mercer+Mettle\u2122",
+      "model": "MM2002",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69872d6c417111ef2e0d7206"
+      ]
+    },
+    {
+      "id": 4009,
+      "title": "Women's Long Sleeve Modern Oxford Shirt",
+      "brand": "Mercer+Mettle\u2122",
+      "model": "MM2003",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69878e726187d34fcf03902b"
+      ]
+    },
+    {
+      "id": 4010,
+      "title": "Short Sleeve UV Capital Tech Shirt",
+      "brand": "Mercer+Mettle\u2122",
+      "model": "MM2006",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69878e85bdef84d3240eade5"
+      ]
+    },
+    {
+      "id": 4012,
+      "title": "Women's Stretch Crepe 3/4-Sleeve Blouse",
+      "brand": "Mercer+Mettle\u2122",
+      "model": "MM2011",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/69872d8ef91ec15500062174"
+      ]
+    },
+    {
+      "id": 4017,
+      "title": "Women's Short Sleeve Value Denim Shirt",
+      "brand": "Port & Company\u00ae",
+      "model": "LSP11",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862aa9c774a959e1051a08"
+      ]
+    },
+    {
+      "id": 4018,
+      "title": "Long Sleeve Value Denim Shirt",
+      "brand": "Port & Company\u00ae",
+      "model": "SP10",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862b89c774a959e1051a28"
+      ]
+    },
+    {
+      "id": 4019,
+      "title": "Short Sleeve Value Denim Shirt",
+      "brand": "Port & Company\u00ae",
+      "model": "SP11",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862b89d4a4e067200d9e2a"
+      ]
+    },
+    {
+      "id": 4021,
+      "title": "Women's 3/4-Sleeve Easy Care Shirt",
+      "brand": "Port Authority",
+      "model": "L612",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69876b9991419fbb2c06b098"
+      ]
+    },
+    {
+      "id": 4023,
+      "title": "Women's SuperPro Oxford Shirt",
+      "brand": "Port Authority",
+      "model": "L658",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698792d157bfdd32a70b8060"
+      ]
+    },
+    {
+      "id": 4024,
+      "title": "Women's Short Sleeve SuperPro Oxford Shirt",
+      "brand": "Port Authority",
+      "model": "L659",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862e1889358afb31071019"
+      ]
+    },
+    {
+      "id": 4025,
+      "title": "Women's SuperPro Twill Shirt",
+      "brand": "Port Authority",
+      "model": "L663",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862e1d5105f5ee280b2b19"
+      ]
+    },
+    {
+      "id": 4027,
+      "title": "Women's Long Sleeve Carefree Poplin Shirt",
+      "brand": "Port Authority",
+      "model": "LW100",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69876f4900c26e65ad0ef055"
+      ]
+    },
+    {
+      "id": 4028,
+      "title": "Women's 3/4-Sleeve Carefree Poplin Shirt",
+      "brand": "Port Authority",
+      "model": "LW102",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69876f5aed3f2e219e02ce2d"
+      ]
+    },
+    {
+      "id": 4031,
+      "title": "Women's 3/4-Sleeve Textured Crepe Tunic",
+      "brand": "Port Authority",
+      "model": "LW713",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/69876fcd97385d39680e76a5"
+      ]
+    },
+    {
+      "id": 4034,
+      "title": "Women's Long Sleeve Nailhead Easy Care Shirt",
+      "brand": "Port Authority",
+      "model": "LW816",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6987702367432bacfb0318ed"
+      ]
+    },
+    {
+      "id": 4035,
+      "title": "Women's Long Sleeve UV Daybreak Shirt",
+      "brand": "Port Authority",
+      "model": "LW960",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862edcad3d7ddd2e0572b6"
+      ]
+    },
+    {
+      "id": 4036,
+      "title": "Heavyweight Denim Shirt",
+      "brand": "Port Authority",
+      "model": "S100",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862edc50eed7adb2049cb9"
+      ]
+    },
+    {
+      "id": 4037,
+      "title": "Short Sleeve Twill Shirt",
+      "brand": "Port Authority",
+      "model": "S500T",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6987935bf3848ef8140bf674"
+      ]
+    },
+    {
+      "id": 4038,
+      "title": "Short Sleeve Easy Care Shirt",
+      "brand": "Port Authority",
+      "model": "S508",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862ef1b9d707613f0ea3a0"
+      ]
+    },
+    {
+      "id": 4039,
+      "title": "Easy Care Camp Shirt",
+      "brand": "Port Authority",
+      "model": "S535",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862ee47c00421c0003bf99"
+      ]
+    },
+    {
+      "id": 4040,
+      "title": "Long Sleeve Denim Shirt",
+      "brand": "Port Authority",
+      "model": "S600",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862ee467d14dcd970b7887"
+      ]
+    },
+    {
+      "id": 4043,
+      "title": "Plaid Pattern Easy Care Shirt",
+      "brand": "Port Authority",
+      "model": "S639",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698770a906c370644407e4f5"
+      ]
+    },
+    {
+      "id": 4047,
+      "title": "Long Sleeve Gingham Easy Care Shirt",
+      "brand": "Port Authority",
+      "model": "S654",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862ef6d6478e7a5a04aa89"
+      ]
+    },
+    {
+      "id": 4048,
+      "title": "Short Sleeve SuperPro Oxford Shirt",
+      "brand": "Port Authority",
+      "model": "S659",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862ef6ff0bcfa97d04ee03"
+      ]
+    },
+    {
+      "id": 4050,
+      "title": "Short Sleeve SuperPro Twill Shirt",
+      "brand": "Port Authority",
+      "model": "S664",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698800f03a5d77e1f20abb25"
+      ]
+    },
+    {
+      "id": 4051,
+      "title": "Tall Short Sleeve Easy Care Shirt",
+      "brand": "Port Authority",
+      "model": "TLS508",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698637006d819bed710c9eeb"
+      ]
+    },
+    {
+      "id": 4056,
+      "title": "Tall SuperPro Oxford Shirt",
+      "brand": "Port Authority",
+      "model": "TS658",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6986367155f2bb346e0f3c96"
+      ]
+    },
+    {
+      "id": 4057,
+      "title": "Tall SuperPro Twill Shirt",
+      "brand": "Port Authority",
+      "model": "TS663",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862f345e299b25d30a2e6a"
+      ]
+    },
+    {
+      "id": 4058,
+      "title": "Tall Long Sleeve Carefree Poplin Shirt",
+      "brand": "Port Authority",
+      "model": "TW100",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6986348632ab471abe07f541"
+      ]
+    },
+    {
+      "id": 4061,
+      "title": "Slub Chambray Shirt",
+      "brand": "Port Authority",
+      "model": "W380",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862f38901302feb20df86c"
+      ]
+    },
+    {
+      "id": 4062,
+      "title": "Short Sleeve Performance Staff Shirt",
+      "brand": "Port Authority",
+      "model": "W400",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69879396409d101f2c017960"
+      ]
+    },
+    {
+      "id": 4063,
+      "title": "Long Sleeve Performance Staff Shirt",
+      "brand": "Port Authority",
+      "model": "W401",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6986348c1220caf987009fc2"
+      ]
+    },
+    {
+      "id": 4064,
+      "title": "Broadcloth Gingham Easy Care Shirt",
+      "brand": "Port Authority",
+      "model": "W644",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698771d7c7537d9624061d80"
+      ]
+    },
+    {
+      "id": 4068,
+      "title": "City Stretch Shirt",
+      "brand": "Port Authority",
+      "model": "W680",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698772131e0ebaf1f9066887"
+      ]
+    },
+    {
+      "id": 4069,
+      "title": "Long Sleeve Nailhead Easy Care Shirt",
+      "brand": "Port Authority",
+      "model": "W816",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6987724204973bd30902b96d"
+      ]
+    },
+    {
+      "id": 4073,
+      "title": "Short Sleeve Striped Industrial Work Shirt",
+      "brand": "Red Kap",
+      "model": "CS20",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/698634968ab76a9d7c05eb75"
+      ]
+    },
+    {
+      "id": 4076,
+      "title": "Short Sleeve Solid Ripstop Shirt",
+      "brand": "Red Kap",
+      "model": "SY60",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/69862f94d819fc6a1308a0cb"
       ]
     },
     {
@@ -14828,6 +15950,17 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/6a4412a0df8086f4870ffbb0"
+      ]
+    },
+    {
+      "id": 4112,
+      "title": "Women's Exchange 1.5 Long Sleeve 1/2-Zip",
+      "brand": "Sport-Tek",
+      "model": "LST711",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/6987783096178d14970d6c4f"
       ]
     },
     {
@@ -15279,6 +16412,17 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/699480fc3306f01a520aea92"
+      ]
+    },
+    {
+      "id": 5354,
+      "title": "Classic Rope Cap",
+      "brand": "Richardson",
+      "model": "258",
+      "family": "headwear",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/6a5a1d15c1f8dd2d7c0125f3"
       ]
     },
     {
@@ -15773,7 +16917,7 @@
       "family": "headwear",
       "brand_fit": 0,
       "images": [
-        "https://images.printify.com/69e9d31d4cefcebc75059be0"
+        "https://images.printify.com/6a60c9d5a0042b237a02b000"
       ]
     },
     {
@@ -15997,6 +17141,17 @@
       ]
     },
     {
+      "id": 5546,
+      "title": "Market Full-Length Bib Apron",
+      "brand": "Port Authority",
+      "model": "A800",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/69d7c4f81c706382390ef194"
+      ]
+    },
+    {
       "id": 5560,
       "title": "Plush Throw Blanket (Embroidery)",
       "brand": "Port Authority",
@@ -16107,17 +17262,6 @@
       ]
     },
     {
-      "id": 5599,
-      "title": "Printed Tactical Trucker",
-      "brand": "Richardson",
-      "model": "112PT",
-      "family": "poster_print",
-      "brand_fit": 5,
-      "images": [
-        "https://images.printify.com/69d7c774f456234fbf0dd31b"
-      ]
-    },
-    {
       "id": 5600,
       "title": "Tactical Trucker",
       "brand": "Richardson",
@@ -16170,6 +17314,17 @@
       "brand_fit": 0,
       "images": [
         "https://images.printify.com/69d7c80c1786138c520ed704"
+      ]
+    },
+    {
+      "id": 5607,
+      "title": "Pro Twill Snapback",
+      "brand": "Richardson",
+      "model": "212",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/69d7c83216e25af4a30f43d7"
       ]
     },
     {
@@ -16295,7 +17450,7 @@
     },
     {
       "id": 5627,
-      "title": "Unisex Relaxed Fit Sweatshirt",
+      "title": "Unisex Raglan Hoodie",
       "brand": "Stanley Stella",
       "model": "SXU027",
       "family": "apparel",
@@ -16433,7 +17588,7 @@
       "family": "drinkware",
       "brand_fit": 3,
       "images": [
-        "https://images.printify.com/69eb5042617d002a0f04dbb3"
+        "https://images.printify.com/6a5f511a40823e89380607f0"
       ]
     },
     {
@@ -16467,6 +17622,17 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/69fda4be3b8f5aa9fe08a8e0"
+      ]
+    },
+    {
+      "id": 5654,
+      "title": "Magnetic Powerbank",
+      "brand": "Generic brand",
+      "model": "",
+      "family": "magnet",
+      "brand_fit": 5,
+      "images": [
+        "https://images.printify.com/69f0c4e1dd7b9533780240c2"
       ]
     },
     {
@@ -17006,17 +18172,6 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/6a05cccce7a0719aa9004869"
-      ]
-    },
-    {
-      "id": 6342,
-      "title": "DUPLICATE Unisex Cotton V-Neck T-Shirt",
-      "brand": "Bella+Canvas",
-      "model": "3655",
-      "family": "apparel",
-      "brand_fit": 3,
-      "images": [
-        "https://images.printify.com/6a05cce7d416cb3cc40c55ac"
       ]
     },
     {
@@ -18362,17 +19517,6 @@
       ]
     },
     {
-      "id": 7034,
-      "title": "Women's Perforated Performance Cap",
-      "brand": "Infinity Her",
-      "model": "GABY",
-      "family": "headwear",
-      "brand_fit": 0,
-      "images": [
-        "https://images.printify.com/6a06c0c97123fedd670145b9"
-      ]
-    },
-    {
       "id": 7076,
       "title": "Men's Polo",
       "brand": "JERZEES",
@@ -19238,7 +20382,7 @@
       "family": "tote_bag",
       "brand_fit": 3,
       "images": [
-        "https://images.printify.com/6a184445906e6a407a0fe030"
+        "https://images.printify.com/6a5f6c27ff97d27ef706b284"
       ]
     },
     {
@@ -19283,6 +20427,17 @@
       "brand_fit": 3,
       "images": [
         "https://images.printify.com/6a0b4c0acc424a75ca014a31"
+      ]
+    },
+    {
+      "id": 9039,
+      "title": "Unisex Hammer\u2122 Maxweight T-Shirt",
+      "brand": "Gildan",
+      "model": "75000",
+      "family": "apparel",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6a0b4c1e8b8443b672005acb"
       ]
     },
     {
@@ -19671,6 +20826,17 @@
       ]
     },
     {
+      "id": 10672,
+      "title": "Phone Grip",
+      "brand": "Generic brand",
+      "model": "",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/6a30561a2f68d1b479065ba0"
+      ]
+    },
+    {
       "id": 10674,
       "title": "Pet Tag (Engraving)",
       "brand": "Generic brand",
@@ -19693,6 +20859,17 @@
       ]
     },
     {
+      "id": 10683,
+      "title": "Metal Bottle Opener",
+      "brand": "Generic brand",
+      "model": "",
+      "family": "drinkware",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6a32f4e2d272142a0c03ed50"
+      ]
+    },
+    {
       "id": 10689,
       "title": "Unisex Arm Sleeve",
       "brand": "Generic brand",
@@ -19704,6 +20881,17 @@
       ]
     },
     {
+      "id": 10693,
+      "title": "Leather Toiletry Bag",
+      "brand": "Generic brand",
+      "model": "",
+      "family": "tote_bag",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6a34235f24080af32004d850"
+      ]
+    },
+    {
       "id": 10694,
       "title": "Recyclable Steel Cup",
       "brand": "Steel Chill-Cups\u2122",
@@ -19711,7 +20899,18 @@
       "family": "apparel",
       "brand_fit": 3,
       "images": [
-        "https://images.printify.com/6a33ea9b190c4eb0670a3fc2"
+        "https://images.printify.com/6a609c7370aaef56180dee62"
+      ]
+    },
+    {
+      "id": 10698,
+      "title": "Compact Square Mirror",
+      "brand": "Generic brand",
+      "model": "",
+      "family": "other",
+      "brand_fit": 0,
+      "images": [
+        "https://images.printify.com/6a422be7ab7838fd3f0f27f2"
       ]
     },
     {
@@ -19781,6 +20980,17 @@
       ]
     },
     {
+      "id": 10717,
+      "title": "Flat Greeting Cards (envelopes included)",
+      "brand": "Generic brand",
+      "model": "",
+      "family": "card",
+      "brand_fit": 2,
+      "images": [
+        "https://images.printify.com/6a58907c4ba6b723950c20f0"
+      ]
+    },
+    {
       "id": 10722,
       "title": "Bangle Cuff Bracelet (Engraving)",
       "brand": "Generic brand",
@@ -19789,6 +20999,17 @@
       "brand_fit": 0,
       "images": [
         "https://images.printify.com/6a50aacee44ce5d7d0073c00"
+      ]
+    },
+    {
+      "id": 10725,
+      "title": "Traditional Ceramic Mug",
+      "brand": "Generic brand",
+      "model": "",
+      "family": "drinkware",
+      "brand_fit": 3,
+      "images": [
+        "https://images.printify.com/6a5e1b63c4d3b5acf9041af1"
       ]
     }
   ],
@@ -19871,13 +21092,10 @@
         "profiles": [
           {
             "variant_ids": [
-              43135,
-              101119,
-              101127,
-              114557
+              43150
             ],
             "first_item": {
-              "cost": 519,
+              "cost": 999,
               "currency": "USD"
             },
             "additional_items": {
@@ -19917,10 +21135,13 @@
           },
           {
             "variant_ids": [
-              43150
+              43135,
+              101119,
+              101127,
+              114557
             ],
             "first_item": {
-              "cost": 999,
+              "cost": 519,
               "currency": "USD"
             },
             "additional_items": {
@@ -19929,6 +21150,57 @@
             },
             "countries": [
               "US"
+            ]
+          },
+          {
+            "variant_ids": [
+              101143,
+              101144
+            ],
+            "first_item": {
+              "cost": 1859,
+              "currency": "USD"
+            },
+            "additional_items": {
+              "cost": 739,
+              "currency": "USD"
+            },
+            "countries": [
+              "CA"
+            ]
+          },
+          {
+            "variant_ids": [
+              101143,
+              101144
+            ],
+            "first_item": {
+              "cost": 1429,
+              "currency": "USD"
+            },
+            "additional_items": {
+              "cost": 839,
+              "currency": "USD"
+            },
+            "countries": [
+              "US"
+            ]
+          },
+          {
+            "variant_ids": [
+              101143,
+              101144
+            ],
+            "first_item": {
+              "cost": 1889,
+              "currency": "USD"
+            },
+            "additional_items": {
+              "cost": 749,
+              "currency": "USD"
+            },
+            "countries": [
+              "REST_OF_THE_WORLD"
             ]
           },
           {
@@ -20143,57 +21415,6 @@
             },
             "countries": [
               "CA"
-            ]
-          },
-          {
-            "variant_ids": [
-              101143,
-              101144
-            ],
-            "first_item": {
-              "cost": 1859,
-              "currency": "USD"
-            },
-            "additional_items": {
-              "cost": 739,
-              "currency": "USD"
-            },
-            "countries": [
-              "CA"
-            ]
-          },
-          {
-            "variant_ids": [
-              101143,
-              101144
-            ],
-            "first_item": {
-              "cost": 1429,
-              "currency": "USD"
-            },
-            "additional_items": {
-              "cost": 839,
-              "currency": "USD"
-            },
-            "countries": [
-              "US"
-            ]
-          },
-          {
-            "variant_ids": [
-              101143,
-              101144
-            ],
-            "first_item": {
-              "cost": 1889,
-              "currency": "USD"
-            },
-            "additional_items": {
-              "cost": 749,
-              "currency": "USD"
-            },
-            "countries": [
-              "REST_OF_THE_WORLD"
             ]
           }
         ]
@@ -26755,70 +27976,69 @@
       "known_pilot": null
     },
     {
-      "blueprint_id": 6997,
-      "title": "Unisex Legend Premium Heavyweight Cross-Grain Crewneck Sweatshirt",
-      "brand": "Independent Trading Company",
+      "blueprint_id": 2980,
+      "title": "Premium Blend Ring Spun Long Sleeve T-Shirt",
+      "brand": "JERZEES",
       "family": "apparel",
       "brand_fit": 4,
       "provider_id": 217,
       "provider_title": "Fulfill Engine",
       "decoration_methods": [
-        "dtf",
-        "dtg"
+        "dtf"
       ],
-      "variant_count": 70,
+      "variant_count": 49,
       "sample_variants": [
         {
-          "id": 303150,
-          "title": "XS / Alpine Green",
-          "options": {
-            "size": "XS",
-            "color": "Alpine Green"
-          },
-          "cost": null
-        },
-        {
-          "id": 303151,
-          "title": "L / Alpine Green",
-          "options": {
-            "size": "L",
-            "color": "Alpine Green"
-          },
-          "cost": null
-        },
-        {
-          "id": 303152,
-          "title": "S / Alpine Green",
+          "id": 165886,
+          "title": "S / Black Ink",
           "options": {
             "size": "S",
-            "color": "Alpine Green"
+            "color": "Black Ink"
           },
           "cost": null
         },
         {
-          "id": 303153,
-          "title": "S / Black",
+          "id": 165887,
+          "title": "S / Black Ink Heather",
           "options": {
             "size": "S",
-            "color": "Black"
+            "color": "Black Ink Heather"
           },
           "cost": null
         },
         {
-          "id": 303155,
-          "title": "3XL / Black",
+          "id": 165888,
+          "title": "S / J. Navy",
           "options": {
-            "size": "3XL",
-            "color": "Black"
+            "size": "S",
+            "color": "J. Navy"
           },
           "cost": null
         },
         {
-          "id": 303157,
-          "title": "M / Alpine Green",
+          "id": 165890,
+          "title": "S / Oxford",
           "options": {
-            "size": "M",
-            "color": "Alpine Green"
+            "size": "S",
+            "color": "Oxford"
+          },
+          "cost": null
+        },
+        {
+          "id": 165891,
+          "title": "S / Royal",
+          "options": {
+            "size": "S",
+            "color": "Royal"
+          },
+          "cost": null
+        },
+        {
+          "id": 165893,
+          "title": "S / True Red",
+          "options": {
+            "size": "S",
+            "color": "True Red"
           },
           "cost": null
         }
@@ -26833,100 +28053,58 @@
         "profiles": [
           {
             "variant_ids": [
-              303150,
-              303151,
-              303152,
-              303153,
-              303155,
-              303157,
-              303158,
-              303160,
-              303161,
-              303162,
-              303164,
-              303166,
-              303168,
-              303170,
-              303172,
-              303173,
-              303176,
-              303177,
-              303178,
-              303184,
-              303186,
-              303188,
-              303190,
-              303191,
-              303192,
-              303193,
-              303194,
-              303195,
-              303197,
-              303199,
-              303201,
-              303203,
-              303205,
-              303206,
-              303207,
-              303208,
-              303209,
-              303217,
-              303219,
-              303221,
-              303223,
-              303224,
-              303225,
-              303226,
-              303232,
-              303233,
-              303234,
-              303235,
-              303236,
-              303242,
-              303244,
-              303246,
-              303252,
-              303254,
-              303256,
-              303258,
-              303259,
-              303260,
-              303261,
-              303266,
-              303268,
-              303269,
-              303270,
-              303272,
-              303274,
-              303276,
-              303278,
-              303280,
-              303282,
-              303284,
-              303286,
-              303288,
-              303289,
-              303290,
-              303292,
-              303293,
-              303295,
-              303298,
-              303300,
-              303302,
-              303304,
-              303306,
-              303308,
-              303310,
-              303312,
-              303314,
-              303316,
-              303318,
-              303320,
-              303322,
-              303324
+              165886,
+              165887,
+              165888,
+              165890,
+              165891,
+              165893,
+              165894,
+              165896,
+              165897,
+              165898,
+              165899,
+              165900,
+              165901,
+              165902,
+              165904,
+              165905,
+              165906,
+              165907,
+              165908,
+              165909,
+              165910,
+              165911,
+              165912,
+              165913,
+              165914,
+              165915,
+              165916,
+              165917,
+              165918,
+              165920,
+              165921,
+              165922,
+              165923,
+              165924,
+              165925,
+              165927,
+              165928,
+              165929,
+              165930,
+              165931,
+              165932,
+              165934,
+              165935,
+              165936,
+              165937,
+              165939,
+              165940,
+              165941,
+              165942
             ],
             "first_item": {
-              "cost": 769,
+              "cost": 429,
               "currency": "USD"
             },
             "additional_items": {
@@ -26939,104 +28117,190 @@
           },
           {
             "variant_ids": [
-              303150,
-              303151,
-              303152,
-              303153,
-              303155,
-              303157,
-              303158,
-              303160,
-              303161,
-              303162,
-              303164,
-              303166,
-              303168,
-              303170,
-              303172,
-              303173,
-              303176,
-              303177,
-              303178,
-              303184,
-              303186,
-              303188,
-              303190,
-              303191,
-              303192,
-              303193,
-              303194,
-              303195,
-              303197,
-              303199,
-              303201,
-              303203,
-              303205,
-              303206,
-              303207,
-              303208,
-              303209,
-              303217,
-              303219,
-              303221,
-              303223,
-              303224,
-              303225,
-              303226,
-              303232,
-              303233,
-              303234,
-              303235,
-              303236,
-              303242,
-              303244,
-              303246,
-              303252,
-              303254,
-              303256,
-              303258,
-              303259,
-              303260,
-              303261,
-              303266,
-              303268,
-              303269,
-              303270,
-              303272,
-              303274,
-              303276,
-              303278,
-              303280,
-              303282,
-              303284,
-              303286,
-              303288,
-              303289,
-              303290,
-              303292,
-              303293,
-              303295,
-              303298,
-              303300,
-              303302,
-              303304,
-              303306,
-              303308,
-              303310,
-              303312,
-              303314,
-              303316,
-              303318,
-              303320,
-              303322,
-              303324
+              165886,
+              165887,
+              165888,
+              165890,
+              165891,
+              165893,
+              165894,
+              165896,
+              165897,
+              165898,
+              165899,
+              165900,
+              165901,
+              165902,
+              165904,
+              165905,
+              165906,
+              165907,
+              165908,
+              165909,
+              165910,
+              165911,
+              165912,
+              165913,
+              165914,
+              165915,
+              165916,
+              165917,
+              165918,
+              165920,
+              165921,
+              165922,
+              165923,
+              165924,
+              165925,
+              165927,
+              165928,
+              165929,
+              165930,
+              165931,
+              165932,
+              165934,
+              165935,
+              165936,
+              165937,
+              165939,
+              165940,
+              165941,
+              165942
             ],
             "first_item": {
-              "cost": 1500,
+              "cost": 519,
               "currency": "USD"
             },
             "additional_items": {
+              "cost": 219,
+              "currency": "USD"
+            },
+            "countries": [
+              "US"
+            ]
+          },
+          {
+            "variant_ids": [
+              165886,
+              165887,
+              165888,
+              165890,
+              165891,
+              165893,
+              165894,
+              165896,
+              165897,
+              165898,
+              165899,
+              165900,
+              165901,
+              165902,
+              165904,
+              165905,
+              165906,
+              165907,
+              165908,
+              165909,
+              165910,
+              165911,
+              165912,
+              165913,
+              165914,
+              165915,
+              165916,
+              165917,
+              165918,
+              165920,
+              165921,
+              165922,
+              165923,
+              165924,
+              165925,
+              165927,
+              165928,
+              165929,
+              165930,
+              165931,
+              165932,
+              165934,
+              165935,
+              165936,
+              165937,
+              165939,
+              165940,
+              165941,
+              165942
+            ],
+            "first_item": {
+              "cost": 1249,
+              "currency": "USD"
+            },
+            "additional_items": {
+              "cost": 499,
+              "currency": "USD"
+            },
+            "countries": [
+              "AU"
+            ]
+          },
+          {
+            "variant_ids": [
+              165886,
+              165887,
+              165888,
+              165890,
+              165891,
+              165893,
+              165894,
+              165896,
+              165897,
+              165898,
+              165899,
+              165900,
+              165901,
+              165902,
+              165904,
+              165905,
+              165906,
+              165907,
+              165908,
+              165909,
+              165910,
+              165911,
+              165912,
+              165913,
+              165914,
+              165915,
+              165916,
+              165917,
+              165918,
+              165920,
+              165921,
+              165922,
+              165923,
+              165924,
+              165925,
+              165927,
+              165928,
+              165929,
+              165930,
+              165931,
+              165932,
+              165934,
+              165935,
+              165936,
+              165937,
+              165939,
+              165940,
+              165941,
+              165942
+            ],
+            "first_item": {
               "cost": 1000,
+              "currency": "USD"
+            },
+            "additional_items": {
+              "cost": 400,
               "currency": "USD"
             },
             "countries": [
@@ -27045,104 +28309,62 @@
           },
           {
             "variant_ids": [
-              303150,
-              303151,
-              303152,
-              303153,
-              303155,
-              303157,
-              303158,
-              303160,
-              303161,
-              303162,
-              303164,
-              303166,
-              303168,
-              303170,
-              303172,
-              303173,
-              303176,
-              303177,
-              303178,
-              303184,
-              303186,
-              303188,
-              303190,
-              303191,
-              303192,
-              303193,
-              303194,
-              303195,
-              303197,
-              303199,
-              303201,
-              303203,
-              303205,
-              303206,
-              303207,
-              303208,
-              303209,
-              303217,
-              303219,
-              303221,
-              303223,
-              303224,
-              303225,
-              303226,
-              303232,
-              303233,
-              303234,
-              303235,
-              303236,
-              303242,
-              303244,
-              303246,
-              303252,
-              303254,
-              303256,
-              303258,
-              303259,
-              303260,
-              303261,
-              303266,
-              303268,
-              303269,
-              303270,
-              303272,
-              303274,
-              303276,
-              303278,
-              303280,
-              303282,
-              303284,
-              303286,
-              303288,
-              303289,
-              303290,
-              303292,
-              303293,
-              303295,
-              303298,
-              303300,
-              303302,
-              303304,
-              303306,
-              303308,
-              303310,
-              303312,
-              303314,
-              303316,
-              303318,
-              303320,
-              303322,
-              303324
+              165886,
+              165887,
+              165888,
+              165890,
+              165891,
+              165893,
+              165894,
+              165896,
+              165897,
+              165898,
+              165899,
+              165900,
+              165901,
+              165902,
+              165904,
+              165905,
+              165906,
+              165907,
+              165908,
+              165909,
+              165910,
+              165911,
+              165912,
+              165913,
+              165914,
+              165915,
+              165916,
+              165917,
+              165918,
+              165920,
+              165921,
+              165922,
+              165923,
+              165924,
+              165925,
+              165927,
+              165928,
+              165929,
+              165930,
+              165931,
+              165932,
+              165934,
+              165935,
+              165936,
+              165937,
+              165939,
+              165940,
+              165941,
+              165942
             ],
             "first_item": {
-              "cost": 1849,
+              "cost": 1349,
               "currency": "USD"
             },
             "additional_items": {
-              "cost": 1000,
+              "cost": 400,
               "currency": "USD"
             },
             "countries": [
@@ -27177,320 +28399,66 @@
           },
           {
             "variant_ids": [
-              303150,
-              303151,
-              303152,
-              303153,
-              303155,
-              303157,
-              303158,
-              303160,
-              303161,
-              303162,
-              303164,
-              303166,
-              303168,
-              303170,
-              303172,
-              303173,
-              303176,
-              303177,
-              303178,
-              303184,
-              303186,
-              303188,
-              303190,
-              303191,
-              303192,
-              303193,
-              303194,
-              303195,
-              303197,
-              303199,
-              303201,
-              303203,
-              303205,
-              303206,
-              303207,
-              303208,
-              303209,
-              303217,
-              303219,
-              303221,
-              303223,
-              303224,
-              303225,
-              303226,
-              303232,
-              303233,
-              303234,
-              303235,
-              303236,
-              303242,
-              303244,
-              303246,
-              303252,
-              303254,
-              303256,
-              303258,
-              303259,
-              303260,
-              303261,
-              303266,
-              303268,
-              303269,
-              303270,
-              303272,
-              303274,
-              303276,
-              303278,
-              303280,
-              303282,
-              303284,
-              303286,
-              303288,
-              303289,
-              303290,
-              303292,
-              303293,
-              303295,
-              303298,
-              303300,
-              303302,
-              303304,
-              303306,
-              303308,
-              303310,
-              303312,
-              303314,
-              303316,
-              303318,
-              303320,
-              303322,
-              303324
+              165886,
+              165887,
+              165888,
+              165890,
+              165891,
+              165893,
+              165894,
+              165896,
+              165897,
+              165898,
+              165899,
+              165900,
+              165901,
+              165902,
+              165904,
+              165905,
+              165906,
+              165907,
+              165908,
+              165909,
+              165910,
+              165911,
+              165912,
+              165913,
+              165914,
+              165915,
+              165916,
+              165917,
+              165918,
+              165920,
+              165921,
+              165922,
+              165923,
+              165924,
+              165925,
+              165927,
+              165928,
+              165929,
+              165930,
+              165931,
+              165932,
+              165934,
+              165935,
+              165936,
+              165937,
+              165939,
+              165940,
+              165941,
+              165942
             ],
             "first_item": {
-              "cost": 999,
+              "cost": 939,
               "currency": "USD"
             },
             "additional_items": {
-              "cost": 249,
-              "currency": "USD"
-            },
-            "countries": [
-              "US"
-            ]
-          },
-          {
-            "variant_ids": [
-              303150,
-              303151,
-              303152,
-              303153,
-              303155,
-              303157,
-              303158,
-              303160,
-              303161,
-              303162,
-              303164,
-              303166,
-              303168,
-              303170,
-              303172,
-              303173,
-              303176,
-              303177,
-              303178,
-              303184,
-              303186,
-              303188,
-              303190,
-              303191,
-              303192,
-              303193,
-              303194,
-              303195,
-              303197,
-              303199,
-              303201,
-              303203,
-              303205,
-              303206,
-              303207,
-              303208,
-              303209,
-              303217,
-              303219,
-              303221,
-              303223,
-              303224,
-              303225,
-              303226,
-              303232,
-              303233,
-              303234,
-              303235,
-              303236,
-              303242,
-              303244,
-              303246,
-              303252,
-              303254,
-              303256,
-              303258,
-              303259,
-              303260,
-              303261,
-              303266,
-              303268,
-              303269,
-              303270,
-              303272,
-              303274,
-              303276,
-              303278,
-              303280,
-              303282,
-              303284,
-              303286,
-              303288,
-              303289,
-              303290,
-              303292,
-              303293,
-              303295,
-              303298,
-              303300,
-              303302,
-              303304,
-              303306,
-              303308,
-              303310,
-              303312,
-              303314,
-              303316,
-              303318,
-              303320,
-              303322,
-              303324
-            ],
-            "first_item": {
-              "cost": 1269,
-              "currency": "USD"
-            },
-            "additional_items": {
-              "cost": 659,
+              "cost": 439,
               "currency": "USD"
             },
             "countries": [
               "CA"
-            ]
-          },
-          {
-            "variant_ids": [
-              303150,
-              303151,
-              303152,
-              303153,
-              303155,
-              303157,
-              303158,
-              303160,
-              303161,
-              303162,
-              303164,
-              303166,
-              303168,
-              303170,
-              303172,
-              303173,
-              303176,
-              303177,
-              303178,
-              303184,
-              303186,
-              303188,
-              303190,
-              303191,
-              303192,
-              303193,
-              303194,
-              303195,
-              303197,
-              303199,
-              303201,
-              303203,
-              303205,
-              303206,
-              303207,
-              303208,
-              303209,
-              303217,
-              303219,
-              303221,
-              303223,
-              303224,
-              303225,
-              303226,
-              303232,
-              303233,
-              303234,
-              303235,
-              303236,
-              303242,
-              303244,
-              303246,
-              303252,
-              303254,
-              303256,
-              303258,
-              303259,
-              303260,
-              303261,
-              303266,
-              303268,
-              303269,
-              303270,
-              303272,
-              303274,
-              303276,
-              303278,
-              303280,
-              303282,
-              303284,
-              303286,
-              303288,
-              303289,
-              303290,
-              303292,
-              303293,
-              303295,
-              303298,
-              303300,
-              303302,
-              303304,
-              303306,
-              303308,
-              303310,
-              303312,
-              303314,
-              303316,
-              303318,
-              303320,
-              303322,
-              303324
-            ],
-            "first_item": {
-              "cost": 2199,
-              "currency": "USD"
-            },
-            "additional_items": {
-              "cost": 999,
-              "currency": "USD"
-            },
-            "countries": [
-              "AU"
             ]
           }
         ]
@@ -27498,70 +28466,69 @@
       "known_pilot": null
     },
     {
-      "blueprint_id": 6998,
-      "title": "Unisex Legend Premium Heavyweight Cross-Grain Hooded Sweatshirt",
-      "brand": "Independent Trading Company",
+      "blueprint_id": 2981,
+      "title": "Premium Blend Ring Spun T-Shirt",
+      "brand": "JERZEES",
       "family": "apparel",
       "brand_fit": 4,
       "provider_id": 217,
       "provider_title": "Fulfill Engine",
       "decoration_methods": [
-        "dtf",
-        "dtg"
+        "dtf"
       ],
-      "variant_count": 80,
+      "variant_count": 199,
       "sample_variants": [
         {
-          "id": 303154,
-          "title": "S / Alpine Green",
+          "id": 166012,
+          "title": "S / Royal",
           "options": {
             "size": "S",
-            "color": "Alpine Green"
+            "color": "Royal"
           },
           "cost": null
         },
         {
-          "id": 303156,
-          "title": "3XL / Alpine Green",
+          "id": 166014,
+          "title": "S / White",
           "options": {
-            "size": "3XL",
-            "color": "Alpine Green"
+            "size": "S",
+            "color": "White"
           },
           "cost": null
         },
         {
-          "id": 303163,
-          "title": "M / Alpine Green",
+          "id": 166015,
+          "title": "S / Black Ink",
           "options": {
-            "size": "M",
-            "color": "Alpine Green"
+            "size": "S",
+            "color": "Black Ink"
           },
           "cost": null
         },
         {
-          "id": 303165,
-          "title": "L / Black",
+          "id": 166017,
+          "title": "S / Charcoal Heather",
           "options": {
-            "size": "L",
-            "color": "Black"
+            "size": "S",
+            "color": "Charcoal Heather"
           },
           "cost": null
         },
         {
-          "id": 303167,
-          "title": "XL / Black",
+          "id": 166019,
+          "title": "S / Deep Purple",
           "options": {
-            "size": "XL",
-            "color": "Black"
+            "size": "S",
+            "color": "Deep Purple"
           },
           "cost": null
         },
         {
-          "id": 303169,
-          "title": "L / Alpine Green",
+          "id": 166021,
+          "title": "S / Maroon Heather",
           "options": {
-            "size": "L",
-            "color": "Alpine Green"
+            "size": "S",
+            "color": "Maroon Heather"
           },
           "cost": null
         }
@@ -27576,100 +28543,212 @@
         "profiles": [
           {
             "variant_ids": [
-              303154,
-              303156,
-              303159,
-              303163,
-              303165,
-              303167,
-              303169,
-              303171,
-              303174,
-              303175,
-              303179,
-              303180,
-              303181,
-              303182,
-              303183,
-              303185,
-              303187,
-              303189,
-              303196,
-              303198,
-              303200,
-              303202,
-              303204,
-              303210,
-              303211,
-              303212,
-              303213,
-              303214,
-              303215,
-              303216,
-              303218,
-              303220,
-              303222,
-              303227,
-              303228,
-              303229,
-              303230,
-              303231,
-              303237,
-              303238,
-              303239,
-              303240,
-              303241,
-              303243,
-              303245,
-              303247,
-              303248,
-              303249,
-              303250,
-              303251,
-              303253,
-              303255,
-              303257,
-              303262,
-              303263,
-              303264,
-              303265,
-              303267,
-              303271,
-              303273,
-              303275,
-              303277,
-              303279,
-              303281,
-              303283,
-              303285,
-              303287,
-              303291,
-              303294,
-              303296,
-              303297,
-              303299,
-              303301,
-              303303,
-              303305,
-              303307,
-              303309,
-              303311,
-              303313,
-              303315,
-              303317,
-              303319,
-              303321,
-              303323,
-              303325,
-              303326,
-              303327,
-              303328,
-              303329,
-              303330,
-              303331
+              166012,
+              166014,
+              166015,
+              166017,
+              166019,
+              166021,
+              166023,
+              166025,
+              166027,
+              166029,
+              166031,
+              166032,
+              166034,
+              166036,
+              166038,
+              166040,
+              166042,
+              166044,
+              166045,
+              166046,
+              166048,
+              166049,
+              166050,
+              166051,
+              166052,
+              166054,
+              166055,
+              166056,
+              166057,
+              166058,
+              166059,
+              166060,
+              166061,
+              166062,
+              166065,
+              166066,
+              166067,
+              166068,
+              166070,
+              166071,
+              166072,
+              166073,
+              166075,
+              166076,
+              166077,
+              166079,
+              166080,
+              166081,
+              166082,
+              166084,
+              166085,
+              166087,
+              166089,
+              166090,
+              166091,
+              166092,
+              166093,
+              166094,
+              166095,
+              166097,
+              166098,
+              166100,
+              166101,
+              166102,
+              166104,
+              166105,
+              166106,
+              166108,
+              166110,
+              166111,
+              166113,
+              166114,
+              166115,
+              166117,
+              166118,
+              166120,
+              166121,
+              166122,
+              166123,
+              166124,
+              166126,
+              166127,
+              166129,
+              166130,
+              166132,
+              166134,
+              166135,
+              166137,
+              166138,
+              166140,
+              166141,
+              166142,
+              166144,
+              166145,
+              166147,
+              166148,
+              166149,
+              166150,
+              166152,
+              166153,
+              166155,
+              166156,
+              166159,
+              166161,
+              166163,
+              166167,
+              166172,
+              166176,
+              166192,
+              166204,
+              166211,
+              166218,
+              166225,
+              166232,
+              166239,
+              166246,
+              166251,
+              166258,
+              166261,
+              166263,
+              166264,
+              166266,
+              166267,
+              166269,
+              166270,
+              166271,
+              166273,
+              166275,
+              166276,
+              166278,
+              166279,
+              166283,
+              166287,
+              166292,
+              166297,
+              166301,
+              166306,
+              166311,
+              166336,
+              166349,
+              166355,
+              166363,
+              166369,
+              166377,
+              166384,
+              166399,
+              166405,
+              166410,
+              166416,
+              166423,
+              166428,
+              166433,
+              166438,
+              166448,
+              166453,
+              166454,
+              166456,
+              166458,
+              166459,
+              166461,
+              166463,
+              166465,
+              166466,
+              166467,
+              166469,
+              166471,
+              166472,
+              166475,
+              166476,
+              166478,
+              166480,
+              166481,
+              166483,
+              166485,
+              166487,
+              166489,
+              166490,
+              166492,
+              166494,
+              166496,
+              166497,
+              166500,
+              166501,
+              166503,
+              166505,
+              166506,
+              166508,
+              166510,
+              166512,
+              166514,
+              166516,
+              166517,
+              166519,
+              166521,
+              166523,
+              166525,
+              166527,
+              166528,
+              166530,
+              166532,
+              166534,
+              166535,
+              166537
             ],
             "first_item": {
-              "cost": 769,
+              "cost": 429,
               "currency": "USD"
             },
             "additional_items": {
@@ -27682,104 +28761,652 @@
           },
           {
             "variant_ids": [
-              303154,
-              303156,
-              303159,
-              303163,
-              303165,
-              303167,
-              303169,
-              303171,
-              303174,
-              303175,
-              303179,
-              303180,
-              303181,
-              303182,
-              303183,
-              303185,
-              303187,
-              303189,
-              303196,
-              303198,
-              303200,
-              303202,
-              303204,
-              303210,
-              303211,
-              303212,
-              303213,
-              303214,
-              303215,
-              303216,
-              303218,
-              303220,
-              303222,
-              303227,
-              303228,
-              303229,
-              303230,
-              303231,
-              303237,
-              303238,
-              303239,
-              303240,
-              303241,
-              303243,
-              303245,
-              303247,
-              303248,
-              303249,
-              303250,
-              303251,
-              303253,
-              303255,
-              303257,
-              303262,
-              303263,
-              303264,
-              303265,
-              303267,
-              303271,
-              303273,
-              303275,
-              303277,
-              303279,
-              303281,
-              303283,
-              303285,
-              303287,
-              303291,
-              303294,
-              303296,
-              303297,
-              303299,
-              303301,
-              303303,
-              303305,
-              303307,
-              303309,
-              303311,
-              303313,
-              303315,
-              303317,
-              303319,
-              303321,
-              303323,
-              303325,
-              303326,
-              303327,
-              303328,
-              303329,
-              303330,
-              303331
+              166012,
+              166014,
+              166015,
+              166017,
+              166019,
+              166021,
+              166023,
+              166025,
+              166027,
+              166029,
+              166031,
+              166032,
+              166034,
+              166036,
+              166038,
+              166040,
+              166042,
+              166044,
+              166045,
+              166046,
+              166048,
+              166049,
+              166050,
+              166051,
+              166052,
+              166054,
+              166055,
+              166056,
+              166057,
+              166058,
+              166059,
+              166060,
+              166061,
+              166062,
+              166065,
+              166066,
+              166067,
+              166068,
+              166070,
+              166071,
+              166072,
+              166073,
+              166075,
+              166076,
+              166077,
+              166079,
+              166080,
+              166081,
+              166082,
+              166084,
+              166085,
+              166087,
+              166089,
+              166090,
+              166091,
+              166092,
+              166093,
+              166094,
+              166095,
+              166097,
+              166098,
+              166100,
+              166101,
+              166102,
+              166104,
+              166105,
+              166106,
+              166108,
+              166110,
+              166111,
+              166113,
+              166114,
+              166115,
+              166117,
+              166118,
+              166120,
+              166121,
+              166122,
+              166123,
+              166124,
+              166126,
+              166127,
+              166129,
+              166130,
+              166132,
+              166134,
+              166135,
+              166137,
+              166138,
+              166140,
+              166141,
+              166142,
+              166144,
+              166145,
+              166147,
+              166148,
+              166149,
+              166150,
+              166152,
+              166153,
+              166155,
+              166156,
+              166159,
+              166161,
+              166163,
+              166167,
+              166172,
+              166176,
+              166192,
+              166204,
+              166211,
+              166218,
+              166225,
+              166232,
+              166239,
+              166246,
+              166251,
+              166258,
+              166261,
+              166263,
+              166264,
+              166266,
+              166267,
+              166269,
+              166270,
+              166271,
+              166273,
+              166275,
+              166276,
+              166278,
+              166279,
+              166283,
+              166287,
+              166292,
+              166297,
+              166301,
+              166306,
+              166311,
+              166336,
+              166349,
+              166355,
+              166363,
+              166369,
+              166377,
+              166384,
+              166399,
+              166405,
+              166410,
+              166416,
+              166423,
+              166428,
+              166433,
+              166438,
+              166448,
+              166453,
+              166454,
+              166456,
+              166458,
+              166459,
+              166461,
+              166463,
+              166465,
+              166466,
+              166467,
+              166469,
+              166471,
+              166472,
+              166475,
+              166476,
+              166478,
+              166480,
+              166481,
+              166483,
+              166485,
+              166487,
+              166489,
+              166490,
+              166492,
+              166494,
+              166496,
+              166497,
+              166500,
+              166501,
+              166503,
+              166505,
+              166506,
+              166508,
+              166510,
+              166512,
+              166514,
+              166516,
+              166517,
+              166519,
+              166521,
+              166523,
+              166525,
+              166527,
+              166528,
+              166530,
+              166532,
+              166534,
+              166535,
+              166537
             ],
             "first_item": {
-              "cost": 1500,
+              "cost": 519,
               "currency": "USD"
             },
             "additional_items": {
+              "cost": 219,
+              "currency": "USD"
+            },
+            "countries": [
+              "US"
+            ]
+          },
+          {
+            "variant_ids": [
+              166012,
+              166014,
+              166015,
+              166017,
+              166019,
+              166021,
+              166023,
+              166025,
+              166027,
+              166029,
+              166031,
+              166032,
+              166034,
+              166036,
+              166038,
+              166040,
+              166042,
+              166044,
+              166045,
+              166046,
+              166048,
+              166049,
+              166050,
+              166051,
+              166052,
+              166054,
+              166055,
+              166056,
+              166057,
+              166058,
+              166059,
+              166060,
+              166061,
+              166062,
+              166065,
+              166066,
+              166067,
+              166068,
+              166070,
+              166071,
+              166072,
+              166073,
+              166075,
+              166076,
+              166077,
+              166079,
+              166080,
+              166081,
+              166082,
+              166084,
+              166085,
+              166087,
+              166089,
+              166090,
+              166091,
+              166092,
+              166093,
+              166094,
+              166095,
+              166097,
+              166098,
+              166100,
+              166101,
+              166102,
+              166104,
+              166105,
+              166106,
+              166108,
+              166110,
+              166111,
+              166113,
+              166114,
+              166115,
+              166117,
+              166118,
+              166120,
+              166121,
+              166122,
+              166123,
+              166124,
+              166126,
+              166127,
+              166129,
+              166130,
+              166132,
+              166134,
+              166135,
+              166137,
+              166138,
+              166140,
+              166141,
+              166142,
+              166144,
+              166145,
+              166147,
+              166148,
+              166149,
+              166150,
+              166152,
+              166153,
+              166155,
+              166156,
+              166159,
+              166161,
+              166163,
+              166167,
+              166172,
+              166176,
+              166192,
+              166204,
+              166211,
+              166218,
+              166225,
+              166232,
+              166239,
+              166246,
+              166251,
+              166258,
+              166261,
+              166263,
+              166264,
+              166266,
+              166267,
+              166269,
+              166270,
+              166271,
+              166273,
+              166275,
+              166276,
+              166278,
+              166279,
+              166283,
+              166287,
+              166292,
+              166297,
+              166301,
+              166306,
+              166311,
+              166336,
+              166349,
+              166355,
+              166363,
+              166369,
+              166377,
+              166384,
+              166399,
+              166405,
+              166410,
+              166416,
+              166423,
+              166428,
+              166433,
+              166438,
+              166448,
+              166453,
+              166454,
+              166456,
+              166458,
+              166459,
+              166461,
+              166463,
+              166465,
+              166466,
+              166467,
+              166469,
+              166471,
+              166472,
+              166475,
+              166476,
+              166478,
+              166480,
+              166481,
+              166483,
+              166485,
+              166487,
+              166489,
+              166490,
+              166492,
+              166494,
+              166496,
+              166497,
+              166500,
+              166501,
+              166503,
+              166505,
+              166506,
+              166508,
+              166510,
+              166512,
+              166514,
+              166516,
+              166517,
+              166519,
+              166521,
+              166523,
+              166525,
+              166527,
+              166528,
+              166530,
+              166532,
+              166534,
+              166535,
+              166537
+            ],
+            "first_item": {
+              "cost": 1249,
+              "currency": "USD"
+            },
+            "additional_items": {
+              "cost": 499,
+              "currency": "USD"
+            },
+            "countries": [
+              "AU"
+            ]
+          },
+          {
+            "variant_ids": [
+              166012,
+              166014,
+              166015,
+              166017,
+              166019,
+              166021,
+              166023,
+              166025,
+              166027,
+              166029,
+              166031,
+              166032,
+              166034,
+              166036,
+              166038,
+              166040,
+              166042,
+              166044,
+              166045,
+              166046,
+              166048,
+              166049,
+              166050,
+              166051,
+              166052,
+              166054,
+              166055,
+              166056,
+              166057,
+              166058,
+              166059,
+              166060,
+              166061,
+              166062,
+              166065,
+              166066,
+              166067,
+              166068,
+              166070,
+              166071,
+              166072,
+              166073,
+              166075,
+              166076,
+              166077,
+              166079,
+              166080,
+              166081,
+              166082,
+              166084,
+              166085,
+              166087,
+              166089,
+              166090,
+              166091,
+              166092,
+              166093,
+              166094,
+              166095,
+              166097,
+              166098,
+              166100,
+              166101,
+              166102,
+              166104,
+              166105,
+              166106,
+              166108,
+              166110,
+              166111,
+              166113,
+              166114,
+              166115,
+              166117,
+              166118,
+              166120,
+              166121,
+              166122,
+              166123,
+              166124,
+              166126,
+              166127,
+              166129,
+              166130,
+              166132,
+              166134,
+              166135,
+              166137,
+              166138,
+              166140,
+              166141,
+              166142,
+              166144,
+              166145,
+              166147,
+              166148,
+              166149,
+              166150,
+              166152,
+              166153,
+              166155,
+              166156,
+              166159,
+              166161,
+              166163,
+              166167,
+              166172,
+              166176,
+              166192,
+              166204,
+              166211,
+              166218,
+              166225,
+              166232,
+              166239,
+              166246,
+              166251,
+              166258,
+              166261,
+              166263,
+              166264,
+              166266,
+              166267,
+              166269,
+              166270,
+              166271,
+              166273,
+              166275,
+              166276,
+              166278,
+              166279,
+              166283,
+              166287,
+              166292,
+              166297,
+              166301,
+              166306,
+              166311,
+              166336,
+              166349,
+              166355,
+              166363,
+              166369,
+              166377,
+              166384,
+              166399,
+              166405,
+              166410,
+              166416,
+              166423,
+              166428,
+              166433,
+              166438,
+              166448,
+              166453,
+              166454,
+              166456,
+              166458,
+              166459,
+              166461,
+              166463,
+              166465,
+              166466,
+              166467,
+              166469,
+              166471,
+              166472,
+              166475,
+              166476,
+              166478,
+              166480,
+              166481,
+              166483,
+              166485,
+              166487,
+              166489,
+              166490,
+              166492,
+              166494,
+              166496,
+              166497,
+              166500,
+              166501,
+              166503,
+              166505,
+              166506,
+              166508,
+              166510,
+              166512,
+              166514,
+              166516,
+              166517,
+              166519,
+              166521,
+              166523,
+              166525,
+              166527,
+              166528,
+              166530,
+              166532,
+              166534,
+              166535,
+              166537
+            ],
+            "first_item": {
               "cost": 1000,
+              "currency": "USD"
+            },
+            "additional_items": {
+              "cost": 400,
               "currency": "USD"
             },
             "countries": [
@@ -27788,104 +29415,216 @@
           },
           {
             "variant_ids": [
-              303154,
-              303156,
-              303159,
-              303163,
-              303165,
-              303167,
-              303169,
-              303171,
-              303174,
-              303175,
-              303179,
-              303180,
-              303181,
-              303182,
-              303183,
-              303185,
-              303187,
-              303189,
-              303196,
-              303198,
-              303200,
-              303202,
-              303204,
-              303210,
-              303211,
-              303212,
-              303213,
-              303214,
-              303215,
-              303216,
-              303218,
-              303220,
-              303222,
-              303227,
-              303228,
-              303229,
-              303230,
-              303231,
-              303237,
-              303238,
-              303239,
-              303240,
-              303241,
-              303243,
-              303245,
-              303247,
-              303248,
-              303249,
-              303250,
-              303251,
-              303253,
-              303255,
-              303257,
-              303262,
-              303263,
-              303264,
-              303265,
-              303267,
-              303271,
-              303273,
-              303275,
-              303277,
-              303279,
-              303281,
-              303283,
-              303285,
-              303287,
-              303291,
-              303294,
-              303296,
-              303297,
-              303299,
-              303301,
-              303303,
-              303305,
-              303307,
-              303309,
-              303311,
-              303313,
-              303315,
-              303317,
-              303319,
-              303321,
-              303323,
-              303325,
-              303326,
-              303327,
-              303328,
-              303329,
-              303330,
-              303331
+              166012,
+              166014,
+              166015,
+              166017,
+              166019,
+              166021,
+              166023,
+              166025,
+              166027,
+              166029,
+              166031,
+              166032,
+              166034,
+              166036,
+              166038,
+              166040,
+              166042,
+              166044,
+              166045,
+              166046,
+              166048,
+              166049,
+              166050,
+              166051,
+              166052,
+              166054,
+              166055,
+              166056,
+              166057,
+              166058,
+              166059,
+              166060,
+              166061,
+              166062,
+              166065,
+              166066,
+              166067,
+              166068,
+              166070,
+              166071,
+              166072,
+              166073,
+              166075,
+              166076,
+              166077,
+              166079,
+              166080,
+              166081,
+              166082,
+              166084,
+              166085,
+              166087,
+              166089,
+              166090,
+              166091,
+              166092,
+              166093,
+              166094,
+              166095,
+              166097,
+              166098,
+              166100,
+              166101,
+              166102,
+              166104,
+              166105,
+              166106,
+              166108,
+              166110,
+              166111,
+              166113,
+              166114,
+              166115,
+              166117,
+              166118,
+              166120,
+              166121,
+              166122,
+              166123,
+              166124,
+              166126,
+              166127,
+              166129,
+              166130,
+              166132,
+              166134,
+              166135,
+              166137,
+              166138,
+              166140,
+              166141,
+              166142,
+              166144,
+              166145,
+              166147,
+              166148,
+              166149,
+              166150,
+              166152,
+              166153,
+              166155,
+              166156,
+              166159,
+              166161,
+              166163,
+              166167,
+              166172,
+              166176,
+              166192,
+              166204,
+              166211,
+              166218,
+              166225,
+              166232,
+              166239,
+              166246,
+              166251,
+              166258,
+              166261,
+              166263,
+              166264,
+              166266,
+              166267,
+              166269,
+              166270,
+              166271,
+              166273,
+              166275,
+              166276,
+              166278,
+              166279,
+              166283,
+              166287,
+              166292,
+              166297,
+              166301,
+              166306,
+              166311,
+              166336,
+              166349,
+              166355,
+              166363,
+              166369,
+              166377,
+              166384,
+              166399,
+              166405,
+              166410,
+              166416,
+              166423,
+              166428,
+              166433,
+              166438,
+              166448,
+              166453,
+              166454,
+              166456,
+              166458,
+              166459,
+              166461,
+              166463,
+              166465,
+              166466,
+              166467,
+              166469,
+              166471,
+              166472,
+              166475,
+              166476,
+              166478,
+              166480,
+              166481,
+              166483,
+              166485,
+              166487,
+              166489,
+              166490,
+              166492,
+              166494,
+              166496,
+              166497,
+              166500,
+              166501,
+              166503,
+              166505,
+              166506,
+              166508,
+              166510,
+              166512,
+              166514,
+              166516,
+              166517,
+              166519,
+              166521,
+              166523,
+              166525,
+              166527,
+              166528,
+              166530,
+              166532,
+              166534,
+              166535,
+              166537
             ],
             "first_item": {
-              "cost": 1849,
+              "cost": 1349,
               "currency": "USD"
             },
             "additional_items": {
-              "cost": 1000,
+              "cost": 400,
               "currency": "USD"
             },
             "countries": [
@@ -27920,320 +29659,220 @@
           },
           {
             "variant_ids": [
-              303154,
-              303156,
-              303159,
-              303163,
-              303165,
-              303167,
-              303169,
-              303171,
-              303174,
-              303175,
-              303179,
-              303180,
-              303181,
-              303182,
-              303183,
-              303185,
-              303187,
-              303189,
-              303196,
-              303198,
-              303200,
-              303202,
-              303204,
-              303210,
-              303211,
-              303212,
-              303213,
-              303214,
-              303215,
-              303216,
-              303218,
-              303220,
-              303222,
-              303227,
-              303228,
-              303229,
-              303230,
-              303231,
-              303237,
-              303238,
-              303239,
-              303240,
-              303241,
-              303243,
-              303245,
-              303247,
-              303248,
-              303249,
-              303250,
-              303251,
-              303253,
-              303255,
-              303257,
-              303262,
-              303263,
-              303264,
-              303265,
-              303267,
-              303271,
-              303273,
-              303275,
-              303277,
-              303279,
-              303281,
-              303283,
-              303285,
-              303287,
-              303291,
-              303294,
-              303296,
-              303297,
-              303299,
-              303301,
-              303303,
-              303305,
-              303307,
-              303309,
-              303311,
-              303313,
-              303315,
-              303317,
-              303319,
-              303321,
-              303323,
-              303325,
-              303326,
-              303327,
-              303328,
-              303329,
-              303330,
-              303331
+              166012,
+              166014,
+              166015,
+              166017,
+              166019,
+              166021,
+              166023,
+              166025,
+              166027,
+              166029,
+              166031,
+              166032,
+              166034,
+              166036,
+              166038,
+              166040,
+              166042,
+              166044,
+              166045,
+              166046,
+              166048,
+              166049,
+              166050,
+              166051,
+              166052,
+              166054,
+              166055,
+              166056,
+              166057,
+              166058,
+              166059,
+              166060,
+              166061,
+              166062,
+              166065,
+              166066,
+              166067,
+              166068,
+              166070,
+              166071,
+              166072,
+              166073,
+              166075,
+              166076,
+              166077,
+              166079,
+              166080,
+              166081,
+              166082,
+              166084,
+              166085,
+              166087,
+              166089,
+              166090,
+              166091,
+              166092,
+              166093,
+              166094,
+              166095,
+              166097,
+              166098,
+              166100,
+              166101,
+              166102,
+              166104,
+              166105,
+              166106,
+              166108,
+              166110,
+              166111,
+              166113,
+              166114,
+              166115,
+              166117,
+              166118,
+              166120,
+              166121,
+              166122,
+              166123,
+              166124,
+              166126,
+              166127,
+              166129,
+              166130,
+              166132,
+              166134,
+              166135,
+              166137,
+              166138,
+              166140,
+              166141,
+              166142,
+              166144,
+              166145,
+              166147,
+              166148,
+              166149,
+              166150,
+              166152,
+              166153,
+              166155,
+              166156,
+              166159,
+              166161,
+              166163,
+              166167,
+              166172,
+              166176,
+              166192,
+              166204,
+              166211,
+              166218,
+              166225,
+              166232,
+              166239,
+              166246,
+              166251,
+              166258,
+              166261,
+              166263,
+              166264,
+              166266,
+              166267,
+              166269,
+              166270,
+              166271,
+              166273,
+              166275,
+              166276,
+              166278,
+              166279,
+              166283,
+              166287,
+              166292,
+              166297,
+              166301,
+              166306,
+              166311,
+              166336,
+              166349,
+              166355,
+              166363,
+              166369,
+              166377,
+              166384,
+              166399,
+              166405,
+              166410,
+              166416,
+              166423,
+              166428,
+              166433,
+              166438,
+              166448,
+              166453,
+              166454,
+              166456,
+              166458,
+              166459,
+              166461,
+              166463,
+              166465,
+              166466,
+              166467,
+              166469,
+              166471,
+              166472,
+              166475,
+              166476,
+              166478,
+              166480,
+              166481,
+              166483,
+              166485,
+              166487,
+              166489,
+              166490,
+              166492,
+              166494,
+              166496,
+              166497,
+              166500,
+              166501,
+              166503,
+              166505,
+              166506,
+              166508,
+              166510,
+              166512,
+              166514,
+              166516,
+              166517,
+              166519,
+              166521,
+              166523,
+              166525,
+              166527,
+              166528,
+              166530,
+              166532,
+              166534,
+              166535,
+              166537
             ],
             "first_item": {
-              "cost": 999,
+              "cost": 939,
               "currency": "USD"
             },
             "additional_items": {
-              "cost": 249,
-              "currency": "USD"
-            },
-            "countries": [
-              "US"
-            ]
-          },
-          {
-            "variant_ids": [
-              303154,
-              303156,
-              303159,
-              303163,
-              303165,
-              303167,
-              303169,
-              303171,
-              303174,
-              303175,
-              303179,
-              303180,
-              303181,
-              303182,
-              303183,
-              303185,
-              303187,
-              303189,
-              303196,
-              303198,
-              303200,
-              303202,
-              303204,
-              303210,
-              303211,
-              303212,
-              303213,
-              303214,
-              303215,
-              303216,
-              303218,
-              303220,
-              303222,
-              303227,
-              303228,
-              303229,
-              303230,
-              303231,
-              303237,
-              303238,
-              303239,
-              303240,
-              303241,
-              303243,
-              303245,
-              303247,
-              303248,
-              303249,
-              303250,
-              303251,
-              303253,
-              303255,
-              303257,
-              303262,
-              303263,
-              303264,
-              303265,
-              303267,
-              303271,
-              303273,
-              303275,
-              303277,
-              303279,
-              303281,
-              303283,
-              303285,
-              303287,
-              303291,
-              303294,
-              303296,
-              303297,
-              303299,
-              303301,
-              303303,
-              303305,
-              303307,
-              303309,
-              303311,
-              303313,
-              303315,
-              303317,
-              303319,
-              303321,
-              303323,
-              303325,
-              303326,
-              303327,
-              303328,
-              303329,
-              303330,
-              303331
-            ],
-            "first_item": {
-              "cost": 1269,
-              "currency": "USD"
-            },
-            "additional_items": {
-              "cost": 659,
+              "cost": 439,
               "currency": "USD"
             },
             "countries": [
               "CA"
-            ]
-          },
-          {
-            "variant_ids": [
-              303154,
-              303156,
-              303159,
-              303163,
-              303165,
-              303167,
-              303169,
-              303171,
-              303174,
-              303175,
-              303179,
-              303180,
-              303181,
-              303182,
-              303183,
-              303185,
-              303187,
-              303189,
-              303196,
-              303198,
-              303200,
-              303202,
-              303204,
-              303210,
-              303211,
-              303212,
-              303213,
-              303214,
-              303215,
-              303216,
-              303218,
-              303220,
-              303222,
-              303227,
-              303228,
-              303229,
-              303230,
-              303231,
-              303237,
-              303238,
-              303239,
-              303240,
-              303241,
-              303243,
-              303245,
-              303247,
-              303248,
-              303249,
-              303250,
-              303251,
-              303253,
-              303255,
-              303257,
-              303262,
-              303263,
-              303264,
-              303265,
-              303267,
-              303271,
-              303273,
-              303275,
-              303277,
-              303279,
-              303281,
-              303283,
-              303285,
-              303287,
-              303291,
-              303294,
-              303296,
-              303297,
-              303299,
-              303301,
-              303303,
-              303305,
-              303307,
-              303309,
-              303311,
-              303313,
-              303315,
-              303317,
-              303319,
-              303321,
-              303323,
-              303325,
-              303326,
-              303327,
-              303328,
-              303329,
-              303330,
-              303331
-            ],
-            "first_item": {
-              "cost": 2199,
-              "currency": "USD"
-            },
-            "additional_items": {
-              "cost": 999,
-              "currency": "USD"
-            },
-            "countries": [
-              "AU"
             ]
           }
         ]
@@ -28767,29 +30406,6 @@
         "profiles": [
           {
             "variant_ids": [
-              105883,
-              105885,
-              105886,
-              105887,
-              105889,
-              108910,
-              108911,
-              108912
-            ],
-            "first_item": {
-              "cost": 679,
-              "currency": "USD"
-            },
-            "additional_items": {
-              "cost": 299,
-              "currency": "USD"
-            },
-            "countries": [
-              "US"
-            ]
-          },
-          {
-            "variant_ids": [
               72180,
               72181,
               72182,
@@ -28803,6 +30419,29 @@
             ],
             "first_item": {
               "cost": 549,
+              "currency": "USD"
+            },
+            "additional_items": {
+              "cost": 299,
+              "currency": "USD"
+            },
+            "countries": [
+              "US"
+            ]
+          },
+          {
+            "variant_ids": [
+              105883,
+              105885,
+              105886,
+              105887,
+              105889,
+              108910,
+              108911,
+              108912
+            ],
+            "first_item": {
+              "cost": 679,
               "currency": "USD"
             },
             "additional_items": {
@@ -29675,6 +31314,84 @@
     }
   ],
   "existing_products": [
+    {
+      "id": "6a5e52973e81fda16b0c6ee1",
+      "title": "Lorenz Attractor Sticker | Butterfly Effect Chaos Theory Decal | Kiss-Cut Vinyl | Math Physics Science Gift",
+      "blueprint_id": 400,
+      "visible": true
+    },
+    {
+      "id": "6a5e5234866ec0940c01d375",
+      "title": "Schrodinger Equation Sticker | Quantum Physics Wave Decal | Kiss-Cut Vinyl | Physics Nerd Gift | Science Sticker",
+      "blueprint_id": 400,
+      "visible": true
+    },
+    {
+      "id": "6a5e51c565c1273bfd050323",
+      "title": "Pi Day Math Sticker | Circle Number 3.14 Decal | Kiss-Cut Vinyl | Math Teacher Gift | Laptop Water Bottle Sticker",
+      "blueprint_id": 400,
+      "visible": true
+    },
+    {
+      "id": "6a5e513ec30385d74d0e3701",
+      "title": "Golden Ratio Sticker | Fibonacci Spiral Phi Math Decal | Kiss-Cut Vinyl | Math Lover Gift | Laptop Water Bottle",
+      "blueprint_id": 400,
+      "visible": true
+    },
+    {
+      "id": "6a5e4fcde5ace2c91f073067",
+      "title": "Eulers Identity Math Sticker | The Most Beautiful Equation | Kiss-Cut Vinyl Decal | Nerdy Math Physics Gift",
+      "blueprint_id": 400,
+      "visible": true
+    },
+    {
+      "id": "6a5cf9690154d69a31058d95",
+      "title": "All You Need Is Love Math Sticker | Equation Graphs Spell Love | Kiss-Cut Vinyl | Nerdy Math Gift",
+      "blueprint_id": 400,
+      "visible": true
+    },
+    {
+      "id": "6a5bf1b3dde591a5200a7e08",
+      "title": "Euler Identity Fridge Magnet | Math Art Complex Plane | STEM Science Gift Teacher",
+      "blueprint_id": 428,
+      "visible": true
+    },
+    {
+      "id": "6a5bf1a032a5c3424f0f46a4",
+      "title": "Mandelbrot Fractal Fridge Magnet | Math Art | Chaos Theory Science Gift STEM Decor",
+      "blueprint_id": 428,
+      "visible": true
+    },
+    {
+      "id": "6a5bf199f45e269c8f0106f0",
+      "title": "Bauhaus Poster | Geometric Wall Art Circles and Bars | Navy Cream Modern Math Print",
+      "blueprint_id": 282,
+      "visible": true
+    },
+    {
+      "id": "6a5bf124ca82e4a6d2013421",
+      "title": "Mandelbrot Set Poster | Math Wall Art Fractal | Chaos Theory Scientific Plate STEM Print",
+      "blueprint_id": 282,
+      "visible": true
+    },
+    {
+      "id": "6a5bf113dde591a5200a7da6",
+      "title": "Wave Equation Poster | Physics Wall Art | Standing Waves on a String STEM Science Print",
+      "blueprint_id": 282,
+      "visible": true
+    },
+    {
+      "id": "6a5bf105dde591a5200a7d9d",
+      "title": "Euler Identity Poster | Math Wall Art | e to the i pi Complex Plane STEM Scientific Print",
+      "blueprint_id": 282,
+      "visible": true
+    },
+    {
+      "id": "6a5bf0f381cebb5bdd03a737",
+      "title": "Fourier Series Poster | Math Wall Art Scientific Plate | Square Wave Harmonics STEM Print",
+      "blueprint_id": 282,
+      "visible": true
+    },
     {
       "id": "6a546bcbc47246fc1a082a4d",
       "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",

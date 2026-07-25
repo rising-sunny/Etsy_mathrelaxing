@@ -1,10 +1,13 @@
 """
 field_build.py — deliverables + Etsy listing images for the premium physics
-field plates (dark line). Renders the 6 fields in 5 aspect ratios @300 DPI,
-builds per-field and set ZIPs, and the listing photos (dark aesthetic).
+field plates. Renders the 6 fields in 5 aspect ratios @300 DPI,
+builds per-field and set ZIPs, and the listing photos.
 
-    python field_build.py
+    python field_build.py              # dark (default product line)
+    python field_build.py --light      # cream paper / dark ink (readability)
+    python field_build.py --light --set-only   # customer ZIP only (no listing art)
 """
+import argparse
 import os
 import zipfile
 import numpy as np
@@ -25,9 +28,19 @@ BASE_W = 10.0
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "out", "field")
+THEME = "dark"
 BG, INK, SUB, ACC, LINE = fp.BG, fp.INK, fp.SUB, fp.ACC, fp.LINE
 _SANS = font_manager.findfont(fp.SANS)
 _MONO = font_manager.findfont(fp.MONO)
+
+
+def apply_theme(name="dark"):
+    """Sync module palette with field_poster theme and pick output root."""
+    global OUT, THEME, BG, INK, SUB, ACC, LINE
+    THEME = fp.set_theme(name)
+    BG, INK, SUB, ACC, LINE = fp.BG, fp.INK, fp.SUB, fp.ACC, fp.LINE
+    OUT = os.path.join(HERE, "out", "field" if name == "dark" else f"field_{name}")
+    return OUT
 
 
 def font(path, sz):
@@ -65,16 +78,23 @@ def zip_field(f, pdir):
 
 def zip_set(pdir):
     sdir = os.path.join(OUT, "set"); os.makedirs(sdir, exist_ok=True)
-    z = os.path.join(sdir, "PhysicsFieldCollection_prints.zip")
+    zname = ("PhysicsFieldCollection_Light_prints.zip" if THEME == "light"
+             else "PhysicsFieldCollection_prints.zip")
+    z = os.path.join(sdir, zname)
+    theme_note = ("LIGHT edition — cream paper ground with dark ink for easier reading.\n"
+                  if THEME == "light" else
+                  "Dark observatory edition — deep black ground with light ink.\n")
     with zipfile.ZipFile(z, "w", zipfile.ZIP_DEFLATED) as zz:
         for f in FIELDS:
             for tag in RATIOS:
                 zz.write(os.path.join(pdir, f"{f}_{tag}.jpg"), f"{f}/{SLUG[f]}_{tag}.jpg")
         zz.writestr("READ-ME.txt",
                     "PHYSICS FIELD COLLECTION — 6 plates, MathRelaxing\n"
+                    + theme_note +
                     "Quantum mechanics, black holes, special relativity, electromagnetism,\n"
                     "thermodynamics and classical mechanics. Each in 5 aspect ratios at 300 DPI.\n"
-                    "Every graphic is computed from the physics — not AI, not clip art.\n")
+                    "Every graphic is computed from the physics — not AI, not clip art.\n"
+                    "Personal use only; not for resale or redistribution.\n")
     return z
 
 
@@ -205,17 +225,28 @@ def set_included(sdir):
 
 
 if __name__ == "__main__":
+    ap = argparse.ArgumentParser(description="Build Physics Field Collection deliverables")
+    ap.add_argument("--light", action="store_true",
+                    help="Cream paper / dark ink theme (easier to read)")
+    ap.add_argument("--set-only", action="store_true",
+                    help="Only render prints + set ZIP (skip listing mockups)")
+    args = ap.parse_args()
+    apply_theme("light" if args.light else "dark")
+    print(f"theme={THEME}  out={OUT}")
+
     print("prints:"); pdir = prints_all()
-    print("zips + per-field listing:")
-    for f in FIELDS:
-        zip_field(f, pdir)
-        fdir = os.path.join(OUT, f, "listing"); os.makedirs(fdir, exist_ok=True)
-        hero(f, fdir); framed(f, fdir); detail(f, fdir); sizes(f, fdir); note(f, fdir)
-        print("  listing", f)
-    print("set:")
-    sdir = os.path.join(OUT, "set"); os.makedirs(sdir, exist_ok=True)
-    zip_set(pdir)
-    lset = os.path.join(sdir, "listing"); os.makedirs(lset, exist_ok=True)
-    set_gallery(lset); set_framed(lset); set_included(lset)
-    sizes("set", lset); note("set", lset)
+    print("set zip:", zip_set(pdir))
+
+    if not args.set_only:
+        print("zips + per-field listing:")
+        for f in FIELDS:
+            zip_field(f, pdir)
+            fdir = os.path.join(OUT, f, "listing"); os.makedirs(fdir, exist_ok=True)
+            hero(f, fdir); framed(f, fdir); detail(f, fdir); sizes(f, fdir); note(f, fdir)
+            print("  listing", f)
+        print("set listing:")
+        sdir = os.path.join(OUT, "set"); os.makedirs(sdir, exist_ok=True)
+        lset = os.path.join(sdir, "listing"); os.makedirs(lset, exist_ok=True)
+        set_gallery(lset); set_framed(lset); set_included(lset)
+        sizes("set", lset); note("set", lset)
     print("DONE ->", OUT)

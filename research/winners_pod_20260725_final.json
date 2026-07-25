@@ -1,0 +1,3826 @@
+{
+  "generated_at": "2026-07-25T10:32:05.032035+00:00",
+  "profile": "mathrelaxing",
+  "meta": {
+    "n_seeds": 31,
+    "n_expanded": 154,
+    "n_from_tags": 0,
+    "n_keywords": 45,
+    "seeds": [
+      "sacred geometry",
+      "fractal art",
+      "physics poster",
+      "math wall art",
+      "molecule art",
+      "dna art",
+      "neural network art",
+      "strange attractor",
+      "chladni",
+      "bauhaus wall art",
+      "william morris",
+      "letter of recommendation",
+      "resume template",
+      "emergency binder",
+      "password tracker",
+      "medication tracker",
+      "price list template",
+      "social media planner",
+      "medical student planner",
+      "calculus formula sheet",
+      "circuit board art",
+      "periodic table",
+      "science fair board",
+      "math magnet",
+      "teacher tote bag",
+      "funny doormat",
+      "math sticker",
+      "stem mousepad",
+      "nurse shirt",
+      "bookish stickers",
+      "throw pillow cover"
+    ],
+    "config_path": "C:\\repos\\Etsy_mathrelaxing\\research\\config\\winners.yaml",
+    "pod_catalog": "research/printify_catalog_scan.json",
+    "pod_blueprint_count": 1797,
+    "note": "rescored with POD-friendly fit"
+  },
+  "count": 45,
+  "results": [
+    {
+      "keyword": "math magnet",
+      "listing_count": 280,
+      "sample_size": 25,
+      "avg_favorites": 243.3,
+      "median_favorites": 8,
+      "max_favorites": 2859,
+      "median_price": 7.0,
+      "avg_price": 2437.25,
+      "digital_share": 0.04,
+      "sample_titles": [
+        "Letters and Numbers Set 37 pcs Montessori Learning Toy Letter Magnets Number Set",
+        "Math clip art - Set 2 - Mini",
+        "Math Teacher Stickers, Teacher Gifts, Teacher Quote Stickers, Teacher Magnets, T",
+        "Custom Counting Magnets 1-10 | Preschool Homeschool Math Manipulatives Toy",
+        "Oooh This Calls For A Spreadsheet Sticker, Funny Sticker, Funny Laptop Decal, Co"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": 177.0,
+      "erank_ctr": null,
+      "erank_latest": 0.0,
+      "erank_momentum": null,
+      "fit": 62.0,
+      "score_demand": 100.0,
+      "score_competition_ease": 85.0,
+      "score_price": 95.0,
+      "score_fit": 62.0,
+      "score_opportunity": 92.9,
+      "score_total": 89.8,
+      "verdict": "BUILD — fuerte potencial",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "password tracker",
+      "listing_count": 3875,
+      "sample_size": 25,
+      "avg_favorites": 92.3,
+      "median_favorites": 4,
+      "max_favorites": 2014,
+      "median_price": 3.8,
+      "avg_price": 5.58,
+      "digital_share": 0.88,
+      "sample_titles": [
+        "Emergency Binder Printable | End of Life Planner, Family Organizer (PDF Download",
+        "Password Tracker Printable, Minimalist Checklist Template (US Letter PDF)",
+        "Starter Bundle for reMarkable Paper Pure: Notepads, Task Lists, Meeting Notes, P",
+        "Botanical Address Book Printable: A4, A5, Letter Sizes (Digital Download)",
+        "Password Tracker, Password Log, Password Sheet, Password Organizer, Password Kee"
+      ],
+      "erank_searches": 977.0,
+      "erank_kd": 27.0,
+      "erank_competition": 3438.0,
+      "erank_ctr": 91.0,
+      "erank_latest": 1170.0,
+      "erank_momentum": 1.2,
+      "fit": 46.0,
+      "score_demand": 96.3,
+      "score_competition_ease": 60.4,
+      "score_price": 75.0,
+      "score_fit": 46.0,
+      "score_opportunity": 78.1,
+      "score_total": 72.0,
+      "verdict": "BUILD — fuerte potencial",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "social media planner",
+      "listing_count": 26395,
+      "sample_size": 25,
+      "avg_favorites": 163.7,
+      "median_favorites": 4,
+      "max_favorites": 1763,
+      "median_price": 5.0,
+      "avg_price": 55.91,
+      "digital_share": 1.0,
+      "sample_titles": [
+        "Social Media Strategy Workbook for Entrepreneurs | Brand Growth Guide | Instagra",
+        "Virtual Assistant Planner Social Media Business Spreadsheet VA Planner Personal ",
+        "Academic Weekly Planner | Vintage School Theme, Student Organizer (Digital Downl",
+        "100+ Lady Boss PLR eBooks & Planners Template Mega Bundle, Canva Editable Templa",
+        "Content Creator Planner Stickers , 30 Digital PNG Stickers for GoodNotes, Social"
+      ],
+      "erank_searches": 1303.0,
+      "erank_kd": 63.0,
+      "erank_competition": 23212.0,
+      "erank_ctr": 102.0,
+      "erank_latest": 2260.0,
+      "erank_momentum": 1.73,
+      "fit": 46.0,
+      "score_demand": 98.5,
+      "score_competition_ease": 33.2,
+      "score_price": 95.0,
+      "score_fit": 46.0,
+      "score_opportunity": 60.3,
+      "score_total": 67.4,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto)",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "STEM planner / digital notebook (PDF hipervinculado)",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "teacher tote bag",
+      "listing_count": 68807,
+      "sample_size": 25,
+      "avg_favorites": 228.2,
+      "median_favorites": 0,
+      "max_favorites": 2845,
+      "median_price": 18.65,
+      "avg_price": 35.96,
+      "digital_share": 0.0,
+      "sample_titles": [
+        "Book Lover Tote Bag, There&#39;s No Such Thing As Too Many Books, 38 x 42cm 100%",
+        "Women&#39;s Shopper Bag, Corduroy Bag & ToteBag with Many Pockets",
+        "Christmas Latte Cups - Black Canvas Embroidered Tote Bag",
+        "Grinch Bow Coquette - Black Canvas Christmas Embroidered Tote Bag",
+        "Play. Grow. Repeat. — OT Tote Bag"
+      ],
+      "erank_searches": 1547.0,
+      "erank_kd": 75.0,
+      "erank_competition": 48192.0,
+      "erank_ctr": 100.0,
+      "erank_latest": 3300.0,
+      "erank_momentum": 2.13,
+      "fit": 62.0,
+      "score_demand": 98.5,
+      "score_competition_ease": 17.9,
+      "score_price": 45.0,
+      "score_fit": 62.0,
+      "score_opportunity": 45.7,
+      "score_total": 63.7,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto)",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "tote_bag"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 5113,
+          "title": "Matte Carryall Tote",
+          "family": "tote_bag",
+          "brand_fit": 4,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1300,
+          "title": "Adjustable Tote Bag (AOP)",
+          "family": "tote_bag",
+          "brand_fit": 3,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 507,
+          "title": "Canvas Tote Bag, 5-Color Straps",
+          "family": "tote_bag",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 9480,
+          "title": "27\" Explorer Large Duffel Bag",
+          "family": "tote_bag",
+          "brand_fit": 3,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "price list template",
+      "listing_count": 19218,
+      "sample_size": 25,
+      "avg_favorites": 110.4,
+      "median_favorites": 2,
+      "max_favorites": 793,
+      "median_price": 3.6,
+      "avg_price": 48.37,
+      "digital_share": 0.96,
+      "sample_titles": [
+        "Spring Break Booking Card, Canva Editable Template (Digital Download)",
+        "US Letter Beauty Salon Price List | Luxury Canva Menu Template",
+        "Hair Price List Flyer Template, Salon Pricing Guide, Hair Price List Flyer, Pric",
+        "Small Business Template Bundle, Price List Template, Editable Canva Templates, B",
+        "Craft Show Templates Bundle Order Form Price List Scan To Pay Template Editable "
+      ],
+      "erank_searches": 700.0,
+      "erank_kd": 69.0,
+      "erank_competition": 16912.0,
+      "erank_ctr": 121.0,
+      "erank_latest": 1430.0,
+      "erank_momentum": 2.04,
+      "fit": 46.0,
+      "score_demand": 93.4,
+      "score_competition_ease": 30.5,
+      "score_price": 75.0,
+      "score_fit": 46.0,
+      "score_opportunity": 56.4,
+      "score_total": 62.4,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto)",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "science fair board",
+      "listing_count": 89,
+      "sample_size": 25,
+      "avg_favorites": 25.4,
+      "median_favorites": 5,
+      "max_favorites": 225,
+      "median_price": 5.0,
+      "avg_price": 20.15,
+      "digital_share": 0.84,
+      "sample_titles": [
+        "Printable Science Classroom Banner, Fun STEM Theme Decor for Kids, Elementary Sc",
+        "Science Fair Labels Printable | STEM Science Experiment Labels | Scientific Meth",
+        "Science Fair Project Labels Printable: Experiment Board Headings (PDF)",
+        "Science Classroom Clipart Set – Cute Scientists & Lab Equipment – Digital Sticke",
+        "Avocado Life Cycle Science Fair Project|  PDF| 12 A4s| Trifold Board Design | Pe"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 40.0,
+      "score_demand": 47.4,
+      "score_competition_ease": 95.0,
+      "score_price": 95.0,
+      "score_fit": 40.0,
+      "score_opportunity": 64.8,
+      "score_total": 62.4,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto)",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "nurse shirt",
+      "listing_count": 275174,
+      "sample_size": 25,
+      "avg_favorites": 164.3,
+      "median_favorites": 0,
+      "max_favorites": 1358,
+      "median_price": 24.3,
+      "avg_price": 25.11,
+      "digital_share": 0.08,
+      "sample_titles": [
+        "Nursing bracelet | Organic cotton breastfeeding clothing clip",
+        "Endocrinology nurse, nurse, registered nurse, rn, t-shirt, tee, shirt, womens, f",
+        "ECMO nurse, nurse, registered nurse, rn, t-shirt, tee, shirt, womens, fun, funny",
+        "Endoscopy nurse, nurse, registered nurse, rn, t-shirt, tee, shirt, womens, fun, ",
+        "Electrophysiology nurse, nurse, registered nurse, rn, t-shirt, tee, shirt, women"
+      ],
+      "erank_searches": 6385.0,
+      "erank_kd": 84.0,
+      "erank_competition": 308287.0,
+      "erank_ctr": 114.0,
+      "erank_latest": 6770.0,
+      "erank_momentum": 1.06,
+      "fit": 56.0,
+      "score_demand": 99.1,
+      "score_competition_ease": 13.8,
+      "score_price": 45.0,
+      "score_fit": 56.0,
+      "score_opportunity": 40.8,
+      "score_total": 60.0,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto)",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "apparel"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 5,
+          "title": "Unisex Cotton Crew Tee",
+          "family": "apparel",
+          "brand_fit": 3,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 6,
+          "title": "Unisex Heavy Cotton Tee",
+          "family": "apparel",
+          "brand_fit": 3,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 6842,
+          "title": "Unisex Premium Heavyweight Crewneck Sweatshirt",
+          "family": "apparel",
+          "brand_fit": 4,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 6843,
+          "title": "Men's Premium Heavyweight Quarter-Zip Sweatshirt",
+          "family": "apparel",
+          "brand_fit": 4,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "medication tracker",
+      "listing_count": 11714,
+      "sample_size": 25,
+      "avg_favorites": 19.7,
+      "median_favorites": 0,
+      "max_favorites": 367,
+      "median_price": 9.99,
+      "avg_price": 20.45,
+      "digital_share": 0.92,
+      "sample_titles": [
+        "Medical Planner Template — Apple Notes Digital Health & Medication Tracker, iClo",
+        "Pet Vaccine & Medication Schedule Tracker Spreadsheet | Shot and Refill Log for ",
+        "Printable Medical Binder - Health Records, Medical History, Medication & Allergy",
+        "Cardiac Health Planner Trackers l Set - Blood Pressure, Cholesterol, Medication ",
+        "Mental Health Bundle | Mood Tracker | Medication Tracker | Anxiety Tracker | Dai"
+      ],
+      "erank_searches": 588.0,
+      "erank_kd": 52.0,
+      "erank_competition": 6536.0,
+      "erank_ctr": 96.0,
+      "erank_latest": 1140.0,
+      "erank_momentum": 1.94,
+      "fit": 46.0,
+      "score_demand": 65.1,
+      "score_competition_ease": 38.1,
+      "score_price": 95.0,
+      "score_fit": 46.0,
+      "score_opportunity": 51.2,
+      "score_total": 57.5,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto)",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "throw pillow cover",
+      "listing_count": 592875,
+      "sample_size": 25,
+      "avg_favorites": 185.7,
+      "median_favorites": 7,
+      "max_favorites": 4003,
+      "median_price": 40.0,
+      "avg_price": 199.58,
+      "digital_share": 0.0,
+      "sample_titles": [
+        "Colorful Giraffe Pillow Cover | Cushion Cover | Nursery Room Animal Cover | Todd",
+        "Art Deco Gold Black Geometric Faux Suede Throw Pillow Cover",
+        "Taupe Beige Abstract Geometric Pillow Cover | Soft Textured Throw Pillow",
+        "Stone Gray Dash Pillow Cover | Textured Woven Soft Fabric",
+        "Indian Silk Cushion Cover: Pink Elephant Throw Pillow (16x16 Inch)"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 46.0,
+      "score_demand": 100.0,
+      "score_competition_ease": 12.0,
+      "score_price": 25.0,
+      "score_fit": 46.0,
+      "score_opportunity": 38.5,
+      "score_total": 54.1,
+      "verdict": "HARD — demanda real, mercado saturado",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "pillow"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 10699,
+          "title": "Faux Linen Pillow",
+          "family": "pillow",
+          "brand_fit": 3,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 574,
+          "title": "Cushioned Crew Socks",
+          "family": "pillow",
+          "brand_fit": 3,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 2758,
+          "title": "Body Pillow",
+          "family": "pillow",
+          "brand_fit": 3,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 2668,
+          "title": "Cotton Pillow Sham",
+          "family": "pillow",
+          "brand_fit": 3,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "molecule art digital download",
+      "listing_count": 494,
+      "sample_size": 25,
+      "avg_favorites": 164,
+      "median_favorites": 27,
+      "max_favorites": 1031,
+      "median_price": 4.99,
+      "avg_price": 5.19,
+      "digital_share": 1.0,
+      "sample_titles": [
+        "DIGITAL DOWNLOAD - I am woman",
+        "Seamless Food Science Design | Seamless Download for Sublimation & Projects",
+        "Periodic Table of Elements, Chemistry Chart, Periodic Table Poster, Table of Ele",
+        "Chemical Formulas SVG Bundle: 2200+ Science Vector Graphics (Digital Download)",
+        "Atomic Models DNA Molecules PNG Pack • Physics Diagrams Clip Art (Digital Downlo"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 54.0,
+      "score_demand": 100.0,
+      "score_competition_ease": 85.0,
+      "score_price": 95.0,
+      "score_fit": 54.0,
+      "score_opportunity": 92.9,
+      "score_total": 50.0,
+      "verdict": "BUILD — fuerte potencial · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "sacred geometry template",
+      "listing_count": 1652,
+      "sample_size": 25,
+      "avg_favorites": 110.6,
+      "median_favorites": 12,
+      "max_favorites": 1324,
+      "median_price": 4.99,
+      "avg_price": 18.24,
+      "digital_share": 0.84,
+      "sample_titles": [
+        "Aura Spiritual Energy PNG Clipart Bundle, Chakra Meditation Lotus Healing Crysta",
+        "Alchemy Symbols Vector Art: 200+ Esoteric Sigils (Digital Download AI & PNG)",
+        "Yeshua and Heylal - Charging Grid Template and Sacred Geometry | Water and Cryst",
+        "Fibonaci Sunflower Plastic Stencil for Crafts/ Bleaching/ Painting/ Spraypaintin",
+        "Om Mandala Earrings SVG Bundle | Sacred Geometry Laser Cut Files | Yoga Jewelry "
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 58.0,
+      "score_demand": 100.0,
+      "score_competition_ease": 70.0,
+      "score_price": 95.0,
+      "score_fit": 58.0,
+      "score_opportunity": 85.2,
+      "score_total": 48.8,
+      "verdict": "BUILD — fuerte potencial · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "sacred geometry planner",
+      "listing_count": 220,
+      "sample_size": 25,
+      "avg_favorites": 68.2,
+      "median_favorites": 2,
+      "max_favorites": 811,
+      "median_price": 7.2,
+      "avg_price": 8.23,
+      "digital_share": 0.4,
+      "sample_titles": [
+        "Crystal Planner Template, Canva Digital Download, Crystal Healing Journal, Holis",
+        "Mandala Stickers, Colorful Decoration Decals for Laptop, Water Bottle, Phone, Pl",
+        "Moths, Sacred Geometry, Mystic symbols Foiled, Printed white, Vellum, Acetate",
+        "Celestial Sun Tattoo Design, Sacred Geometry Compass Stencil (Digital Download)",
+        "Over 2200 Grabovoi Codes for Manifesting Your Desires - Largest Comprehensive Li"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 58.0,
+      "score_demand": 81.6,
+      "score_competition_ease": 85.0,
+      "score_price": 95.0,
+      "score_fit": 58.0,
+      "score_opportunity": 83.1,
+      "score_total": 46.5,
+      "verdict": "BUILD — fuerte potencial · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "STEM planner / digital notebook (PDF hipervinculado)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "molecule art printable",
+      "listing_count": 297,
+      "sample_size": 25,
+      "avg_favorites": 66.1,
+      "median_favorites": 10,
+      "max_favorites": 511,
+      "median_price": 5.0,
+      "avg_price": 5.65,
+      "digital_share": 1.0,
+      "sample_titles": [
+        "DNA Helix Neon Printable Wall Decor, Dark DNA Molecule Art, Genetics Microbiolog",
+        "Chemical Formulas SVG Bundle: 2200+ Science Vector Graphics (Digital Download)",
+        "Printable Chocolate Molecule Structure, Science Art, Digital Download, Classroom",
+        "Happiness Hormones Happy Chemicals Set of 4 Posters Mental Health Wall Art Print",
+        "Dopamine Poster, Print Minimalist Wall Art, Neutral Aesthetic, Brain Molecule, D"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 54.0,
+      "score_demand": 80.2,
+      "score_competition_ease": 85.0,
+      "score_price": 95.0,
+      "score_fit": 54.0,
+      "score_opportunity": 82.3,
+      "score_total": 45.5,
+      "verdict": "BUILD — fuerte potencial · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Digital art print (JPG/PNG alta res + mockups)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "fractal art template",
+      "listing_count": 376,
+      "sample_size": 25,
+      "avg_favorites": 65.9,
+      "median_favorites": 20,
+      "max_favorites": 492,
+      "median_price": 4.99,
+      "avg_price": 19.09,
+      "digital_share": 0.96,
+      "sample_titles": [
+        "Digital Collage Sheet - Instant Download - Oval Size 40x50mm + 30x40mm + 22x30mm",
+        "132 Psychedelic 3D Render PNG Assets, Transparent Abstract Graphic Elements for ",
+        "55 Original Psychedelic Background Assets, Clipart Pack for Digital Art, Collage",
+        "Geometric Puzzle - 3 vers - Easy, Medium and Difficult - Laser Files - Vector De",
+        "INSTANT DOWNLOAD Fractal Flowers (482) 4x6 Bottle Cap Images Digital Collage She"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 52.0,
+      "score_demand": 80.1,
+      "score_competition_ease": 85.0,
+      "score_price": 95.0,
+      "score_fit": 52.0,
+      "score_opportunity": 82.3,
+      "score_total": 45.2,
+      "verdict": "BUILD — fuerte potencial · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "funny doormat",
+      "listing_count": 46023,
+      "sample_size": 25,
+      "avg_favorites": 14.1,
+      "median_favorites": 0,
+      "max_favorites": 207,
+      "median_price": 5.99,
+      "avg_price": 17.97,
+      "digital_share": 0.0,
+      "sample_titles": [
+        "Funny  Flannel Doormat, This is My Happy Place Don’t Fuck It Up, Soft Indoor Flo",
+        "Welcome Coir Doormat, Natural Brush Mat, Front Entryway Decor, Housewarming Gift",
+        "Dogo Argentino Doormat (2D Flat Printed), 4th of July Patriotic Rug, Red White B",
+        "Dutch Shepherd Doormat (2D Flat Printed), 4th of July Patriotic Rug, Red White B",
+        "Doberman Doormat (2D Flat Printed), 4th of July Patriotic Rug, Red White Blue Ho"
+      ],
+      "erank_searches": 26.0,
+      "erank_kd": 100.0,
+      "erank_competition": 43263.0,
+      "erank_ctr": 81.0,
+      "erank_latest": 10.0,
+      "erank_momentum": 0.38,
+      "fit": 46.0,
+      "score_demand": 33.6,
+      "score_competition_ease": 16.5,
+      "score_price": 95.0,
+      "score_fit": 46.0,
+      "score_opportunity": 24.4,
+      "score_total": 44.6,
+      "verdict": "WEAK — priorizar otras keywords",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "doormat"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 1346,
+          "title": "Doormat",
+          "family": "doormat",
+          "brand_fit": 2,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1601,
+          "title": "Polyester Doormat",
+          "family": "doormat",
+          "brand_fit": 2,
+          "preferred": true
+        }
+      ],
+      "pod_existing_related": [],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "math sticker",
+      "listing_count": 3231,
+      "sample_size": 25,
+      "avg_favorites": 72.1,
+      "median_favorites": 7,
+      "max_favorites": 519,
+      "median_price": 4.1,
+      "avg_price": 12.44,
+      "digital_share": 0.08,
+      "sample_titles": [
+        "Funny Teacher Laptop Sticker, I Lose Sleep, Gift for Educators",
+        "Polynom-nom-nom-nomial noodle bowl! unique math puns and jokes great gift for te",
+        "Steam Wall Decal Vinyl Sticker Steam Lab Sign Stem Decor Science Wall Art Scient",
+        "Double Infinity With Hearts Love Symbol Vinyl Decal Sticker",
+        "Black Chalkboard - Teacher  Gift - Math - Nail Wrap - Nail Strips"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 62.0,
+      "score_demand": 84.1,
+      "score_competition_ease": 50.0,
+      "score_price": 95.0,
+      "score_fit": 62.0,
+      "score_opportunity": 66.6,
+      "score_total": 43.5,
+      "verdict": "BUILD — fuerte potencial · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "sticker"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 400,
+          "title": "Kiss-Cut Stickers",
+          "family": "sticker",
+          "brand_fit": 3,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 600,
+          "title": "Die-Cut Stickers",
+          "family": "sticker",
+          "brand_fit": 3,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 811,
+          "title": "Holographic Die-cut Stickers",
+          "family": "sticker",
+          "brand_fit": 3,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 598,
+          "title": "Bumper Stickers",
+          "family": "sticker",
+          "brand_fit": 3,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "medical student planner",
+      "listing_count": 2006,
+      "sample_size": 25,
+      "avg_favorites": 203.6,
+      "median_favorites": 22,
+      "max_favorites": 1570,
+      "median_price": 4.45,
+      "avg_price": 4.76,
+      "digital_share": 0.8,
+      "sample_titles": [
+        "Medical Labs Post-it Notes for Nurses",
+        "Head-to-Toe Assessment Post-It Notes, ER Report Sheet",
+        "Bach Flower Remedies Diagnostic Chart Guide PDF, 38 Flower Essences Reference, N",
+        "Personal Planner Bundle Daily Yearly Organizer Mega Everything Planner for Adult",
+        "Nursing concept map bundle,Cocept map template,Printable nursing concept map,Nur"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 46.0,
+      "score_demand": 100.0,
+      "score_competition_ease": 50.0,
+      "score_price": 95.0,
+      "score_fit": 46.0,
+      "score_opportunity": 73.2,
+      "score_total": 40.2,
+      "verdict": "BUILD — fuerte potencial · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "STEM planner / digital notebook (PDF hipervinculado)",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "stem mousepad",
+      "listing_count": 258,
+      "sample_size": 25,
+      "avg_favorites": 1.6,
+      "median_favorites": 0,
+      "max_favorites": 22,
+      "median_price": 29.99,
+      "avg_price": 28.65,
+      "digital_share": 0.0,
+      "sample_titles": [
+        "Periodic Table Mouse Pad | Chemistry Elements Desk Mat, Science Study Accessory",
+        "Periodic Table Desk Mat | Chemistry Elements Chart Mouse Pad",
+        "Space Exploration Blueprint Desk Mat | Rockets Satellites Mouse Pad",
+        "Love Science Mouse Pad | Heart Chemistry Art, Gamer Desk Mat",
+        "Cosmic Planets & Crystals Mousepad | Celestial Desk Mat | Pastel Crystal Galaxy "
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": 0.0,
+      "erank_momentum": null,
+      "fit": 62.0,
+      "score_demand": 10.4,
+      "score_competition_ease": 85.0,
+      "score_price": 45.0,
+      "score_fit": 62.0,
+      "score_opportunity": 26.7,
+      "score_total": 39.8,
+      "verdict": "WEAK — priorizar otras keywords",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "mousepad"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 582,
+          "title": "Mouse Pad ",
+          "family": "mousepad",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 663,
+          "title": "Gaming Mouse Pad",
+          "family": "mousepad",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 969,
+          "title": "LED Gaming Mouse Pad",
+          "family": "mousepad",
+          "brand_fit": 5,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1434,
+          "title": "LED Gaming Mouse Pad, Wireless Charging",
+          "family": "mousepad",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "physics poster",
+      "listing_count": 2436,
+      "sample_size": 25,
+      "avg_favorites": 51.1,
+      "median_favorites": 2,
+      "max_favorites": 432,
+      "median_price": 11.69,
+      "avg_price": 22.26,
+      "digital_share": 0.52,
+      "sample_titles": [
+        "Guglielmo Marconi - The Icons of Engineering #15 - Art Print Poster Wall Home De",
+        "Science Poster, System of Transmission of Power - Sheet 2/2,  Mad Scientist, Blu",
+        "Richard Feynman Quantum Electrodynamics Poster - STEM Study Wall Art",
+        "Wilhelm Röntgen Physics Poster – X-Ray Inventor, Classroom Decor (Digital Downlo",
+        "Mid-Century Modern Physics Poster: General Relativity Science Wall Art"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 52.0,
+      "score_demand": 69.6,
+      "score_competition_ease": 50.0,
+      "score_price": 95.0,
+      "score_fit": 52.0,
+      "score_opportunity": 60.0,
+      "score_total": 39.0,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto) · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital art print (JPG/PNG alta res + mockups)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "sacred geometry digital download",
+      "listing_count": 5459,
+      "sample_size": 25,
+      "avg_favorites": 41.7,
+      "median_favorites": 1,
+      "max_favorites": 662,
+      "median_price": 8.99,
+      "avg_price": 63.23,
+      "digital_share": 0.96,
+      "sample_titles": [
+        "Set of 3 Mandala Wall Art Prints Muted Tone Boho Zen Decor Digital Download",
+        "Wealth & Abundance Crystal Grid Guide | Money Manifestation (Digital Download)",
+        "Geometric Beetle Art Print, Green Insect Poster, Sacred Geometry Wall Art, Entom",
+        "Alchemy Symbols Vector Art: 200+ Esoteric Sigils (Digital Download AI & PNG)",
+        "Sri Yantra Wall Art Printable | Sacred Meditation Poster | Minimal Spiritual Yog"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 60.0,
+      "score_demand": 62.3,
+      "score_competition_ease": 50.0,
+      "score_price": 95.0,
+      "score_fit": 60.0,
+      "score_opportunity": 56.4,
+      "score_total": 38.7,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto) · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "sacred geometry printable",
+      "listing_count": 3706,
+      "sample_size": 25,
+      "avg_favorites": 39.3,
+      "median_favorites": 1,
+      "max_favorites": 711,
+      "median_price": 7.77,
+      "avg_price": 91.84,
+      "digital_share": 0.92,
+      "sample_titles": [
+        "Vitruvian Man(Circa 1492) By Leonardo Da Vinci Canvas Wall Art, Mid Century Post",
+        "Set of 3 Mandala Wall Art Prints Muted Tone Boho Zen Decor Digital Download",
+        "Wealth & Abundance Crystal Grid Guide | Money Manifestation (Digital Download)",
+        "Hilma Af Klint Inspired Wall Art For Trendy Modern Wall Decor Poster Klint Art P",
+        "Sri Yantra Wall Art Printable | Sacred Meditation Poster | Minimal Spiritual Yog"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 60.0,
+      "score_demand": 60.3,
+      "score_competition_ease": 50.0,
+      "score_price": 95.0,
+      "score_fit": 60.0,
+      "score_opportunity": 55.4,
+      "score_total": 38.3,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto) · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Digital art print (JPG/PNG alta res + mockups)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "fractal art coloring book",
+      "listing_count": 36,
+      "sample_size": 25,
+      "avg_favorites": 39.1,
+      "median_favorites": 6,
+      "max_favorites": 565,
+      "median_price": 2.99,
+      "avg_price": 6.37,
+      "digital_share": 0.92,
+      "sample_titles": [
+        "Fractal Floral Coloring Pages Relaxing Abstract Flower Designs Printable Pages P",
+        "Living Fractals: The Ultimate 3D Geometric Mandala and Optical Coloring Book for",
+        "Living Fractals Coloring Book, Fractal Pattern Coloring Pages, Mesmerizing Abstr",
+        "Living Fractals Coloring Book: Grayscale AI Art (Printable PDF)",
+        "Psychedelic Cosmic Art Coloring Book Vol 2 | Sacred Geometry Adult Coloring Page"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 52.0,
+      "score_demand": 60.1,
+      "score_competition_ease": 95.0,
+      "score_price": 35.0,
+      "score_fit": 52.0,
+      "score_opportunity": 73.8,
+      "score_total": 37.3,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto) · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Libro para colorear PDF 50 págs (template_coloring_book)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "fractal art printable",
+      "listing_count": 801,
+      "sample_size": 25,
+      "avg_favorites": 25,
+      "median_favorites": 0,
+      "max_favorites": 434,
+      "median_price": 4.95,
+      "avg_price": 16.15,
+      "digital_share": 0.88,
+      "sample_titles": [
+        "Digital Collage Sheet - Instant Download - Oval Size 40x50mm + 30x40mm + 22x30mm",
+        "Mandala Cabochon Rolling Hills Kaleidoscopes Art  Instant Download Digital Art S",
+        "Fractal Art Washi Tape, Washi Tape Stickers, Decorative tape, Unique Border Prin",
+        "Ocean Colors Bubbles Art  Instant Download Digital Art Saguaro Graphics",
+        "Ocean Colors Fractals Art  Instant Download Digital Art Saguaro Graphics"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 54.0,
+      "score_demand": 47.0,
+      "score_competition_ease": 70.0,
+      "score_price": 95.0,
+      "score_fit": 54.0,
+      "score_opportunity": 56.2,
+      "score_total": 36.2,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto) · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Digital art print (JPG/PNG alta res + mockups)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "fractal art digital download",
+      "listing_count": 1115,
+      "sample_size": 25,
+      "avg_favorites": 25.1,
+      "median_favorites": 0,
+      "max_favorites": 492,
+      "median_price": 4.5,
+      "avg_price": 8.75,
+      "digital_share": 0.96,
+      "sample_titles": [
+        "Digital Collage Sheet - Instant Download - Oval Size 40x50mm + 30x40mm + 22x30mm",
+        "Mandala Cabochon Rolling Hills Kaleidoscopes Art  Instant Download Digital Art S",
+        "Ocean Colors Bubbles Art  Instant Download Digital Art Saguaro Graphics",
+        "Ocean Colors Fractals Art  Instant Download Digital Art Saguaro Graphics",
+        "Fractal Lion Art Print, Abstract Jungle Decor (Digital Download)"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 54.0,
+      "score_demand": 47.1,
+      "score_competition_ease": 70.0,
+      "score_price": 95.0,
+      "score_fit": 54.0,
+      "score_opportunity": 56.3,
+      "score_total": 36.2,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto) · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "sacred geometry coloring book",
+      "listing_count": 284,
+      "sample_size": 25,
+      "avg_favorites": 16.7,
+      "median_favorites": 2,
+      "max_favorites": 143,
+      "median_price": 5.99,
+      "avg_price": 14.2,
+      "digital_share": 0.92,
+      "sample_titles": [
+        "Mandala di geometria sacra - libro da colorare per adulti",
+        "Jinen: The First Emblem, Printable Sacred Adult Coloring Book, 13 Talisman-Inspi",
+        "Mandala Crop Circles Coloring Book | 50 Printable Mandala Coloring Pages | Relax",
+        "Easy Tribal Mandala_10 Thick lined Coloring Page Digital Printable PDF Download",
+        "Mandala Leaf Colouring Page PDF"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 58.0,
+      "score_demand": 37.6,
+      "score_competition_ease": 85.0,
+      "score_price": 95.0,
+      "score_fit": 58.0,
+      "score_opportunity": 54.3,
+      "score_total": 35.5,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto) · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Libro para colorear PDF 50 págs (template_coloring_book)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "emergency binder",
+      "listing_count": 6762,
+      "sample_size": 25,
+      "avg_favorites": 57.6,
+      "median_favorites": 0,
+      "max_favorites": 918,
+      "median_price": 7.0,
+      "avg_price": 11.99,
+      "digital_share": 0.88,
+      "sample_titles": [
+        "Sparplan 500- 10k | Bestseller I Jahreschallenge  I Tracker | A7, A6, A5 Budget ",
+        "Emergency Binder Printable | End of Life Planner, Family Organizer (PDF Download",
+        "First Aid Kit Checklist Printable | Pharmacist-Designed Emergency Binder & Medic",
+        "Rain, rain, go away/ Rainy Day Fund Saving Challenge / Money Saving Tracker",
+        "Printable Pet Sitter Checklist | Dog Sitter Template PDF | Pet Care Binder | Eme"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 46.0,
+      "score_demand": 74.4,
+      "score_competition_ease": 50.0,
+      "score_price": 95.0,
+      "score_fit": 46.0,
+      "score_opportunity": 62.2,
+      "score_total": 35.1,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto) · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "math wall art",
+      "listing_count": 19437,
+      "sample_size": 25,
+      "avg_favorites": 29.6,
+      "median_favorites": 0,
+      "max_favorites": 262,
+      "median_price": 4.99,
+      "avg_price": 51.18,
+      "digital_share": 0.68,
+      "sample_titles": [
+        "Colorful and Monochrome Brain Canvas Wall Art, Abstract Scientific Illustration,",
+        "Printable Subitising Cards – Early Years Maths (PDF Files)",
+        "Euler&#39;s Formula Poster: Mathematical Art Print - Science & Math Decor",
+        "Pi Acrylic Wall Art: Funny Math Gift, Transparent Poster",
+        "Multiplication Wheels & Practice Pack | Times Tables 1–12 for Grade 3"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 52.0,
+      "score_demand": 51.6,
+      "score_competition_ease": 30.0,
+      "score_price": 95.0,
+      "score_fit": 52.0,
+      "score_opportunity": 40.4,
+      "score_total": 32.7,
+      "verdict": "HARD — demanda real, mercado saturado · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital art print (JPG/PNG alta res + mockups)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "bauhaus wall art",
+      "listing_count": 43418,
+      "sample_size": 25,
+      "avg_favorites": 45.7,
+      "median_favorites": 3,
+      "max_favorites": 679,
+      "median_price": 24.4,
+      "avg_price": 126.17,
+      "digital_share": 0.28,
+      "sample_titles": [
+        "Framed Bauhaus Poster, Geometric Abstract Wall Art, Mid Century Modern Framed Pr",
+        "Mid Century Abstract Wallpaper Mural, Teal Orange Geometric Peel and Stick Wall ",
+        "Pigeon Print Baby Blue Image, Printable Wall Art. Pigeon Lover Decor. Digital Pr",
+        "Bauhaus Evil Eye Poster: Mid Century Modern Wall Art",
+        "Bauhaus Ausstellung Art | Digital Download Minimalist Modern Art | Retro Exhibit"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 52.0,
+      "score_demand": 65.5,
+      "score_competition_ease": 30.0,
+      "score_price": 45.0,
+      "score_fit": 52.0,
+      "score_opportunity": 46.1,
+      "score_total": 32.1,
+      "verdict": "HARD — demanda real, mercado saturado · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital art print (JPG/PNG alta res + mockups)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "fractal art planner",
+      "listing_count": 15,
+      "sample_size": 15,
+      "avg_favorites": 12,
+      "median_favorites": 1,
+      "max_favorites": 152,
+      "median_price": 16.95,
+      "avg_price": 21.67,
+      "digital_share": 0.33,
+      "sample_titles": [
+        "Fractal Art Washi Tape, Washi Tape Stickers, Decorative tape, Unique Border Prin",
+        "365 Day Psychedelic Calendar with Fractal Art by Christian Nova",
+        "Frozen Fractals Washitape Sticker Journaling Scrapbooking Stationery Cute Decora",
+        "Fractal Art Spiral Notebook, Ruled Line Journal, Artistic Sketchbook, Christmas ",
+        "Calendario 2026 Fractal Pareidolia – Arte surreale di volti, animali e fiori (A4"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 52.0,
+      "score_demand": 31.4,
+      "score_competition_ease": 95.0,
+      "score_price": 75.0,
+      "score_fit": 52.0,
+      "score_opportunity": 51.7,
+      "score_total": 32.0,
+      "verdict": "WATCH — nicho abierto, demanda a validar · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "STEM planner / digital notebook (PDF hipervinculado)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "sacred geometry wall art",
+      "listing_count": 23659,
+      "sample_size": 25,
+      "avg_favorites": 42.6,
+      "median_favorites": 1,
+      "max_favorites": 893,
+      "median_price": 35.0,
+      "avg_price": 165.51,
+      "digital_share": 0.24,
+      "sample_titles": [
+        "Vitruvian Man(Circa 1492) By Leonardo Da Vinci Canvas Wall Art, Mid Century Post",
+        "Handmade Kalachakra Mandala: Sacred Geometry Tibetan Art",
+        "Set of 3 Mandala Wall Art Prints Muted Tone Boho Zen Decor Digital Download",
+        "Handmade Yarn Mandala Wall Hanging | Boho Decor | Spiritual Wall Art | Colourful",
+        "Sapphire Light Code Sacred Geometry | Harmonic Convergence Matrix | Solid Walnut"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 58.0,
+      "score_demand": 63.0,
+      "score_competition_ease": 30.0,
+      "score_price": 25.0,
+      "score_fit": 58.0,
+      "score_opportunity": 45.1,
+      "score_total": 31.2,
+      "verdict": "HARD — demanda real, mercado saturado · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Digital art print (JPG/PNG alta res + mockups)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "sacred geometry poster",
+      "listing_count": 4627,
+      "sample_size": 25,
+      "avg_favorites": 21,
+      "median_favorites": 1,
+      "max_favorites": 441,
+      "median_price": 25.0,
+      "avg_price": 81.38,
+      "digital_share": 0.28,
+      "sample_titles": [
+        "Vitruvian Man(Circa 1492) By Leonardo Da Vinci Canvas Wall Art, Mid Century Post",
+        "Lunar Balance – Sacred Tree of Life Wall Art,Golden Moon Zen Artwork,Spiritual B",
+        "Geometric Beetle Art Print, Green Insect Poster, Sacred Geometry Wall Art, Entom",
+        "Hilma Af Klint Inspired Wall Art For Trendy Modern Wall Decor Poster Klint Art P",
+        "Sri Yantra Wall Art Printable | Sacred Meditation Poster | Minimal Spiritual Yog"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 58.0,
+      "score_demand": 42.7,
+      "score_competition_ease": 50.0,
+      "score_price": 45.0,
+      "score_fit": 58.0,
+      "score_opportunity": 45.8,
+      "score_total": 30.7,
+      "verdict": "WEAK — priorizar otras keywords · IN SHOP",
+      "already_in_shop": true,
+      "source": "expanded",
+      "product_idea": "Digital art print (JPG/PNG alta res + mockups)",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "resume template",
+      "listing_count": 40629,
+      "sample_size": 25,
+      "avg_favorites": 45.2,
+      "median_favorites": 2,
+      "max_favorites": 394,
+      "median_price": 9.55,
+      "avg_price": 10229.4,
+      "digital_share": 1.0,
+      "sample_titles": [
+        "Modern Resume Template with Photo, ATS-Friendly  Resume | Editable in Canva | Pr",
+        "Professional ATS Resume Template Google Docs, ATS friendly Resume Word, Pages, B",
+        "Pack CV et Lettre de motivation personnalisables- Modèle moderne classique",
+        "Professional Resume Template Word DOC, DOCX. CV Template Professional, Minimalis",
+        "Deutscher Lebenslauf Word, Canva CV, Moderner Lebenslauf Vorlage 2026, Bewerbung"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 46.0,
+      "score_demand": 65.1,
+      "score_competition_ease": 30.0,
+      "score_price": 95.0,
+      "score_fit": 46.0,
+      "score_opportunity": 45.9,
+      "score_total": 30.4,
+      "verdict": "TEST — buena apuesta (MVP o listing piloto) · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "bookish stickers",
+      "listing_count": 95875,
+      "sample_size": 25,
+      "avg_favorites": 22.0,
+      "median_favorites": 6,
+      "max_favorites": 257,
+      "median_price": 4.0,
+      "avg_price": 5.32,
+      "digital_share": 0.08,
+      "sample_titles": [
+        "Beach Bookish Clipart Set PNG SVG, Summer Reading Journal Planner Sticker Clipar",
+        "Fall Bookish Sticker Bundle Book Lover PNG Cozy Autumn Reading Clipart Pumpkin S",
+        "Custom Bookish Holographic Heart Stickers | Kindle & Journal Sticker | Personali",
+        "Fantasy Terrasen View Sparkly Sticker - Fantasy Book Lover Gift - TOG Sticker - ",
+        "Fantasy Book Club Member Sticker: Waterproof and Dishwasher-safe Vinyl Decal"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 62.0,
+      "score_demand": 43.8,
+      "score_competition_ease": 12.0,
+      "score_price": 95.0,
+      "score_fit": 62.0,
+      "score_opportunity": 24.5,
+      "score_total": 29.8,
+      "verdict": "WEAK — priorizar otras keywords · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "sticker"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 400,
+          "title": "Kiss-Cut Stickers",
+          "family": "sticker",
+          "brand_fit": 3,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 600,
+          "title": "Die-Cut Stickers",
+          "family": "sticker",
+          "brand_fit": 3,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 811,
+          "title": "Holographic Die-cut Stickers",
+          "family": "sticker",
+          "brand_fit": 3,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 598,
+          "title": "Bumper Stickers",
+          "family": "sticker",
+          "brand_fit": 3,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "calculus formula sheet",
+      "listing_count": 55,
+      "sample_size": 25,
+      "avg_favorites": 18.4,
+      "median_favorites": 4,
+      "max_favorites": 151,
+      "median_price": 5.99,
+      "avg_price": 8.56,
+      "digital_share": 1.0,
+      "sample_titles": [
+        "High School Math Formula Poster, Classroom Wall Art, Math Cheat Sheet Print, Edu",
+        "Calculus Formula Poster Set, volume 1 and 2, math teacher classroom decor, colle",
+        "Mathematics Cheat Sheet (Complete) Best for Engineering Student. Instant Downloa",
+        "Calculus Cheat Sheet, Printable Study Guides, Best for Engineering Student. Inst",
+        "Derivative Cheat Sheet | AP Calculus AB & BC Study Aid | Math Formula Quick Refe"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": 0.0,
+      "erank_momentum": null,
+      "fit": 34.0,
+      "score_demand": 39.7,
+      "score_competition_ease": 95.0,
+      "score_price": 95.0,
+      "score_fit": 34.0,
+      "score_opportunity": 58.8,
+      "score_total": 23.7,
+      "verdict": "SKIP — fuera de marca / no producible",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "dna art",
+      "listing_count": 5693,
+      "sample_size": 25,
+      "avg_favorites": 40.0,
+      "median_favorites": 1,
+      "max_favorites": 821,
+      "median_price": 17.0,
+      "avg_price": 126.19,
+      "digital_share": 0.52,
+      "sample_titles": [
+        "Font Design 4 | 32 Colour Coded Original DNA CONNECTION Icons | Authentic DNA Im",
+        "Nucleus Command Department Shirt, Cellular Command Archive, Retro Biology Graphi",
+        "DNA Tree of Life Metal Wall Art, Science Lover Gift ,",
+        "Kevin Durant Signed Framed Jersey PSA/DNA Autographed Phoenix Suns",
+        "DNA Helix Neon Printable Wall Decor, Dark DNA Molecule Art, Genetics Microbiolog"
+      ],
+      "erank_searches": 20.0,
+      "erank_kd": 100.0,
+      "erank_competition": 6971.0,
+      "erank_ctr": null,
+      "erank_latest": 10.0,
+      "erank_momentum": 0.5,
+      "fit": 34.0,
+      "score_demand": 43.9,
+      "score_competition_ease": 27.5,
+      "score_price": 75.0,
+      "score_fit": 34.0,
+      "score_opportunity": 35.6,
+      "score_total": 22.6,
+      "verdict": "SKIP — fuera de marca / no producible",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "periodic table",
+      "listing_count": 14512,
+      "sample_size": 25,
+      "avg_favorites": 31.2,
+      "median_favorites": 2,
+      "max_favorites": 334,
+      "median_price": 16.95,
+      "avg_price": 15.97,
+      "digital_share": 0.08,
+      "sample_titles": [
+        "Zinco metallico elemento 30, Tavola Periodica degli Elementi, Zinco metallo, Zin",
+        "Birds Periodic Table Print, Ornithology Wall Art, Educational Print, Bird Lover ",
+        "Colorful Periodic Table Wall Art | Science Canvas Print | Educational Chemistry ",
+        "Periodic Table Slate Coaster | Elements | Molecule | Chemistry | Physics | Scien",
+        "Periodic Table Laser Engraved Wooden Chopping Board | Novelty Gift | STEM Lovers"
+      ],
+      "erank_searches": 346.0,
+      "erank_kd": 74.0,
+      "erank_competition": 10268.0,
+      "erank_ctr": 132.0,
+      "erank_latest": 1150.0,
+      "erank_momentum": 3.32,
+      "fit": 34.0,
+      "score_demand": 66.4,
+      "score_competition_ease": 28.2,
+      "score_price": 75.0,
+      "score_fit": 34.0,
+      "score_opportunity": 45.2,
+      "score_total": 22.3,
+      "verdict": "SKIP — fuera de marca / no producible",
+      "already_in_shop": false,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "sacred geometry",
+      "listing_count": 73683,
+      "sample_size": 25,
+      "avg_favorites": 24.4,
+      "median_favorites": 2,
+      "max_favorites": 143,
+      "median_price": 33.99,
+      "avg_price": 122.96,
+      "digital_share": 0.2,
+      "sample_titles": [
+        "Indian Summer Mandala pdf crossstitch pattern",
+        "Rainbow crossstitch pattern mandala  - digital",
+        "Teardrops aqua blue Mandala crossstitch pattern - digital",
+        "Vitruvian Man(Circa 1492) By Leonardo Da Vinci Canvas Wall Art, Mid Century Post",
+        "Handmade Kalachakra Mandala: Sacred Geometry Tibetan Art"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 40.0,
+      "score_demand": 46.4,
+      "score_competition_ease": 12.0,
+      "score_price": 25.0,
+      "score_fit": 40.0,
+      "score_opportunity": 25.2,
+      "score_total": 22.2,
+      "verdict": "WEAK — priorizar otras keywords · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "molecule art",
+      "listing_count": 2966,
+      "sample_size": 25,
+      "avg_favorites": 499,
+      "median_favorites": 30,
+      "max_favorites": 4002,
+      "median_price": 12.99,
+      "avg_price": 22.96,
+      "digital_share": 0.28,
+      "sample_titles": [
+        "DNA Helix Neon Printable Wall Decor, Dark DNA Molecule Art, Genetics Microbiolog",
+        "Acetylcholine Vinyl Sticker, Floral Molecule, Science Gift",
+        "Serotonin Molecule Art – Metal Wall Decor, Science Lovers Gift, Chemistry Wall A",
+        "DIGITAL DOWNLOAD - I am woman",
+        "Atom Cookie Cutter - Fondant Pastry Biscuit Science Baking"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 34.0,
+      "score_demand": 100.0,
+      "score_competition_ease": 50.0,
+      "score_price": 75.0,
+      "score_fit": 34.0,
+      "score_opportunity": 73.2,
+      "score_total": 20.7,
+      "verdict": "SKIP — fuera de marca / no producible · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "chladni",
+      "listing_count": 286,
+      "sample_size": 25,
+      "avg_favorites": 233.4,
+      "median_favorites": 34,
+      "max_favorites": 3376,
+      "median_price": 27.0,
+      "avg_price": 47.48,
+      "digital_share": 0.0,
+      "sample_titles": [
+        "Pendentif 10 cm disque Cymatique 528 Hz guérison Om à 2 faces, or / cuivre, cire",
+        "Pendentif Cymatique 741 Hz expression de soi et nettoyage – nouvelles perception",
+        "Cymatics Science Kit | Visualize Sound Waves with Chladni Plate Kit | Wooden & H",
+        "Disque Cyma-Night v2.0 Restauration de la qualité du sommeil - cire d&#39;abeill",
+        "Disque Cymatique 528 Hz V2.0 - Om à 2 faces, or / cuivre, cire d&#39;abeilles - "
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 34.0,
+      "score_demand": 100.0,
+      "score_competition_ease": 85.0,
+      "score_price": 45.0,
+      "score_fit": 34.0,
+      "score_opportunity": 92.9,
+      "score_total": 17.8,
+      "verdict": "SKIP — fuera de marca / no producible · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "strange attractor",
+      "listing_count": 72,
+      "sample_size": 25,
+      "avg_favorites": 27.4,
+      "median_favorites": 0,
+      "max_favorites": 434,
+      "median_price": 5.5,
+      "avg_price": 37.0,
+      "digital_share": 0.52,
+      "sample_titles": [
+        "Chaos Theory Print Set including Strange Attractors, Lorenz Attractor, Butterfly",
+        "Physics Wall Art | Chaos Theory Strange Attractors Poster | Six Math Equations, ",
+        "Lorenz Strange Attractor, Chaos theory, vintage math art print, poster (DIGITAL ",
+        "Strange Attractors Poster: Nine Chaotic Systems Mathematical Wall Art",
+        "Tesla Coil #5 Pink (2024) - Original Art by Ana Bagayan"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 34.0,
+      "score_demand": 49.4,
+      "score_competition_ease": 95.0,
+      "score_price": 95.0,
+      "score_fit": 34.0,
+      "score_opportunity": 66.3,
+      "score_total": 14.2,
+      "verdict": "SKIP — fuera de marca / no producible · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "circuit board art",
+      "listing_count": 2427,
+      "sample_size": 25,
+      "avg_favorites": 53.9,
+      "median_favorites": 4,
+      "max_favorites": 483,
+      "median_price": 17.99,
+      "avg_price": 63.81,
+      "digital_share": 0.32,
+      "sample_titles": [
+        "The Ethereal Luna Moth, Circuit Board Insect by Julie Alice Chappell",
+        "Mesh Network - Silicone Keyboard Skin Skirt, hand beaded with aura quartz & real",
+        "Futuristic Cyberpunk Stopwatch Wall Art, Mechanical Circuit Design, High-Tech Li",
+        "Mini Psychotic Bumper Car with 2x2x2 case",
+        "Mesh Network - Silicone Keyboard Skin Mini Skirt, hand beaded with real computer"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 34.0,
+      "score_demand": 71.7,
+      "score_competition_ease": 50.0,
+      "score_price": 75.0,
+      "score_fit": 34.0,
+      "score_opportunity": 61.0,
+      "score_total": 14.1,
+      "verdict": "SKIP — fuera de marca / no producible · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "fractal art",
+      "listing_count": 10254,
+      "sample_size": 25,
+      "avg_favorites": 22.9,
+      "median_favorites": 2,
+      "max_favorites": 451,
+      "median_price": 30.0,
+      "avg_price": 72.98,
+      "digital_share": 0.16,
+      "sample_titles": [
+        "Charcuterie Board Willow Acacia Live Edge w/ Fractal Art ITEM# GCWCBWALEFA",
+        "Yin Yang - Plasma Fractal - Digital File",
+        "Digital Collage Sheet - Instant Download - Oval Size 40x50mm + 30x40mm + 22x30mm",
+        "Fractal flower laser-cut silhouette",
+        "Hyperbolic spiral laser-cut silhouette"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 34.0,
+      "score_demand": 44.8,
+      "score_competition_ease": 30.0,
+      "score_price": 45.0,
+      "score_fit": 34.0,
+      "score_opportunity": 37.4,
+      "score_total": 13.6,
+      "verdict": "SKIP — fuera de marca / no producible · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": true,
+      "pod_families": [
+        "poster_print",
+        "magnet"
+      ],
+      "pod_blueprints": [
+        {
+          "blueprint_id": 282,
+          "title": "Matte Vertical Posters",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1148,
+          "title": "Canvas Lunch Bag With Strap",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1092,
+          "title": "Canvas Shopping Tote",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 1297,
+          "title": "Canvas Stretched, 0.75\"",
+          "family": "poster_print",
+          "brand_fit": 6,
+          "preferred": false
+        },
+        {
+          "blueprint_id": 428,
+          "title": "Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 857,
+          "title": "Button Magnet, Rectangle (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 771,
+          "title": "Button Magnet, Round (1 & 10 pcs)",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": true
+        },
+        {
+          "blueprint_id": 1464,
+          "title": "Car Magnets",
+          "family": "magnet",
+          "brand_fit": 5,
+          "preferred": false
+        }
+      ],
+      "pod_existing_related": [
+        {
+          "id": "6a546bcbc47246fc1a082a4d",
+          "title": "Flower of Life Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bc5a85a08b7760c64ae",
+          "title": "Sierpinski Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bbe55fc9030a30343bf",
+          "title": "Isometric Cubes Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb7c47246fc1a082a38",
+          "title": "Girih Stars Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        },
+        {
+          "id": "6a546bb006d5c9597b02b201",
+          "title": "Truchet Weave Poster | Black and White Geometric Wall Art | Minimalist Math Line Art Print | Scandinavian Decor",
+          "blueprint_id": 282
+        }
+      ],
+      "pod_note": "from research/printify_catalog_scan.json (offline)",
+      "pod_boost": 2.0
+    },
+    {
+      "keyword": "william morris",
+      "listing_count": 93602,
+      "sample_size": 25,
+      "avg_favorites": 107.8,
+      "median_favorites": 0,
+      "max_favorites": 2018,
+      "median_price": 7.99,
+      "avg_price": 22.31,
+      "digital_share": 0.12,
+      "sample_titles": [
+        "Art Nouveau Floral Coasters, William Morris Style Botanical Drinkware Set, Cork ",
+        "Butterfly Weed Flower Poster - Modern William Morris, Arts and Crafts, Burnt Ora",
+        "William Morris Modern Woodcut Poster – Rust Orange, Dusty Blue, Deep Forest Gree",
+        "Oxford Circus Art Print - Modern William Morris Floral Pattern, Emerald Green an",
+        "Poppy Field Bloom Modern Poster - Arts and Crafts Pattern, Teal and Rust Orange"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 28.0,
+      "score_demand": 100.0,
+      "score_competition_ease": 12.0,
+      "score_price": 95.0,
+      "score_fit": 28.0,
+      "score_opportunity": 38.5,
+      "score_total": 13.2,
+      "verdict": "SKIP — fuera de marca / no producible · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "neural network art",
+      "listing_count": 560,
+      "sample_size": 25,
+      "avg_favorites": 20.7,
+      "median_favorites": 1,
+      "max_favorites": 322,
+      "median_price": 40.74,
+      "avg_price": 49.56,
+      "digital_share": 0.32,
+      "sample_titles": [
+        "Abstract Brain Neuron Cells Printable Wall Art Modern Science Anatomy Decor Neur",
+        "Tech Bloom SVG - Artificial Intelligence Brain Flower Futuristic Nature Cyber Mi",
+        "Abstract Line Wall Art, Neural Network Print, Black White Modern Art, Futuristic",
+        "Winding Paths Brain -  original watercolor painting - neuroscience art",
+        "Gustav Klimt Style Brain Anatomy Canvas Wall Art, Gold Ornate Abstract Neural Ne"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 34.0,
+      "score_demand": 42.4,
+      "score_competition_ease": 70.0,
+      "score_price": 25.0,
+      "score_fit": 34.0,
+      "score_opportunity": 53.1,
+      "score_total": 10.5,
+      "verdict": "SKIP — fuera de marca / no producible · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    },
+    {
+      "keyword": "letter of recommendation",
+      "listing_count": 648,
+      "sample_size": 25,
+      "avg_favorites": 8.4,
+      "median_favorites": 1,
+      "max_favorites": 68,
+      "median_price": 5.3,
+      "avg_price": 9936.53,
+      "digital_share": 1.0,
+      "sample_titles": [
+        "2 Nursing School Recommendation Letters Template, Professional Reference Letters",
+        "College Recommendation Letter Template | Academic Reference Letter for Student |",
+        "Professional Letter of Recommendation Template, Editable Reference Letter for Em",
+        "Letter of Recommendation Editing | Residency Fellowship ERAS LOR Review | Medica",
+        "Letter of Introduction for Teaching Jobs! (3 Fully Editable Templates!)"
+      ],
+      "erank_searches": null,
+      "erank_kd": null,
+      "erank_competition": null,
+      "erank_ctr": null,
+      "erank_latest": null,
+      "erank_momentum": null,
+      "fit": 28.0,
+      "score_demand": 25.8,
+      "score_competition_ease": 70.0,
+      "score_price": 95.0,
+      "score_fit": 28.0,
+      "score_opportunity": 40.4,
+      "score_total": 10.1,
+      "verdict": "SKIP — fuera de marca / no producible · IN SHOP",
+      "already_in_shop": true,
+      "source": "seed",
+      "product_idea": "Digital download (print o tablet) — definir tipo tras validar top listings",
+      "pod_viable": false,
+      "pod_families": [],
+      "pod_blueprints": [],
+      "pod_existing_related": [],
+      "pod_note": "no family match"
+    }
+  ]
+}

@@ -1,24 +1,24 @@
 # Printify POD opportunity scan (API + eRank context)
 **Shop:** 28170054 (Etsy-connected)  
-**Blueprints in catalog:** 1797  
-**Existing Printify products:** 8
+**Blueprints in catalog:** 1908  
+**Existing Printify products:** 21
 
 ## Family counts (full catalog)
 | Family | Count |
 |--------|------:|
-| apparel | 625 |
-| other | 608 |
-| headwear | 140 |
-| drinkware | 94 |
+| apparel | 718 |
+| other | 625 |
+| headwear | 136 |
+| drinkware | 96 |
 | poster_print | 70 |
-| tote_bag | 53 |
+| tote_bag | 54 |
 | textile_home | 45 |
 | ornament | 30 |
 | pillow | 25 |
 | sticker | 23 |
-| card | 17 |
+| card | 18 |
 | notebook | 14 |
-| magnet | 13 |
+| magnet | 14 |
 | calendar | 10 |
 | socks | 8 |
 | mousepad | 8 |
@@ -201,25 +201,25 @@
   - `119749` Charcoal Heather / S cost=None  
   - `119750` Coral / S cost=None  
 
-### Unisex Legend Premium Heavyweight Cross-Grain Crewneck Sweatshirt  
-- blueprint **6997** · family `apparel` · fit **4/10**  
-- provider **217** Fulfill Engine · methods ['dtf', 'dtg']  
-- variants: 70 · cost sample: n/a on catalog  
+### Premium Blend Ring Spun Long Sleeve T-Shirt  
+- blueprint **2980** · family `apparel` · fit **4/10**  
+- provider **217** Fulfill Engine · methods ['dtf']  
+- variants: 49 · cost sample: n/a on catalog  
   Sample variants:  
-  - `303150` XS / Alpine Green cost=None  
-  - `303151` L / Alpine Green cost=None  
-  - `303152` S / Alpine Green cost=None  
-  - `303153` S / Black cost=None  
+  - `165886` S / Black Ink cost=None  
+  - `165887` S / Black Ink Heather cost=None  
+  - `165888` S / J. Navy cost=None  
+  - `165890` S / Oxford cost=None  
 
-### Unisex Legend Premium Heavyweight Cross-Grain Hooded Sweatshirt  
-- blueprint **6998** · family `apparel` · fit **4/10**  
-- provider **217** Fulfill Engine · methods ['dtf', 'dtg']  
-- variants: 80 · cost sample: n/a on catalog  
+### Premium Blend Ring Spun T-Shirt  
+- blueprint **2981** · family `apparel` · fit **4/10**  
+- provider **217** Fulfill Engine · methods ['dtf']  
+- variants: 199 · cost sample: n/a on catalog  
   Sample variants:  
-  - `303154` S / Alpine Green cost=None  
-  - `303156` 3XL / Alpine Green cost=None  
-  - `303163` M / Alpine Green cost=None  
-  - `303165` L / Black cost=None  
+  - `166012` S / Royal cost=None  
+  - `166014` S / White cost=None  
+  - `166015` S / Black Ink cost=None  
+  - `166017` S / Charcoal Heather cost=None  
 
 ### Matte Carryall Tote  
 - blueprint **5113** · family `tote_bag` · fit **4/10**  
@@ -373,59 +373,23 @@
   Sample variants:  
   - `112062` 18'' × 30'' cost=None  
 
-## Real costs from *your* Printify shop (API products)
-
-Catalog endpoints do **not** return `cost`; costs appear only on created products.
-
-| Product (existing) | Blueprint | Size | Cost | Retail set | Profit |
-|--------------------|-----------|------|-----:|-----------:|-------:|
-| Geometric / Harmonograph posters | **282** Matte Vertical | 11×14 | **$5.92** | $15.00 | $9.08 |
-| Harmonograph square | **282** | 18×18 | **$10.63** | $34.99 | $24.36 |
-| Amethyst Julia magnet | **428** SPOKE | 3×3 | **$2.82** | $8.99 | $6.17 |
-| | | 4×4 | **$3.22** | $11.99 | $8.77 |
-| | | 6×6 | **$4.83** | $15.99 | $11.16 |
-
-**8 products** already in Printify shop `28170054` (Etsy channel).
-
-## Confirmed blueprint IDs (ready to code)
-
-| Blank | Blueprint | Provider | Variants |
-|-------|-----------|----------|----------|
-| Matte Vertical Posters | **282** | 99 Printify Choice | 46 sizes (incl 12×18, 16×20, 24×36) |
-| Magnets square | **428** | 1 SPOKE | 3 / 4 / 6 in |
-| Matte Carryall Tote | **5113** | 217 Fulfill Engine | 3 colors |
-| Doormat 24×16 | **1346** | 80 M.i.A | 1 size |
-| Die-Cut Stickers | **600** | 73 Printed Simply | 2–6 in |
-| Mouse Pad (round) | **582** | 99 Printify Choice | 1 |
-| Hardcover Journal Matte | **485** | 28 District Photo | 1 |
-
 ## Recommended winners for MathRelaxing
 
-| Priority | Product blank | Why (eRank + brand + API) | Blueprint | Suggested retail |
-|---------:|---------------|---------------------------|-----------|------------------|
-| 1 | **Matte posters** | Wall art ranks; digital masters already @ 300 dpi; **proven margin ~$9–24** | **282** | $15–35 |
-| 2 | **Fridge magnets** | Gift impulse + pilot live; **margin ~$6–11** | **428** | $9–16 |
-| 3 | **Tote bags** | eRank teacher tote 3.3k Jun, mom 2.13, KD 75 | **5113** | $22–28 |
-| 4 | **Doormats** (seasonal) | halloween doormat KD 62 — prep before Sep | **1346** | $35–45 |
-| 5 | **Die-cut stickers** | bookish/kindle stickers 1.2–1.4k, KD 71–77 | **600** | $6–12 packs |
-| 6 | **Mousepad** | STEM desk gift, low friction | **582** | $14–18 |
-| 7 | **Journal cover** | optional secondary | **485** | $18–24 |
-
-### Brand fit ranking (MathRelaxing = code-drawn math/physics)
-
-1. **Posters** from equation plates / Bauhaus / fractals (highest SEO proof)  
-2. **Magnets** — same art, impulse SKU  
-3. **Tote** — “Teacher STEM / Math department” angle (not generic teacher)  
-4. **Stickers** — Reader OS / equation mini stickers physical  
-5. **Doormat** — only 1–2 seasonal math puns if you want volume later  
+| Priority | Product blank | Why (eRank + brand) | Blueprint candidates | Suggested retail |
+|---------:|---------------|---------------------|----------------------|------------------|
+| 1 | **Matte posters** (multi-size) | math/physics wall art ranks (#1 Maxwell, #3 Ulam); you already have digital masters @ 300 dpi | **282** (in code) | $18–35 |
+| 2 | **Fridge magnets** | prior scan: math magnet underserved; low COGS, gift impulse | **428** (in code) | $9–16 |
+| 3 | **Tote bags** | teacher tote bag 3.3k Jun, mom 2.13, KD 75 — best apparel-adjacent | tote blueprints below | $22–28 |
+| 4 | **Doormats** (seasonal) | halloween doormat KD 62, mom 1.43 — prep for fall | doormat blueprints | $35–45 |
+| 5 | **Mousepads / stickers** | desk STEM + bookish/kindle sticker demand | sticker/mousepad bps | $12–18 / $6–12 |
+| 6 | **Apparel STEM niche** | only with strong design system (not generic funny tee) | tees/sweatshirts | $24–35 |
 
 ### What NOT to chase first
-- Generic dog/cat mom tees (KD 100, 625 apparel blanks = red ocean)  
-- Generic throw pillows (KD 100)  
-- Heavy canvas multipacks until poster ads/organic convert  
+- Generic dog/cat mom tees (KD 100)
+- Generic throw pillows without art system
+- High-weight canvases until poster margins proven
 
 ### Next actions
-1. **Poster POD series** from equation_plates masters (Fourier, Euler, Maxwell-style) via blueprint 282  
-2. **Magnet series** from fractal / equation thumbnails (428)  
-3. **One tote pilot** (5113) with strong STEM teacher typography  
-4. Create in Printify API only → review mockups → publish Etsy as draft when ready  
+1. Confirm tote + doormat blueprint IDs from deep dive above
+2. Pick 1 design system (equation plate or fractal) → mockup on poster + magnet + tote
+3. Create products via API (Printify only) → publish as Etsy **draft** after review
