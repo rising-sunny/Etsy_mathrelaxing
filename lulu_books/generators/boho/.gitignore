@@ -1,0 +1,8 @@
+*_panel*.png
+*_triptych.jpg
+new_palettes_contact.jpg
+deliverable/
+listing/
+listing_*/
+*.zip
+__pycache__/

@@ -1,0 +1,8 @@
+output/
+book/
+fullbook/
+pages/
+*.pdf
+*_check.jpg
+contact_sheet.jpg
+__pycache__/
