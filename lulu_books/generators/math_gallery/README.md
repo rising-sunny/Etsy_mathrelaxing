@@ -13,6 +13,10 @@ and a short caption (left), generated directly from the mathematics.
 | `full_book.py` | Builds the **full interior PDF** (88 pp: title, foreword, section dividers, 38 plates, colophon) + the front cover. All plate metadata (section, title, equations, description) lives here. |
 | `build_cover_wrap.py` | Builds the **hardcover full-wrap cover** (back + spine + front) at Lulu's exact dimensions, with the ∞ logo. |
 | `lulu_ops.py` | Lulu API helpers (no fitz): `dims` (cover-dimensions / spine) and `validate` (R2 upload + validate-interior). Read-only — never places an order. |
+| `build_book_mockups.py` | Composited product mockups from the real cover + pages: 3/4 hero, open spread, inside grid, and a lit lifestyle scene. → `fullbook/mockups/`. |
+| `build_previews.py` | Assembles the **Etsy preview set** (2000×2000): 4 AI lifestyle mockups (dropped in `fullbook/ai_mockups/`) + real interior spreads and a plate grid rendered here. → `fullbook/previews/`. |
+| `ai_mockup_kit/PROMPTS.md` | Advanced prompts (+ real cover/spread refs) to generate photoreal mockups with an image AI. Emphasises the true **square 8.5×8.5 in** geometry so the model doesn't warp the book. |
+| `listing/create_book_listing.py` | Creates the **DRAFT Etsy listing** with two hardcover variants (Standard $48 / Premium $65) via the inventory endpoint. Stays draft — owner activates. |
 
 ## Build
 
