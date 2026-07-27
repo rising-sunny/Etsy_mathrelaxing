@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Seller Studio — A Seller's AI Toolkit</title>
+<style>
+  :root{
+    --paper:#F3F2EC; --panel:#FBFAF5; --ink:#1b1a17; --ink-soft:#46443e; --muted:#8b867a;
+    --rule:#ded9cc; --rule-strong:#c6c0b0; --accent:#1f7a5c; --accent-deep:#155c45;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  /* masthead */
+  header{background:var(--paper);border-bottom:2px solid var(--ink);padding:26px 34px 20px}
+  .masthead-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+  .kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  header h1{font-family:var(--serif);font-weight:600;font-size:31px;letter-spacing:.2px;margin:9px 0 0;color:var(--ink)}
+  header h1 em{font-style:italic;color:var(--ink-soft)}
+  header p{margin:9px 0 0;color:var(--ink-soft);font-size:14px;max-width:720px;font-family:var(--serif)}
+  .edition{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+  /* layout */
+  .app{display:grid;grid-template-columns:332px 1fr;min-height:calc(100vh - 96px)}
+  .side{border-right:1px solid var(--rule-strong);padding:22px 24px 40px;overflow:auto}
+  .main{padding:32px 44px 54px;overflow:auto;max-width:920px}
+  @media(max-width:880px){.app{grid-template-columns:1fr}.side{border-right:none;border-bottom:1px solid var(--rule-strong)}}
+  /* search */
+  .search{width:100%;padding:8px 2px;border:none;border-bottom:1.5px solid var(--ink);background:transparent;
+          font-family:var(--serif);font-size:15px;color:var(--ink)}
+  .search::placeholder{color:var(--muted);font-style:italic}
+  .search:focus{outline:none;border-color:var(--accent)}
+  /* category tabs */
+  .chips{display:flex;flex-wrap:wrap;gap:6px 16px;margin:20px 0 4px;border-bottom:1px solid var(--rule);padding-bottom:11px}
+  .chip{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;
+        padding:2px 0;border-bottom:2px solid transparent;font-weight:600;user-select:none}
+  .chip.active{color:var(--ink);border-color:var(--accent)}
+  /* prompt index */
+  .plist{list-style:none;margin:4px 0 0;padding:0}
+  .pitem{display:grid;grid-template-columns:32px 1fr;gap:10px;padding:14px 6px 13px;border-bottom:1px solid var(--rule);cursor:pointer}
+  .pitem:hover{background:var(--panel)}
+  .pitem.active .ttl{color:var(--accent)}
+  .idx{font-family:var(--serif);font-size:14px;color:var(--muted);padding-top:3px}
+  .pitem .cat{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .pitem .ttl{font-family:var(--serif);font-size:16px;color:var(--ink);margin-top:1px;line-height:1.25}
+  .pitem .dsc{font-size:12.5px;color:var(--ink-soft);margin-top:4px;font-family:var(--serif)}
+  /* detail */
+  .empty{color:var(--muted);font-style:italic;font-family:var(--serif);margin-top:15vh;text-align:center}
+  .detail .kick{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .detail h2{font-family:var(--serif);font-size:30px;color:var(--ink);margin:7px 0 0;line-height:1.15}
+  .detail .sub{color:var(--ink-soft);font-family:var(--serif);font-style:italic;margin-top:9px;font-size:15px}
+  .rule{height:1px;background:var(--rule-strong);margin:22px 0 2px}
+  .how{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--ink-soft);
+       border-left:3px solid var(--accent);padding:2px 0 2px 15px;margin:22px 0 28px}
+  .how b{font-style:normal;color:var(--ink)}
+  /* fields */
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px}
+  @media(max-width:600px){.fields{grid-template-columns:1fr}}
+  .field.full{grid-column:1 / -1}
+  label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:7px}
+  label .req{color:var(--accent)}
+  input[type=text],textarea,select{width:100%;padding:8px 2px;border:none;border-bottom:1.5px solid var(--rule-strong);
+       background:transparent;font-family:var(--serif);font-size:15px;color:var(--ink)}
+  textarea{min-height:70px;resize:vertical;border:1px solid var(--rule-strong);padding:11px 13px;background:var(--panel);font-size:14.5px}
+  select{font-family:var(--sans);font-size:14px;padding-bottom:9px}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
+  /* output */
+  .outwrap{margin-top:34px}
+  .outhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
+  .outhead h3{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+  .btns{display:flex;gap:10px}
+  button{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+         padding:10px 18px;cursor:pointer;border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:0}
+  .copy{background:var(--ink);color:var(--paper)}
+  .copy:hover{background:var(--accent);border-color:var(--accent)}
+  .copy.done{background:var(--accent);border-color:var(--accent)}
+  .reset:hover{border-color:var(--accent);color:var(--accent)}
+  .output{white-space:pre-wrap;background:var(--panel);border:1px solid var(--rule-strong);border-top:3px solid var(--ink);
+          padding:22px 24px;font-family:var(--mono);font-size:13px;line-height:1.72;color:var(--ink);max-height:46vh;overflow:auto}
+  .output .blank{color:var(--accent);border-bottom:1.5px dotted var(--accent);font-weight:600;font-family:var(--serif);font-style:italic}
+  .foot{color:var(--muted);font-size:12px;margin-top:28px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--serif);font-style:italic}
+</style>
+</head>
+<body>
+<header>
+  <div class="masthead-row">
+    <div>
+      <div class="kicker">A Seller's AI Toolkit</div>
+      <h1>The Seller Studio</h1>
+      <p>Pick a task, fill in the blanks, and copy a precise, expert-level prompt to write listings, market your shop and save hours — ready for ChatGPT, Claude or Gemini. Works offline, right in your browser.</p>
+    </div>
+    <div class="edition">No. 01 — Prototype</div>
+  </div>
+</header>
+
+<div class="app">
+  <aside class="side">
+    <input id="search" class="search" type="text" placeholder="Search prompts…" autocomplete="off">
+    <div id="chips" class="chips"></div>
+    <ul id="plist" class="plist"></ul>
+  </aside>
+  <main class="main">
+    <div id="detail" class="detail">
+      <div class="empty">Select a prompt to begin.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+/* ---------- Advanced teacher prompt library ----------
+   Templates use {{key}} tokens filled by the fields below.
+   Every prompt assigns an expert role, supplies context, demands a
+   structured output, and invokes a pedagogical framework so the model
+   returns precise, classroom-ready results. */
+const GRADES = ["Just starting out","Growing shop","Established shop"];
+const TONE = ["Warm & friendly","Professional","Playful","Luxury / premium"];
+
+const PROMPTS = [
+/* ===== Listings & SEO ===== */
+{ id:"product_desc", cat:"Listings & SEO", title:"Product description that sells", desc:"Benefit-led copy with a hook and a clear call to action.",
+  fields:[{k:"product",l:"The product",t:"textarea",ph:"Describe the product + key details/materials",full:true},{k:"buyer",l:"Ideal buyer / use",t:"text",ph:"e.g. new moms, gift for teachers",full:true},{k:"tone",l:"Tone",t:"select",o:TONE}],
+  tpl:`You are an expert Etsy copywriter. Write a product description for: {{product}}. Ideal buyer: {{buyer}}. Tone: {{tone}}.
+
+Structure: a scroll-stopping first line, benefits (not just features), who it's for and why they'll love it, the key details/specs, and a clear call to action. Keep it scannable (short paragraphs, a little structure), weave in relevant keywords naturally (no stuffing), and sound human, not salesy. Give me 2 versions to choose from.`},
+{ id:"title_seo", cat:"Listings & SEO", title:"Etsy title (SEO-optimized)", desc:"Front-loaded, long-tail, under 140 characters.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"e.g. minimalist gold hoop earrings"},{k:"keywords",l:"Keywords buyers might use",t:"text",ph:"list any you know",req:false,full:true},{k:"attrs",l:"Key attributes",t:"text",ph:"e.g. gold, gift, handmade, dainty",req:false,full:true}],
+  tpl:`You are an Etsy SEO specialist. Write 3 title options for: {{product}} (keywords: {{keywords}}; attributes: {{attrs}}).
+
+Rules: each under 140 characters, front-load the highest-intent long-tail phrase buyers actually search, use natural multi-word phrases separated by " | ", cover different search angles (style, use, gift/occasion), and avoid keyword stuffing or repetition. Tell me which is strongest and why, and which to A/B test.`},
+{ id:"tags13", cat:"Listings & SEO", title:"13 Etsy tags", desc:"All 13 slots used well — long-tail, buyer-intent.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"e.g. printable birthday invitation"},{k:"title",l:"Your listing title",t:"text",ph:"paste your title",req:false,full:true}],
+  tpl:`You are an Etsy SEO expert. Generate exactly 13 tags for: {{product}} (title: {{title}}).
+
+Each tag ≤ 20 characters, multi-word where possible (no wasted single words), a mix of broad and specific long-tail buyer-intent phrases, include occasion/gift/style angles, and don't repeat the same root word across tags. Align them with the title. Mark 2 you'd A/B test and say why.`},
+{ id:"refresh", cat:"Listings & SEO", title:"Refresh a stale listing", desc:"Diagnose why it's not selling and fix the biggest lever.",
+  fields:[{k:"title",l:"Current title",t:"text",ph:"paste the current title",full:true},{k:"product",l:"Product",t:"text",ph:"what it is",full:true},{k:"issue",l:"The problem",t:"text",ph:"e.g. views but no sales / no views",full:true}],
+  tpl:`You are an Etsy growth consultant. My listing isn't performing (problem: {{issue}}). Title: {{title}}. Product: {{product}}.
+
+Diagnose the most likely causes (SEO, first photo, price, or copy) based on the problem, then give me a rewritten title, tag changes, a stronger first description line, and one photo/CTA fix. Prioritize the SINGLE highest-impact change I should make first, and why.`},
+{ id:"keyword_research", cat:"Listings & SEO", title:"Keyword brainstorm", desc:"20 long-tail phrases grouped by buyer intent.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what you sell",full:true}],
+  tpl:`You are an Etsy keyword strategist. Brainstorm 20 long-tail keyword phrases a buyer would type to find: {{product}}. Group them by intent (broad, specific/descriptive, occasion/gift, style/aesthetic). Flag the 5 with likely best demand-to-competition balance, and remind me to validate them in Etsy search / eRank before committing (don't invent search volumes).`},
+{ id:"attributes", cat:"Listings & SEO", title:"Category, attributes & occasions", desc:"Fill every field Etsy uses to surface you.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true}],
+  tpl:`You are an Etsy listing expert. For {{product}}, recommend the best Etsy category, every relevant attribute I should fill (color, material, style, occasion, recipient, holiday), and 3 gift/occasion angles to add. Explain how filling these gives me more search surfaces and filter appearances.`},
+{ id:"variations", cat:"Listings & SEO", title:"Listing variations & options", desc:"Add options that lift conversion and order value.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true}],
+  tpl:`You are an Etsy merchandising expert. Suggest smart variations for {{product}} (size, color, format, personalization, bundle), how to present them so buyers self-select, which option to feature as the default, and the pricing implications. Keep it simple enough to manage.`},
+{ id:"photo_brief", cat:"Listings & SEO", title:"Product photo shot list", desc:"What each of the 10 photo slots should show.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true}],
+  tpl:`You are an Etsy conversion photographer. Give a shot list for the 10 photo slots for {{product}}: hero, scale/context, detail/quality, in-use/styled, variations, packaging/unboxing, and an info graphic. For each, say what it communicates and why it helps conversion. Add one tip for a strong, thumbnail-friendly first photo.`},
+
+/* ===== Social Media ===== */
+{ id:"ig_caption", cat:"Social Media", title:"Instagram caption", desc:"Hook, story, CTA and a smart hashtag set.",
+  fields:[{k:"product",l:"Product / post",t:"text",ph:"what you're posting",full:true},{k:"goal",l:"Goal",t:"select",o:["Drive to shop","Engagement","Launch / announce","Build brand"]},{k:"tone",l:"Tone",t:"select",o:TONE}],
+  tpl:`You are a social media manager for handmade brands. Write 3 Instagram captions for: {{product}} (goal: {{goal}}, tone: {{tone}}). Each: a scroll-stopping first line, a short benefit or story, and a clear CTA. Add one set of 15 relevant hashtags (mixed reach + niche). On-brand, not spammy.`},
+{ id:"reels_hook", cat:"Social Media", title:"Reels / TikTok hook + script", desc:"Stop the scroll in 3 seconds, then a shot list.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what you're featuring",full:true},{k:"idea",l:"Video idea / angle",t:"text",ph:"e.g. packing an order, before/after",full:true}],
+  tpl:`You are a short-form video expert. For {{product}}, give 3 hook lines for the first 3 seconds, then a 15–30s script for this idea: {{idea}} — as a shot list with on-screen text and a CTA. Optimize for watch-through and shares. Add a trending-audio suggestion approach (how to pick one).`},
+{ id:"pinterest", cat:"Social Media", title:"Pinterest pin description", desc:"Pinterest SEO that keeps driving traffic.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true},{k:"keywords",l:"Keywords",t:"text",ph:"any keywords",req:false,full:true}],
+  tpl:`You are a Pinterest marketing expert. For {{product}} (keywords: {{keywords}}), write a keyword-rich pin title and description optimized for Pinterest search, 3 different pin angle ideas, and 3 board suggestions. Describe the ideal pin image (vertical, text overlay). Keep it evergreen so it keeps driving traffic.`},
+{ id:"content_calendar", cat:"Social Media", title:"2-week content calendar", desc:"14 batchable posts across platforms.",
+  fields:[{k:"shop",l:"Your shop / niche",t:"text",ph:"e.g. minimalist jewelry",full:true},{k:"products",l:"Products to feature",t:"text",ph:"list a few",full:true}],
+  tpl:`You are a content strategist. Plan a 14-day content calendar for my shop ({{shop}}) featuring {{products}}. Mix product, behind-the-scenes, value/tips, social proof/UGC, and promo posts. For each day: a one-line idea, the platform, and the format. Keep it low-effort and batchable, and note which posts to repurpose across platforms.`},
+{ id:"launch_post", cat:"Social Media", title:"Product launch announcement", desc:"Build anticipation and convert on day one.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"the new product",full:true},{k:"offer",l:"Launch offer",t:"text",ph:"e.g. 15% off first 48h",req:false,full:true}],
+  tpl:`You are a launch strategist. Write launch content for {{product}} (offer: {{offer}}): a teaser post, the launch-day post, an email blurb, and an Etsy shop announcement. Build anticipation, state the offer, add honest urgency, and a clear CTA. Give 2 tone options for the main post.`},
+{ id:"hashtags", cat:"Social Media", title:"Hashtag sets", desc:"Rotatable sets sized for reach vs competition.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true},{k:"niche",l:"Niche",t:"text",ph:"e.g. boho home decor",full:true}],
+  tpl:`You are a social media strategist. Create 3 hashtag sets for {{product}} in the {{niche}} niche — broad, niche, and community — about 15 each, balanced for reach vs competition (avoid banned/overused ones). Explain how to rotate them to avoid looking spammy.`},
+
+/* ===== Email Marketing ===== */
+{ id:"welcome_email", cat:"Email Marketing", title:"Welcome email", desc:"Turn a new subscriber into a first-time buyer.",
+  fields:[{k:"shop",l:"Your shop",t:"text",ph:"shop + what you sell",full:true},{k:"incentive",l:"Sign-up incentive",t:"text",ph:"e.g. 10% off",req:false,full:true}],
+  tpl:`You are an email marketer for small shops. Write a warm welcome email for {{shop}} (incentive: {{incentive}}): a friendly intro, what to expect, the incentive, 2–3 best-sellers, and a clear CTA. Keep it short and on-brand. Include a subject line and preview text, plus one A/B subject alternative.`},
+{ id:"email_sequence", cat:"Email Marketing", title:"Welcome email sequence (3 emails)", desc:"A nurture flow that builds trust and sells.",
+  fields:[{k:"shop",l:"Your shop",t:"text",ph:"shop + niche",full:true},{k:"incentive",l:"Incentive",t:"text",ph:"e.g. 10% off",req:false,full:true}],
+  tpl:`You are an email strategist. Outline a 3-email welcome sequence for {{shop}} (incentive: {{incentive}}): Email 1 (welcome + incentive), Email 2 (brand story / value), Email 3 (best-sellers + social proof + urgency). For each: the goal, subject line + preview, key points, and CTA. Note the send timing between them.`},
+{ id:"abandoned_cart", cat:"Email Marketing", title:"Abandoned cart email", desc:"Recover lost sales without being pushy.",
+  fields:[{k:"shop",l:"Your shop",t:"text",ph:"shop + product type",full:true}],
+  tpl:`You are a conversion copywriter. Write an abandoned-cart email (and a short 2nd follow-up) for {{shop}}: a friendly reminder, reassurance (reviews, easy returns, secure), gentle urgency, and an optional small incentive for the 2nd email. Include subject lines + preview text. Keep it human.`},
+{ id:"sale_email", cat:"Email Marketing", title:"Sale / promo email", desc:"Clear offer, urgency, hero products.",
+  fields:[{k:"shop",l:"Your shop",t:"text",ph:"shop",full:true},{k:"offer",l:"The offer",t:"text",ph:"e.g. 20% off everything",full:true},{k:"dates",l:"Dates / deadline",t:"text",ph:"e.g. this weekend only",full:true}],
+  tpl:`You are an email marketer. Write a promo email for {{shop}}: offer {{offer}}, running {{dates}}. Lead with the offer, add urgency/deadline, feature 2–3 hero products, and a strong CTA. Scannable. Subject line + preview + one A/B subject.`},
+{ id:"review_request", cat:"Email Marketing", title:"Review request message", desc:"Politely earn more reviews (policy-safe).",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what they bought",full:true}],
+  tpl:`You are a customer-experience expert. Write a polite post-purchase message asking for a review of {{product}}: thank them, make leaving a review easy, and keep it low-pressure. IMPORTANT: do not offer incentives for reviews (against Etsy policy) — just make it genuine. Keep it short and warm.`},
+
+/* ===== Customer Service ===== */
+{ id:"bad_review", cat:"Customer Service", title:"Respond to a negative review", desc:"Calm, professional, reputation-protecting reply.",
+  fields:[{k:"review",l:"The review",t:"textarea",ph:"paste the review",full:true},{k:"context",l:"What actually happened",t:"text",ph:"your side / context",full:true}],
+  tpl:`You are a customer-service expert protecting a shop's reputation. Given this review — {{review}} (context: {{context}}) — write a calm, professional PUBLIC reply that acknowledges their experience, stays non-defensive, and shows future readers you're reasonable and solution-focused. Then write a private message to make it right. Don't argue or over-apologize.`},
+{ id:"positive_review", cat:"Customer Service", title:"Reply to a positive review", desc:"Turn a happy buyer into a repeat customer.",
+  fields:[{k:"review",l:"The review",t:"text",ph:"paste it (or the gist)",full:true}],
+  tpl:`You are a loyalty-focused shop owner. Write a warm, genuine reply to this positive review — {{review}} — that thanks them specifically, reinforces what they loved, and subtly invites them back or to share the shop, without sounding scripted. Keep it short.`},
+{ id:"faq_answer", cat:"Customer Service", title:"Answer a customer question", desc:"Clear, complete, anticipates the follow-up.",
+  fields:[{k:"question",l:"The question",t:"textarea",ph:"paste their question",full:true},{k:"context",l:"Info to include",t:"text",ph:"details/policy relevant",req:false,full:true}],
+  tpl:`You are a friendly, knowledgeable shop owner. Answer this customer question clearly and completely: {{question}} (relevant info: {{context}}). Anticipate the likely follow-up and address it, stay on-brand and warm, and end helpfully. Keep it concise.`},
+{ id:"refund", cat:"Customer Service", title:"Handle a refund / return", desc:"Fair, empathetic, de-escalating response.",
+  fields:[{k:"situation",l:"The situation",t:"textarea",ph:"what happened + what they want",full:true},{k:"policy",l:"Your policy",t:"text",ph:"e.g. returns within 14 days",req:false,full:true}],
+  tpl:`You are an experienced shop owner. Write a fair, empathetic response to this refund/return request: {{situation}} (policy: {{policy}}). Acknowledge their frustration, offer clear solutions (refund / replacement / store credit) consistent with the policy, and de-escalate. Protect both the relationship and the shop. Give a firm-but-kind version too.`},
+{ id:"shipping_delay", cat:"Customer Service", title:"Shipping delay message", desc:"Proactive, confident, goodwill-building.",
+  fields:[{k:"situation",l:"The delay",t:"text",ph:"reason + new timeline",full:true}],
+  tpl:`You are a customer-experience pro. Write a proactive message about a shipping delay: {{situation}}. Be honest and apologetic but confident, give a clear new timeline, and offer a goodwill gesture if warranted. Reassure them and reduce the chance of a negative review.`},
+{ id:"custom_inquiry", cat:"Customer Service", title:"Custom order inquiry reply", desc:"Set scope, expectations and next steps.",
+  fields:[{k:"request",l:"Their request",t:"textarea",ph:"paste the custom request",full:true}],
+  tpl:`You are a shop owner handling custom orders. Reply to this request: {{request}}. Clarify the scope, set expectations (timeline, price range, revisions, what you need from them), and lay out next steps to confirm and quote. Warm and professional, and protect your time and margins.`},
+{ id:"thankyou", cat:"Customer Service", title:"Thank-you note / insert", desc:"Delight buyers and earn follows and reviews.",
+  fields:[{k:"shop",l:"Your shop",t:"text",ph:"shop name / vibe",full:true},{k:"ask",l:"Soft ask",t:"text",ph:"e.g. follow on IG, tag us",req:false,full:true}],
+  tpl:`You are a brand-experience designer. Write a short thank-you note for a package insert from {{shop}}: genuine gratitude, a small moment of delight, care/use tip if relevant, and a soft ask ({{ask}}). Keep it on-brand and human — 3–4 lines. Give 2 versions.`},
+
+/* ===== Branding & Copy ===== */
+{ id:"about", cat:"Branding & Copy", title:"Shop 'About' story", desc:"Build trust with an authentic origin story.",
+  fields:[{k:"shop",l:"About you & the shop",t:"textarea",ph:"who you are, why you started, what's special",full:true}],
+  tpl:`You are a brand storyteller. Write a compelling Etsy About section from this: {{shop}}. Include your story, mission, what makes you different, and why buyers can trust you. Authentic and warm (not corporate), scannable, and end with an inviting line. Give a shorter and a longer version.`},
+{ id:"tagline", cat:"Branding & Copy", title:"Brand voice & tagline", desc:"Define your vibe and nail a tagline.",
+  fields:[{k:"shop",l:"About the brand",t:"textarea",ph:"what you sell + the feeling you want",full:true}],
+  tpl:`You are a brand strategist. From this — {{shop}} — define a brand voice (3 adjectives + a short do/don't list) and give 5 tagline options with the vibe each conveys. Recommend the strongest and where to use it (shop title, about, banner).`},
+{ id:"policies", cat:"Branding & Copy", title:"Shop policies (clear & friendly)", desc:"Reduce disputes with plain-language policies.",
+  fields:[{k:"details",l:"Your details",t:"textarea",ph:"shipping, returns, processing time, custom orders",full:true}],
+  tpl:`You are an e-commerce operations expert. Turn these details — {{details}} — into clear, friendly, professional shop policies (shipping, returns/exchanges, processing time, custom orders). Plain language that sets expectations and reduces disputes, while staying fair and on-brand.`},
+{ id:"announcement", cat:"Branding & Copy", title:"Shop announcement banner", desc:"The top-of-shop line that informs and converts.",
+  fields:[{k:"news",l:"Current news",t:"text",ph:"e.g. sale, current processing time, restock",full:true}],
+  tpl:`You are a conversion copywriter. Write 3 short shop-announcement options featuring: {{news}}. Each should inform buyers, build trust (processing time, shipping), and include a light CTA. Keep them brief and scannable.`},
+{ id:"usp", cat:"Branding & Copy", title:"Find & phrase your USP", desc:"Say clearly why buyers should pick you.",
+  fields:[{k:"shop",l:"About your shop",t:"textarea",ph:"what you sell + how you're different",full:true},{k:"competitors",l:"Competitors",t:"text",ph:"who else sells this",req:false,full:true}],
+  tpl:`You are a positioning strategist. From my shop — {{shop}} (competitors: {{competitors}}) — identify what genuinely makes me different, phrase 3 clear USP statements, and tell me where to use each (title, about, product copy). Avoid generic claims like "high quality".`},
+{ id:"faq_section", cat:"Branding & Copy", title:"Product FAQ section", desc:"Answer hesitations to boost conversion.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true}],
+  tpl:`You are a conversion copywriter. Write a helpful FAQ (6–8 Q&As) for {{product}} that answers the real hesitations buyers have (sizing, materials, shipping, personalization, care, digital use). Answers should reassure and reduce pre-sale questions. Keep them concise and friendly.`},
+
+/* ===== Products & Offers ===== */
+{ id:"product_ideas", cat:"Products & Offers", title:"New product ideas from a trend", desc:"On-brand ideas that fit a rising trend.",
+  fields:[{k:"shop",l:"Your shop / niche",t:"text",ph:"what you sell",full:true},{k:"trend",l:"The trend",t:"text",ph:"e.g. cottagecore, a season/holiday",full:true}],
+  tpl:`You are an Etsy product strategist. Suggest 8 product ideas that fit my shop ({{shop}}) and this trend ({{trend}}). For each: a one-line why-it-could-sell and a rough difficulty. Flag the top 2 to test first, and remind me to validate real demand (Etsy search / eRank) before building.`},
+{ id:"bundles", cat:"Products & Offers", title:"Bundle & upsell ideas", desc:"Raise average order value with smart sets.",
+  fields:[{k:"products",l:"Your products",t:"textarea",ph:"list your main products",full:true}],
+  tpl:`You are a merchandising strategist. From my products — {{products}} — propose bundles/sets and upsell/cross-sell pairings, with a catchy name and a pricing angle for each that raises average order value while feeling like a deal to the buyer.`},
+{ id:"pricing", cat:"Products & Offers", title:"Pricing strategy helper", desc:"Price for profit and positioning (you confirm numbers).",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true},{k:"costs",l:"Your costs",t:"text",ph:"materials, time, fees if known",req:false,full:true},{k:"competitors",l:"Competitor prices",t:"text",ph:"rough range",req:false,full:true}],
+  tpl:`You are a pricing consultant. Help me price {{product}} (costs: {{costs}}; competitor range: {{competitors}}). Walk through: covering costs + Etsy fees + a real profit margin, positioning vs competitors, psychological pricing (charm pricing, anchoring), and bundle/discount strategy. Give a recommended price RANGE with reasoning — I'll confirm my actual numbers.`},
+{ id:"seasonal", cat:"Products & Offers", title:"Seasonal product angle", desc:"Reposition an existing product for the season.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true},{k:"season",l:"Season / holiday",t:"text",ph:"e.g. Christmas, back to school",full:true}],
+  tpl:`You are a seasonal-selling expert. Reposition {{product}} for {{season}}: new keywords, a gift angle, listing tweaks (title/tags/first photo), and a mini promo idea. Tell me the lead time — how early to list to catch the search wave.`},
+{ id:"product_names", cat:"Products & Offers", title:"Product name brainstorm", desc:"Memorable, searchable names in your vibe.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true},{k:"vibe",l:"Vibe / style",t:"text",ph:"e.g. cozy, luxe, playful",full:true}],
+  tpl:`You are a naming expert. Brainstorm 15 product names for {{product}} in a {{vibe}} vibe — memorable and still searchable — grouped by style. For each group, note the trade-off between brand-y and SEO-friendly, and recommend a naming approach for Etsy.`},
+{ id:"objections", cat:"Products & Offers", title:"Overcome buyer objections", desc:"Address the reasons people hesitate to buy.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true}],
+  tpl:`You are a conversion strategist. List the top 5 reasons buyers hesitate on {{product}}, and for each, the exact copy or reassurance to address it — and where it should live (title, first photo, description, FAQ, reviews). Make it specific to this product.`},
+
+/* ===== Ads & Growth ===== */
+{ id:"ads_keywords", cat:"Ads & Growth", title:"Etsy Ads keyword picks", desc:"What to promote and which terms to target.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true},{k:"title",l:"Listing title",t:"text",ph:"paste title",req:false,full:true}],
+  tpl:`You are an Etsy Ads specialist. For {{product}} (title: {{title}}), suggest which high-intent keywords/phrases to target, which broad ones to consider excluding, and a sensible starter daily-budget logic. Remind me to check the Ads search-terms report weekly and cut/scale based on real data (don't promise specific results).`},
+{ id:"ad_copy", cat:"Ads & Growth", title:"Ad / promo copy", desc:"Short, benefit-led ad variations.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what it is",full:true},{k:"offer",l:"Offer / angle",t:"text",ph:"e.g. free shipping, gift idea",req:false,full:true}],
+  tpl:`You are a direct-response copywriter. Write 3 short ad variations for {{product}} (offer/angle: {{offer}}): a headline + one line each, benefit-led with a clear CTA. Give one curiosity-driven, one benefit-driven, and one offer-driven version.`},
+{ id:"whattopromote", cat:"Ads & Growth", title:"What should I promote?", desc:"Turn your stats into ad decisions.",
+  fields:[{k:"shop",l:"Your data",t:"textarea",ph:"best sellers, views, conversion, margins",full:true}],
+  tpl:`You are an Etsy growth analyst. From my data — {{shop}} — tell me which listings to promote and which to fix first: high views + low sales usually means the listing/photo/price needs work (don't just throw ads at it); high-converting listings are the ones to scale with ads. Give me a prioritized action list and the logic.`},
+{ id:"growth_plan", cat:"Ads & Growth", title:"30-day growth plan", desc:"A focused month of high-leverage actions.",
+  fields:[{k:"shop",l:"Your shop",t:"text",ph:"shop + niche",full:true},{k:"goal",l:"Your goal",t:"text",ph:"e.g. reach 50 sales/month",full:true}],
+  tpl:`You are an Etsy growth coach. Build a realistic 30-day plan for {{shop}} toward this goal: {{goal}}. Break it into weekly focuses (SEO fixes, new listings, content, email, an ads test), with the 20% of actions that drive 80% of results first. Keep it doable for a solo seller.`},
+{ id:"collab", cat:"Ads & Growth", title:"Influencer / collab outreach", desc:"Value-first outreach that gets replies.",
+  fields:[{k:"shop",l:"Your shop",t:"text",ph:"shop + what you'd offer",full:true},{k:"target",l:"Who you're reaching out to",t:"text",ph:"e.g. a small IG creator in your niche",full:true}],
+  tpl:`You are an influencer-marketing expert. Write a short, personalized outreach message from {{shop}} to {{target}} proposing a collaboration. Lead with genuine value for them, keep it low-pressure, and make one clear, easy ask. Give a DM version and an email version.`},
+
+/* ===== Research & Ops ===== */
+{ id:"validate_idea", cat:"Research & Ops", title:"Validate a product idea", desc:"Go / test / skip before you build it.",
+  fields:[{k:"idea",l:"The idea",t:"textarea",ph:"describe the product idea",full:true}],
+  tpl:`You are a lean e-commerce advisor. Give me a validation framework for this idea: {{idea}}. Cover demand signals to check, competition to scan, how to differentiate, a quick profit sanity check, and a clear go / test / skip decision logic. List exactly what I should look up on Etsy/eRank — do not invent numbers.`},
+{ id:"competitor", cat:"Research & Ops", title:"Competitor analysis checklist", desc:"Learn from top shops and find gaps.",
+  fields:[{k:"niche",l:"Your niche",t:"text",ph:"e.g. printable wall art",full:true}],
+  tpl:`You are a market analyst. Give me a checklist to analyze the top competitors in the {{niche}} niche: their titles, tags, photos, pricing, reviews, and what buyers praise vs complain about. Then show me how to turn those findings into 3 concrete opportunities for my shop.`},
+{ id:"niche_brainstorm", cat:"Research & Ops", title:"Find an underserved sub-niche", desc:"Narrow down to where you can win.",
+  fields:[{k:"broad",l:"Your broad niche",t:"text",ph:"e.g. wedding stationery",full:true}],
+  tpl:`You are a niche strategist. Within {{broad}}, brainstorm 8 narrower sub-niches or specific buyer segments that may be underserved. For each: who it's for, why it might be underserved, and a product angle. Flag the 2 most promising and what to check to confirm.`},
+{ id:"calendar", cat:"Research & Ops", title:"Seasonal selling calendar", desc:"Know what to list and when.",
+  fields:[{k:"shop",l:"Your shop",t:"text",ph:"what you sell",full:true}],
+  tpl:`You are an Etsy seasonal strategist. Map the next 3–4 months of selling opportunities for {{shop}}: relevant holidays, seasons and events, when to LIST for each (lead time before the search peak), and a product/keyword angle per opportunity. Prioritize the 3 biggest for my shop.`},
+{ id:"seo_audit", cat:"Research & Ops", title:"Listing SEO self-audit", desc:"A checklist to fix a listing yourself.",
+  fields:[{k:"product",l:"Product (optional)",t:"text",ph:"the listing to audit",req:false,full:true}],
+  tpl:`You are an Etsy SEO auditor. Give me a step-by-step self-audit checklist for a listing{{product}}: title (front-loading, long-tail, length), all 13 tags, attributes, first-photo quality, description keywords, and quality signals (reviews, completeness). For each item, how to tell if it's weak and exactly how to fix it.`},
+{ id:"analytics", cat:"Research & Ops", title:"Make sense of my Etsy stats", desc:"Read your numbers and know the next move.",
+  fields:[{k:"stats",l:"Your stats",t:"textarea",ph:"views, visits, conversion rate, favorites, etc.",full:true}],
+  tpl:`You are an Etsy analyst. Interpret my stats: {{stats}}. Tell me what looks healthy vs a red flag (e.g. views but low conversion = listing/price issue; low views = SEO/reach issue), the likely causes, and the top 3 actions to take next. Ask me for any key number that's missing.`},
+
+/* ===== Growth extras ===== */
+{ id:"press_pitch", cat:"Research & Ops", title:"Press / feature pitch", desc:"Get featured on a blog, gift guide or roundup.",
+  fields:[{k:"shop",l:"Your shop",t:"text",ph:"shop + product",full:true},{k:"angle",l:"The angle",t:"text",ph:"why it's interesting now",full:true}],
+  tpl:`You are a PR specialist for small brands. Write a concise pitch email to a blogger/editor to feature {{shop}}. Lead with the angle ({{angle}}) and why it's relevant now, keep it skimmable, make it easy to say yes (offer images/samples), and end with a low-friction next step. Include a subject line.`},
+{ id:"wholesale_reply", cat:"Research & Ops", title:"Wholesale inquiry reply", desc:"Handle a wholesale request professionally.",
+  fields:[{k:"inquiry",l:"The inquiry",t:"textarea",ph:"paste their message",full:true}],
+  tpl:`You are a wholesale/operations expert. Reply to this wholesale inquiry: {{inquiry}}. Professionally clarify quantities, terms, minimum order, your pricing approach (protect margins), lead time, and next steps. Warm but businesslike. If it's not a fit, give a polite decline version too.`},
+{ id:"restock", cat:"Research & Ops", title:"Back-in-stock announcement", desc:"Reward waiting customers and create urgency.",
+  fields:[{k:"product",l:"Product",t:"text",ph:"what's restocked",full:true}],
+  tpl:`You are a marketing copywriter. Write back-in-stock announcements for {{product}} — one email and one social post — that reward customers who waited, create honest urgency (limited quantity if true), and drive a fast CTA. Include a subject line for the email.`},
+
+/* ===== Productivity ===== */
+{ id:"weekly_plan", cat:"Productivity", title:"Weekly seller task plan", desc:"Focus your limited hours on what moves the needle.",
+  fields:[{k:"hours",l:"Hours you have/week",t:"text",ph:"e.g. 10",full:true},{k:"priorities",l:"Current priorities",t:"text",ph:"e.g. new listings + more sales",full:true}],
+  tpl:`You are a productivity coach for solo sellers. Build a weekly plan given ~{{hours}} hours and these priorities: {{priorities}}. Batch similar tasks (listing, photography, marketing, orders, admin), put the highest-leverage work first, and protect time for the ONE thing that grows sales. Present it as a simple day-by-day plan.`},
+{ id:"batch_content", cat:"Productivity", title:"Batch a month of content", desc:"Create weeks of posts in one sitting.",
+  fields:[{k:"shop",l:"Your shop",t:"text",ph:"shop + niche",full:true},{k:"products",l:"Products",t:"text",ph:"a few to feature",full:true}],
+  tpl:`You are a content-batching coach. Give me a plan to create a month of content for {{shop}} (featuring {{products}}) in one focused session: content themes, a shot/prompt list to capture at once, captions to draft in bulk, and a simple way to schedule it. Keep it realistic for a busy solo seller.`}
+];
+
+/* ---------- app ---------- */
+const $=s=>document.querySelector(s), state={cat:"All", q:"", sel:null, vals:{}};
+const cats=["All",...[...new Set(PROMPTS.map(p=>p.cat))]];
+
+function renderChips(){
+  $("#chips").innerHTML=cats.map(c=>`<span class="chip${c===state.cat?' active':''}" data-c="${c}">${c}</span>`).join("");
+  document.querySelectorAll(".chip").forEach(el=>el.onclick=()=>{state.cat=el.dataset.c;renderChips();renderList();});
+}
+function match(p){
+  const okc=state.cat==="All"||p.cat===state.cat;
+  const q=state.q.toLowerCase();
+  const okq=!q||(p.title+" "+p.desc+" "+p.cat).toLowerCase().includes(q);
+  return okc&&okq;
+}
+function renderList(){
+  const items=PROMPTS.filter(match);
+  $("#plist").innerHTML=items.map((p,i)=>
+    `<li class="pitem${state.sel===p.id?' active':''}" data-id="${p.id}">
+       <div class="idx">${String(i+1).padStart(2,"0")}</div>
+       <div><div class="cat">${p.cat}</div>
+         <div class="ttl">${p.title}</div>
+         <div class="dsc">${p.desc}</div></div></li>`).join("")||
+    `<li style="color:var(--muted);font-style:italic;font-family:var(--serif);padding:14px 6px">No prompts match.</li>`;
+  document.querySelectorAll(".pitem").forEach(el=>el.onclick=()=>select(el.dataset.id));
+}
+function select(id){
+  state.sel=id; state.vals={};
+  renderList();
+  const p=PROMPTS.find(x=>x.id===id);
+  const fields=p.fields.map(f=>{
+    const req=f.req===false?'':'<span class="req"> *</span>';
+    let input;
+    if(f.t==="textarea") input=`<textarea data-k="${f.k}" placeholder="${f.ph||''}"></textarea>`;
+    else if(f.t==="select") input=`<select data-k="${f.k}">${f.o.map(o=>`<option value="${o}">${o}</option>`).join("")}</select>`;
+    else input=`<input type="text" data-k="${f.k}" placeholder="${f.ph||''}">`;
+    return `<div class="field${f.full?' full':''}"><label>${f.l}${req}</label>${input}</div>`;
+  }).join("");
+  $("#detail").innerHTML=
+    `<div class="kick">${p.cat}</div>
+     <h2>${p.title}</h2>
+     <div class="sub">${p.desc}</div>
+     <div class="rule"></div>
+     <div class="how">Fill in the fields — the prompt updates live. Any blank you leave stays marked in <b style="color:var(--accent)">green</b> so you can spot it. Then press <b>Copy prompt</b> and paste it into your AI.</div>
+     <div class="fields">${fields}</div>
+     <div class="outwrap">
+       <div class="outhead"><h3>Your prompt</h3>
+         <div class="btns"><button class="reset" id="reset">Clear</button>
+           <button class="copy" id="copy">Copy prompt</button></div></div>
+       <div class="output" id="output"></div>
+     </div>
+     <div class="foot">Works with ChatGPT, Claude and Gemini. Written &amp; curated for small-shop owners — always tailor it to your brand voice. Runs entirely offline; nothing you type leaves this page.</div>`;
+  p.fields.forEach(f=>{ if(f.t==="select") state.vals[f.k]=f.o[0]; });
+  document.querySelectorAll("[data-k]").forEach(el=>{
+    if(el.tagName==="SELECT") el.value=state.vals[el.dataset.k]||el.options[0].value;
+    el.addEventListener("input",()=>{state.vals[el.dataset.k]=el.value;renderOutput();});
+  });
+  $("#copy").onclick=copyOut; $("#reset").onclick=()=>select(id);
+  renderOutput();
+}
+function fill(tpl,vals,forHtml){
+  return tpl.replace(/\{\{(\w+)\}\}/g,(m,k)=>{
+    const v=(vals[k]||"").trim();
+    if(v) return forHtml?escapeHtml(v):v;
+    const f=PROMPTS.find(x=>x.id===state.sel).fields.find(x=>x.k===k);
+    const label="["+(f?f.l.replace(/ —.*/,''):k)+"]";
+    return forHtml?`<span class="blank">${escapeHtml(label)}</span>`:label;
+  });
+}
+function escapeHtml(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function renderOutput(){
+  const p=PROMPTS.find(x=>x.id===state.sel);
+  $("#output").innerHTML=fill(p.tpl,state.vals,true);
+}
+function copyOut(){
+  const p=PROMPTS.find(x=>x.id===state.sel);
+  const text=fill(p.tpl,state.vals,false);
+  const done=()=>{const b=$("#copy");b.textContent="Copied ✓";b.classList.add("done");setTimeout(()=>{b.textContent="Copy prompt";b.classList.remove("done");},1600);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,()=>fallbackCopy(text,done));}
+  else fallbackCopy(text,done);
+}
+function fallbackCopy(text,done){
+  const ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";
+  document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done();}catch(e){}document.body.removeChild(ta);
+}
+$("#search").addEventListener("input",e=>{state.q=e.target.value;renderList();});
+renderChips();renderList();
+</script>
+</body>
+</html>

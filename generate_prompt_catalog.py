@@ -50,6 +50,20 @@ CFG = {
               "Interactive offline prompt builder (HTML)", "Print-ready PDF catalog · US Letter",
               "Works with ChatGPT, Claude & Gemini"],
   ),
+  "seller": dict(
+    dir="ai_seller_prompts", accent="#1f7a5c",
+    t1="The Seller", t2="Studio", kicker="A SELLER'S AI TOOLKIT",
+    sub=["{N} expert, fill-in-the-blank prompts to write listings, market your",
+         "shop and save hours — SEO, social, email, service & more."],
+    review="Always tailor the output to your brand voice and double-check facts before you publish.",
+    pdf="The_Seller_Studio_Etsy_Prompts.pdf", zip="the_seller_studio_kit.zip",
+    html_in_zip="Seller_Studio_interactive_tool.html",
+    foot="THE SELLER STUDIO", prev="sellerprompts_preview",
+    prev_title="THE SELLER STUDIO", prev_sub="{N} prompts to grow your shop",
+    included=["{N} prompts for Etsy & handmade sellers", "Listings/SEO, social, email, service & ads",
+              "Interactive offline prompt builder (HTML)", "Print-ready PDF catalog · US Letter",
+              "Works with ChatGPT, Claude & Gemini"],
+  ),
 }
 
 KEY = sys.argv[1] if len(sys.argv) > 1 else "teacher"

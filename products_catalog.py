@@ -1586,6 +1586,30 @@ Original, curated study prompts (not bulk AI-generated content). \
 For personal student use. Not for redistribution or resale.
 """,
 
+    "ai_seller_prompts": """\
+Instant download — The Seller Studio: 54 expert AI prompts for Etsy & handmade shop owners + an interactive builder.
+
+Run your shop like you have a marketing team. These 54 fill-in-the-blank prompts help you write \
+listings that rank and sell, market on autopilot, and handle customers like a pro — in a fraction of \
+the time. Works with ChatGPT, Claude and Gemini.
+
+► What you get
+• 54 prompts across 9 areas: Listings & SEO (titles, 13 tags, descriptions), Social Media (IG, Reels, \
+Pinterest, content calendar), Email Marketing, Customer Service (reviews, refunds, FAQs), Branding & Copy \
+(About, policies, USP), Products & Offers (bundles, pricing, seasonal), Ads & Growth, Research & Ops, Productivity
+• Etsy-smart: built around real SEO (long-tail titles under 140 chars, 13 buyer-intent tags), policy-safe \
+customer messages, and conversion copy
+• An interactive prompt builder (HTML) — open it in any browser, pick a task, fill the blanks, click \
+Copy. No install, no internet, works on any device
+• A print-ready PDF catalog of every prompt
+
+► How it works
+Replace each [bracket] with your product, shop and details, then paste into your AI. \
+Always tailor the output to your brand voice and double-check facts before you publish.
+
+Original, curated prompts (not bulk AI-generated content). For personal business use. Not for redistribution or resale.
+""",
+
     "password_tracker": """\
 Instant download — Password & Login Tracker (printable PDF password book).
 
@@ -3763,6 +3787,44 @@ PRODUCTS = {
         ],
         "notes": "generate_prompt_catalog.py student + build_student_html.py (editorial paper/serif/blue). Sibling of ai_teacher_prompts, reuses engine. 64 study prompts, learning-focused (not cheating). ZIP=PDF+HTML. Demo video uploaded (835105147). Uploaded 2026-07-27 — stayed as Etsy DRAFT (private). $8.99. (Etsy title: max one '&'.)",
         "listing_id": 4544900250,
+    },
+
+    "ai_seller_prompts": {
+        "title": (
+            "AI Prompts for Etsy Sellers | 54 ChatGPT Prompt Bundle & Interactive Tool | "
+            "Listings, SEO, Social Media, Email (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["ai_seller_prompts"],
+        "price": 9.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("ai_seller_prompts", "previews", "sellerprompts_preview_1_cover.jpg"),
+            p("ai_seller_prompts", "previews", "sellerprompts_preview_2_pages.jpg"),
+            p("ai_seller_prompts", "previews", "sellerprompts_preview_3_sample.jpg"),
+            p("ai_seller_prompts", "previews", "sellerprompts_preview_4_included.jpg"),
+            p("ai_seller_prompts", "previews", "sellerprompts_preview_5_grid.jpg"),
+        ],
+        "files": [
+            p("ai_seller_prompts", "the_seller_studio_kit.zip"),
+        ],
+        "video": p("ai_seller_prompts", "seller_studio_demo.mp4"),
+        "tags": [
+            "etsy seller tools",
+            "chatgpt for etsy",
+            "etsy seo",
+            "product description",
+            "etsy listing help",
+            "small business ai",
+            "etsy marketing",
+            "social media captions",
+            "ai for small business",
+            "chatgpt prompts",
+            "email templates",
+            "etsy shop help",
+            "digital download",
+        ],
+        "notes": "generate_prompt_catalog.py seller + build_seller_html.py (editorial paper/serif/green). Sibling of ai_teacher/student, reuses engine. 54 seller prompts (SEO/social/email/service/ads). Etsy audience = sellers → strong fit. ZIP=PDF+HTML. $9.99. Draft — not yet published. (Etsy title: max one '&'.)",
+        "listing_id": None,
     },
 
     "password_tracker": {
