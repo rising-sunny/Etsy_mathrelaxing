@@ -3823,8 +3823,8 @@ PRODUCTS = {
             "etsy shop help",
             "digital download",
         ],
-        "notes": "generate_prompt_catalog.py seller + build_seller_html.py (editorial paper/serif/green). Sibling of ai_teacher/student, reuses engine. 54 seller prompts (SEO/social/email/service/ads). Etsy audience = sellers → strong fit. ZIP=PDF+HTML. $9.99. Draft — not yet published. (Etsy title: max one '&'.)",
-        "listing_id": None,
+        "notes": "generate_prompt_catalog.py seller + build_seller_html.py (editorial paper/serif/green). Sibling of ai_teacher/student, reuses engine. 54 seller prompts (SEO/social/email/service/ads). Etsy audience = sellers → strong fit. ZIP=PDF+HTML. Video 835086720. Uploaded 2026-07-27, stayed Etsy DRAFT (private). $9.99. (Etsy title: max one '&'. NOTE: with 'video' in the entry, upload_product uploads the video itself — don't also upload manually or you get a duplicate.)",
+        "listing_id": 4544914525,
     },
 
     "password_tracker": {
