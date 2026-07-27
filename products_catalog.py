@@ -3745,6 +3745,7 @@ PRODUCTS = {
         "files": [
             p("ai_student_prompts", "the_study_studio_kit.zip"),
         ],
+        "video": p("ai_student_prompts", "study_studio_demo.mp4"),
         "tags": [
             "study prompts",
             "chatgpt for students",
@@ -3760,8 +3761,8 @@ PRODUCTS = {
             "student planner",
             "digital download",
         ],
-        "notes": "generate_prompt_catalog.py student + build_student_html.py (editorial paper/serif/blue). Sibling of ai_teacher_prompts, reuses engine. 64 study prompts, learning-focused (not cheating). ZIP=PDF+HTML. $8.99. Draft — not yet published. (Etsy title: max one '&'.)",
-        "listing_id": None,
+        "notes": "generate_prompt_catalog.py student + build_student_html.py (editorial paper/serif/blue). Sibling of ai_teacher_prompts, reuses engine. 64 study prompts, learning-focused (not cheating). ZIP=PDF+HTML. Demo video uploaded (835105147). Uploaded 2026-07-27 — stayed as Etsy DRAFT (private). $8.99. (Etsy title: max one '&'.)",
+        "listing_id": 4544900250,
     },
 
     "password_tracker": {
