@@ -259,3 +259,4 @@ wallart_set/__pycache__/
 # OAuth PKCE pending state (never commit)
 _oauth_pending.json
 
+ai_teacher_prompts/The_Prompt_Studio_84_Teacher_Prompts.pdf

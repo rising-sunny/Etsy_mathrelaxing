@@ -1537,6 +1537,31 @@ A calm, professional look that helps the science do the talking.
 For personal / single-classroom use. Not for redistribution or resale.
 """,
 
+    "ai_teacher_prompts": """\
+Instant download — The Prompt Studio: 84 expert AI prompts for teachers + an interactive builder.
+
+Stop fighting with ChatGPT. These are 84 carefully written, fill-in-the-blank prompts that give the \
+AI an expert role, your context, and a required format — so you get precise, classroom-ready results \
+the first time. Works with ChatGPT, Claude and Gemini.
+
+► What you get
+• 84 prompts across 11 categories: Planning, Differentiation, Assessment, Feedback, Communication, \
+Engagement, Classroom & SEL, Reteaching, Adaptation, Productivity, and a full STEM batch
+• STEM set: math problem sets, misconception diagnostics, number talks, 3-Act tasks, CER, lab design, \
+NGSS phenomenon lessons, engineering challenges, coding, data analysis, math discourse, STEM projects
+• An interactive prompt builder (HTML) — open it in any browser, pick a prompt, fill the blanks, click \
+Copy. No install, no internet, works on any device
+• A print-ready PDF catalog of every prompt
+• Save hours on lesson plans, rubrics, parent emails, feedback and report comments
+
+► How it works
+Replace each [bracket] with your subject, grade and topic, then paste into your AI. You stay the expert — \
+always review and edit the output before using it with students.
+
+These are original, curated teaching prompts (not bulk AI-generated content). \
+For personal / single-classroom use. Not for redistribution or resale.
+""",
+
     "password_tracker": """\
 Instant download — Password & Login Tracker (printable PDF password book).
 
@@ -3638,6 +3663,43 @@ PRODUCTS = {
         ],
         "notes": "generate_science_fair_kit.py (navy+teal, PIL→img2pdf). Wave14 thin ocean (~89 listings, comp ~59). School-year evergreen. $6.99. Draft uploaded 2026-07-27. (Etsy title: max one '&'.)",
         "listing_id": 4544667119,
+    },
+
+    "ai_teacher_prompts": {
+        "title": (
+            "AI Prompts for Teachers | 84 ChatGPT Prompt Bundle & Interactive Builder | "
+            "Lesson Plans, Rubrics, Feedback, STEM (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["ai_teacher_prompts"],
+        "price": 9.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("ai_teacher_prompts", "previews", "aiprompts_preview_1_cover.jpg"),
+            p("ai_teacher_prompts", "previews", "aiprompts_preview_2_pages.jpg"),
+            p("ai_teacher_prompts", "previews", "aiprompts_preview_3_stem.jpg"),
+            p("ai_teacher_prompts", "previews", "aiprompts_preview_4_included.jpg"),
+            p("ai_teacher_prompts", "previews", "aiprompts_preview_5_grid.jpg"),
+        ],
+        "files": [
+            p("ai_teacher_prompts", "the_prompt_studio_kit.zip"),
+        ],
+        "tags": [
+            "ai for teachers",
+            "chatgpt for teachers",
+            "teacher prompts",
+            "chatgpt prompts",
+            "teacher resources",
+            "ai lesson planning",
+            "lesson plan template",
+            "rubric generator",
+            "teacher time saver",
+            "parent email template",
+            "stem resources",
+            "teacher toolkit",
+            "digital download",
+        ],
+        "notes": "generate_prompt_catalog.py + prompt_studio.html (editorial paper/serif/red). Wave14: chatgpt prompts mom 2.68; teachers long-tail near-empty (~168). 84 prompts + interactive HTML builder. ZIP=PDF+HTML. $9.99. Draft — not yet published. (Etsy title: max one '&'.)",
+        "listing_id": None,
     },
 
     "password_tracker": {
