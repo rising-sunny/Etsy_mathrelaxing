@@ -3579,8 +3579,8 @@ PRODUCTS = {
             "high school physics",
             "physics equations",
         ],
-        "notes": "generate_formula_sheets.py (LIGHT_BLUEPRINT_PAL — light navy-on-pale-blue). Wave14 thin-market STEM utility (61 listings, 100% digital). BTS timing. $2.99. Draft — not yet published.",
-        "listing_id": None,
+        "notes": "generate_formula_sheets.py (LIGHT_BLUEPRINT_PAL — light navy-on-pale-blue). Wave14 thin-market STEM utility (61 listings, 100% digital). BTS timing. $2.99. Draft uploaded 2026-07-27.",
+        "listing_id": 4544663485,
     },
 
     "password_tracker": {
