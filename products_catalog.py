@@ -3698,8 +3698,8 @@ PRODUCTS = {
             "teacher toolkit",
             "digital download",
         ],
-        "notes": "generate_prompt_catalog.py + prompt_studio.html (editorial paper/serif/red). Wave14: chatgpt prompts mom 2.68; teachers long-tail near-empty (~168). 84 prompts + interactive HTML builder. ZIP=PDF+HTML. $9.99. Draft — not yet published. (Etsy title: max one '&'.)",
-        "listing_id": None,
+        "notes": "generate_prompt_catalog.py + prompt_studio.html (editorial paper/serif/red). Wave14: chatgpt prompts mom 2.68; teachers long-tail near-empty (~168). 84 prompts + interactive HTML builder. ZIP=PDF+HTML. $9.99. Draft uploaded 2026-07-27. (Etsy title: max one '&'.)",
+        "listing_id": 4544731320,
     },
 
     "password_tracker": {
