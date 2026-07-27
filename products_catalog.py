@@ -1517,6 +1517,26 @@ Print desk-size for study/exams or large for the classroom wall. Personal study 
 For personal use only. Not for redistribution or resale.
 """,
 
+    "science_fair_kit": """\
+Instant download — Science Fair Project Kit (printable display-board headers & planning pages).
+
+Everything a student needs to plan a project and dress a tri-fold display board — in a clean \
+navy + teal STEM design. Print at home or school, no supplies to buy.
+
+► What's included (17-page PDF)
+• 12 display-board header cards — Question, Hypothesis, Materials, Procedure, Variables, Data, \
+Results, Analysis, Conclusion, Abstract, Bibliography, Acknowledgments
+• 8 fill-in planning pages — research question, hypothesis, variables (fair test), materials \
+checklist, numbered procedure, data table, results graph, conclusion
+• Project checklist + name / class plate
+• US Letter · 300 dpi · print-ready
+
+Cut out the headers, mount them on your board in reading order, and add your printed results. \
+A calm, professional look that helps the science do the talking.
+
+For personal / single-classroom use. Not for redistribution or resale.
+""",
+
     "password_tracker": """\
 Instant download — Password & Login Tracker (printable PDF password book).
 
@@ -3581,6 +3601,43 @@ PRODUCTS = {
         ],
         "notes": "generate_formula_sheets.py (LIGHT_BLUEPRINT_PAL — light navy-on-pale-blue). Wave14 thin-market STEM utility (61 listings, 100% digital). BTS timing. $2.99. Draft uploaded 2026-07-27.",
         "listing_id": 4544663485,
+    },
+
+    "science_fair_kit": {
+        "title": (
+            "Science Fair Project Kit Printable | Display Board Headers & Templates | "
+            "STEM Planning Pages, Data Table & Checklist (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["science_fair_kit"],
+        "price": 6.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("science_fair_kit", "previews", "science_fair_kit_preview_1_hero.jpg"),
+            p("science_fair_kit", "previews", "science_fair_kit_preview_2_headers.jpg"),
+            p("science_fair_kit", "previews", "science_fair_kit_preview_3_worksheet.jpg"),
+            p("science_fair_kit", "previews", "science_fair_kit_preview_4_included.jpg"),
+            p("science_fair_kit", "previews", "science_fair_kit_preview_5_pages.jpg"),
+        ],
+        "files": [
+            p("science_fair_kit", "science_fair_kit_prints.zip"),
+        ],
+        "tags": [
+            "science fair board",
+            "science fair project",
+            "science fair printable",
+            "display board template",
+            "science fair kit",
+            "stem printable",
+            "classroom printable",
+            "student planner",
+            "science project template",
+            "teacher resource",
+            "homeschool science",
+            "digital download",
+            "tri fold board",
+        ],
+        "notes": "generate_science_fair_kit.py (navy+teal, PIL→img2pdf). Wave14 thin ocean (~89 listings, comp ~59). School-year evergreen. $6.99. Draft — not yet published.",
+        "listing_id": None,
     },
 
     "password_tracker": {
