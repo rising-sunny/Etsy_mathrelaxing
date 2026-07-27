@@ -3606,7 +3606,7 @@ PRODUCTS = {
     "science_fair_kit": {
         "title": (
             "Science Fair Project Kit Printable | Display Board Headers & Templates | "
-            "STEM Planning Pages, Data Table & Checklist (Digital Download)"
+            "STEM Planning Pages, Data Table, Checklist (Digital Download)"
         ),
         "description": DESCRIPTIONS["science_fair_kit"],
         "price": 6.99,
@@ -3636,8 +3636,8 @@ PRODUCTS = {
             "digital download",
             "tri fold board",
         ],
-        "notes": "generate_science_fair_kit.py (navy+teal, PIL→img2pdf). Wave14 thin ocean (~89 listings, comp ~59). School-year evergreen. $6.99. Draft — not yet published.",
-        "listing_id": None,
+        "notes": "generate_science_fair_kit.py (navy+teal, PIL→img2pdf). Wave14 thin ocean (~89 listings, comp ~59). School-year evergreen. $6.99. Draft uploaded 2026-07-27. (Etsy title: max one '&'.)",
+        "listing_id": 4544667119,
     },
 
     "password_tracker": {
