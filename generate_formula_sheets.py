@@ -7,7 +7,7 @@ title can be re-skinned without touching the shared render/preview code:
   1. Differential & Integral Calculus   (CREAM_PAL — cream paper · rust accent)
   2. Linear Algebra                      (CREAM_PAL)
   3. Vector Calculus                     (CREAM_PAL)
-  4. Physics                             (BLUEPRINT_PAL — navy blueprint · white/cyan)
+  4. Physics                             (LIGHT_BLUEPRINT_PAL — navy math on pale-blue grid)
 
 Each listing: multi-ratio JPG prints (300 dpi) + PDF letter + ZIP + Etsy previews.
 
@@ -89,7 +89,7 @@ CREAM_PAL = Palette(
     accent_rgb=(184, 92, 56), muted_rgb=(85, 85, 85),
 )
 
-# Blueprint navy — white/cyan on deep blue, engineering-drawing feel.
+# Blueprint navy — white/cyan on deep blue, engineering-drawing feel (dark).
 BLUEPRINT_PAL = Palette(
     bg="#0E2C4E", grid="#2C4E73", grid_fine="#1E3E60",
     ink="#EAF2FB", ink_soft="#C9DDF0", ink_faint="#8FB0CE",
@@ -101,6 +101,20 @@ BLUEPRINT_PAL = Palette(
     prev_dark=(9, 28, 50), prev_ink_on_dark=(234, 242, 251),
     prev_card=(21, 58, 97), prev_card_edge=(58, 95, 134),
     accent_rgb=(103, 183, 232), muted_rgb=(143, 176, 206),
+)
+
+# Light blueprint — navy math on a soft pale-blue engineering grid (light).
+LIGHT_BLUEPRINT_PAL = Palette(
+    bg="#EDF3FA", grid="#C4D6E8", grid_fine="#DBE6F2",
+    ink="#16324E", ink_soft="#2A4763", ink_faint="#6B84A0",
+    accent="#2C6CA8", panel="#FBFDFF",
+    frame_outer="#B9CCE0", frame_inner="#D2E0EE", header_edge="#C4D6E8",
+    divider="#C4D6E8", footer_line="#B9CCE0",
+    paper_label="Blueprint grid",
+    prev_bg=(237, 243, 250), prev_text=(22, 50, 78),
+    prev_dark=(20, 49, 78), prev_ink_on_dark=(237, 243, 250),
+    prev_card=(251, 253, 255), prev_card_edge=(200, 214, 230),
+    accent_rgb=(44, 108, 168), muted_rgb=(107, 132, 160),
 )
 
 plt.rcParams.update(
@@ -335,7 +349,7 @@ PHYS = Sheet(
     title="Physics Formula Sheet",
     subtitle="Mechanics · Thermo · E&M · Waves · Modern",
     plate="PLATE PH-01",
-    palette=BLUEPRINT_PAL,
+    palette=LIGHT_BLUEPRINT_PAL,
     sections=[
         (
             "Mechanics",
