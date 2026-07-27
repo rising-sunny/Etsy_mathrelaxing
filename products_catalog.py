@@ -1499,6 +1499,23 @@ integrals, Green / Stokes / Divergence theorems, and coordinate Jacobians. Cream
 For personal use only. Not for redistribution or resale.
 """,
 
+    "physics_formula_sheet": """\
+Instant download — Physics Formula Sheet (mechanics, thermo, E&M, waves & modern).
+
+Scientific-plate reference for high-school and intro college physics: kinematics, Newton's laws, \
+energy & momentum, rotation & gravity, thermodynamics, electricity & magnetism, waves, optics, \
+modern physics, plus a quick SI constants table. Same cream graph-paper family as our STEM plates.
+
+► What you get
+• High-resolution printable plate @ 300 dpi
+• Sizes: US Letter, A4, 12×18, 12×16, 16×20
+• Instant digital download (ZIP)
+
+Print desk-size for study/exams or large for the classroom wall. Personal study use.
+
+For personal use only. Not for redistribution or resale.
+""",
+
     "password_tracker": """\
 Instant download — Password & Login Tracker (printable PDF password book).
 
@@ -3526,6 +3543,43 @@ PRODUCTS = {
         ],
         "notes": "generate_formula_sheets.py. $2.99.",
         "listing_id": 4543997899,
+    },
+
+    "physics_formula_sheet": {
+        "title": (
+            "Physics Formula Sheet | Mechanics Thermo E&M Waves Reference Print | "
+            "High School College Physics Study Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["physics_formula_sheet"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("formula_sheets", "physics_formula_sheet", "previews", "physics_formula_sheet_preview_1_hero.jpg"),
+            p("formula_sheets", "physics_formula_sheet", "previews", "physics_formula_sheet_preview_2_square.jpg"),
+            p("formula_sheets", "physics_formula_sheet", "previews", "physics_formula_sheet_preview_3_detail.jpg"),
+            p("formula_sheets", "physics_formula_sheet", "previews", "physics_formula_sheet_preview_4_included.jpg"),
+            p("formula_sheets", "physics_formula_sheet", "previews", "physics_formula_sheet_preview_5_use.jpg"),
+        ],
+        "files": [
+            p("formula_sheets", "physics_formula_sheet", "physics_formula_sheet_prints.zip"),
+        ],
+        "tags": [
+            "physics formula sheet",
+            "physics cheat sheet",
+            "physics reference",
+            "math study guide",
+            "stem poster",
+            "college physics",
+            "exam prep",
+            "physics wall art",
+            "educational poster",
+            "digital download",
+            "teacher gift",
+            "high school physics",
+            "physics equations",
+        ],
+        "notes": "generate_formula_sheets.py. Wave14 thin-market STEM utility (61 listings, 100% digital). BTS timing. $2.99. Draft — not yet published.",
+        "listing_id": None,
     },
 
     "password_tracker": {

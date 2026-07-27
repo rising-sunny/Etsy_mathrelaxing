@@ -1,11 +1,12 @@
 """
 generate_formula_sheets.py — STEM formula reference plates (printable)
 ======================================================================
-Three scientific-plate formula sheets (cream graph paper · CM math · rust accent):
+Four scientific-plate formula sheets (cream graph paper · CM math · rust accent):
 
   1. Differential & Integral Calculus
   2. Linear Algebra
   3. Vector Calculus
+  4. Physics (mechanics · thermo · E&M · waves · modern)
 
 Each listing: multi-ratio JPG prints (300 dpi) + PDF letter + ZIP + Etsy previews.
 
@@ -13,6 +14,7 @@ Each listing: multi-ratio JPG prints (300 dpi) + PDF letter + ZIP + Etsy preview
   python generate_formula_sheets.py --only calc
   python generate_formula_sheets.py --only linalg
   python generate_formula_sheets.py --only vector
+  python generate_formula_sheets.py --only physics
 """
 from __future__ import annotations
 
@@ -268,7 +270,91 @@ VECTOR = Sheet(
     ],
 )
 
-SHEETS = {"calc": CALC, "linalg": LINALG, "vector": VECTOR}
+PHYS = Sheet(
+    slug="physics_formula_sheet",
+    code="PHYS",
+    title="Physics Formula Sheet",
+    subtitle="Mechanics · Thermo · E&M · Waves · Modern",
+    plate="PLATE PH-01",
+    sections=[
+        (
+            "Mechanics",
+            [
+                (r"$v=v_{0}+at$", "kinematics"),
+                (r"$x=x_{0}+v_{0}t+\frac{1}{2}at^{2}$", "kinematics"),
+                (r"$v^{2}=v_{0}^{2}+2a\,\Delta x$", "kinematics"),
+                (r"$R=\dfrac{v_{0}^{2}\sin 2\theta}{g}$", "projectile range"),
+                (r"$\mathbf{F}=m\mathbf{a},\quad \sum\mathbf{F}=0$", "Newton II / equilibrium"),
+                (r"$f=\mu N$", "friction"),
+            ],
+        ),
+        (
+            "Energy & Momentum",
+            [
+                (r"$W=Fd\cos\theta$", "work"),
+                (r"$K=\frac{1}{2}mv^{2},\quad U_{g}=mgh$", "kinetic / potential"),
+                (r"$U_{s}=\frac{1}{2}kx^{2}$", "spring"),
+                (r"$K_{i}+U_{i}=K_{f}+U_{f}$", "conservation"),
+                (r"$P=\dfrac{W}{t}=Fv$", "power"),
+                (r"$\mathbf{p}=m\mathbf{v},\quad \mathbf{J}=\Delta\mathbf{p}$", "momentum / impulse"),
+            ],
+        ),
+        (
+            "Rotation & Gravity",
+            [
+                (r"$\tau=rF\sin\theta=I\alpha$", "torque"),
+                (r"$L=I\omega,\quad K=\frac{1}{2}I\omega^{2}$", "angular"),
+                (r"$v=r\omega$", "rolling"),
+                (r"$a_{c}=\dfrac{v^{2}}{r}=\omega^{2}r$", "centripetal"),
+                (r"$F=G\dfrac{m_{1}m_{2}}{r^{2}},\quad g=\dfrac{GM}{r^{2}}$", "gravitation"),
+                (r"$T=2\pi\sqrt{\dfrac{\ell}{g}}$", "pendulum"),
+            ],
+        ),
+        (
+            "Thermodynamics",
+            [
+                (r"$PV=nRT$", "ideal gas"),
+                (r"$Q=mc\,\Delta T$", "heat"),
+                (r"$\Delta U=Q-W$", "first law"),
+                (r"$\eta=1-\dfrac{T_{c}}{T_{h}}$", "Carnot"),
+            ],
+        ),
+        (
+            "Electricity & Magnetism",
+            [
+                (r"$F=\dfrac{1}{4\pi\epsilon_{0}}\dfrac{q_{1}q_{2}}{r^{2}}$", "Coulomb"),
+                (r"$E=\dfrac{F}{q},\quad V=\dfrac{U}{q}$", "field / potential"),
+                (r"$V=IR,\quad P=IV$", "Ohm / power"),
+                (r"$C=\dfrac{Q}{V},\quad U=\frac{1}{2}CV^{2}$", "capacitance"),
+                (r"$F=qvB\sin\theta,\quad F=BIL$", "magnetic force"),
+                (r"$\varepsilon=-\dfrac{d\Phi_{B}}{dt}$", "Faraday"),
+            ],
+        ),
+        (
+            "Waves · Optics · Modern",
+            [
+                (r"$v=f\lambda,\quad T=\dfrac{1}{f}$", "wave / period"),
+                (r"$f_{n}=\dfrac{nv}{2L}$", "harmonics"),
+                (r"$\dfrac{1}{f}=\dfrac{1}{d_{o}}+\dfrac{1}{d_{i}}$", "thin lens"),
+                (r"$n_{1}\sin\theta_{1}=n_{2}\sin\theta_{2}$", "Snell"),
+                (r"$E=hf=\dfrac{hc}{\lambda}$", "photon"),
+                (r"$E=mc^{2},\quad \lambda=\dfrac{h}{p}$", "relativity / de Broglie"),
+            ],
+        ),
+        (
+            "Constants (SI)",
+            [
+                (r"$c=3.00\times10^{8}\ \mathrm{m/s}$", "speed of light"),
+                (r"$g=9.81\ \mathrm{m/s^{2}}$", "gravity (Earth)"),
+                (r"$G=6.67\times10^{-11}\ \mathrm{N\,m^{2}/kg^{2}}$", "gravitation"),
+                (r"$h=6.63\times10^{-34}\ \mathrm{J\,s}$", "Planck"),
+                (r"$k_{B}=1.38\times10^{-23}\ \mathrm{J/K}$", "Boltzmann"),
+            ],
+        ),
+    ],
+)
+
+SHEETS = {"calc": CALC, "linalg": LINALG, "vector": VECTOR, "physics": PHYS}
 
 
 # ── drawing ──────────────────────────────────────────────────────────────────
