@@ -3,91 +3,95 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Prompt Studio for Teachers</title>
+<title>The Prompt Studio — A Teacher's AI Toolkit</title>
 <style>
   :root{
-    --navy:#16324E; --navy-2:#0F2438; --teal:#0E7C86; --teal-2:#0A616A;
-    --paper:#ffffff; --tint:#F3F7FA; --tint-2:#E9F0F5;
-    --line:#D8E0E8; --ink:#1B2A38; --muted:#64788A; --ok:#127a4e;
-    --shadow:0 8px 30px rgba(22,50,78,.10);
+    --paper:#F3F2EC; --panel:#FBFAF5; --ink:#1b1a17; --ink-soft:#46443e; --muted:#8b867a;
+    --rule:#ded9cc; --rule-strong:#c6c0b0; --accent:#b23a2e; --accent-deep:#8c2b21;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-       color:var(--ink);background:var(--tint);line-height:1.5}
-  h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:600;margin:0}
-  a{color:var(--teal)}
-  /* header */
-  header{background:linear-gradient(120deg,var(--navy),var(--navy-2));color:#fff;padding:22px 26px}
-  header .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-  .flask{width:34px;height:34px;flex:0 0 auto}
-  header h1{font-size:24px;letter-spacing:.3px}
-  header p{margin:6px 0 0;color:#cfe0ea;font-size:14px;max-width:760px}
-  .badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
-         color:#eaf3f7;font-size:12px;padding:4px 10px;border-radius:20px}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  /* masthead */
+  header{background:var(--paper);border-bottom:2px solid var(--ink);padding:26px 34px 20px}
+  .masthead-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+  .kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  header h1{font-family:var(--serif);font-weight:600;font-size:31px;letter-spacing:.2px;margin:9px 0 0;color:var(--ink)}
+  header h1 em{font-style:italic;color:var(--ink-soft)}
+  header p{margin:9px 0 0;color:var(--ink-soft);font-size:14px;max-width:720px;font-family:var(--serif)}
+  .edition{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
   /* layout */
-  .app{display:grid;grid-template-columns:340px 1fr;gap:0;min-height:calc(100vh - 92px)}
-  .side{background:var(--paper);border-right:1px solid var(--line);padding:18px;overflow:auto}
-  .main{padding:26px 30px;overflow:auto}
-  @media(max-width:860px){.app{grid-template-columns:1fr}.side{border-right:none;border-bottom:1px solid var(--line)}}
-  /* search + chips */
-  .search{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font-size:14px;background:var(--tint)}
-  .search:focus{outline:none;border-color:var(--teal);background:#fff}
-  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 8px}
-  .chip{font-size:12px;padding:5px 11px;border-radius:20px;border:1px solid var(--line);
-        background:#fff;color:var(--muted);cursor:pointer;user-select:none}
-  .chip.active{background:var(--teal);border-color:var(--teal);color:#fff}
-  /* prompt list */
-  .plist{list-style:none;margin:12px 0 0;padding:0}
-  .pitem{padding:12px 13px;border:1px solid var(--line);border-radius:11px;margin-bottom:9px;cursor:pointer;background:#fff;transition:.12s}
-  .pitem:hover{border-color:var(--teal);box-shadow:var(--shadow)}
-  .pitem.active{border-color:var(--teal);background:var(--tint)}
-  .pitem .cat{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--teal);font-weight:700}
-  .pitem .ttl{font-weight:600;font-size:14.5px;margin-top:2px;color:var(--navy)}
-  .pitem .dsc{font-size:12.5px;color:var(--muted);margin-top:3px}
-  /* main detail */
-  .empty{color:var(--muted);text-align:center;margin-top:16vh}
-  .detail h2{color:var(--navy);font-size:23px}
-  .detail .sub{color:var(--teal);font-style:italic;margin-top:4px}
-  .detail .how{background:var(--tint-2);border-left:4px solid var(--teal);padding:10px 14px;border-radius:8px;
-               font-size:13px;color:#37536b;margin:16px 0 22px}
-  .fields{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
-  @media(max-width:620px){.fields{grid-template-columns:1fr}}
+  .app{display:grid;grid-template-columns:332px 1fr;min-height:calc(100vh - 96px)}
+  .side{border-right:1px solid var(--rule-strong);padding:22px 24px 40px;overflow:auto}
+  .main{padding:32px 44px 54px;overflow:auto;max-width:920px}
+  @media(max-width:880px){.app{grid-template-columns:1fr}.side{border-right:none;border-bottom:1px solid var(--rule-strong)}}
+  /* search */
+  .search{width:100%;padding:8px 2px;border:none;border-bottom:1.5px solid var(--ink);background:transparent;
+          font-family:var(--serif);font-size:15px;color:var(--ink)}
+  .search::placeholder{color:var(--muted);font-style:italic}
+  .search:focus{outline:none;border-color:var(--accent)}
+  /* category tabs */
+  .chips{display:flex;flex-wrap:wrap;gap:6px 16px;margin:20px 0 4px;border-bottom:1px solid var(--rule);padding-bottom:11px}
+  .chip{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;
+        padding:2px 0;border-bottom:2px solid transparent;font-weight:600;user-select:none}
+  .chip.active{color:var(--ink);border-color:var(--accent)}
+  /* prompt index */
+  .plist{list-style:none;margin:4px 0 0;padding:0}
+  .pitem{display:grid;grid-template-columns:32px 1fr;gap:10px;padding:14px 6px 13px;border-bottom:1px solid var(--rule);cursor:pointer}
+  .pitem:hover{background:var(--panel)}
+  .pitem.active .ttl{color:var(--accent)}
+  .idx{font-family:var(--serif);font-size:14px;color:var(--muted);padding-top:3px}
+  .pitem .cat{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .pitem .ttl{font-family:var(--serif);font-size:16px;color:var(--ink);margin-top:1px;line-height:1.25}
+  .pitem .dsc{font-size:12.5px;color:var(--ink-soft);margin-top:4px;font-family:var(--serif)}
+  /* detail */
+  .empty{color:var(--muted);font-style:italic;font-family:var(--serif);margin-top:15vh;text-align:center}
+  .detail .kick{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .detail h2{font-family:var(--serif);font-size:30px;color:var(--ink);margin:7px 0 0;line-height:1.15}
+  .detail .sub{color:var(--ink-soft);font-family:var(--serif);font-style:italic;margin-top:9px;font-size:15px}
+  .rule{height:1px;background:var(--rule-strong);margin:22px 0 2px}
+  .how{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--ink-soft);
+       border-left:3px solid var(--accent);padding:2px 0 2px 15px;margin:22px 0 28px}
+  .how b{font-style:normal;color:var(--ink)}
+  /* fields */
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px}
+  @media(max-width:600px){.fields{grid-template-columns:1fr}}
   .field.full{grid-column:1 / -1}
-  label{display:block;font-size:12.5px;font-weight:600;color:var(--navy);margin-bottom:5px}
-  label .req{color:#b23}
-  input[type=text],textarea,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
-       font-size:14px;font-family:inherit;background:#fff;color:var(--ink)}
-  textarea{min-height:74px;resize:vertical}
-  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(14,124,134,.12)}
+  label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:7px}
+  label .req{color:var(--accent)}
+  input[type=text],textarea,select{width:100%;padding:8px 2px;border:none;border-bottom:1.5px solid var(--rule-strong);
+       background:transparent;font-family:var(--serif);font-size:15px;color:var(--ink)}
+  textarea{min-height:70px;resize:vertical;border:1px solid var(--rule-strong);padding:11px 13px;background:var(--panel);font-size:14.5px}
+  select{font-family:var(--sans);font-size:14px;padding-bottom:9px}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
   /* output */
-  .outwrap{margin-top:24px}
-  .outhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-  .outhead h3{font-size:15px;color:var(--navy)}
-  .btns{display:flex;gap:8px}
-  button{font-family:inherit;font-size:13.5px;font-weight:600;border-radius:9px;padding:9px 16px;cursor:pointer;border:1px solid transparent}
-  .copy{background:var(--teal);color:#fff}
-  .copy:hover{background:var(--teal-2)}
-  .copy.done{background:var(--ok)}
-  .reset{background:#fff;color:var(--muted);border-color:var(--line)}
-  .reset:hover{border-color:var(--muted)}
-  .output{white-space:pre-wrap;background:var(--navy);color:#eaf3f7;border-radius:12px;padding:18px 20px;
-          font-size:13.5px;line-height:1.65;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-          max-height:44vh;overflow:auto}
-  .output .ph{background:#f4c76a;color:#3a2a00;border-radius:4px;padding:0 4px;font-weight:700}
-  .foot{color:var(--muted);font-size:12px;margin-top:20px;border-top:1px solid var(--line);padding-top:12px}
+  .outwrap{margin-top:34px}
+  .outhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
+  .outhead h3{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+  .btns{display:flex;gap:10px}
+  button{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+         padding:10px 18px;cursor:pointer;border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:0}
+  .copy{background:var(--ink);color:var(--paper)}
+  .copy:hover{background:var(--accent);border-color:var(--accent)}
+  .copy.done{background:var(--accent);border-color:var(--accent)}
+  .reset:hover{border-color:var(--accent);color:var(--accent)}
+  .output{white-space:pre-wrap;background:var(--panel);border:1px solid var(--rule-strong);border-top:3px solid var(--ink);
+          padding:22px 24px;font-family:var(--mono);font-size:13px;line-height:1.72;color:var(--ink);max-height:46vh;overflow:auto}
+  .output .blank{color:var(--accent);border-bottom:1.5px dotted var(--accent);font-weight:600;font-family:var(--serif);font-style:italic}
+  .foot{color:var(--muted);font-size:12px;margin-top:28px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--serif);font-style:italic}
 </style>
 </head>
 <body>
 <header>
-  <div class="row">
-    <svg class="flask" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>
-      <path d="M7.5 14h9" stroke="#5ec8cf" stroke-width="1.6"/></svg>
+  <div class="masthead-row">
     <div>
-      <h1>AI Prompt Studio <span style="color:#5ec8cf">for Teachers</span></h1>
-      <p>Pick a prompt, fill the blanks, and copy a precise, expert-level instruction — ready to paste into ChatGPT, Claude or Gemini. Works offline, right in your browser.</p>
+      <div class="kicker">A Teacher's AI Toolkit</div>
+      <h1>The Prompt Studio</h1>
+      <p>Choose a prompt, fill in the blanks, and copy a precise, expert-level instruction — ready for ChatGPT, Claude or Gemini. Works offline, right in your browser.</p>
     </div>
-    <span class="badge" style="margin-left:auto">Prototype</span>
+    <div class="edition">No. 01 — Prototype</div>
   </div>
 </header>
 
@@ -99,7 +103,7 @@
   </aside>
   <main class="main">
     <div id="detail" class="detail">
-      <div class="empty">← Choose a prompt to begin.</div>
+      <div class="empty">Select a prompt to begin.</div>
     </div>
   </main>
 </div>
@@ -423,12 +427,13 @@ function match(p){
 }
 function renderList(){
   const items=PROMPTS.filter(match);
-  $("#plist").innerHTML=items.map(p=>
+  $("#plist").innerHTML=items.map((p,i)=>
     `<li class="pitem${state.sel===p.id?' active':''}" data-id="${p.id}">
-       <div class="cat">${p.cat}</div>
-       <div class="ttl">${p.title}</div>
-       <div class="dsc">${p.desc}</div></li>`).join("")||
-    `<li style="color:var(--muted);font-size:13px;padding:10px">No prompts match.</li>`;
+       <div class="idx">${String(i+1).padStart(2,"0")}</div>
+       <div><div class="cat">${p.cat}</div>
+         <div class="ttl">${p.title}</div>
+         <div class="dsc">${p.desc}</div></div></li>`).join("")||
+    `<li style="color:var(--muted);font-style:italic;font-family:var(--serif);padding:14px 6px">No prompts match.</li>`;
   document.querySelectorAll(".pitem").forEach(el=>el.onclick=()=>select(el.dataset.id));
 }
 function select(id){
@@ -439,14 +444,16 @@ function select(id){
     const req=f.req===false?'':'<span class="req"> *</span>';
     let input;
     if(f.t==="textarea") input=`<textarea data-k="${f.k}" placeholder="${f.ph||''}"></textarea>`;
-    else if(f.t==="select") input=`<select data-k="${f.k}">${f.o.map((o,i)=>`<option${i===0?'':''} value="${o}">${o}</option>`).join("")}</select>`;
+    else if(f.t==="select") input=`<select data-k="${f.k}">${f.o.map(o=>`<option value="${o}">${o}</option>`).join("")}</select>`;
     else input=`<input type="text" data-k="${f.k}" placeholder="${f.ph||''}">`;
     return `<div class="field${f.full?' full':''}"><label>${f.l}${req}</label>${input}</div>`;
   }).join("");
   $("#detail").innerHTML=
-    `<h2>${p.title}</h2><div class="sub">${p.cat} · ${p.desc}</div>
-     <div class="how">Fill the fields below. The prompt updates live — anything left blank stays as a
-       <span style="background:#f4c76a;padding:0 4px;border-radius:3px">[highlight]</span> so you can spot it. Then click <b>Copy prompt</b> and paste it into your AI of choice.</div>
+    `<div class="kick">${p.cat}</div>
+     <h2>${p.title}</h2>
+     <div class="sub">${p.desc}</div>
+     <div class="rule"></div>
+     <div class="how">Fill in the fields — the prompt updates live. Any blank you leave stays marked in <b style="color:var(--accent)">red</b> so you can spot it. Then press <b>Copy prompt</b> and paste it into your AI.</div>
      <div class="fields">${fields}</div>
      <div class="outwrap">
        <div class="outhead"><h3>Your prompt</h3>
@@ -454,8 +461,7 @@ function select(id){
            <button class="copy" id="copy">Copy prompt</button></div></div>
        <div class="output" id="output"></div>
      </div>
-     <div class="foot">Prompts work with ChatGPT, Claude and Gemini. Written & curated for teachers — edit any output to fit your class. Runs 100% offline; nothing you type leaves this page.</div>`;
-  // preselect first option for selects
+     <div class="foot">Works with ChatGPT, Claude and Gemini. Written &amp; curated for teachers — edit any output to fit your class. Runs entirely offline; nothing you type leaves this page.</div>`;
   p.fields.forEach(f=>{ if(f.t==="select") state.vals[f.k]=f.o[0]; });
   document.querySelectorAll("[data-k]").forEach(el=>{
     if(el.tagName==="SELECT") el.value=state.vals[el.dataset.k]||el.options[0].value;
@@ -470,7 +476,7 @@ function fill(tpl,vals,forHtml){
     if(v) return forHtml?escapeHtml(v):v;
     const f=PROMPTS.find(x=>x.id===state.sel).fields.find(x=>x.k===k);
     const label="["+(f?f.l.replace(/ —.*/,''):k)+"]";
-    return forHtml?`<span class="ph">${escapeHtml(label)}</span>`:label;
+    return forHtml?`<span class="blank">${escapeHtml(label)}</span>`:label;
   });
 }
 function escapeHtml(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
@@ -481,7 +487,7 @@ function renderOutput(){
 function copyOut(){
   const p=PROMPTS.find(x=>x.id===state.sel);
   const text=fill(p.tpl,state.vals,false);
-  const done=()=>{const b=$("#copy");b.textContent="✓ Copied";b.classList.add("done");setTimeout(()=>{b.textContent="Copy prompt";b.classList.remove("done");},1600);};
+  const done=()=>{const b=$("#copy");b.textContent="Copied ✓";b.classList.add("done");setTimeout(()=>{b.textContent="Copy prompt";b.classList.remove("done");},1600);};
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,()=>fallbackCopy(text,done));}
   else fallbackCopy(text,done);
 }
