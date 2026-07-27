@@ -1,12 +1,13 @@
 """
 generate_formula_sheets.py — STEM formula reference plates (printable)
 ======================================================================
-Four scientific-plate formula sheets (cream graph paper · CM math · rust accent):
+Four scientific-plate formula sheets. Each sheet carries its own Palette, so a
+title can be re-skinned without touching the shared render/preview code:
 
-  1. Differential & Integral Calculus
-  2. Linear Algebra
-  3. Vector Calculus
-  4. Physics (mechanics · thermo · E&M · waves · modern)
+  1. Differential & Integral Calculus   (CREAM_PAL — cream paper · rust accent)
+  2. Linear Algebra                      (CREAM_PAL)
+  3. Vector Calculus                     (CREAM_PAL)
+  4. Physics                             (BLUEPRINT_PAL — navy blueprint · white/cyan)
 
 Each listing: multi-ratio JPG prints (300 dpi) + PDF letter + ZIP + Etsy previews.
 
@@ -45,6 +46,63 @@ INK_FAINT = "#6E6A63"
 RUST = "#B85C38"
 PANEL = "#FFFcf7"
 
+
+@dataclass
+class Palette:
+    """All colors for one sheet's look, so sheets can be re-skinned per-title
+    without touching the shared render/preview code."""
+    bg: str
+    grid: str
+    grid_fine: str
+    ink: str
+    ink_soft: str
+    ink_faint: str
+    accent: str
+    panel: str
+    frame_outer: str
+    frame_inner: str
+    header_edge: str
+    divider: str
+    footer_line: str
+    paper_label: str  # e.g. "Cream graph paper" / "Blueprint grid"
+    # preview RGB tuples
+    prev_bg: tuple          # main preview background
+    prev_text: tuple        # main text on prev_bg
+    prev_dark: tuple        # "what's included" contrast-card background
+    prev_ink_on_dark: tuple # light text drawn on prev_dark card
+    prev_card: tuple        # small card fill (preview 5)
+    prev_card_edge: tuple   # small card outline
+    accent_rgb: tuple
+    muted_rgb: tuple
+
+
+# Original cream + rust "scientific plate" (calc / linalg / vector).
+CREAM_PAL = Palette(
+    bg=CREAM, grid=GRID, grid_fine=GRID_FINE, ink=INK, ink_soft=INK_SOFT,
+    ink_faint=INK_FAINT, accent=RUST, panel=PANEL,
+    frame_outer="#D0C9BC", frame_inner="#E0DBD0", header_edge="#DDD7CC",
+    divider="#D8D2C6", footer_line="#C8C2B6",
+    paper_label="Cream graph paper",
+    prev_bg=(244, 241, 234), prev_text=(26, 26, 26),
+    prev_dark=(26, 26, 26), prev_ink_on_dark=(244, 241, 234),
+    prev_card=(255, 252, 247), prev_card_edge=(230, 226, 216),
+    accent_rgb=(184, 92, 56), muted_rgb=(85, 85, 85),
+)
+
+# Blueprint navy — white/cyan on deep blue, engineering-drawing feel.
+BLUEPRINT_PAL = Palette(
+    bg="#0E2C4E", grid="#2C4E73", grid_fine="#1E3E60",
+    ink="#EAF2FB", ink_soft="#C9DDF0", ink_faint="#8FB0CE",
+    accent="#67B7E8", panel="#153A61",
+    frame_outer="#3A5F86", frame_inner="#264C71", header_edge="#3A5F86",
+    divider="#2C4E73", footer_line="#3A5F86",
+    paper_label="Blueprint grid",
+    prev_bg=(14, 44, 78), prev_text=(234, 242, 251),
+    prev_dark=(9, 28, 50), prev_ink_on_dark=(234, 242, 251),
+    prev_card=(21, 58, 97), prev_card_edge=(58, 95, 134),
+    accent_rgb=(103, 183, 232), muted_rgb=(143, 176, 206),
+)
+
 plt.rcParams.update(
     {
         "text.usetex": False,
@@ -76,6 +134,7 @@ class Sheet:
     subtitle: str
     plate: str
     sections: list[tuple[str, list[tuple[str, str]]]]  # (section title, [(eq, note), ...])
+    palette: "Palette | None" = None  # None -> CREAM_PAL (family default)
 
 
 # ── content ──────────────────────────────────────────────────────────────────
@@ -276,6 +335,7 @@ PHYS = Sheet(
     title="Physics Formula Sheet",
     subtitle="Mechanics · Thermo · E&M · Waves · Modern",
     plate="PLATE PH-01",
+    palette=BLUEPRINT_PAL,
     sections=[
         (
             "Mechanics",
@@ -359,15 +419,15 @@ SHEETS = {"calc": CALC, "linalg": LINALG, "vector": VECTOR, "physics": PHYS}
 
 # ── drawing ──────────────────────────────────────────────────────────────────
 
-def _graph_paper(ax, xmin=0, xmax=100, ymin=0, ymax=100):
+def _graph_paper(ax, pal: Palette, xmin=0, xmax=100, ymin=0, ymax=100):
     for x in np.arange(xmin, xmax + 0.01, 1.25):
-        ax.axvline(x, color=GRID_FINE, lw=0.3, zorder=0)
+        ax.axvline(x, color=pal.grid_fine, lw=0.3, zorder=0)
     for y in np.arange(ymin, ymax + 0.01, 1.25):
-        ax.axhline(y, color=GRID_FINE, lw=0.3, zorder=0)
+        ax.axhline(y, color=pal.grid_fine, lw=0.3, zorder=0)
     for x in np.arange(xmin, xmax + 0.01, 5):
-        ax.axvline(x, color=GRID, lw=0.5, zorder=0)
+        ax.axvline(x, color=pal.grid, lw=0.5, zorder=0)
     for y in np.arange(ymin, ymax + 0.01, 5):
-        ax.axhline(y, color=GRID, lw=0.5, zorder=0)
+        ax.axhline(y, color=pal.grid, lw=0.5, zorder=0)
 
 
 def _eq_fontsize(width_in: float, eq: str) -> float:
@@ -399,22 +459,23 @@ def render_sheet(sheet: Sheet, width_in: float, height_in: float, dpi: int = DPI
     Professional two-column layout with *measured* row heights so math
     never overlaps notes or the next equation.
     """
-    fig = plt.figure(figsize=(width_in, height_in), dpi=dpi, facecolor=CREAM)
+    pal = sheet.palette or CREAM_PAL
+    fig = plt.figure(figsize=(width_in, height_in), dpi=dpi, facecolor=pal.bg)
     # slightly larger margins for print crop safety
     ax = fig.add_axes([0.0, 0.0, 1.0, 1.0])
     ax.set_xlim(0, 100)
     ax.set_ylim(0, 100)
     ax.axis("off")
-    ax.set_facecolor(CREAM)
-    _graph_paper(ax)
+    ax.set_facecolor(pal.bg)
+    _graph_paper(ax, pal)
 
     # outer double frame (editorial)
     m = 3.2
     ax.add_patch(
-        Rectangle((m, m), 100 - 2 * m, 100 - 2 * m, fill=False, edgecolor="#D0C9BC", lw=1.1, zorder=1)
+        Rectangle((m, m), 100 - 2 * m, 100 - 2 * m, fill=False, edgecolor=pal.frame_outer, lw=1.1, zorder=1)
     )
     ax.add_patch(
-        Rectangle((m + 0.7, m + 0.7), 100 - 2 * m - 1.4, 100 - 2 * m - 1.4, fill=False, edgecolor="#E0DBD0", lw=0.5, zorder=1)
+        Rectangle((m + 0.7, m + 0.7), 100 - 2 * m - 1.4, 100 - 2 * m - 1.4, fill=False, edgecolor=pal.frame_inner, lw=0.5, zorder=1)
     )
 
     # header — clean band
@@ -422,21 +483,21 @@ def render_sheet(sheet: Sheet, width_in: float, height_in: float, dpi: int = DPI
         FancyBboxPatch(
             (5.0, 91.0), 90.0, 5.6,
             boxstyle="square,pad=0",
-            facecolor=PANEL,
-            edgecolor="#DDD7CC",
+            facecolor=pal.panel,
+            edgecolor=pal.header_edge,
             lw=0.7,
             zorder=2,
         )
     )
-    # rust accent bar under header
-    ax.add_patch(Rectangle((5.0, 90.55), 90.0, 0.38, facecolor=RUST, edgecolor="none", zorder=3))
+    # accent bar under header
+    ax.add_patch(Rectangle((5.0, 90.55), 90.0, 0.38, facecolor=pal.accent, edgecolor="none", zorder=3))
 
     title_fs = width_in * 1.95
-    ax.text(6.8, 94.55, sheet.title, fontsize=title_fs, color=INK, fontweight="bold",
+    ax.text(6.8, 94.55, sheet.title, fontsize=title_fs, color=pal.ink, fontweight="bold",
             va="center", ha="left", zorder=5, fontfamily="serif")
-    ax.text(93.2, 94.55, sheet.plate, fontsize=width_in * 0.88, color=INK_FAINT,
+    ax.text(93.2, 94.55, sheet.plate, fontsize=width_in * 0.88, color=pal.ink_faint,
             va="center", ha="right", zorder=5, fontfamily="sans-serif")
-    ax.text(6.8, 92.0, sheet.subtitle, fontsize=width_in * 0.90, color=RUST,
+    ax.text(6.8, 92.0, sheet.subtitle, fontsize=width_in * 0.90, color=pal.accent,
             va="center", ha="left", zorder=5, fontfamily="serif", style="italic")
 
     # content region
@@ -463,7 +524,7 @@ def render_sheet(sheet: Sheet, width_in: float, height_in: float, dpi: int = DPI
             right_secs.append(sec)
 
     # soft column divider
-    ax.plot([gutter, gutter], [y_bot + 0.3, 89.5], color="#D8D2C6", lw=0.85, zorder=2)
+    ax.plot([gutter, gutter], [y_bot + 0.3, 89.5], color=pal.divider, lw=0.85, zorder=2)
 
     def draw_column(secs, x0, x1, y_start):
         """
@@ -484,7 +545,7 @@ def render_sheet(sheet: Sheet, width_in: float, height_in: float, dpi: int = DPI
             hdr = ax.text(
                 x0, y, sec_title.upper(),
                 fontsize=width_in * 0.86,
-                color=RUST,
+                color=pal.accent,
                 fontweight="bold",
                 va="top",
                 ha="left",
@@ -493,7 +554,7 @@ def render_sheet(sheet: Sheet, width_in: float, height_in: float, dpi: int = DPI
             )
             h_hdr, _ = _data_bbox_height(ax, fig, hdr)
             y -= h_hdr + 0.45
-            ax.plot([x0, x1], [y + 0.12, y + 0.12], color=RUST, lw=0.7, alpha=0.75, zorder=4)
+            ax.plot([x0, x1], [y + 0.12, y + 0.12], color=pal.accent, lw=0.7, alpha=0.75, zorder=4)
             y -= 0.85
 
             for eq, note in items:
@@ -505,7 +566,7 @@ def render_sheet(sheet: Sheet, width_in: float, height_in: float, dpi: int = DPI
                 t_eq = ax.text(
                     x0 + 0.55, y, eq,
                     fontsize=fs,
-                    color=INK,
+                    color=pal.ink,
                     va="top",
                     ha="left",
                     zorder=5,
@@ -539,12 +600,12 @@ def render_sheet(sheet: Sheet, width_in: float, height_in: float, dpi: int = DPI
     draw_column(right_secs, right_box[0], right_box[1], y_top)
 
     # footer
-    ax.plot([6.0, 94.0], [5.9, 5.9], color="#C8C2B6", lw=0.7, zorder=5)
+    ax.plot([6.0, 94.0], [5.9, 5.9], color=pal.footer_line, lw=0.7, zorder=5)
     ax.text(
         6.8, 4.2,
         f"{sheet.code}   ·   Formula reference   ·   Personal study use",
         fontsize=width_in * 0.72,
-        color=INK_FAINT,
+        color=pal.ink_faint,
         va="center",
         ha="left",
         zorder=5,
@@ -554,7 +615,7 @@ def render_sheet(sheet: Sheet, width_in: float, height_in: float, dpi: int = DPI
         93.2, 4.2,
         "Letter  ·  A4  ·  wall sizes in download",
         fontsize=width_in * 0.72,
-        color=INK_FAINT,
+        color=pal.ink_faint,
         va="center",
         ha="right",
         zorder=5,
@@ -590,8 +651,9 @@ def make_previews(sheet: Sheet, letter_img: Image.Image, folder: Path) -> list[P
     prev.mkdir(parents=True, exist_ok=True)
     paths = []
     S = 2000
-    ivory, charcoal = (244, 241, 234), (26, 26, 26)
-    rust, muted = (184, 92, 56), (85, 85, 85)
+    pal = sheet.palette or CREAM_PAL
+    ivory, charcoal = pal.prev_bg, pal.prev_dark
+    rust, muted = pal.accent_rgb, pal.muted_rgb
 
     # hero: page mock
     canvas = Image.new("RGB", (S, S), ivory)
@@ -631,7 +693,7 @@ def make_previews(sheet: Sheet, letter_img: Image.Image, folder: Path) -> list[P
     w, h = det.size
     det = det.crop((0, 0, w, int(h * 0.55))).resize((1500, int(1500 * 0.55 / 1)), Image.Resampling.LANCZOS)
     # pad to square
-    canvas = Image.new("RGB", (1500, 1500), cream_rgb := (244, 241, 234))
+    canvas = Image.new("RGB", (1500, 1500), pal.prev_bg)
     canvas.paste(det, (0, (1500 - det.height) // 2))
     p3 = prev / f"{sheet.slug}_preview_3_detail.jpg"
     canvas.save(p3, quality=92)
@@ -640,7 +702,7 @@ def make_previews(sheet: Sheet, letter_img: Image.Image, folder: Path) -> list[P
     # included card
     canvas = Image.new("RGB", (S, S), charcoal)
     d = ImageDraw.Draw(canvas)
-    d.text((S // 2, 120), "What's included", font=_font(44, True), fill=ivory, anchor="mt")
+    d.text((S // 2, 120), "What's included", font=_font(44, True), fill=pal.prev_ink_on_dark, anchor="mt")
     items = [
         "Printable formula plate (PDF-ready JPG)",
         "Multiple aspect ratios @ 300 dpi",
@@ -651,27 +713,27 @@ def make_previews(sheet: Sheet, letter_img: Image.Image, folder: Path) -> list[P
     y = 320
     for it in items:
         d.rounded_rectangle([180, y, S - 180, y + 160], radius=12, outline=rust, width=2)
-        d.text((260, y + 80), it, font=_font(28), fill=ivory, anchor="lm")
+        d.text((260, y + 80), it, font=_font(28), fill=pal.prev_ink_on_dark, anchor="lm")
         y += 200
     p4 = prev / f"{sheet.slug}_preview_4_included.jpg"
     canvas.resize((1500, 1500), Image.Resampling.LANCZOS).save(p4, quality=92)
     paths.append(p4)
 
     # classroom / study context text
-    canvas = Image.new("RGB", (S, S), ivory)
+    canvas = Image.new("RGB", (S, S), pal.prev_bg)
     d = ImageDraw.Draw(canvas)
-    d.text((S // 2, 100), "Study · Exam prep · Classroom wall", font=_font(36, True), fill=charcoal, anchor="mt")
+    d.text((S // 2, 100), "Study · Exam prep · Classroom wall", font=_font(36, True), fill=pal.prev_text, anchor="mt")
     d.line([(S // 2 - 80, 170), (S // 2 + 80, 170)], fill=rust, width=3)
     blurb = [
         "Clean scientific-plate layout",
-        "Cream graph paper · LaTeX-style math",
+        f"{pal.paper_label} · LaTeX-style math",
         "Grouped by topic for quick lookup",
         "Print large for the wall or letter for your desk",
     ]
     y = 280
     for b in blurb:
-        d.rounded_rectangle([200, y, S - 200, y + 220], radius=14, fill=(255, 252, 247), outline=(230, 226, 216), width=2)
-        d.text((S // 2, y + 110), b, font=_font(30), fill=charcoal, anchor="mm")
+        d.rounded_rectangle([200, y, S - 200, y + 220], radius=14, fill=pal.prev_card, outline=pal.prev_card_edge, width=2)
+        d.text((S // 2, y + 110), b, font=_font(30), fill=pal.prev_text, anchor="mm")
         y += 260
     p5 = prev / f"{sheet.slug}_preview_5_use.jpg"
     canvas.resize((1500, 1500), Image.Resampling.LANCZOS).save(p5, quality=92)

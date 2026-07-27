@@ -1504,7 +1504,8 @@ Instant download — Physics Formula Sheet (mechanics, thermo, E&M, waves & mode
 
 Scientific-plate reference for high-school and intro college physics: kinematics, Newton's laws, \
 energy & momentum, rotation & gravity, thermodynamics, electricity & magnetism, waves, optics, \
-modern physics, plus a quick SI constants table. Same cream graph-paper family as our STEM plates.
+modern physics, plus a quick SI constants table. Blueprint-navy design — crisp white math on a \
+deep engineering-blue grid.
 
 ► What you get
 • High-resolution printable plate @ 300 dpi
@@ -3572,13 +3573,13 @@ PRODUCTS = {
             "college physics",
             "exam prep",
             "physics wall art",
-            "educational poster",
+            "blueprint wall art",
             "digital download",
             "teacher gift",
             "high school physics",
             "physics equations",
         ],
-        "notes": "generate_formula_sheets.py. Wave14 thin-market STEM utility (61 listings, 100% digital). BTS timing. $2.99. Draft — not yet published.",
+        "notes": "generate_formula_sheets.py (BLUEPRINT_PAL). Wave14 thin-market STEM utility (61 listings, 100% digital). BTS timing. $2.99. Draft — not yet published.",
         "listing_id": None,
     },
 
