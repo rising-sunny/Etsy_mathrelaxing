@@ -1610,6 +1610,24 @@ Always tailor the output to your brand voice and double-check facts before you p
 Original, curated prompts (not bulk AI-generated content). For personal business use. Not for redistribution or resale.
 """,
 
+    "attractor_bookmarks": """\
+Instant download — Strange Attractors: a set of 10 printable math bookmarks (chaos theory art).
+
+Ten collectible bookmarks, each generated from a real strange attractor — Lorenz (the butterfly \
+effect), Clifford, De Jong, Rössler, Thomas, Aizawa, Halvorsen, Hopalong, Svensson and Chen. \
+Elegant black-and-cream designs with gold accents, each with its equation and name.
+
+► What you get
+• 10 unique bookmark designs — high-resolution 300 dpi PNG files
+• Print-ready sheets — US Letter and A4, with cut marks
+• Size 2 x 6 in (5 x 15 cm)
+• Quick print & finish guide (PDF)
+• Instant download — print at home, nothing is shipped
+
+Print on cardstock, cut along the marks, and optionally laminate for durability. \
+For personal use. Not for redistribution or resale.
+""",
+
     "password_tracker": """\
 Instant download — Password & Login Tracker (printable PDF password book).
 
@@ -3825,6 +3843,43 @@ PRODUCTS = {
         ],
         "notes": "generate_prompt_catalog.py seller + build_seller_html.py (editorial paper/serif/green). Sibling of ai_teacher/student, reuses engine. 54 seller prompts (SEO/social/email/service/ads). Etsy audience = sellers → strong fit. ZIP=PDF+HTML. Video 835086720. Uploaded 2026-07-27, stayed Etsy DRAFT (private). $9.99. (Etsy title: max one '&'. NOTE: with 'video' in the entry, upload_product uploads the video itself — don't also upload manually or you get a duplicate.)",
         "listing_id": 4544914525,
+    },
+
+    "attractor_bookmarks": {
+        "title": (
+            "Strange Attractors Bookmarks Printable | Set of 10 Chaos Theory Math Art | "
+            "Lorenz Butterfly Science Bookmark (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["attractor_bookmarks"],
+        "price": 5.50,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("lulu_books", "generators", "bookmarks_chaos", "listing", "01_hero.jpg"),
+            p("lulu_books", "generators", "bookmarks_chaos", "listing", "02_detail_dark.jpg"),
+            p("lulu_books", "generators", "bookmarks_chaos", "listing", "03_detail_cream.jpg"),
+            p("lulu_books", "generators", "bookmarks_chaos", "listing", "05_sheet.jpg"),
+            p("lulu_books", "generators", "bookmarks_chaos", "listing", "04_included.jpg"),
+        ],
+        "files": [
+            p("lulu_books", "generators", "bookmarks_chaos", "MathRelaxing_Strange_Attractors_Bookmarks.zip"),
+        ],
+        "tags": [
+            "printable bookmarks",
+            "strange attractor",
+            "chaos theory",
+            "math bookmark",
+            "lorenz attractor",
+            "science bookmark",
+            "fractal art",
+            "math gift",
+            "bookmark set",
+            "physics gift",
+            "reader gift",
+            "digital bookmark",
+            "stem gift",
+        ],
+        "notes": "generate_chaos.py + package_chaos.py (reuses bookmarks/generate_bookmarks engine). Second bookmark set (chaos attractors) sibling to The Mathematics of Beauty curves. 5 images + ZIP. $5.50. Draft — not yet published. listing/, deliverable/, ZIP are gitignored (regenerate before upload).",
+        "listing_id": None,
     },
 
     "password_tracker": {
