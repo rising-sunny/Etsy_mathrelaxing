@@ -3683,6 +3683,7 @@ PRODUCTS = {
         "files": [
             p("ai_teacher_prompts", "the_prompt_studio_kit.zip"),
         ],
+        "video": p("ai_teacher_prompts", "prompt_studio_demo.mp4"),
         "tags": [
             "ai for teachers",
             "chatgpt for teachers",
@@ -3698,7 +3699,7 @@ PRODUCTS = {
             "teacher toolkit",
             "digital download",
         ],
-        "notes": "generate_prompt_catalog.py + prompt_studio.html (editorial paper/serif/red). Wave14: chatgpt prompts mom 2.68; teachers long-tail near-empty (~168). 84 prompts + interactive HTML builder. ZIP=PDF+HTML. $9.99. Draft uploaded 2026-07-27. (Etsy title: max one '&'.)",
+        "notes": "generate_prompt_catalog.py + prompt_studio.html (editorial paper/serif/red). Wave14: chatgpt prompts mom 2.68; teachers long-tail near-empty (~168). 84 prompts + interactive HTML builder. ZIP=PDF+HTML. Demo video (record_demo.py, 1080x1080 13.9s) uploaded as listing video 835095357. $9.99. Draft uploaded 2026-07-27. (Etsy title: max one '&'.)",
         "listing_id": 4544731320,
     },
 
