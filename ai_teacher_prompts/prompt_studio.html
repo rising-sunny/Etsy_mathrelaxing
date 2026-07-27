@@ -408,7 +408,364 @@ TEXT:
 {{text}}
 
 After the rewrite, add: (1) a short glossary of the key terms in simple language, and (2) one sentence noting anything important you had to simplify so I can decide if it's acceptable.`
-}
+},
+
+/* ===== PLANNING (more) ===== */
+{ id:"sub_plans", cat:"Planning", title:"Emergency substitute plans", desc:"No-prep, bell-to-bell plans any sub can run.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. 7th grade science"},{k:"days",l:"How many days",t:"select",o:["1","2","3"]},{k:"focus",l:"Topic or review focus",t:"text",ph:"e.g. review the water cycle",full:true}],
+  tpl:`You are a veteran teacher writing emergency substitute plans a sub with NO content knowledge can run smoothly for {{days}} day(s) in {{grade}} {{subject}} (focus: {{focus}}).
+
+For each day provide: a bell-to-bell schedule with timings, exact scripts/directions, a meaningful but self-contained activity (no prep, no login required) plus a low-tech backup if tech fails, an answer key, and a short "classroom notes" section (routines, who to ask, behavior tips). Keep students learning, not just busy.`},
+{ id:"objectives", cat:"Planning", title:"Write measurable learning objectives", desc:"Observable, standards-aligned objectives + success criteria.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. ELA"},{k:"topic",l:"Topic",t:"text",ph:"e.g. central idea"},{k:"standard",l:"Standard — optional",t:"text",ph:"e.g. RI.6.2",req:false,full:true}],
+  tpl:`You are an instructional design expert. Write 3 measurable learning objectives for {{grade}} {{subject}} on "{{topic}}"{{standard}}, each at a different Bloom's level, using observable verbs (avoid "understand/know").
+
+For each: give the objective, an ABCD breakdown (Audience, Behavior, Condition, Degree), and one student-friendly "I can…" success criterion. Then flag one common pitfall teachers make writing objectives for this topic.`},
+{ id:"pacing", cat:"Planning", title:"Pacing guide / scope & sequence", desc:"Week-by-week coverage with review buffers and checkpoints.",
+  fields:[{k:"subject",l:"Subject",t:"text",ph:"e.g. Algebra I"},{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"weeks",l:"Number of weeks",t:"select",o:["4","6","9","12","18","36"]},{k:"standards",l:"Standards / topics to cover",t:"textarea",ph:"Paste the standards or unit topics",full:true}],
+  tpl:`You are a curriculum coordinator. Build a {{weeks}}-week pacing guide for {{grade}} {{subject}} covering: {{standards}}.
+
+Output a TABLE: week | focus/standard | key concepts | assessment checkpoint. Balance coverage with depth, spiral prior skills, and build in review/buffer weeks and unit assessments. End with 2 sentences on where teachers usually fall behind and how to protect pacing.`},
+{ id:"centers", cat:"Planning", title:"Station / centers rotation", desc:"Independent, teacher-led, collaborative and tech stations.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. reading"},{k:"topic",l:"Topic / skill",t:"text",ph:"e.g. inference"},{k:"num",l:"Number of stations",t:"select",o:["3","4","5"]},{k:"minutes",l:"Minutes per station",t:"select",o:["10","12","15","20"]}],
+  tpl:`You are a differentiation expert. Design {{num}} learning stations ({{minutes}} min each) for {{grade}} {{subject}} on "{{topic}}", including one teacher-led, one collaborative, one independent, and (if applicable) one tech station.
+
+For each station: objective, student directions, materials, and a self-check or accountability output. Then give rotation logistics, a signal for transitions, and a single accountability sheet students carry between stations.`},
+{ id:"pbl", cat:"Planning", title:"Project-based learning unit", desc:"Authentic driving question, real product, milestones, rubric.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. social studies"},{k:"topic",l:"Topic / theme",t:"text",ph:"e.g. local water use"},{k:"weeks",l:"Duration",t:"select",o:["1 week","2 weeks","3 weeks","4+ weeks"]}],
+  tpl:`You are a PBL designer (Gold Standard PBL). Design a {{weeks}} project for {{grade}} {{subject}} on "{{topic}}".
+
+Include: an authentic Driving Question, a real-world product and audience, the standards addressed, a milestone timeline with formative checkpoints, student voice-and-choice options, scaffolds for the trickiest step, and an analytic rubric aligned to the standards. Keep it rigorous and doable.`},
+
+/* ===== DIFFERENTIATION (more) ===== */
+{ id:"ell", cat:"Differentiation", title:"ELL language supports for a lesson", desc:"WIDA-aligned frames, tiered vocab and language objectives.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. science"},{k:"lesson",l:"Lesson / content",t:"textarea",ph:"Describe the lesson content",full:true},{k:"level",l:"Proficiency level",t:"select",o:["Entering","Emerging","Developing","Expanding","Bridging"]}],
+  tpl:`You are a WIDA-certified ELL specialist. For this {{grade}} {{subject}} lesson, design language supports for students at the {{level}} level.
+
+Lesson: {{lesson}}
+
+Provide: a language objective (in addition to the content objective), tiered vocabulary (Tier 1/2/3), sentence frames for speaking and writing at this proficiency, a visual/graphic-organizer suggestion, and one comprehensible-input strategy. Keep the cognitive demand high while lowering the language barrier.`},
+{ id:"iep", cat:"Differentiation", title:"IEP accommodations for a task", desc:"Accommodations vs modifications, matched to the need.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"task",l:"The task / assignment",t:"textarea",ph:"Describe the task",full:true},{k:"needs",l:"Student need(s)",t:"text",ph:"e.g. ADHD, dysgraphia, processing speed",full:true}],
+  tpl:`You are a special education specialist. For this task, suggest supports for a student with: {{needs}}.
+
+Task ({{grade}}): {{task}}
+
+Clearly SEPARATE accommodations (change how, same expectation) from modifications (change what/expectation), and only modify if truly necessary. Tie each support to the specific need, keep the learning objective intact where possible, and note what a teacher should document. Keep it dignified and low-stigma.`},
+{ id:"gifted", cat:"Differentiation", title:"Enrichment for advanced learners", desc:"Depth and complexity extensions, not just more work.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. math"},{k:"topic",l:"Topic",t:"text",ph:"e.g. ratios"}],
+  tpl:`You are a gifted-education specialist. Design enrichment for students who have already mastered "{{topic}}" in {{grade}} {{subject}}.
+
+Use depth and complexity (not more problems): give one open-ended challenge, one real-world application, one cross-disciplinary connection, and a higher-Bloom product (create/evaluate). Avoid busywork; each option should deepen thinking. Include a simple success rubric.`},
+{ id:"choice_board", cat:"Differentiation", title:"Choice board (learning menu)", desc:"Same objective, varied paths and Bloom's levels.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. ELA"},{k:"topic",l:"Topic / objective",t:"text",ph:"e.g. author's purpose",full:true},{k:"cells",l:"Board size",t:"select",o:["6 options","9 options (tic-tac-toe)"]}],
+  tpl:`You are a differentiation expert. Create a {{cells}} choice board for {{grade}} {{subject}} on "{{topic}}".
+
+Every task must assess the SAME objective but vary by modality (write/build/draw/speak/analyze) and Bloom's level. Present as a grid with a one-line task in each cell, mark the rigor level, and add a shared success checklist so any choice can be graded fairly.`},
+{ id:"frames", cat:"Differentiation", title:"Sentence frames / stems", desc:"Tiered academic-language frames for a purpose.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. science"},{k:"purpose",l:"Language purpose",t:"text",ph:"e.g. argue a claim, compare, explain cause/effect",full:true}],
+  tpl:`You are an academic-language expert. Generate sentence frames for {{grade}} {{subject}} students to {{purpose}}.
+
+Give three tiers (beginning → advanced), 3–4 frames each, plus a short bank of academic transition words/vocabulary for this purpose. Frames should push precise, evidence-based language, not fill-in-the-blank guessing.`},
+{ id:"tiered_q", cat:"Differentiation", title:"Tiered questions for one topic", desc:"Same concept, three readiness levels, labeled.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. history"},{k:"topic",l:"Topic",t:"text",ph:"e.g. causes of WWI"}],
+  tpl:`You are a differentiation expert. For "{{topic}}" in {{grade}} {{subject}}, write questions at three readiness tiers (approaching, on-level, advanced) that all target the SAME core concept — not easier vs harder topics. Label each tier, keep them open-ended, and add one line explaining how each still gets at the concept.`},
+
+/* ===== ASSESSMENT (more) ===== */
+{ id:"blueprint", cat:"Assessment", title:"Test blueprint / table of specifications", desc:"Map items to standards and DOK with weightings.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. biology"},{k:"topics",l:"Standards / topics on the test",t:"textarea",ph:"List the standards/topics",full:true},{k:"num",l:"Total items",t:"select",o:["10","15","20","25","30"]}],
+  tpl:`You are an assessment designer. Build a test blueprint (table of specifications) for a {{num}}-item {{grade}} {{subject}} test covering: {{topics}}.
+
+Output a TABLE mapping each standard/topic to the number of items and their Depth of Knowledge levels, with a % weighting per topic. Ensure balanced coverage and a spread across DOK 1–3. Flag any topic that's over- or under-weighted.`},
+{ id:"performance_task", cat:"Assessment", title:"Performance assessment task (GRASPS)", desc:"Authentic task with an aligned rubric.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. math"},{k:"standard",l:"Standard / skill",t:"text",ph:"e.g. proportional reasoning",full:true}],
+  tpl:`You are an assessment designer using GRASPS. Create an authentic performance task for {{grade}} {{subject}} assessing "{{standard}}".
+
+Define Goal, Role, Audience, Situation, Product, and Standards/criteria. Make it real-world and worth doing, then provide an analytic rubric (3–4 criteria, clear level descriptors). Note one way to keep it academically honest.`},
+{ id:"self_assess", cat:"Assessment", title:"Student self-assessment", desc:"Criteria-aligned reflection and goal-setting.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"criteria",l:"Success criteria / standards",t:"textarea",ph:"List the criteria students should reflect against",full:true}],
+  tpl:`You are a formative-assessment expert. Create a student self-assessment for {{grade}} aligned to these criteria: {{criteria}}.
+
+Use student-friendly "I can…" statements with a simple rating scale, 2 evidence prompts ("Where did you show this?"), a reflection question, and a goal-setting box with a sentence frame. Keep it honest and growth-oriented, not just a checklist.`},
+{ id:"peer_assess", cat:"Assessment", title:"Peer feedback protocol", desc:"Structured, kind, specific peer review.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"assignment",l:"Assignment",t:"text",ph:"e.g. argument essay draft",full:true}],
+  tpl:`You are a literacy coach. Design a structured peer-feedback protocol for {{grade}} students reviewing: {{assignment}}.
+
+Use a named routine (e.g., TAG or glow/grow/question), provide sentence frames for each part, guardrails that keep feedback kind and specific (no "it's good"), a time structure, and a reflection step for the author. Include a 2-line teacher script to launch it.`},
+{ id:"error_analysis", cat:"Assessment", title:"Error analysis worksheet", desc:"Find, fix and explain common mistakes.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. math"},{k:"skill",l:"Skill",t:"text",ph:"e.g. solving equations"}],
+  tpl:`You are a diagnostic teacher. Create an error-analysis worksheet for {{grade}} {{subject}} on "{{skill}}": 5 already-worked problems, each containing a realistic, common mistake. Students must find the error, fix it, and explain the misconception in words.
+
+Provide an answer key that names the misconception in each and a one-line teaching note. This builds metacognition, not just correct answers.`},
+{ id:"sbg", cat:"Assessment", title:"Standards-based proficiency scale", desc:"Observable descriptors for a grading scale.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"standard",l:"Standard",t:"text",ph:"Paste or name the standard",full:true},{k:"scale",l:"Scale",t:"select",o:["4-point (Exceeds/Meets/Approaching/Beginning)","3-point (Advanced/Proficient/Developing)"]}],
+  tpl:`You are a standards-based grading expert. Write a proficiency scale for this {{grade}} standard using a {{scale}} scale: {{standard}}.
+
+For each level, write an observable, student-friendly descriptor that differentiates by the QUALITY of understanding (what the student can do), not effort or amount. Include one example of student work/behavior per level. Keep the "meets/proficient" level tied exactly to the standard.`},
+{ id:"dok", cat:"Assessment", title:"Depth of Knowledge question set", desc:"Questions across all four DOK levels.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. science"},{k:"topic",l:"Topic",t:"text",ph:"e.g. ecosystems"}],
+  tpl:`You are an assessment expert. For "{{topic}}" in {{grade}} {{subject}}, write 2 questions at EACH Depth of Knowledge level (DOK 1 recall, 2 skill/concept, 3 strategic reasoning, 4 extended thinking), clearly labeled. For each, add one line on what a good answer reveals about student thinking.`},
+
+/* ===== FEEDBACK (more) ===== */
+{ id:"comment_bank", cat:"Feedback", title:"Report-comment bank", desc:"Reusable comments by proficiency, with blanks to personalize.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. math"},{k:"focus",l:"Focus",t:"text",ph:"e.g. writing, participation, effort"}],
+  tpl:`You are an experienced teacher. Generate a bank of 16 report-card/comment options for {{grade}} {{subject}} focused on "{{focus}}", grouped by proficiency (Exceeding / Meeting / Approaching / Beginning), 4 each.
+
+Each comment: names a specific behavior, stays growth-oriented and jargon-free, ~25–40 words, with [name] and [detail] blanks to personalize. Avoid repetitive phrasing across comments.`},
+{ id:"narrative", cat:"Feedback", title:"Narrative progress report", desc:"Warm, parent-friendly summary from your notes.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"name",l:"Student first name",t:"text",ph:"e.g. Sam"},{k:"notes",l:"Your notes",t:"textarea",ph:"Bullet the highlights, growth, concerns",full:true}],
+  tpl:`You are a caring teacher writing a narrative progress report for {{name}} ({{grade}}) from these notes: {{notes}}.
+
+Write 1–2 warm, specific paragraphs covering academic progress, a genuine strength, one growth area framed constructively, and a concrete next step families can support. Parent-friendly, no jargon, use the student's name naturally and neutral pronouns unless told otherwise.`},
+{ id:"conference", cat:"Feedback", title:"Parent-teacher conference talking points", desc:"Strengths-first, data-informed, collaborative.",
+  fields:[{k:"name",l:"Student first name",t:"text",ph:"e.g. Priya"},{k:"notes",l:"What to cover (data, wins, concerns)",t:"textarea",ph:"Bullet the key points",full:true}],
+  tpl:`You are a teacher preparing for a parent-teacher conference about {{name}}. From these notes: {{notes}}
+
+Give a 10-minute talking-point outline: open with a genuine strength, share one growth area with specific evidence/data (no labels), suggest one concrete home strategy, and end with 2 open questions to invite the family's perspective. Keep it warm and collaborative, and include one line to open and one to close the meeting.`},
+{ id:"praise", cat:"Feedback", title:"Process praise / growth-mindset feedback", desc:"Turn generic praise into specific process feedback.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"situation",l:"Situation",t:"text",ph:"e.g. student kept trying a hard problem",full:true}],
+  tpl:`You are a growth-mindset coach. For this {{grade}} situation — {{situation}} — write 5 pieces of specific PROCESS praise (naming effort, strategy, persistence, or improvement), not ability/person praise ("you're so smart"). For each, add the reason it supports a growth mindset. Keep it authentic, not over-the-top.`},
+
+/* ===== COMMUNICATION (more) ===== */
+{ id:"newsletter", cat:"Communication", title:"Class newsletter", desc:"Warm, skimmable weekly family update.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"highlights",l:"This week's highlights",t:"textarea",ph:"What we learned/did",full:true},{k:"upcoming",l:"Coming up",t:"text",ph:"events, due dates, reminders",full:true}],
+  tpl:`You are a teacher writing a warm, skimmable class newsletter for {{grade}} families.
+
+This week: {{highlights}}
+Coming up: {{upcoming}}
+
+Use short sections with headers: "What we learned," "Coming up," "How to help at home" (1–2 concrete ideas), and "Reminders." Friendly, concise, jargon-free. Add a short, inviting opening line and a warm sign-off.`},
+{ id:"welcome", cat:"Communication", title:"Back-to-school welcome letter", desc:"Set the tone with families on day one.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject / class",t:"text",ph:"e.g. 4th grade"},{k:"teacher",l:"Teacher name",t:"text",ph:"e.g. Ms. Rivera"}],
+  tpl:`You are {{teacher}}, writing a warm back-to-school welcome letter to {{grade}} {{subject}} families.
+
+Cover: a genuine welcome, what students will explore this year, your class values/approach, how and when to reach you, key supplies or routines, and an invitation to share anything about their child. Positive, concise, jargon-free. Include a friendly subject line.`},
+{ id:"difficult", cat:"Communication", title:"Difficult conversation script", desc:"NVC-structured script with de-escalation lines.",
+  fields:[{k:"audience",l:"With whom",t:"select",o:["A parent/guardian","A student","A colleague","An administrator"]},{k:"topic",l:"The issue",t:"textarea",ph:"What needs to be discussed and the outcome you want",full:true}],
+  tpl:`You are a communication coach. Script a difficult conversation with {{audience}} about: {{topic}}
+
+Use nonviolent-communication structure: (1) observation (facts, no judgment), (2) impact, (3) the underlying need, (4) a specific, doable request. Anticipate 2 likely defensive reactions and give a calm response for each, plus opening and closing lines. Preserve the relationship and dignity throughout.`},
+{ id:"iep_meeting", cat:"Communication", title:"IEP / 504 meeting prep", desc:"Strengths-based prep and family-friendly framing.",
+  fields:[{k:"name",l:"Student first name",t:"text",ph:"e.g. Noah"},{k:"concerns",l:"Concerns & context",t:"textarea",ph:"Current supports, data, worries",full:true}],
+  tpl:`You are a special-education teacher preparing for an IEP/504 meeting about {{name}}. Context: {{concerns}}
+
+Provide: a strengths-first opening, the data/evidence to bring, 3 proposed accommodations with rationale, family-friendly explanations of any jargon, and 3 questions to invite the family and student voice. Keep it collaborative and hopeful.`},
+{ id:"plain", cat:"Communication", title:"Translate school jargon to plain language", desc:"Make any school message clear and human.",
+  fields:[{k:"text",l:"The text to translate",t:"textarea",ph:"Paste the jargon-heavy message",full:true}],
+  tpl:`You are an expert in family-friendly communication. Rewrite the message below so a caregiver with no education background understands it immediately.
+
+Message: {{text}}
+
+Keep the exact meaning, use short sentences and everyday words, define any unavoidable term in parentheses, and keep a warm, respectful tone. Then list any terms you simplified in case precision matters.`},
+{ id:"syllabus", cat:"Communication", title:"Syllabus / classroom expectations", desc:"Clear, positive, student- and family-friendly.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. chemistry"},{k:"policies",l:"Key policies / info",t:"textarea",ph:"grading, late work, materials, communication",full:true}],
+  tpl:`You are a teacher writing a clear, positive syllabus for {{grade}} {{subject}}. Info to include: {{policies}}
+
+Sections: Course overview & what we'll explore; What success looks like; Expectations (framed positively); Grading; Materials; How we communicate. Student- and family-friendly, encouraging tone, skimmable formatting. Avoid a punitive "rules" feel.`},
+
+/* ===== ENGAGEMENT (more) ===== */
+{ id:"review_game", cat:"Engagement", title:"Review game / activity", desc:"Accountable, standards-based review that's actually fun.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. vocabulary"},{k:"topic",l:"Topic",t:"text",ph:"e.g. unit 3 terms"},{k:"format",l:"Format",t:"select",o:["Jeopardy-style","Quiz-show / buzzer","Scavenger hunt","Team relay","Board-race","Escape room"]}],
+  tpl:`You are an engagement expert. Design a {{format}} review game for {{grade}} {{subject}} on "{{topic}}".
+
+Provide 12–15 questions sorted by difficulty (with answers), clear rules and setup, and a structure where EVERY student stays accountable (no one hiding behind a teammate). Add a quick low-tech version and a timing plan for one class period.`},
+{ id:"bell_ringer", cat:"Engagement", title:"Bell ringers / warm-ups (week set)", desc:"Five spiral warm-ups with answer keys.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. math"},{k:"topic",l:"Current topic",t:"text",ph:"e.g. fractions"}],
+  tpl:`You are a teacher who runs tight routines. Create 5 daily bell-ringers (≤5 min each) for a week of {{grade}} {{subject}} on "{{topic}}". Each should spiral a previously-taught skill AND preview today, be self-explanatory (students start without you), and include an answer key. Add one line on the routine to make warm-ups run smoothly.`},
+{ id:"tps", cat:"Engagement", title:"Think-Pair-Share protocol", desc:"Structured talk with frames and accountable share-out.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"question",l:"Discussion question / prompt",t:"text",ph:"e.g. Should the character have lied?",full:true}],
+  tpl:`You are a discourse expert. Design a Think-Pair-Share for {{grade}} around: {{question}}
+
+Give the exact timing for each phase, a "think" prompt that requires writing first, sentence frames for the "pair" talk, and an accountable share-out structure (so it's not the same 3 kids). Add one move to raise the rigor of student responses.`},
+{ id:"socratic", cat:"Engagement", title:"Socratic seminar plan", desc:"Text-based inquiry with norms, roles and assessment.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"text",l:"Text / topic",t:"text",ph:"e.g. a short story or ethical question",full:true}],
+  tpl:`You are a facilitation expert. Plan a Socratic seminar for {{grade}} on "{{text}}".
+
+Provide: an opening question, 4–5 core questions (text-dependent, open-ended), 2 closing/transfer questions, seminar norms, student roles (inner/outer circle), sentence stems for respectful disagreement, and a simple participation rubric.`},
+{ id:"brain_breaks", cat:"Engagement", title:"Brain breaks / energizers", desc:"Quick resets matched to the mood you need.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"goal",l:"Goal",t:"select",o:["Calm & refocus","Energize","Build community"]},{k:"time",l:"Time",t:"select",o:["1 minute","2–3 minutes","5 minutes"]}],
+  tpl:`You are a classroom-management expert. Give 5 brain breaks for {{grade}} that {{goal}} in {{time}}. For each: a name, clear step-by-step instructions, any signal to start/stop, and a smooth transition line back to work. Keep them low-prep and age-appropriate.`},
+{ id:"gamify", cat:"Engagement", title:"Gamify a unit or class system", desc:"Light points/quests tied to real learning goals.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. reading"},{k:"goal",l:"Behavior/learning goal",t:"text",ph:"e.g. more reading at home",full:true}],
+  tpl:`You are a motivation designer. Design a light gamification system for {{grade}} {{subject}} supporting: {{goal}}.
+
+Include: a simple points/badge/quest structure tied to LEARNING (not compliance), how students track progress, a team vs individual option, and a low-cost reward idea. Add a caution paragraph on protecting intrinsic motivation and avoiding inequity.`},
+
+/* ===== CLASSROOM & SEL (new) ===== */
+{ id:"behavior_plan", cat:"Classroom & SEL", title:"Individual behavior support plan", desc:"Function-based, positive, non-punitive.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"behavior",l:"The behavior (observable)",t:"textarea",ph:"Describe what you see, when, how often",full:true},{k:"function",l:"Likely function",t:"select",o:["Attention","Escape/avoidance","Sensory","Access to something (tangible)","Not sure"]}],
+  tpl:`You are a behavior specialist (PBIS/FBA-informed). Design a positive behavior support plan for a {{grade}} student. Behavior: {{behavior}} — likely function: {{function}}.
+
+Include: antecedent strategies (prevent), a taught replacement behavior that meets the same need, reinforcement plan, a de-escalation step, and a simple data-tracking method. Strengths-based and non-punitive. If the function is unclear, tell me what data to collect first.`},
+{ id:"restorative", cat:"Classroom & SEL", title:"Restorative conversation script", desc:"Repair harm, not just punish.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"incident",l:"What happened",t:"textarea",ph:"Briefly describe the incident",full:true}],
+  tpl:`You are trained in restorative practices. Script a restorative conversation for a {{grade}} situation: {{incident}}
+
+Use restorative questions (What happened? What were you thinking/feeling? Who was affected? How can we make it right?). Keep it calm and dignity-preserving, focus on repair and future behavior, and end with a concrete agreement and follow-up. Include a note on when this is NOT appropriate.`},
+{ id:"norms", cat:"Classroom & SEL", title:"Co-create class norms", desc:"Student-built, positively framed agreements.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"values",l:"Values you want to anchor",t:"text",ph:"e.g. respect, effort, safety",full:true}],
+  tpl:`You are a classroom-community builder. Design a 25-minute lesson for {{grade}} students to CO-CREATE class norms around: {{values}}.
+
+Include the facilitation steps, a brainstorming structure, how to turn student ideas into 4–5 positively-framed norms (what TO do), and a commitment activity (e.g., signing/handprints). End with how to reference and reset norms later in the year.`},
+{ id:"morning_meeting", cat:"Classroom & SEL", title:"Morning meeting / SEL circle", desc:"Greeting, share, activity, message.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"theme",l:"SEL theme",t:"text",ph:"e.g. empathy, perseverance"}],
+  tpl:`You are an SEL specialist. Plan a 15–20 min morning meeting for {{grade}} on the theme "{{theme}}" using the four components: Greeting, Sharing, Group Activity, Morning Message. Give specifics for each, 2 discussion prompts, and a closing intention. Warm, inclusive, and age-appropriate; align to a CASEL competency.`},
+{ id:"transitions", cat:"Classroom & SEL", title:"Transition & routine design", desc:"Fast, calm routines you can teach and practice.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"transition",l:"Which transition",t:"text",ph:"e.g. entering class, cleanup, lining up",full:true}],
+  tpl:`You are a classroom-management expert. Design an efficient routine for this {{grade}} transition: {{transition}}.
+
+Give the exact steps, an attention signal, a target time, what students do/say, and a 3-step plan to TEACH and practice it (model, practice, reinforce). Add a reset move for when it gets sloppy.`},
+{ id:"deescalate", cat:"Classroom & SEL", title:"In-the-moment de-escalation", desc:"Calm, dignity-first steps and scripts.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"situation",l:"The situation",t:"textarea",ph:"Describe the escalating moment",full:true}],
+  tpl:`You are a crisis-prevention-trained educator. Give a calm, step-by-step de-escalation plan for this {{grade}} situation: {{situation}}.
+
+Include: what to do with your body/voice, exact calming phrases to say (and what NOT to say), how to give the student a face-saving off-ramp, and the follow-up once calm. Protect the student's dignity and the rest of the class's safety. Note when to call for help.`},
+{ id:"seating", cat:"Classroom & SEL", title:"Seating chart logic", desc:"Two layouts with rationale from your notes.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"notes",l:"Class dynamics & needs",t:"textarea",ph:"e.g. 30 students, 2 who distract each other, 3 need front, group work often",full:true}],
+  tpl:`You are a classroom-design expert. From these notes about a {{grade}} class — {{notes}} — propose 2 seating arrangements (e.g., pods vs rows/pairs) with a clear rationale for each, the trade-offs, specific pairings to make or avoid, and how the layout supports your most common activity. Describe layouts in text (a simple map is fine).`},
+{ id:"sel_lesson", cat:"Classroom & SEL", title:"SEL mini-lesson", desc:"20-minute CASEL-aligned skill lesson.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"skill",l:"SEL skill",t:"text",ph:"e.g. self-regulation, conflict resolution"}],
+  tpl:`You are an SEL curriculum designer. Create a 20-minute mini-lesson for {{grade}} on "{{skill}}", aligned to a CASEL competency. Structure: hook, explicit teach (define + model), guided practice/role-play, and a reflection/transfer step. Include the exact prompts and one way to reinforce the skill during the week.`},
+
+/* ===== RETEACHING (more) ===== */
+{ id:"spiral", cat:"Reteaching", title:"Spiral / interleaved review set", desc:"Mix skills to fight forgetting.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. math"},{k:"skills",l:"Skills to interleave",t:"textarea",ph:"List 3–5 previously-taught skills",full:true}],
+  tpl:`You are a learning-science-informed teacher. Build a spiral review set for {{grade}} {{subject}} interleaving these skills: {{skills}}.
+
+Mix the skills (don't block them) across 10–12 items rising in difficulty, include an answer key, and add a 2-sentence note to students on WHY mixed practice feels harder but works better (desirable difficulty).`},
+{ id:"small_group", cat:"Reteaching", title:"Small-group intervention plan", desc:"Targeted 3-session plan with progress monitoring.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. reading"},{k:"gap",l:"Specific skill gap",t:"text",ph:"e.g. decoding multisyllabic words",full:true}],
+  tpl:`You are an interventionist. Design a 3-session small-group intervention for {{grade}} {{subject}} targeting: {{gap}}.
+
+For each 20-minute session: objective, explicit teaching move, guided practice, and a quick check. Include a pre/post progress-monitoring measure, exit criteria (how you know they're ready to exit), and one engagement tip for reluctant students.`},
+{ id:"prereq", cat:"Reteaching", title:"Prerequisite-skill diagnostic", desc:"Check readiness before a new topic.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. math"},{k:"topic",l:"Upcoming topic",t:"text",ph:"e.g. solving proportions",full:true}],
+  tpl:`You are a diagnostic teacher. List the prerequisite skills students need BEFORE "{{topic}}" in {{grade}} {{subject}}. Then build a short (6–8 item) readiness diagnostic covering them, with an answer key and an interpretation guide: for each likely miss, name the gap and the quick pre-teach move.`},
+{ id:"worked_examples", cat:"Reteaching", title:"Faded worked-example set", desc:"Model → partial → independent with self-explanation.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. physics"},{k:"skill",l:"Skill",t:"text",ph:"e.g. free-body diagrams"}],
+  tpl:`You are a cognitive-load expert. Create a faded worked-example sequence for {{grade}} {{subject}} on "{{skill}}": (1) a fully worked example with reasoning annotated, (2) a partially completed one with blanks at the key decision points, (3) an independent problem. Add self-explanation prompts ("Why this step?") and an answer key.`},
+
+/* ===== ADAPTATION (more) ===== */
+{ id:"simplify_dir", cat:"Adaptation", title:"Simplify multi-step directions", desc:"Clear, numbered, low-language steps.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"directions",l:"Original directions",t:"textarea",ph:"Paste the directions to simplify",full:true}],
+  tpl:`You are an accessibility expert. Rewrite these directions for {{grade}} as clear, numbered, one-action-per-step instructions with minimal language load: {{directions}}
+
+Use simple words and consistent verbs, suggest a visual/icon cue per step where helpful, bold the key action word in each step, and add a one-line "you're done when…" success check.`},
+{ id:"family_translate", cat:"Adaptation", title:"Plain, translation-ready family message", desc:"Simple English + Spanish version.",
+  fields:[{k:"message",l:"The message",t:"textarea",ph:"Paste the message to families",full:true}],
+  tpl:`You are a multilingual family-engagement specialist. Rewrite this message in simple, translation-ready English (short sentences, no idioms or slang): {{message}}
+
+Then provide a natural Spanish translation. Keep the tone warm and the meaning exact. Flag anything culturally sensitive to double-check with a bilingual colleague.`},
+{ id:"graphic_organizer", cat:"Adaptation", title:"Graphic organizer designer", desc:"Pick and lay out the right organizer for a task.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"task",l:"Thinking task",t:"text",ph:"e.g. compare 2 things, sequence events, cause/effect",full:true}],
+  tpl:`You are an instructional designer. Recommend the BEST graphic organizer for this {{grade}} thinking task: {{task}}. Explain why it fits, then lay it out in text (boxes, columns, arrows described clearly) with guiding prompts in each section and a completed mini-example so students see the target.`},
+{ id:"accessible", cat:"Adaptation", title:"Make a resource accessible", desc:"Concrete UDL/accessibility upgrades.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"resource",l:"The resource",t:"textarea",ph:"Describe or paste the worksheet/handout",full:true},{k:"needs",l:"Access needs",t:"text",ph:"e.g. dyslexia, low vision, ADHD",full:true}],
+  tpl:`You are a UDL and accessibility expert. Suggest concrete changes to make this {{grade}} resource accessible for students with: {{needs}}.
+
+Resource: {{resource}}
+
+Address formatting (font, size, spacing, chunking), language load, visual supports/alt text, color/contrast, and response options. Then provide a revised version (or a clear before/after list). Keep the academic rigor the same.`},
+
+/* ===== PRODUCTIVITY (new) ===== */
+{ id:"weekly_plan", cat:"Productivity", title:"Weekly plan from standards", desc:"Turn standards into a day-by-day plan table.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject",t:"text",ph:"e.g. ELA"},{k:"standards",l:"This week's standards",t:"textarea",ph:"Paste the standards/objectives",full:true}],
+  tpl:`You are an efficient planner. Turn this week's {{grade}} {{subject}} standards into a day-by-day plan: {{standards}}
+
+Output a TABLE: Day | objective | activity/mini-lesson | formative check | homework. Balance pacing and cognitive load, build on the prior day, and end the week with a check for understanding. Keep activities realistic for one class period.`},
+{ id:"meeting_agenda", cat:"Productivity", title:"PLC / team meeting agenda", desc:"Focused, time-boxed, decisions-oriented.",
+  fields:[{k:"topic",l:"Meeting focus",t:"text",ph:"e.g. analyzing common assessment data",full:true},{k:"minutes",l:"Length",t:"select",o:["30 minutes","45 minutes","60 minutes"]}],
+  tpl:`You are a PLC facilitator. Build a {{minutes}} agenda focused on: {{topic}}.
+
+Include time-boxed items, a clear objective and desired outcome, protocols for any data/discussion, assigned roles (facilitator/timekeeper/notetaker), and a "decisions & next steps (who/what/when)" closing section. Keep it action-oriented, not just talk.`},
+{ id:"donorschoose", cat:"Productivity", title:"Classroom grant / DonorsChoose pitch", desc:"Compelling, specific funding request.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"resource",l:"What you're requesting",t:"text",ph:"e.g. 6 sensory-friendly wobble stools",full:true},{k:"impact",l:"Who it helps & how",t:"textarea",ph:"Describe your students and the need",full:true}],
+  tpl:`You are a persuasive grant writer. Write a classroom funding pitch for {{grade}} requesting: {{resource}}. Context: {{impact}}
+
+Structure: a vivid, specific opening about your students; the concrete need; exactly how this resource changes learning; and a warm thank-you. Honest and heartfelt (no exaggeration), concrete details over adjectives, ~180 words. Add a short project title.`},
+{ id:"pro_email", cat:"Productivity", title:"Professional email (admin/colleague)", desc:"Clear, respectful, with a specific ask.",
+  fields:[{k:"purpose",l:"Purpose",t:"textarea",ph:"What you need and any context",full:true},{k:"tone",l:"Tone",t:"select",o:["Warm & collegial","Neutral-professional","Firm but respectful"]}],
+  tpl:`You are a professional communicator. Draft an email that accomplishes: {{purpose}}. Tone: {{tone}}.
+
+Keep it concise and scannable, lead with the ask or key point, give only the necessary context, and end with a clear next step/deadline. Provide a specific subject line. Avoid over-apologizing or burying the request.`},
+{ id:"self_eval", cat:"Productivity", title:"Self-evaluation / reflection", desc:"Framework-aligned, evidence-based statements.",
+  fields:[{k:"framework",l:"Framework — optional",t:"text",ph:"e.g. Danielson, state rubric",req:false,full:true},{k:"evidence",l:"Your evidence / accomplishments",t:"textarea",ph:"Bullet what you did and its impact",full:true}],
+  tpl:`You are an instructional coach helping a teacher write a self-evaluation{{framework}}. From this evidence: {{evidence}}
+
+Draft reflective statements that pair specific evidence with impact on students, name one genuine growth area with a concrete goal, and use professional, non-defensive language. Keep it honest and grounded, not boastful.`},
+{ id:"sub_folder", cat:"Productivity", title:"Substitute folder checklist", desc:"Everything a guest teacher needs, organized.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"subject",l:"Subject / setting",t:"text",ph:"e.g. self-contained 3rd grade"}],
+  tpl:`You are an organized teacher. Create a complete substitute-folder checklist for {{grade}} {{subject}}, plus a fill-in "About My Class" one-pager template.
+
+Cover: daily schedule, seating/roster, routines & signals, behavior management, key students (helpers, medical, allergies) framed appropriately, emergency procedures, tech logins, and where to leave notes for me. Make the one-pager a clean template with [blanks] to fill.`},
+
+/* ===== STEM / MATH & SCIENCE (new) ===== */
+{ id:"math_problems", cat:"STEM", title:"Math problem set (scaffolded + solutions)", desc:"Standards-based problems, easy→hard, with worked solutions.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"skill",l:"Skill / standard",t:"text",ph:"e.g. multiplying fractions"},{k:"count",l:"How many",t:"select",o:["6","8","10","12"]},{k:"context",l:"Real-world theme — optional",t:"text",ph:"e.g. cooking, sports",req:false,full:true}],
+  tpl:`You are a math curriculum specialist. Create {{count}} problems for {{grade}} on "{{skill}}", scaffolded from straightforward to challenging{{context}}.
+
+Include at least 2 multi-step/reasoning problems. Provide FULL worked solutions (show the steps and reasoning), and for any tempting wrong path, name the misconception it comes from. Use inclusive names/contexts. Label each problem's difficulty.`},
+{ id:"word_problems", cat:"STEM", title:"Real-world math word problems", desc:"Engaging, multi-step problems on a theme, with a reasoning rubric.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"skill",l:"Skill",t:"text",ph:"e.g. unit rates"},{k:"theme",l:"Theme / context",t:"text",ph:"e.g. planning a road trip",full:true}],
+  tpl:`You are a math teacher who makes math feel real. Write 6 engaging word problems for {{grade}} on "{{skill}}" set in the context of {{theme}}. Vary structure so students can't pattern-match; include 2 multi-step problems and 1 with extra (distractor) information.
+
+Provide answers with reasoning, and a short 3-level rubric for evaluating student REASONING (not just the final number). Use culturally inclusive names and situations.`},
+{ id:"math_misconception", cat:"STEM", title:"Math misconception diagnostic", desc:"Top misconceptions, a probe for each, and reteach moves.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"concept",l:"Concept",t:"text",ph:"e.g. negative number operations",full:true}],
+  tpl:`You are a math education researcher. For "{{concept}}" in {{grade}}, list the 4–5 most common student misconceptions. For EACH: explain why it makes intuitive sense to students, give one diagnostic item that would reveal it, and a targeted reteach move (with a better representation or model). End with the single highest-impact misconception to tackle first.`},
+{ id:"number_talk", cat:"STEM", title:"Number talk / math routine", desc:"A problem string with anticipated strategies and questions.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"focus",l:"Focus",t:"text",ph:"e.g. mental multiplication, fraction sense",full:true}],
+  tpl:`You are a number-talks expert. Design a 10-minute number talk for {{grade}} focused on "{{focus}}".
+
+Give a purposeful problem STRING (3–4 problems sequenced to surface and connect strategies), the strategies you anticipate students will use for each, the teacher questions that advance mathematical discourse, and how to record/connect student thinking visually. Keep it mental-math (no algorithms rushed in).`},
+{ id:"three_act", cat:"STEM", title:"3-Act math task", desc:"Perplexing hook, info on request, reveal + extension.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"concept",l:"Math concept",t:"text",ph:"e.g. volume, proportional reasoning",full:true}],
+  tpl:`You are a math task designer (Dan Meyer style). Design a 3-Act task for {{grade}} on "{{concept}}".
+
+Act 1: a perplexing real situation and the one compelling question (kept low-floor); what students notice/wonder. Act 2: the information students will request and how they'd use it. Act 3: the reveal and a sequel/extension question. Include facilitation notes and the underlying math. Make Act 1 need no numbers.`},
+{ id:"cer", cat:"STEM", title:"Science CER scaffold", desc:"Claim–Evidence–Reasoning with frames and rubric.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"phenomenon",l:"Phenomenon / question",t:"text",ph:"e.g. why the ice melted faster on metal",full:true}],
+  tpl:`You are an NGSS science teacher. Build a Claim–Evidence–Reasoning scaffold for {{grade}} on this phenomenon: {{phenomenon}}.
+
+Provide: a guiding question, sentence frames for Claim, Evidence, and Reasoning separately, a graphic-organizer layout, a student-friendly CER rubric, and one exemplar STRONG response plus one weak response with a note on why. Emphasize connecting evidence to a science principle in the reasoning.`},
+{ id:"lab_design", cat:"STEM", title:"Science lab / investigation", desc:"Testable question, variables, procedure, safety, analysis.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"question",l:"Topic or question",t:"text",ph:"e.g. what affects how fast a reaction happens",full:true},{k:"constraints",l:"Materials / constraints",t:"text",ph:"e.g. only household materials, 1 class period",full:true}],
+  tpl:`You are a science teacher and safety officer. Design a hands-on investigation for {{grade}} on: {{question}}. Constraints: {{constraints}}.
+
+Include: a testable question, a hypothesis frame, clearly labeled variables (independent, dependent, controlled), a step-by-step procedure, a data table, explicit SAFETY notes, and analysis questions that push toward a conclusion (including sources of error). Note one extension for early finishers.`},
+{ id:"ngss", cat:"STEM", title:"Phenomenon-based NGSS lesson", desc:"3-dimensional lesson (DCI + SEP + CCC).",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"phenomenon",l:"Anchoring phenomenon",t:"text",ph:"e.g. a can crushed by cooling",full:true},{k:"dci",l:"Core idea — optional",t:"text",ph:"e.g. states of matter / pressure",req:false,full:true}],
+  tpl:`You are an NGSS curriculum designer. Design a phenomenon-based lesson for {{grade}} anchored in: {{phenomenon}}{{dci}}.
+
+Make it 3-dimensional: name the Disciplinary Core Idea, one Science & Engineering Practice students DO, and one Crosscutting Concept. Provide a driving question, a notice/wonder opener, the investigation or modeling activity, a formative check, and how students revise their model. Keep students explaining the phenomenon, not just reading about it.`},
+{ id:"engineering", cat:"STEM", title:"Engineering design challenge", desc:"Full EDP challenge with criteria, constraints, rubric.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"challenge",l:"Challenge / problem",t:"text",ph:"e.g. build a bridge that holds weight",full:true},{k:"materials",l:"Available materials",t:"text",ph:"e.g. straws, tape, index cards",full:true}],
+  tpl:`You are a STEM/engineering teacher. Design an Engineering Design Process challenge for {{grade}}: {{challenge}}. Materials: {{materials}}.
+
+Structure it through Ask → Imagine → Plan → Create → Test → Improve. Give clear success CRITERIA and CONSTRAINTS, a testing/measurement method, roles for teamwork, a reflection on iteration (what they'd change), and an analytic rubric. Connect it to a real math/science concept.`},
+{ id:"coding", cat:"STEM", title:"CS / coding activity", desc:"Teach a concept unplugged, Scratch or Python.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"concept",l:"CS concept",t:"text",ph:"e.g. loops, conditionals, variables",full:true},{k:"mode",l:"Mode",t:"select",o:["Unplugged (no computers)","Scratch / block-based","Python","Any / teacher's choice"]}],
+  tpl:`You are a computer-science teacher. Design an activity teaching "{{concept}}" to {{grade}} in this mode: {{mode}}.
+
+Include: a relatable analogy for the concept, a warm-up, a guided task with clear steps, a challenge/extension, and the common bugs or misconceptions to watch for (with a fix for each). Keep the cognitive load appropriate and the entry point low. Add a quick check for understanding.`},
+{ id:"data_task", cat:"STEM", title:"Data analysis / graphing task", desc:"Realistic dataset, rising-DOK questions, 'what it doesn't say'.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"context",l:"Dataset theme",t:"text",ph:"e.g. rainfall by month, class survey",full:true},{k:"skill",l:"Skill",t:"text",ph:"e.g. interpret bar graphs, mean/median",full:true}],
+  tpl:`You are a math/data teacher. Create a data task for {{grade}} on "{{skill}}" using a small, realistic dataset about {{context}} (invent believable numbers and present them in a table).
+
+Ask questions rising in Depth of Knowledge: read the data → interpret/compute → infer/justify. Include an answer key, and finish with a discussion prompt on what the data does NOT tell us (limitations, correlation vs causation as appropriate).`},
+{ id:"math_discourse", cat:"STEM", title:"Math discourse questions", desc:"Assessing/advancing questions to promote reasoning.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"problem",l:"The problem / task",t:"textarea",ph:"Paste the math problem students are working",full:true}],
+  tpl:`You are a math-discourse expert (5 Practices). For this {{grade}} problem — {{problem}} — generate teacher questions that promote reasoning over answer-getting:
+
+• 3 ASSESSING questions (make student thinking visible)
+• 3 ADVANCING questions (push toward the math goal without telling)
+• 2 "convince me / justify" prompts
+Plus 2 sentence frames for students to explain and critique reasoning. Note the likely strategies students will use so I can sequence the share-out.`},
+{ id:"stem_project", cat:"STEM", title:"STEM project + rubric", desc:"Integrated, driving-question project with milestones.",
+  fields:[{k:"grade",l:"Grade / level",t:"select",o:GRADES},{k:"topic",l:"Topic / theme",t:"text",ph:"e.g. design a water filter",full:true}],
+  tpl:`You are a STEM curriculum designer. Design an integrated STEM project for {{grade}} on "{{topic}}" that connects science, math, and engineering.
+
+Include: a driving question, the specific science and math concepts applied, an engineering/build component, a milestone timeline, teamwork roles, a real-world deliverable/audience, and an analytic rubric assessing content AND process (collaboration, iteration). Keep it rigorous and doable with common materials.`}
 ];
 
 /* ---------- app ---------- */

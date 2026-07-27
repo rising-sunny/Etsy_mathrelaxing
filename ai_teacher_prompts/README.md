@@ -24,8 +24,12 @@ UDL/WIDA, DOK, backward design, success criteria, misconception-targeted
 distractors). Tokens are `{{key}}`; blanks left unfilled stay visible as
 `[Label]` in the output so nothing is forgotten.
 
-15 prompts across: Planning, Differentiation, Assessment, Feedback,
-Communication, Engagement, Reteaching, Adaptation.
+84 prompts across 11 categories: Planning, Differentiation, Assessment,
+Feedback, Communication, Engagement, Classroom & SEL, Reteaching, Adaptation,
+Productivity, and a dedicated **STEM** batch (math problem sets, misconception
+diagnostics, number talks, 3-Act tasks, CER, lab/investigation design,
+NGSS phenomenon lessons, engineering challenges, coding, data analysis,
+math discourse, STEM projects).
 
 ## Status
 Prototype for the planned **"AI Prompts for Teachers"** Etsy listing. Intended
