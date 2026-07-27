@@ -1562,6 +1562,30 @@ These are original, curated teaching prompts (not bulk AI-generated content). \
 For personal / single-classroom use. Not for redistribution or resale.
 """,
 
+    "ai_student_prompts": """\
+Instant download — The Study Studio: 64 expert AI study prompts + an interactive builder.
+
+Study smarter, not harder. These 64 fill-in-the-blank prompts are built to help you actually \
+LEARN — outline essays, understand hard concepts, solve math step by step, revise for exams, and \
+plan projects — using proven study techniques (active recall, spaced repetition, worked examples). \
+Works with ChatGPT, Claude and Gemini.
+
+► What you get
+• 64 prompts across 11 topics: Essays & Writing, Study & Revision, Reading & Analysis, Math, Science, \
+Research & Projects, Exam Prep, Languages, Understanding, Applications (college/scholarship essays), and Wellbeing
+• Built to teach, not cheat: prompts coach, explain, quiz and give feedback — they don't do the work for you
+• An interactive prompt builder (HTML) — open it in any browser, pick a task, fill the blanks, click \
+Copy. No install, no internet, works on any device
+• A print-ready PDF catalog of every prompt
+
+► How it works
+Replace each [bracket] with your subject, level and topic, then paste into your AI. \
+These help you understand and practise — always review the output and make the work your own.
+
+Original, curated study prompts (not bulk AI-generated content). \
+For personal student use. Not for redistribution or resale.
+""",
+
     "password_tracker": """\
 Instant download — Password & Login Tracker (printable PDF password book).
 
@@ -3701,6 +3725,43 @@ PRODUCTS = {
         ],
         "notes": "generate_prompt_catalog.py + prompt_studio.html (editorial paper/serif/red). Wave14: chatgpt prompts mom 2.68; teachers long-tail near-empty (~168). 84 prompts + interactive HTML builder. ZIP=PDF+HTML. Demo video (record_demo.py, 1080x1080 13.9s) uploaded as listing video 835095357. $9.99. Draft uploaded 2026-07-27. (Etsy title: max one '&'.)",
         "listing_id": 4544731320,
+    },
+
+    "ai_student_prompts": {
+        "title": (
+            "AI Prompts for Students | 64 ChatGPT Study Prompt Bundle & Interactive Tool | "
+            "Essays, Math, Science, Exam Prep (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["ai_student_prompts"],
+        "price": 8.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("ai_student_prompts", "previews", "studyprompts_preview_1_cover.jpg"),
+            p("ai_student_prompts", "previews", "studyprompts_preview_2_pages.jpg"),
+            p("ai_student_prompts", "previews", "studyprompts_preview_3_sample.jpg"),
+            p("ai_student_prompts", "previews", "studyprompts_preview_4_included.jpg"),
+            p("ai_student_prompts", "previews", "studyprompts_preview_5_grid.jpg"),
+        ],
+        "files": [
+            p("ai_student_prompts", "the_study_studio_kit.zip"),
+        ],
+        "tags": [
+            "study prompts",
+            "chatgpt for students",
+            "ai for students",
+            "study guide",
+            "exam prep",
+            "essay help",
+            "homework help",
+            "college study",
+            "study tools",
+            "ai study tool",
+            "chatgpt prompts",
+            "student planner",
+            "digital download",
+        ],
+        "notes": "generate_prompt_catalog.py student + build_student_html.py (editorial paper/serif/blue). Sibling of ai_teacher_prompts, reuses engine. 64 study prompts, learning-focused (not cheating). ZIP=PDF+HTML. $8.99. Draft — not yet published. (Etsy title: max one '&'.)",
+        "listing_id": None,
     },
 
     "password_tracker": {

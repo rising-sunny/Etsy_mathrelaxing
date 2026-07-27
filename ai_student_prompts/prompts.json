@@ -1,0 +1,1874 @@
+[
+ {
+  "id": "essay_outline",
+  "cat": "Essays & Writing",
+  "title": "Essay outline builder",
+  "desc": "Turn a prompt into a clear, arguable structure you then write yourself.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "type",
+    "l": "Essay type",
+    "t": "select",
+    "o": [
+     "Argumentative",
+     "Analytical / literary",
+     "Expository / informative",
+     "Compare & contrast",
+     "Narrative",
+     "Research paper"
+    ]
+   },
+   {
+    "k": "prompt",
+    "l": "Essay prompt / question",
+    "t": "textarea",
+    "ph": "Paste the assignment prompt",
+    "full": true
+   },
+   {
+    "k": "len",
+    "l": "Length",
+    "t": "text",
+    "ph": "e.g. 5 paragraphs / 1500 words",
+    "req": false,
+    "full": true
+   }
+  ],
+  "tpl": "You are a patient writing tutor. Help me OUTLINE (not write) a {{type}} essay for {{level}} on this prompt: {{prompt}} (length: {{len}}).\n\nGive me: a clear, arguable thesis option (plus one alternative), 3–4 body-paragraph topic sentences that each support the thesis, the kind of evidence I should find for each, and a one-line plan for the intro and conclusion. Then ask me one question that will sharpen my argument. Do NOT write the essay — leave the writing to me."
+ },
+ {
+  "id": "thesis",
+  "cat": "Essays & Writing",
+  "title": "Thesis statement helper",
+  "desc": "Sharpen a vague idea into a strong, arguable thesis.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic / rough idea",
+    "t": "textarea",
+    "ph": "What's your essay about + your rough opinion",
+    "full": true
+   }
+  ],
+  "tpl": "You are a writing coach. From my rough idea for a {{level}} essay — {{topic}} — give me 3 possible thesis statements that are specific, arguable (not just factual), and preview my reasoning. For each, note in one line why it works and what evidence it would need. Then tell me which is strongest and why, and ask me one question to make it mine."
+ },
+ {
+  "id": "intro_hook",
+  "cat": "Essays & Writing",
+  "title": "Intro & hook ideas",
+  "desc": "Three ways to open, with the moves explained.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "thesis",
+    "l": "Your thesis / topic",
+    "t": "textarea",
+    "ph": "Paste your thesis or topic",
+    "full": true
+   }
+  ],
+  "tpl": "You are a writing tutor. For a {{level}} essay with this thesis/topic — {{thesis}} — suggest 3 different ways to open (e.g. a striking fact, a question, a short scenario). For each, give a one-sentence example I can adapt and explain the rhetorical move. Then outline what my intro paragraph should do, step by step, so I write it myself."
+ },
+ {
+  "id": "peel",
+  "cat": "Essays & Writing",
+  "title": "Body paragraph coach (PEEL)",
+  "desc": "Structure one paragraph without writing it for you.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "point",
+    "l": "The point / argument for this paragraph",
+    "t": "textarea",
+    "ph": "What is this paragraph proving?",
+    "full": true
+   }
+  ],
+  "tpl": "You are a writing tutor using PEEL (Point, Evidence, Explain, Link). For a {{level}} paragraph making this point — {{point}} — coach me through each PEEL step with a guiding question and one sentence starter per step. Point out the most common mistake for each step. Do not write the paragraph — I will fill it in."
+ },
+ {
+  "id": "counter",
+  "cat": "Essays & Writing",
+  "title": "Counterargument & rebuttal",
+  "desc": "Strengthen your essay by addressing the other side.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "claim",
+    "l": "Your main claim",
+    "t": "textarea",
+    "ph": "State your argument",
+    "full": true
+   }
+  ],
+  "tpl": "You are a debate and writing coach. For my {{level}} claim — {{claim}} — give me the 2 strongest counterarguments a smart reader would raise, and for each, a fair way to acknowledge it and a rebuttal strategy (not a full paragraph). Explain why addressing these makes my essay stronger."
+ },
+ {
+  "id": "revise",
+  "cat": "Essays & Writing",
+  "title": "Feedback on my draft",
+  "desc": "Actionable revision notes on writing you already did.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "criteria",
+    "l": "Rubric / what it's graded on",
+    "t": "text",
+    "ph": "e.g. thesis, evidence, organization",
+    "req": false,
+    "full": true
+   },
+   {
+    "k": "draft",
+    "l": "Paste your draft",
+    "t": "textarea",
+    "ph": "Paste what you wrote",
+    "full": true
+   }
+  ],
+  "tpl": "You are a supportive writing tutor. Give feedback on MY draft ({{level}}) against these criteria: {{criteria}}. Draft: {{draft}}\n\nGive 2 specific strengths, then the 3 highest-impact revisions (with WHY and a concrete suggestion, not a rewrite), and 2 line-level issues to fix. Keep my voice — coach me to improve it myself. End with a one-question revision checklist."
+ },
+ {
+  "id": "cite",
+  "cat": "Essays & Writing",
+  "title": "Citation & referencing helper",
+  "desc": "Format sources and avoid accidental plagiarism.",
+  "fields": [
+   {
+    "k": "style",
+    "l": "Style",
+    "t": "select",
+    "o": [
+     "MLA",
+     "APA",
+     "Chicago",
+     "Harvard"
+    ]
+   },
+   {
+    "k": "source",
+    "l": "Source details",
+    "t": "textarea",
+    "ph": "Paste author, title, year, url, etc.",
+    "full": true
+   }
+  ],
+  "tpl": "You are a librarian. Using {{style}} style, format a full citation AND an in-text citation for this source: {{source}}. Then explain, in 2 lines, when I need to cite vs. when it's common knowledge, and how to paraphrase properly to avoid plagiarism. Flag any missing info you'd need for a perfect citation."
+ },
+ {
+  "id": "study_guide",
+  "cat": "Study & Revision",
+  "title": "Study guide from my notes",
+  "desc": "Turn messy notes into an organized revision sheet.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "subject",
+    "l": "Subject",
+    "t": "text",
+    "ph": "e.g. Biology"
+   },
+   {
+    "k": "notes",
+    "l": "Paste your notes / topics",
+    "t": "textarea",
+    "ph": "Paste notes or list the topics",
+    "full": true
+   }
+  ],
+  "tpl": "You are a study coach. Turn my {{level}} {{subject}} notes into a clean study guide: {{notes}}\n\nOrganize by topic with key terms + short definitions, the 5–7 most important ideas, likely exam points, and 3 practice questions (with answers hidden at the end). Flag anything in my notes that looks incomplete so I can go back and check it."
+ },
+ {
+  "id": "flashcards",
+  "cat": "Study & Revision",
+  "title": "Flashcards (Q&A) generator",
+  "desc": "Retrieval-practice cards you can quiz yourself with.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic",
+    "t": "text",
+    "ph": "e.g. the French Revolution"
+   },
+   {
+    "k": "count",
+    "l": "How many",
+    "t": "select",
+    "o": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ]
+   }
+  ],
+  "tpl": "You are a memory coach. Make {{count}} flashcards for {{level}} on \"{{topic}}\", formatted as Q: / A: pairs. Mix recall (facts) and understanding (why/how) questions, keep answers short and precise, and order them easy-to-hard. Add a 2-line note on how to use them with active recall and spaced repetition."
+ },
+ {
+  "id": "practice_quiz",
+  "cat": "Study & Revision",
+  "title": "Practice quiz with answer key",
+  "desc": "Test yourself before the real test.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic",
+    "t": "text",
+    "ph": "e.g. cell respiration"
+   },
+   {
+    "k": "count",
+    "l": "Questions",
+    "t": "select",
+    "o": [
+     "5",
+     "10",
+     "15"
+    ]
+   },
+   {
+    "k": "type",
+    "l": "Type",
+    "t": "select",
+    "o": [
+     "Multiple choice",
+     "Short answer",
+     "Mixed"
+    ]
+   }
+  ],
+  "tpl": "You are a tutor. Write a {{count}}-question {{type}} practice quiz for {{level}} on \"{{topic}}\", rising in difficulty. Put ALL answers in a separate key at the end (so I can test myself first), and for each answer add a one-line explanation. For any multiple-choice items, make the wrong options reflect common mistakes."
+ },
+ {
+  "id": "summarize",
+  "cat": "Study & Revision",
+  "title": "Summarize a chapter / topic",
+  "desc": "Get the big picture, then the details.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "text",
+    "l": "Paste text or name the topic",
+    "t": "textarea",
+    "ph": "Paste the reading or describe the topic",
+    "full": true
+   }
+  ],
+  "tpl": "You are a study coach. Summarize this for {{level}}: {{text}}\n\nGive: a one-sentence big idea, then 5–7 key points as bullets, then the essential vocabulary. Keep it accurate and don't oversimplify. End with 3 questions I should be able to answer if I understood it — so I can check myself."
+ },
+ {
+  "id": "mnemonics",
+  "cat": "Study & Revision",
+  "title": "Mnemonics & memory aids",
+  "desc": "Make hard-to-remember facts stick.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "facts",
+    "l": "What you need to memorize",
+    "t": "textarea",
+    "ph": "e.g. the order of the planets, a formula list",
+    "full": true
+   }
+  ],
+  "tpl": "You are a memory expert. Create memorable mnemonics for a {{level}} student to remember: {{facts}}. Offer 2–3 techniques (acronym, acrostic, story/method-of-loci, or a vivid image) and explain how to use each. Keep them school-appropriate and easy to recall under exam pressure."
+ },
+ {
+  "id": "eli5",
+  "cat": "Study & Revision",
+  "title": "Explain it simply (then properly)",
+  "desc": "Understand a hard concept from the ground up.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "concept",
+    "l": "The concept",
+    "t": "text",
+    "ph": "e.g. photosynthesis, derivatives",
+    "full": true
+   }
+  ],
+  "tpl": "You are a great teacher. Explain \"{{concept}}\" to a {{level}} student in three passes: (1) simple, everyday-language version with an analogy, (2) the proper version with correct terms, (3) one worked example or application. Then ask me a quick question to check I got it, and list one common misconception to avoid."
+ },
+ {
+  "id": "teachback",
+  "cat": "Study & Revision",
+  "title": "Quiz me / Feynman check",
+  "desc": "Prove you understand by being questioned.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic",
+    "t": "text",
+    "ph": "e.g. supply and demand"
+   }
+  ],
+  "tpl": "You are a tutor using the Feynman technique. I want to test my understanding of \"{{topic}}\" ({{level}}). Ask me ONE question at a time (start broad, then probe), wait for my answer, and after each, gently point out gaps or errors and ask a follow-up. Keep going until I can explain it clearly. Begin with your first question now."
+ },
+ {
+  "id": "read_summary",
+  "cat": "Reading & Analysis",
+  "title": "Summarize an article",
+  "desc": "Grasp a dense text fast, accurately.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "text",
+    "l": "Paste the article",
+    "t": "textarea",
+    "ph": "Paste the text",
+    "full": true
+   }
+  ],
+  "tpl": "You are a reading coach. For this {{level}} reader, summarize the article: {{text}}\n\nGive: the main argument in one sentence, 3–5 key supporting points, the author's purpose/tone, and any bias or missing perspective to be aware of. Then list 3 questions I could ask to check I understood it."
+ },
+ {
+  "id": "annotate",
+  "cat": "Reading & Analysis",
+  "title": "Annotation guide",
+  "desc": "Learn what to mark and why while you read.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "text",
+    "l": "Paste a passage",
+    "t": "textarea",
+    "ph": "Paste the passage",
+    "full": true
+   }
+  ],
+  "tpl": "You are a close-reading tutor. For this passage ({{level}}) — {{text}} — model annotation: identify the main idea, key terms to define, the author's technique/tone, and 2 places worth questioning. For each, explain WHY you'd mark it, so I can annotate the rest myself. Don't just summarize — teach the reading move."
+ },
+ {
+  "id": "analyze_text",
+  "cat": "Reading & Analysis",
+  "title": "Analyze a poem / passage",
+  "desc": "Go beyond plot to meaning and craft.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "text",
+    "l": "Paste the poem / passage",
+    "t": "textarea",
+    "ph": "Paste the text",
+    "full": true
+   }
+  ],
+  "tpl": "You are a literature tutor. Help me analyze this ({{level}}): {{text}}\n\nWalk through: theme(s), key literary devices (with the exact lines), tone/mood, and how form supports meaning. For each point, pose it as a question with a hint — so I build the interpretation — then give a model topic sentence I could develop. Avoid writing a full essay."
+ },
+ {
+  "id": "compare_texts",
+  "cat": "Reading & Analysis",
+  "title": "Compare two texts",
+  "desc": "Find meaningful similarities and differences.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "a",
+    "l": "Text / work A",
+    "t": "text",
+    "ph": "Title or paste",
+    "full": true
+   },
+   {
+    "k": "b",
+    "l": "Text / work B",
+    "t": "text",
+    "ph": "Title or paste",
+    "full": true
+   },
+   {
+    "k": "focus",
+    "l": "Focus",
+    "t": "text",
+    "ph": "e.g. theme, character, style",
+    "req": false,
+    "full": true
+   }
+  ],
+  "tpl": "You are a literature tutor. Help me compare \"{{a}}\" and \"{{b}}\" ({{level}}) with a focus on {{focus}}. Give a comparison table (aspect | text A | text B), 2 meaningful similarities and 2 differences, and one arguable point I could build a comparative thesis around. Frame it so I do the writing."
+ },
+ {
+  "id": "vocab_context",
+  "cat": "Reading & Analysis",
+  "title": "Vocabulary in context",
+  "desc": "Learn words the way they're actually used.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "words",
+    "l": "Words / passage",
+    "t": "textarea",
+    "ph": "List words or paste a passage",
+    "full": true
+   }
+  ],
+  "tpl": "You are a vocabulary tutor. For {{level}}, from these words/passage — {{words}} — give each word: a student-friendly definition, the part of speech, a sentence using it in context, and a synonym/antonym. Then make a 5-item quick check (word to meaning) with answers at the end."
+ },
+ {
+  "id": "math_solve",
+  "cat": "Math",
+  "title": "Step-by-step solution + explanation",
+  "desc": "See every step and the reasoning, so you learn it.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "problem",
+    "l": "The problem",
+    "t": "textarea",
+    "ph": "Type or paste the math problem",
+    "full": true
+   }
+  ],
+  "tpl": "You are a patient math tutor. Solve this ({{level}}) step by step: {{problem}}\n\nShow EVERY step with the reason for it (name the rule/property), not just the answer. After the solution, summarize the method as a reusable recipe, and give me one similar practice problem (answer hidden) so I can try it myself."
+ },
+ {
+  "id": "math_check",
+  "cat": "Math",
+  "title": "Check my work / find my error",
+  "desc": "Locate the mistake and understand it.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "work",
+    "l": "The problem + your attempt",
+    "t": "textarea",
+    "ph": "Paste the problem and your steps",
+    "full": true
+   }
+  ],
+  "tpl": "You are a math tutor. Here is a problem and MY attempt ({{level}}): {{work}}\n\nFind where (if anywhere) I went wrong, name the specific misconception or slip, and explain the correct step — without just handing me the full answer. Then confirm the correct final result and give one tip to avoid that error next time."
+ },
+ {
+  "id": "math_practice",
+  "cat": "Math",
+  "title": "Practice problems by topic",
+  "desc": "Targeted practice with worked solutions.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic / skill",
+    "t": "text",
+    "ph": "e.g. factoring quadratics"
+   },
+   {
+    "k": "count",
+    "l": "How many",
+    "t": "select",
+    "o": [
+     "5",
+     "8",
+     "10"
+    ]
+   }
+  ],
+  "tpl": "You are a math tutor. Create {{count}} practice problems for {{level}} on \"{{topic}}\", from straightforward to challenging (include 1–2 word problems). Provide FULL worked solutions in a separate section so I can try first. For each, note the key step students most often miss."
+ },
+ {
+  "id": "math_concept",
+  "cat": "Math",
+  "title": "Explain a math concept simply",
+  "desc": "Understand the why, not just the how.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "concept",
+    "l": "Concept",
+    "t": "text",
+    "ph": "e.g. what a logarithm is"
+   }
+  ],
+  "tpl": "You are a math teacher. Explain \"{{concept}}\" to a {{level}} student: an intuitive idea with a real-world analogy, the formal definition/notation, one worked example, and WHY it matters / where it's used. Finish with a common misconception and a quick check question."
+ },
+ {
+  "id": "math_word",
+  "cat": "Math",
+  "title": "Word-problem breakdown",
+  "desc": "Learn to translate words into math.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "problem",
+    "l": "The word problem",
+    "t": "textarea",
+    "ph": "Paste the word problem",
+    "full": true
+   }
+  ],
+  "tpl": "You are a math tutor. For this {{level}} word problem — {{problem}} — coach me through the translation: what is being asked, the knowns/unknowns, which relationship or formula applies, and the equation to set up. Pause before solving and ask ME to finish the arithmetic; then show the solution to check against."
+ },
+ {
+  "id": "math_test_plan",
+  "cat": "Math",
+  "title": "Math test study plan",
+  "desc": "Know exactly what to practice and when.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topics",
+    "l": "Topics on the test",
+    "t": "textarea",
+    "ph": "List the topics",
+    "full": true
+   },
+   {
+    "k": "days",
+    "l": "Days until the test",
+    "t": "text",
+    "ph": "e.g. 5",
+    "full": true
+   }
+  ],
+  "tpl": "You are a math study coach. Build a {{days}}-day study plan for a {{level}} test covering: {{topics}}. For each day, assign topics using retrieval practice and interleaving (mix topics, don't block), a few practice problems, and a self-check. Front-load your weakest areas and leave the last day for a mixed review. Keep sessions realistic."
+ },
+ {
+  "id": "sci_concept",
+  "cat": "Science",
+  "title": "Explain a science concept",
+  "desc": "Clear, correct, with an analogy and example.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "concept",
+    "l": "Concept",
+    "t": "text",
+    "ph": "e.g. natural selection"
+   }
+  ],
+  "tpl": "You are a science teacher. Explain \"{{concept}}\" for {{level}}: a simple analogy, the accurate scientific explanation with key terms, a real example, and why it matters. Add one common misconception and correct it, then a quick question to check my understanding."
+ },
+ {
+  "id": "lab_report",
+  "cat": "Science",
+  "title": "Lab report helper",
+  "desc": "Structure your report; you supply the data.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "experiment",
+    "l": "The experiment",
+    "t": "textarea",
+    "ph": "What you did / investigated",
+    "full": true
+   }
+  ],
+  "tpl": "You are a science teacher. Help me structure a {{level}} lab report for this experiment: {{experiment}}. For each section (Aim, Hypothesis, Variables, Method, Results, Analysis, Conclusion, Sources of error) tell me what to include and give a sentence starter or guiding question. Do NOT invent my data or results — I'll add those."
+ },
+ {
+  "id": "cer_student",
+  "cat": "Science",
+  "title": "Claim–Evidence–Reasoning helper",
+  "desc": "Write a strong scientific explanation.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "question",
+    "l": "Question / phenomenon",
+    "t": "textarea",
+    "ph": "What are you explaining?",
+    "full": true
+   }
+  ],
+  "tpl": "You are a science tutor. For this {{level}} question — {{question}} — coach me through Claim, Evidence, and Reasoning: what makes a good claim, what evidence I should cite, and how to connect evidence to a science principle in my reasoning. Give a sentence frame for each part and a checklist — but let me write it with my own data."
+ },
+ {
+  "id": "sci_process",
+  "cat": "Science",
+  "title": "Explain a process / diagram",
+  "desc": "Understand steps and cause-and-effect.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "process",
+    "l": "The process",
+    "t": "text",
+    "ph": "e.g. the water cycle, mitosis",
+    "full": true
+   }
+  ],
+  "tpl": "You are a science teacher. Explain the process \"{{process}}\" for {{level}} as clear ordered steps, with the cause/effect at each stage and the key terms. Suggest how I could sketch it as a simple labeled diagram (describe the boxes and arrows). End with 2 questions to test whether I understand the sequence."
+ },
+ {
+  "id": "sci_review",
+  "cat": "Science",
+  "title": "Exam review sheet (science)",
+  "desc": "Condense a unit into what you must know.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "unit",
+    "l": "Unit / topics",
+    "t": "textarea",
+    "ph": "List the unit topics",
+    "full": true
+   }
+  ],
+  "tpl": "You are a science tutor. Make a one-page review sheet for a {{level}} exam on: {{unit}}. Include must-know definitions, key processes/formulas, common exam questions, and 3 quick self-test questions with answers at the bottom. Flag the 3 highest-yield topics to study first."
+ },
+ {
+  "id": "research_q",
+  "cat": "Research & Projects",
+  "title": "Research question / topic finder",
+  "desc": "Turn a broad interest into a focused question.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "interest",
+    "l": "Your area of interest",
+    "t": "textarea",
+    "ph": "What you're curious about + any constraints",
+    "full": true
+   }
+  ],
+  "tpl": "You are a research mentor. From my interest — {{interest}} ({{level}}) — propose 4 focused, researchable questions (not too broad, not too narrow), and for each note why it's researchable and what kind of sources it needs. Then recommend the strongest one for my level and ask a question to help me narrow it further."
+ },
+ {
+  "id": "find_sources",
+  "cat": "Research & Projects",
+  "title": "Find & evaluate sources",
+  "desc": "Know what to search and what to trust.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Research topic",
+    "t": "text",
+    "ph": "Your topic / question",
+    "full": true
+   }
+  ],
+  "tpl": "You are a research librarian. For a {{level}} project on \"{{topic}}\", suggest the types of sources I need (and where to look, e.g. databases, journals, primary sources), 6 search terms/keywords to try, and a quick CRAAP checklist (Currency, Relevance, Authority, Accuracy, Purpose) to judge if a source is credible. Don't fabricate specific citations — tell me how to find real ones."
+ },
+ {
+  "id": "paper_outline",
+  "cat": "Research & Projects",
+  "title": "Research paper outline",
+  "desc": "A roadmap you fill with your own findings.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "question",
+    "l": "Research question / thesis",
+    "t": "textarea",
+    "ph": "Your question or working thesis",
+    "full": true
+   }
+  ],
+  "tpl": "You are a research writing tutor. Build an outline for a {{level}} research paper on: {{question}}. Include sections (Intro/background, key arguments or themes as body sections, counterpoints, conclusion) with a guiding question and the kind of evidence each needs. Keep it a skeleton — I supply the research and write the prose."
+ },
+ {
+  "id": "annotated_bib",
+  "cat": "Research & Projects",
+  "title": "Annotated bibliography helper",
+  "desc": "Learn the format and the summary skill.",
+  "fields": [
+   {
+    "k": "style",
+    "l": "Style",
+    "t": "select",
+    "o": [
+     "MLA",
+     "APA",
+     "Chicago",
+     "Harvard"
+    ]
+   },
+   {
+    "k": "source",
+    "l": "A source you found",
+    "t": "textarea",
+    "ph": "Paste the source details + your notes",
+    "full": true
+   }
+  ],
+  "tpl": "You are a research tutor. Show me how to write ONE annotated-bibliography entry in {{style}} style for this source I found: {{source}}. Give the citation format, then a template for the annotation (summary + evaluation + relevance to my project) with guiding questions. I'll write the annotation from my own reading."
+ },
+ {
+  "id": "presentation",
+  "cat": "Research & Projects",
+  "title": "Presentation outline & script",
+  "desc": "Plan slides and what to say.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic",
+    "t": "text",
+    "ph": "Presentation topic",
+    "full": true
+   },
+   {
+    "k": "mins",
+    "l": "Length",
+    "t": "text",
+    "ph": "e.g. 5 minutes / 8 slides",
+    "full": true
+   }
+  ],
+  "tpl": "You are a public-speaking coach. Plan a {{mins}} presentation for {{level}} on \"{{topic}}\": a slide-by-slide outline (title + 2–3 bullet points each, kept minimal), a strong opening hook, transitions, and speaker notes as prompts (not a full script to read). Add 3 tips for delivering it confidently and one likely audience question to prepare for."
+ },
+ {
+  "id": "project_plan",
+  "cat": "Research & Projects",
+  "title": "Project plan & timeline",
+  "desc": "Break a big project into milestones.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "project",
+    "l": "The project",
+    "t": "textarea",
+    "ph": "Describe the project + due date",
+    "full": true
+   }
+  ],
+  "tpl": "You are a project coach. Break this {{level}} project into a realistic plan: {{project}}. Give milestones with mini-deadlines working back from the due date, the order of tasks, an estimate of effort per stage, and where to build in buffer/review time. Add one tip to avoid last-minute panic."
+ },
+ {
+  "id": "group_work",
+  "cat": "Research & Projects",
+  "title": "Group work organizer",
+  "desc": "Divide roles fairly and stay on track.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "task",
+    "l": "The group task + number of people",
+    "t": "textarea",
+    "ph": "e.g. 4 of us, build a presentation on...",
+    "full": true
+   }
+  ],
+  "tpl": "You are a collaboration coach. For this {{level}} group task — {{task}} — propose a fair division of roles/tasks, a simple timeline with check-ins, how to handle a member who falls behind, and a shared checklist. Add 2 ground rules that keep group work productive and low-drama."
+ },
+ {
+  "id": "study_schedule",
+  "cat": "Exam Prep",
+  "title": "Exam study schedule",
+  "desc": "A realistic plan using proven techniques.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "subjects",
+    "l": "Subjects / topics + exam dates",
+    "t": "textarea",
+    "ph": "List subjects and when each exam is",
+    "full": true
+   },
+   {
+    "k": "hours",
+    "l": "Hours you can study/day",
+    "t": "text",
+    "ph": "e.g. 3",
+    "full": true
+   }
+  ],
+  "tpl": "You are a study coach. Build an exam study schedule for {{level}} given ~{{hours}} hours/day and these exams: {{subjects}}. Use spaced repetition and interleaving, prioritize by exam date and difficulty, include short breaks (e.g. Pomodoro), retrieval practice over re-reading, and a lighter day before each exam. Present it as a day-by-day table."
+ },
+ {
+  "id": "predict_exam",
+  "cat": "Exam Prep",
+  "title": "Predict likely exam questions",
+  "desc": "Practice the questions you'll probably see.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic / unit",
+    "t": "textarea",
+    "ph": "What the exam covers",
+    "full": true
+   }
+  ],
+  "tpl": "You are an experienced examiner. For a {{level}} exam on: {{topic}} — predict 8 questions likely to appear (mix of recall, application, and extended-response), labeled by type. For each, give a one-line hint on what a strong answer includes. Don't give full answers — I'll practice them."
+ },
+ {
+  "id": "weak_spots",
+  "cat": "Exam Prep",
+  "title": "Diagnose my weak spots",
+  "desc": "Find and fix gaps before the exam.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Subject / topic",
+    "t": "text",
+    "ph": "e.g. AP Bio unit 4",
+    "full": true
+   }
+  ],
+  "tpl": "You are a tutor. I'm revising {{topic}} ({{level}}). Ask me a short diagnostic set (5–6 questions of rising difficulty), ONE at a time, waiting for my answers. Based on what I miss, tell me my likely weak areas and give a focused mini-plan to fix each. Start with question 1."
+ },
+ {
+  "id": "test_strategy",
+  "cat": "Exam Prep",
+  "title": "Test-taking strategies",
+  "desc": "Score the points you actually know.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "format",
+    "l": "Exam format",
+    "t": "text",
+    "ph": "e.g. multiple choice + essay, timed 90 min",
+    "full": true
+   }
+  ],
+  "tpl": "You are a test-prep coach. Give strategies for a {{level}} exam in this format: {{format}}. Cover time management, how to approach each question type, how to handle questions I'm unsure about, avoiding careless errors, and what to do in the last 5 minutes. Add 2 tips for staying calm under time pressure."
+ },
+ {
+  "id": "grammar",
+  "cat": "Languages",
+  "title": "Grammar check + explain",
+  "desc": "Fix errors and understand the rule.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "text",
+    "l": "Your sentence / paragraph",
+    "t": "textarea",
+    "ph": "Paste your writing",
+    "full": true
+   }
+  ],
+  "tpl": "You are a language tutor. Check my writing ({{level}}): {{text}}. For each correction, show the fix AND name the grammar rule in plain language so I learn it (don't just rewrite silently). Keep my meaning and voice. End with the ONE rule I break most and a tip to remember it."
+ },
+ {
+  "id": "improve_sentence",
+  "cat": "Languages",
+  "title": "Make my writing stronger",
+  "desc": "Upgrade word choice, flow and clarity.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "text",
+    "l": "Sentence / paragraph",
+    "t": "textarea",
+    "ph": "Paste what you wrote",
+    "full": true
+   }
+  ],
+  "tpl": "You are a writing coach. Suggest how to strengthen this ({{level}}): {{text}}. Offer 2–3 improved versions with different tones, and for each, explain WHAT changed (word choice, sentence variety, active voice, cutting filler) so I can apply it myself. Keep it my idea, just sharper."
+ },
+ {
+  "id": "lang_practice",
+  "cat": "Languages",
+  "title": "Foreign-language practice partner",
+  "desc": "Practise a language with instant feedback.",
+  "fields": [
+   {
+    "k": "lang",
+    "l": "Language",
+    "t": "text",
+    "ph": "e.g. Spanish, French"
+   },
+   {
+    "k": "level",
+    "l": "Your level",
+    "t": "select",
+    "o": [
+     "Beginner",
+     "Intermediate",
+     "Advanced"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Scenario / topic",
+    "t": "text",
+    "ph": "e.g. ordering food, past tense",
+    "full": true
+   }
+  ],
+  "tpl": "You are a friendly {{lang}} tutor. Let's practise at {{level}} level on: {{topic}}. Have a short back-and-forth conversation in {{lang}} (one exchange at a time). After each of my replies, gently correct mistakes, give the natural version, and translate anything new. Keep it encouraging. Start the conversation now."
+ },
+ {
+  "id": "vocab_builder",
+  "cat": "Languages",
+  "title": "Vocabulary builder",
+  "desc": "Learn and retain useful words.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic / theme",
+    "t": "text",
+    "ph": "e.g. SAT words, cooking in French",
+    "full": true
+   },
+   {
+    "k": "count",
+    "l": "How many",
+    "t": "select",
+    "o": [
+     "10",
+     "15",
+     "20"
+    ]
+   }
+  ],
+  "tpl": "You are a vocabulary coach. Give {{count}} useful words for {{level}} on \"{{topic}}\". For each: the word, a simple definition, an example sentence, and a memory hook. Group related words together, and end with a 5-item self-quiz (answers at the bottom) using active recall."
+ },
+ {
+  "id": "three_ways",
+  "cat": "Understanding",
+  "title": "Explain it 3 different ways",
+  "desc": "If one explanation didn't click, try others.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "concept",
+    "l": "The concept",
+    "t": "text",
+    "ph": "e.g. recursion, osmosis",
+    "full": true
+   }
+  ],
+  "tpl": "You are a versatile teacher. Explain \"{{concept}}\" ({{level}}) three different ways: (1) a plain-language analogy, (2) a visual/step-by-step description, (3) a concrete worked example. Then ask which one made it click and offer to go deeper on that one. Keep each accurate."
+ },
+ {
+  "id": "why_matters",
+  "cat": "Understanding",
+  "title": "Why does this matter?",
+  "desc": "Connect a topic to the real world.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic",
+    "t": "text",
+    "ph": "e.g. the quadratic formula, the Cold War",
+    "full": true
+   }
+  ],
+  "tpl": "You are an inspiring teacher. For a {{level}} student, explain why \"{{topic}}\" matters: 2–3 real-world connections or careers that use it, a surprising fact, and how understanding it helps in everyday life. Keep it honest (don't overhype) and end with a question that sparks curiosity."
+ },
+ {
+  "id": "misconceptions",
+  "cat": "Understanding",
+  "title": "Common misconceptions to avoid",
+  "desc": "Don't learn it wrong.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic",
+    "t": "text",
+    "ph": "e.g. evolution, negative numbers",
+    "full": true
+   }
+  ],
+  "tpl": "You are a tutor. List the 4–5 most common misconceptions {{level}} students have about \"{{topic}}\". For each: state the wrong idea, why it's tempting, and the correct understanding with a quick example. End with a 3-question check to make sure I don't hold any of them."
+ },
+ {
+  "id": "howto_steps",
+  "cat": "Understanding",
+  "title": "Step-by-step how-to",
+  "desc": "Learn a skill or procedure clearly.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "skill",
+    "l": "The skill / procedure",
+    "t": "text",
+    "ph": "e.g. balancing equations, citing in APA",
+    "full": true
+   }
+  ],
+  "tpl": "You are a tutor. Teach \"{{skill}}\" ({{level}}) as clear numbered steps, each with a tiny example and the reason behind it. Point out the step people most often get wrong. Then give me one problem to try the whole procedure on, with the answer hidden so I can self-check."
+ },
+ {
+  "id": "college_essay",
+  "cat": "Applications",
+  "title": "College essay brainstorm",
+  "desc": "Find your story; you write it.",
+  "fields": [
+   {
+    "k": "prompt",
+    "l": "Essay prompt",
+    "t": "textarea",
+    "ph": "Paste the application prompt",
+    "full": true
+   },
+   {
+    "k": "about",
+    "l": "A bit about you",
+    "t": "textarea",
+    "ph": "Experiences, values, moments that shaped you",
+    "full": true
+   }
+  ],
+  "tpl": "You are a college-essay mentor. For this prompt — {{prompt}} — and what I've shared — {{about}} — help me brainstorm: 3 authentic angles or stories that fit, what makes each compelling, and the values it could reveal. Ask me 3 reflective questions to find the most genuine one. Do NOT write the essay — the voice must be mine."
+ },
+ {
+  "id": "personal_statement",
+  "cat": "Applications",
+  "title": "Personal statement feedback",
+  "desc": "Sharpen a draft you already wrote.",
+  "fields": [
+   {
+    "k": "draft",
+    "l": "Your draft",
+    "t": "textarea",
+    "ph": "Paste your personal statement",
+    "full": true
+   }
+  ],
+  "tpl": "You are an admissions-essay coach. Give feedback on MY personal statement draft: {{draft}}. Note 2 genuine strengths, where the story loses focus or tells-not-shows, and the 3 highest-impact revisions (with why). Preserve my authentic voice and don't rewrite it — coach me. Flag any cliches to cut."
+ },
+ {
+  "id": "scholarship",
+  "cat": "Applications",
+  "title": "Scholarship essay planner",
+  "desc": "Match your story to what they want.",
+  "fields": [
+   {
+    "k": "prompt",
+    "l": "Scholarship prompt / criteria",
+    "t": "textarea",
+    "ph": "Paste the prompt and what they value",
+    "full": true
+   },
+   {
+    "k": "about",
+    "l": "About you",
+    "t": "textarea",
+    "ph": "Relevant achievements, goals, needs",
+    "full": true
+   }
+  ],
+  "tpl": "You are a scholarship-essay mentor. From the criteria — {{prompt}} — and my background — {{about}} — help me plan: which of my experiences best fit what they value, an outline that answers the prompt directly, and how to show impact and goals. Give guiding questions, not a finished essay. Remind me what evaluators look for."
+ },
+ {
+  "id": "first_resume",
+  "cat": "Applications",
+  "title": "First resume / CV helper",
+  "desc": "Present limited experience well.",
+  "fields": [
+   {
+    "k": "job",
+    "l": "Job / opportunity",
+    "t": "text",
+    "ph": "e.g. first part-time job, internship",
+    "full": true
+   },
+   {
+    "k": "about",
+    "l": "Your experience",
+    "t": "textarea",
+    "ph": "School, activities, skills, any jobs",
+    "full": true
+   }
+  ],
+  "tpl": "You are a career coach for students. For this goal — {{job}} — and my background — {{about}} — help me build a strong first resume: which sections to include when experience is limited, how to turn school/activities into achievement bullet points (action verb + what + result), and 6 transferable skills to highlight. Give templates/examples to adapt in my own words."
+ },
+ {
+  "id": "focus_plan",
+  "cat": "Wellbeing",
+  "title": "Beat procrastination / focus plan",
+  "desc": "Actually start and stay on task.",
+  "fields": [
+   {
+    "k": "task",
+    "l": "What you're avoiding",
+    "t": "textarea",
+    "ph": "The task + why it feels hard",
+    "full": true
+   }
+  ],
+  "tpl": "You are a study coach. I'm procrastinating on: {{task}}. Help me start: break it into a tiny first step (2 minutes), a focus method (e.g. Pomodoro) with realistic timing, how to remove distractions, and a small reward. Address the reason it feels hard, and give one kind, motivating line — not guilt."
+ },
+ {
+  "id": "note_method",
+  "cat": "Wellbeing",
+  "title": "Note-taking method finder",
+  "desc": "Take notes you'll actually use.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "context",
+    "l": "Class / material type",
+    "t": "text",
+    "ph": "e.g. fast lectures, dense textbook",
+    "full": true
+   }
+  ],
+  "tpl": "You are a study-skills coach. Recommend the best note-taking method for {{level}} in this context: {{context}} (e.g. Cornell, outline, mind-map, sketchnotes). Explain how to do it step by step, why it fits, and how to review the notes later using active recall. Give a quick template to start."
+ },
+ {
+  "id": "exam_stress",
+  "cat": "Wellbeing",
+  "title": "Manage exam stress",
+  "desc": "Calm techniques that don't waste time.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "situation",
+    "l": "What's stressing you",
+    "t": "textarea",
+    "ph": "e.g. finals week, one big exam",
+    "req": false,
+    "full": true
+   }
+  ],
+  "tpl": "You are a supportive study coach (not a therapist). For a {{level}} student feeling exam stress about {{situation}}, give practical, healthy strategies: quick calming techniques (breathing, short walk), how to reframe unhelpful thoughts, sleep/food basics before an exam, and a simple plan to feel more in control. Keep it warm and realistic, and suggest reaching out to a trusted adult or counselor if it feels overwhelming."
+ },
+ {
+  "id": "motivation",
+  "cat": "Wellbeing",
+  "title": "Get motivated / set goals",
+  "desc": "Turn 'I should' into a doable plan.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "goal",
+    "l": "Your goal",
+    "t": "text",
+    "ph": "e.g. raise my grade, finish a project",
+    "full": true
+   }
+  ],
+  "tpl": "You are a motivation coach. Help me with this goal ({{level}}): {{goal}}. Turn it into a SMART goal, break it into weekly mini-goals, connect it to a reason I care about, and suggest a simple way to track progress and stay accountable. Add one strategy for getting back on track after a bad day — without self-blame."
+ },
+ {
+  "id": "active_recall",
+  "cat": "Study & Revision",
+  "title": "Turn notes into active-recall questions",
+  "desc": "The single most effective way to revise.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "notes",
+    "l": "Paste your notes",
+    "t": "textarea",
+    "ph": "Paste the notes to convert",
+    "full": true
+   }
+  ],
+  "tpl": "You are a learning-science coach. Convert my {{level}} notes into active-recall questions: {{notes}}\n\nProduce 12–15 questions that force me to retrieve the ideas (not recognize them), ordered by topic, with answers in a separate key at the end. Mix factual and \"explain why/how\" questions. Add a 2-line note on how to use them with spaced repetition."
+ },
+ {
+  "id": "concept_map",
+  "cat": "Study & Revision",
+  "title": "Concept map / connect ideas",
+  "desc": "See how a topic's parts fit together.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic",
+    "t": "text",
+    "ph": "e.g. the circulatory system",
+    "full": true
+   }
+  ],
+  "tpl": "You are a study coach. Help me build a concept map for \"{{topic}}\" ({{level}}). List the central concept, the main branches, and the sub-ideas under each, then describe the key LINKS between them (how they connect/cause each other) as \"A -> B: relationship\". Describe it in text so I can draw it. End with 2 questions that test whether I understand the connections, not just the parts."
+ },
+ {
+  "id": "proofread",
+  "cat": "Essays & Writing",
+  "title": "Proofreading checklist",
+  "desc": "Catch your own errors before submitting.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "text",
+    "l": "Paste your draft",
+    "t": "textarea",
+    "ph": "Paste the near-final draft",
+    "full": true
+   }
+  ],
+  "tpl": "You are an editor. Proofread MY {{level}} draft for surface errors only (spelling, punctuation, grammar, consistency) — do not change my ideas or rewrite: {{text}}\n\nList each issue as: the problem -> the fix -> the rule (briefly), grouped by type. Then give me a reusable proofreading checklist so I can catch these myself next time."
+ },
+ {
+  "id": "book_discuss",
+  "cat": "Reading & Analysis",
+  "title": "Book / novel discussion questions",
+  "desc": "Think deeper about what you read.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "book",
+    "l": "Book / chapter",
+    "t": "text",
+    "ph": "e.g. To Kill a Mockingbird, ch. 1–10",
+    "full": true
+   }
+  ],
+  "tpl": "You are a literature teacher. Generate 8 discussion questions for {{level}} on \"{{book}}\", rising from comprehension to analysis to personal response (theme, character, author's choices, connections to today). Keep them open-ended, avoid spoilers beyond the stated section, and add 2 questions that ask me to support a view with evidence."
+ },
+ {
+  "id": "formula_when",
+  "cat": "Math",
+  "title": "Formula guide — what to use when",
+  "desc": "Stop guessing which formula applies.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Topic / unit",
+    "t": "text",
+    "ph": "e.g. trigonometry, kinematics",
+    "full": true
+   }
+  ],
+  "tpl": "You are a math tutor. For {{level}} \"{{topic}}\", make a quick-reference guide of the key formulas: each formula, what each symbol means, and — most importantly — WHEN to use it (the tell-tale signs in a problem). Add 2 worked mini-examples showing how to choose the right formula, and one common mix-up to avoid."
+ },
+ {
+  "id": "night_before",
+  "cat": "Exam Prep",
+  "title": "Night-before & morning-of review",
+  "desc": "Smart last-minute prep (not cramming).",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "topic",
+    "l": "Exam topic",
+    "t": "text",
+    "ph": "What the exam covers",
+    "full": true
+   }
+  ],
+  "tpl": "You are a study coach. Give a calm, effective night-before and morning-of plan for a {{level}} exam on \"{{topic}}\": what's worth a final review (high-yield only), what to STOP doing, a light active-recall check, plus sleep, food and timing tips. Discourage all-night cramming and explain why. Keep it short and reassuring."
+ },
+ {
+  "id": "break_assignment",
+  "cat": "Wellbeing",
+  "title": "Break down a big assignment",
+  "desc": "Make an overwhelming task feel doable.",
+  "fields": [
+   {
+    "k": "level",
+    "l": "Level",
+    "t": "select",
+    "o": [
+     "Middle school (6–8)",
+     "High school (9–12)",
+     "College / University",
+     "Grad school",
+     "Adult learner / self-study"
+    ]
+   },
+   {
+    "k": "assignment",
+    "l": "The assignment + due date",
+    "t": "textarea",
+    "ph": "Describe it and when it's due",
+    "full": true
+   }
+  ],
+  "tpl": "You are a study coach. This {{level}} assignment feels overwhelming: {{assignment}}. Break it into small, concrete steps in order, estimate the time each takes, suggest what to do today (a tiny first step), and map the steps onto the days I have. Add one tip to keep momentum and reduce overwhelm."
+ }
+]
