@@ -3878,8 +3878,8 @@ PRODUCTS = {
             "digital bookmark",
             "stem gift",
         ],
-        "notes": "generate_chaos.py + package_chaos.py (reuses bookmarks/generate_bookmarks engine). Second bookmark set (chaos attractors) sibling to The Mathematics of Beauty curves. 5 images + ZIP. $5.50. Draft — not yet published. listing/, deliverable/, ZIP are gitignored (regenerate before upload).",
-        "listing_id": None,
+        "notes": "generate_chaos.py + package_chaos.py (reuses bookmarks/generate_bookmarks engine). Second bookmark set (chaos attractors) sibling to The Mathematics of Beauty curves. 5 images + ZIP. $5.50. Uploaded 2026-07-27, Etsy DRAFT (private). listing/, deliverable/, ZIP gitignored (regenerate before re-upload).",
+        "listing_id": 4545095571,
     },
 
     "password_tracker": {
