@@ -265,3 +265,10 @@ _shot.png
 _preview_screenshot.png
 _shot_*.png
 ai_seller_prompts/The_Seller_Studio_Etsy_Prompts.pdf
+
+# Brain Games — generated puzzle book, listing images & ZIP (regenerable from scripts)
+brain_games/out/
+brain_games/listing/
+brain_games/deliverable/
+brain_games/__pycache__/
+brain_games/MathRelaxing_Brain_Games.zip

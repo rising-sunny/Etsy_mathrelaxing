@@ -1628,6 +1628,32 @@ Print on cardstock, cut along the marks, and optionally laminate for durability.
 For personal use. Not for redistribution or resale.
 """,
 
+    "brain_games": """\
+Instant download — Brain Games: a 22-page printable puzzle book (Sudoku, mazes & STEM word searches) with full answer keys.
+
+A calm, screen-free puzzle collection in the MathRelaxing style — clean typography, generous grids, \
+and every puzzle checked by algorithm. Great for classrooms, quiet time, road trips, waiting rooms, \
+or a mindful coffee break.
+
+► What's inside (single PDF, US Letter, 300 dpi)
+• 12 Sudoku puzzles — Easy, Medium and Hard (each with one unique solution)
+• 6 hand-crafted mazes that grow in size as you go
+• 4 STEM word searches — mathematics, science, geometry and space
+• Full answer keys for every puzzle at the back
+• A short "how to play" + quick print guide
+
+► Why you'll like it
+• Uncluttered, high-contrast pages that print beautifully in black & white
+• Reprint any page as many times as you like — perfect for a class set
+• No filler — real, solvable puzzles, not random noise
+
+► How it works
+Download the PDF, print the pages you want at 100% ("Actual size"), and start solving. \
+Print only the puzzle pages to keep the answers a surprise.
+
+For personal & classroom use. Digital download — nothing is shipped. Not for redistribution or resale.
+""",
+
     "password_tracker": """\
 Instant download — Password & Login Tracker (printable PDF password book).
 
@@ -3880,6 +3906,43 @@ PRODUCTS = {
         ],
         "notes": "generate_chaos.py + package_chaos.py (reuses bookmarks/generate_bookmarks engine). Second bookmark set (chaos attractors) sibling to The Mathematics of Beauty curves. 5 images + ZIP. $5.50. Uploaded 2026-07-27, Etsy DRAFT (private). listing/, deliverable/, ZIP gitignored (regenerate before re-upload).",
         "listing_id": 4545095571,
+    },
+
+    "brain_games": {
+        "title": (
+            "Printable Brain Games Puzzle Book | Sudoku Mazes STEM Word Search with Answers | "
+            "Math Activity PDF for Kids Teens Adults (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["brain_games"],
+        "price": 5.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("brain_games", "listing", "01_hero.jpg"),
+            p("brain_games", "listing", "02_sudoku.jpg"),
+            p("brain_games", "listing", "03_mazes.jpg"),
+            p("brain_games", "listing", "04_wordsearch.jpg"),
+            p("brain_games", "listing", "05_included.jpg"),
+        ],
+        "files": [
+            p("brain_games", "MathRelaxing_Brain_Games.zip"),
+        ],
+        "tags": [
+            "printable puzzles",
+            "brain games",
+            "sudoku printable",
+            "maze printable",
+            "word search",
+            "math activity",
+            "stem activity",
+            "puzzle book pdf",
+            "classroom activity",
+            "kids activity",
+            "brain teaser",
+            "teacher printable",
+            "activity book",
+        ],
+        "notes": "generate_brain_games.py + package_brain_games.py. 22-page algorithmic puzzle book (12 sudoku unique-solution, 6 mazes, 4 STEM word searches, answer keys). 5 images + ZIP. $5.99. out/, listing/, deliverable/, ZIP gitignored (regenerate before re-upload). VERIFY listing state after upload.",
+        "listing_id": None,
     },
 
     "password_tracker": {
