@@ -1,0 +1,35 @@
+{
+  "unrolled": {
+    "product_id": "6a684db72763e7a3770d2f15",
+    "title": "Sine Wave Math Mug | Unit Circle Trigonometry Coffee Mug | Gift for Math Teacher Student Mathematician (11oz, 15oz)",
+    "blueprint": 635,
+    "provider": 99,
+    "variants": {
+      "72182": 1899,
+      "105885": 2199
+    },
+    "published": false
+  },
+  "fourier": {
+    "product_id": "6a684dff65e6a4d2b50330f0",
+    "title": "Fourier Series Math Mug | Square Wave Harmonics Physics Coffee Mug | Gift for Engineer Physicist Mathematician (11oz, 15oz)",
+    "blueprint": 635,
+    "provider": 99,
+    "variants": {
+      "72182": 1899,
+      "105885": 2199
+    },
+    "published": false
+  },
+  "harmonics": {
+    "product_id": "6a684e02caaabf650d0ed10b",
+    "title": "Standing Wave Harmonics Mug | Physics of Music Vibrating String Coffee Mug | Gift for Physicist Musician Teacher (11oz, 15oz)",
+    "blueprint": 635,
+    "provider": 99,
+    "variants": {
+      "72182": 1899,
+      "105885": 2199
+    },
+    "published": false
+  }
+}

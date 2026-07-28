@@ -26,8 +26,11 @@ FONTS = os.path.join(ROOT, "lulu_books", "assets", "fonts")
 DEJAVU = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 OUT = os.path.join(HERE, "_mug_art"); os.makedirs(OUT, exist_ok=True)
 
-# 11oz mug wrap, rendered at 2x supersample then downscaled
-W, H = 2775, 1155
+# 11oz Accent Coffee Mug (blueprint 635 / provider 99) print area = 2475×1155,
+# which is the full 360° circumference (8.25 in @ 300 dpi). The band bleeds to
+# both edges so the wrap is seamless at the handle gap. (15oz = 2475×1275; the
+# same art centres with a little extra top/bottom room.)
+W, H = 2475, 1155
 SS = 2
 
 # palette — print on white ceramic
