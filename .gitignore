@@ -272,3 +272,8 @@ brain_games/listing/
 brain_games/deliverable/
 brain_games/__pycache__/
 brain_games/MathRelaxing_Brain_Games.zip
+
+# vintage_art heavy generated deliverables (reproducible via build_products.py)
+vintage_art/products/*/prints/
+vintage_art/products/*/_art/
+vintage_art/products/*/*.zip
