@@ -853,6 +853,90 @@ def compose_mandelbrot(width_in: float, height_in: float, dpi: int) -> Image.Ima
 
 # ── Catalog of designs ────────────────────────────────────────────────────────
 
+# ── Design 7: Normal Distribution ─────────────────────────────────────────────
+
+def compose_gaussian(width_in: float, height_in: float, dpi: int) -> Image.Image:
+    fig, ax = _new_plate(width_in, height_in, dpi)
+    fig_w = width_in
+    _header(
+        ax, "THE BELL CURVE", "FIG. 7", "NORMAL DISTRIBUTION",
+        r"$f(x)=\dfrac{1}{\sigma\sqrt{2\pi}}\,e^{-(x-\mu)^2/2\sigma^2}$",
+        fig_w,
+    )
+
+    a = fig.add_axes([0.12, 0.35, 0.76, 0.45], zorder=3)
+    a.set_facecolor("none")
+    a.patch.set_alpha(0)
+    for sp in a.spines.values():
+        sp.set_visible(False)
+    a.set_xticks([])
+    a.set_yticks([])
+    a.set_xlim(-4.2, 4.2)
+    a.set_ylim(-0.055, 0.45)
+
+    x = np.linspace(-4, 4, 900)
+    peak = 1.0 / np.sqrt(2 * np.pi)
+    y = peak * np.exp(-x ** 2 / 2)
+
+    # nested shaded bands (cumulative alpha -> darker center)
+    for lo, hi, al in ((-3, 3, 0.05), (-2, 2, 0.08), (-1, 1, 0.16)):
+        m = (x >= lo) & (x <= hi)
+        a.fill_between(x[m], 0, y[m], color=RUST, alpha=al, lw=0, zorder=2)
+
+    # baseline + curve
+    a.axhline(0, color=INK_FAINT, lw=0.85, zorder=1)
+    a.plot(x, y, color=LINE_DARK, lw=2.2, zorder=4, solid_capstyle="round")
+
+    # sigma verticals + axis labels
+    labels = {-3: r"$\mu\!-\!3\sigma$", -2: r"$\mu\!-\!2\sigma$", -1: r"$\mu\!-\!\sigma$",
+              0: r"$\mu$", 1: r"$\mu\!+\!\sigma$", 2: r"$\mu\!+\!2\sigma$", 3: r"$\mu\!+\!3\sigma$"}
+    for k, lab in labels.items():
+        yk = peak * np.exp(-k ** 2 / 2)
+        a.plot([k, k], [0, yk], color=(INK_SOFT if k == 0 else INK_FAINT),
+               lw=(1.0 if k == 0 else 0.8), ls=("-" if k == 0 else (0, (2, 2))), zorder=3)
+        a.text(k, -0.028, lab, ha="center", va="top",
+               fontsize=_fs(fig_w, 0.0105), color=INK_SOFT)
+
+    # peak label
+    a.text(0.13, peak * 1.02, r"$\dfrac{1}{\sigma\sqrt{2\pi}}$",
+           ha="left", va="bottom", fontsize=_fs(fig_w, 0.011), color=INK_SOFT)
+
+    # per-band percentages (the classic diagram)
+    band_pct = [(-0.5, r"$34.1\%$", 0.075, RUST), (0.5, r"$34.1\%$", 0.075, RUST),
+                (-1.5, r"$13.6\%$", 0.032, INK_SOFT), (1.5, r"$13.6\%$", 0.032, INK_SOFT),
+                (-2.5, r"$2.1\%$", 0.013, INK_SOFT), (2.5, r"$2.1\%$", 0.013, INK_SOFT)]
+    for cx, pct, yy, col in band_pct:
+        a.text(cx, yy, pct, ha="center", va="bottom", fontsize=_fs(fig_w, 0.0095), color=col)
+
+    ax.text(
+        50, 27.0,
+        IT(r"the 68--95--99.7 rule  $\cdot$  area under the curve is probability")
+        if _USE_LATEX else "the 68–95–99.7 rule  ·  area under the curve is probability",
+        fontsize=_fs(fig_w, 0.010), color=INK_SOFT, ha="center", zorder=5,
+    )
+    _caption(
+        ax,
+        [
+            r"The Gaussian peaks at the mean $\mu$; its width is set by $\sigma$." if _USE_LATEX
+            else "The Gaussian peaks at the mean μ; its width is set by σ.",
+            r"$\approx\!68\%$ of values fall within $\pm\sigma$, $95\%$ within $\pm2\sigma$, $99.7\%$ within $\pm3\sigma$." if _USE_LATEX
+            else "≈68% of values fall within ±σ, 95% within ±2σ, 99.7% within ±3σ.",
+            r"The Central Limit Theorem makes it nature's default distribution." if _USE_LATEX
+            else "The Central Limit Theorem makes it nature's default distribution.",
+        ],
+        22.5,
+        fig_w,
+    )
+    _footer_eqs(
+        ax,
+        (r"$X\sim\mathcal{N}(\mu,\sigma^{2})$", "normal distribution"),
+        (r"$\int_{-\infty}^{\infty}\!f(x)\,dx=1$", "total probability"),
+        ("68 – 95 – 99.7", "empirical rule"),
+        fig_w,
+    )
+    return fig_to_image(fig)
+
+
 @dataclass
 class Design:
     slug: str
@@ -1067,6 +1151,39 @@ DESIGNS: list[Design] = [
         zip_name="Mandelbrot_Set_Math_Wall_Art.zip",
         fig_theme="escape-time Mandelbrot",
     ),
+    Design(
+        slug="normal_distribution",
+        folder="normal_distribution",
+        title_line="Normal Distribution",
+        listing_prefix="Math Wall Art",
+        concept="Normal Distribution",
+        tags=[
+            "math wall art",
+            "normal distribution",
+            "statistics poster",
+            "bell curve",
+            "data science art",
+            "stem wall art",
+            "science poster",
+            "educational poster",
+            "classroom decor",
+            "digital download",
+            "teacher gift",
+            "gaussian curve",
+            "math print",
+        ],
+        seo_title=(
+            "Math Wall Art | Normal Distribution Print | Bell Curve Gaussian "
+            "Statistics Data Science STEM Poster (Digital Download)"
+        ),
+        description_blurb=(
+            "Scientific plate of the Gaussian bell curve with the 68-95-99.7 rule "
+            "and standard-deviation bands. Cream graph paper, LaTeX equations, rust accent."
+        ),
+        compose=compose_gaussian,
+        zip_name="Normal_Distribution_Math_Wall_Art.zip",
+        fig_theme="Gaussian bell curve",
+    ),
 ]
 
 
@@ -1080,6 +1197,7 @@ def compose_equation_card(design: Design, width_in=10.0, height_in=8.0, dpi=DPI_
         "navier_stokes": r"$\rho D_t\mathbf{u}=-\nabla p+\mu\nabla^{2}\mathbf{u}$" if _USE_LATEX else r"$\rho D_t u=-\nabla p+\mu\nabla^2 u$",
         "euler_identity": r"$e^{i\pi}+1=0$",
         "mandelbrot_set": r"$z_{n+1}=z_n^{2}+c$" if _USE_LATEX else r"$z_{n+1}=z_n^2+c$",
+        "normal_distribution": r"$f(x)=\dfrac{1}{\sigma\sqrt{2\pi}}\,e^{-(x-\mu)^2/2\sigma^2}$",
     }
     ax.text(50, 72, SFb(design.concept.upper()), fontsize=_fs(width_in, 0.026), color=INK, ha="center")
     ax.text(50, 52, eqs[design.slug], fontsize=_fs(width_in, 0.040), color=RUST, ha="center", va="center")
