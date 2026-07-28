@@ -1219,6 +1219,23 @@ For chaos-theory fans, coders, and modern math wall galleries.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "normal_distribution_print": """\
+Instant download — Math Wall Art scientific plate.
+
+The Bell Curve — the normal distribution f(x)=1/(σ√2π)·e^(−(x−μ)²/2σ²) with \
+standard-deviation bands and the 68-95-99.7 rule. Cream graph paper, LaTeX math, \
+minimal editorial layout.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+Perfect for statistics classrooms, data-science offices, and STEM gifts.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "bessel_functions_print": """\
 Instant download — Physics Wall Art scientific plate.
 
@@ -4570,6 +4587,41 @@ PRODUCTS = {
         ],
         "notes": "generate_equation_plates.py. Classic math identity. $2.99.",
         "listing_id": 4540099676,
+    },
+
+    "normal_distribution_print": {
+        "title": (
+            "Math Wall Art | Normal Distribution Print | Bell Curve Gaussian "
+            "Statistics Data Science STEM Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["normal_distribution_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("equation_plates", "normal_distribution", "previews", "normal_distribution_preview_1_hero.jpg"),
+            p("equation_plates", "normal_distribution", "previews", "normal_distribution_preview_2_detail.jpg"),
+            p("equation_plates", "normal_distribution", "previews", "normal_distribution_preview_3_included.jpg"),
+            p("equation_plates", "normal_distribution", "previews", "normal_distribution_preview_4_plate.jpg"),
+            p("equation_plates", "normal_distribution", "previews", "normal_distribution_preview_5_equation.jpg"),
+        ],
+        "files": [p("equation_plates", "normal_distribution", "Normal_Distribution_Math_Wall_Art.zip")],
+        "tags": [
+            "math wall art",
+            "normal distribution",
+            "statistics poster",
+            "bell curve",
+            "data science art",
+            "stem wall art",
+            "science poster",
+            "educational poster",
+            "classroom decor",
+            "digital download",
+            "teacher gift",
+            "gaussian curve",
+            "math print",
+        ],
+        "notes": "generate_equation_plates.py FIG.7. Bell curve / stats plate. $2.99.",
+        "listing_id": 4545842464,
     },
     "mandelbrot_set_print": {
         "title": (
