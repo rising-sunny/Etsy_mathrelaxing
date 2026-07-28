@@ -52,17 +52,17 @@ def _desc(hook, body_lines):
 
 DESIGNS = {
     "unrolled": {
-        "title": ("Sine Wave Math Mug | Unit Circle Trigonometry Coffee Mug | "
-                  "Gift for Math Teacher Student Mathematician (11oz, 15oz)"),
+        "title": ("Wave Superposition Math Mug | Sine Wave Interference Physics Coffee Mug | "
+                  "Gift for Physicist Engineer Math Teacher (11oz, 15oz)"),
         "description": _desc(
-            "Sine wave coffee mug — the unit circle unrolled into one full wave around the cup.",
+            "Wave superposition coffee mug — two sine waves and their sum, beating around the cup.",
             ["THE MATH",
-             "• The unit circle on the left unrolls into y = sin θ",
-             "• The wave spans exactly one period, 0 to 2π, around the mug",
-             "• Turn the mug and you walk through one full turn of trigonometry"]),
-        "tags": ["math mug", "sine wave", "trigonometry gift", "math teacher gift",
-                 "unit circle", "mathematician gift", "math student gift", "stem gift",
-                 "science mug", "nerdy mug", "calculus gift", "geek gift", "teacher mug"],
+             "• Two sine waves of nearby frequency add into a rich 'beat' pattern",
+             "• The resultant swells and pinches — sin 5x + sin 7x = 2 cos x · sin 6x",
+             "• The beat closes on itself around the mug, seamless at the handle"]),
+        "tags": ["math mug", "sine wave", "wave physics", "superposition",
+                 "physics mug", "interference", "gift for physicist", "stem gift",
+                 "science mug", "nerdy mug", "engineer gift", "mathematician gift", "teacher mug"],
     },
     "fourier": {
         "title": ("Fourier Series Math Mug | Square Wave Harmonics Physics Coffee Mug | "
@@ -135,6 +135,36 @@ def create_one(key):
     return prod
 
 
+def update_one(key, update_copy=True):
+    """Replace the print image (and optionally title/desc/tags) on the existing
+    Printify product for `key`, then republish to sync the live Etsy listing."""
+    meta_path = os.path.join(MOCK, "mugs_created.json")
+    meta = json.load(open(meta_path))
+    pid = meta[key]["product_id"]
+    d = DESIGNS[key]
+    print(f"\n=== updating mug: {key} ({pid}) ===")
+    img_id = pp.upload_image(_wrap_path(key), f"mug_{key}_wrap.png")
+    existing = pp._req("GET", f"/shops/{pp.SHOP_ID}/products/{pid}.json")
+    all_vids = [v["id"] for v in existing.get("variants", [])]   # print area must cover all
+    payload = {
+        "print_areas": [{
+            "variant_ids": all_vids,
+            "placeholders": [{
+                "position": POSITION,
+                "images": [{"id": img_id, "x": 0.5, "y": 0.5, "scale": 1.0, "angle": 0}],
+            }],
+        }],
+    }
+    if update_copy:
+        payload["title"] = d["title"]
+        payload["description"] = d["description"]
+        payload["tags"] = d["tags"]
+    pp._req("PUT", f"/shops/{pp.SHOP_ID}/products/{pid}.json", payload)
+    print("  updated; republishing to Etsy…")
+    pp.publish_product(pid)
+    return pid
+
+
 def _save_meta(key, prod):
     meta_path = os.path.join(MOCK, "mugs_created.json")
     data = {}
@@ -189,6 +219,11 @@ if __name__ == "__main__":
         keys = list(DESIGNS) if which == "all" else [which]
         for k in keys:
             create_one(k)
+    elif cmd == "update" and len(sys.argv) > 2:
+        which = sys.argv[2]
+        keys = list(DESIGNS) if which == "all" else [which]
+        for k in keys:
+            update_one(k, update_copy=(k == "unrolled"))
     elif cmd == "mockups" and len(sys.argv) > 2:
         download_mockups(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None)
     elif cmd == "publish" and len(sys.argv) > 2:

@@ -86,40 +86,38 @@ def _brand(d, s):
 
 # ── design 1: UNROLLED — unit circle → one full sine period ────────────────────
 def d_unrolled():
+    """Superposition / beats — two sine waves and their sum. Dense oscillation
+    with an amplitude that swells and pinches around the mug (seamless)."""
     im, d = _canvas(); w, h = W*SS, H*SS
-    mid = int(h*0.55)
-    amp = int(h*0.26)
-    # baseline
+    mid = int(h*0.56); amp = int(h*0.31)
     d.line([(0, mid), (w, mid)], fill=FAINT, width=SS)
-    # tick grid at 0, π/2, π, 3π/2, 2π
-    labels = ["0", "π/2", "π", "3π/2", "2π"]
-    for i, lab in enumerate(labels):
-        x = int(w * i / 4)
-        xx = min(max(x, SS), w-SS)
-        d.line([(xx, mid-14*SS), (xx, mid+14*SS)], fill=MUTE, width=SS)
-        d.text((xx, mid+40*SS), lab, font=SYM(int(30*SS)),
-               fill=SOFT, anchor="ma" if 0 < i < 4 else ("la" if i == 0 else "ra"))
-    # one full sine period across the whole wrap (seamless: sin0 = sin2π = 0)
-    xs = np.linspace(0, w, 3000)
-    ys = mid - amp*np.sin(2*np.pi*xs/w)
-    d.line(_poly(xs, ys), fill=INK, width=int(9*SS), joint="curve")
-    # unit circle "key" on the left
-    ccx, ccy, cr = int(w*0.115), mid, amp
-    d.ellipse([ccx-cr, ccy-cr, ccx+cr, ccy+cr], outline=GOLD, width=int(5*SS))
-    d.line([(ccx-cr, ccy), (ccx+cr, ccy)], fill=FAINT, width=SS)
-    d.line([(ccx, ccy-cr), (ccx, ccy+cr)], fill=FAINT, width=SS)
-    th = np.radians(52)
-    px, py = ccx+cr*np.cos(th), ccy-cr*np.sin(th)
-    d.line([(ccx, ccy), (px, py)], fill=INK, width=int(5*SS))       # radius
-    d.ellipse([px-11*SS, py-11*SS, px+11*SS, py+11*SS], fill=GOLD)  # point
-    # dotted projection: circle point height -> onto the wave
-    for xd in range(int(ccx), int(w*0.30), int(26*SS)):
-        d.ellipse([xd-2*SS, py-2*SS, xd+2*SS, py+2*SS], fill=MUTE)
+    xs = np.linspace(0, w, 5000)
+    t = 2*np.pi*xs/w
+    f1, f2 = 5, 7                      # close freqs -> beats; integers = seamless
+    w1, w2 = np.sin(f1*t), np.sin(f2*t)
+    s = w1 + w2                        # = 2 cos(t) sin(6t): carrier 6, envelope cos t
+    sc = amp/2.0
+    gold_soft = tuple(int(a*0.5 + b*0.5) for a, b in zip(GOLD, WHITE))
+    gray_soft = (150, 160, 172)
+    # faint component waves
+    d.line(_poly(xs, mid - sc*w1), fill=gray_soft, width=int(3*SS), joint="curve")
+    d.line(_poly(xs, mid - sc*w2), fill=gold_soft, width=int(3*SS), joint="curve")
+    # beat envelope ±amp·|cos t| as gold dotted guides
+    env = amp*np.cos(t)
+    epts = _poly(xs, mid - env) + _poly(xs, mid + env)
+    for k in range(0, len(epts), 34):
+        x, y = epts[k]; d.ellipse([x-2*SS, y-2*SS, x+2*SS, y+2*SS], fill=GOLD)
+    # bold resultant sum
+    d.line(_poly(xs, mid - sc*s), fill=INK, width=int(9*SS), joint="curve")
+    # beat nodes (where the envelope pinches: t = π/2, 3π/2) in gold
+    for frac in (0.25, 0.75):
+        nx = int(w*frac)
+        d.ellipse([nx-8*SS, mid-8*SS, nx+8*SS, mid+8*SS], fill=GOLD)
     # captions
-    _title_sin_theta(d, int(w*0.5), int(h*0.14), int(64*SS))
-    d.text((int(w*0.5), int(h*0.235)), "one turn of the mug — one full wave",
-           font=RALI(int(30*SS)), fill=SOFT, anchor="mm")
-    _brand(d, "unrolled")
+    d.text((int(w*0.5), int(h*0.135)), "Superposition", font=CIN(int(58*SS)), fill=INK, anchor="mm")
+    d.text((int(w*0.5), int(h*0.225)), "two waves and their sum — the beat wraps the mug",
+           font=RALI(int(29*SS)), fill=SOFT, anchor="mm")
+    _brand(d, "superposition")
     return _finish(im, "unrolled")
 
 
@@ -156,28 +154,41 @@ def d_fourier():
     return _finish(im, "fourier")
 
 
-# ── design 3: HARMONICS — standing modes of a string, nodes at the seam ────────
+# ── design 3: HARMONICS — vibrating string caught in motion (woven spindles) ───
+def _blend(c1, c2, t):
+    return tuple(int(c1[i]*(1-t) + c2[i]*t) for i in range(3))
+
+
 def d_harmonics():
+    """Each mode drawn at many time phases, so the string fills with woven
+    spindle/lens shapes between its nodes — dense and alive, still seamless."""
     im, d = _canvas(); w, h = W*SS, H*SS
-    modes = [1, 2, 3, 4, 5]
-    top, bot = int(h*0.30), int(h*0.86)
+    modes = [2, 3, 4, 5]
+    top, bot = int(h*0.31), int(h*0.90)
     band = (bot - top) / len(modes)
-    xs = np.linspace(0, w, 3000)
-    ords = ["1st", "2nd", "3rd", "4th", "5th"]
+    xs = np.linspace(0, w, 2600)
+    ords = {2: "2nd", 3: "3rd", 4: "4th", 5: "5th"}
+    LIGHT = (196, 205, 214)
+    phases = np.linspace(0, np.pi, 13)         # cos(ph): +1 … 0 … −1
     for i, n in enumerate(modes):
-        cy = int(top + band*(i+0.5)); a = int(band*0.34)
-        d.line([(0, cy), (w, cy)], fill=FAINT, width=SS)
-        # standing mode sin(nπ x/L): both ends = 0 -> seamless at the seam
-        env = a*np.sin(n*np.pi*xs/w)
-        d.line(_poly(xs, cy - env), fill=INK, width=int(6*SS), joint="curve")
-        d.line(_poly(xs, cy + env), fill=(150,160,170), width=int(2*SS), joint="curve")
-        # nodes (gold dots) where the mode crosses zero
+        cy = int(top + band*(i+0.5)); a = band*0.42
+        shape = np.sin(n*np.pi*xs/w)           # standing mode (ends at 0 -> seamless)
+        # woven family of snapshots
+        for ph in phases:
+            c = np.cos(ph)
+            if abs(c) < 0.02:
+                continue
+            tcol = abs(c)                       # bold at the extremes, pale mid-swing
+            col = _blend(LIGHT, INK, tcol)
+            width = int((1.4 + 3.0*tcol)*SS)
+            d.line(_poly(xs, cy - a*c*shape), fill=col, width=width, joint="curve")
+        # nodes (gold) where the mode is pinned
         for kk in range(n+1):
-            nx = int(w*kk/n); nx = min(max(nx, 4*SS), w-4*SS)
-            d.ellipse([nx-7*SS, cy-7*SS, nx+7*SS, cy+7*SS], fill=GOLD)
-        d.text((int(28*SS), cy), ords[i], font=RAL(int(24*SS)), fill=SOFT, anchor="lm")
-    d.text((int(w*0.5), int(h*0.135)), "Harmonics", font=CIN(int(58*SS)), fill=INK, anchor="mm")
-    d.text((int(w*0.5), int(h*0.225)), "the vibrating string — its first five modes",
+            nx = min(max(int(w*kk/n), 5*SS), w-5*SS)
+            d.ellipse([nx-8*SS, cy-8*SS, nx+8*SS, cy+8*SS], fill=GOLD)
+        d.text((int(26*SS), cy), ords[n], font=RAL(int(23*SS)), fill=SOFT, anchor="lm")
+    d.text((int(w*0.5), int(h*0.135)), "Harmonics", font=CIN(int(56*SS)), fill=INK, anchor="mm")
+    d.text((int(w*0.5), int(h*0.222)), "a vibrating string, caught in motion",
            font=RALI(int(28*SS)), fill=SOFT, anchor="mm")
     _brand(d, "harmonics")
     return _finish(im, "harmonics")
