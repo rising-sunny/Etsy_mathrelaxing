@@ -3941,8 +3941,8 @@ PRODUCTS = {
             "teacher printable",
             "activity book",
         ],
-        "notes": "generate_brain_games.py + package_brain_games.py. 22-page algorithmic puzzle book (12 sudoku unique-solution, 6 mazes, 4 STEM word searches, answer keys). 5 images + ZIP. $5.99. out/, listing/, deliverable/, ZIP gitignored (regenerate before re-upload). VERIFY listing state after upload.",
-        "listing_id": None,
+        "notes": "generate_brain_games.py + package_brain_games.py. 22-page algorithmic puzzle book (12 sudoku unique-solution, 6 mazes, 4 STEM word searches, answer keys). 5 images + ZIP. $5.99. out/, listing/, deliverable/, ZIP gitignored (regenerate before re-upload). Uploaded 2026-07-28, Etsy DRAFT (private, verified state=draft).",
+        "listing_id": 4545377224,
     },
 
     "password_tracker": {
