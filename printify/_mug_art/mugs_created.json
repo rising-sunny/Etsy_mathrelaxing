@@ -8,7 +8,9 @@
       "72182": 1899,
       "105885": 2199
     },
-    "published": false
+    "published": true,
+    "etsy_listing_id": 4545368507,
+    "etsy_state": "active"
   },
   "fourier": {
     "product_id": "6a684dff65e6a4d2b50330f0",
@@ -19,7 +21,9 @@
       "72182": 1899,
       "105885": 2199
     },
-    "published": false
+    "published": true,
+    "etsy_listing_id": 4545370231,
+    "etsy_state": "active"
   },
   "harmonics": {
     "product_id": "6a684e02caaabf650d0ed10b",
@@ -30,6 +34,8 @@
       "72182": 1899,
       "105885": 2199
     },
-    "published": false
+    "published": true,
+    "etsy_listing_id": 4545370285,
+    "etsy_state": "active"
   }
 }
