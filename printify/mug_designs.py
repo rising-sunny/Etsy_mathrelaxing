@@ -91,26 +91,28 @@ def d_unrolled():
     im, d = _canvas(); w, h = W*SS, H*SS
     mid = int(h*0.56); amp = int(h*0.31)
     d.line([(0, mid), (w, mid)], fill=FAINT, width=SS)
-    xs = np.linspace(0, w, 5000)
+    xs = np.linspace(0, w, 6000)
     t = 2*np.pi*xs/w
-    f1, f2 = 5, 7                      # close freqs -> beats; integers = seamless
+    f1, f2 = 8, 12                     # integers = seamless; beat = (f2-f1)/2 = 2
+    beat = (f2 - f1)/2.0
     w1, w2 = np.sin(f1*t), np.sin(f2*t)
-    s = w1 + w2                        # = 2 cos(t) sin(6t): carrier 6, envelope cos t
+    s = w1 + w2                        # = 2 cos(2t) sin(10t): carrier 10, 2 beat bellies
     sc = amp/2.0
     gold_soft = tuple(int(a*0.5 + b*0.5) for a, b in zip(GOLD, WHITE))
     gray_soft = (150, 160, 172)
     # faint component waves
-    d.line(_poly(xs, mid - sc*w1), fill=gray_soft, width=int(3*SS), joint="curve")
-    d.line(_poly(xs, mid - sc*w2), fill=gold_soft, width=int(3*SS), joint="curve")
-    # beat envelope ±amp·|cos t| as gold dotted guides
-    env = amp*np.cos(t)
+    d.line(_poly(xs, mid - sc*w1), fill=gray_soft, width=int(2*SS), joint="curve")
+    d.line(_poly(xs, mid - sc*w2), fill=gold_soft, width=int(2*SS), joint="curve")
+    # beat envelope ±amp·|cos(beat·t)| as gold dotted guides
+    env = amp*np.cos(beat*t)
     epts = _poly(xs, mid - env) + _poly(xs, mid + env)
-    for k in range(0, len(epts), 34):
+    for k in range(0, len(epts), 30):
         x, y = epts[k]; d.ellipse([x-2*SS, y-2*SS, x+2*SS, y+2*SS], fill=GOLD)
     # bold resultant sum
-    d.line(_poly(xs, mid - sc*s), fill=INK, width=int(9*SS), joint="curve")
-    # beat nodes (where the envelope pinches: t = π/2, 3π/2) in gold
-    for frac in (0.25, 0.75):
+    d.line(_poly(xs, mid - sc*s), fill=INK, width=int(8*SS), joint="curve")
+    # beat nodes where the envelope pinches (cos(beat·t) = 0) in gold
+    for k in range(int(2*beat)):
+        frac = ((np.pi/2 + k*np.pi)/beat)/(2*np.pi)
         nx = int(w*frac)
         d.ellipse([nx-8*SS, mid-8*SS, nx+8*SS, mid+8*SS], fill=GOLD)
     # captions
@@ -163,13 +165,13 @@ def d_harmonics():
     """Each mode drawn at many time phases, so the string fills with woven
     spindle/lens shapes between its nodes — dense and alive, still seamless."""
     im, d = _canvas(); w, h = W*SS, H*SS
-    modes = [2, 3, 4, 5]
-    top, bot = int(h*0.31), int(h*0.90)
+    modes = [2, 3, 4, 5, 6]
+    top, bot = int(h*0.30), int(h*0.93)
     band = (bot - top) / len(modes)
-    xs = np.linspace(0, w, 2600)
-    ords = {2: "2nd", 3: "3rd", 4: "4th", 5: "5th"}
+    xs = np.linspace(0, w, 2800)
+    ords = {2: "2nd", 3: "3rd", 4: "4th", 5: "5th", 6: "6th"}
     LIGHT = (196, 205, 214)
-    phases = np.linspace(0, np.pi, 13)         # cos(ph): +1 … 0 … −1
+    phases = np.linspace(0, np.pi, 19)         # cos(ph): +1 … 0 … −1
     for i, n in enumerate(modes):
         cy = int(top + band*(i+0.5)); a = band*0.42
         shape = np.sin(n*np.pi*xs/w)           # standing mode (ends at 0 -> seamless)
