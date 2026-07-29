@@ -145,6 +145,12 @@ def publish_product(product_id):
     return _req("POST", f"/shops/{SHOP_ID}/products/{product_id}/publish.json", body)
 
 
+def create_order(order_body):
+    """Create a new order in Printify."""
+    return _req("POST", f"/shops/{SHOP_ID}/orders.json", order_body)
+
+
+
 def margin_report(product):
     """Print cost vs retail per variant so we can sanity-check pricing."""
     print(f"\n  {'SIZE':<14}{'COST':>8}{'RETAIL':>9}{'PROFIT':>9}")
