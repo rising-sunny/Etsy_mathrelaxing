@@ -277,3 +277,7 @@ brain_games/MathRelaxing_Brain_Games.zip
 vintage_art/products/*/prints/
 vintage_art/products/*/_art/
 vintage_art/products/*/*.zip
+
+# flow painting: 864MB streamline histogram cache + quick test renders (not deliverables)
+attractor_prints/flow_painting/_hist_cache.npy
+attractor_prints/flow_painting/*_test_*.jpg
