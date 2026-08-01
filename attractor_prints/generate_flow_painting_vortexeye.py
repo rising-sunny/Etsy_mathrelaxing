@@ -195,7 +195,15 @@ def make_preview(print_img, preview_path):
 
 def render_from_hist(hist, palette_name, out_path):
     dens = np.log1p(hist)
-    dmax = dens.max() if dens.max() > 0 else 1.0
+    # A tight, high-strength vortex core can wind streamlines around it many
+    # times before they cross EPS_SINGULARITY, dumping a huge count into a
+    # handful of pixels right at the centre. Normalizing by the true max lets
+    # that outlier crush the rest of the canvas to near-black; a high
+    # percentile keeps the same bright core (it clips to white) while giving
+    # the other 99.9% of the piece its full dynamic range.
+    positive = dens[dens > 0]
+    dmax = np.percentile(positive, 99.9) if positive.size else 1.0
+    dmax = dmax if dmax > 0 else 1.0
     dens_n = np.clip(dens / dmax, 0, 1)
 
     lut = gradient_lut(PALETTES[palette_name])
