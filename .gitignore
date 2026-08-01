@@ -278,6 +278,7 @@ vintage_art/products/*/prints/
 vintage_art/products/*/_art/
 vintage_art/products/*/*.zip
 
-# flow painting: 864MB streamline histogram cache + quick test renders (not deliverables)
-attractor_prints/flow_painting/_hist_cache.npy
-attractor_prints/flow_painting/*_test_*.jpg
+# flow painting line: streamline histogram caches (also covered by the global
+# _hist_cache.npy rule above) + quick test renders (not deliverables)
+attractor_prints/flow_painting*/_hist_cache.npy
+attractor_prints/flow_painting*/*_test_*.jpg
