@@ -1236,6 +1236,23 @@ Perfect for statistics classrooms, data-science offices, and STEM gifts.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "koch_snowflake_print": """\
+Instant download — Math Wall Art scientific plate.
+
+The Infinite Coastline — the Koch snowflake's recursive construction (n=0..3), \
+from triangle to fractal curve. Infinite perimeter, finite area. Cream graph \
+paper, LaTeX math, minimal editorial layout.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+A classic fractal for math classrooms, geometry lovers, and STEM gifts.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "bessel_functions_print": """\
 Instant download — Physics Wall Art scientific plate.
 
@@ -4622,6 +4639,40 @@ PRODUCTS = {
         ],
         "notes": "generate_equation_plates.py FIG.7. Bell curve / stats plate. $2.99.",
         "listing_id": 4545842464,
+    },
+    "koch_snowflake_print": {
+        "title": (
+            "Math Wall Art | Koch Snowflake Print | Fractal Geometry "
+            "Infinite Perimeter STEM Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["koch_snowflake_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("equation_plates", "koch_snowflake", "previews", "koch_snowflake_preview_1_hero.jpg"),
+            p("equation_plates", "koch_snowflake", "previews", "koch_snowflake_preview_2_detail.jpg"),
+            p("equation_plates", "koch_snowflake", "previews", "koch_snowflake_preview_3_included.jpg"),
+            p("equation_plates", "koch_snowflake", "previews", "koch_snowflake_preview_4_plate.jpg"),
+            p("equation_plates", "koch_snowflake", "previews", "koch_snowflake_preview_5_equation.jpg"),
+        ],
+        "files": [p("equation_plates", "koch_snowflake", "Koch_Snowflake_Math_Wall_Art.zip")],
+        "tags": [
+            "math wall art",
+            "koch snowflake",
+            "fractal art",
+            "mathematics poster",
+            "geometry poster",
+            "stem wall art",
+            "science poster",
+            "educational poster",
+            "classroom decor",
+            "digital download",
+            "teacher gift",
+            "generative art",
+            "math print",
+        ],
+        "notes": "generate_equation_plates.py FIG.8. Iconic fractal, recursion 2x2 grid n=0..3. $2.99.",
+        "listing_id": 4548252475,
     },
     "mandelbrot_set_print": {
         "title": (

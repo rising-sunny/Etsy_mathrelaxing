@@ -1,13 +1,17 @@
-"""Upload the Normal Distribution (Bell Curve) plate as an Etsy draft; patch listing_id."""
+"""Upload a single equation-plate product as an Etsy draft; patch listing_id.
+
+    python _upload_normal_distribution.py [slug]   # defaults to normal_distribution_print
+"""
 from __future__ import annotations
 
 import re
+import sys
 from pathlib import Path
 
 from etsy_manager import EtsyManager
 from products_catalog import PRODUCTS, check_product_files
 
-SLUG = "normal_distribution_print"
+SLUG = sys.argv[1] if len(sys.argv) > 1 else "normal_distribution_print"
 
 
 def patch_listing_id(slug: str, listing_id: int):

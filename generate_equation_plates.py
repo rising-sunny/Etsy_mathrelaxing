@@ -937,6 +937,107 @@ def compose_gaussian(width_in: float, height_in: float, dpi: int) -> Image.Image
     return fig_to_image(fig)
 
 
+# ── Design 8: Koch Snowflake ───────────────────────────────────────────────────
+
+def _koch_snowflake(order: int):
+    """Closed polygon (complex points) for a Koch snowflake at a given order."""
+    p1, p2, p3 = 0j, 1 + 0j, 0.5 + 1j * np.sqrt(3) / 2
+    pts = [p1, p2, p3, p1]
+    for _ in range(order):
+        new_pts = [pts[0]]
+        for i in range(len(pts) - 1):
+            a0, a1 = pts[i], pts[i + 1]
+            s = (a1 - a0) / 3
+            a = a0 + s
+            b = a0 + 2 * s
+            peak = a + s * np.exp(1j * np.pi / 3)
+            new_pts += [a, peak, b, a1]
+        pts = new_pts
+    arr = np.array(pts)
+    return arr.real, arr.imag
+
+
+def compose_koch(width_in: float, height_in: float, dpi: int) -> Image.Image:
+    fig, ax = _new_plate(width_in, height_in, dpi)
+    fig_w = width_in
+    _header(
+        ax, "THE INFINITE COASTLINE", "FIG. 8", "KOCH SNOWFLAKE",
+        r"$N_n=3\cdot4^{\,n}$",
+        fig_w,
+    )
+
+    orders = [0, 1, 2, 3]
+    labels = {0: "n = 0", 1: "n = 1", 2: "n = 2", 3: "n = 3"}
+    captions = {0: "the triangle", 1: "first bump", 2: "taking shape", 3: "the snowflake"}
+    left, right = 0.08, 0.92
+    band_bottom, band_top = 0.32, 0.83
+    gap_h, gap_v = 0.03, 0.11
+    col_w = (right - left - gap_h) / 2
+    row_h = (band_top - band_bottom - gap_v) / 2
+
+    # snowflake data spans ~1.16 x 1.12 (roughly square) -- size each panel's
+    # box to the tighter of the two available dimensions so "equal" aspect
+    # fills it with minimal dead space, then centre the 2x2 block.
+    data_w, data_h = 1.16, 1.12
+    side_in = min(col_w * width_in, row_h * height_in * (data_w / data_h))
+    panel_w = side_in / width_in
+    panel_h = side_in * (data_h / data_w) / height_in
+    block_w = 2 * panel_w + gap_h
+    block_h = 2 * panel_h + gap_v
+    x_start = left + ((right - left) - block_w) / 2
+    y_start = band_bottom + (band_top - band_bottom - block_h) / 2
+
+    for i, n in enumerate(orders):
+        r, c = divmod(i, 2)
+        x0 = x_start + c * (panel_w + gap_h)
+        y0 = y_start + (1 - r) * (panel_h + gap_v)
+        a = _open_axes(fig, [x0, y0, panel_w, panel_h], fig_w)
+        xs, ys = _koch_snowflake(n)
+        a.set_aspect("equal")
+        a.set_xlim(-0.08, 1.08)
+        a.set_ylim(-0.10, 1.02)
+        a.fill(xs, ys, color=RUST, alpha=0.12, zorder=2, linewidth=0)
+        a.plot(xs, ys, color=LINE_DARK, lw=2.0, solid_capstyle="round",
+               solid_joinstyle="round", zorder=4, antialiased=True)
+
+        a.text(0.5, 1.06, labels[n], transform=a.transAxes, ha="center", va="bottom",
+               fontsize=_fs(fig_w, 0.0145), color=INK, clip_on=False)
+        a.text(0.5, -0.10, SF(captions[n]) if _USE_LATEX else captions[n],
+               transform=a.transAxes, ha="center", va="top",
+               fontsize=_fs(fig_w, 0.0095), color=INK_SOFT, clip_on=False)
+
+    ax.text(
+        50, 26.8,
+        IT(r"each side splits into four, each a third the length  $\cdot$  self-similar forever")
+        if _USE_LATEX else "each side splits into four, each a third the length  ·  self-similar forever",
+        fontsize=_fs(fig_w, 0.010), color=INK_SOFT, ha="center", va="center", zorder=5,
+    )
+    _caption(
+        ax,
+        [
+            r"Devised by Helge von Koch in 1904 --- one of the first fractal curves ever drawn." if _USE_LATEX
+            else "Devised by Helge von Koch in 1904 — one of the first fractal curves ever drawn.",
+            r"The perimeter grows without bound, yet it encloses a finite area." if _USE_LATEX
+            else "The perimeter grows without bound, yet it encloses a finite area.",
+            r"A continuous curve that is nowhere smooth --- Mandelbrot's model for a coastline." if _USE_LATEX
+            else "A continuous curve that is nowhere smooth — Mandelbrot's model for a coastline.",
+        ],
+        22.8,
+        fig_w,
+    )
+    _footer_eqs(
+        ax,
+        (r"$P_n=3s\!\left(\dfrac{4}{3}\right)^{\!n}\!\to\infty$" if _USE_LATEX
+         else r"$P_n=3s(4/3)^n\to\infty$", "perimeter diverges"),
+        (r"$A_\infty=\dfrac{2\sqrt{3}}{5}\,s^{2}$" if _USE_LATEX
+         else r"$A_\infty=\frac{2\sqrt{3}}{5}s^2$", "area stays finite"),
+        (r"$D=\dfrac{\ln 4}{\ln 3}\approx1.26$" if _USE_LATEX
+         else r"$D=\ln4/\ln3\approx1.26$", "fractal dimension"),
+        fig_w,
+    )
+    return fig_to_image(fig)
+
+
 @dataclass
 class Design:
     slug: str
@@ -1184,6 +1285,39 @@ DESIGNS: list[Design] = [
         zip_name="Normal_Distribution_Math_Wall_Art.zip",
         fig_theme="Gaussian bell curve",
     ),
+    Design(
+        slug="koch_snowflake",
+        folder="koch_snowflake",
+        title_line="Koch Snowflake",
+        listing_prefix="Math Wall Art",
+        concept="Koch Snowflake",
+        tags=[
+            "math wall art",
+            "koch snowflake",
+            "fractal art",
+            "mathematics poster",
+            "geometry poster",
+            "stem wall art",
+            "science poster",
+            "educational poster",
+            "classroom decor",
+            "digital download",
+            "teacher gift",
+            "generative art",
+            "math print",
+        ],
+        seo_title=(
+            "Math Wall Art | Koch Snowflake Print | Fractal Geometry "
+            "Infinite Perimeter STEM Poster (Digital Download)"
+        ),
+        description_blurb=(
+            "Scientific plate of the Koch snowflake's recursive construction (n=0..3) — "
+            "infinite perimeter, finite area. Cream graph paper, LaTeX equations, rust accent."
+        ),
+        compose=compose_koch,
+        zip_name="Koch_Snowflake_Math_Wall_Art.zip",
+        fig_theme="Koch snowflake recursion",
+    ),
 ]
 
 
@@ -1198,6 +1332,7 @@ def compose_equation_card(design: Design, width_in=10.0, height_in=8.0, dpi=DPI_
         "euler_identity": r"$e^{i\pi}+1=0$",
         "mandelbrot_set": r"$z_{n+1}=z_n^{2}+c$" if _USE_LATEX else r"$z_{n+1}=z_n^2+c$",
         "normal_distribution": r"$f(x)=\dfrac{1}{\sigma\sqrt{2\pi}}\,e^{-(x-\mu)^2/2\sigma^2}$",
+        "koch_snowflake": r"$N_n=3\cdot4^{\,n}$",
     }
     ax.text(50, 72, SFb(design.concept.upper()), fontsize=_fs(width_in, 0.026), color=INK, ha="center")
     ax.text(50, 52, eqs[design.slug], fontsize=_fs(width_in, 0.040), color=RUST, ha="center", va="center")
