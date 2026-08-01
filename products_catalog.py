@@ -726,45 +726,43 @@ Every piece in this shop is written from scratch in Python — equations,
 typography, colours and all.""",
 
     "chladni_collection": """\
-Chladni figures — the hidden geometry of sound, rendered entirely with code.
+CHLADNI PLATE ART SET — the geometry of sound.
 
-When a metal plate is driven at a resonant frequency it vibrates in a
-standing-wave pattern. Sand sprinkled on top drifts away from the moving
-antinodes and settles along the still nodal lines — and those curves are the
-Chladni figure. First shown by Ernst Chladni in 1787, they are the visible
-shape of a sound.
+When a metal plate vibrates at a resonant frequency, sand settles along the still \
+nodal lines and draws a Chladni figure — the visible shape of a standing wave. \
+First shown by Ernst Chladni in 1787, these patterns sit at the meeting point of \
+physics wall art, cymatics, and vibration art.
 
-This poster is a field guide to eight of them — four square plates and four
-circular plates ("the rings of power") — each computed from its own equations
-in Python and rendered as fine sand on a dark plate. No AI, no stock.
+This digital set gives you six individual Chladni plate modes — three square plates \
+and three circular (Bessel) plates — each computed from real equations in Python. \
+Every mode comes in light mono (cream + charcoal) and dark navy (sand on plate). \
+Plus a field-guide contact sheet of all six. No AI. No stock.
 
   Square plate:   W = cos(nπx)cos(mπy) − cos(mπx)cos(nπy)
-  Circular plate: W = Jₙ(k·r)·cos(nθ)   — Bessel modes: rings + spokes
-
-Sand settles where the plate is still — on the curves W = 0.
+  Circular plate: W = Jₙ(k·r)·cos(nθ)
 
 ────────────────────────
 WHAT YOU GET
 ────────────────────────
-1 high-resolution JPG poster
-Resolution: 5400 × 7200 px (print-ready up to 18×24 inches at 300 dpi)
-Format: JPG, high quality
+• 6 individual mode prints × light mono + dark editions
+• Field guide sheets (light + dark)
+• 5 aspect ratios each (2:3, 3:4, 4:5, 5:7, ISO/A)
+• Instant digital download (2 ZIP files)
 
 ────────────────────────
 PRINTING TIPS
 ────────────────────────
-· Best on matte or satin paper — stunning framed in a study, lab,
-  classroom, studio or office
-· Any local print shop or online service (Printful, Canva Print,
-  Costco Photo) can handle this file
+Best on matte or satin paper. Frame for a study, physics classroom, music studio, \
+or office.
 
 ────────────────────────
-INSTANT DOWNLOAD · No physical item is shipped.
+PERFECT FOR
 ────────────────────────
+Physics teachers · STEM gifts · cymatics fans · anyone who wants science wall art \
+drawn from the math — not a craft kit.
 
-I'm an electrical engineer who got lost in recreational mathematics.
-Every piece in this shop is written from scratch in Python — equations,
-rendering, colours and all.""",
+© MathRelaxing. Personal use. Not for resale or redistribution of the files.
+""",
 
     "attractor_collection": """\
 Six strange attractors of chaos theory, rendered entirely with code —
@@ -1302,6 +1300,52 @@ Same cream graph-paper family as our Maxwell / Schrödinger plates. LaTeX equati
 • Instant download ZIP — no physical item ships
 
 Build a STEM gallery wall in one click. Matte paper recommended.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
+    "physics_field_collection_ii": """\
+Physics Field Collection II — six premium scientific-plate posters as one coordinated gallery set: fluid dynamics, optics, nuclear physics, acoustics, particle physics and plasma physics.
+
+Each plate gathers its field's canonical equations in classic Computer-Modern math type on a deep observatory-black ground, with a real, computed hero — cylinder streamlines, double-slit fringes, the binding-energy curve, standing-wave harmonics, e⁺e⁻ annihilation, and Debye shielding.
+
+Every graphic is computed from the physics itself — not stock art, not AI.
+
+This is Volume II (companion to our original Field Equations set of quantum / black holes / relativity / EM / thermo / classical mechanics). Different fields. Same format.
+
+WHAT YOU GET (instant download)
+- 6 posters, each in 5 aspect ratios: 2:3, 3:4, 4:5, 5:7 and ISO/A
+- 300 DPI - print small or large
+- Delivered as one ZIP (folders per plate)
+
+Print at home, a print shop, or an online lab. For personal use. Frames not included.
+
+(c) MathRelaxing
+""",
+
+    "special_functions_set": """\
+Instant download — Special Functions wall art set of 6 scientific plates.
+
+A math/physics gallery of classical special functions (NOT our Famous Equations set \
+and NOT the dark Field Equations physics collection):
+
+1. Bessel Functions — circular drum modes Jn
+2. Hermite / Quantum Harmonic Oscillator — Hn wavefunctions
+3. Legendre Polynomials — multipoles on [-1,1]
+4. Laguerre Polynomials — half-line orthogonal basis
+5. Chebyshev Polynomials — minimax / equioscillation
+6. Airy Functions — turning points Ai and Bi
+
+Cream graph-paper plates, computed with scipy.special. Same MathRelaxing family as \
+our single Bessel / Hermite / Legendre prints.
+
+► What you get
+• 6 scientific-plate designs
+• Masters @ 300 dpi (12×18 / 2:3 + A4 per design)
+• Instant download ZIP — no physical item ships
+
+Perfect for math classrooms, numerical-analysis offices, and STEM gallery walls. \
+Matte paper recommended.
 
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
@@ -1910,33 +1954,46 @@ PRODUCTS = {
     },
 
     "chladni_collection": {
-        "title":       "Chladni Figures Poster | The Geometry of Sound, Vibrating Plate Nodal Patterns | Physics Math Science Wall Art Digital Download",
+        "title": (
+            "Chladni Plate Art Print Set | Cymatics Geometry of Sound | "
+            "6 Physics Vibration Posters Light & Dark (Digital Download)"
+        ),
         "description": DESCRIPTIONS["chladni_collection"],
-        "price":       9.99,
+        "price": 7.99,
         "taxonomy_id": TAXONOMY["digital_art"],
         "images": [
-            chla("ChladniFigures_preview.jpg"),
-            chla("ChladniFigures_detail1.jpg"),
-            chla("ChladniFigures_detail2.jpg"),
+            p("chladni", "kit", "previews", "01_hero.jpg"),
+            p("chladni", "kit", "previews", "02_light_hero.jpg"),
+            p("chladni", "kit", "previews", "03_six_grid.jpg"),
+            p("chladni", "kit", "previews", "04_field_guide.jpg"),
+            p("chladni", "kit", "previews", "05_included.jpg"),
+            p("chladni", "kit", "previews", "06_howto.jpg"),
         ],
         "files": [
-            chla("ChladniFigures_print.jpg"),
+            p("chladni", "kit", "Chladni_Plate_light.zip"),
+            p("chladni", "kit", "Chladni_Plate_dark.zip"),
         ],
-        "tags": ["chladni figures","physics wall art","science poster","sound art",
-                 "cymatics art","standing waves","math poster","vibration art",
-                 "acoustics gift","dark academia print","bessel functions","stem wall decor",
-                 "generative art"],
-        "notes": "Tipo 5 (art print generativo), NUEVA LINEA Chladni (figuras nodales de placas "
-                  "vibrantes, idea del usuario via culturacientifica.com 'los anillos de poder'). "
-                  "chladni/generate_chladni.py: placa cuadrada (aprox. Ritz cos*cos, nodos W=0) y placa "
-                  "circular (modos de Bessel J_n(k r)cos(n theta) -> anillos + radios). Render de ARENA "
-                  "real: rejection-sampling de granos que se acumulan en el conjunto nodal (distancia "
-                  "|W|/|grad W|) sobre placa oscura texturizada (veteado + vineta). build_chladni_poster.py "
-                  "compone 8 figuras (4 cuadradas + 4 circulares) en poster 18x24 (5400x7200@300dpi) estilo "
-                  "'field guide' como el de atractores: titulo + subtitulo + etiquetas de modo (mathtext) + "
-                  "las 2 ecuaciones al pie. Sin logo (convencion Type-5). 3 imagenes (preview watermark + 2 "
-                  "detail crops que muestran el grano) + print limpio. Precio $9.99. Extensible: mas modos, "
-                  "variantes de color, o posters individuales por figura. Subido como draft el 2026-07-10, listing_id=4535746170. Activacion manual pendiente.",
+        "tags": [
+            "chladni plate",
+            "cymatics",
+            "sound wave art",
+            "chladni plates",
+            "vibration art",
+            "physics wall art",
+            "cymatics art",
+            "geometry of sound",
+            "standing waves",
+            "math wall art",
+            "frequency art",
+            "stem wall decor",
+            "generative art",
+        ],
+        "notes": (
+            "Wave15 winner: Chladni Plate set (6 modes light+dark + field guides). "
+            "build_chladni_kit.py. listing_id=4535746170 active $7.99. "
+            "Insights chladni plate +16.7% / eRank KD 15. POD next optional."
+        ),
+        "listing_id": 4535746170,
     },
 
     "attractor_collection": {
@@ -4227,6 +4284,94 @@ PRODUCTS = {
             "Scales math/physics wall art set demand."
         ),
         "listing_id": 4540082607,
+    },
+    "physics_field_collection_ii": {
+        "title": (
+            "Physics Poster Set of 6 | Field Equations Wall Art | Fluid Optics Nuclear Plasma | "
+            "Science Gallery Set | Digital Download"
+        ),
+        "description": DESCRIPTIONS["physics_field_collection_ii"],
+        "price": 3.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("wallart_set", "out", "field2", "set", "listing", "01_gallery.jpg"),
+            p("wallart_set", "out", "field2", "set", "listing", "02_framed.jpg"),
+            p("wallart_set", "out", "field2", "set", "listing", "03_included.jpg"),
+            p("wallart_set", "out", "field2", "set", "listing", "04_sizes.jpg"),
+            p("wallart_set", "out", "field2", "set", "listing", "05_note.jpg"),
+        ],
+        "files": [
+            p("wallart_set", "out", "field2", "set", "PhysicsFieldCollection_II_prints.zip"),
+        ],
+        "tags": [
+            "physics poster",
+            "science poster",
+            "poster set",
+            "gallery wall set",
+            "physics wall art",
+            "classroom decor",
+            "stem wall art",
+            "educational poster",
+            "science teacher gift",
+            "particle physics art",
+            "physics art print",
+            "digital download",
+            "printable wall art",
+        ],
+        "notes": (
+            "Clone format of Physics Field Collection V1 (listing 4539473180) with ZERO field overlap: "
+            "fluid, optics, nuclear, acoustics, particle, plasma. "
+            "wallart_set/field_build.py --v2. Dark observatory. $3.99. "
+            "eRank: gallery wall set 1174, poster set 589, classroom decor 5044 KD86, "
+            "particle physics art KD10, science poster 134. "
+            "Draft listing_id=4547949451 (2026-08-01)."
+        ),
+        "listing_id": 4547949451,
+    },
+    "special_functions_set": {
+        "title": (
+            "Special Functions Wall Art Set of 6 | Math Physics Scientific Plates | "
+            "Bessel Hermite Legendre STEM Gallery (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["special_functions_set"],
+        "price": 3.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("special_plates", "special_functions_set", "previews", "special_functions_preview_1_hero.jpg"),
+            p("special_plates", "special_functions_set", "previews", "special_functions_preview_2_included.jpg"),
+            p("special_plates", "special_functions_set", "previews", "special_functions_preview_3_eq.jpg"),
+            p("special_plates", "special_functions_set", "previews", "special_functions_preview_4_eq.jpg"),
+            p("special_plates", "special_functions_set", "previews", "special_functions_preview_5_eq.jpg"),
+            p("special_plates", "special_functions_set", "previews", "special_functions_preview_6_eq.jpg"),
+        ],
+        "files": [
+            p("special_plates", "special_functions_set", "Special_Functions_Wall_Art_Set_of_6.zip"),
+        ],
+        "tags": [
+            "wall art set",
+            "gallery wall set",
+            "math wall art",
+            "science wall art",
+            "science poster",
+            "equation poster",
+            "classroom decor",
+            "educational poster",
+            "math teacher gift",
+            "printable wall art",
+            "digital download",
+            "stem wall art",
+            "mathematics poster",
+        ],
+        "notes": (
+            "CLONE of Famous Equations format but ZERO equation overlap: "
+            "Bessel, Hermite, Legendre, Laguerre, Chebyshev, Airy. "
+            "Avoids Famous Equations (Fourier/Wave/Dirac/NS/Euler/Mandelbrot) and "
+            "Field Physics set (Quantum/BH/Relativity/EM/Thermo/Mechanics). "
+            "generate_special_plates.py --set-only. $3.99. eRank: wall art set + "
+            "equation poster (comp 151) + classroom decor anchors. "
+            "Draft listing_id=4547960414 (2026-08-01)."
+        ),
+        "listing_id": 4547960414,
     },
 
     # ── Special-function plates (scipy) — new listings ───────────────────────

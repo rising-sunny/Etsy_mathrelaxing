@@ -1,79 +1,10 @@
 {
-  "total": 105,
+  "total": 150,
   "top_views": [
-    {
-      "id": 4540082607,
-      "title": "Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | Fourier Dirac Euler STEM Galle",
-      "views": 30,
-      "favs": 3,
-      "price": 3.99,
-      "digital": true,
-      "tags": [
-        "math wall art",
-        "physics wall art",
-        "equation poster",
-        "stem wall art",
-        "science poster set",
-        "gallery wall set",
-        "educational poster",
-        "classroom decor",
-        "nerd gift",
-        "digital download",
-        "teacher gift",
-        "math print set",
-        "science wall art"
-      ]
-    },
-    {
-      "id": 4537362085,
-      "title": "Math Wall Art | Golden Ratio Art Print | Fibonacci Spiral Math Poster (Digital Download)",
-      "views": 28,
-      "favs": 2,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "golden ratio",
-        "fibonacci art",
-        "math poster",
-        "phi print",
-        "science poster",
-        "math wall art",
-        "educational poster",
-        "geometry print",
-        "spiral art",
-        "stem wall art",
-        "teacher gift",
-        "digital download",
-        "math art print"
-      ]
-    },
-    {
-      "id": 4539473180,
-      "title": "Physics Poster Set of 6 | Field Equations Wall Art | Quantum Relativity Black Holes | Science Galler",
-      "views": 24,
-      "favs": 2,
-      "price": 3.99,
-      "digital": true,
-      "tags": [
-        "physics poster",
-        "science poster",
-        "poster set",
-        "gallery wall set",
-        "physics wall art",
-        "classroom decor",
-        "stem wall art",
-        "educational poster",
-        "science teacher gift",
-        "quantum art",
-        "astrophysics",
-        "physics art print",
-        "digital download"
-      ]
-    },
     {
       "id": 4538562680,
       "title": "Unit Circle Poster | Trigonometry Reference Wall Art | Degrees Radians Cos Sin STEM Print (Digital D",
-      "views": 23,
+      "views": 69,
       "favs": 0,
       "price": 2.99,
       "digital": true,
@@ -94,9 +25,78 @@
       ]
     },
     {
+      "id": 4540082607,
+      "title": "Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | Fourier Dirac Euler STEM Galle",
+      "views": 63,
+      "favs": 4,
+      "price": 3.99,
+      "digital": true,
+      "tags": [
+        "math wall art",
+        "physics wall art",
+        "equation poster",
+        "stem wall art",
+        "science poster set",
+        "gallery wall set",
+        "educational poster",
+        "classroom decor",
+        "nerd gift",
+        "digital download",
+        "teacher gift",
+        "math print set",
+        "science wall art"
+      ]
+    },
+    {
+      "id": 4539473180,
+      "title": "Physics Poster Set of 6 | Field Equations Wall Art | Quantum Relativity Black Holes | Science Galler",
+      "views": 38,
+      "favs": 2,
+      "price": 3.99,
+      "digital": true,
+      "tags": [
+        "physics poster",
+        "science poster",
+        "poster set",
+        "gallery wall set",
+        "physics wall art",
+        "classroom decor",
+        "stem wall art",
+        "educational poster",
+        "science teacher gift",
+        "quantum art",
+        "astrophysics",
+        "physics art print",
+        "digital download"
+      ]
+    },
+    {
+      "id": 4537362085,
+      "title": "Math Wall Art | Golden Ratio Art Print | Fibonacci Spiral Math Poster (Digital Download)",
+      "views": 30,
+      "favs": 2,
+      "price": 2.99,
+      "digital": true,
+      "tags": [
+        "golden ratio",
+        "fibonacci art",
+        "math poster",
+        "phi print",
+        "science poster",
+        "math wall art",
+        "educational poster",
+        "geometry print",
+        "spiral art",
+        "stem wall art",
+        "teacher gift",
+        "digital download",
+        "math art print"
+      ]
+    },
+    {
       "id": 4538070573,
       "title": "Lab Notebook Printable | STEM Science Experiment Log PDF | GoodNotes Notability Digital Lab Journal ",
-      "views": 14,
+      "views": 19,
       "favs": 2,
       "price": 2.99,
       "digital": true,
@@ -118,7 +118,7 @@
     {
       "id": 4534027247,
       "title": "Digital Notebook | STEM Graph Paper Bundle | 8 Styles: Isometric, Hexagonal, Dot, Square, Cornell (D",
-      "views": 13,
+      "views": 16,
       "favs": 1,
       "price": 1.5,
       "digital": true,
@@ -139,9 +139,55 @@
       ]
     },
     {
+      "id": 4536990190,
+      "title": "Grid Paper Bundle | 10 Styles, Cornell, Dot, Hexagonal (Digital Download)",
+      "views": 15,
+      "favs": 0,
+      "price": 2.99,
+      "digital": true,
+      "tags": [
+        "digital paper",
+        "grid paper",
+        "black and white",
+        "dot grid paper",
+        "goodnotes paper",
+        "sacred geometry",
+        "minimalist paper",
+        "cornell notes",
+        "printable paper",
+        "isometric paper",
+        "hexagon paper",
+        "note taking",
+        "planner insert"
+      ]
+    },
+    {
+      "id": 4536971373,
+      "title": "Hyperlinked Digital Notebook | Boho Earth-Tone Grid Paper (Digital Download)",
+      "views": 14,
+      "favs": 0,
+      "price": 2.99,
+      "digital": true,
+      "tags": [
+        "goodnotes notebook",
+        "digital notebook",
+        "hyperlinked planner",
+        "goodnotes paper",
+        "digital planner",
+        "dotted notebook",
+        "grid paper",
+        "cornell notes",
+        "bullet journal",
+        "ipad notebook",
+        "aesthetic notebook",
+        "note taking",
+        "boho planner"
+      ]
+    },
+    {
       "id": 4536912921,
       "title": "Penrose Tiling Poster | Geometric Math Line Art Print | Scandinavian Decor",
-      "views": 12,
+      "views": 13,
       "favs": 0,
       "price": 15.0,
       "digital": false,
@@ -162,26 +208,72 @@
       ]
     },
     {
-      "id": 4536971373,
-      "title": "Hyperlinked Digital Notebook | Boho Earth-Tone Grid Paper (Digital Download)",
+      "id": 4537377786,
+      "title": "Math Wall Art | Euler&#39;s Identity Art Print | Complex Plane Unit Circle Math Poster (Digital Down",
+      "views": 13,
+      "favs": 0,
+      "price": 2.99,
+      "digital": true,
+      "tags": [
+        "eulers identity",
+        "math poster",
+        "physics poster",
+        "complex numbers",
+        "science poster",
+        "math wall art",
+        "educational poster",
+        "euler formula",
+        "stem wall art",
+        "nerd gift",
+        "teacher gift",
+        "digital download",
+        "math art print"
+      ]
+    },
+    {
+      "id": 4534035590,
+      "title": "Chaos Theory Procreate Color Palettes | Math Art Swatches (Digital Download)",
+      "views": 13,
+      "favs": 0,
+      "price": 1.99,
+      "digital": true,
+      "tags": [
+        "procreate palette",
+        "color palette",
+        "digital art",
+        "generative art",
+        "procreate swatches",
+        "math art",
+        "strange attractor",
+        "color swatches",
+        "ipad art",
+        "abstract palette",
+        "digital download",
+        "artist gift",
+        "chaos theory"
+      ]
+    },
+    {
+      "id": 4537937498,
+      "title": "Digital Planner | Engineering Graph Paper Bundle | 8 STEM Grids: Log-Log, Semi-Log, Millimeter, Pola",
       "views": 12,
       "favs": 0,
       "price": 2.99,
       "digital": true,
       "tags": [
-        "goodnotes notebook",
-        "digital notebook",
-        "hyperlinked planner",
+        "graph paper",
+        "engineering paper",
+        "log log paper",
+        "semi log paper",
+        "stem printable",
+        "math graph paper",
+        "polar graph paper",
+        "millimeter paper",
+        "cartesian plane",
         "goodnotes paper",
-        "digital planner",
-        "dotted notebook",
-        "grid paper",
-        "cornell notes",
-        "bullet journal",
-        "ipad notebook",
-        "aesthetic notebook",
-        "note taking",
-        "boho planner"
+        "printable paper",
+        "digital download",
+        "science paper"
       ]
     },
     {
@@ -205,75 +297,6 @@
         "note taking",
         "digital planner",
         "bullet journal"
-      ]
-    },
-    {
-      "id": 4537937498,
-      "title": "Digital Planner | Engineering Graph Paper Bundle | 8 STEM Grids: Log-Log, Semi-Log, Millimeter, Pola",
-      "views": 11,
-      "favs": 0,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "graph paper",
-        "engineering paper",
-        "log log paper",
-        "semi log paper",
-        "stem printable",
-        "math graph paper",
-        "polar graph paper",
-        "millimeter paper",
-        "cartesian plane",
-        "goodnotes paper",
-        "printable paper",
-        "digital download",
-        "science paper"
-      ]
-    },
-    {
-      "id": 4537377786,
-      "title": "Math Wall Art | Euler&#39;s Identity Art Print | Complex Plane Unit Circle Math Poster (Digital Down",
-      "views": 11,
-      "favs": 0,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "eulers identity",
-        "math poster",
-        "physics poster",
-        "complex numbers",
-        "science poster",
-        "math wall art",
-        "educational poster",
-        "euler formula",
-        "stem wall art",
-        "nerd gift",
-        "teacher gift",
-        "digital download",
-        "math art print"
-      ]
-    },
-    {
-      "id": 4536990190,
-      "title": "Grid Paper Bundle | 10 Styles, Cornell, Dot, Hexagonal (Digital Download)",
-      "views": 11,
-      "favs": 0,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "digital paper",
-        "grid paper",
-        "black and white",
-        "dot grid paper",
-        "goodnotes paper",
-        "sacred geometry",
-        "minimalist paper",
-        "cornell notes",
-        "printable paper",
-        "isometric paper",
-        "hexagon paper",
-        "note taking",
-        "planner insert"
       ]
     },
     {
@@ -302,7 +325,7 @@
     {
       "id": 4533973003,
       "title": "PhD & Dissertation Planner | Undated Digital GoodNotes Notability iPad | Thesis Tracker, Literature ",
-      "views": 9,
+      "views": 10,
       "favs": 1,
       "price": 2.99,
       "digital": true,
@@ -323,55 +346,9 @@
       ]
     },
     {
-      "id": 4535746170,
-      "title": "Chladni Figures Poster | Sound Geometry, Vibrating Plate Patterns (Digital Download)",
-      "views": 9,
-      "favs": 0,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "chladni figures",
-        "physics wall art",
-        "science poster",
-        "sound art",
-        "cymatics art",
-        "standing waves",
-        "math poster",
-        "vibration art",
-        "acoustics gift",
-        "dark academia print",
-        "bessel functions",
-        "stem wall decor",
-        "generative art"
-      ]
-    },
-    {
-      "id": 4534035590,
-      "title": "Chaos Theory Procreate Color Palettes | Math Art Swatches (Digital Download)",
-      "views": 9,
-      "favs": 0,
-      "price": 1.99,
-      "digital": true,
-      "tags": [
-        "procreate palette",
-        "color palette",
-        "digital art",
-        "generative art",
-        "procreate swatches",
-        "math art",
-        "strange attractor",
-        "color swatches",
-        "ipad art",
-        "abstract palette",
-        "digital download",
-        "artist gift",
-        "chaos theory"
-      ]
-    },
-    {
       "id": 4535639595,
       "title": "Physics Wall Art | Set of 8 Physics Calculus Equation Art Prints, Minimalist Math Wall Art (Digital ",
-      "views": 8,
+      "views": 10,
       "favs": 0,
       "price": 3.99,
       "digital": true,
@@ -389,6 +366,75 @@
         "classroom decor",
         "academic gift",
         "digital download"
+      ]
+    },
+    {
+      "id": 4534831774,
+      "title": "Set of 8 Minimalist Math Posters \u2013 Navy Gold LaTeX Typography (Digital Download)",
+      "views": 9,
+      "favs": 0,
+      "price": 3.99,
+      "digital": true,
+      "tags": [
+        "math poster",
+        "euler identity",
+        "beautiful equations",
+        "math art",
+        "math decor",
+        "office decor",
+        "classroom decor",
+        "minimalist poster",
+        "navy gold decor",
+        "math gift",
+        "teacher gift",
+        "student gift",
+        "physics poster"
+      ]
+    },
+    {
+      "id": 4544209146,
+      "title": "Math Art Coffee Table Book | Hardcover Fractals Attractors Curves | Gift for Math Teacher",
+      "views": 8,
+      "favs": 0,
+      "price": 48.0,
+      "digital": false,
+      "tags": [
+        "coffee table book",
+        "math art",
+        "math teacher gift",
+        "math art book",
+        "generative art",
+        "fractal art",
+        "mandelbrot art",
+        "math gift",
+        "science gift",
+        "math lover gift",
+        "beautiful math",
+        "chaos theory art",
+        "geometry art"
+      ]
+    },
+    {
+      "id": 4540138522,
+      "title": "Euler Identity Poster | Math Wall Art | e to the i pi Complex Plane STEM Scientific Print",
+      "views": 8,
+      "favs": 0,
+      "price": 15.0,
+      "digital": false,
+      "tags": [
+        "math wall art",
+        "euler identity",
+        "complex numbers",
+        "math poster",
+        "stem wall art",
+        "science poster",
+        "educational poster",
+        "classroom decor",
+        "nerd gift",
+        "minimalist poster",
+        "office wall art",
+        "teacher gift",
+        "mathematics art"
       ]
     },
     {
@@ -415,6 +461,75 @@
       ]
     },
     {
+      "id": 4544427938,
+      "title": "Printable Math Bookmarks Set of 10 | The Mathematics of Beauty | Equation and Curve Art Bookmarks | ",
+      "views": 7,
+      "favs": 0,
+      "price": 5.5,
+      "digital": true,
+      "tags": [
+        "printable bookmark",
+        "math bookmark",
+        "bookmark set",
+        "book lover gift",
+        "math gift",
+        "reader gift",
+        "digital bookmark",
+        "equation art",
+        "math teacher gift",
+        "science gift",
+        "STEM gift",
+        "bookmark printable",
+        "book club gift"
+      ]
+    },
+    {
+      "id": 4534313102,
+      "title": "Physics Wall Art | Chaos Theory Strange Attractors Poster | Six Math Equations, Physics Science Prin",
+      "views": 7,
+      "favs": 0,
+      "price": 3.99,
+      "digital": true,
+      "tags": [
+        "strange attractor",
+        "chaos theory art",
+        "math poster",
+        "science wall art",
+        "lorenz attractor",
+        "physics art print",
+        "generative art",
+        "math gift",
+        "stem wall decor",
+        "dark academia print",
+        "dorm wall art",
+        "code art print",
+        "physics wall art"
+      ]
+    },
+    {
+      "id": 4540120925,
+      "title": "Wave Equation Poster | Physics Wall Art | Standing Waves on a String STEM Science Print",
+      "views": 7,
+      "favs": 0,
+      "price": 15.0,
+      "digital": false,
+      "tags": [
+        "physics wall art",
+        "wave equation",
+        "science poster",
+        "stem wall art",
+        "physics poster",
+        "educational poster",
+        "classroom decor",
+        "nerd gift",
+        "math wall art",
+        "office wall art",
+        "teacher gift",
+        "standing waves",
+        "minimalist poster"
+      ]
+    },
+    {
       "id": 4528196710,
       "title": "Seamless Loop | De Jong Attractor Loop | Downloadable Mathematical Animation, Generative Art Video, ",
       "views": 7,
@@ -438,26 +553,49 @@
       ]
     },
     {
-      "id": 4534313102,
-      "title": "Physics Wall Art | Chaos Theory Strange Attractors Poster | Six Math Equations, Physics Science Prin",
+      "id": 4540109240,
+      "title": "Math Wall Art | Mandelbrot Zoom Print | Seahorse Valley Fractal Detail Chaos STEM Poster (Digital Do",
       "views": 6,
-      "favs": 0,
-      "price": 3.99,
+      "favs": 1,
+      "price": 2.99,
       "digital": true,
       "tags": [
-        "strange attractor",
-        "chaos theory art",
-        "math poster",
-        "science wall art",
-        "lorenz attractor",
-        "physics art print",
+        "math wall art",
+        "mandelbrot set",
+        "fractal art",
+        "chaos theory",
+        "mathematics poster",
+        "stem wall art",
         "generative art",
-        "math gift",
-        "stem wall decor",
-        "dark academia print",
-        "dorm wall art",
-        "code art print",
-        "physics wall art"
+        "educational poster",
+        "nerd gift",
+        "digital download",
+        "teacher gift",
+        "complex dynamics",
+        "math print"
+      ]
+    },
+    {
+      "id": 4533722112,
+      "title": "Hyperbolic Gardens Coloring Book \u2013 Printed Physical Edition, 50 Escher-Style Tessellation Designs",
+      "views": 6,
+      "favs": 1,
+      "price": 18.99,
+      "digital": false,
+      "tags": [
+        "hyperbolic geometry",
+        "tessellation art",
+        "escher inspired",
+        "printed book",
+        "adult coloring book",
+        "math coloring book",
+        "perfect bound book",
+        "stem gift",
+        "relaxation gift",
+        "geometric coloring",
+        "mandala coloring",
+        "math teacher gift",
+        "physical book gift"
       ]
     },
     {
@@ -483,95 +621,95 @@
       ]
     },
     {
-      "id": 4533722112,
-      "title": "Hyperbolic Gardens Coloring Book \u2013 Printed Physical Edition, 50 Escher-Style Tessellation Designs",
-      "views": 5,
-      "favs": 1,
-      "price": 18.99,
-      "digital": false,
+      "id": 4537623277,
+      "title": "Physics Wall Art | Maxwell Equations Electromagnetism Print | Light Wave Physics STEM Art (Digital D",
+      "views": 6,
+      "favs": 0,
+      "price": 2.99,
+      "digital": true,
       "tags": [
-        "hyperbolic geometry",
-        "tessellation art",
-        "escher inspired",
-        "printed book",
-        "adult coloring book",
-        "math coloring book",
-        "perfect bound book",
-        "stem gift",
-        "relaxation gift",
-        "geometric coloring",
-        "mandala coloring",
-        "math teacher gift",
-        "physical book gift"
+        "electromagnetism",
+        "physics poster",
+        "maxwell equations",
+        "science poster",
+        "light wave",
+        "physics art",
+        "optics poster",
+        "stem wall art",
+        "nerd gift",
+        "teacher gift",
+        "classroom decor",
+        "digital download",
+        "physics wall art"
       ]
     },
     {
-      "id": 4534831774,
-      "title": "Set of 8 Minimalist Math Posters \u2013 Navy Gold LaTeX Typography (Digital Download)",
+      "id": 4530013408,
+      "title": "Julia Set Animation Seamless Loop | Fractal Wallpaper | Mathematical Art | 1080x1080 60fps MP4",
+      "views": 5,
+      "favs": 1,
+      "price": 2.99,
+      "digital": true,
+      "tags": [
+        "julia set animation",
+        "fractal animation",
+        "fractal wallpaper",
+        "fractal loop",
+        "seamless loop",
+        "mathematical art",
+        "julia set art",
+        "fractal screensaver",
+        "digital wallpaper",
+        "generative art",
+        "abstract animation",
+        "math art",
+        "fractal video"
+      ]
+    },
+    {
+      "id": 4539457700,
+      "title": "2026-2027 Academic Digital Planner Bundle | Hyperlinked GoodNotes iPad Planner | Dated plus Undated ",
       "views": 5,
       "favs": 0,
       "price": 3.99,
       "digital": true,
       "tags": [
-        "math poster",
-        "euler identity",
-        "beautiful equations",
-        "math art",
-        "math decor",
-        "office decor",
-        "classroom decor",
-        "minimalist poster",
-        "navy gold decor",
-        "math gift",
-        "teacher gift",
-        "student gift",
-        "physics poster"
+        "digital planner",
+        "goodnotes planner",
+        "academic planner",
+        "2026 2027 planner",
+        "student planner",
+        "ipad planner",
+        "undated planner",
+        "hyperlinked planner",
+        "weekly planner",
+        "teacher planner",
+        "notability planner",
+        "planner bundle",
+        "digital download"
       ]
     },
     {
-      "id": 4540120925,
-      "title": "Wave Equation Poster | Physics Wall Art | Standing Waves on a String STEM Science Print",
+      "id": 4536907663,
+      "title": "Geometric Tessellation Wall Art Set | Black White Line Art Prints (Digital Download)",
       "views": 5,
       "favs": 0,
-      "price": 15.0,
-      "digital": false,
-      "tags": [
-        "physics wall art",
-        "wave equation",
-        "science poster",
-        "stem wall art",
-        "physics poster",
-        "educational poster",
-        "classroom decor",
-        "nerd gift",
-        "math wall art",
-        "office wall art",
-        "teacher gift",
-        "standing waves",
-        "minimalist poster"
-      ]
-    },
-    {
-      "id": 4540109240,
-      "title": "Math Wall Art | Mandelbrot Zoom Print | Seahorse Valley Fractal Detail Chaos STEM Poster (Digital Do",
-      "views": 5,
-      "favs": 0,
-      "price": 2.99,
+      "price": 3.99,
       "digital": true,
       "tags": [
-        "math wall art",
-        "mandelbrot set",
-        "fractal art",
-        "chaos theory",
-        "mathematics poster",
-        "stem wall art",
-        "generative art",
-        "educational poster",
-        "nerd gift",
+        "geometric wall art",
+        "black and white art",
+        "printable wall art",
+        "tessellation art",
+        "sacred geometry",
+        "penrose tiling",
+        "line art print",
+        "minimalist print",
+        "gallery wall set",
         "digital download",
-        "teacher gift",
-        "complex dynamics",
-        "math print"
+        "scandinavian art",
+        "mid century art",
+        "math wall art"
       ]
     },
     {
@@ -598,6 +736,29 @@
       ]
     },
     {
+      "id": 4537363031,
+      "title": "Physics Wall Art | Fourier Series Square Wave Art Print | Sound Waves STEM Music Diagram (Digital Do",
+      "views": 4,
+      "favs": 1,
+      "price": 2.99,
+      "digital": true,
+      "tags": [
+        "fourier series",
+        "math poster",
+        "physics poster",
+        "sound waves",
+        "science poster",
+        "math wall art",
+        "educational poster",
+        "signal art",
+        "stem wall art",
+        "music theory art",
+        "teacher gift",
+        "digital download",
+        "math art print"
+      ]
+    },
+    {
       "id": 4533709025,
       "title": "Sacred Geometry & Topology Coloring Book \u2013 3D Color-by-Number | PRINTED Physical Edition | 50 Design",
       "views": 4,
@@ -621,26 +782,72 @@
       ]
     },
     {
-      "id": 4540138522,
-      "title": "Euler Identity Poster | Math Wall Art | e to the i pi Complex Plane STEM Scientific Print",
+      "id": 4539454977,
+      "title": "Black Hole Physics Poster | Relativity Equations Wall Art | Event Horizon Hawking | Astronomy Decor ",
       "views": 4,
       "favs": 0,
-      "price": 15.0,
-      "digital": false,
+      "price": 2.99,
+      "digital": true,
       "tags": [
-        "math wall art",
-        "euler identity",
-        "complex numbers",
-        "math poster",
-        "stem wall art",
+        "black hole",
+        "physics poster",
         "science poster",
-        "educational poster",
+        "astrophysics",
+        "astronomy art",
+        "general relativity",
         "classroom decor",
-        "nerd gift",
-        "minimalist poster",
-        "office wall art",
-        "teacher gift",
-        "mathematics art"
+        "stem wall art",
+        "space poster",
+        "physics wall art",
+        "physics art print",
+        "science teacher gift",
+        "digital download"
+      ]
+    },
+    {
+      "id": 4539455301,
+      "title": "Thermodynamics Poster | Physics Equations Wall Art | Entropy Maxwell Boltzmann | Classroom Decor | D",
+      "views": 4,
+      "favs": 0,
+      "price": 2.99,
+      "digital": true,
+      "tags": [
+        "thermodynamics",
+        "physics poster",
+        "science poster",
+        "entropy art",
+        "physics wall art",
+        "boltzmann",
+        "classroom decor",
+        "stem wall art",
+        "educational poster",
+        "chemistry poster",
+        "physics art print",
+        "science teacher gift",
+        "digital download"
+      ]
+    },
+    {
+      "id": 4539473038,
+      "title": "Classical Mechanics Poster | Physics Equations Wall Art | Newton Lagrange Phase Space | Classroom De",
+      "views": 4,
+      "favs": 0,
+      "price": 2.99,
+      "digital": true,
+      "tags": [
+        "classical mechanics",
+        "physics poster",
+        "science poster",
+        "newton physics",
+        "physics wall art",
+        "phase space",
+        "classroom decor",
+        "stem wall art",
+        "educational poster",
+        "engineering art",
+        "physics art print",
+        "science teacher gift",
+        "digital download"
       ]
     },
     {
@@ -667,6 +874,29 @@
       ]
     },
     {
+      "id": 4539472530,
+      "title": "Quantum Mechanics Poster | Physics Equations Wall Art | Hydrogen Orbitals Schrodinger | Classroom De",
+      "views": 3,
+      "favs": 1,
+      "price": 2.99,
+      "digital": true,
+      "tags": [
+        "quantum physics",
+        "physics poster",
+        "science poster",
+        "physics wall art",
+        "hydrogen orbital",
+        "schrodinger",
+        "classroom decor",
+        "stem wall art",
+        "educational poster",
+        "quantum art",
+        "physics art print",
+        "science teacher gift",
+        "digital download"
+      ]
+    },
+    {
       "id": 4533708985,
       "title": "Fractal Flora Coloring Book \u2013 50 Botanical Designs (Printed Edition)",
       "views": 3,
@@ -688,274 +918,80 @@
         "physical book gift",
         "dragon curve art"
       ]
-    },
-    {
-      "id": 4540003882,
-      "title": "Reader OS iPad Stickers | GoodNotes Bookish Sticker System | Digital Reading Journal PNG Pack (Digit",
-      "views": 3,
-      "favs": 0,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "goodnotes stickers",
-        "ipad stickers",
-        "digital stickers",
-        "bookish stickers",
-        "reading journal",
-        "kindle stickers",
-        "tbr stickers",
-        "book stickers",
-        "notability sticker",
-        "digital download",
-        "reading tracker",
-        "planner stickers",
-        "book lover gift"
-      ]
-    },
-    {
-      "id": 4538061513,
-      "title": "Physics Wall Art | Schr\u00f6dinger Equation Print | Quantum Mechanics Particle in a Box STEM Art (Digita",
-      "views": 3,
-      "favs": 0,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "physics wall art",
-        "schrodinger equation",
-        "quantum physics art",
-        "science poster",
-        "physics poster",
-        "math wall art",
-        "stem wall art",
-        "educational poster",
-        "digital download",
-        "classroom decor",
-        "nerd gift",
-        "teacher gift",
-        "quantum mechanics"
-      ]
-    },
-    {
-      "id": 4536968985,
-      "title": "Boho Grid Paper Bundle | 10 Styles, Dot, Cornell, Isometric (Digital Download)",
-      "views": 3,
-      "favs": 0,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "digital paper",
-        "grid paper",
-        "dot grid paper",
-        "goodnotes paper",
-        "bullet journal",
-        "aesthetic paper",
-        "cornell notes",
-        "printable paper",
-        "boho stationery",
-        "isometric paper",
-        "hexagon paper",
-        "note taking",
-        "planner insert"
-      ]
-    },
-    {
-      "id": 4536907663,
-      "title": "Geometric Tessellation Wall Art Set | Black White Line Art Prints (Digital Download)",
-      "views": 3,
-      "favs": 0,
-      "price": 3.99,
-      "digital": true,
-      "tags": [
-        "geometric wall art",
-        "black and white art",
-        "printable wall art",
-        "tessellation art",
-        "sacred geometry",
-        "penrose tiling",
-        "line art print",
-        "minimalist print",
-        "gallery wall set",
-        "digital download",
-        "scandinavian art",
-        "mid century art",
-        "math wall art"
-      ]
-    },
-    {
-      "id": 4530013408,
-      "title": "Julia Set Animation Seamless Loop | Fractal Wallpaper | Mathematical Art | 1080x1080 60fps MP4",
-      "views": 3,
-      "favs": 0,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "julia set animation",
-        "fractal animation",
-        "fractal wallpaper",
-        "fractal loop",
-        "seamless loop",
-        "mathematical art",
-        "julia set art",
-        "fractal screensaver",
-        "digital wallpaper",
-        "generative art",
-        "abstract animation",
-        "math art",
-        "fractal video"
-      ]
-    },
-    {
-      "id": 4537362221,
-      "title": "Math Wall Art | Ulam Spiral Art Print | Prime Numbers Math Poster (Digital Download)",
-      "views": 2,
-      "favs": 1,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "ulam spiral",
-        "prime numbers",
-        "math poster",
-        "number theory",
-        "science poster",
-        "math wall art",
-        "educational poster",
-        "prime art",
-        "stem wall art",
-        "nerd gift",
-        "teacher gift",
-        "digital download",
-        "math art print"
-      ]
-    },
-    {
-      "id": 4541752186,
-      "title": "Custom Pet Portrait Paint by Numbers from Your Photo | Personalized Dog & Cat Paint by Number Kit | ",
-      "views": 2,
-      "favs": 0,
-      "price": 12.99,
-      "digital": true,
-      "tags": [
-        "paint by numbers",
-        "paint by number kit",
-        "custom pet portrait",
-        "custom pet painting",
-        "pet memorial gift",
-        "custom cat portrait",
-        "custom dog portrait",
-        "pet coloring page",
-        "pet portrait",
-        "portrait from photo",
-        "dog portrait",
-        "cat portrait",
-        "personalized pet"
-      ]
-    },
-    {
-      "id": 4540952988,
-      "title": "Lorenz Attractor Sticker | Butterfly Effect Chaos Theory Decal | Kiss-Cut Vinyl | Math Physics Scien",
-      "views": 2,
-      "favs": 0,
-      "price": 3.99,
-      "digital": false,
-      "tags": [
-        "chaos theory",
-        "butterfly effect",
-        "math sticker",
-        "science sticker",
-        "laptop sticker",
-        "kiss cut sticker",
-        "physics sticker",
-        "nerd sticker",
-        "stem gift",
-        "vinyl sticker",
-        "lorenz attractor",
-        "math gift",
-        "science gift"
-      ]
-    },
-    {
-      "id": 4539455055,
-      "title": "Special Relativity Poster | Einstein Physics Equations Wall Art | Minkowski Spacetime | Classroom De",
-      "views": 2,
-      "favs": 0,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "special relativity",
-        "einstein art",
-        "physics poster",
-        "science poster",
-        "spacetime",
-        "physics wall art",
-        "classroom decor",
-        "stem wall art",
-        "educational poster",
-        "relativity art",
-        "physics art print",
-        "science teacher gift",
-        "digital download"
-      ]
-    },
-    {
-      "id": 4539455301,
-      "title": "Thermodynamics Poster | Physics Equations Wall Art | Entropy Maxwell Boltzmann | Classroom Decor | D",
-      "views": 2,
-      "favs": 0,
-      "price": 2.99,
-      "digital": true,
-      "tags": [
-        "thermodynamics",
-        "physics poster",
-        "science poster",
-        "entropy art",
-        "physics wall art",
-        "boltzmann",
-        "classroom decor",
-        "stem wall art",
-        "educational poster",
-        "chemistry poster",
-        "physics art print",
-        "science teacher gift",
-        "digital download"
-      ]
     }
   ],
   "top_tags": [
     [
       "digital download",
-      50
+      65
     ],
     [
       "math wall art",
+      45
+    ],
+    [
+      "stem gift",
       30
     ],
     [
-      "stem wall art",
-      23
+      "teacher gift",
+      27
     ],
     [
-      "teacher gift",
+      "printable wall art",
+      26
+    ],
+    [
+      "stem wall art",
+      24
+    ],
+    [
+      "educational poster",
+      22
+    ],
+    [
+      "sacred geometry",
       22
     ],
     [
       "science poster",
-      19
+      21
     ],
     [
-      "printable wall art",
-      19
+      "math gift",
+      21
     ],
     [
-      "educational poster",
-      18
+      "nerd gift",
+      20
+    ],
+    [
+      "line art print",
+      20
+    ],
+    [
+      "math teacher gift",
+      20
     ],
     [
       "classroom decor",
-      17
+      19
     ],
     [
       "math poster",
-      16
+      18
+    ],
+    [
+      "minimalist print",
+      18
+    ],
+    [
+      "scandinavian art",
+      17
+    ],
+    [
+      "geometric wall art",
+      17
     ],
     [
       "physics poster",
@@ -966,7 +1002,15 @@
       16
     ],
     [
-      "scandinavian art",
+      "black and white art",
+      16
+    ],
+    [
+      "modern wall art",
+      16
+    ],
+    [
+      "tessellation art",
       16
     ],
     [
@@ -974,47 +1018,43 @@
       16
     ],
     [
-      "math gift",
+      "math art",
       16
-    ],
-    [
-      "line art print",
-      15
-    ],
-    [
-      "modern wall art",
-      15
     ],
     [
       "physics wall art",
       14
     ],
     [
-      "stem gift",
+      "minimalist poster",
       14
     ],
     [
-      "black and white art",
+      "science gift",
       14
     ],
     [
-      "tessellation art",
-      14
-    ],
-    [
-      "math art",
-      14
+      "gallery wall set",
+      13
     ],
     [
       "science wall art",
       12
     ],
     [
-      "minimalist poster",
+      "office wall art",
       12
     ],
     [
-      "sacred geometry",
+      "math bookmark",
+      12
+    ],
+    [
+      "book lover gift",
+      12
+    ],
+    [
+      "reader gift",
       12
     ],
     [
@@ -1022,64 +1062,24 @@
       11
     ],
     [
-      "minimalist print",
+      "equation art",
       11
     ],
     [
-      "nerd gift",
-      10
-    ],
-    [
-      "geometric wall art",
-      10
-    ],
-    [
-      "math coloring book",
-      9
-    ],
-    [
-      "gallery wall set",
-      8
-    ],
-    [
-      "adult coloring book",
-      8
-    ],
-    [
-      "stem wall decor",
-      8
-    ],
-    [
-      "strange attractor",
-      8
-    ],
-    [
-      "science teacher gift",
-      7
-    ],
-    [
       "geometric poster",
-      7
+      10
     ],
     [
-      "abstract poster",
-      7
+      "mathematical art",
+      10
     ],
     [
-      "digital planner",
-      7
+      "metal bookmark",
+      10
     ],
     [
-      "cornell notes",
-      7
-    ],
-    [
-      "geometric coloring",
-      7
-    ],
-    [
-      "goodnotes planner",
-      7
+      "aluminum bookmark",
+      10
     ]
   ]
 }

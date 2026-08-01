@@ -1,28 +1,28 @@
 # Sales analysis — TheMathRelaxing (live Etsy receipts)
 
-**Generated:** 2026-07-25T18:59:44.022669+00:00  
+**Generated:** 2026-08-01T11:13:54.595374+00:00  
 **Source:** Etsy API `GET /shops/{id}/receipts?was_paid=true` (scope `transactions_r`)
 
 ## Snapshot
 
 | Metric | Value |
 |--------|------:|
-| Paid orders | **7** |
-| Line items | 9 |
-| Grand total (buyer paid, USD) | **$56.75** |
-| Subtotal (items) | $42.94 |
+| Paid orders | **8** |
+| Line items | 10 |
+| Grand total (buyer paid, USD) | **$61.03** |
+| Subtotal (items) | $46.93 |
 | Discounts given | $9.49 |
 | VAT collected | $0.80 |
-| Avg order value (grand) | **$8.11** |
+| Avg order value (grand) | **$7.63** |
 | Multi-item orders | 1 |
 | Orders with coupon | 2 |
-| Active listings (shop) | 106 |
+| Active listings (shop) | 150 |
 
 ## By country
 
 | Country | Orders |
 |---------|-------:|
-| US | 4 |
+| US | 5 |
 | CN | 2 |
 | GB | 1 |
 
@@ -30,14 +30,14 @@
 
 | # | Qty | Revenue* | Orders | Type | Views | Listing |
 |--:|----:|---------:|-------:|------|------:|---------|
-| 1 | 1 | $26.00 | 1 | P | 12 | Penrose Tiling Poster | Geometric Math Line Art Print | Scandinavian D |
-| 2 | 2 | $7.98 | 2 | P | 30 | Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates |  |
-| 3 | 1 | $3.99 | 1 | P | 6 | Physics Wall Art | Chaos Theory Strange Attractors Poster | Six Math E |
-| 4 | 1 | $3.99 | 1 | D | 5 | Set of 8 Minimalist Math Posters – Navy Gold LaTeX Typography (Digital |
-| 5 | 1 | $3.99 | 1 | P | 24 | Physics Poster Set of 6 | Field Equations Wall Art | Quantum Relativit |
-| 6 | 1 | $2.99 | 1 | P | 23 | Unit Circle Poster | Trigonometry Reference Wall Art | Degrees Radians |
-| 7 | 1 | $1.99 | 1 | D | 9 | Chaos Theory Procreate Color Palettes | Math Art Swatches (Digital Dow |
-| 8 | 1 | $1.50 | 1 | D | 13 | STEM Graph Paper Bundle | 8 Styles: Isometric, Hexagonal, Dot, Square, |
+| 1 | 1 | $26.00 | 1 | P | 13 | Penrose Tiling Poster | Geometric Math Line Art Print | Scandinavian D |
+| 2 | 3 | $11.97 | 3 | P | 63 | Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates |  |
+| 3 | 1 | $3.99 | 1 | P | 7 | Physics Wall Art | Chaos Theory Strange Attractors Poster | Six Math E |
+| 4 | 1 | $3.99 | 1 | D | 9 | Set of 8 Minimalist Math Posters – Navy Gold LaTeX Typography (Digital |
+| 5 | 1 | $3.99 | 1 | P | 38 | Physics Poster Set of 6 | Field Equations Wall Art | Quantum Relativit |
+| 6 | 1 | $2.99 | 1 | P | 69 | Unit Circle Poster | Trigonometry Reference Wall Art | Degrees Radians |
+| 7 | 1 | $1.99 | 1 | D | 13 | Chaos Theory Procreate Color Palettes | Math Art Swatches (Digital Dow |
+| 8 | 1 | $1.50 | 1 | D | 16 | STEM Graph Paper Bundle | 8 Styles: Isometric, Hexagonal, Dot, Square, |
 
 \*Revenue = sum of listing unit price × qty (before coupon/VAT split).
 
@@ -75,9 +75,13 @@
 - Buyer: Jawaad Ahmed (Peterborough)
 - ×1 $3.99 — Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | Fouri (`4540082607`)
 
+### #4131897331 — 2026-07-31 16:18 UTC — $4.28 — US
+- Buyer: Meagan Stone (Raleigh)
+- ×1 $3.99 — Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | Fouri (`4540082607`)
+
 ## What to focus on
 
-- Digital line revenue (item $): **$7.48** vs physical: **$44.95**
+- Digital line revenue (item $): **$7.48** vs physical: **$48.94**
 
 1. **Double down on what already sold:** top seller by $ is “Penrose Tiling Poster | Geometric Math Line Art Print | Scan…” (1 units, $26.00). Polish SEO, ads, variants/light themes, bundles.
 2. **Gallery sets beat singles** if equation/STEM sets appear in sales — package more multi-plate downloads.

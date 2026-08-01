@@ -3,9 +3,10 @@ field_build.py — deliverables + Etsy listing images for the premium physics
 field plates. Renders the 6 fields in 5 aspect ratios @300 DPI,
 builds per-field and set ZIPs, and the listing photos.
 
-    python field_build.py              # dark (default product line)
-    python field_build.py --light      # cream paper / dark ink (readability)
-    python field_build.py --light --set-only   # customer ZIP only (no listing art)
+    python field_build.py                 # V1 dark (quantum…mechanics)
+    python field_build.py --v2            # V2 dark (fluid…plasma) NEW set
+    python field_build.py --light         # cream paper / dark ink
+    python field_build.py --v2 --set-only # customer ZIP only
 """
 import argparse
 import os
@@ -19,10 +20,46 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 import field_poster as fp
 
-FIELDS = ["quantum", "blackhole", "relativity", "electromagnetism", "thermodynamics", "mechanics"]
-SLUG = {"quantum": "QuantumMechanics", "blackhole": "BlackHoles", "relativity": "SpecialRelativity",
-        "electromagnetism": "Electromagnetism", "thermodynamics": "Thermodynamics",
-        "mechanics": "ClassicalMechanics"}
+FIELDS_V1 = ["quantum", "blackhole", "relativity", "electromagnetism", "thermodynamics", "mechanics"]
+FIELDS_V2 = ["fluid", "optics", "nuclear", "acoustics", "particle", "plasma"]
+FIELDS = list(FIELDS_V1)
+
+SLUG_V1 = {
+    "quantum": "QuantumMechanics", "blackhole": "BlackHoles", "relativity": "SpecialRelativity",
+    "electromagnetism": "Electromagnetism", "thermodynamics": "Thermodynamics",
+    "mechanics": "ClassicalMechanics",
+}
+SLUG_V2 = {
+    "fluid": "FluidDynamics", "optics": "Optics", "nuclear": "NuclearPhysics",
+    "acoustics": "Acoustics", "particle": "ParticlePhysics", "plasma": "PlasmaPhysics",
+}
+SLUG = dict(SLUG_V1)
+
+COLLECTION_META = {
+    "v1": {
+        "title": "Physics Field Collection",
+        "zip_dark": "PhysicsFieldCollection_prints.zip",
+        "zip_light": "PhysicsFieldCollection_Light_prints.zip",
+        "readme_fields": (
+            "Quantum mechanics, black holes, special relativity, electromagnetism,\n"
+            "thermodynamics and classical mechanics."
+        ),
+        "out_suffix": "",
+    },
+    "v2": {
+        "title": "Physics Field Collection II",
+        "zip_dark": "PhysicsFieldCollection_II_prints.zip",
+        "zip_light": "PhysicsFieldCollection_II_Light_prints.zip",
+        "readme_fields": (
+            "Fluid dynamics, optics, nuclear physics, acoustics,\n"
+            "particle physics and plasma physics."
+        ),
+        "out_suffix": "2",
+    },
+}
+VOLUME = "v1"
+META = COLLECTION_META["v1"]
+
 RATIOS = {"2x3": 2/3, "3x4": 3/4, "4x5": 4/5, "5x7": 5/7, "ISO": 1/np.sqrt(2)}
 BASE_W = 10.0
 
@@ -34,12 +71,25 @@ _SANS = font_manager.findfont(fp.SANS)
 _MONO = font_manager.findfont(fp.MONO)
 
 
+def apply_collection(volume="v1"):
+    """Select V1 or V2 field set and sync field_poster registry."""
+    global FIELDS, SLUG, VOLUME, META, OUT
+    VOLUME = fp.set_collection(volume)
+    META = COLLECTION_META[VOLUME]
+    FIELDS = list(FIELDS_V1 if VOLUME == "v1" else FIELDS_V2)
+    SLUG = dict(SLUG_V1 if VOLUME == "v1" else SLUG_V2)
+    # re-apply theme path after volume known
+    apply_theme(THEME)
+    return VOLUME
+
+
 def apply_theme(name="dark"):
     """Sync module palette with field_poster theme and pick output root."""
     global OUT, THEME, BG, INK, SUB, ACC, LINE
     THEME = fp.set_theme(name)
     BG, INK, SUB, ACC, LINE = fp.BG, fp.INK, fp.SUB, fp.ACC, fp.LINE
-    OUT = os.path.join(HERE, "out", "field" if name == "dark" else f"field_{name}")
+    base = "field" if VOLUME == "v1" else "field2"
+    OUT = os.path.join(HERE, "out", base if name == "dark" else f"{base}_{name}")
     return OUT
 
 
@@ -78,8 +128,7 @@ def zip_field(f, pdir):
 
 def zip_set(pdir):
     sdir = os.path.join(OUT, "set"); os.makedirs(sdir, exist_ok=True)
-    zname = ("PhysicsFieldCollection_Light_prints.zip" if THEME == "light"
-             else "PhysicsFieldCollection_prints.zip")
+    zname = META["zip_light"] if THEME == "light" else META["zip_dark"]
     z = os.path.join(sdir, zname)
     theme_note = ("LIGHT edition — cream paper ground with dark ink for easier reading.\n"
                   if THEME == "light" else
@@ -89,10 +138,10 @@ def zip_set(pdir):
             for tag in RATIOS:
                 zz.write(os.path.join(pdir, f"{f}_{tag}.jpg"), f"{f}/{SLUG[f]}_{tag}.jpg")
         zz.writestr("READ-ME.txt",
-                    "PHYSICS FIELD COLLECTION — 6 plates, MathRelaxing\n"
+                    f"{META['title'].upper()} — 6 plates, MathRelaxing\n"
                     + theme_note +
-                    "Quantum mechanics, black holes, special relativity, electromagnetism,\n"
-                    "thermodynamics and classical mechanics. Each in 5 aspect ratios at 300 DPI.\n"
+                    META["readme_fields"] + "\n"
+                    "Each in 5 aspect ratios at 300 DPI.\n"
                     "Every graphic is computed from the physics — not AI, not clip art.\n"
                     "Personal use only; not for resale or redistribution.\n")
     return z
@@ -182,15 +231,15 @@ def set_gallery(sdir):
         r, c = divmod(i, 3)
         x = pad + c*(tw+pad); y = top + pad + r*(th+pad)
         im.paste(t, (x, y)); d.rectangle([x, y, x+tw-1, y+th-1], outline=LINE)
-    fb = font(_SANS, 74); tt = "Physics Field Collection"
+    fb = font(_SANS, 64 if VOLUME == "v2" else 74); tt = META["title"]
     w = d.textlength(tt, font=fb); d.text(((W-w)/2, 58), tt, fill=INK, font=fb)
-    fs = font(_MONO, 30); sub = "6 field plates · scientific art prints · 5 sizes each · 300 DPI"
+    fs = font(_MONO, 28); sub = "6 field plates · scientific art prints · 5 sizes each · 300 DPI"
     w2 = d.textlength(sub, font=fs); d.text(((W-w2)/2, 150), sub, fill=ACC, font=fs)
     im.save(os.path.join(sdir, "01_gallery.jpg"), quality=92)
 
 
 def set_framed(sdir):
-    picks = ["quantum", "blackhole", "mechanics"]
+    picks = FIELDS[:3]
     W, H = 2200, 1500
     wall = Image.new("RGB", (W, H), (152, 150, 156))
     cards = []
@@ -211,8 +260,9 @@ def set_framed(sdir):
 
 def set_included(sdir):
     def d(ax):
-        ax.text(0.5, 0.9, "The Collection — 6 field plates", ha="center",
-                fontproperties=fp.SANS, fontsize=26, color=INK, weight="bold")
+        label = "The Collection II — 6 field plates" if VOLUME == "v2" else "The Collection — 6 field plates"
+        ax.text(0.5, 0.9, label, ha="center",
+                fontproperties=fp.SANS, fontsize=24, color=INK, weight="bold")
         for i, f in enumerate(FIELDS):
             r, c = divmod(i, 2)
             ax.text(0.1 + c*0.5, 0.74 - r*0.13, f"·  {_title(f)}", fontproperties=fp.SANS,
@@ -228,11 +278,15 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description="Build Physics Field Collection deliverables")
     ap.add_argument("--light", action="store_true",
                     help="Cream paper / dark ink theme (easier to read)")
+    ap.add_argument("--v2", action="store_true",
+                    help="Volume II: fluid, optics, nuclear, acoustics, particle, plasma")
     ap.add_argument("--set-only", action="store_true",
                     help="Only render prints + set ZIP (skip listing mockups)")
     args = ap.parse_args()
+    apply_collection("v2" if args.v2 else "v1")
     apply_theme("light" if args.light else "dark")
-    print(f"theme={THEME}  out={OUT}")
+    print(f"volume={VOLUME}  theme={THEME}  out={OUT}")
+    print("fields:", ", ".join(FIELDS))
 
     print("prints:"); pdir = prints_all()
     print("set zip:", zip_set(pdir))

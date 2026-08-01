@@ -361,9 +361,452 @@ MECHANICS = {
     "footnote": "Hero: the phase portrait of a pendulum — trajectories and the separatrix (E = 1).",
 }
 
-FIELDS = {"quantum": QUANTUM, "blackhole": BLACKHOLE, "relativity": RELATIVITY,
-          "electromagnetism": ELECTROMAGNETISM, "thermodynamics": THERMODYNAMICS,
-          "mechanics": MECHANICS}
+FIELDS_V1 = {
+    "quantum": QUANTUM,
+    "blackhole": BLACKHOLE,
+    "relativity": RELATIVITY,
+    "electromagnetism": ELECTROMAGNETISM,
+    "thermodynamics": THERMODYNAMICS,
+    "mechanics": MECHANICS,
+}
+
+# ═══════════════════════════════════════════════════════════════════════════
+# VOLUME II — different fields (no equation / theme overlap with V1 set)
+# V1 already owns: quantum, black holes, special relativity, EM, thermo, mechanics
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+def fluid_hero(fig, rect):
+    """Potential flow past a cylinder — streamlines."""
+    a = _tile_ax(fig, rect)
+    a.set_xlim(-2.4, 2.4)
+    a.set_ylim(-2.0, 2.0)
+    a.set_aspect("equal")
+    Y, X = np.mgrid[-2.0:2.0:280j, -2.4:2.4:320j]
+    R = np.hypot(X, Y)
+    TH = np.arctan2(Y, X)
+    U = 1.0
+    a_cyl = 0.72
+    mask = R > a_cyl * 1.02
+    # ψ = U (r - a²/r) sinθ  →  velocity via streamplot of u,v
+    ur = U * (1 - (a_cyl ** 2) / (R ** 2 + 1e-9)) * np.cos(TH)
+    ut = -U * (1 + (a_cyl ** 2) / (R ** 2 + 1e-9)) * np.sin(TH)
+    ux = ur * np.cos(TH) - ut * np.sin(TH)
+    uy = ur * np.sin(TH) + ut * np.cos(TH)
+    ux = np.where(mask, ux, 0)
+    uy = np.where(mask, uy, 0)
+    spd = np.hypot(ux, uy)
+    a.streamplot(
+        X, Y, ux, uy, color=np.log(spd + 0.15), cmap="plasma",
+        density=1.45, linewidth=0.75, arrowsize=0.5,
+    )
+    a.add_patch(plt.Circle((0, 0), a_cyl, facecolor=BG, edgecolor=GOLD, lw=1.6, zorder=5))
+
+
+def fluid_tile_vortex():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        a.set_xlim(-1.2, 1.2)
+        a.set_ylim(-1.2, 1.2)
+        a.set_aspect("equal")
+        t = np.linspace(0, 2 * np.pi, 200)
+        for r in (0.25, 0.5, 0.75, 1.0):
+            a.plot(r * np.cos(t), r * np.sin(t), color=ACC, lw=1.0, alpha=0.85)
+        # radial ticks suggest circulation
+        for ang in (0, np.pi / 2, np.pi, 3 * np.pi / 2):
+            a.plot([0, 1.05 * np.cos(ang)], [0, 1.05 * np.sin(ang)], color=SUB, lw=0.5, alpha=0.6)
+    return draw
+
+
+def fluid_tile_pipe():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        a.set_xlim(0, 1)
+        a.set_ylim(-0.15, 1.15)
+        y = np.linspace(0, 1, 80)
+        # parabolic Poiseuille profile
+        u = 4 * y * (1 - y)
+        a.fill_betweenx(y, 0, u, color=ACC, alpha=0.25)
+        a.plot(u, y, color=ACC, lw=1.8)
+        a.plot([0, 0], [0, 1], color=INK, lw=1.2)
+        a.plot([0, 1.05], [0, 0], color=SUB, lw=0.6)
+        a.plot([0, 1.05], [1, 1], color=SUB, lw=0.6)
+    return draw
+
+
+def fluid_tile_re():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        a.set_xlim(0, 1)
+        a.set_ylim(0, 1)
+        # stylized wake Karman street dots
+        xs = np.linspace(0.25, 0.95, 7)
+        for i, x in enumerate(xs):
+            y = 0.5 + (0.18 if i % 2 == 0 else -0.18)
+            a.scatter([x], [y], s=40, c=GOLD if i % 2 == 0 else ACC, zorder=3, edgecolors="none")
+            a.plot([x, x + 0.06], [y, y], color=SUB, lw=0.8, alpha=0.7)
+        a.add_patch(plt.Circle((0.12, 0.5), 0.08, facecolor=BG, edgecolor=INK, lw=1.2))
+        a.annotate("", xy=(0.95, 0.5), xytext=(0.22, 0.5),
+                   arrowprops=dict(arrowstyle="->", color=SUB, lw=0.9))
+    return draw
+
+
+def optics_hero(fig, rect):
+    """Double-slit intensity fringes."""
+    a = _tile_ax(fig, rect)
+    x = np.linspace(-1.0, 1.0, 900)
+    # I ∝ cos²(π d sinθ / λ) envelope sinc²
+    beta = 12.0 * x
+    alpha = 2.2 * x
+    I = (np.cos(beta) ** 2) * (np.sinc(alpha / np.pi) ** 2)
+    I = I / I.max()
+    a.set_xlim(-1, 1)
+    a.set_ylim(0, 1.15)
+    a.fill_between(x, 0, I, color=ACC, alpha=0.22)
+    a.plot(x, I, color=GOLD, lw=2.0)
+    a.plot([-1, 1], [0, 0], color=SUB, lw=0.6)
+
+
+def optics_tile_slit():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        a.set_xlim(0, 1)
+        a.set_ylim(0, 1)
+        a.add_patch(plt.Rectangle((0.08, 0.15), 0.12, 0.7, fill=False, edgecolor=INK, lw=1.2))
+        a.plot([0.14, 0.14], [0.28, 0.38], color=GOLD, lw=2.5)
+        a.plot([0.14, 0.14], [0.62, 0.72], color=GOLD, lw=2.5)
+        for y in np.linspace(0.2, 0.8, 9):
+            a.plot([0.28, 0.92], [0.5, y], color=ACC, lw=0.7, alpha=0.55)
+    return draw
+
+
+def optics_tile_lens():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        a.set_xlim(-1.1, 1.1)
+        a.set_ylim(-0.9, 0.9)
+        a.set_aspect("equal")
+        t = np.linspace(-0.75, 0.75, 80)
+        a.plot(0.18 * np.sqrt(1 - (t / 0.75) ** 2), t, color=ACC, lw=1.5)
+        a.plot(-0.18 * np.sqrt(1 - (t / 0.75) ** 2), t, color=ACC, lw=1.5)
+        for y in (-0.45, 0, 0.45):
+            a.plot([-1.0, 1.0], [y * 0.15, y], color=GOLD, lw=0.9, alpha=0.8)
+        a.plot([-1, 1], [0, 0], color=SUB, lw=0.5)
+    return draw
+
+
+def optics_tile_snell():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        a.set_xlim(-1, 1)
+        a.set_ylim(-1, 1)
+        a.axhline(0, color=SUB, lw=1.0)
+        a.plot([-0.7, 0], [0.85, 0], color=GOLD, lw=1.6)
+        a.plot([0, 0.55], [0, -0.9], color=ACC, lw=1.6)
+        a.plot([0, 0], [0.9, -0.9], color=LINE, lw=0.6, ls=(0, (2, 2)))
+    return draw
+
+
+def nuclear_hero(fig, rect):
+    """Binding energy per nucleon curve (schematic)."""
+    a = _tile_ax(fig, rect)
+    A = np.array([2, 4, 12, 16, 56, 62, 120, 208, 238], dtype=float)
+    B = np.array([1.1, 7.1, 7.7, 8.0, 8.8, 8.7, 8.5, 7.9, 7.6])
+    a.set_xlim(0, 250)
+    a.set_ylim(0, 10)
+    a.plot(A, B, color=ACC, lw=2.0)
+    a.scatter(A, B, c=GOLD, s=28, zorder=5, edgecolors="none")
+    # mark Fe peak
+    a.annotate("Fe", xy=(56, 8.8), xytext=(90, 9.4),
+               fontsize=8, color=GOLD,
+               arrowprops=dict(arrowstyle="->", color=SUB, lw=0.8))
+    a.plot([0, 250], [0, 0], color=SUB, lw=0.6)
+    a.plot([0, 0], [0, 10], color=SUB, lw=0.6)
+
+
+def nuclear_tile_decay(kind):
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        a.set_xlim(0, 1)
+        a.set_ylim(0, 1)
+        t = np.linspace(0, 1, 120)
+        if kind == "alpha":
+            n = np.exp(-3.2 * t)
+            a.plot(t, 0.15 + 0.7 * n, color=ACC, lw=1.8)
+            a.text(0.55, 0.75, r"$\alpha$", color=GOLD, fontsize=11)
+        elif kind == "beta":
+            n = np.exp(-1.6 * t)
+            a.plot(t, 0.15 + 0.7 * n, color=ACC, lw=1.8)
+            a.text(0.55, 0.75, r"$\beta$", color=GOLD, fontsize=11)
+        else:
+            # activity ladder
+            for i, lam in enumerate((4.0, 2.2, 1.1)):
+                a.plot(t, 0.12 + 0.25 * i + 0.2 * np.exp(-lam * t), color=ACC if i % 2 == 0 else GOLD, lw=1.2)
+        a.plot([0, 1], [0.1, 0.1], color=SUB, lw=0.5)
+    return draw
+
+
+def acoustics_hero(fig, rect):
+    """Standing wave modes on a string n=1,2,3."""
+    a = _tile_ax(fig, rect)
+    x = np.linspace(0, 1, 500)
+    a.set_xlim(0, 1)
+    a.set_ylim(-1.35, 1.35)
+    cols = [GOLD, ACC, "#c77dff"]
+    for n, col in zip((1, 2, 3), cols):
+        y = (1.0 / n) * np.sin(n * np.pi * x)
+        a.plot(x, y + 0.0, color=col, lw=1.9, alpha=0.95)
+    a.plot([0, 1], [0, 0], color=SUB, lw=0.7)
+    a.scatter([0, 1], [0, 0], c=INK, s=18, zorder=5)
+
+
+def acoustics_tile_mode(n):
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        x = np.linspace(0, 1, 200)
+        a.set_xlim(0, 1)
+        a.set_ylim(-1.2, 1.2)
+        a.plot(x, np.sin(n * np.pi * x), color=ACC if n % 2 else GOLD, lw=1.6)
+        a.plot([0, 1], [0, 0], color=SUB, lw=0.5)
+    return draw
+
+
+def particle_hero(fig, rect):
+    """Stylized e⁺e⁻ → γγ annihilation diagram."""
+    a = _tile_ax(fig, rect)
+    a.set_xlim(0, 1)
+    a.set_ylim(0, 1)
+    # incoming fermion lines
+    a.plot([0.08, 0.42], [0.78, 0.52], color=ACC, lw=2.0)
+    a.plot([0.08, 0.42], [0.22, 0.48], color=ACC, lw=2.0)
+    # vertex
+    a.scatter([0.45], [0.5], s=55, c=GOLD, zorder=5, edgecolors="none")
+    # outgoing photons (wavy)
+    t = np.linspace(0, 1, 80)
+    for y0, y1 in ((0.5, 0.82), (0.5, 0.18)):
+        xs = 0.48 + 0.42 * t
+        ys = y0 + (y1 - y0) * t + 0.035 * np.sin(14 * np.pi * t)
+        a.plot(xs, ys, color=GOLD, lw=1.7)
+    a.text(0.12, 0.88, r"$e^{-}$", color=INK, fontsize=10)
+    a.text(0.12, 0.08, r"$e^{+}$", color=INK, fontsize=10)
+    a.text(0.88, 0.88, r"$\gamma$", color=GOLD, fontsize=11)
+    a.text(0.88, 0.08, r"$\gamma$", color=GOLD, fontsize=11)
+
+
+def particle_tile_gen(n):
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        a.set_xlim(0, 1)
+        a.set_ylim(0, 1)
+        labels = {
+            1: [("u", "d"), ("e", r"$\nu_e$")],
+            2: [("c", "s"), (r"$\mu$", r"$\nu_\mu$")],
+            3: [("t", "b"), (r"$\tau$", r"$\nu_\tau$")],
+        }[n]
+        for i, (a1, a2) in enumerate(labels):
+            y = 0.68 if i == 0 else 0.28
+            a.add_patch(plt.Rectangle((0.12, y - 0.12), 0.32, 0.24, fill=False, edgecolor=ACC, lw=1.1))
+            a.add_patch(plt.Rectangle((0.56, y - 0.12), 0.32, 0.24, fill=False, edgecolor=GOLD, lw=1.1))
+            a.text(0.28, y, a1, ha="center", va="center", color=INK, fontsize=10)
+            a.text(0.72, y, a2, ha="center", va="center", color=INK, fontsize=10)
+        a.text(0.5, 0.92, f"gen {n}", ha="center", color=SUB, fontsize=8)
+    return draw
+
+
+def plasma_hero(fig, rect):
+    """Debye-shielded Coulomb potential φ(r) ∝ e^{-r/λ_D}/r."""
+    a = _tile_ax(fig, rect)
+    r = np.linspace(0.12, 4.5, 400)
+    coul = 1.0 / r
+    debye = np.exp(-r / 1.15) / r
+    coul = coul / coul.max()
+    debye = debye / debye[0] * coul[0]
+    a.set_xlim(0, 4.5)
+    a.set_ylim(0, 1.15)
+    a.plot(r, coul, color=SUB, lw=1.4, ls=(0, (3, 2)))
+    a.plot(r, debye, color=ACC, lw=2.2)
+    a.fill_between(r, 0, debye, color=ACC, alpha=0.15)
+    a.axvline(1.15, color=GOLD, lw=1.0, ls=(0, (2, 2)))
+    a.text(1.25, 0.95, r"$\lambda_D$", color=GOLD, fontsize=9)
+    a.plot([0, 4.5], [0, 0], color=SUB, lw=0.6)
+
+
+def plasma_tile_orbit():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        a.set_xlim(-1.1, 1.1)
+        a.set_ylim(-1.1, 1.1)
+        a.set_aspect("equal")
+        t = np.linspace(0, 2 * np.pi, 200)
+        a.plot(0.7 * np.cos(t), 0.7 * np.sin(t), color=ACC, lw=1.5)
+        a.scatter([0], [0], c=GOLD, s=30, zorder=5, edgecolors="none")
+        a.annotate("", xy=(0.7, 0.05), xytext=(0.55, 0.35),
+                   arrowprops=dict(arrowstyle="->", color=INK, lw=1.0))
+    return draw
+
+
+def plasma_tile_langmuir():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        x = np.linspace(0, 1, 200)
+        a.set_xlim(0, 1)
+        a.set_ylim(-1.2, 1.2)
+        a.plot(x, np.sin(6 * np.pi * x) * np.exp(-0.35 * x), color=ACC, lw=1.6)
+        a.plot([0, 1], [0, 0], color=SUB, lw=0.5)
+    return draw
+
+
+def plasma_tile_beta():
+    def draw(fig, rect):
+        a = _tile_ax(fig, rect)
+        a.set_xlim(0, 1)
+        a.set_ylim(0, 1)
+        # plasma beta schematic bars
+        for i, (h, col) in enumerate([(0.35, SUB), (0.55, ACC), (0.85, GOLD)]):
+            a.add_patch(plt.Rectangle((0.15 + i * 0.28, 0.15), 0.18, h, facecolor=col, alpha=0.55, edgecolor=INK, lw=0.8))
+        a.text(0.5, 0.08, r"$\beta$", ha="center", color=SUB, fontsize=9)
+    return draw
+
+
+FLUID = {
+    "title": "FLUID DYNAMICS", "eyebrow": "FLOW, VISCOSITY AND VORTICES", "plate": "PLATE I",
+    "hero": fluid_hero, "hero_caption": "POTENTIAL FLOW  ·  CYLINDER STREAMLINES",
+    "strip": [(fluid_tile_vortex(), "vortex"), (fluid_tile_pipe(), "Poiseuille"), (fluid_tile_re(), "wake")],
+    "eqs": [
+        (r"$\rho(\partial_{t}\mathbf{v}+\mathbf{v}\cdot\nabla\mathbf{v})=-\nabla p+\mu\nabla^{2}\mathbf{v}$", "Navier–Stokes"),
+        (r"$\nabla\cdot\mathbf{v}=0$", "incompressible continuity"),
+        (r"$\mathrm{Re}=\frac{\rho U L}{\mu}$", "Reynolds number"),
+        (r"$p+\frac{1}{2}\rho v^{2}+\rho g h=\mathrm{const}$", "Bernoulli"),
+        (r"$\boldsymbol{\omega}=\nabla\times\mathbf{v}$", "vorticity"),
+        (r"$\tau=\mu\,\partial_{y}u$", "Newtonian stress"),
+        (r"$\Gamma=\oint\mathbf{v}\cdot d\boldsymbol{\ell}$", "circulation"),
+        (r"$\mathbf{v}=\nabla\phi$", "potential flow"),
+    ],
+    "constants": r"$\mu_{\mathrm{air}}\approx 1.8\times10^{-5}\ \mathrm{Pa\,s}$        $\mathrm{Re}_{\mathrm{crit}}\sim 10^{5}$",
+    "footnote": "Hero: inviscid potential flow past a cylinder — streamlines from the analytic solution.",
+}
+
+OPTICS = {
+    "title": "OPTICS", "eyebrow": "LIGHT, INTERFERENCE AND LENSES", "plate": "PLATE II",
+    "hero": optics_hero, "hero_caption": "DOUBLE SLIT  ·  INTERFERENCE FRINGES",
+    "strip": [(optics_tile_slit(), "two slits"), (optics_tile_lens(), "lens"), (optics_tile_snell(), "Snell")],
+    "eqs": [
+        (r"$n_{1}\sin\theta_{1}=n_{2}\sin\theta_{2}$", "Snell's law"),
+        (r"$I\propto\cos^{2}\!\left(\frac{\pi d\sin\theta}{\lambda}\right)$", "double-slit intensity"),
+        (r"$\frac{1}{f}=\frac{1}{u}+\frac{1}{v}$", "thin-lens equation"),
+        (r"$d\sin\theta=m\lambda$", "diffraction condition"),
+        (r"$R=\left(\frac{n_{1}-n_{2}}{n_{1}+n_{2}}\right)^{2}$", "Fresnel reflectance"),
+        (r"$\Delta\phi=\frac{2\pi}{\lambda}\,\delta$", "phase from path"),
+        (r"$v=c/n$", "phase speed in medium"),
+        (r"$m\lambda=2nd$", "Fabry–Pérot peaks"),
+    ],
+    "constants": r"$\lambda_{\mathrm{HeNe}}=632.8\ \mathrm{nm}$        $c=2.998\times10^{8}\ \mathrm{m/s}$",
+    "footnote": "Hero: double-slit interference pattern with a single-slit diffraction envelope.",
+}
+
+NUCLEAR = {
+    "title": "NUCLEAR PHYSICS", "eyebrow": "NUCLEI, DECAY AND BINDING", "plate": "PLATE III",
+    "hero": nuclear_hero, "hero_caption": "BINDING ENERGY PER NUCLEON  ·  B/A vs A",
+    "strip": [(nuclear_tile_decay("alpha"), "α decay"), (nuclear_tile_decay("beta"), "β decay"),
+              (nuclear_tile_decay("chain"), "chain")],
+    "eqs": [
+        (r"$N=N_{0}e^{-\lambda t}$", "radioactive decay law"),
+        (r"$t_{1/2}=\ln 2/\lambda$", "half-life"),
+        (r"$B=(Zm_{p}+Nm_{n}-M)c^{2}$", "binding energy"),
+        (r"$Q=(m_{i}-m_{f})c^{2}$", "decay Q-value"),
+        (r"$A=Z+N$", "mass number"),
+        (r"$R=R_{0}A^{1/3}$", "nuclear radius"),
+        (r"$\sigma=\frac{\mathrm{rate}}{\mathrm{flux}}$", "cross section"),
+        (r"$E=mc^{2}$", "mass–energy (defects)"),
+    ],
+    "constants": r"$1\ \mathrm{u}=931.5\ \mathrm{MeV}/c^{2}$        $R_{0}\approx 1.2\ \mathrm{fm}$",
+    "footnote": "Hero: schematic binding energy per nucleon — peak near iron-56.",
+}
+
+ACOUSTICS = {
+    "title": "ACOUSTICS", "eyebrow": "SOUND, WAVES AND HARMONICS", "plate": "PLATE IV",
+    "hero": acoustics_hero, "hero_caption": "STANDING WAVES  ·  STRING MODES n = 1, 2, 3",
+    "strip": [(acoustics_tile_mode(1), "n = 1"), (acoustics_tile_mode(2), "n = 2"),
+              (acoustics_tile_mode(3), "n = 3")],
+    "eqs": [
+        (r"$\partial_{tt}y=c^{2}\,\partial_{xx}y$", "1D wave equation"),
+        (r"$f_{n}=n\,\frac{v}{2L}$", "string harmonics"),
+        (r"$v=\sqrt{T/\mu}$", "wave speed on a string"),
+        (r"$I=\frac{1}{2}\rho v\omega^{2}A^{2}$", "sound intensity"),
+        (r"$\mathrm{SPL}=20\log_{10}(p/p_{0})$", "sound pressure level"),
+        (r"$f' = f\,\frac{v\pm v_{o}}{v\pm v_{s}}$", "Doppler shift"),
+        (r"$\lambda=v/f$", "wavelength"),
+        (r"$Z=\rho c$", "acoustic impedance"),
+    ],
+    "constants": r"$c_{\mathrm{air}}\approx 343\ \mathrm{m/s}$        $p_{0}=20\ \mu\mathrm{Pa}$",
+    "footnote": "Hero: standing-wave modes on a fixed string — nodes, antinodes, harmonic series.",
+}
+
+PARTICLE = {
+    "title": "PARTICLE PHYSICS", "eyebrow": "QUARKS, LEPTONS AND FORCES", "plate": "PLATE V",
+    "hero": particle_hero, "hero_caption": "ANNIHILATION  ·  e⁺e⁻ → γγ",
+    "strip": [(particle_tile_gen(1), "1st gen"), (particle_tile_gen(2), "2nd gen"),
+              (particle_tile_gen(3), "3rd gen")],
+    "eqs": [
+        (r"$e^{+}+e^{-}\rightarrow\gamma+\gamma$", "pair annihilation"),
+        (r"$E^{2}=(pc)^{2}+(mc^{2})^{2}$", "relativistic energy"),
+        (r"$|q_{\mathrm{u}}|=\frac{2}{3}e,\ \ |q_{\mathrm{d}}|=\frac{1}{3}e$", "quark charges"),
+        (r"$\mathcal{L}_{\mathrm{SM}}=\mathcal{L}_{\mathrm{gauge}}+\mathcal{L}_{\mathrm{Yukawa}}+\cdots$", "Standard Model"),
+        (r"$\alpha_{s}(Q^{2})$", "running strong coupling"),
+        (r"$W^{\pm},\,Z^{0}$", "weak bosons"),
+        (r"$g\to q\bar{q}$", "gluon splitting"),
+        (r"$\tau=\hbar/\Gamma$", "resonance lifetime"),
+    ],
+    "constants": r"$m_{e}=511\ \mathrm{keV}/c^{2}$        $m_{p}=938.3\ \mathrm{MeV}/c^{2}$",
+    "footnote": "Hero: a Feynman-style e⁺e⁻ annihilation to two photons — quarks and leptons in three generations.",
+}
+
+PLASMA = {
+    "title": "PLASMA PHYSICS", "eyebrow": "IONIZED GAS AND COLLECTIVE MOTION", "plate": "PLATE VI",
+    "hero": plasma_hero, "hero_caption": "DEBYE SHIELDING  ·  COULOMB vs YUKAWA",
+    "strip": [(plasma_tile_orbit(), "gyro"), (plasma_tile_langmuir(), "Langmuir"),
+              (plasma_tile_beta(), "β")],
+    "eqs": [
+        (r"$\lambda_{D}=\sqrt{\varepsilon_{0}k_{B}T_{e}/n_{e}e^{2}}$", "Debye length"),
+        (r"$\omega_{p}=\sqrt{n_{e}e^{2}/\varepsilon_{0}m_{e}}$", "plasma frequency"),
+        (r"$\omega_{c}=eB/m$", "cyclotron frequency"),
+        (r"$\beta=2\mu_{0}n k_{B}T/B^{2}$", "plasma beta"),
+        (r"$\mathbf{E}+\mathbf{v}\times\mathbf{B}=0$", "ideal MHD Ohm"),
+        (r"$\partial_{t}n+\nabla\cdot(n\mathbf{v})=0$", "continuity"),
+        (r"$r_{L}=mv_{\perp}/|q|B$", "Larmor radius"),
+        (r"$N_{D}=\frac{4}{3}\pi n\lambda_{D}^{3}$", "Debye number"),
+    ],
+    "constants": r"$\omega_{p}/2\pi\sim 9\sqrt{n_{e}}\,\mathrm{Hz}$        $\lambda_{D}\propto\sqrt{T/n}$",
+    "footnote": "Hero: bare Coulomb 1/r vs Debye-shielded potential — collective screening in a plasma.",
+}
+
+FIELDS_V2 = {
+    "fluid": FLUID,
+    "optics": OPTICS,
+    "nuclear": NUCLEAR,
+    "acoustics": ACOUSTICS,
+    "particle": PARTICLE,
+    "plasma": PLASMA,
+}
+
+# Active registry (switched by set_collection)
+FIELDS = dict(FIELDS_V1)
+ACTIVE_VOLUME = "v1"
+
+
+def set_collection(volume="v1"):
+    """Select V1 (classic six) or V2 (fluid/optics/nuclear/acoustics/particle/plasma)."""
+    global FIELDS, ACTIVE_VOLUME
+    volume = volume.lower()
+    if volume in ("v1", "1", "classic"):
+        FIELDS = dict(FIELDS_V1)
+        ACTIVE_VOLUME = "v1"
+    elif volume in ("v2", "2", "ii"):
+        FIELDS = dict(FIELDS_V2)
+        ACTIVE_VOLUME = "v2"
+    else:
+        raise ValueError(f"unknown collection volume {volume!r}")
+    return ACTIVE_VOLUME
 
 
 def render(field, W=10.0, H=12.5, dpi=200):

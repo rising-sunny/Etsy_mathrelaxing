@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-07-25T18:59:44.022669+00:00",
-  "n_orders": 7,
-  "n_line_items": 9,
-  "total_grandtotal_usd": 56.75,
-  "total_subtotal_usd": 42.94,
+  "generated_at": "2026-08-01T11:13:54.595374+00:00",
+  "n_orders": 8,
+  "n_line_items": 10,
+  "total_grandtotal_usd": 61.03,
+  "total_subtotal_usd": 46.93,
   "total_discount_usd": 9.49,
   "total_vat_usd": 0.8,
-  "avg_order_value": 8.11,
+  "avg_order_value": 7.63,
   "multi_item_orders": 1,
   "orders_with_discount": 2,
   "countries": {
+    "US": 5,
     "GB": 1,
-    "CN": 2,
-    "US": 4
+    "CN": 2
   },
   "products": [
     {
@@ -22,19 +22,19 @@
       "gross": 26.0,
       "orders": 1,
       "is_digital": false,
-      "views": 12,
+      "views": 13,
       "favorers": 0,
       "active": true
     },
     {
       "title": "Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | Fourier Dirac Euler ",
       "listing_id": 4540082607,
-      "qty": 2,
-      "gross": 7.98,
-      "orders": 2,
+      "qty": 3,
+      "gross": 11.97,
+      "orders": 3,
       "is_digital": false,
-      "views": 30,
-      "favorers": 3,
+      "views": 63,
+      "favorers": 4,
       "active": true
     },
     {
@@ -44,7 +44,7 @@
       "gross": 3.99,
       "orders": 1,
       "is_digital": false,
-      "views": 6,
+      "views": 7,
       "favorers": 0,
       "active": true
     },
@@ -55,7 +55,7 @@
       "gross": 3.99,
       "orders": 1,
       "is_digital": true,
-      "views": 5,
+      "views": 9,
       "favorers": 0,
       "active": true
     },
@@ -66,7 +66,7 @@
       "gross": 3.99,
       "orders": 1,
       "is_digital": false,
-      "views": 24,
+      "views": 38,
       "favorers": 2,
       "active": true
     },
@@ -77,7 +77,7 @@
       "gross": 2.99,
       "orders": 1,
       "is_digital": false,
-      "views": 23,
+      "views": 69,
       "favorers": 0,
       "active": true
     },
@@ -88,7 +88,7 @@
       "gross": 1.99,
       "orders": 1,
       "is_digital": true,
-      "views": 9,
+      "views": 13,
       "favorers": 0,
       "active": true
     },
@@ -99,7 +99,7 @@
       "gross": 1.5,
       "orders": 1,
       "is_digital": true,
-      "views": 13,
+      "views": 16,
       "favorers": 1,
       "active": true
     }
@@ -162,7 +162,7 @@
       "buyer_name": "Andrea Colwell",
       "country": "US",
       "city": "Mountlake Terrace",
-      "status": "Paid",
+      "status": "Completed",
       "grandtotal": 32.14,
       "subtotal": 19.5,
       "discount": 6.5,
@@ -295,8 +295,33 @@
         }
       ],
       "n_items": 1
+    },
+    {
+      "receipt_id": 4131897331,
+      "date": "2026-07-31T16:18:38+00:00",
+      "date_local": "2026-07-31 16:18 UTC",
+      "buyer_name": "Meagan Stone",
+      "country": "US",
+      "city": "Raleigh",
+      "status": "Completed",
+      "grandtotal": 4.28,
+      "subtotal": 3.99,
+      "discount": 0.0,
+      "vat": 0.0,
+      "payment_method": "cc",
+      "items": [
+        {
+          "listing_id": 4540082607,
+          "title": "Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | Fourier Dirac Euler ",
+          "qty": 1,
+          "price": 3.99,
+          "line": 3.99,
+          "transaction_id": 5165066227
+        }
+      ],
+      "n_items": 1
     }
   ],
   "buyer_messages": [],
-  "active_listings": 106
+  "active_listings": 150
 }

@@ -1,16 +1,24 @@
 """
 generate_special_plates.py — Special-function scientific plates (scipy)
 =======================================================================
-New listings (do not replace Famous Equations set):
-  1. bessel_functions   — Math/Physics | Cylinder waves J_n
-  2. hermite_qho        — Physics | Quantum harmonic oscillator
-  3. legendre_polynomials — Math | Legendre P_n (multipoles)
-  4. mandelbrot_zoom    — Math | Mandelbrot detail zoom
+Singles + Special Functions Wall Art Set of 6 (distinct from Famous Equations
+and from Physics Field Equations set):
+
+  1. bessel_functions       — cylinder waves J_n
+  2. hermite_qho            — Hermite / harmonic oscillator
+  3. legendre_polynomials   — Legendre P_n (multipoles)
+  4. mandelbrot_zoom        — Mandelbrot detail (single only; not in set)
+  5. laguerre_polynomials   — Laguerre L_n
+  6. chebyshev_polynomials  — Chebyshev T_n
+  7. airy_functions         — Airy Ai / Bi turning points
+
+Set of 6 = 1,2,3,5,6,7 (no Mandelbrot — avoids Famous Equations fractal overlap)
 
 Style: same cream graph paper + LaTeX family as generate_equation_plates.py
 
   python generate_special_plates.py
-  python generate_special_plates.py --only bessel_functions --preview-only
+  python generate_special_plates.py --only laguerre_polynomials,chebyshev_polynomials,airy_functions
+  python generate_special_plates.py --set-only
   python generate_special_plates.py --no-latex
 """
 from __future__ import annotations
@@ -429,6 +437,209 @@ def compose_mandelbrot_zoom(width_in: float, height_in: float, dpi: int) -> Imag
     return fig_to_image(fig)
 
 
+# ── 5. Laguerre polynomials ───────────────────────────────────────────────────
+
+def compose_laguerre(width_in: float, height_in: float, dpi: int) -> Image.Image:
+    fig, ax = _new_plate(width_in, height_in, dpi)
+    fig_w = width_in
+    use_tex = gep._USE_LATEX
+    _header(
+        ax,
+        "POLYNOMIALS ON THE HALF-LINE",
+        "FIG. 11",
+        "LAGUERRE POLYNOMIALS",
+        r"$xy''+(1-x)y'+ny=0$" if use_tex else r"$xy''+(1-x)y'+ny=0$",
+        fig_w,
+    )
+
+    degrees = [0, 1, 2, 3, 4]
+    a = _open_axes(fig, [0.10, 0.34, 0.80, 0.48], fig_w)
+    x = np.linspace(0.0, 10.0, 900)
+    a.set_xlim(0, 10)
+    a.set_ylim(-4.2, 6.5)
+    a.axhline(0, color=INK_FAINT, lw=0.55, zorder=1)
+    for n in degrees:
+        y = sp.eval_laguerre(n, x)
+        col = LINE_DARK if n % 2 == 0 else RUST
+        lw = 2.15 - 0.12 * n
+        a.plot(x, y, color=col, lw=lw, solid_capstyle="round", zorder=4 + n, antialiased=True)
+        # label near right edge where curve remains readable
+        yi = float(y[-1])
+        a.text(10.15, yi, rf"$L_{{{n}}}$", color=col, fontsize=_fs(fig_w, 0.012),
+               ha="left", va="center", clip_on=False)
+
+    a.text(
+        0.5, 1.06,
+        SF(r"orthogonal on $[0,\infty)$ with weight $e^{-x}$") if use_tex
+        else "orthogonal on [0,∞) with weight e^{-x}",
+        transform=a.transAxes, ha="center", fontsize=_fs(fig_w, 0.011), color=INK_SOFT, clip_on=False,
+    )
+    a.text(0.0, -0.12, r"$x$", transform=a.transAxes, ha="left",
+           fontsize=_fs(fig_w, 0.010), color=INK_FAINT, clip_on=False)
+
+    ax.text(
+        50, 27.0,
+        IT(r"associated Laguerre  $\cdot$  hydrogen radial  $\cdot$  Gauss–Laguerre quadrature")
+        if use_tex else "associated Laguerre  ·  hydrogen radial  ·  Gauss–Laguerre quadrature",
+        fontsize=_fs(fig_w, 0.010), color=INK_SOFT, ha="center", zorder=5,
+    )
+    _caption(
+        ax,
+        [
+            r"Laguerre polynomials are orthogonal on the half-line with weight $e^{-x}$." if use_tex
+            else "Laguerre polynomials are orthogonal on the half-line with weight e^{-x}.",
+            r"Associated Laguerre functions build the radial hydrogen wavefunctions.",
+            r"They also drive Gauss–Laguerre quadrature and exponential-decay expansions.",
+        ],
+        22.5,
+        fig_w,
+    )
+    _footer_eqs(
+        ax,
+        (r"$L_n(x)=\sum_{k=0}^{n}\dfrac{(-1)^k}{k!}\binom{n}{k}x^{k}$"
+         if use_tex else r"$L_n$ explicit sum", "Rodrigues / sum"),
+        (r"$\int_0^{\infty}L_n L_m e^{-x}\,dx=\delta_{nm}$" if use_tex
+         else r"$\int L_n L_m e^{-x}=\delta_{nm}$", "orthogonality"),
+        (r"$R_{nl}\propto L_{n-\ell-1}^{2\ell+1}$" if use_tex else r"$R_{nl}\propto L$", "H radial link"),
+        fig_w,
+    )
+    return fig_to_image(fig)
+
+
+# ── 6. Chebyshev polynomials ──────────────────────────────────────────────────
+
+def compose_chebyshev(width_in: float, height_in: float, dpi: int) -> Image.Image:
+    fig, ax = _new_plate(width_in, height_in, dpi)
+    fig_w = width_in
+    use_tex = gep._USE_LATEX
+    _header(
+        ax,
+        "MINIMAX OSCILLATION",
+        "FIG. 12",
+        "CHEBYSHEV POLYNOMIALS",
+        r"$T_n(\cos\theta)=\cos(n\theta)$" if use_tex else r"$T_n(\cos\theta)=\cos(n\theta)$",
+        fig_w,
+    )
+
+    degrees = [0, 1, 2, 3, 4, 5]
+    a = _open_axes(fig, [0.10, 0.34, 0.80, 0.48], fig_w)
+    x = np.linspace(-1.0, 1.0, 900)
+    a.set_xlim(-1.05, 1.05)
+    a.set_ylim(-1.35, 1.45)
+    a.axhline(0, color=INK_FAINT, lw=0.55, zorder=1)
+    a.axvline(0, color=INK_FAINT, lw=0.45, zorder=1)
+    a.plot([-1, -1], [-1.2, 1.2], color=LINE_DARK, lw=1.1, zorder=3)
+    a.plot([1, 1], [-1.2, 1.2], color=LINE_DARK, lw=1.1, zorder=3)
+    for n in degrees:
+        y = sp.eval_chebyt(n, x)
+        col = LINE_DARK if n % 2 == 0 else RUST
+        lw = 2.0 - 0.1 * n
+        a.plot(x, y, color=col, lw=lw, solid_capstyle="round", zorder=4 + n, antialiased=True)
+        a.text(1.08, float(y[-1]), rf"$T_{{{n}}}$", color=col, fontsize=_fs(fig_w, 0.011),
+               ha="left", va="center", clip_on=False)
+
+    a.text(
+        0.5, 1.06,
+        SF(r"equioscillation  ·  best uniform approximation") if use_tex
+        else "equioscillation  ·  best uniform approximation",
+        transform=a.transAxes, ha="center", fontsize=_fs(fig_w, 0.011), color=INK_SOFT, clip_on=False,
+    )
+    a.text(0.0, -0.12, r"$x\in[-1,1]$", transform=a.transAxes, ha="left",
+           fontsize=_fs(fig_w, 0.010), color=INK_FAINT, clip_on=False)
+
+    ax.text(
+        50, 27.0,
+        IT(r"Clenshaw–Curtis  $\cdot$  spectral methods  $\cdot$  filter design")
+        if use_tex else "Clenshaw–Curtis  ·  spectral methods  ·  filter design",
+        fontsize=_fs(fig_w, 0.010), color=INK_SOFT, ha="center", zorder=5,
+    )
+    _caption(
+        ax,
+        [
+            r"Chebyshev polynomials $T_n$ oscillate between $-1$ and $1$ with equal ripple." if use_tex
+            else "Chebyshev polynomials Tn oscillate between -1 and 1 with equal ripple.",
+            r"Among monic polynomials they minimize the maximum norm on $[-1,1]$." if use_tex
+            else "Among monic polynomials they minimize the maximum norm on [-1,1].",
+            r"Foundations of polynomial approximation, Chebyshev economization, and spectral PDE solvers.",
+        ],
+        22.5,
+        fig_w,
+    )
+    _footer_eqs(
+        ax,
+        (r"$T_{n+1}=2xT_n-T_{n-1}$", "recurrence"),
+        (r"$T_n(\cos\theta)=\cos(n\theta)$", "trig identity"),
+        (r"$\|p\|_\infty\ge 2^{1-n}$" if use_tex else r"minimax bound", "minimax"),
+        fig_w,
+    )
+    return fig_to_image(fig)
+
+
+# ── 7. Airy functions ─────────────────────────────────────────────────────────
+
+def compose_airy(width_in: float, height_in: float, dpi: int) -> Image.Image:
+    fig, ax = _new_plate(width_in, height_in, dpi)
+    fig_w = width_in
+    use_tex = gep._USE_LATEX
+    _header(
+        ax,
+        "TURNING POINTS",
+        "FIG. 13",
+        "AIRY FUNCTIONS",
+        r"$y''-xy=0$" if use_tex else r"$y''-xy=0$",
+        fig_w,
+    )
+
+    a = _open_axes(fig, [0.10, 0.34, 0.80, 0.48], fig_w)
+    x = np.linspace(-12.0, 6.0, 1400)
+    ai, aip, bi, bip = sp.airy(x)
+    a.set_xlim(-12, 6)
+    a.set_ylim(-0.65, 1.15)
+    a.axhline(0, color=INK_FAINT, lw=0.55, zorder=1)
+    a.axvline(0, color=INK_FAINT, lw=0.55, ls=(0, (1.2, 2)), zorder=1)
+    # oscillatory region cue
+    a.axvspan(-12, 0, color=RUST, alpha=0.04, zorder=0)
+    a.axvspan(0, 6, color=LINE_DARK, alpha=0.03, zorder=0)
+    a.plot(x, ai, color=LINE_DARK, lw=2.2, solid_capstyle="round", zorder=4, label=r"$\mathrm{Ai}$")
+    a.plot(x, bi, color=RUST, lw=2.0, solid_capstyle="round", zorder=4, label=r"$\mathrm{Bi}$")
+    a.text(0.12, 0.92, r"$\mathrm{Ai}(x)$", transform=a.transAxes, color=LINE_DARK,
+           fontsize=_fs(fig_w, 0.014), ha="left", va="top")
+    a.text(0.12, 0.82, r"$\mathrm{Bi}(x)$", transform=a.transAxes, color=RUST,
+           fontsize=_fs(fig_w, 0.014), ha="left", va="top")
+    a.text(0.22, 0.12, SF("oscillatory") if use_tex else "oscillatory",
+           transform=a.transAxes, color=INK_SOFT, fontsize=_fs(fig_w, 0.010))
+    a.text(0.72, 0.12, SF("exponential") if use_tex else "exponential",
+           transform=a.transAxes, color=INK_SOFT, fontsize=_fs(fig_w, 0.010))
+
+    ax.text(
+        50, 27.0,
+        IT(r"WKB connection  $\cdot$  caustics  $\cdot$  quantum turning points")
+        if use_tex else "WKB connection  ·  caustics  ·  quantum turning points",
+        fontsize=_fs(fig_w, 0.010), color=INK_SOFT, ha="center", zorder=5,
+    )
+    _caption(
+        ax,
+        [
+            r"Airy functions solve $y''=xy$ — the model equation at a linear turning point." if use_tex
+            else "Airy functions solve y''=xy — the model equation at a linear turning point.",
+            r"Ai oscillates for $x<0$ and decays for $x>0$; Bi grows on the right." if use_tex
+            else "Ai oscillates for x<0 and decays for x>0; Bi grows on the right.",
+            r"They stitch WKB solutions across caustics in optics, quantum mechanics, and fluid edges.",
+        ],
+        22.5,
+        fig_w,
+    )
+    _footer_eqs(
+        ax,
+        (r"$y''-xy=0$", "Airy equation"),
+        (r"$\mathrm{Ai}(x),\ \mathrm{Bi}(x)$", "standard pair"),
+        (r"$\mathrm{Ai}(x)\sim\dfrac{e^{-\zeta}}{2\sqrt{\pi}\,x^{1/4}}$" if use_tex
+         else r"Ai asymptotic", "x→+∞"),
+        fig_w,
+    )
+    return fig_to_image(fig)
+
+
 # ── Catalog ───────────────────────────────────────────────────────────────────
 
 @dataclass
@@ -574,6 +785,112 @@ DESIGNS: list[Design] = [
         zip_name="Mandelbrot_Zoom_Math_Wall_Art.zip",
         fig_theme="seahorse valley detail",
     ),
+    Design(
+        slug="laguerre_polynomials",
+        folder="laguerre_polynomials",
+        concept="Laguerre Polynomials",
+        listing_prefix="Math Wall Art",
+        tags=[
+            "math wall art",
+            "laguerre polynomial",
+            "mathematics poster",
+            "stem wall art",
+            "science poster",
+            "orthogonal polynomial",
+            "educational poster",
+            "classroom decor",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "math print",
+            "physics wall art",
+        ],
+        seo_title=(
+            "Math Wall Art | Laguerre Polynomials Print | Orthogonal Polynomials "
+            "Half-Line STEM Mathematics Poster (Digital Download)"
+        ),
+        description_blurb=(
+            "Scientific plate of Laguerre polynomials L0..L4 on [0,∞) — "
+            "orthogonal basis for radial expansions and Gauss–Laguerre. LaTeX + scipy."
+        ),
+        compose=compose_laguerre,
+        zip_name="Laguerre_Polynomials_Math_Wall_Art.zip",
+        fig_theme="Ln family on [0,∞)",
+    ),
+    Design(
+        slug="chebyshev_polynomials",
+        folder="chebyshev_polynomials",
+        concept="Chebyshev Polynomials",
+        listing_prefix="Math Wall Art",
+        tags=[
+            "math wall art",
+            "chebyshev polynomial",
+            "mathematics poster",
+            "stem wall art",
+            "science poster",
+            "approximation theory",
+            "educational poster",
+            "classroom decor",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "math print",
+            "science wall art",
+        ],
+        seo_title=(
+            "Math Wall Art | Chebyshev Polynomials Print | Minimax Approximation "
+            "Tn STEM Mathematics Poster (Digital Download)"
+        ),
+        description_blurb=(
+            "Scientific plate of Chebyshev polynomials T0..T5 — equioscillation "
+            "and best uniform approximation on [-1,1]. LaTeX + scipy."
+        ),
+        compose=compose_chebyshev,
+        zip_name="Chebyshev_Polynomials_Math_Wall_Art.zip",
+        fig_theme="Tn equioscillation",
+    ),
+    Design(
+        slug="airy_functions",
+        folder="airy_functions",
+        concept="Airy Functions",
+        listing_prefix="Physics Wall Art",
+        tags=[
+            "physics wall art",
+            "airy function",
+            "math wall art",
+            "stem wall art",
+            "science poster",
+            "mathematics poster",
+            "educational poster",
+            "classroom decor",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "wave equation",
+            "science wall art",
+        ],
+        seo_title=(
+            "Physics Wall Art | Airy Functions Print | Turning Points Ai Bi "
+            "STEM Mathematics Poster (Digital Download)"
+        ),
+        description_blurb=(
+            "Scientific plate of Airy Ai and Bi — oscillatory left, exponential right. "
+            "Model equation for linear turning points / WKB. LaTeX + scipy."
+        ),
+        compose=compose_airy,
+        zip_name="Airy_Functions_Physics_Wall_Art.zip",
+        fig_theme="Ai / Bi turning point",
+    ),
+]
+
+# Plates for the Special Functions gallery set (NOT Mandelbrot — different product line)
+SET_SLUGS = [
+    "bessel_functions",
+    "hermite_qho",
+    "legendre_polynomials",
+    "laguerre_polynomials",
+    "chebyshev_polynomials",
+    "airy_functions",
 ]
 
 
@@ -584,6 +901,9 @@ def compose_equation_card(design: Design, width_in=10.0, height_in=8.0, dpi=DPI_
         "hermite_qho": r"$\psi_n\propto H_n e^{-\xi^{2}/2}$" if gep._USE_LATEX else r"$\psi_n\propto H_n e^{-\xi^2/2}$",
         "legendre_polynomials": r"$P_n(x)$",
         "mandelbrot_zoom": r"$z_{n+1}=z_n^{2}+c$" if gep._USE_LATEX else r"$z_{n+1}=z_n^2+c$",
+        "laguerre_polynomials": r"$L_n(x)$",
+        "chebyshev_polynomials": r"$T_n(x)$",
+        "airy_functions": r"$\mathrm{Ai}(x),\ \mathrm{Bi}(x)$",
     }
     ax.text(50, 72, SFb(design.concept.upper()), fontsize=_fs(width_in, 0.024), color=INK, ha="center")
     ax.text(50, 52, eqs[design.slug], fontsize=_fs(width_in, 0.038), color=RUST, ha="center", va="center")
@@ -684,16 +1004,155 @@ Frame not included. Personal use only.
     save_rgb(eq, previews / f"{design.slug}_preview_5_equation.jpg", DPI_PREVIEW, 92)
 
 
+def build_special_functions_set(preview_only: bool = False):
+    """Special Functions wall art set of 6 — distinct from Famous Equations / Field Physics."""
+    by_slug = {d.slug: d for d in DESIGNS}
+    designs = [by_slug[s] for s in SET_SLUGS]
+    out = OUT_ROOT / "special_functions_set"
+    prints = out / "prints"
+    previews = out / "previews"
+    out.mkdir(parents=True, exist_ok=True)
+    prints.mkdir(exist_ok=True)
+    previews.mkdir(exist_ok=True)
+    print("\n=== special_functions_set (bundle) ===")
+
+    names = [
+        "Bessel Functions",
+        "Hermite / QHO",
+        "Legendre Polynomials",
+        "Laguerre Polynomials",
+        "Chebyshev Polynomials",
+        "Airy Functions",
+    ]
+
+    if not preview_only:
+        for d in designs:
+            src = OUT_ROOT / d.folder / "prints" / f"{d.slug}_2x3_{DPI_PRINT}dpi.jpg"
+            if src.exists():
+                shutil.copy2(src, prints / f"{d.slug}_2x3_{DPI_PRINT}dpi.jpg")
+            else:
+                print(f"  render missing single for set: {d.slug}")
+                img = d.compose(12.0, 18.0, DPI_PRINT)
+                save_rgb(img, prints / f"{d.slug}_2x3_{DPI_PRINT}dpi.jpg", DPI_PRINT, 90)
+            src_a4 = OUT_ROOT / d.folder / "prints" / f"{d.slug}_A4_{DPI_PRINT}dpi.jpg"
+            if src_a4.exists():
+                shutil.copy2(src_a4, prints / f"{d.slug}_A4_{DPI_PRINT}dpi.jpg")
+            else:
+                img = d.compose(8.27, 11.69, DPI_PRINT)
+                save_rgb(img, prints / f"{d.slug}_A4_{DPI_PRINT}dpi.jpg", DPI_PRINT, 90)
+
+        zip_path = out / "Special_Functions_Wall_Art_Set_of_6.zip"
+        with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+            zf.writestr(
+                "README.txt",
+                """Special Functions — Wall Art Set of 6
+MathRelaxing scientific plates
+
+Six gallery prints in one download:
+  1. Bessel Functions — circular drum modes Jn
+  2. Hermite / Quantum Harmonic Oscillator — Hn wavefunctions
+  3. Legendre Polynomials — multipoles on [-1,1]
+  4. Laguerre Polynomials — half-line orthogonal basis
+  5. Chebyshev Polynomials — minimax / equioscillation
+  6. Airy Functions — turning points Ai & Bi
+
+Each design includes 2:3 (12×18) and A4 masters at 300 dpi.
+Matte paper recommended. Personal use only.
+
+© MathRelaxing
+""",
+            )
+            for fn in sorted(prints.glob("*.jpg")):
+                zf.write(fn, arcname=fn.name)
+        mb = zip_path.stat().st_size / (1024 * 1024)
+        print(f"  ZIP {zip_path.name} ({mb:.1f} MB)")
+        if mb > 19.5:
+            print("  WARNING: near Etsy 20MB limit — drop A4 from set if needed")
+
+    # Hero 3×2 grid
+    thumbs = []
+    for d in designs:
+        p = OUT_ROOT / d.folder / "previews" / f"{d.slug}_preview_4_plate.jpg"
+        if p.exists():
+            thumbs.append(Image.open(p).convert("RGB"))
+        else:
+            thumbs.append(d.compose(6, 8, DPI_PREVIEW))
+
+    cell_w, cell_h = 360, 450
+    gap = 16
+    cols, rows = 3, 2
+    W = cols * cell_w + (cols + 1) * gap
+    H = rows * cell_h + (rows + 1) * gap + 100
+    grid = Image.new("RGB", (W, H), (244, 241, 234))
+    draw = ImageDraw.Draw(grid)
+    try:
+        font = ImageFont.truetype("georgia.ttf", 28)
+        font_s = ImageFont.truetype("arial.ttf", 16)
+    except OSError:
+        font = ImageFont.load_default()
+        font_s = font
+    draw.text((W // 2, 28), "SPECIAL FUNCTIONS  ·  SET OF 6", font=font, fill=(26, 26, 26), anchor="mt")
+    draw.text(
+        (W // 2, 62),
+        "Scientific plates  ·  Bessel Hermite Legendre Laguerre Chebyshev Airy",
+        font=font_s, fill=(184, 92, 56), anchor="mt",
+    )
+    for i, im in enumerate(thumbs[:6]):
+        c, r = i % cols, i // cols
+        th = im.copy()
+        th.thumbnail((cell_w, cell_h), Image.Resampling.LANCZOS)
+        x = gap + c * (cell_w + gap) + (cell_w - th.width) // 2
+        y = 90 + gap + r * (cell_h + gap) + (cell_h - th.height) // 2
+        draw.rectangle([x - 3, y - 3, x + th.width + 3, y + th.height + 3], outline=(26, 26, 26), width=2)
+        grid.paste(th, (x, y))
+    side = max(W, H)
+    canvas = Image.new("RGB", (side, side), (244, 241, 234))
+    canvas.paste(grid, ((side - W) // 2, (side - H) // 2))
+    save_rgb(canvas, previews / "special_functions_preview_1_hero.jpg", DPI_PREVIEW, 92)
+
+    incl = Image.new("RGB", (1200, 1200), (244, 241, 234))
+    d = ImageDraw.Draw(incl)
+    d.rectangle([0, 0, 1200, 140], fill=(26, 26, 26))
+    d.text((600, 50), "WHAT'S INCLUDED", font=font, fill=(244, 241, 234), anchor="mt")
+    d.text((600, 95), "6 scientific plates  ·  multi-size masters", font=font_s, fill=(184, 92, 56), anchor="mt")
+    y = 200
+    for i, name in enumerate(names):
+        d.ellipse([120, y, 200, y + 70], fill=(184, 92, 56))
+        d.text((160, y + 35), str(i + 1), font=font_s, fill=(244, 241, 234), anchor="mm")
+        d.text((230, y + 35), name, font=font, fill=(26, 26, 26), anchor="lm")
+        y += 100
+    d.text((600, 1100), "300 dpi  ·  Instant download  ·  MathRelaxing", font=font_s, fill=(85, 85, 85), anchor="mt")
+    save_rgb(incl, previews / "special_functions_preview_2_included.jpg", DPI_PREVIEW, 92)
+
+    for i, dsgn in enumerate(designs[:4]):
+        eq = compose_equation_card(dsgn, 8, 6, DPI_PREVIEW)
+        save_rgb(eq, previews / f"special_functions_preview_{i + 3}_eq.jpg", DPI_PREVIEW, 92)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", type=str, default="")
     ap.add_argument("--preview-only", action="store_true")
     ap.add_argument("--no-latex", action="store_true")
+    ap.add_argument("--set-only", action="store_true", help="Only pack the Special Functions set of 6")
+    ap.add_argument("--skip-set", action="store_true")
     args = ap.parse_args()
 
     print("=== Special-function scientific plates (scipy) ===")
     OUT_ROOT.mkdir(parents=True, exist_ok=True)
     configure_matplotlib(use_latex=not args.no_latex)
+
+    if args.set_only:
+        by_slug = {d.slug: d for d in DESIGNS}
+        new_slugs = {"laguerre_polynomials", "chebyshev_polynomials", "airy_functions"}
+        for slug in SET_SLUGS:
+            d = by_slug[slug]
+            has_print = (OUT_ROOT / d.folder / "prints" / f"{d.slug}_2x3_{DPI_PRINT}dpi.jpg").exists()
+            if slug in new_slugs or not has_print:
+                build_design(d, preview_only=args.preview_only)
+        build_special_functions_set(preview_only=args.preview_only)
+        print("\nDONE →", OUT_ROOT)
+        return
 
     designs = DESIGNS
     if args.only:
@@ -704,6 +1163,12 @@ def main():
 
     for d in designs:
         build_design(d, preview_only=args.preview_only)
+
+    if not args.skip_set and not args.only:
+        build_special_functions_set(preview_only=args.preview_only)
+    elif not args.skip_set and args.only:
+        # pack set if all members present or requested subset includes them
+        build_special_functions_set(preview_only=args.preview_only)
 
     print("\nDONE →", OUT_ROOT)
 
