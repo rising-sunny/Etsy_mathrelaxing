@@ -71,27 +71,28 @@ DESIGNS = {
                  "moody wall art", "algorithmic art", "large wall art", "code art",
                  "contemporary art print"],
     },
-    "clifford": {
-        "art": ATTR / "flow_painting_clifford" / "flowpainting_sapphire_print.jpg",
+    "domaincolor": {
+        "art": ATTR / "domain_coloring" / "domaincoloring_iridescent_print.jpg",
         "title": (
-            "Abstract Strange Attractor Painting | Sapphire Blue Chaos Theory Canvas | "
-            "Mathematical Wall Art Poster, Gallery Print"
+            "Abstract Iridescent Painting | Jewel Tone Complex Math Art Canvas | "
+            "Mathematical Wall Art Poster, Opal Gallery Print"
         ),
         "desc": (
             "An original abstract painting generated entirely from mathematics — no AI, no stock "
-            "imagery. Tens of thousands of points iterate a chaotic dynamical system (the Clifford "
-            "attractor), tracing sharp, feathery ribbons of light — like wings or silk veils — in "
-            "deep sapphire blue on black.\n\n"
+            "imagery. Every pixel is colored by a single complex function: its angle sets the hue, "
+            "its magnitude sets soft concentric shells of light, tracing rosettes of indigo, "
+            "magenta, and amber across a deep jewel-toned ground — like polished opal or abalone "
+            "shell.\n\n"
             "• Museum-grade matte poster, printed to order\n"
             "• Portrait sizes: 12x16, 18x24, 30x40 in\n"
-            "• Sapphire palette — deep, saturated blue glow on black\n"
+            "• Full-color jewel-tone palette — indigo, violet, magenta, rose, amber\n"
             "• Ships from a local print partner, ready to frame (frame not included)\n\n"
-            "A striking, elegant centerpiece for a living room, office, or gallery wall.\n\n"
+            "A vivid, elegant centerpiece for a living room, office, or gallery wall.\n\n"
             "© MathRelaxing"
         ),
-        "tags": ["abstract painting", "strange attractor", "chaos theory art", "generative art",
-                 "blue wall art", "math wall art", "gallery wall art", "living room art",
-                 "office wall art", "algorithmic art", "large wall art", "code art",
+        "tags": ["abstract painting", "complex analysis art", "iridescent wall art", "generative art",
+                 "jewel tone decor", "math wall art", "gallery wall art", "living room art",
+                 "opal wall art", "algorithmic art", "large wall art", "code art",
                  "contemporary art print"],
     },
 }

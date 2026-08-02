@@ -282,3 +282,8 @@ vintage_art/products/*/*.zip
 # _hist_cache.npy rule above) + quick test renders (not deliverables)
 attractor_prints/flow_painting*/_hist_cache.npy
 attractor_prints/flow_painting*/*_test_*.jpg
+attractor_prints/domain_coloring/*_test_*.jpg
+# Clifford strange-attractor piece: superseded by domain_coloring per request
+# to move away from another attractor; generator script kept as reference,
+# rendered output not published/committed.
+attractor_prints/flow_painting_clifford/
