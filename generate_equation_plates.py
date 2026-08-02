@@ -33,7 +33,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Circle, FancyArrowPatch
-from matplotlib.collections import LineCollection
+from matplotlib.collections import LineCollection, PolyCollection
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
@@ -1038,6 +1038,118 @@ def compose_koch(width_in: float, height_in: float, dpi: int) -> Image.Image:
     return fig_to_image(fig)
 
 
+# ── Design 9: Möbius Strip ─────────────────────────────────────────────────────
+
+def _mobius_faces(n_u=140, n_v=14, R=1.0, width=0.55):
+    """Quad faces (each a (4,3) array of xyz) tiling a Mobius strip."""
+    u = np.linspace(0, 2 * np.pi, n_u, endpoint=True)
+    v = np.linspace(-1, 1, n_v)
+    U, V = np.meshgrid(u, v, indexing="ij")
+    half = width / 2 * V * np.cos(U / 2)
+    X = (R + half) * np.cos(U)
+    Y = (R + half) * np.sin(U)
+    Z = (width / 2 * V) * np.sin(U / 2)
+    pts = np.stack([X, Y, Z], axis=-1)  # (n_u, n_v, 3)
+
+    faces = []
+    for i in range(n_u - 1):
+        for j in range(n_v - 1):
+            faces.append(np.array([pts[i, j], pts[i + 1, j], pts[i + 1, j + 1], pts[i, j + 1]]))
+    boundary = np.concatenate([pts[:, 0], pts[::-1, -1], pts[:1, 0]])  # v=-1 out, v=+1 back
+    return faces, boundary
+
+
+def _rot_x(a):
+    c, s = np.cos(a), np.sin(a)
+    return np.array([[1, 0, 0], [0, c, -s], [0, s, c]])
+
+
+def _rot_z(a):
+    c, s = np.cos(a), np.sin(a)
+    return np.array([[c, -s, 0], [s, c, 0], [0, 0, 1]])
+
+
+def compose_mobius(width_in: float, height_in: float, dpi: int) -> Image.Image:
+    fig, ax = _new_plate(width_in, height_in, dpi)
+    fig_w = width_in
+    _header(
+        ax, "ONE SURFACE, ONE EDGE", "FIG. 9", "MOBIUS STRIP" if not _USE_LATEX else "M\\\"OBIUS STRIP",
+        r"$u\to u+2\pi\ \Rightarrow\ v\to-v$",
+        fig_w,
+    )
+
+    a = fig.add_axes([0.10, 0.30, 0.80, 0.53], zorder=3)
+    a.set_facecolor("none"); a.patch.set_alpha(0)
+    for sp in a.spines.values():
+        sp.set_visible(False)
+    a.set_xticks([]); a.set_yticks([])
+    a.set_aspect("equal")
+    a.set_xlim(-1.14, 1.34); a.set_ylim(-0.80, 0.70)
+
+    faces, boundary = _mobius_faces()
+    Rm = _rot_z(np.radians(18)) @ _rot_x(np.radians(62))
+    light = np.array([0.35, -0.45, 0.82]); light /= np.linalg.norm(light)
+
+    base_rgb = np.array([0.153, 0.153, 0.153])   # LINE_DARK-ish
+    rim_rgb = np.array([float(int(RUST[1:3], 16)), float(int(RUST[3:5], 16)), float(int(RUST[5:7], 16))]) / 255.0
+
+    proj, depth, shade = [], [], []
+    for f in faces:
+        rf = f @ Rm.T
+        proj.append(rf[:, :2])
+        depth.append(rf[:, 1].mean())
+        e1, e2 = rf[1] - rf[0], rf[3] - rf[0]
+        n = np.cross(e1, e2)
+        norm = np.linalg.norm(n)
+        n = n / norm if norm > 1e-9 else n
+        shade.append(abs(np.dot(n, light)))
+
+    order = np.argsort(depth)  # far (small y after rotation) drawn first
+    proj = [proj[k] for k in order]
+    shade = np.array([shade[k] for k in order])
+    lo, hi = shade.min(), shade.max()
+    shade_n = (shade - lo) / (hi - lo + 1e-9)
+    colors = base_rgb[None, :] + (rim_rgb - base_rgb)[None, :] * (0.18 + 0.55 * shade_n[:, None])
+    colors = np.clip(colors, 0, 1)
+
+    pc = PolyCollection(proj, facecolors=colors, edgecolors=colors,
+                        linewidths=0.25, zorder=3, antialiaseds=True)
+    a.add_collection(pc)
+
+    # single boundary edge, highlighted in rust -- the whole point of the piece
+    bnd = boundary @ Rm.T
+    a.plot(bnd[:, 0], bnd[:, 1], color=RUST, lw=2.3, zorder=4,
+           solid_capstyle="round", solid_joinstyle="round")
+
+    ax.text(
+        50, 27.0,
+        IT(r"a strip with a half-twist  $\cdot$  cut it along the middle and see what happens")
+        if _USE_LATEX else "a strip with a half-twist  ·  cut it along the middle and see what happens",
+        fontsize=_fs(fig_w, 0.010), color=INK_SOFT, ha="center", va="center", zorder=5,
+    )
+    _caption(
+        ax,
+        [
+            r"A one-sided, one-edged surface --- there is no `inside' or `outside'." if _USE_LATEX
+            else "A one-sided, one-edged surface — there is no 'inside' or 'outside'.",
+            r"Trace a finger along it and you visit both `faces' without lifting the pen." if _USE_LATEX
+            else "Trace a finger along it and you visit both 'faces' without lifting the pen.",
+            r"Discovered independently by M\"obius and Listing in 1858." if _USE_LATEX
+            else "Discovered independently by Möbius and Listing in 1858.",
+        ],
+        22.8,
+        fig_w,
+    )
+    _footer_eqs(
+        ax,
+        (r"$\mathbf{r}(u,v)$", "parametrization"),
+        (r"$\chi=0$", "Euler characteristic"),
+        ("1 side · 1 edge", "non-orientable"),
+        fig_w,
+    )
+    return fig_to_image(fig)
+
+
 @dataclass
 class Design:
     slug: str
@@ -1318,6 +1430,40 @@ DESIGNS: list[Design] = [
         zip_name="Koch_Snowflake_Math_Wall_Art.zip",
         fig_theme="Koch snowflake recursion",
     ),
+    Design(
+        slug="mobius_strip",
+        folder="mobius_strip",
+        title_line="Mobius Strip",
+        listing_prefix="Math Wall Art",
+        concept="Mobius Strip",
+        tags=[
+            "math wall art",
+            "mobius strip",
+            "topology art",
+            "mathematics poster",
+            "geometry poster",
+            "stem wall art",
+            "science poster",
+            "educational poster",
+            "classroom decor",
+            "digital download",
+            "teacher gift",
+            "conceptual art",
+            "math print",
+        ],
+        seo_title=(
+            "Math Wall Art | Mobius Strip Print | Topology One-Sided Surface "
+            "Conceptual STEM Poster (Digital Download)"
+        ),
+        description_blurb=(
+            "Scientific plate of the Mobius strip — a shaded 3D rendering of the one-sided, "
+            "one-edged surface with its single boundary traced in rust. Cream graph paper, "
+            "LaTeX equations."
+        ),
+        compose=compose_mobius,
+        zip_name="Mobius_Strip_Math_Wall_Art.zip",
+        fig_theme="Mobius strip topology",
+    ),
 ]
 
 
@@ -1333,6 +1479,7 @@ def compose_equation_card(design: Design, width_in=10.0, height_in=8.0, dpi=DPI_
         "mandelbrot_set": r"$z_{n+1}=z_n^{2}+c$" if _USE_LATEX else r"$z_{n+1}=z_n^2+c$",
         "normal_distribution": r"$f(x)=\dfrac{1}{\sigma\sqrt{2\pi}}\,e^{-(x-\mu)^2/2\sigma^2}$",
         "koch_snowflake": r"$N_n=3\cdot4^{\,n}$",
+        "mobius_strip": r"$u\to u+2\pi\ \Rightarrow\ v\to-v$",
     }
     ax.text(50, 72, SFb(design.concept.upper()), fontsize=_fs(width_in, 0.026), color=INK, ha="center")
     ax.text(50, 52, eqs[design.slug], fontsize=_fs(width_in, 0.040), color=RUST, ha="center", va="center")

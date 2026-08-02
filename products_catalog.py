@@ -1253,6 +1253,23 @@ A classic fractal for math classrooms, geometry lovers, and STEM gifts.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "mobius_strip_print": """\
+Instant download — Math Wall Art scientific plate.
+
+One Surface, One Edge — a shaded 3D rendering of the Mobius strip, the classic \
+one-sided, one-edged surface, with its single continuous boundary traced in rust. \
+Cream graph paper, LaTeX math, minimal editorial layout.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+A conceptual classic for topology fans, math classrooms, and STEM gifts.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "bessel_functions_print": """\
 Instant download — Physics Wall Art scientific plate.
 
@@ -4673,6 +4690,41 @@ PRODUCTS = {
         ],
         "notes": "generate_equation_plates.py FIG.8. Iconic fractal, recursion 2x2 grid n=0..3. $2.99.",
         "listing_id": 4548252475,
+    },
+    "mobius_strip_print": {
+        "title": (
+            "Math Wall Art | Mobius Strip Print | Topology One-Sided Surface "
+            "Conceptual STEM Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["mobius_strip_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("equation_plates", "mobius_strip", "previews", "mobius_strip_preview_1_hero.jpg"),
+            p("equation_plates", "mobius_strip", "previews", "mobius_strip_preview_2_detail.jpg"),
+            p("equation_plates", "mobius_strip", "previews", "mobius_strip_preview_3_included.jpg"),
+            p("equation_plates", "mobius_strip", "previews", "mobius_strip_preview_4_plate.jpg"),
+            p("equation_plates", "mobius_strip", "previews", "mobius_strip_preview_5_equation.jpg"),
+        ],
+        "files": [p("equation_plates", "mobius_strip", "Mobius_Strip_Math_Wall_Art.zip")],
+        "tags": [
+            "math wall art",
+            "mobius strip",
+            "topology art",
+            "mathematics poster",
+            "geometry poster",
+            "stem wall art",
+            "science poster",
+            "educational poster",
+            "classroom decor",
+            "digital download",
+            "teacher gift",
+            "conceptual art",
+            "math print",
+        ],
+        "notes": "generate_equation_plates.py FIG.9. Conceptual/topology piece: shaded 3D surface "
+                  "via hand-rolled rotation+painter's-algorithm PolyCollection (no mplot3d). $2.99.",
+        "listing_id": 4548624361,
     },
     "mandelbrot_set_print": {
         "title": (
