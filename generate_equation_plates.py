@@ -1111,6 +1111,79 @@ def compose_mobius(width_in: float, height_in: float, dpi: int) -> Image.Image:
     return fig_to_image(fig)
 
 
+# ── Design 10: Tesseract ────────────────────────────────────────────────────────
+
+_TESSERACT_RENDER_SCRIPT = BASE / "attractor_prints" / "generate_tesseract_render.py"
+_TESSERACT_RENDER_CACHE = OUT_ROOT / "tesseract" / "_pv_render.png"
+
+
+def _tesseract_render_image() -> Image.Image:
+    """Real 3D render (pyvista/VTK, off-screen via xvfb-run) of a tesseract:
+    16 vertices, genuinely rotated in 4D (not a static cube-in-a-cube diagram),
+    then perspective-projected 4D->3D. Colour stands in for the axis we can't
+    draw -- gold is near in the 4th dimension, ink is far. Rendered once and
+    cached, same pattern as the Mobius strip's pyvista render."""
+    if not _TESSERACT_RENDER_CACHE.exists():
+        _TESSERACT_RENDER_CACHE.parent.mkdir(parents=True, exist_ok=True)
+        print("  rendering tesseract via pyvista (xvfb-run, one-time)...")
+        subprocess.run(
+            ["xvfb-run", "-a", "python3", str(_TESSERACT_RENDER_SCRIPT),
+             str(_TESSERACT_RENDER_CACHE), "4200", "3400"],
+            check=True,
+        )
+    return Image.open(_TESSERACT_RENDER_CACHE).convert("RGBA")
+
+
+def compose_tesseract(width_in: float, height_in: float, dpi: int) -> Image.Image:
+    fig, ax = _new_plate(width_in, height_in, dpi)
+    fig_w = width_in
+    _header(
+        ax, "A SHADOW OF FOUR DIMENSIONS", "FIG. 10", "TESSERACT",
+        r"$\{\pm1\}^{4}$",
+        fig_w,
+    )
+
+    a = fig.add_axes([0.10, 0.30, 0.80, 0.53], zorder=3)
+    a.set_facecolor("none"); a.patch.set_alpha(0)
+    for sp in a.spines.values():
+        sp.set_visible(False)
+    a.set_xticks([]); a.set_yticks([])
+    a.set_aspect("equal")
+
+    render_img = _tesseract_render_image()
+    iw, ih = render_img.size
+    a.imshow(np.asarray(render_img), extent=(0, iw, 0, ih), zorder=3)
+    a.set_xlim(0, iw); a.set_ylim(0, ih)
+
+    ax.text(
+        50, 27.0,
+        IT(r"a cube has 8 vertices in 3 dimensions  $\cdot$  a tesseract has 16 in four")
+        if _USE_LATEX else "a cube has 8 vertices in 3 dimensions  ·  a tesseract has 16 in four",
+        fontsize=_fs(fig_w, 0.010), color=INK_SOFT, ha="center", va="center", zorder=5,
+    )
+    _caption(
+        ax,
+        [
+            r"What you see is a shadow --- a 3D projection of a 4D object, the way a cube casts a 2D shadow." if _USE_LATEX
+            else "What you see is a shadow — a 3D projection of a 4D object, the way a cube casts a 2D shadow.",
+            r"Color stands in for the axis we cannot draw: gold is near in the fourth dimension, ink is far." if _USE_LATEX
+            else "Color stands in for the axis we cannot draw: gold is near in the fourth dimension, ink is far.",
+            r"Popularized as the `hypercube' --- 4D geometry with real uses in relativity and data science." if _USE_LATEX
+            else "Popularized as the 'hypercube' — 4D geometry with real uses in relativity and data science.",
+        ],
+        22.8,
+        fig_w,
+    )
+    _footer_eqs(
+        ax,
+        (r"$V=16$", "vertices"),
+        (r"$E=32$", "edges"),
+        (r"$F=24$", "square faces"),
+        fig_w,
+    )
+    return fig_to_image(fig)
+
+
 @dataclass
 class Design:
     slug: str
@@ -1425,6 +1498,40 @@ DESIGNS: list[Design] = [
         zip_name="Mobius_Strip_Math_Wall_Art.zip",
         fig_theme="Mobius strip topology",
     ),
+    Design(
+        slug="tesseract",
+        folder="tesseract",
+        title_line="Tesseract",
+        listing_prefix="Math Wall Art",
+        concept="Tesseract",
+        tags=[
+            "math wall art",
+            "tesseract",
+            "hypercube",
+            "fourth dimension",
+            "mathematics poster",
+            "geometry poster",
+            "stem wall art",
+            "science poster",
+            "classroom decor",
+            "digital download",
+            "teacher gift",
+            "conceptual art",
+            "math print",
+        ],
+        seo_title=(
+            "Math Wall Art | Tesseract Print | 4D Hypercube Fourth Dimension "
+            "Conceptual STEM Poster (Digital Download)"
+        ),
+        description_blurb=(
+            "Scientific plate of the tesseract — a real 3D-rendered shadow of a rotating 4D "
+            "hypercube, colour-coded by depth along the axis we cannot draw. Cream graph paper, "
+            "LaTeX equations."
+        ),
+        compose=compose_tesseract,
+        zip_name="Tesseract_Math_Wall_Art.zip",
+        fig_theme="Tesseract / 4D hypercube",
+    ),
 ]
 
 
@@ -1441,6 +1548,7 @@ def compose_equation_card(design: Design, width_in=10.0, height_in=8.0, dpi=DPI_
         "normal_distribution": r"$f(x)=\dfrac{1}{\sigma\sqrt{2\pi}}\,e^{-(x-\mu)^2/2\sigma^2}$",
         "koch_snowflake": r"$N_n=3\cdot4^{\,n}$",
         "mobius_strip": r"$u\to u+2\pi\ \Rightarrow\ v\to-v$",
+        "tesseract": r"$\{\pm1\}^{4}$",
     }
     ax.text(50, 72, SFb(design.concept.upper()), fontsize=_fs(width_in, 0.026), color=INK, ha="center")
     ax.text(50, 52, eqs[design.slug], fontsize=_fs(width_in, 0.040), color=RUST, ha="center", va="center")

@@ -1270,6 +1270,24 @@ A conceptual classic for topology fans, math classrooms, and STEM gifts.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "tesseract_print": """\
+Instant download — Math Wall Art scientific plate.
+
+A Shadow of Four Dimensions — a real 3D-rendered shadow of a tesseract, the 16-vertex \
+4D hypercube, genuinely rotated in four dimensions and projected down to three. Color \
+stands in for the axis we cannot draw. Cream graph paper, LaTeX math, minimal editorial \
+layout.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+A conceptual classic for geometry fans, math classrooms, and STEM gifts.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "bessel_functions_print": """\
 Instant download — Physics Wall Art scientific plate.
 
@@ -4725,6 +4743,42 @@ PRODUCTS = {
         "notes": "generate_equation_plates.py FIG.9. Conceptual/topology piece: shaded 3D surface "
                   "via hand-rolled rotation+painter's-algorithm PolyCollection (no mplot3d). $2.99.",
         "listing_id": 4548624361,
+    },
+    "tesseract_print": {
+        "title": (
+            "Math Wall Art | Tesseract Print | 4D Hypercube Fourth Dimension "
+            "Conceptual STEM Poster (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["tesseract_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("equation_plates", "tesseract", "previews", "tesseract_preview_1_hero.jpg"),
+            p("equation_plates", "tesseract", "previews", "tesseract_preview_2_detail.jpg"),
+            p("equation_plates", "tesseract", "previews", "tesseract_preview_3_included.jpg"),
+            p("equation_plates", "tesseract", "previews", "tesseract_preview_4_plate.jpg"),
+            p("equation_plates", "tesseract", "previews", "tesseract_preview_5_equation.jpg"),
+        ],
+        "files": [p("equation_plates", "tesseract", "Tesseract_Math_Wall_Art.zip")],
+        "tags": [
+            "math wall art",
+            "tesseract",
+            "hypercube",
+            "fourth dimension",
+            "mathematics poster",
+            "geometry poster",
+            "stem wall art",
+            "science poster",
+            "classroom decor",
+            "digital download",
+            "teacher gift",
+            "conceptual art",
+            "math print",
+        ],
+        "notes": "generate_equation_plates.py FIG.10. Conceptual/4D piece: pyvista/VTK real 3D "
+                  "render, genuine 4D double-rotation + perspective projection, color-coded by "
+                  "rotated w-depth. Same render pipeline as mobius_strip_print. $2.99.",
+        "listing_id": 4548686688,
     },
     "mandelbrot_set_print": {
         "title": (
