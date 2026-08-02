@@ -24,6 +24,7 @@ from __future__ import annotations
 import argparse
 import os
 import shutil
+import subprocess
 import zipfile
 from dataclasses import dataclass
 from pathlib import Path
@@ -33,7 +34,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Circle, FancyArrowPatch
-from matplotlib.collections import LineCollection, PolyCollection
+from matplotlib.collections import LineCollection
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
@@ -1040,33 +1041,24 @@ def compose_koch(width_in: float, height_in: float, dpi: int) -> Image.Image:
 
 # ── Design 9: Möbius Strip ─────────────────────────────────────────────────────
 
-def _mobius_faces(n_u=140, n_v=14, R=1.0, width=0.55):
-    """Quad faces (each a (4,3) array of xyz) tiling a Mobius strip."""
-    u = np.linspace(0, 2 * np.pi, n_u, endpoint=True)
-    v = np.linspace(-1, 1, n_v)
-    U, V = np.meshgrid(u, v, indexing="ij")
-    half = width / 2 * V * np.cos(U / 2)
-    X = (R + half) * np.cos(U)
-    Y = (R + half) * np.sin(U)
-    Z = (width / 2 * V) * np.sin(U / 2)
-    pts = np.stack([X, Y, Z], axis=-1)  # (n_u, n_v, 3)
-
-    faces = []
-    for i in range(n_u - 1):
-        for j in range(n_v - 1):
-            faces.append(np.array([pts[i, j], pts[i + 1, j], pts[i + 1, j + 1], pts[i, j + 1]]))
-    boundary = np.concatenate([pts[:, 0], pts[::-1, -1], pts[:1, 0]])  # v=-1 out, v=+1 back
-    return faces, boundary
+_MOBIUS_RENDER_SCRIPT = BASE / "attractor_prints" / "generate_mobius_render.py"
+_MOBIUS_RENDER_CACHE = OUT_ROOT / "mobius_strip" / "_pv_render.png"
 
 
-def _rot_x(a):
-    c, s = np.cos(a), np.sin(a)
-    return np.array([[1, 0, 0], [0, c, -s], [0, s, c]])
-
-
-def _rot_z(a):
-    c, s = np.cos(a), np.sin(a)
-    return np.array([[c, -s, 0], [s, c, 0], [0, 0, 1]])
+def _mobius_render_image() -> Image.Image:
+    """Real 3D Phong/PBR-shaded render (pyvista/VTK, off-screen via xvfb-run):
+    smooth per-vertex shading, specular gloss, and a glossy gold tube tracing
+    the strip's single boundary edge. Rendered once and cached -- rebuilding
+    the plate at any size just reloads the same PNG."""
+    if not _MOBIUS_RENDER_CACHE.exists():
+        _MOBIUS_RENDER_CACHE.parent.mkdir(parents=True, exist_ok=True)
+        print("  rendering Mobius strip via pyvista (xvfb-run, one-time)...")
+        subprocess.run(
+            ["xvfb-run", "-a", "python3", str(_MOBIUS_RENDER_SCRIPT),
+             str(_MOBIUS_RENDER_CACHE), "4200", "3400"],
+            check=True,
+        )
+    return Image.open(_MOBIUS_RENDER_CACHE).convert("RGBA")
 
 
 def compose_mobius(width_in: float, height_in: float, dpi: int) -> Image.Image:
@@ -1084,42 +1076,11 @@ def compose_mobius(width_in: float, height_in: float, dpi: int) -> Image.Image:
         sp.set_visible(False)
     a.set_xticks([]); a.set_yticks([])
     a.set_aspect("equal")
-    a.set_xlim(-1.14, 1.34); a.set_ylim(-0.80, 0.70)
 
-    faces, boundary = _mobius_faces()
-    Rm = _rot_z(np.radians(18)) @ _rot_x(np.radians(62))
-    light = np.array([0.35, -0.45, 0.82]); light /= np.linalg.norm(light)
-
-    base_rgb = np.array([0.153, 0.153, 0.153])   # LINE_DARK-ish
-    rim_rgb = np.array([float(int(RUST[1:3], 16)), float(int(RUST[3:5], 16)), float(int(RUST[5:7], 16))]) / 255.0
-
-    proj, depth, shade = [], [], []
-    for f in faces:
-        rf = f @ Rm.T
-        proj.append(rf[:, :2])
-        depth.append(rf[:, 1].mean())
-        e1, e2 = rf[1] - rf[0], rf[3] - rf[0]
-        n = np.cross(e1, e2)
-        norm = np.linalg.norm(n)
-        n = n / norm if norm > 1e-9 else n
-        shade.append(abs(np.dot(n, light)))
-
-    order = np.argsort(depth)  # far (small y after rotation) drawn first
-    proj = [proj[k] for k in order]
-    shade = np.array([shade[k] for k in order])
-    lo, hi = shade.min(), shade.max()
-    shade_n = (shade - lo) / (hi - lo + 1e-9)
-    colors = base_rgb[None, :] + (rim_rgb - base_rgb)[None, :] * (0.18 + 0.55 * shade_n[:, None])
-    colors = np.clip(colors, 0, 1)
-
-    pc = PolyCollection(proj, facecolors=colors, edgecolors=colors,
-                        linewidths=0.25, zorder=3, antialiaseds=True)
-    a.add_collection(pc)
-
-    # single boundary edge, highlighted in rust -- the whole point of the piece
-    bnd = boundary @ Rm.T
-    a.plot(bnd[:, 0], bnd[:, 1], color=RUST, lw=2.3, zorder=4,
-           solid_capstyle="round", solid_joinstyle="round")
+    render_img = _mobius_render_image()
+    iw, ih = render_img.size
+    a.imshow(np.asarray(render_img), extent=(0, iw, 0, ih), zorder=3)
+    a.set_xlim(0, iw); a.set_ylim(0, ih)
 
     ax.text(
         50, 27.0,
