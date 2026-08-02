@@ -71,26 +71,27 @@ DESIGNS = {
                  "moody wall art", "algorithmic art", "large wall art", "code art",
                  "contemporary art print"],
     },
-    "marbling": {
-        "art": ATTR / "flow_painting_marbling" / "flowpainting_ambergold_print.jpg",
+    "clifford": {
+        "art": ATTR / "flow_painting_clifford" / "flowpainting_sapphire_print.jpg",
         "title": (
-            "Abstract Gold Marbling Painting | Amber Generative Art Canvas | "
-            "Mathematical Wall Art Poster, Luxe Gallery Print"
+            "Abstract Strange Attractor Painting | Sapphire Blue Chaos Theory Canvas | "
+            "Mathematical Wall Art Poster, Gallery Print"
         ),
         "desc": (
             "An original abstract painting generated entirely from mathematics — no AI, no stock "
-            "imagery. Six interfering sine waves weave a turbulent, all-over marbling pattern — "
-            "like molten gold leaf or a polished tiger's-eye stone — in warm amber light on black.\n\n"
+            "imagery. Tens of thousands of points iterate a chaotic dynamical system (the Clifford "
+            "attractor), tracing sharp, feathery ribbons of light — like wings or silk veils — in "
+            "deep sapphire blue on black.\n\n"
             "• Museum-grade matte poster, printed to order\n"
             "• Portrait sizes: 12x16, 18x24, 30x40 in\n"
-            "• Amber gold palette — luxurious honey-gold marbling glow\n"
+            "• Sapphire palette — deep, saturated blue glow on black\n"
             "• Ships from a local print partner, ready to frame (frame not included)\n\n"
-            "A rich, textural statement piece for a living room, entryway, or gallery wall.\n\n"
+            "A striking, elegant centerpiece for a living room, office, or gallery wall.\n\n"
             "© MathRelaxing"
         ),
-        "tags": ["abstract painting", "gold wall art", "marbling art", "generative art",
-                 "modern art print", "math wall art", "gallery wall art", "living room art",
-                 "luxury wall art", "algorithmic art", "large wall art", "code art",
+        "tags": ["abstract painting", "strange attractor", "chaos theory art", "generative art",
+                 "blue wall art", "math wall art", "gallery wall art", "living room art",
+                 "office wall art", "algorithmic art", "large wall art", "code art",
                  "contemporary art print"],
     },
 }
