@@ -43,13 +43,14 @@ def build():
     ax = fig.add_axes([0, 0, 1, 1]); ax.set_facecolor(DARK); ax.axis("off")
     ax.set_xlim(0, 1); ax.set_ylim(0, 1)
 
-    # faint tesseract-edge motif behind FRONT (echoes the "higher dimensions"
-    # thread that runs through the book)
+    # radial-fan motif behind FRONT (echoes the Euler's-Identity plate and the
+    # "higher dimensions" thread that runs through the book) -- bold enough to
+    # read clearly against the black cover, not just a hint
     rng = np.random.default_rng(4)
-    for _ in range(40):
-        a = rng.uniform(0, 2 * np.pi); r = rng.uniform(0.05, 0.22)
+    for _ in range(90):
+        a = rng.uniform(0, 2 * np.pi); r = rng.uniform(0.10, 0.34)
         x0 = FRONT_C + r * np.cos(a); y0 = 0.58 + 0.18 * r * np.sin(a)
-        ax.plot([FRONT_C, x0], [0.58, y0], color=GOLD, lw=0.4, alpha=0.10)
+        ax.plot([FRONT_C, x0], [0.58, y0], color=GOLD, lw=0.7, alpha=0.4)
 
     # ---- FRONT ----
     ax.plot([FRONT_C - 0.15, FRONT_C + 0.15], [0.44, 0.44], color=GOLD, lw=1.5)
