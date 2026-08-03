@@ -1291,6 +1291,27 @@ arc of calculus in one framed plate.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "history_of_number_theory_print": """\
+Instant download — MathRelaxing timeline poster.
+
+Twenty-Three Centuries of Primes — a dark, gold-linework timeline of number theory, \
+from Euclid's proof that there are infinitely many primes to Andrew Wiles' proof of \
+Fermat's Last Theorem. Euclid, Diophantus, Fermat, Goldbach, Gauss, Riemann, the Prime \
+Number Theorem, Ramanujan, Wiles — each paired with a bespoke diagram and its defining \
+equation, laid out along a ruled vertical timeline. Black ground, gradient linework \
+with a soft glow, Cinzel & Raleway type.
+
+► What you get
+• 1 timeline poster, portrait / ISO-A ratio, high-quality JPG
+• Sizes @ 300 dpi: 12x17 in (signature size), ISO A3, ISO A4
+• Instant download ZIP — no physical item ships
+
+A companion to our History of Calculus timeline — a conversation-starting piece for a \
+study, office, or math classroom.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "tesseract_print": """\
 Instant download — Math Wall Art scientific plate.
 
@@ -4800,6 +4821,41 @@ PRODUCTS = {
                   "timeline-poster format: 9-milestone dark/gold infographic, LineCollection gradient "
                   "linework + PIL bloom pass, Cinzel/Raleway from lulu_books fonts. $3.99.",
         "listing_id": 4549027221,
+    },
+
+    "history_of_number_theory_print": {
+        "title": (
+            "History of Number Theory | Math Timeline Poster | Euclid to Wiles "
+            "Fermats Last Theorem STEM Wall Art (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["history_of_number_theory_print"],
+        "price": 3.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("history_of_number_theory", "previews", "history_of_number_theory_preview_1_hero.jpg"),
+            p("history_of_number_theory", "previews", "history_of_number_theory_preview_2_detail_top.jpg"),
+            p("history_of_number_theory", "previews", "history_of_number_theory_preview_3_detail_bottom.jpg"),
+            p("history_of_number_theory", "previews", "history_of_number_theory_preview_4_included.jpg"),
+        ],
+        "files": [p("history_of_number_theory", "History_of_Number_Theory_Math_Wall_Art.zip")],
+        "tags": [
+            "math wall art",
+            "number theory",
+            "math timeline",
+            "prime numbers",
+            "mathematics poster",
+            "stem wall art",
+            "science poster",
+            "educational poster",
+            "classroom decor",
+            "digital download",
+            "teacher gift",
+            "math print",
+            "gift for mathematician",
+        ],
+        "notes": "generate_number_theory_poster.py + build_number_theory_assets.py. Second 'History of X' "
+                  "timeline poster: Euclid to Wiles, same dark/gold house style as History of Calculus. $3.99.",
+        "listing_id": 4549082769,
     },
     "tesseract_print": {
         "title": (
