@@ -46,7 +46,7 @@ plt.rcParams.update({"mathtext.fontset": "stix", "axes.unicode_minus": False})
 GOLD_CMAP = LinearSegmentedColormap.from_list("gold", [BRONZE, GOLD, GOLD_HI])
 
 W, H = 12.0, 17.0
-DPI = 200
+DPI = 300
 
 GLOW = lambda lw=1.8, c=GOLD, a=0.30, extra=2.4: [
     pe.Stroke(linewidth=lw + extra, foreground=c, alpha=a), pe.Normal()]
@@ -288,7 +288,7 @@ def build():
     plt.close(fig)
 
     img = Image.open(raw_png).convert("RGB")
-    bloomed = add_bloom(img)
+    bloomed = add_bloom(img, blur_radius=round(10 * DPI / 200))
     out_png = os.path.join(OUT, "history_of_calculus_v2_preview.png")
     bloomed.save(out_png)
     print("wrote", out_png)

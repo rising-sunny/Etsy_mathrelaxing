@@ -1270,6 +1270,27 @@ A conceptual classic for topology fans, math classrooms, and STEM gifts.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "history_of_calculus_print": """\
+Instant download — MathRelaxing timeline poster.
+
+Nine Milestones, Four Thousand Years — a dark, gold-linework timeline of calculus, \
+from Archimedes' method of exhaustion to Robinson's nonstandard analysis. Archimedes, \
+Fermat, Newton, Leibniz, Cauchy, Riemann, Weierstrass, Lebesgue, Robinson — each \
+paired with a bespoke diagram and its defining equation, laid out along a ruled \
+vertical timeline. Black ground, gradient gold linework with a soft glow, Cinzel \
+& Raleway type.
+
+► What you get
+• 1 timeline poster, portrait / ISO-A ratio, high-quality JPG
+• Sizes @ 300 dpi: 12x17 in (signature size), ISO A3, ISO A4
+• Instant download ZIP — no physical item ships
+
+A conversation-starting piece for a study, office, or math classroom — the whole \
+arc of calculus in one framed plate.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "tesseract_print": """\
 Instant download — Math Wall Art scientific plate.
 
@@ -4743,6 +4764,42 @@ PRODUCTS = {
         "notes": "generate_equation_plates.py FIG.9. Conceptual/topology piece: shaded 3D surface "
                   "via hand-rolled rotation+painter's-algorithm PolyCollection (no mplot3d). $2.99.",
         "listing_id": 4548624361,
+    },
+
+    "history_of_calculus_print": {
+        "title": (
+            "History of Calculus | Math Timeline Poster | Archimedes to Robinson "
+            "Equations STEM Wall Art (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["history_of_calculus_print"],
+        "price": 3.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("history_of_calculus", "previews", "history_of_calculus_preview_1_hero.jpg"),
+            p("history_of_calculus", "previews", "history_of_calculus_preview_2_detail_top.jpg"),
+            p("history_of_calculus", "previews", "history_of_calculus_preview_3_detail_bottom.jpg"),
+            p("history_of_calculus", "previews", "history_of_calculus_preview_4_included.jpg"),
+        ],
+        "files": [p("history_of_calculus", "History_of_Calculus_Math_Wall_Art.zip")],
+        "tags": [
+            "math wall art",
+            "history of calculus",
+            "calculus poster",
+            "math timeline",
+            "mathematics poster",
+            "stem wall art",
+            "science poster",
+            "educational poster",
+            "classroom decor",
+            "digital download",
+            "teacher gift",
+            "math print",
+            "gift for mathematician",
+        ],
+        "notes": "generate_history_poster.py + build_history_poster_assets.py. Pilot 'History of X' "
+                  "timeline-poster format: 9-milestone dark/gold infographic, LineCollection gradient "
+                  "linework + PIL bloom pass, Cinzel/Raleway from lulu_books fonts. $3.99.",
+        "listing_id": 4549027221,
     },
     "tesseract_print": {
         "title": (
