@@ -52,6 +52,11 @@ GLOW = lambda lw=1.8, c=GOLD, a=0.30, extra=2.4: [
     pe.Stroke(linewidth=lw + extra, foreground=c, alpha=a), pe.Normal()]
 
 
+def tracked(s, thin=1):
+    """Insert thin-space letter tracking for a more elegant, poster-style caps line."""
+    return (" " * thin).join(s)
+
+
 def grad_line(ax, x, y, cmap=GOLD_CMAP, lw=1.9, alpha=1.0, zorder=4, glow=True):
     pts = np.array([x, y]).T.reshape(-1, 1, 2)
     segs = np.concatenate([pts[:-1], pts[1:]], axis=1)
@@ -191,7 +196,7 @@ def draw_robinson(ax):
     ax.annotate("monad", xy=(1.22, 0.13), xytext=(1.7, 0.55),
                 arrowprops=dict(arrowstyle="->", color=SUB, lw=0.9),
                 fontsize=11, color=CREAM, fontproperties=RALEWAY_I)
-    ax.set_xlim(-2.6, 2.6); ax.set_ylim(-0.6, 0.9); ax.axis("off")
+    ax.set_xlim(-2.6, 2.6); ax.set_ylim(-0.6, 0.9); ax.set_aspect("equal"); ax.axis("off")
 
 
 MILESTONES = [
@@ -222,18 +227,21 @@ def build():
     fig.patch.set_facecolor(DARK)
     gs = fig.add_gridspec(
         nrows=n + 2, ncols=3,
-        height_ratios=[1.25] + [1.0] * n + [0.7],
+        height_ratios=[1.65] + [1.0] * n + [0.7],
         width_ratios=[0.30, 0.44, 0.26],
         left=0.09, right=0.95, top=0.965, bottom=0.03,
         hspace=0.28, wspace=0.02,
     )
 
     ax_title = fig.add_subplot(gs[0, :]); ax_title.axis("off"); ax_title.set_facecolor(DARK)
-    ax_title.text(0.5, 0.50, "HISTORY OF", fontsize=28, color=CREAM, ha="center",
+    ax_title.text(0.5, 0.80, tracked("HISTORY OF", 1), fontsize=23, color=CREAM, ha="center",
                   va="center", fontproperties=CINZEL_R)
-    ax_title.text(0.5, 0.16, "CALCULUS", fontsize=46, color=GOLD, ha="center",
+    ax_title.text(0.5, 0.555, tracked("CALCULUS", 1), fontsize=48, color=GOLD, ha="center",
                   va="center", fontproperties=CINZEL, path_effects=GLOW(lw=0.5, a=0.35, extra=3.5))
-    ax_title.plot([0.30, 0.70], [0.02, 0.02], color=GOLD, lw=1.3, transform=ax_title.transAxes)
+    ax_title.plot([0.40, 0.60], [0.335, 0.335], color=GOLD, lw=1.0, alpha=0.85)
+    ax_title.text(0.5, 0.18, tracked("FROM ARCHIMEDES TO THE INFINITESIMAL", 1), fontsize=11.5,
+                  color=SUB, ha="center", va="center", fontproperties=RALEWAY_I)
+    ax_title.plot([0.09, 0.91], [0.02, 0.02], color=LINE, lw=1.0)
     ax_title.set_xlim(0, 1); ax_title.set_ylim(0, 1)
 
     for i, (year, name, label, eq, drawfn) in enumerate(MILESTONES):
