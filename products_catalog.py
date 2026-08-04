@@ -1281,6 +1281,27 @@ For chaos-theory fans, fractal lovers, and math gallery walls.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "platonic_solids_print": """\
+Instant download — Math Wall Art scientific plate (dark observatory edition).
+
+The Five Solids — elegant 3D portraits of the five convex regular polyhedra \
+(Platonic solids): Tetrahedron, Cube, Octahedron, Dodecahedron and Icosahedron. \
+Each solid is generated from exact coordinates (golden-ratio family for \
+icosa/dodeca), with V·E·F counts, Schläfli symbols {p,q}, and Euler's formula \
+V−E+F=2. Deep black ground, gold and cyan accents — code-drawn, not stock art, \
+not AI illustration.
+
+► What you get
+• 1 scientific-plate print (high-quality JPG)
+• Aspect ratios @ 300 dpi: 2:3, 3:4, 4:5, 5:7, ISO A4, A3
+• Instant download ZIP — no physical item ships
+
+Ideal for geometry classrooms, sacred-geometry fans, STEM offices and math gallery walls. \
+Matte or semi-gloss paper recommended.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "famous_equations_set": """\
 Instant download — Famous Equations wall art set of 6 scientific plates.
 
@@ -4513,6 +4534,150 @@ PRODUCTS = {
             "Companion NEW listing to mandelbrot_set_print (classic view). $2.99."
         ),
         "listing_id": 4540109240,
+    },
+
+    "platonic_solids_print": {
+        "title": (
+            "Platonic Solids Poster | Sacred Geometry Polyhedra Wall Art | "
+            "Tetra Cube Octa Dodeca Icosa Math Print (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["platonic_solids_print"],
+        "price": 2.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("special_plates", "platonic_solids", "previews", "platonic_solids_preview_1_hero.jpg"),
+            p("special_plates", "platonic_solids", "previews", "platonic_solids_preview_2_detail.jpg"),
+            p("special_plates", "platonic_solids", "previews", "platonic_solids_preview_3_included.jpg"),
+            p("special_plates", "platonic_solids", "previews", "platonic_solids_preview_4_plate.jpg"),
+            p("special_plates", "platonic_solids", "previews", "platonic_solids_preview_5_equation.jpg"),
+        ],
+        "files": [p("special_plates", "platonic_solids", "Platonic_Solids_Math_Wall_Art.zip")],
+        "tags": [
+            "platonic solids",
+            "sacred geometry",
+            "polyhedra",
+            "math wall art",
+            "geometry poster",
+            "stem wall art",
+            "educational poster",
+            "classroom decor",
+            "nerd gift",
+            "digital download",
+            "teacher gift",
+            "math print",
+            "dodecahedron art",
+        ],
+        "notes": (
+            "Wave 15 winner: generate_platonic_solids_plate.py. "
+            "Scientific plate of the five convex regular polyhedra. "
+            "Etsy API: platonic solids poster ~27 listings, polyhedra wall art ~70. "
+            "$2.99. Draft listing_id=4549393140 (2026-07-29)."
+        ),
+        "listing_id": 4549393140,
+    },
+
+    # ── POD Printify: aluminum bookmarks (bp 765) ─────────────────────────────
+    # Blueprint has ONE physical variant → each design is a sibling Etsy listing.
+    # Full ids in printify/pod_bookmark_created.json. Create: create_pod_bookmark.py
+    "pod_bookmark_golden": {
+        "title": "Golden Spiral Math Bookmark | Aluminum Metal Bookmark | Fibonacci Phi Book Lover STEM Gift",
+        "description": "POD aluminum math bookmark — Golden Spiral. See printify/create_pod_bookmark.py META.",
+        "price": 17.99, "taxonomy_id": TAXONOMY["digital_art"], "images": [], "files": [],
+        "tags": ["math bookmark", "metal bookmark", "golden spiral", "fibonacci", "book lover gift",
+                 "reader gift", "STEM gift", "math teacher gift", "aluminum bookmark", "equation art",
+                 "science gift", "nerd gift", "book accessory"],
+        "notes": "POD bp765/p59. printify/create_pod_bookmark.py --design golden. Sibling digital set 4544427938.",
+        "listing_id": 4546605138, "printify_id": "6a6abfaad3560ab0280a4903",
+    },
+    "pod_bookmark_rose": {
+        "title": "Rose Curve Math Bookmark | Aluminum Metal Bookmark | Polar Rhodonea Equation Art STEM Gift",
+        "description": "POD aluminum math bookmark — Rose Curve.",
+        "price": 17.99, "taxonomy_id": TAXONOMY["digital_art"], "images": [], "files": [],
+        "tags": ["math bookmark", "metal bookmark", "rose curve", "polar graph", "book lover gift",
+                 "reader gift", "STEM gift", "math teacher gift", "aluminum bookmark", "equation art",
+                 "science gift", "nerd gift", "geometry art"],
+        "notes": "POD bp765/p59. create_pod_bookmark.py --design rose.",
+        "listing_id": 4546593319, "printify_id": "6a6ac098a2ff7e986a0ff9ae",
+    },
+    "pod_bookmark_euler": {
+        "title": "Euler Identity Math Bookmark | Aluminum Metal Bookmark | Most Beautiful Equation STEM Gift",
+        "description": "POD aluminum math bookmark — Euler's Identity.",
+        "price": 17.99, "taxonomy_id": TAXONOMY["digital_art"], "images": [], "files": [],
+        "tags": ["math bookmark", "metal bookmark", "euler identity", "complex plane", "book lover gift",
+                 "reader gift", "STEM gift", "math teacher gift", "aluminum bookmark", "equation art",
+                 "science gift", "nerd gift", "math gift"],
+        "notes": "POD bp765/p59. create_pod_bookmark.py --design euler.",
+        "listing_id": 4546593459, "printify_id": "6a6ac0a86e4c98e0ee061c31",
+    },
+    "pod_bookmark_lissajous": {
+        "title": "Lissajous Curve Math Bookmark | Aluminum Metal Bookmark | Oscillation Figure STEM Book Gift",
+        "description": "POD aluminum math bookmark — Lissajous figure.",
+        "price": 17.99, "taxonomy_id": TAXONOMY["digital_art"], "images": [], "files": [],
+        "tags": ["math bookmark", "metal bookmark", "lissajous", "wave art", "book lover gift",
+                 "reader gift", "STEM gift", "math teacher gift", "aluminum bookmark", "equation art",
+                 "science gift", "nerd gift", "physics gift"],
+        "notes": "POD bp765/p59. create_pod_bookmark.py --design lissajous.",
+        "listing_id": 4546593573, "printify_id": "6a6ac0bad3560ab0280a4a5c",
+    },
+    "pod_bookmark_harmono": {
+        "title": "Harmonograph Math Bookmark | Aluminum Metal Bookmark | Pendulum Curve Art STEM Gift",
+        "description": "POD aluminum math bookmark — Harmonograph.",
+        "price": 17.99, "taxonomy_id": TAXONOMY["digital_art"], "images": [], "files": [],
+        "tags": ["math bookmark", "metal bookmark", "harmonograph", "pendulum art", "book lover gift",
+                 "reader gift", "STEM gift", "math teacher gift", "aluminum bookmark", "equation art",
+                 "science gift", "nerd gift", "geometry art"],
+        "notes": "POD bp765/p59. create_pod_bookmark.py --design harmono.",
+        "listing_id": 4546606580, "printify_id": "6a6ac0cad3560ab0280a4a7d",
+    },
+    "pod_bookmark_butterfly": {
+        "title": "Butterfly Curve Math Bookmark | Aluminum Metal Bookmark | Fay Equation Art STEM Book Gift",
+        "description": "POD aluminum math bookmark — Butterfly Curve.",
+        "price": 17.99, "taxonomy_id": TAXONOMY["digital_art"], "images": [], "files": [],
+        "tags": ["math bookmark", "metal bookmark", "butterfly curve", "polar graph", "book lover gift",
+                 "reader gift", "STEM gift", "math teacher gift", "aluminum bookmark", "equation art",
+                 "science gift", "nerd gift", "math art"],
+        "notes": "POD bp765/p59. create_pod_bookmark.py --design butterfly.",
+        "listing_id": 4546593783, "printify_id": "6a6ac0da097240048f0cd8ac",
+    },
+    "pod_bookmark_lemniscate": {
+        "title": "Lemniscate Infinity Math Bookmark | Aluminum Metal Bookmark | Bernoulli Figure Eight STEM Gift",
+        "description": "POD aluminum math bookmark — Lemniscate.",
+        "price": 17.99, "taxonomy_id": TAXONOMY["digital_art"], "images": [], "files": [],
+        "tags": ["math bookmark", "metal bookmark", "lemniscate", "infinity symbol", "book lover gift",
+                 "reader gift", "STEM gift", "math teacher gift", "aluminum bookmark", "equation art",
+                 "science gift", "nerd gift", "infinity art"],
+        "notes": "POD bp765/p59. create_pod_bookmark.py --design lemniscate.",
+        "listing_id": 4546593817, "printify_id": "6a6ac0e9097240048f0cd8c4",
+    },
+    "pod_bookmark_heart": {
+        "title": "Heart Curve Math Bookmark | Aluminum Metal Bookmark | Love Equation Art Book Lover Gift",
+        "description": "POD aluminum math bookmark — Heart Curve.",
+        "price": 17.99, "taxonomy_id": TAXONOMY["digital_art"], "images": [], "files": [],
+        "tags": ["math bookmark", "metal bookmark", "heart curve", "math love", "book lover gift",
+                 "reader gift", "STEM gift", "math teacher gift", "aluminum bookmark", "equation art",
+                 "romantic gift", "nerd gift", "valentine gift"],
+        "notes": "POD bp765/p59. create_pod_bookmark.py --design heart.",
+        "listing_id": 4546606826, "printify_id": "6a6ac0f9fcb6af0cc70143c4",
+    },
+    "pod_bookmark_phyllotaxis": {
+        "title": "Phyllotaxis Math Bookmark | Aluminum Metal Bookmark | Sunflower Fibonacci Angle STEM Gift",
+        "description": "POD aluminum math bookmark — Phyllotaxis.",
+        "price": 17.99, "taxonomy_id": TAXONOMY["digital_art"], "images": [], "files": [],
+        "tags": ["math bookmark", "metal bookmark", "phyllotaxis", "fibonacci", "book lover gift",
+                 "reader gift", "STEM gift", "math teacher gift", "aluminum bookmark", "equation art",
+                 "science gift", "nerd gift", "golden ratio"],
+        "notes": "POD bp765/p59. create_pod_bookmark.py --design phyllotaxis.",
+        "listing_id": 4546607004, "printify_id": "6a6ac109a2ff7e986a0ffa9b",
+    },
+    "pod_bookmark_wave": {
+        "title": "Standing Wave Math Bookmark | Aluminum Metal Bookmark | Physics Harmonics STEM Book Gift",
+        "description": "POD aluminum math bookmark — Standing Wave.",
+        "price": 17.99, "taxonomy_id": TAXONOMY["digital_art"], "images": [], "files": [],
+        "tags": ["math bookmark", "metal bookmark", "standing wave", "physics art", "book lover gift",
+                 "reader gift", "STEM gift", "math teacher gift", "aluminum bookmark", "equation art",
+                 "science gift", "nerd gift", "wave art"],
+        "notes": "POD bp765/p59. create_pod_bookmark.py --design wave. Full line in printify/pod_bookmark_created.json.",
+        "listing_id": 4546607100, "printify_id": "6a6ac119a55df4f3cd0db3b8",
     },
 }
 
