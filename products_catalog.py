@@ -4571,7 +4571,7 @@ PRODUCTS = {
             "Wave 15 winner: generate_platonic_solids_plate.py. "
             "Scientific plate of the five convex regular polyhedra. "
             "Etsy API: platonic solids poster ~27 listings, polyhedra wall art ~70. "
-            "$2.99. Draft listing_id=4549393140 (2026-07-29)."
+            "$2.99. Active listing_id=4549393140 (2026-07-29)."
         ),
         "listing_id": 4549393140,
     },
