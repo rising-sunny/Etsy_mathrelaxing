@@ -27,7 +27,8 @@ python ops/shop_optimize.py report
 | **4540082607** Famous Equations Set of 6 | 3 sales, 80 views, 4 favs | $3.99 |
 | **4538562680** Unit Circle | 1 sale, **93** views | $3.99 |
 | **4539473180** Physics Poster Set of 6 | 1 sale, 56 views | $3.99 |
-| **4550715355** STEM Wall Art Pack of 10 | **New pack** — high AOV $16.99 | $16.99 |
+| **4550715355** STEM Wall Art Pack of 10 | high AOV $16.99 | $16.99 |
+| **4550737656** Physics Wall Art Pack of 10 | physics-only sibling $16.99 | $16.99 |
 | **4544209146** Coffee Table Book | 33 views, 3 favs, $48 AOV | $48 |
 
 ### Tier B — light budget (has sales, lower views)
@@ -85,6 +86,7 @@ Session applied toggles on https://www.etsy.com/your/shops/me/advertising
 | 4538562680 | Unit Circle |
 | 4539473180 | Physics Poster Set of 6 |
 | 4550715355 | STEM Wall Art Pack of 10 |
+| 4550737656 | Physics Wall Art Pack of 10 (enable in Ads if not auto-on) |
 | 4544209146 | Coffee Table Book |
 | 4538070573 | Lab Notebook |
 | 4534027247 | STEM Graph Paper Notebook |

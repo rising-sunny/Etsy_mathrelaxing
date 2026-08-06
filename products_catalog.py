@@ -3009,6 +3009,41 @@ PRODUCTS = {
         "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/make_voronoi_book.py (comando 'interior' con blank_after_each=True -> *_interior_print.pdf; portada reutiliza el cover.pdf ya existente del producto digital, rasterizado a PNG). 104 paginas. Precio $18.99 + shipping profile Lulu Publishing. Subido como borrador el 2026-07-07, listing_id=4533709063.",
     },
 
+    # Physics-only digital bundle (10 designs)
+    "physics_wall_art_pack_10": {
+        "title": (
+            "Physics Wall Art Pack of 10 | Science Digital Prints Bundle | "
+            "Maxwell Schrodinger Black Hole Classroom Office Decor"
+        ),
+        "description": (
+            "Curated pack of 10 physics wall-art designs (instant download, 2 ZIPs). "
+            "See packs/build_physics_pack.py + packs/create_physics_pack_listing.py."
+        ),
+        "price": 16.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("packs", "physics_wall_art_10", "preview_1_hero.jpg"),
+            p("packs", "physics_wall_art_10", "preview_2_included.jpg"),
+            p("packs", "physics_wall_art_10", "preview_3_value.jpg"),
+        ],
+        "files": [
+            p("packs", "physics_wall_art_10", "MathRelaxing_Physics_Pack_Part1_of_2.zip"),
+            p("packs", "physics_wall_art_10", "MathRelaxing_Physics_Pack_Part2_of_2.zip"),
+        ],
+        "tags": [
+            "physics poster", "physics wall art", "science wall art", "stem wall art",
+            "physics art print", "classroom decor", "digital download", "physics teacher gift",
+            "equation poster", "quantum physics", "printable wall art", "science classroom",
+            "lab decor",
+        ],
+        "notes": (
+            "Physics-only sibling of stem_wall_art_pack_10. $16.99. "
+            "Etsy active listing_id=4550737656. Ads ON recommended. "
+            "Rebuild: python packs/build_physics_pack.py"
+        ),
+        "listing_id": 4550737656,
+    },
+
     # Best-seller digital bundle (10 designs) — ops pack from sales metrics
     "stem_wall_art_pack_10": {
         "title": (
