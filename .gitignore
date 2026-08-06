@@ -251,6 +251,15 @@ printful/.env
 
 # Printify API token
 printify/.env
+# Regenerable Printify mockup JPGs (download_bookmark_mockups.py)
+printify/bookmark_listing_mockups/
+
+# Lulu fulfillment secrets + local print PDFs (hosted on mathrelaxing.store)
+lulu_books/.env
+lulu_books/output/
+lulu_books/generators/**/fullbook/*.pdf
+lulu_books/generators/**/fullbook/*.png
+lulu_books/generators/**/fullbook/pages/
 
 # Wall-art set — generated print files, mockups & zips (regenerable from scripts)
 wallart_set/out/

@@ -3009,6 +3009,76 @@ PRODUCTS = {
         "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/make_voronoi_book.py (comando 'interior' con blank_after_each=True -> *_interior_print.pdf; portada reutiliza el cover.pdf ya existente del producto digital, rasterizado a PNG). 104 paginas. Precio $18.99 + shipping profile Lulu Publishing. Subido como borrador el 2026-07-07, listing_id=4533709063.",
     },
 
+    # Coffee-table hardcover — Lulu square color case-wrap; Etsy→Lulu via fulfillment.py
+    "shape_of_an_idea": {
+        "title": (
+            "The Shape of an Idea | Hardcover Math Art Book | 18 Plates on Great "
+            "Equations and Topology | Square Coffee Table Gallery Book"
+        ),
+        "description": (
+            "THE SHAPE OF AN IDEA — premium 8.5×8.5 hardcover gallery of great "
+            "equations and concepts (18 plates, 45 pages). Printed on demand via Lulu. "
+            "See lulu_books/generators/concepts_gallery/ and fulfillment.py."
+        ),
+        "price": 38.00,
+        "taxonomy_id": 335,
+        "images": [],
+        "files": [],
+        "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
+        "readiness_state_id": READINESS_STATE_LULU_BOOKS,
+        "return_policy_id": RETURN_POLICY_ID,
+        "tags": [
+            "math art book", "coffee table book", "hardcover art book", "gift for math lover",
+            "equation art", "topology art", "mathematician gift", "math teacher gift",
+            "geometric art book", "physics gift", "science art book", "mobius strip art",
+            "math gallery book",
+        ],
+        "notes": (
+            "Tipo 8 hardcover POD Lulu square 8.5×8.5. "
+            "generators/concepts_gallery: full_book.py + build_cover_wrap.py. "
+            "45 pages. Standard $38 (SOI-STD-8585) / Premium $52 (SOI-PREM-8585). "
+            "SKU Lulu STD 0850X0850.FC.STD.CW.080CW444.MXX / PREM .FC.PRE. "
+            "Fulfillment: lulu_books/fulfillment.py BOOKS[4548870190]. "
+            "Etsy draft listing_id=4548870190."
+        ),
+        "listing_id": 4548870190,
+    },
+
+    # Live SEO title: "Math Art Coffee Table Book | Hardcover Fractals Attractors Curves…"
+    "mathematics_of_beauty": {
+        "title": (
+            "Math Art Coffee Table Book | Hardcover Fractals Attractors Curves | "
+            "Gift for Math Teacher"
+        ),
+        "description": (
+            "THE MATHEMATICS OF BEAUTY — premium 8.5×8.5 hardcover gallery "
+            "(38 plates, 88 pages). Printed on demand via Lulu. "
+            "See lulu_books/generators/math_gallery/ and fulfillment.py."
+        ),
+        "price": 48.00,
+        "taxonomy_id": 335,
+        "images": [],
+        "files": [],
+        "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
+        "readiness_state_id": READINESS_STATE_LULU_BOOKS,
+        "return_policy_id": RETURN_POLICY_ID,
+        "tags": [
+            "coffee table book", "math art", "math teacher gift", "math art book",
+            "generative art", "fractal art", "mandelbrot art", "math gift",
+            "science gift", "math lover gift", "beautiful math", "chaos theory art",
+            "geometry art",
+        ],
+        "notes": (
+            "Tipo 8 hardcover POD Lulu square 8.5×8.5. "
+            "generators/math_gallery: full_book.py + build_cover_wrap.py. "
+            "88 pages. Standard $48 (TMB-STD-8585) / Premium $65 (TMB-PREM-8585). "
+            "SKU Lulu STD 0850X0850.FC.STD.CW.080CW444.MXX / PREM .FC.PRE. "
+            "Fulfillment: lulu_books/fulfillment.py BOOKS[4544209146]. "
+            "Etsy active listing_id=4544209146. Partner Lulu 5702394."
+        ),
+        "listing_id": 4544209146,
+    },
+
     "spiral_tilings_ipad": {
         "title":       "Interactive Color By Number Spiral Tilings — iPad Safari SVG App | 50 Math Mandala Radial Designs",
         "description": DESCRIPTIONS["spiral_tilings_ipad"],
