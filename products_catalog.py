@@ -3009,6 +3009,41 @@ PRODUCTS = {
         "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/make_voronoi_book.py (comando 'interior' con blank_after_each=True -> *_interior_print.pdf; portada reutiliza el cover.pdf ya existente del producto digital, rasterizado a PNG). 104 paginas. Precio $18.99 + shipping profile Lulu Publishing. Subido como borrador el 2026-07-07, listing_id=4533709063.",
     },
 
+    # Best-seller digital bundle (10 designs) — ops pack from sales metrics
+    "stem_wall_art_pack_10": {
+        "title": (
+            "STEM Wall Art Pack of 10 | Math Physics Digital Prints Bundle | "
+            "Famous Equations Unit Circle Classroom Office Decor"
+        ),
+        "description": (
+            "Curated pack of 10 STEM wall-art designs (instant download, 2 ZIPs). "
+            "See packs/build_stem_pack.py + packs/create_stem_pack_listing.py."
+        ),
+        "price": 16.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("packs", "stem_wall_art_10", "preview_1_hero.jpg"),
+            p("packs", "stem_wall_art_10", "preview_2_included.jpg"),
+            p("packs", "stem_wall_art_10", "preview_3_value.jpg"),
+        ],
+        "files": [
+            p("packs", "stem_wall_art_10", "MathRelaxing_STEM_Pack_Part1_of_2.zip"),
+            p("packs", "stem_wall_art_10", "MathRelaxing_STEM_Pack_Part2_of_2.zip"),
+        ],
+        "tags": [
+            "math wall art", "physics poster", "stem wall art", "math poster pack",
+            "science wall art", "classroom decor", "digital download", "math teacher gift",
+            "equation poster", "unit circle", "printable wall art", "office wall art",
+            "physics art print",
+        ],
+        "notes": (
+            "Bundle of 10 bestsellers/high-signal designs at $16.99 (~half of buying separate). "
+            "Etsy active listing_id=4550715355. Ads ON recommended. "
+            "Rebuild: python packs/build_stem_pack.py"
+        ),
+        "listing_id": 4550715355,
+    },
+
     # Coffee-table hardcover — Lulu square color case-wrap; Etsy→Lulu via fulfillment.py
     "shape_of_an_idea": {
         "title": (
