@@ -3009,6 +3009,43 @@ PRODUCTS = {
         "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/make_voronoi_book.py (comando 'interior' con blank_after_each=True -> *_interior_print.pdf; portada reutiliza el cover.pdf ya existente del producto digital, rasterizado a PNG). 104 paginas. Precio $18.99 + shipping profile Lulu Publishing. Subido como borrador el 2026-07-07, listing_id=4533709063.",
     },
 
+    # Physics formula classroom set — dark observatory scientific plates
+    "physics_formula_set": {
+        "title": (
+            "Physics Formula Poster Set of 6 | Classroom Science Wall Art | "
+            "Kinematics Energy Maxwell Waves Thermo Digital Download"
+        ),
+        "description": (
+            "6 elegant dark-observatory physics plates (kinematics, energy, momentum, "
+            "Maxwell, waves, thermodynamics). generate_physics_formula_set.py"
+        ),
+        "price": 11.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_1_hero.jpg"),
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_2_included.jpg"),
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_3_eq.jpg"),
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_4_eq.jpg"),
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_5_eq.jpg"),
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_6_eq.jpg"),
+        ],
+        "files": [
+            p("special_plates", "physics_formula_set", "Physics_Formula_Poster_Set_of_6.zip"),
+        ],
+        "tags": [
+            "physics poster", "physics formula", "science wall art", "classroom decor",
+            "physics classroom", "stem wall art", "equation poster", "teacher gift",
+            "digital download", "maxwell equations", "kinematics poster", "science classroom",
+            "lab decor",
+        ],
+        "notes": (
+            "Wave16 winner #1. Dark observatory plates, zone layout anti-collision. "
+            "listing_id=4550732719 active $11.99. "
+            "python generate_physics_formula_set.py"
+        ),
+        "listing_id": 4550732719,
+    },
+
     # Physics-only digital bundle (10 designs)
     "physics_wall_art_pack_10": {
         "title": (
