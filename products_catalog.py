@@ -3009,6 +3009,43 @@ PRODUCTS = {
         "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/make_voronoi_book.py (comando 'interior' con blank_after_each=True -> *_interior_print.pdf; portada reutiliza el cover.pdf ya existente del producto digital, rasterizado a PNG). 104 paginas. Precio $18.99 + shipping profile Lulu Publishing. Subido como borrador el 2026-07-07, listing_id=4533709063.",
     },
 
+    # Strange Attractors set — chaos theory gallery plates
+    "strange_attractors_set": {
+        "title": (
+            "Strange Attractors Poster Set of 6 | Chaos Theory Wall Art | "
+            "Lorenz Rossler Thomas Chen Math Digital Download"
+        ),
+        "description": (
+            "6 dark-observatory attractor plates (Lorenz, Rössler, Thomas, Four-Wing, "
+            "Chen, Aizawa). generate_strange_attractors_set.py"
+        ),
+        "price": 12.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_1_hero.jpg"),
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_2_included.jpg"),
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_3_eq.jpg"),
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_4_eq.jpg"),
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_5_eq.jpg"),
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_6_eq.jpg"),
+        ],
+        "files": [
+            p("special_plates", "strange_attractors_set", "Strange_Attractors_Poster_Set_of_6.zip"),
+        ],
+        "tags": [
+            "chaos theory art", "strange attractor", "lorenz attractor", "math wall art",
+            "physics wall art", "science wall art", "fractal art", "stem wall art",
+            "digital download", "math poster set", "classroom decor", "nerd gift",
+            "equation poster",
+        ],
+        "notes": (
+            "Wave17 #1. ODE trajectories, zone layout anti-collision. "
+            "listing_id=4551535506 active $12.99. "
+            "python generate_strange_attractors_set.py"
+        ),
+        "listing_id": 4551535506,
+    },
+
     # Physics formula classroom set — dark observatory scientific plates
     "physics_formula_set": {
         "title": (
