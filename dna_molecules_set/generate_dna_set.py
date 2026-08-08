@@ -163,15 +163,20 @@ def draw_double_helix():
     ax.add_patch(Rectangle((0.24, 0.855), 0.028, 0.014, facecolor=TEAL, edgecolor="none"))
     ax.text(0.275, 0.862, "G – C", fontproperties=RALEWAY, fontsize=9.5, color=INK_SOFT, va="center")
 
+    # anchor points measured directly off the rendered helix (non-transparent
+    # pixel bounding box at each height) so the leader lines actually touch
+    # the strand/rung instead of floating in empty space
     callouts = [
-        ((0.60, 0.79), (0.80, 0.80), "sugar–phosphate\nbackbone"),
-        ((0.55, 0.53), (0.80, 0.50), "base pairs"),
-        ((0.44, 0.235), (0.80, 0.22), "antiparallel\n5'->3'  /  3'->5'"),
+        ((0.484, 0.693), (0.80, 0.80), "sugar–phosphate\nbackbone"),
+        ((0.477, 0.458), (0.80, 0.50), "base pairs"),
+        ((0.454, 0.301), (0.80, 0.22), "antiparallel\n5'->3'  /  3'->5'"),
     ]
     for (x0, y0), (x1, y1), label in callouts:
-        ax.plot([x0, x1], [y0, y1], color=INK_FAINT, lw=0.8)
+        ax.plot([x0], [y0], "o", color=INK_SOFT, ms=3.5, zorder=6)
+        bend_x = x0 + (x1 - x0) * 0.4
+        ax.plot([x0, bend_x, x1], [y0, y0, y1], color=INK_FAINT, lw=0.8, zorder=5)
         ax.text(x1 + 0.012, y1, label, fontproperties=RALEWAY_I, fontsize=9.5, color=INK_SOFT, va="center")
-    ax.text(0.40, 0.155 + 0.06, "helical axis", fontproperties=RALEWAY_I, fontsize=9.5,
+    ax.text(0.40, 0.255, "helical axis", fontproperties=RALEWAY_I, fontsize=9.5,
             color=INK_FAINT, ha="center")
 
     caption(ax, [
