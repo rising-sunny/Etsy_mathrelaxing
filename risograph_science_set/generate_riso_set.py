@@ -28,8 +28,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
-from scipy.spatial.distance import pdist, squareform
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from scipy.ndimage import map_coordinates
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 PLATES = os.path.join(BASE, "plates")
@@ -80,8 +80,21 @@ def paper_texture(w, h, seed=7):
     return Image.fromarray(arr, "RGB")
 
 
-# ── halftone ─────────────────────────────────────────────────────────────
-def halftone_from_alpha(alpha01, cell=9, angle=37.0):
+# ── halftone (with dot gain + uneven ink coverage) ──────────────────────
+def smooth_noise_field(h, w, seed, scale, lo=-1.0, hi=1.0):
+    rng = np.random.default_rng(seed)
+    small = rng.normal(0, 1, size=(max(2, h // scale), max(2, w // scale))).astype(np.float32)
+    big = np.array(Image.fromarray(((small - small.min()) / np.ptp(small) * 255).astype(np.uint8))
+                    .resize((w, h), Image.BICUBIC), dtype=np.float32) / 255.0
+    big = (big - big.min()) / (big.max() - big.min())
+    return lo + big * (hi - lo)
+
+
+def mottle_field(h, w, seed=11, scale=230, strength=0.45):
+    return 1.0 + smooth_noise_field(h, w, seed, scale, -strength, strength)
+
+
+def halftone_from_alpha(alpha01, cell=9, angle=37.0, mottle=None, gain_gamma=0.74):
     h, w = alpha01.shape
     theta = np.radians(angle)
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
@@ -90,7 +103,11 @@ def halftone_from_alpha(alpha01, cell=9, angle=37.0):
     cx = np.mod(xr, cell) - cell / 2.0
     cy = np.mod(yr, cell) - cell / 2.0
     dist = np.sqrt(cx ** 2 + cy ** 2)
-    radius = (cell * 0.70 / 2.0) * np.sqrt(np.clip(alpha01, 0, 1))
+    a = np.clip(alpha01, 0, 1)
+    if mottle is not None:
+        a = np.clip(a * mottle, 0, 1)
+    a_gain = a ** gain_gamma  # gamma < 1 boosts midtones -> simulated dot gain
+    radius = (cell * 0.74 / 2.0) * np.sqrt(a_gain)
     return dist <= radius
 
 
@@ -109,21 +126,43 @@ def render_pass(draw_fn, mode, px=ILL_PX):
     return Image.open(buf).convert("RGBA").resize((px, px), Image.LANCZOS)
 
 
-def compose_illustration(draw_fn, spot_hex, cell=9, angle=37.0, offset=(5, -4)):
+# ── organic press wobble ─────────────────────────────────────────────────
+def organic_warp(img, seed, amplitude=1.6, scale=260):
+    arr = np.asarray(img).astype(np.float32)
+    h, w = arr.shape[:2]
+    dx = smooth_noise_field(h, w, seed, scale, -amplitude, amplitude)
+    dy = smooth_noise_field(h, w, seed + 1, scale, -amplitude, amplitude)
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    src_y = np.clip(yy + dy, 0, h - 1)
+    src_x = np.clip(xx + dx, 0, w - 1)
+    out = np.empty_like(arr)
+    for c in range(arr.shape[2]):
+        out[..., c] = map_coordinates(arr[..., c], [src_y, src_x], order=1, mode="nearest")
+    return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGBA")
+
+
+def compose_illustration(draw_fn, spot_hex, cell=9, angle=37.0, offset=(5, -4), warp_seed=None):
     line_img = render_pass(draw_fn, "line")
     tone_img = render_pass(draw_fn, "tone")
+    if warp_seed is not None:
+        line_img = organic_warp(line_img, seed=warp_seed * 10 + 1)
+        tone_img = organic_warp(tone_img, seed=warp_seed * 10 + 1)
+
     tone_alpha = np.asarray(tone_img)[..., 3].astype(np.float32) / 255.0
-    dots = halftone_from_alpha(tone_alpha, cell=cell, angle=angle)
+    mottle = mottle_field(*tone_alpha.shape, seed=(warp_seed or 0) * 10 + 3)
+    dots = halftone_from_alpha(tone_alpha, cell=cell, angle=angle, mottle=mottle)
     spot_rgb = hx(spot_hex)
     tone_out = np.zeros((*dots.shape, 4), dtype=np.uint8)
     tone_out[dots, 0:3] = spot_rgb
-    tone_out[dots, 3] = 255
-    tone_final = Image.fromarray(tone_out, "RGBA")
+    tone_out[dots, 3] = 232  # slight translucency -- paper shows through the ink
+    tone_final = Image.fromarray(tone_out, "RGBA").filter(ImageFilter.GaussianBlur(0.55))
+
+    line_final = line_img.filter(ImageFilter.GaussianBlur(0.32))
 
     canvas = Image.new("RGBA", line_img.size, (0, 0, 0, 0))
     dx, dy = offset
     canvas.alpha_composite(tone_final, (dx, dy))
-    canvas.alpha_composite(line_img, (0, 0))
+    canvas.alpha_composite(line_final, (0, 0))
     return canvas
 
 
@@ -176,6 +215,7 @@ ILL_BOX = (200, 300, W_PX - 200, 2460)  # x0,y0,x1,y1
 
 def build_plate(spec_no, title, eyebrow_right, caption, footer_items, draw_fn,
                  spot_hex, cell=9, angle=37.0, offset=(5, -4), sub_eyebrow="MATHRELAXING FIELD NOTES"):
+    warp_seed = spec_no
     canvas = paper_texture(W_PX, H_PX).convert("RGB")
     d = ImageDraw.Draw(canvas)
     ink = hx(INK)
@@ -202,7 +242,7 @@ def build_plate(spec_no, title, eyebrow_right, caption, footer_items, draw_fn,
     # illustration box (glass-case frame) + paste composited artwork
     x0, y0, x1, y1 = ILL_BOX
     d.rectangle([x0, y0, x1, y1], outline=ink, width=2)
-    art = compose_illustration(draw_fn, spot_hex, cell=cell, angle=angle, offset=offset)
+    art = compose_illustration(draw_fn, spot_hex, cell=cell, angle=angle, offset=offset, warp_seed=warp_seed)
     inner_pad = 26
     box_w, box_h = (x1 - x0 - 2 * inner_pad), (y1 - y0 - 2 * inner_pad)
     side = min(box_w, box_h)
@@ -300,14 +340,14 @@ def draw_cymatics(ax, mode):
         total = arc[-1]
         if total <= 0:
             continue
-        n_pts = max(int(total / 0.006), 2)
+        n_pts = max(int(total / 0.0035), 2)
         s = np.linspace(0, total, n_pts)
         px = np.interp(s, arc, seg[:, 0])
         py = np.interp(s, arc, seg[:, 1])
-        jx = rng.normal(0, 0.0035, n_pts)
-        jy = rng.normal(0, 0.0035, n_pts)
-        sizes = rng.uniform(0.6, 3.2, n_pts)
-        ax.scatter(px + jx, py + jy, s=sizes, c=INK, alpha=0.85, linewidths=0, zorder=3)
+        jx = rng.normal(0, 0.004, n_pts)
+        jy = rng.normal(0, 0.004, n_pts)
+        sizes = rng.uniform(2.0, 6.5, n_pts)
+        ax.scatter(px + jx, py + jy, s=sizes, c=INK, alpha=1.0, linewidths=0, zorder=3)
 
     ax.plot([-0.86, 0.86, 0.86, -0.86, -0.86], [-0.86, -0.86, 0.86, 0.86, -0.86], color=INK, lw=2.4, zorder=4)
     ax.add_patch(plt.Circle((0, 0), 0.05, edgecolor=INK, facecolor="none", lw=1.6, zorder=4))
@@ -361,85 +401,15 @@ def draw_fibonacci(ax, mode):
         ax.fill(xs, ys, color="black", alpha=a, linewidth=0, zorder=1)
 
 
-# ── 3. platonic solids ───────────────────────────────────────────────────
-def _solid_vertices(name):
-    phi = (1 + 5 ** 0.5) / 2
-    if name == "tetra":
-        v = np.array([[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]], float)
-    elif name == "cube":
-        v = np.array([[x, y, z] for x in (-1, 1) for y in (-1, 1) for z in (-1, 1)], float)
-    elif name == "octa":
-        v = np.array([[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]], float)
-    elif name == "dodeca":
-        v = [[x, y, z] for x in (-1, 1) for y in (-1, 1) for z in (-1, 1)]
-        for a in (-1, 1):
-            for c in (-1, 1):
-                v.append([0, a / phi, c * phi])
-                v.append([a / phi, c * phi, 0])
-                v.append([c * phi, 0, a / phi])
-        v = np.array(v, float)
-    else:  # icosa
-        v = []
-        for a in (-1, 1):
-            for c in (-1, 1):
-                v.append([0, a, c * phi])
-                v.append([a, c * phi, 0])
-                v.append([c * phi, 0, a])
-        v = np.array(v, float)
-    v = v / np.max(np.linalg.norm(v, axis=1))
-    return v
-
-
-def _solid_edges(v):
-    D = squareform(pdist(v))
-    np.fill_diagonal(D, np.inf)
-    dmin = D.min()
-    edges = [(i, j) for i in range(len(v)) for j in range(i + 1, len(v)) if D[i, j] <= dmin * 1.05]
-    return edges
-
-
-def _project(v, rx=0.42, ry=0.62):
-    x, y, z = v[:, 0], v[:, 1], v[:, 2]
-    x1 = x * np.cos(ry) - z * np.sin(ry)
-    z1 = x * np.sin(ry) + z * np.cos(ry)
-    y2 = y * np.cos(rx) - z1 * np.sin(rx)
-    z2 = y * np.sin(rx) + z1 * np.cos(rx)
-    return np.stack([x1, y2, z2], axis=1)
-
-
-SOLIDS_LAYOUT = [
-    ("tetra", (-0.64, 0.30), 0.24),
-    ("cube", (0.0, 0.30), 0.24),
-    ("octa", (0.64, 0.30), 0.24),
-    ("dodeca", (-0.34, -0.34), 0.24),
-    ("icosa", (0.34, -0.34), 0.24),
-]
+# ── 3. platonic solids (real 3D pyvista render, see render_solids_3d.py) ──
+_SOLIDS_TONE = np.asarray(Image.open(os.path.join(BASE, "_solids_tone.png")))
+_SOLIDS_LINE = np.asarray(Image.open(os.path.join(BASE, "_solids_line.png")))
 
 
 def draw_platonic(ax, mode):
-    for name, (cx, cy), scale in SOLIDS_LAYOUT:
-        v = _solid_vertices(name)
-        edges = _solid_edges(v)
-        p = _project(v)
-        r = np.max(np.linalg.norm(p[:, :2], axis=1))
-        p = p / r * scale
-        med_z = np.median(p[:, 2])
-
-        if mode == "tone":
-            ax.add_patch(plt.matplotlib.patches.Ellipse((cx, cy - scale * 1.12), scale * 1.5, scale * 0.42,
-                                                          color="black", alpha=0.14, linewidth=0, zorder=1))
-            continue
-
-        for i, j in edges:
-            x1, y1, z1 = p[i]
-            x2, y2, z2 = p[j]
-            back = (z1 + z2) / 2 < med_z
-            ax.plot([cx + x1, cx + x2], [cy + y1, cy + y2],
-                     color=INK, lw=1.5 if not back else 1.0,
-                     alpha=1.0 if not back else 0.45,
-                     linestyle="-" if not back else (0, (2, 2)), zorder=4)
-        for x1, y1, z1 in p:
-            ax.plot(cx + x1, cy + y1, marker="o", ms=2.0, color=INK, zorder=5)
+    img = _SOLIDS_TONE if mode == "tone" else _SOLIDS_LINE
+    ax.imshow(img, extent=(-1, 1, -1, 1), aspect="auto",
+              zorder=1 if mode == "tone" else 4)
 
 
 # ── 4. bohr atom ──────────────────────────────────────────────────────────
