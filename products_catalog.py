@@ -1291,6 +1291,29 @@ teacher gifts.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "riso_science_specimens_set": """\
+Instant download — MathRelaxing riso-style specimen plate set.
+
+Science Specimens: Riso Edition — six phenomena from math and physics \
+styled as naturalist specimen cards run through a two-colour risograph \
+press: crisp black keyline, one halftone spot colour per plate, a touch \
+of registration offset, uncoated paper grain. Cymatics (a real computed \
+Chladni nodal pattern), the golden/nautilus spiral, the five Platonic \
+solids, the Bohr atom, a four-iteration Koch snowflake, and two-slit \
+interference (an actual computed diffraction field, not decoration). \
+Liberation Serif & Mono typography, warm recycled-paper palette.
+
+► What you get
+• 6 specimen-plate designs (high-quality JPG)
+• Sizes @ 300 dpi: 9 x 11.5 in (signature size) and 11 x 14 in
+• Instant download ZIP — no physical item ships
+
+Perfect for physics and math classrooms, dorms, studios, and gifts for \
+anyone who likes their science with a little ink-and-paper texture.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "history_of_calculus_print": """\
 Instant download — MathRelaxing timeline poster.
 
@@ -4990,6 +5013,51 @@ PRODUCTS = {
             "atom color scheme. $3.99."
         ),
         "listing_id": 4551545578,
+    },
+    "riso_science_specimens_set": {
+        "title": (
+            "Risograph Science Poster Set of 6 | Math Physics Specimen Plates | "
+            "Cymatics Bohr Atom Platonic Solids STEM Wall Art (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["riso_science_specimens_set"],
+        "price": 3.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("risograph_science_set", "previews", "riso_set_preview_1_01_cymatics.jpg"),
+            p("risograph_science_set", "previews", "riso_set_preview_2_02_nautilus_spiral.jpg"),
+            p("risograph_science_set", "previews", "riso_set_preview_3_03_platonic_solids.jpg"),
+            p("risograph_science_set", "previews", "riso_set_preview_4_04_bohr_atom.jpg"),
+            p("risograph_science_set", "previews", "riso_set_preview_5_05_koch_snowflake.jpg"),
+            p("risograph_science_set", "previews", "riso_set_preview_6_06_double_slit.jpg"),
+        ],
+        "files": [
+            p("risograph_science_set", "Science_Specimens_Riso_Edition_Set_of_6.zip"),
+        ],
+        "tags": [
+            "riso print",
+            "science poster",
+            "math wall art",
+            "physics poster",
+            "stem wall art",
+            "science poster set",
+            "gallery wall set",
+            "risograph art",
+            "educational poster",
+            "digital download",
+            "teacher gift",
+            "dorm decor",
+            "nerd gift",
+        ],
+        "notes": (
+            "generate_riso_set.py + build_riso_set_assets.py. Two-color riso/specimen-card "
+            "aesthetic distinct from the cream/Cinzel house style: black keyline + one "
+            "halftone spot color per plate (angled-dot screen, PIL post-process), paper "
+            "grain, registration offset. Cymatics/Chladni, golden spiral, Platonic solids, "
+            "Bohr atom, Koch snowflake, two-slit interference -- content computed from the "
+            "real math/physics, not decorative. All chrome/typography placed via PIL pixel "
+            "math (Liberation Serif/Mono), not matplotlib text. $3.99."
+        ),
+        "listing_id": 4552269216,
     },
 
     "famous_equations_set": {
