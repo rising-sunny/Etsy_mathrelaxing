@@ -105,7 +105,7 @@ def place_mol(ax, smiles, cx, cy, w, size=700, bond_lw=3):
     img = mol_png(smiles, size=size, bond_lw=bond_lw)
     iw, ih = img.size
     h = w * (ih / iw) * ASPECT
-    ax.imshow(np.asarray(img), extent=(cx - w / 2, cx + w / 2, cy - h / 2, cy + h / 2), zorder=4)
+    ax.imshow(np.asarray(img), extent=(cx - w / 2, cx + w / 2, cy - h / 2, cy + h / 2), zorder=4, aspect="auto")
     return h
 
 
@@ -156,7 +156,7 @@ def draw_double_helix():
     iw, ih = helix.size
     cx, cy, w = 0.40, 0.51, 0.52
     h = w * (ih / iw) * ASPECT
-    ax.imshow(np.asarray(helix), extent=(cx - w / 2, cx + w / 2, cy - h / 2, cy + h / 2), zorder=3)
+    ax.imshow(np.asarray(helix), extent=(cx - w / 2, cx + w / 2, cy - h / 2, cy + h / 2), zorder=3, aspect="auto")
 
     ax.add_patch(Rectangle((0.11, 0.855), 0.028, 0.014, facecolor=ROSE, edgecolor="none"))
     ax.text(0.145, 0.862, "A – T", fontproperties=RALEWAY, fontsize=9.5, color=INK_SOFT, va="center")
