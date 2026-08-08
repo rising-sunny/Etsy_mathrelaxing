@@ -1270,6 +1270,27 @@ A conceptual classic for topology fans, math classrooms, and STEM gifts.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "dna_molecules_set": """\
+Instant download — MathRelaxing scientific plate set.
+
+DNA & Molecules — six elegant scientific plates: a real 3D-rendered B-DNA \
+double helix (pyvista/VTK molecular render, three-point lighting, ambient \
+occlusion -- not a flat cartoon), Watson-Crick base pairing, DNA vs RNA \
+sugar chemistry, the central dogma, amino acid structure, and key \
+biomolecules (water, glucose, ATP). Cream editorial palette, Cinzel & \
+Raleway typography, RDKit chemical structures throughout.
+
+► What you get
+• 6 scientific-plate designs (high-quality JPG)
+• Sizes @ 300 dpi: 9 x 11.5 in (signature size) and 11 x 14 in
+• Instant download ZIP — no physical item ships
+
+Perfect for biology teachers, chemistry classrooms, STEM dorms, and science \
+teacher gifts.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "history_of_calculus_print": """\
 Instant download — MathRelaxing timeline poster.
 
@@ -4927,6 +4948,50 @@ PRODUCTS = {
         "notes": "generate_equation_plates.py. Chaos/fractal scientific plate. $2.99.",
         "listing_id": 4540082547,
     },
+    "dna_molecules_set": {
+        "title": (
+            "DNA and Molecules Wall Art Set of 6 | Biology Chemistry Poster | "
+            "Double Helix Base Pairing STEM Gallery (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["dna_molecules_set"],
+        "price": 3.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("dna_molecules_set", "previews", "dna_set_preview_1_01_double_helix.jpg"),
+            p("dna_molecules_set", "previews", "dna_set_preview_2_02_base_pairing.jpg"),
+            p("dna_molecules_set", "previews", "dna_set_preview_3_03_dna_vs_rna.jpg"),
+            p("dna_molecules_set", "previews", "dna_set_preview_4_04_central_dogma.jpg"),
+            p("dna_molecules_set", "previews", "dna_set_preview_5_05_amino_acids.jpg"),
+            p("dna_molecules_set", "previews", "dna_set_preview_6_06_key_molecules.jpg"),
+        ],
+        "files": [
+            p("dna_molecules_set", "DNA_Molecules_Poster_Set_of_6.zip"),
+        ],
+        "tags": [
+            "math wall art",
+            "biology poster",
+            "chemistry poster",
+            "dna art",
+            "science poster set",
+            "stem wall art",
+            "gallery wall set",
+            "educational poster",
+            "classroom decor",
+            "digital download",
+            "teacher gift",
+            "science wall art",
+            "biology teacher gift",
+        ],
+        "notes": (
+            "generate_dna_set.py + generate_helix_render.py + build_dna_set_assets.py. "
+            "Redesign pass 2: real pyvista/VTK 3D B-DNA helix (three-point lighting, SSAO, "
+            "phosphate bead backbone markers) replacing the original flat-matplotlib helix; "
+            "Cinzel/Raleway typography; RDKit molecule renders with a custom house-palette "
+            "atom color scheme. $3.99."
+        ),
+        "listing_id": 4551545578,
+    },
+
     "famous_equations_set": {
         "title": (
             "Famous Equations Wall Art Set of 6 | Math Physics Scientific Plates | "
