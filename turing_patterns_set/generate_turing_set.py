@@ -3,33 +3,20 @@ generate_turing_set.py — "Turing Patterns" reaction-diffusion plate set
 ==========================================================================
 Six computed Gray-Scott fields (see generate_turing_field.py), each
 colour-graded to evoke the real creature whose skin/shell shows that
-pattern class, printed full-bleed on a dark ground with gold linework --
-the same "premium dark plate" family as the History-of-X posters, but
-built around a filled organic texture instead of timeline linework.
+pattern class -- pure full-bleed pattern, no title/caption/border burned
+into the art (that copy lives in the Etsy listing text instead).
 
   python generate_turing_set.py
 """
 import os
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageFilter
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 FIELDS = os.path.join(BASE, "fields")
 PLATES = os.path.join(BASE, "plates")
 os.makedirs(PLATES, exist_ok=True)
-
-AF = os.path.join(os.path.dirname(BASE), "lulu_books", "assets", "fonts")
-CINZEL = os.path.join(AF, "Cinzel-SemiBold.ttf")
-CINZEL_R = os.path.join(AF, "Cinzel.ttf")
-RALEWAY = os.path.join(AF, "Raleway.ttf")
-RALEWAY_I = os.path.join(AF, "Raleway-Italic.ttf")
-
-DARK = "#0a0b0d"
-CREAM = "#f0ece0"
-SUB = "#9a9484"
-GOLD = "#c9a24b"
-GOLD_HI = "#f3dfa0"
 
 DPI = 300
 W_IN, H_IN = 9.0, 11.5
@@ -39,47 +26,6 @@ W_PX, H_PX = round(W_IN * DPI), round(H_IN * DPI)
 def hx(h):
     h = h.lstrip("#")
     return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
-
-
-def font(path, size):
-    return ImageFont.truetype(path, size)
-
-
-def tracked_width(draw, text, fnt, tracking):
-    w = 0
-    for ch in text:
-        b = draw.textbbox((0, 0), ch, font=fnt)
-        w += (b[2] - b[0]) + tracking
-    return max(0, w - tracking)
-
-
-def draw_tracked(draw, xy, text, fnt, fill, tracking=0, anchor="l"):
-    x, y = xy
-    total = tracked_width(draw, text, fnt, tracking)
-    if anchor == "m":
-        x -= total / 2
-    elif anchor == "r":
-        x -= total
-    for ch in text:
-        draw.text((x, y), ch, font=fnt, fill=fill)
-        b = draw.textbbox((0, 0), ch, font=fnt)
-        x += (b[2] - b[0]) + tracking
-    return total
-
-
-def wrap_text(draw, text, fnt, max_w):
-    words = text.split()
-    lines, cur = [], ""
-    for wd in words:
-        trial = (cur + " " + wd).strip()
-        if draw.textbbox((0, 0), trial, font=fnt)[2] <= max_w or not cur:
-            cur = trial
-        else:
-            lines.append(cur)
-            cur = wd
-    if cur:
-        lines.append(cur)
-    return lines
 
 
 def colorize(field01, stops):
@@ -104,97 +50,11 @@ def render_pattern(slug, stops, blur=1.1, w_px=None, h_px=None):
     return img
 
 
-def vertical_scrim(w, h, top_frac, bot_frac, top_strength=0.82, bot_strength=0.88):
-    """Black gradient, strong at top/bottom edges, transparent in the middle,
-    so title/caption text stays legible over a busy full-bleed texture."""
-    alpha = np.zeros(h, dtype=np.float32)
-    top_n = int(h * top_frac)
-    bot_n = int(h * bot_frac)
-    alpha[:top_n] = np.linspace(top_strength, 0, top_n)
-    alpha[h - bot_n:] = np.linspace(0, bot_strength, bot_n)
-    scrim = np.zeros((h, w, 4), dtype=np.uint8)
-    scrim[..., 3] = (alpha[:, None] * 255).astype(np.uint8)
-    return Image.fromarray(scrim, "RGBA")
-
-
-MARGIN = 90
-REF_H = H_PX  # chrome (margins, font sizes, line widths) was tuned against this
-              # reference height; build_plate() scales everything relative to it
-              # so a same-looking plate can be rendered at other resolutions/ratios.
-
-
-def build_plate(spec_no, title, eyebrow_right, caption, footer_items, slug, stops,
-                 w_px=None, h_px=None):
-    w_px, h_px = w_px or W_PX, h_px or H_PX
-    s = h_px / REF_H  # uniform scale factor for every absolute pixel constant below
-
-    def sc(v):
-        return round(v * s)
-
-    canvas = render_pattern(slug, stops, blur=1.1 * s, w_px=w_px, h_px=h_px).convert("RGBA")
-    scrim = vertical_scrim(w_px, h_px, top_frac=0.30, bot_frac=0.34)
-    canvas.alpha_composite(scrim)
-    canvas = canvas.convert("RGB")
-    d = ImageDraw.Draw(canvas)
-    gold = hx(GOLD)
-    cream = hx(CREAM)
-    sub = hx(SUB)
-    margin = sc(MARGIN)
-
-    # hairline inset border + corner marks
-    d.rectangle([margin, margin, w_px - margin, h_px - margin], outline=gold, width=max(1, sc(2)))
-    arm = sc(30)
-    for cx0, cy0 in [(margin, margin), (w_px - margin, margin),
-                     (margin, h_px - margin), (w_px - margin, h_px - margin)]:
-        d.line([cx0 - arm, cy0, cx0 + arm, cy0], fill=gold, width=max(1, sc(1)))
-        d.line([cx0, cy0 - arm, cx0, cy0 + arm], fill=gold, width=max(1, sc(1)))
-
-    # eyebrow row
-    ey = margin + sc(54)
-    f_eyebrow = font(RALEWAY, sc(28))
-    draw_tracked(d, (margin + sc(56), ey), "MATHRELAXING · TURING PATTERNS", f_eyebrow, sub, tracking=sc(3))
-    draw_tracked(d, (w_px - margin - sc(56), ey), eyebrow_right, f_eyebrow, sub, tracking=sc(3), anchor="r")
-
-    # title
-    f_title = font(CINZEL, sc(96))
-    ty = margin + sc(120)
-    draw_tracked(d, (w_px // 2, ty), title.upper(), f_title, cream, tracking=sc(8), anchor="m")
-    rule_w = sc(150)
-    d.rectangle([w_px // 2 - rule_w // 2, ty + sc(118), w_px // 2 + rule_w // 2, ty + sc(122)], fill=gold)
-
-    # caption block, bottom
-    f_cap = font(RALEWAY_I, sc(42))
-    max_w = w_px - 2 * (margin + sc(260))
-    lines = wrap_text(d, caption, f_cap, max_w)
-    line_h = sc(56)
-    cap_h = len(lines) * line_h
-    cap_y = h_px - margin - sc(300) - cap_h
-    for ln in lines:
-        w = d.textbbox((0, 0), ln, font=f_cap)[2]
-        d.text((w_px // 2 - w / 2, cap_y), ln, font=f_cap, fill=cream)
-        cap_y += line_h
-
-    # footer museum-label strip
-    fy0 = h_px - margin - sc(190)
-    d.line([margin + sc(60), fy0, w_px - margin - sc(60), fy0], fill=gold, width=max(1, sc(1)))
-    n = len(footer_items)
-    col_w = (w_px - 2 * (margin + sc(60))) / n
-    f_val = font(CINZEL_R, sc(40))
-    f_key = font(RALEWAY, sc(25))
-    for i, (val, key) in enumerate(footer_items):
-        cx = margin + sc(60) + col_w * i + col_w / 2
-        draw_tracked(d, (cx, fy0 + sc(34)), val, f_val, hx(GOLD_HI), tracking=sc(1), anchor="m")
-        draw_tracked(d, (cx, fy0 + sc(90)), key.upper(), f_key, sub, tracking=sc(2), anchor="m")
-        if i > 0:
-            d.line([margin + sc(60) + col_w * i, fy0 + sc(20), margin + sc(60) + col_w * i, fy0 + sc(130)],
-                   fill=(70, 66, 58), width=max(1, sc(1)))
-
-    f_id = font(RALEWAY, sc(22))
-    draw_tracked(d, (w_px // 2, h_px - margin - sc(46)),
-                 f"SPECIMEN {spec_no:02d} / 06  ·  GRAY-SCOTT MODEL  ·  MATHRELAXING",
-                 f_id, sub, tracking=sc(2), anchor="m")
-
-    return canvas
+def build_plate(slug, stops, w_px=None, h_px=None):
+    """Pure full-bleed pattern -- no title/caption/footer/border. The plate
+    metadata in PLATE_SPECS (title, caption, footer stats) still feeds the
+    Etsy listing text; it's just not burned into the artwork itself."""
+    return render_pattern(slug, stops, w_px=w_px, h_px=h_px)
 
 
 PLATE_SPECS = [
@@ -239,10 +99,7 @@ def save_plate(canvas, name):
 
 def build():
     for spec in PLATE_SPECS:
-        canvas = build_plate(
-            spec_no=spec["spec_no"], title=spec["title"], eyebrow_right=spec["eyebrow"],
-            caption=spec["caption"], footer_items=spec["footer"], slug=spec["slug"], stops=spec["stops"],
-        )
+        canvas = build_plate(spec["slug"], spec["stops"])
         save_plate(canvas, spec["fname"])
 
 

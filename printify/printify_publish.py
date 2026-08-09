@@ -137,6 +137,13 @@ def get_product(product_id):
     return _req("GET", f"/shops/{SHOP_ID}/products/{product_id}.json")
 
 
+def update_product(product_id, payload):
+    """PUT partial update (e.g. new print_areas/images) onto an existing
+    product. Does NOT by itself push the change to Etsy -- an already
+    published product needs publish_product() called again for that."""
+    return _req("PUT", f"/shops/{SHOP_ID}/products/{product_id}.json", payload)
+
+
 def publish_product(product_id):
     """Push the product to the connected Etsy shop (creates the Etsy listing).
     Printify's default publishes it as a DRAFT on Etsy."""
