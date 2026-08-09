@@ -1270,6 +1270,29 @@ A conceptual classic for topology fans, math classrooms, and STEM gifts.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "turing_patterns_set": """\
+Instant download — MathRelaxing scientific plate set.
+
+Turing Patterns: Reaction-Diffusion — six plates straight out of the \
+Gray-Scott reaction-diffusion model: an actual numerical simulation of \
+Alan Turing's 1952 morphogenesis equations, not a decorative texture. \
+Spots, holes, mazes, traveling stripes, dense whorls, and coalescing \
+chaos -- the same handful of pattern families that show up on real \
+leopards, pufferfish, coral, tigers, fingertips, and cuttlefish skin. \
+Printed full-bleed on a dark ground with gold linework and a unique \
+colour grade per plate, Cinzel & Raleway typography.
+
+► What you get
+• 6 scientific-plate designs (high-quality JPG)
+• Sizes @ 300 dpi: 9 x 11.5 in (signature size) and 11 x 14 in
+• Instant download ZIP — no physical item ships
+
+Dramatic, gallery-dark wall art for biology and physics classrooms, \
+science teacher gifts, or anyone who likes their math with a little bite.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+
     "dna_molecules_set": """\
 Instant download — MathRelaxing scientific plate set.
 
@@ -5058,6 +5081,50 @@ PRODUCTS = {
             "math (Liberation Serif/Mono), not matplotlib text. $3.99."
         ),
         "listing_id": 4552269216,
+    },
+    "turing_patterns_set": {
+        "title": (
+            "Turing Pattern Wall Art Set of 6 | Reaction Diffusion Poster | "
+            "Math Biology Science Print Dark Academia (Digital Download)"
+        ),
+        "description": DESCRIPTIONS["turing_patterns_set"],
+        "price": 3.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("turing_patterns_set", "previews", "turing_set_preview_1_01_leopard_rosettes.jpg"),
+            p("turing_patterns_set", "previews", "turing_set_preview_2_02_pufferfish_mesh.jpg"),
+            p("turing_patterns_set", "previews", "turing_set_preview_3_03_brain_coral.jpg"),
+            p("turing_patterns_set", "previews", "turing_set_preview_4_04_tiger_current.jpg"),
+            p("turing_patterns_set", "previews", "turing_set_preview_5_05_fingerprint_whorl.jpg"),
+            p("turing_patterns_set", "previews", "turing_set_preview_6_06_cuttlefish_static.jpg"),
+        ],
+        "files": [
+            p("turing_patterns_set", "Turing_Patterns_Reaction_Diffusion_Set_of_6.zip"),
+        ],
+        "tags": [
+            "turing pattern art",
+            "reaction diffusion",
+            "science poster",
+            "math wall art",
+            "biology poster",
+            "dark academia decor",
+            "science poster set",
+            "gallery wall set",
+            "stem wall art",
+            "digital download",
+            "teacher gift",
+            "nerd gift",
+            "moody wall art",
+        ],
+        "notes": (
+            "generate_turing_field.py (numpy Gray-Scott PDE solver, 6 tuned f/k presets, "
+            "whole-domain scattered seeding for full-frame coverage) + generate_turing_set.py "
+            "(dark full-bleed plate, per-plate color-graded LUT, Cinzel/Raleway, gold linework -- "
+            "same premium-dark family as History-of-X but organic texture instead of timeline "
+            "linework) + build_turing_set_assets.py. Content is a real PDE simulation, not "
+            "decorative noise. $3.99."
+        ),
+        "listing_id": 4552480615,
     },
 
     "famous_equations_set": {
