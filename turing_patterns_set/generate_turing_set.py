@@ -94,10 +94,11 @@ def colorize(field01, stops):
     return rgb.astype(np.uint8)
 
 
-def render_pattern(slug, stops, blur=1.1):
+def render_pattern(slug, stops, blur=1.1, w_px=None, h_px=None):
+    w_px, h_px = w_px or W_PX, h_px or H_PX
     field = np.load(os.path.join(FIELDS, f"{slug}.npy"))
     rgb = colorize(field, stops)
-    img = Image.fromarray(rgb, "RGB").resize((W_PX, H_PX), Image.LANCZOS)
+    img = Image.fromarray(rgb, "RGB").resize((w_px, h_px), Image.LANCZOS)
     if blur:
         img = img.filter(ImageFilter.GaussianBlur(blur))
     return img
@@ -117,69 +118,81 @@ def vertical_scrim(w, h, top_frac, bot_frac, top_strength=0.82, bot_strength=0.8
 
 
 MARGIN = 90
+REF_H = H_PX  # chrome (margins, font sizes, line widths) was tuned against this
+              # reference height; build_plate() scales everything relative to it
+              # so a same-looking plate can be rendered at other resolutions/ratios.
 
 
-def build_plate(spec_no, title, eyebrow_right, caption, footer_items, slug, stops):
-    canvas = render_pattern(slug, stops).convert("RGBA")
-    scrim = vertical_scrim(W_PX, H_PX, top_frac=0.30, bot_frac=0.34)
+def build_plate(spec_no, title, eyebrow_right, caption, footer_items, slug, stops,
+                 w_px=None, h_px=None):
+    w_px, h_px = w_px or W_PX, h_px or H_PX
+    s = h_px / REF_H  # uniform scale factor for every absolute pixel constant below
+
+    def sc(v):
+        return round(v * s)
+
+    canvas = render_pattern(slug, stops, blur=1.1 * s, w_px=w_px, h_px=h_px).convert("RGBA")
+    scrim = vertical_scrim(w_px, h_px, top_frac=0.30, bot_frac=0.34)
     canvas.alpha_composite(scrim)
     canvas = canvas.convert("RGB")
     d = ImageDraw.Draw(canvas)
     gold = hx(GOLD)
     cream = hx(CREAM)
     sub = hx(SUB)
+    margin = sc(MARGIN)
 
     # hairline inset border + corner marks
-    d.rectangle([MARGIN, MARGIN, W_PX - MARGIN, H_PX - MARGIN], outline=gold, width=2)
-    arm = 30
-    for cx0, cy0 in [(MARGIN, MARGIN), (W_PX - MARGIN, MARGIN),
-                     (MARGIN, H_PX - MARGIN), (W_PX - MARGIN, H_PX - MARGIN)]:
-        d.line([cx0 - arm, cy0, cx0 + arm, cy0], fill=gold, width=1)
-        d.line([cx0, cy0 - arm, cx0, cy0 + arm], fill=gold, width=1)
+    d.rectangle([margin, margin, w_px - margin, h_px - margin], outline=gold, width=max(1, sc(2)))
+    arm = sc(30)
+    for cx0, cy0 in [(margin, margin), (w_px - margin, margin),
+                     (margin, h_px - margin), (w_px - margin, h_px - margin)]:
+        d.line([cx0 - arm, cy0, cx0 + arm, cy0], fill=gold, width=max(1, sc(1)))
+        d.line([cx0, cy0 - arm, cx0, cy0 + arm], fill=gold, width=max(1, sc(1)))
 
     # eyebrow row
-    ey = MARGIN + 54
-    f_eyebrow = font(RALEWAY, 28)
-    draw_tracked(d, (MARGIN + 56, ey), "MATHRELAXING · TURING PATTERNS", f_eyebrow, sub, tracking=3)
-    draw_tracked(d, (W_PX - MARGIN - 56, ey), eyebrow_right, f_eyebrow, sub, tracking=3, anchor="r")
+    ey = margin + sc(54)
+    f_eyebrow = font(RALEWAY, sc(28))
+    draw_tracked(d, (margin + sc(56), ey), "MATHRELAXING · TURING PATTERNS", f_eyebrow, sub, tracking=sc(3))
+    draw_tracked(d, (w_px - margin - sc(56), ey), eyebrow_right, f_eyebrow, sub, tracking=sc(3), anchor="r")
 
     # title
-    f_title = font(CINZEL, 96)
-    ty = MARGIN + 120
-    draw_tracked(d, (W_PX // 2, ty), title.upper(), f_title, cream, tracking=8, anchor="m")
-    rule_w = 150
-    d.rectangle([W_PX // 2 - rule_w // 2, ty + 118, W_PX // 2 + rule_w // 2, ty + 122], fill=gold)
+    f_title = font(CINZEL, sc(96))
+    ty = margin + sc(120)
+    draw_tracked(d, (w_px // 2, ty), title.upper(), f_title, cream, tracking=sc(8), anchor="m")
+    rule_w = sc(150)
+    d.rectangle([w_px // 2 - rule_w // 2, ty + sc(118), w_px // 2 + rule_w // 2, ty + sc(122)], fill=gold)
 
     # caption block, bottom
-    f_cap = font(RALEWAY_I, 42)
-    max_w = W_PX - 2 * (MARGIN + 260)
+    f_cap = font(RALEWAY_I, sc(42))
+    max_w = w_px - 2 * (margin + sc(260))
     lines = wrap_text(d, caption, f_cap, max_w)
-    cap_h = len(lines) * 56
-    cap_y = H_PX - MARGIN - 300 - cap_h
+    line_h = sc(56)
+    cap_h = len(lines) * line_h
+    cap_y = h_px - margin - sc(300) - cap_h
     for ln in lines:
         w = d.textbbox((0, 0), ln, font=f_cap)[2]
-        d.text((W_PX // 2 - w / 2, cap_y), ln, font=f_cap, fill=cream)
-        cap_y += 56
+        d.text((w_px // 2 - w / 2, cap_y), ln, font=f_cap, fill=cream)
+        cap_y += line_h
 
     # footer museum-label strip
-    fy0 = H_PX - MARGIN - 190
-    d.line([MARGIN + 60, fy0, W_PX - MARGIN - 60, fy0], fill=gold, width=1)
+    fy0 = h_px - margin - sc(190)
+    d.line([margin + sc(60), fy0, w_px - margin - sc(60), fy0], fill=gold, width=max(1, sc(1)))
     n = len(footer_items)
-    col_w = (W_PX - 2 * (MARGIN + 60)) / n
-    f_val = font(CINZEL_R, 40)
-    f_key = font(RALEWAY, 25)
+    col_w = (w_px - 2 * (margin + sc(60))) / n
+    f_val = font(CINZEL_R, sc(40))
+    f_key = font(RALEWAY, sc(25))
     for i, (val, key) in enumerate(footer_items):
-        cx = MARGIN + 60 + col_w * i + col_w / 2
-        draw_tracked(d, (cx, fy0 + 34), val, f_val, gold_hi := hx(GOLD_HI), tracking=1, anchor="m")
-        draw_tracked(d, (cx, fy0 + 90), key.upper(), f_key, sub, tracking=2, anchor="m")
+        cx = margin + sc(60) + col_w * i + col_w / 2
+        draw_tracked(d, (cx, fy0 + sc(34)), val, f_val, hx(GOLD_HI), tracking=sc(1), anchor="m")
+        draw_tracked(d, (cx, fy0 + sc(90)), key.upper(), f_key, sub, tracking=sc(2), anchor="m")
         if i > 0:
-            d.line([MARGIN + 60 + col_w * i, fy0 + 20, MARGIN + 60 + col_w * i, fy0 + 130],
-                   fill=(70, 66, 58), width=1)
+            d.line([margin + sc(60) + col_w * i, fy0 + sc(20), margin + sc(60) + col_w * i, fy0 + sc(130)],
+                   fill=(70, 66, 58), width=max(1, sc(1)))
 
-    f_id = font(RALEWAY, 22)
-    draw_tracked(d, (W_PX // 2, H_PX - MARGIN - 46),
+    f_id = font(RALEWAY, sc(22))
+    draw_tracked(d, (w_px // 2, h_px - margin - sc(46)),
                  f"SPECIMEN {spec_no:02d} / 06  ·  GRAY-SCOTT MODEL  ·  MATHRELAXING",
-                 f_id, sub, tracking=2, anchor="m")
+                 f_id, sub, tracking=sc(2), anchor="m")
 
     return canvas
 
