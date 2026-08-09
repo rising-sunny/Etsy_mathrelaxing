@@ -59,6 +59,7 @@ CLAY = (186, 150, 128)
 INK = (48, 52, 48)
 SOFT = (110, 108, 100)
 GOLD = (176, 158, 110)
+GOLD_LIGHT = (223, 205, 156)  # small captions on dark bands -- GOLD alone reads too low-contrast at caption sizes
 WHITE = (252, 250, 246)
 
 
@@ -67,27 +68,82 @@ def _ensure():
         d.mkdir(parents=True, exist_ok=True)
 
 
+AF = BASE / "lulu_books" / "assets" / "fonts"
+_FONT_CACHE: dict[tuple[str, int], ImageFont.FreeTypeFont] = {}
+
+
 def _font(size, bold=False):
-    windir = os.environ.get("WINDIR", r"C:\Windows")
-    names = (["georgiab.ttf", "timesbd.ttf"] if bold else ["georgia.ttf", "times.ttf"])
-    for n in names:
-        p = os.path.join(windir, "Fonts", n)
-        if os.path.isfile(p):
-            try:
-                return ImageFont.truetype(p, max(8, int(size)))
-            except OSError:
-                pass
-    return ImageFont.load_default()
+    """Cinzel (titles) / Raleway (body) -- the same elegant pairing used
+    across the shop's other premium sets. Falls back to a scanned Windows
+    font (if present) or PIL's bitmap default, so this still runs anywhere."""
+    size = max(8, int(size))
+    key = (("cinzel" if bold else "raleway"), size)
+    if key in _FONT_CACHE:
+        return _FONT_CACHE[key]
+    path = AF / ("Cinzel-SemiBold.ttf" if bold else "Raleway.ttf")
+    font = None
+    if path.is_file():
+        try:
+            font = ImageFont.truetype(str(path), size)
+        except OSError:
+            font = None
+    if font is None:
+        windir = os.environ.get("WINDIR", r"C:\Windows")
+        names = (["georgiab.ttf", "timesbd.ttf"] if bold else ["georgia.ttf", "times.ttf"])
+        for n in names:
+            p = os.path.join(windir, "Fonts", n)
+            if os.path.isfile(p):
+                try:
+                    font = ImageFont.truetype(p, size)
+                    break
+                except OSError:
+                    pass
+    if font is None:
+        font = ImageFont.load_default()
+    _FONT_CACHE[key] = font
+    return font
 
 
 def _px(inches, dpi):
     return max(1, int(round(inches * dpi)))
 
 
+_GRAIN_COUNTER = [0]
+
+
+def _apply_texture(img: Image.Image, grain=4.2, vignette=0.045) -> Image.Image:
+    """Fine paper grain + a whisper of vignette so flat vector fields read
+    as a printed art piece on textured stock rather than a raw digital
+    render -- the single biggest lever for a 'premium print' vs 'clipart'
+    impression at this resolution. True per-pixel noise (not a low-res
+    field upsampled), so it stays fine grain rather than blotchy streaks
+    regardless of whether this is a 1600px preview or a 24x36in master."""
+    w, h = img.size
+    _GRAIN_COUNTER[0] += 1
+    rng = np.random.default_rng(_GRAIN_COUNTER[0])
+    noise = rng.normal(0, 1, size=(h, w)).astype(np.float32)
+    noise_img = Image.fromarray(((noise - noise.min()) / np.ptp(noise) * 255).astype(np.uint8))
+    noise_img = noise_img.filter(ImageFilter.GaussianBlur(0.6))
+    noise = np.asarray(noise_img).astype(np.float32)
+    tex = (noise - noise.mean()) / 255.0
+
+    arr = np.asarray(img).astype(np.float32)
+    arr += tex[..., None] * grain
+
+    if vignette > 0:
+        yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+        d = np.sqrt(((xx - w / 2) / (w / 2)) ** 2 + ((yy - h / 2) / (h / 2)) ** 2)
+        shade = 1.0 - vignette * np.clip((d - 0.55) / 0.45, 0, 1)
+        arr *= shade[..., None]
+
+    return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8), "RGB")
+
+
 def _finish(img: Image.Image) -> Image.Image:
     img = ImageEnhance.Contrast(img).enhance(1.04)
     img = ImageEnhance.Color(img).enhance(1.03)
     img = ImageEnhance.Sharpness(img).enhance(1.05)
+    img = _apply_texture(img)
     return img
 
 
@@ -690,7 +746,7 @@ def build_previews():
     d = ImageDraw.Draw(hero)
     d.rectangle([0, 1480, S, S], fill=SAGE_DEEP)
     d.text((S // 2, 1515), "SAGE GREEN NEUTRAL PRINT SET", font=_font(26, True), fill=CREAM, anchor="mt")
-    d.text((S // 2, 1560), "6 abstract posters  ·  quiet luxury  ·  300 dpi", font=_font(15), fill=GOLD, anchor="mt")
+    d.text((S // 2, 1560), "6 abstract posters  ·  quiet luxury  ·  300 dpi", font=_font(15), fill=GOLD_LIGHT, anchor="mt")
     save_jpg(hero, PREVIEWS / "sage_preview_1_hero.jpg", DPI_PREVIEW, 92)
 
     set_img = Image.new("RGB", (S, S), (236, 232, 224))
@@ -713,14 +769,14 @@ def build_previews():
         set_img.paste(pimg, (x, y0))
         d = ImageDraw.Draw(set_img)
     d.rectangle([0, S - 90, S, S], fill=SAGE_DEEP)
-    d.text((S // 2, S - 45), "MathRelaxing  ·  Sage Neutral Abstract Set", font=_font(18), fill=GOLD, anchor="mm")
+    d.text((S // 2, S - 45), "MathRelaxing  ·  Sage Neutral Abstract Set", font=_font(18), fill=GOLD_LIGHT, anchor="mm")
     save_jpg(set_img, PREVIEWS / "sage_preview_2_set.jpg", DPI_PREVIEW, 92)
 
     incl = Image.new("RGB", (S, S), CREAM)
     d = ImageDraw.Draw(incl)
     d.rectangle([0, 0, S, 160], fill=SAGE_DEEP)
     d.text((S // 2, 55), "WHAT'S INCLUDED", font=_font(34, True), fill=CREAM, anchor="mt")
-    d.text((S // 2, 110), "Instant download  ·  print at home or shop", font=_font(18), fill=GOLD, anchor="mt")
+    d.text((S // 2, 110), "Instant download  ·  print at home or shop", font=_font(18), fill=GOLD_LIGHT, anchor="mt")
     items = [
         ("6", "Abstract posters", "Sage neutral quiet luxury", SAGE, CREAM),
         ("5", "Print sizes", "Up to 24×36 in @ 300 dpi", CLAY, CREAM),
