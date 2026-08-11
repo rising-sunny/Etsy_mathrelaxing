@@ -1538,6 +1538,14 @@ DESIGNS: list[Design] = [
     ),
 ]
 
+# The six designs that make up the "Famous Equations Wall Art Set of 6"
+# (Etsy listing 4540082607). DESIGNS has grown past six over time, so the
+# bundle must name its members explicitly rather than taking everything.
+SET_OF_6_SLUGS = [
+    "fourier_series", "wave_equation", "dirac_equation",
+    "navier_stokes", "euler_identity", "mandelbrot_set",
+]
+
 
 def compose_equation_card(design: Design, width_in=10.0, height_in=8.0, dpi=DPI_PREVIEW) -> Image.Image:
     """Clean equation-focused listing image."""
@@ -1703,8 +1711,15 @@ Matte paper recommended. Personal use only.
 © MathRelaxing
 """,
             )
+            # Only the designs actually passed in. This used to glob the whole
+            # prints/ folder, so any leftover file there -- e.g. from a run
+            # with a different design list -- silently shipped inside the
+            # "Set of 6". It once padded the bundle to 10 designs, four of
+            # which are sold as their own separate listings.
+            wanted = {d.slug for d in designs}
             for fn in sorted(prints.glob("*.jpg")):
-                zf.write(fn, arcname=fn.name)
+                if any(fn.name.startswith(slug + "_") for slug in wanted):
+                    zf.write(fn, arcname=fn.name)
         mb = zip_path.stat().st_size / (1024 * 1024)
         print(f"  ZIP {zip_path.name} ({mb:.1f} MB)")
         if mb > 19.5:
@@ -1801,7 +1816,8 @@ def main():
         # set needs all six ideally
         all_d = DESIGNS if not args.only else designs
         if len(all_d) >= 6 or not args.only:
-            build_set_bundle(DESIGNS, preview_only=args.preview_only)
+            set_designs = [d for d in DESIGNS if d.slug in SET_OF_6_SLUGS]
+            build_set_bundle(set_designs, preview_only=args.preview_only)
         else:
             print("  skip set (need full series)")
 
