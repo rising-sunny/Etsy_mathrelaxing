@@ -313,8 +313,12 @@ def compose_fourier(width_in: float, height_in: float, dpi: int) -> Image.Image:
                transform=a.transAxes, ha="center", va="top",
                fontsize=_fs(fig_w, 0.009), color=INK_SOFT, clip_on=False)
 
+    # y=26.8 put this strapline at the exact height of the per-panel labels
+    # (panels bottom at 0.32 fig, labels -0.10 axes below -> ~26.9 data), so
+    # it printed straight through "3 harmonics"/"7 harmonics". 24.8 drops it
+    # into the clear band between those labels and the caption block (22.8).
     ax.text(
-        50, 26.8,
+        50, 24.8,
         IT(r"odd harmonics build a square wave  $\cdot$  Gibbs ringing at the jump")
         if _USE_LATEX else "odd harmonics build a square wave  ·  Gibbs ringing at the jump",
         fontsize=_fs(fig_w, 0.010), color=INK_SOFT, ha="center", va="center", zorder=5,
