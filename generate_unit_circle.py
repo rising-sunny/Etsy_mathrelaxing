@@ -247,8 +247,17 @@ def _draw_unit_circle(ax_circ, fig_w: float, show_coords: bool = True, highlight
         )
         # degree under rad for major angles only
         if deg % 45 == 0:
+            # The cardinal labels sit exactly on an axis (0/180 on y=0,
+            # 90/270 on x=0), and axhline/axvline span the full +-1.62, so
+            # without a perpendicular nudge the rule was drawn straight
+            # through "0", "90", "180" and "270". Push each clear of its axis.
+            dx_lab, dy_lab = 0.0, -0.02
+            if deg in (0, 180):
+                dy_lab = -0.12
+            elif deg in (90, 270):
+                dx_lab, dy_lab = 0.14, 0.0
             ax_circ.text(
-                1.32 * c, 1.32 * s - (0.02 if deg not in (90, 270) else 0),
+                1.32 * c + dx_lab, 1.32 * s + dy_lab,
                 rf"${deg}^{{\circ}}$",
                 fontsize=_fs(fig_w, 0.0075),
                 color=INK_SOFT,
@@ -582,7 +591,10 @@ def compose_included_card(dpi: int = DPI_PREVIEW) -> Image.Image:
     ax.text(52, 82, "included", fontsize=26, color=INK, ha="left", fontweight="bold", family="sans-serif")
     lines = [
         "1 scientific-plate print",
-        "Unit circle · radians & degrees",
+        # "&" is LaTeX's alignment tab -- unescaped it aborts the whole render
+        # with "Misplaced alignment tab character &". Only bites when LaTeX is
+        # actually installed; without it matplotlib falls back and this passes.
+        "Unit circle · radians and degrees",
         "exact coordinates at key angles",
         "",
         "Aspect ratios:",
