@@ -267,6 +267,42 @@ color fills.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "seamless_patterns": """\
+Instant download — 24 seamless geometric patterns that actually tile. \
+Repeat them across any surface and the join disappears: no line, no shift, \
+no ghost seam when you zoom out.
+
+► Why these repeat properly
+Each tile is computed, not drawn and patched at the edges. Every design was \
+verified against its own rendered pixels before it went in the pack — if a \
+join showed, the pattern didn't ship.
+
+► What's inside (97 files)
+• 24 seamless PNG tiles — 3000 x 3000 px, 300 dpi
+• 24 transparent PNGs — drop straight onto any background colour
+• 24 SVG vectors — every stroke editable, recolour and rescale freely
+• 24 colourway PNGs — six designs in indigo, terracotta, sage and gold on ink
+• Usage guide for Photoshop, Illustrator, Procreate, Canva and sublimation
+
+► Four pattern families, six scales and weights each
+• Celtic knot weave — interlaced strands, true over-and-under
+• Truchet arcs — flowing quarter-circle curves, from bold to hairline
+• Islamic star lattice — eight, twelve and six-point khatam stars
+• Circle lattice — the overlapping-circle grid, delicate to bold
+
+From a single hairline texture to a heavy graphic repeat, so one pack covers \
+a background, a feature print and everything between.
+
+► COMMERCIAL USE INCLUDED
+Sell what you make with them — fabric, wrapping paper, tumblers, mugs, \
+stationery, packaging, apparel, digital products. No credit required, no \
+volume cap. You may not resell or redistribute the pattern files themselves, \
+as-is or recoloured.
+
+This is a DIGITAL file — no physical product is shipped.
+© MathRelaxing
+""",
+
     "stem_study_kit": """\
 Instant download — the complete printable study kit for a STEM student. \
 Eighty-three print-ready pages: the formula sheets, note pages, grid paper, \
@@ -3000,6 +3036,38 @@ PRODUCTS = {
         ],
         "tags": ["ipad coloring book","color by number","voronoi diagram","math art","nature coloring","digital download","procreate swatches","goodnotes planner","interactive coloring","cellular automata","relaxing coloring"],
         "notes": "Migrated to Interactive SVG framework via build_voronoi_ipad_svg.py",
+    },
+
+    # Primer producto fuera del nicho math-art dirigido a un comprador distinto:
+    # crafters de sublimacion, scrapbookers y disenadores de superficie, que
+    # compran materia prima para sus propios productos. Los 14 intentos previos
+    # fuera del nicho (resume, emergency binder, password tracker...) sumaron 16
+    # views entre todos: categorias commodity sin ninguna ventaja. Aqui la
+    # ventaja es real -- un repeat sin costura se computa, no se dibuja.
+    # Ver seamless_patterns/build_seamless_pack.py.
+    "seamless_patterns": {
+        "title":       "Seamless Geometric Pattern Pack | 24 Tileable Repeats PNG SVG | Celtic Knot Islamic Star Circle Lattice | Commercial Use",
+        "description": DESCRIPTIONS["seamless_patterns"],
+        "price":       12.99,
+        "taxonomy_id": TAXONOMY["digital_drawing"],
+        "images": [
+            p("seamless_patterns", "previews", "01_hero.jpg"),
+            p("seamless_patterns", "previews", "02_all_patterns.jpg"),
+            p("seamless_patterns", "previews", "03_seamless_proof.jpg"),
+            p("seamless_patterns", "previews", "04_colourways.jpg"),
+            p("seamless_patterns", "previews", "05_included.jpg"),
+        ],
+        "files": [
+            p("seamless_patterns", "Seamless_Geometric_Pattern_Pack.zip"),
+        ],
+        "tags": ["seamless pattern","digital paper","surface pattern","tileable pattern",
+                 "geometric pattern","commercial use","sublimation design","celtic knot",
+                 "islamic geometry","svg pattern","scrapbook paper","pattern pack",
+                 "fabric pattern"],
+        "listing_id":  4555319169,
+        "notes": "24 disenos = 4 familias x 6 escalas/pesos. 97 archivos / 16.3 MB. "
+                 "Penrose descartado: un teselado aperiodico no puede repetir. "
+                 "Maze diagonal y Voronoi construidos pero excluidos: no pasaron verificacion.",
     },
 
     # Bundle armado a partir de productos que ya se venden por separado. Cuatro

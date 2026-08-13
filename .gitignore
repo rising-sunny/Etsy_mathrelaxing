@@ -287,3 +287,6 @@ attractor_prints/domain_coloring/*_test_*.jpg
 # to move away from another attractor; generator script kept as reference,
 # rendered output not published/committed.
 attractor_prints/flow_painting_clifford/
+
+# seamless pattern pack: intermediate renders (the ZIP is the deliverable)
+seamless_patterns/out/
