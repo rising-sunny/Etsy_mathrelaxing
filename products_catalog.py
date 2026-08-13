@@ -267,6 +267,40 @@ color fills.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "stem_study_kit": """\
+Instant download — the complete printable study kit for a STEM student. \
+Eighty-three print-ready pages: the formula sheets, note pages, grid paper, \
+lab templates and binder covers you actually reach for during a semester, \
+in one file instead of eleven separate purchases.
+
+► What's inside
+• 4 formula sheets — calculus, linear algebra, vector calculus, physics
+• The unit circle — every special angle in degrees and radians, exact coordinates
+• 10 grid paper styles — square, dot, isometric, hexagonal, Cornell, log-log,
+  semi-log, millimetre, polar and Cartesian
+• 2 notebooks — STEM lab notebook and mixed-grid problem notebook
+• 30 Cornell, lab report and syllabus pages — including the Cornell method guide
+• 24 binder covers and spines — maths, physics, chemistry, biology, CS,
+  engineering, statistics and more
+• STEM focus planner — undated weekly planning, habit grid, research log
+• 14 mathematical stickers (PNG)
+
+► Every printable comes in both A4 and US Letter
+No guessing which one your printer takes — both are in the download. \
+Everything is 300 dpi, so it prints crisp at home or at a copy shop.
+
+► Nothing is dated
+The planner, term pages and logs work in any semester, any year. Print a page \
+as many times as you need.
+
+► Why a kit
+Bought separately these pages run well over $20. Together they're one download \
+that covers the whole term.
+
+This is a DIGITAL file — no physical product is shipped.
+© MathRelaxing. Personal and single-classroom use. Not for redistribution or resale.
+""",
+
     "stem_focus_planner": """\
 Instant download — undated STEM focus planner for GoodNotes, Notability & any PDF app. \
 A minimalist, hyperlinked planner built for students, researchers and analytical minds — \
@@ -2966,6 +3000,35 @@ PRODUCTS = {
         ],
         "tags": ["ipad coloring book","color by number","voronoi diagram","math art","nature coloring","digital download","procreate swatches","goodnotes planner","interactive coloring","cellular automata","relaxing coloring"],
         "notes": "Migrated to Interactive SVG framework via build_voronoi_ipad_svg.py",
+    },
+
+    # Bundle armado a partir de productos que ya se venden por separado. Cuatro
+    # de las nueve ventas orgánicas del shop fueron printables prácticos de STEM
+    # ($1.50-$2.99 cada uno) mientras que el 69% del catálogo es wall art: esto
+    # sube el ingreso por visita en vez de agregar un listing más que compite
+    # por las mismas keywords. Ver stem_study_kit/build_stem_study_kit.py.
+    "stem_study_kit": {
+        "title":       "STEM Student Study Kit Printable Bundle | Formula Sheets Cornell Notes Graph Paper Binder Covers | A4 US Letter",
+        "description": DESCRIPTIONS["stem_study_kit"],
+        "price":       16.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("stem_study_kit", "previews", "01_hero.jpg"),
+            p("stem_study_kit", "previews", "02_included.jpg"),
+            p("stem_study_kit", "previews", "03_formula_sheets.jpg"),
+            p("stem_study_kit", "previews", "04_notes_labs.jpg"),
+            p("stem_study_kit", "previews", "05_binder_covers.jpg"),
+        ],
+        "files": [
+            p("stem_study_kit", "STEM_Student_Complete_Study_Kit.zip"),
+        ],
+        "tags": ["stem study kit","study bundle","formula sheet","cornell notes",
+                 "graph paper pdf","binder covers","student planner","lab notebook",
+                 "engineering student","back to school stem","calculus study guide",
+                 "physics formulas","college printables"],
+        "listing_id":  4555294483,
+        "notes": "83 archivos / 9.2 MB. Solo A4 + US Letter: incluir las razones de "
+                 "enmarcado (2:3/3:4/4:5) llevaba el ZIP a ~20.8MB, sobre el limite de Etsy.",
     },
 
     "stem_focus_planner": {
