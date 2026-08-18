@@ -267,6 +267,39 @@ color fills.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "spiral_tilings_wall": """\
+Instant download — six wall-art prints of a spiral tiling, computed from \
+scratch. One tile shape, repeated so that every piece stays the same size \
+while the whole plane winds around a centre.
+
+► The mathematics, briefly
+Rings of constant thickness are cut into pieces whose count grows with the \
+radius, so the tiles never stretch outward. Each ring boundary carries a \
+zigzag whose pitch is constant measured along the arc — that is what lets \
+rings holding different numbers of pieces still lock together. The surplus \
+pieces per ring are exactly what curl the pattern into spiral arms, and the \
+colour follows the same modular count. You are looking at the arithmetic, \
+not a filter laid over it.
+
+► The six designs
+• Vortex — teal and rust, a slow five-arm sweep
+• Helix — indigo and amber, tight and jewel-like
+• Radiant — terracotta and clay, dense radial bands
+• Corona — forest and ochre, concentric and calm
+• Drift — plum and gold, the centre carried off the page
+• Pinwheel — monochrome, high contrast
+
+► What you get
+• 6 designs, each at 9 x 11.5 in and 11 x 14 in
+• 300 dpi JPG, both sizes fit standard frames
+• No text printed over the art
+
+Print at home, at a copy shop or through an online service.
+
+This is a DIGITAL file — no physical product is shipped.
+© MathRelaxing. Personal use only. Not for redistribution or resale.
+""",
+
     "seamless_patterns": """\
 Instant download — 24 seamless geometric patterns that actually tile. \
 Repeat them across any surface and the join disappears: no line, no shift, \
@@ -3036,6 +3069,36 @@ PRODUCTS = {
         ],
         "tags": ["ipad coloring book","color by number","voronoi diagram","math art","nature coloring","digital download","procreate swatches","goodnotes planner","interactive coloring","cellular automata","relaxing coloring"],
         "notes": "Migrated to Interactive SVG framework via build_voronoi_ipad_svg.py",
+    },
+
+    # Teselado espiral por piezas casi congruentes -- NO es el mapeo conforme
+    # exponencial del libro de colorear "Spiral Tilings" que ya existe en el
+    # shop. Aquel manda una rejilla por exp(): los tiles crecen sin limite hacia
+    # afuera y se amontonan en una singularidad central. Aqui el tamano de pieza
+    # es constante. Titulo y tags apuntan a decor geometrico/boho, no al cluster
+    # de colorear, para no canibalizar el listing existente.
+    # Ver spiral_wall/spiral_engine.py.
+    "spiral_tilings_wall": {
+        "title":       "Spiral Tiling Wall Art Set of 6 | Geometric Op Art Prints, Boho Southwestern Colour | Printable Digital Download",
+        "description": DESCRIPTIONS["spiral_tilings_wall"],
+        "price":       5.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("spiral_wall", "previews", "01_hero.jpg"),
+            p("spiral_wall", "previews", "02_vortex.jpg"),
+            p("spiral_wall", "previews", "03_helix.jpg"),
+            p("spiral_wall", "previews", "04_drift.jpg"),
+            p("spiral_wall", "previews", "05_included.jpg"),
+        ],
+        "files": [
+            p("spiral_wall", "Spiral_Tilings_Wall_Art_Set_of_6.zip"),
+        ],
+        "tags": ["spiral wall art","geometric print","op art print","set of 6 prints",
+                 "boho wall art","southwestern art","math wall art","printable art set",
+                 "abstract print","mid century art","tessellation art","colorful wall art",
+                 "digital download"],
+        "listing_id":  4558227959,
+        "notes": "6 disenos x 2 tamanos, 11.8 MB. Convencion de tamanos igual al set Turing.",
     },
 
     # Primer producto fuera del nicho math-art dirigido a un comprador distinto:
