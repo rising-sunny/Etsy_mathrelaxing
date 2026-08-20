@@ -267,6 +267,37 @@ color fills.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "organic_abstract": """\
+Instant download — six abstract prints in which every shape is a plotted \
+curve, not a drawing.
+
+► Where the shapes come from
+Each outline is a truncated Fourier series in polar coordinates — the \
+amplitudes fall off with harmonic number, so the curve is band-limited and \
+comes out smooth by construction, never kinked — or Gielis' superformula, the \
+equation that yields petals, shells and rounded polygons from four exponents. \
+The dot textures are real lattices clipped to the outlines, not overlays \
+dropped on top.
+
+► The six designs, each with its own ground
+• Reef — midnight blue with coral, gold and teal
+• Terrace — bone and terracotta, warm and quiet
+• Canopy — deep forest with ochre and blush
+• Neon — black with electric green, orange and blue
+• Kiln — warm clay with navy and cream
+• Dusk — plum with peach, gold and mint
+
+► What you get
+• 6 designs, each at 9 x 11.5 in and 11 x 14 in
+• 300 dpi JPG, both sizes fit standard frames
+• No text printed over the art
+
+Print at home, at a copy shop or through an online service.
+
+This is a DIGITAL file — no physical product is shipped.
+© MathRelaxing. Personal use only. Not for redistribution or resale.
+""",
+
     "spiral_tilings_wall": """\
 Instant download — six wall-art prints of a spiral tiling, computed from \
 scratch. One tile shape, repeated so that every piece stays the same size \
@@ -3069,6 +3100,34 @@ PRODUCTS = {
         ],
         "tags": ["ipad coloring book","color by number","voronoi diagram","math art","nature coloring","digital download","procreate swatches","goodnotes planner","interactive coloring","cellular automata","relaxing coloring"],
         "notes": "Migrated to Interactive SVG framework via build_voronoi_ipad_svg.py",
+    },
+
+    # Formas organicas COMPUTADAS: series de Fourier truncadas en polares y
+    # superformula de Gielis. La categoria (cut-outs estilo Matisse) esta
+    # saturada de versiones dibujadas a mano; que las curvas tengan formula
+    # detras es lo unico que una version dibujada no puede reclamar.
+    # Ver organic_abstract/organic_engine.py.
+    "organic_abstract": {
+        "title":       "Abstract Organic Shapes Wall Art Set of 6 | Mid Century Modern Boho Prints, Matisse Style Cut Out | Printable Download",
+        "description": DESCRIPTIONS["organic_abstract"],
+        "price":       5.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("organic_abstract", "previews", "01_hero.jpg"),
+            p("organic_abstract", "previews", "02_reef.jpg"),
+            p("organic_abstract", "previews", "03_neon.jpg"),
+            p("organic_abstract", "previews", "04_terrace.jpg"),
+            p("organic_abstract", "previews", "05_included.jpg"),
+        ],
+        "files": [
+            p("organic_abstract", "Computed_Organic_Abstract_Set_of_6.zip"),
+        ],
+        "tags": ["abstract wall art","organic shapes","mid century modern","boho wall art",
+                 "matisse style","colorful wall art","set of 6 prints","printable art set",
+                 "modern wall art","gallery wall set","living room art","eclectic decor",
+                 "digital download"],
+        "listing_id":  None,
+        "notes": "6 disenos x 2 tamanos, 1.9 MB (rellenos planos comprimen muy bien).",
     },
 
     # Teselado espiral por piezas casi congruentes -- NO es el mapeo conforme
