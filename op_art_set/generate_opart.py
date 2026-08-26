@@ -45,21 +45,18 @@ def smooth(field):
     return np.clip(0.5 + field / (2.0 * g), 0, 1)
 
 
-def render(field, name, caption):
+def render(field, name, caption=None):
+    """Clean full-pattern print (no baked-in text) with a thin paper margin."""
     inten = smooth(field)[:, :, None]
     arr = (INK * (1 - inten) + PAPER * inten).astype(np.uint8)
     im = Image.fromarray(arr, "RGB").resize((W, H), Image.LANCZOS)
-    d = ImageDraw.Draw(im)
-    m = int(W * 0.05)
-    d.rectangle((m, m, W - m, H - m), outline=(214, 206, 190), width=3)
-    # caption plate
-    d.rectangle((m, int(H * 0.912), W - m, H - m), fill=tuple(PAPER.astype(int)))
-    d.line((m, int(H * 0.912), W - m, int(H * 0.912)), fill=(214, 206, 190), width=3)
-    d.text((W // 2, int(H * 0.945)), caption, font=font("Cinzel-SemiBold.ttf", 46),
-           fill=(24, 24, 28), anchor="mm")
-    d.text((W // 2, int(H * 0.972)), "KINETIC · MathRelaxing", font=font("Raleway-Italic.ttf", 24),
-           fill=(150, 144, 132), anchor="mm")
-    im.save(os.path.join(MAST, f"{name}.png"))
+    # thin paper margin so the pattern doesn't bleed to the very edge
+    m = int(W * 0.055)
+    canvas = Image.new("RGB", (W, H), tuple(PAPER.astype(int)))
+    canvas.paste(im.crop((m, m, W - m, H - m)), (m, m))
+    ImageDraw.Draw(canvas).rectangle((m, m, W - m - 1, H - m - 1),
+                                     outline=(206, 198, 182), width=3)
+    canvas.save(os.path.join(MAST, f"{name}.png"))
     print("wrote", name)
 
 
