@@ -11,10 +11,19 @@ lane with a pure generative moat.
 | `generate_celestial.py` | The art engine. Plates: **Orbits** (elliptical orrery), **Lunar Phases** (synodic terminator), and the **Resonance** harmonograph family (`plate_resonance()` is parametric over frequency ratios; `build_resonance_set()` renders the set of 6). → `masters/`. |
 | `build_resonance_listing.py` | Etsy deliverables for the Resonance set: gallery-wall hero, flat grid, single mockups, info card → `previews/`; 2:3/4:5/ISO prints → `prints/`; two ZIPs (each < Etsy's 20 MB cap). `--publish` creates the listing. |
 
-## Live listing (2026-08-26)
+## Live listings (2026-08-26)
 | Listing | Etsy ID | Price |
 |---|---|---|
-| Resonance — Set of 6 (celestial harmonographs) | 4563133990 | $16.99 |
+| Resonance — Set of 6 (digital printables) | 4563133990 | $16.99 |
+| Resonance II:III Poster (POD) | 4563112045 | $28–54 |
+| Resonance III:IV Poster (POD) | 4563135708 | $28–54 |
+| Resonance III:V Poster (POD) | 4563112181 | $28–54 |
+| Resonance IV:V Poster (POD) | 4563135938 | $28–54 |
+| Resonance V:VI Poster (POD) | 4563136002 | $28–54 |
+| Resonance II:V Poster (POD) | 4563136064 | $28–54 |
+
+Physical posters are Printify blueprint 282 (matte, 2:3) via
+`create_physical_posters.py`; they publish live/active (no draft step).
 
 The six figures are the frequency ratios II:III, III:IV, III:V, IV:V, V:VI,
 II:V — each a damped two-pendulum harmonograph, auto-centered and scaled to fit.
