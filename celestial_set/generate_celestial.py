@@ -144,24 +144,59 @@ def plate_lunar():
 
 
 # ------------------------------------------------------------- 3 · RESONANCE
-def plate_resonance():
-    fig, ax = new_plate(seed=42)
-    cx, cy = 0.5, 0.56
-    # damped harmonograph (two pendulums per axis)
-    t = np.linspace(0, 60, 9000)
-    d = 0.0055
-    x = (np.sin(2.0*t + 0.3)*np.exp(-d*t) + np.sin(3.01*t)*np.exp(-d*t)) * 0.5
-    y = (np.sin(2.99*t)*np.exp(-d*t) + np.sin(4.0*t + 1.2)*np.exp(-d*t)) * 0.5
-    x = cx + x*0.38; y = cy + y*0.38
-    pts = np.column_stack([x, y]).reshape(-1, 1, 2)
+# a harmonograph: two damped pendulums per axis. Each frequency ratio traces a
+# different closed figure -- a whole set from one law.
+RESONANCES = [
+    ("resonance_2_3", "RESONANCE II:III", "a harmonograph of commensurate orbits",
+     dict(f=(2.0, 3.01, 3.0, 4.0), p=(0.3, 0.0, 0.0, 1.2), d=0.0045)),
+    ("resonance_3_4", "RESONANCE III:IV", "two pendulums, four to three",
+     dict(f=(3.0, 4.0, 4.01, 3.0), p=(0.0, 1.57, 0.0, 0.7), d=0.0042)),
+    ("resonance_3_5", "RESONANCE III:V", "a five-to-three commensurability",
+     dict(f=(3.0, 5.0, 5.01, 2.0), p=(0.4, 0.0, 1.1, 0.0), d=0.0040)),
+    ("resonance_4_5", "RESONANCE IV:V", "the beat of near-equal periods",
+     dict(f=(4.0, 5.0, 5.0, 4.01), p=(0.0, 0.9, 0.3, 0.0), d=0.0038)),
+    ("resonance_5_6", "RESONANCE V:VI", "six turns against five",
+     dict(f=(5.0, 6.0, 6.01, 5.0), p=(1.2, 0.0, 0.5, 0.8), d=0.0036)),
+    ("resonance_2_5", "RESONANCE II:V", "a slow drift over a fast orbit",
+     dict(f=(2.0, 5.01, 5.0, 3.0), p=(0.0, 0.6, 0.0, 1.4), d=0.0044)),
+]
+
+
+def _resonance_xy(par, n=9000, tmax=64):
+    f, p, d = par["f"], par["p"], par["d"]
+    t = np.linspace(0, tmax, n)
+    x = np.sin(f[0]*t + p[0])*np.exp(-d*t) + np.sin(f[1]*t + p[1])*np.exp(-d*t)
+    y = np.sin(f[2]*t + p[2])*np.exp(-d*t) + np.sin(f[3]*t + p[3])*np.exp(-d*t)
+    return x, y
+
+
+def plate_resonance(name="resonance_2_3", ttl="RESONANCE", sub="", fig="FIG · III",
+                    par=None, seed=42):
+    par = par or RESONANCES[0][3]
+    fig_, ax = new_plate(seed=seed)
+    cx, cy = 0.5, 0.565
+    x, y = _resonance_xy(par)
+    # center on bounding-box centre, then scale to fit a fixed radius (contained)
+    x -= (x.max() + x.min()) / 2; y -= (y.max() + y.min()) / 2
+    ext = max(x.max(), -x.min(), y.max(), -y.min())
+    s = 0.365 / ext
+    X, Y = cx + x*s, cy + y*s
+    pts = np.column_stack([X, Y]).reshape(-1, 1, 2)
     segs = np.concatenate([pts[:-1], pts[1:]], axis=1)
-    # gold gradient along the curve
     c = np.linspace(0, 1, len(segs))
-    lc = LineCollection(segs, cmap="YlOrBr_r", array=c, lw=0.8, alpha=0.9, zorder=2)
-    ax.add_collection(lc)
-    ax.add_patch(Circle((cx, cy), 0.010, color=GOLD_HI, zorder=4))
-    title(ax, "RESONANCE", "a harmonograph of commensurate orbits", "FIG · III")
-    return fig
+    ax.add_collection(LineCollection(segs, cmap="YlOrBr_r", array=c, lw=0.75, alpha=0.92, zorder=2))
+    ax.add_patch(Circle((cx, cy), 0.009, color=GOLD_HI, zorder=4))
+    title(ax, ttl, sub, fig)
+    return fig_
+
+
+def build_resonance_set(n=6):
+    for i, (name, ttl, sub, par) in enumerate(RESONANCES[:n]):
+        print("rendering", name)
+        f = plate_resonance(name, ttl, sub, f"FIG · {i+1:02d}", par=par, seed=40 + i)
+        f.savefig(os.path.join(MAST, f"{name}.png"), dpi=DPI, facecolor=INK,
+                  pil_kwargs={"quality": 95})
+        plt.close(f)
 
 
 def build():
