@@ -85,10 +85,10 @@ def hero_gallery():
     d = ImageDraw.Draw(c)
     d.rectangle((0, int(S * 0.82), S, S), fill=(205, 197, 185))
     d.line((0, int(S * 0.82), S, int(S * 0.82)), fill=(150, 143, 130), width=3)
-    th = int(S * 0.46)
-    xs = [int(S * 0.22), int(S * 0.5), int(S * 0.78)]
+    th = int(S * 0.40)
+    xs = [int(S * 0.19), int(S * 0.5), int(S * 0.81)]
     for x, i in zip(xs, range(3)):
-        paste_framed(c, master(i), x, int(S * 0.44), th, fw=20, mat=0)
+        paste_framed(c, master(i), x, int(S * 0.44), th, fw=18, mat=0)
     d.text((S // 2, int(S * 0.93)), "N E O   D E C O   ·   S E T   O F   3",
            font=font("Cinzel-SemiBold.ttf", 40), fill=(70, 66, 60), anchor="mm")
     c.save(os.path.join(PREV, "01_hero_gallery.jpg"), quality=92)
