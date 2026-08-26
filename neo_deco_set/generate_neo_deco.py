@@ -140,8 +140,8 @@ def font(name, size):
 # =======================================================================
 # Design 1 — SUNBURST (rising-sun deco fan)
 # =======================================================================
-def design_sunburst():
-    im = bg(EMERALD_BG).convert("RGBA")
+def design_sunburst(ground=None):
+    im = bg(ground or EMERALD_BG).convert("RGBA")
     cx, cy = BW // 2, int(BH * 0.605)
     R = int(BW * 0.40)
 
@@ -186,8 +186,8 @@ def design_sunburst():
 # =======================================================================
 # Design 2 — STEPPED ARCHES (deco skyscraper doorway)
 # =======================================================================
-def design_arches():
-    im = bg(INK_BG).convert("RGBA")
+def design_arches(ground=None):
+    im = bg(ground or INK_BG).convert("RGBA")
     cx = BW // 2
     widths = [0.62, 0.50, 0.385, 0.275, 0.17]
     stops = [GOLD, CHROME, GOLD, CHROME, GOLD]
@@ -225,8 +225,8 @@ def design_arches():
 # =======================================================================
 # Design 3 — ROSETTE (deco rose-window medallion)
 # =======================================================================
-def design_rosette():
-    im = bg(SAPPHIRE_BG).convert("RGBA")
+def design_rosette(ground=None):
+    im = bg(ground or SAPPHIRE_BG).convert("RGBA")
     cx, cy = BW // 2, int(BH * 0.50)
     R = int(BW * 0.42)
 
@@ -272,16 +272,40 @@ def finish(im, numeral):
     return im.convert("RGB").resize((W, H), Image.LANCZOS)
 
 
+# extra jewel-tone grounds (each becomes its own per-palette listing)
+GROUNDS = {
+    "ruby":     [(0.0, "#4c1020"), (0.5, "#5e1626"), (1.0, "#350a15")],
+    "onyx":     [(0.0, "#191511"), (0.5, "#221d17"), (1.0, "#0c0a08")],
+    "amethyst": [(0.0, "#2d1747"), (0.5, "#392058"), (1.0, "#1b0f2e")],
+    "emerald":  EMERALD_BG,   # the original mixed set uses these three
+    "midnight": INK_BG,
+    "sapphire": SAPPHIRE_BG,
+}
+
+MOTIFS = [("01_sunburst", design_sunburst), ("02_arches", design_arches),
+          ("03_rosette", design_rosette)]
+
+
 def build():
-    for name, fn in [("01_sunburst", design_sunburst),
-                     ("02_arches", design_arches),
-                     ("03_rosette", design_rosette)]:
+    """the original mixed-ground set (emerald / midnight / sapphire)."""
+    for (name, fn), ground in zip(MOTIFS, [EMERALD_BG, INK_BG, SAPPHIRE_BG]):
         print("rendering", name)
-        img = fn()
-        p = os.path.join(MAST, f"{name}.png")
-        img.save(p)
-        print("  wrote", p, img.size)
+        fn(ground).save(os.path.join(MAST, f"{name}.png"))
+
+
+def build_palette(pal):
+    """render all three motifs on one jewel ground -> masters/<pal>_*.png"""
+    ground = GROUNDS[pal]
+    out = os.path.join(MAST, pal); os.makedirs(out, exist_ok=True)
+    for name, fn in MOTIFS:
+        print("rendering", pal, name)
+        fn(ground).save(os.path.join(out, f"{name}.png"))
 
 
 if __name__ == "__main__":
-    build()
+    import sys
+    if len(sys.argv) > 1:
+        for pal in sys.argv[1:]:
+            build_palette(pal)
+    else:
+        build()
