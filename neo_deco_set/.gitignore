@@ -1,0 +1,5 @@
+# derived / regenerated from generate_neo_deco.py + build_package.py
+prints/
+previews/
+*.zip
+_contact_sheet.jpg
