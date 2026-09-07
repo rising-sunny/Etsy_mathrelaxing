@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fraction Explorer — MathRelaxing</title>
+<!--
+  Fraction Explorer
+  © MathRelaxing. For single-classroom use only.
+
+  Deliberately a single self-contained file: no CDN, no web fonts, no network
+  of any kind. Works straight from the download on an offline / filtered
+  classroom Chromebook — just double-click. Opens from file:// with no install.
+-->
+<style>
+  :root{
+    --ink:#282c36; --muted:#6d7280; --rule:#dcdfe4; --bg:#f7f8fa;
+    --panel:#ffffff; --accent:#2f6f7e; --accent-soft:#e4f0f2;
+    --fill:#2f8f9d; --fill-soft:#bfe3e8; --empty:#eef1f3;
+    --a:#c96a5f; --b:#4f7fb8;      /* the two fractions in Compare */
+    --ok:#2c7a4b; --no:#b04a3f;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg)}
+  header{padding:18px 24px 14px;border-bottom:1px solid var(--rule);background:#fff}
+  header h1{margin:0;font-size:20px;letter-spacing:-.01em}
+  header p{margin:4px 0 0;color:var(--muted);font-size:14px}
+  main{display:flex;flex-wrap:wrap;gap:20px;padding:20px;align-items:flex-start}
+  .stage{flex:1 1 460px;min-width:320px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:10px;padding:14px}
+  .panel{flex:0 1 340px;min-width:300px;display:flex;flex-direction:column;gap:16px}
+  .card{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px}
+  .card h2{margin:0 0 10px;font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  svg{width:100%;height:auto;display:block}
+  .modes{display:flex;flex-direction:column;gap:8px}
+  .mode{border:1px solid var(--rule);border-radius:10px;padding:10px 12px;cursor:pointer;background:#fff}
+  .mode:hover{border-color:var(--accent)}
+  .mode[aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft)}
+  .mode .name{font-weight:600;font-size:14px}
+  .mode .desc{font-size:12px;color:var(--muted);margin-top:2px}
+  label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+  input[type=range]{width:100%;accent-color:var(--accent)}
+  .row{display:flex;align-items:center;gap:10px}
+  .val{font-variant-numeric:tabular-nums;font-weight:700;min-width:34px;text-align:center}
+  .toggle{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink);cursor:pointer;margin-top:2px}
+  .seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden}
+  .seg button{border:0;background:#fff;padding:7px 14px;font-size:13px;cursor:pointer;color:var(--ink)}
+  .seg button[aria-pressed=true]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+  .readout{font-size:14px;color:var(--ink);line-height:1.6}
+  .readout b{color:var(--accent)}
+  .frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;
+    margin:0 2px;line-height:1.05}
+  .frac .n{border-bottom:2px solid currentColor;padding:0 4px}
+  .frac .d{padding:0 4px}
+  button.action{border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:8px;
+    padding:9px 15px;font-size:14px;cursor:pointer}
+  button.action.ghost{background:#fff;color:var(--accent)}
+  input[type=number]{width:70px;padding:8px;border:1px solid var(--rule);border-radius:8px;font-size:15px}
+  .feedback{margin-top:10px;font-size:14px;min-height:1.4em}
+  .feedback.ok{color:var(--ok);font-weight:600}
+  .feedback.no{color:var(--no);font-weight:600}
+  .hidden{display:none}
+  footer{padding:14px 24px 26px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--rule);background:#fff}
+  @media print{.panel,footer{display:none}.stage{border:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Fraction Explorer</h1>
+  <p>See a fraction, build equivalents, compare, and place it on the number line.</p>
+</header>
+
+<main>
+  <section class="stage">
+    <svg id="fig" viewBox="0 0 700 420" role="img" aria-label="Fraction model"></svg>
+  </section>
+
+  <aside class="panel">
+    <div class="card">
+      <h2>Mode</h2>
+      <div class="modes" id="modes">
+        <div class="mode" data-mode="model"  aria-pressed="true">
+          <div class="name">Model &amp; equivalents</div>
+          <div class="desc">Shade a fraction; see it simplified and as equivalents.</div></div>
+        <div class="mode" data-mode="compare" aria-pressed="false">
+          <div class="name">Compare two fractions</div>
+          <div class="desc">Line up two bars and read &lt; , = or &gt;.</div></div>
+        <div class="mode" data-mode="line" aria-pressed="false">
+          <div class="name">Number line</div>
+          <div class="desc">Place the fraction between the whole numbers.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="controlsModel">
+      <h2>Fraction</h2>
+      <div class="row"><span class="seg" role="group" aria-label="Model shape">
+        <button id="shapeBar" aria-pressed="true">Bar</button>
+        <button id="shapeCircle" aria-pressed="false">Circle</button></span></div>
+      <div style="height:12px"></div>
+      <label for="mNum">Numerator</label>
+      <div class="row"><input id="mNum" type="range" min="0" max="24" value="3"><span class="val" id="mNumV">3</span></div>
+      <label for="mDen" style="margin-top:8px">Denominator</label>
+      <div class="row"><input id="mDen" type="range" min="1" max="12" value="4"><span class="val" id="mDenV">4</span></div>
+      <label class="toggle" style="margin-top:10px"><input type="checkbox" id="mEquiv"> Show an equivalent (×<span id="kOut">2</span>)</label>
+      <div class="row hidden" id="kRow"><input id="mK" type="range" min="2" max="6" value="2"><span class="val" id="mKV">2</span></div>
+      <p class="readout" id="modelRead"></p>
+    </div>
+
+    <div class="card hidden" id="controlsCompare">
+      <h2>Two fractions</h2>
+      <label>Fraction A</label>
+      <div class="row"><input id="aNum" type="range" min="0" max="12" value="1"><span class="val" id="aNumV">1</span>
+        <span style="color:var(--muted)">/</span>
+        <input id="aDen" type="range" min="1" max="12" value="2"><span class="val" id="aDenV">2</span></div>
+      <label style="margin-top:10px">Fraction B</label>
+      <div class="row"><input id="bNum" type="range" min="0" max="12" value="2"><span class="val" id="bNumV">2</span>
+        <span style="color:var(--muted)">/</span>
+        <input id="bDen" type="range" min="1" max="12" value="3"><span class="val" id="bDenV">3</span></div>
+      <p class="readout" id="compareRead"></p>
+    </div>
+
+    <div class="card hidden" id="controlsLine">
+      <h2>Fraction</h2>
+      <label for="lNum">Numerator</label>
+      <div class="row"><input id="lNum" type="range" min="0" max="24" value="5"><span class="val" id="lNumV">5</span></div>
+      <label for="lDen" style="margin-top:8px">Denominator</label>
+      <div class="row"><input id="lDen" type="range" min="1" max="12" value="4"><span class="val" id="lDenV">4</span></div>
+      <p class="readout" id="lineRead"></p>
+    </div>
+
+    <div class="card">
+      <h2>Practice</h2>
+      <p class="readout" id="taskText">Press Start for a question.</p>
+      <div class="row" id="answerRow"></div>
+      <div class="row" style="margin-top:10px">
+        <button class="action" id="check" disabled>Check</button>
+        <button class="action ghost" id="start">Start</button>
+      </div>
+      <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  © MathRelaxing · For single-classroom use only. Do not post this file on any
+  publicly accessible website. Additional licenses are available at a discount.
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var svgNS="http://www.w3.org/2000/svg";
+  var fig=document.getElementById("fig");
+  var state={mode:"model",shape:"bar",
+    m:{num:3,den:4,equiv:false,k:2},
+    c:{an:1,ad:2,bn:2,bd:3},
+    l:{num:5,den:4},
+    practice:{active:false,kind:null,data:null}};
+
+  function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t;}return a||1;}
+  function el(n,a,t){var e=document.createElementNS(svgNS,n);for(var k in a)e.setAttribute(k,a[k]);
+    if(t!==undefined)e.textContent=t;return e;}
+  function clear(){while(fig.firstChild)fig.removeChild(fig.firstChild);}
+  function ftxt(num,den){return '<span class="frac"><span class="n">'+num+'</span><span class="d">'+den+'</span></span>';}
+
+  // ---- bar / circle drawing ------------------------------------------------
+  function drawBar(x,y,w,h,num,den,fill,label){
+    var per=w/den, shaded=Math.min(num,den);
+    for(var i=0;i<den;i++){
+      fig.appendChild(el("rect",{x:x+i*per,y:y,width:per,height:h,
+        fill:i<shaded?fill:"var(--empty)",stroke:"#fff","stroke-width":3}));
+    }
+    fig.appendChild(el("rect",{x:x,y:y,width:w,height:h,fill:"none",
+      stroke:"var(--ink)","stroke-width":2,rx:4}));
+    if(num>den){ // second bar for the whole above one
+      fig.appendChild(el("text",{x:x+w+10,y:y+h/2+5,fill:"var(--muted)","font-size":13},"+ more"));
+    }
+    if(label) fig.appendChild(el("text",{x:x,y:y-12,fill:"var(--muted)","font-size":14},label));
+  }
+  function slice(cx,cy,r,a0,a1){
+    var p0={x:cx+r*Math.cos(a0),y:cy+r*Math.sin(a0)},
+        p1={x:cx+r*Math.cos(a1),y:cy+r*Math.sin(a1)},
+        large=(a1-a0)>Math.PI?1:0;
+    return "M "+cx+" "+cy+" L "+p0.x+" "+p0.y+" A "+r+" "+r+" 0 "+large+" 1 "+p1.x+" "+p1.y+" Z";
+  }
+  function drawCircle(cx,cy,r,num,den,fill){
+    var shaded=Math.min(num,den);
+    for(var i=0;i<den;i++){
+      var a0=-Math.PI/2+i*2*Math.PI/den, a1=-Math.PI/2+(i+1)*2*Math.PI/den;
+      fig.appendChild(el("path",{d:slice(cx,cy,r,a0,a1),
+        fill:i<shaded?fill:"var(--empty)",stroke:"#fff","stroke-width":3}));
+    }
+    fig.appendChild(el("circle",{cx:cx,cy:cy,r:r,fill:"none",stroke:"var(--ink)","stroke-width":2}));
+  }
+
+  // ---- renderers per mode --------------------------------------------------
+  function renderModel(){
+    clear();
+    var num=state.m.num,den=state.m.den,hide=state.practice.active&&state.practice.kind==="identify";
+    if(state.shape==="bar"){
+      // if improper, show whole bars + remainder
+      var wholes=Math.floor(num/den), rem=num%den, y=90, bw=560, bx=70, bh=64;
+      if(num<=den){ drawBar(bx,y,bw,bh,num,den,"var(--fill)"); }
+      else{
+        var rows=wholes+(rem?1:0), gap=16, hh=Math.min(64,(300-gap*(rows-1))/rows), yy=70;
+        for(var w=0;w<wholes;w++){drawBar(bx,yy,bw,hh,den,den,"var(--fill)");yy+=hh+gap;}
+        if(rem)drawBar(bx,yy,bw,hh,rem,den,"var(--fill)");
+      }
+    } else {
+      var num2=num,den2=den,wholes2=Math.floor(num/den),rem2=num%den;
+      if(num<=den){ drawCircle(350,210,120,num,den,"var(--fill)"); }
+      else{
+        var items=[],i;for(i=0;i<wholes2;i++)items.push(den);if(rem2)items.push(rem2);
+        var n=items.length,cols=Math.min(n,3),r=Math.min(95,520/(cols*2)),sx=350-(cols-1)*(r*2+20)/2;
+        for(i=0;i<n;i++){drawCircle(sx+(i%cols)*(r*2+20),150+Math.floor(i/cols)*(r*2+30),r,items[i],den,"var(--fill)");}
+      }
+    }
+    if(!hide){
+      fig.appendChild(el("text",{x:350,y:392,"text-anchor":"middle","font-size":30,
+        "font-weight":700,fill:"var(--ink)"},num+"/"+den));
+    } else {
+      fig.appendChild(el("text",{x:350,y:392,"text-anchor":"middle","font-size":26,
+        "font-weight":700,fill:"var(--muted)"},"? / ?"));
+    }
+    // readout: value, simplified, equivalent
+    var g=gcd(num,den),read="";
+    read+="Value: <b>"+ (den? (num/den).toFixed(3).replace(/0+$/,"").replace(/\.$/,"") : "—") +"</b>. ";
+    if(num>0&&g>1)read+="Simplifies to "+ftxt(num/g,den/g)+". ";
+    else if(num>0)read+="Already in simplest form. ";
+    if(state.m.equiv){var k=state.m.k;read+="Equivalent: "+ftxt(num,den)+" = "+ftxt(num*k,den*k)+
+      " — same amount, "+(k)+"× as many pieces.";}
+    document.getElementById("modelRead").innerHTML=read;
+  }
+
+  function renderCompare(){
+    clear();
+    var A=state.c,va=A.ad?A.an/A.ad:0,vb=A.bd?A.bn/A.bd:0,max=Math.max(va,vb,1);
+    var bx=90,bw=520,bh=60;
+    drawBar(bx,90,bw*(va/max),bh, A.an%A.ad||A.an===0?A.an%A.ad:A.ad, A.ad, "var(--a)");
+    // simpler: draw proportional solid bar for clarity
+    clear();
+    function propBar(y,val,col,label){
+      fig.appendChild(el("rect",{x:bx,y:y,width:bw,height:bh,fill:"var(--empty)",stroke:"var(--ink)","stroke-width":2,rx:5}));
+      fig.appendChild(el("rect",{x:bx,y:y,width:Math.max(0,bw*(val/max)),height:bh,fill:col,rx:5}));
+      fig.appendChild(el("text",{x:bx,y:y-10,fill:col,"font-size":15,"font-weight":700},label));
+    }
+    propBar(100,va,"var(--a)","A = "+A.an+"/"+A.ad);
+    propBar(230,vb,"var(--b)","B = "+A.bn+"/"+A.bd);
+    var sym=va<vb?"<":(va>vb?">":"=");
+    var hide=state.practice.active&&state.practice.kind==="compare";
+    fig.appendChild(el("text",{x:350,y:360,"text-anchor":"middle","font-size":40,"font-weight":700,
+      fill:hide?"var(--muted)":"var(--ink)"}, hide? "?" : (A.an+"/"+A.ad+"  "+sym+"  "+A.bn+"/"+A.bd)));
+    var cr="Cross-multiply: <b>"+(A.an*A.bd)+"</b> vs <b>"+(A.bn*A.ad)+"</b> ("+A.an+"×"+A.bd+" and "+A.bn+"×"+A.ad+").";
+    document.getElementById("compareRead").innerHTML=cr;
+  }
+
+  function renderLine(){
+    clear();
+    var num=state.l.num,den=state.l.den,val=den?num/den:0,whole=Math.max(1,Math.ceil(val));
+    var x0=70,x1=630,y=210,w=x1-x0;
+    fig.appendChild(el("line",{x1:x0,y1:y,x2:x1,y2:y,stroke:"var(--ink)","stroke-width":2.5}));
+    var k;
+    for(k=0;k<=whole*den;k++){
+      var x=x0+w*(k/(whole*den)),major=(k%den===0);
+      fig.appendChild(el("line",{x1:x,y1:y-(major?14:8),x2:x,y2:y+(major?14:8),
+        stroke:major?"var(--ink)":"var(--muted)","stroke-width":major?2.5:1.4}));
+      if(major)fig.appendChild(el("text",{x:x,y:y+38,"text-anchor":"middle","font-size":16,"font-weight":700},String(k/den)));
+    }
+    var hide=state.practice.active&&state.practice.kind==="line";
+    var mx=x0+w*(val/whole);
+    fig.appendChild(el("circle",{cx:mx,cy:y,r:9,fill:"var(--fill)",stroke:"#fff","stroke-width":2.5}));
+    fig.appendChild(el("text",{x:mx,y:y-26,"text-anchor":"middle","font-size":22,"font-weight":700,
+      fill:hide?"var(--muted)":"var(--fill)"}, hide?"?":num+"/"+den));
+    document.getElementById("lineRead").innerHTML="Each small tick is "+ftxt(1,den)+
+      ". The dot sits at <b>"+num+"/"+den+"</b>"+(val>=1?" = "+ (Number.isInteger(val)?val:(Math.floor(val)+" "+ (num%den)+"/"+den)) :"")+".";
+  }
+
+  function render(){
+    if(state.mode==="model")renderModel();
+    else if(state.mode==="compare")renderCompare();
+    else renderLine();
+  }
+
+  // ---- wiring --------------------------------------------------------------
+  function bindRange(id,outId,fn){
+    var r=document.getElementById(id),o=document.getElementById(outId);
+    r.addEventListener("input",function(){o.textContent=r.value;fn(Number(r.value));});
+  }
+  bindRange("mNum","mNumV",function(v){state.m.num=v;render();});
+  bindRange("mDen","mDenV",function(v){state.m.den=v;
+    document.getElementById("mNum").max=v*2;if(state.m.num>v*2){state.m.num=v*2;document.getElementById("mNum").value=v*2;document.getElementById("mNumV").textContent=v*2;}render();});
+  bindRange("mK","mKV",function(v){state.m.k=v;document.getElementById("kOut").textContent=v;render();});
+  document.getElementById("mEquiv").addEventListener("change",function(e){
+    state.m.equiv=e.target.checked;document.getElementById("kRow").classList.toggle("hidden",!e.target.checked);render();});
+  document.getElementById("shapeBar").addEventListener("click",function(){setShape("bar");});
+  document.getElementById("shapeCircle").addEventListener("click",function(){setShape("circle");});
+  function setShape(s){state.shape=s;
+    document.getElementById("shapeBar").setAttribute("aria-pressed",String(s==="bar"));
+    document.getElementById("shapeCircle").setAttribute("aria-pressed",String(s==="circle"));render();}
+
+  ["aNum","aDen","bNum","bDen"].forEach(function(id){
+    var r=document.getElementById(id),o=document.getElementById(id+"V");
+    r.addEventListener("input",function(){o.textContent=r.value;
+      state.c.an=+aNum.value;state.c.ad=+aDen.value;state.c.bn=+bNum.value;state.c.bd=+bDen.value;render();});
+  });
+  var aNum=document.getElementById("aNum"),aDen=document.getElementById("aDen"),
+      bNum=document.getElementById("bNum"),bDen=document.getElementById("bDen");
+  bindRange("lNum","lNumV",function(v){state.l.num=v;render();});
+  bindRange("lDen","lDenV",function(v){state.l.den=v;
+    document.getElementById("lNum").max=v*2;render();});
+
+  document.getElementById("modes").addEventListener("click",function(e){
+    var m=e.target.closest(".mode");if(!m)return;
+    state.mode=m.getAttribute("data-mode");
+    Array.prototype.forEach.call(document.querySelectorAll(".mode"),function(x){
+      x.setAttribute("aria-pressed",String(x===m));});
+    document.getElementById("controlsModel").classList.toggle("hidden",state.mode!=="model");
+    document.getElementById("controlsCompare").classList.toggle("hidden",state.mode!=="compare");
+    document.getElementById("controlsLine").classList.toggle("hidden",state.mode!=="line");
+    resetPractice();render();
+  });
+
+  // ---- practice ------------------------------------------------------------
+  var startBtn=document.getElementById("start"),checkBtn=document.getElementById("check"),
+      answerRow=document.getElementById("answerRow"),feedback=document.getElementById("feedback"),
+      taskText=document.getElementById("taskText");
+
+  function resetPractice(){state.practice={active:false,kind:null,data:null};
+    answerRow.innerHTML="";checkBtn.disabled=true;feedback.textContent="";feedback.className="feedback";
+    taskText.textContent="Press Start for a question.";}
+
+  function rint(lo,hi){return lo+Math.floor(Math.random()*(hi-lo+1));}
+
+  startBtn.addEventListener("click",function(){
+    feedback.textContent="";feedback.className="feedback";
+    if(state.mode==="model"){
+      var den=rint(2,10),num=rint(1,den);
+      state.m.num=num;state.m.den=den;
+      document.getElementById("mNum").value=num;document.getElementById("mNumV").textContent=num;
+      document.getElementById("mDen").value=den;document.getElementById("mDenV").textContent=den;
+      state.practice={active:true,kind:"identify",data:{num:num,den:den}};
+      answerRow.innerHTML='<input type="number" id="pN" placeholder="num" aria-label="numerator"> <span style="color:var(--muted)">/</span> <input type="number" id="pD" placeholder="den" aria-label="denominator">';
+      taskText.textContent="What fraction is shaded? (Any equivalent form is fine.)";
+    } else if(state.mode==="compare"){
+      state.c={an:rint(1,9),ad:rint(2,10),bn:rint(1,9),bd:rint(2,10)};
+      ["aNum","aDen","bNum","bDen"].forEach(function(id){var key={aNum:"an",aDen:"ad",bNum:"bn",bDen:"bd"}[id];
+        document.getElementById(id).value=state.c[key];document.getElementById(id+"V").textContent=state.c[key];});
+      state.practice={active:true,kind:"compare",data:null};
+      answerRow.innerHTML='<span class="seg"><button type="button" class="pcmp" data-s="<">&lt;</button>'+
+        '<button type="button" class="pcmp" data-s="=">=</button>'+
+        '<button type="button" class="pcmp" data-s="&gt;">&gt;</button></span>';
+      state.practice.pick=null;
+      Array.prototype.forEach.call(answerRow.querySelectorAll(".pcmp"),function(btn){
+        btn.addEventListener("click",function(){state.practice.pick=btn.getAttribute("data-s")==="&gt;"?">":btn.getAttribute("data-s");
+          Array.prototype.forEach.call(answerRow.querySelectorAll(".pcmp"),function(b){b.setAttribute("aria-pressed",String(b===btn));});});});
+      taskText.innerHTML="Is A &lt; , = or &gt; B?";
+    } else {
+      var d=rint(2,8),n=rint(1,2*d);state.l.num=n;state.l.den=d;
+      document.getElementById("lNum").value=n;document.getElementById("lNumV").textContent=n;
+      document.getElementById("lDen").value=d;document.getElementById("lDenV").textContent=d;
+      document.getElementById("lNum").max=d*2;
+      state.practice={active:true,kind:"line",data:{num:n,den:d}};
+      answerRow.innerHTML='<input type="number" id="pN" placeholder="num" aria-label="numerator"> <span style="color:var(--muted)">/</span> <input type="number" id="pD" placeholder="den" aria-label="denominator">';
+      taskText.textContent="Which fraction does the dot mark?";
+    }
+    checkBtn.disabled=false;render();
+  });
+
+  checkBtn.addEventListener("click",function(){
+    var p=state.practice;if(!p.active)return;
+    if(p.kind==="identify"||p.kind==="line"){
+      var n=Number(document.getElementById("pN").value),d=Number(document.getElementById("pD").value);
+      if(!d||Number.isNaN(n)||Number.isNaN(d)){feedback.textContent="Type a numerator and a denominator.";feedback.className="feedback";return;}
+      if(n*p.data.den===p.data.num*d){ // equal value (cross multiply)
+        feedback.textContent="Correct — that equals "+p.data.num+"/"+p.data.den+".";feedback.className="feedback ok";
+        endTask();
+      } else {feedback.textContent="Not yet. Count the shaded parts over the total parts.";feedback.className="feedback no";}
+    } else if(p.kind==="compare"){
+      if(!p.pick){feedback.textContent="Pick < , = or > first.";feedback.className="feedback";return;}
+      var va=state.c.an/state.c.ad,vb=state.c.bn/state.c.bd,want=va<vb?"<":(va>vb?">":"=");
+      if(p.pick===want){feedback.textContent="Correct — "+state.c.an+"/"+state.c.ad+" "+want+" "+state.c.bn+"/"+state.c.bd+".";
+        feedback.className="feedback ok";endTask();}
+      else{feedback.textContent="Not yet — line up the two bars, or cross-multiply.";feedback.className="feedback no";}
+    }
+  });
+  function endTask(){state.practice.active=false;checkBtn.disabled=true;
+    taskText.textContent="Nice. Press Start for another.";render();}
+
+  // headless-browser hook for the build's math check
+  window.__fx={state:state,gcd:gcd,render:render};
+
+  render();
+})();
+</script>
+</body>
+</html>
