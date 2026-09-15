@@ -25,7 +25,7 @@ def hx(c):
     c = c.lstrip("#"); return np.array([int(c[i:i+2], 16) for i in (0, 2, 4)], float) / 255
 
 
-def render(n_mag, res, A=1.7, steps=340, dt=0.04, R=0.20, C=0.40, h=0.27,
+def render(n_mag, res, A=1.7, steps=300, dt=0.045, R=0.21, C=0.40, h=0.27,
            cap_r=0.11, v_thr=0.34):
     ang = np.pi / 2 + np.arange(n_mag) * 2 * np.pi / n_mag
     mx, my = np.cos(ang).astype(np.float32), np.sin(ang).astype(np.float32)
@@ -83,10 +83,11 @@ def build(res=4000):
 
 
 if __name__ == "__main__":
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    res = 4000
-    if "--res" in sys.argv:
-        res = int(sys.argv[sys.argv.index("--res") + 1])
+    argv = sys.argv[1:]
+    res = 3000
+    if "--res" in argv:
+        i = argv.index("--res"); res = int(argv[i + 1]); del argv[i:i + 2]
+    args = [a for a in argv if not a.startswith("--")]
     if args:
         n = int(args[0])
         render(n, res).save(os.path.join(MAST, f"pendulum_{n}.png"))
