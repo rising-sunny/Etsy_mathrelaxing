@@ -46,3 +46,14 @@ python create_physical_posters.py
 Etsy auth: `etsy_token.json` (repo root, gitignored). Printify: `printify/.env`
 (gitignored). Derived outputs (`prints/`, `previews/`, `*.zip`, `_pf_*.jpg`) are
 gitignored.
+
+## Palette POD posters — live (2026-09-15)
+Ruby / Onyx / Amethyst × Sunburst / Arch / Rosette (Printify blueprint 282, 2:3), via `create_palette_posters.py`:
+
+| Design | Ruby | Onyx & Gold | Amethyst |
+|---|---|---|---|
+| Sunburst | 4575923702 | 4575924016 | 4575924286 |
+| Arch | 4575923812 | 4575903493 | 4575924374 |
+| Rosette | 4575903309 | 4575924196 | 4575924428 |
+
+Publish live/active (Printify has no draft step); declare Printify as the production partner on each.
