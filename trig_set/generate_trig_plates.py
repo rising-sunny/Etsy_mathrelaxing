@@ -26,10 +26,26 @@ from generate_equation_plates import (
     _new_plate, _header, _caption, _footer_eqs, _open_axes, fig_to_image,
     INK, INK_SOFT, INK_FAINT, RUST, CREAM, DPI_PRINT, DPI_PREVIEW, _fs, SF)
 import matplotlib.pyplot as plt
+from matplotlib.patches import Wedge, Arc, Polygon
 
 MAST = os.path.join(os.path.dirname(os.path.abspath(__file__)), "masters")
 os.makedirs(MAST, exist_ok=True)
 TEAL = "#2f6f7e"
+SLATE = "#3d5a80"
+
+
+def _ang(a, V, P, Q, color, label, w, r=0.72, lab_r=1.12, fs=0.014):
+    """shaded interior angle arc at vertex V (between edges to P and Q) + label."""
+    aP = np.degrees(np.arctan2(P[1] - V[1], P[0] - V[0]))
+    aQ = np.degrees(np.arctan2(Q[1] - V[1], Q[0] - V[0]))
+    d = (aQ - aP) % 360
+    if d > 180:
+        aP, aQ = aQ, aP; d = 360 - d
+    a.add_patch(Wedge(V, r, aP, aP + d, facecolor=color, alpha=0.20, edgecolor="none", zorder=4))
+    a.add_patch(Arc(V, 2 * r, 2 * r, angle=0, theta1=aP, theta2=aP + d, color=color, lw=2.0, zorder=5))
+    mid = np.radians(aP + d / 2)
+    a.text(V[0] + lab_r * np.cos(mid), V[1] + lab_r * np.sin(mid), label, color=color,
+           fontsize=_fs(w, fs), ha="center", va="center", weight="bold", zorder=6)
 
 
 def _plot(fig, rect, xlim, ylim, aspect=None):
@@ -96,15 +112,15 @@ def right_triangle(w, h, dpi):
     fig, ax = _new_plate(w, h, dpi)
     _header(ax, "Right Triangle", "FIG. 3", "SOH \u00b7 CAH \u00b7 TOA",
             r"$\sin,\cos,\tan=\frac{O}{H},\frac{A}{H},\frac{O}{A}$", 12)
-    a = _plot(fig, [0.10, 0.42, 0.80, 0.40], (0, 10), (0, 5), aspect="equal")
-    P = [(0.6, 0.8), (8.2, 0.8), (8.2, 4.3)]  # A(theta), B(right), C
-    a.add_patch(plt.Polygon(P, closed=True, fill=True, facecolor="#eef2f2",
-                            edgecolor=INK, lw=2.4, zorder=3))
-    a.plot([7.5, 7.5, 8.2], [0.8, 1.5, 1.5], color=INK, lw=1.6, zorder=4)  # right-angle mark
-    a.text(4.4, 0.45, "adjacent", fontsize=_fs(w, 0.011), color=INK_SOFT, ha="center", va="top")
-    a.text(8.45, 2.55, "opposite", fontsize=_fs(w, 0.011), color=INK_SOFT, ha="left", va="center", rotation=90)
-    a.text(4.1, 2.95, "hypotenuse", fontsize=_fs(w, 0.011), color=INK_SOFT, ha="center", va="bottom", rotation=27)
-    a.text(1.35, 1.05, r"$\theta$", fontsize=_fs(w, 0.016), color=RUST, ha="center")
+    a = _plot(fig, [0.10, 0.40, 0.80, 0.42], (0, 10), (0, 5.4), aspect="equal")
+    A, Bp, Cp = (0.6, 0.8), (8.2, 0.8), (8.2, 4.5)  # A(theta), B(right), C
+    a.add_patch(Polygon([A, Bp, Cp], closed=True, fill=True, facecolor="#eaf0f1",
+                        edgecolor=INK, lw=2.6, zorder=3, joinstyle="round"))
+    a.plot([7.45, 7.45, 8.2], [0.8, 1.55, 1.55], color=INK, lw=1.6, zorder=4)  # right-angle mark
+    a.text(4.4, 0.42, "adjacent", fontsize=_fs(w, 0.0115), color=TEAL, ha="center", va="top", weight="bold")
+    a.text(8.5, 2.65, "opposite", fontsize=_fs(w, 0.0115), color=SLATE, ha="left", va="center", rotation=90, weight="bold")
+    a.text(4.0, 3.05, "hypotenuse", fontsize=_fs(w, 0.0115), color=RUST, ha="center", va="bottom", rotation=26, weight="bold")
+    _ang(a, A, Bp, Cp, RUST, r"$\theta$", w, r=1.15, lab_r=1.75, fs=0.017)
     _caption(ax, ["Each ratio compares two sides relative to the angle theta.",
                   "The reciprocals are cosecant, secant and cotangent."], 34, 12)
     _footer_eqs(ax, (r"$\sin\theta=\frac{O}{H}$", "SOH"), (r"$\cos\theta=\frac{A}{H}$", "CAH"),
@@ -146,16 +162,28 @@ def laws(w, h, dpi):
     fig, ax = _new_plate(w, h, dpi)
     _header(ax, "Laws of Triangles", "FIG. 5", "sines and cosines for any triangle",
             r"$\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}$", 12)
-    a = _plot(fig, [0.12, 0.42, 0.76, 0.40], (0, 10), (0, 5), aspect="equal")
-    A, B, C = (0.8, 0.8), (9.0, 1.4), (3.4, 4.4)
-    a.add_patch(plt.Polygon([A, B, C], closed=True, fill=True, facecolor="#eef2f2",
-                            edgecolor=INK, lw=2.4, zorder=3))
-    for p, name in [(A, "A"), (B, "B"), (C, "C")]:
-        a.text(p[0], p[1] - 0.1, f" {name}", fontsize=_fs(w, 0.013), color=RUST,
-               ha="center", va="top", weight="bold")
-    a.text(5.0, 0.7, "c", fontsize=_fs(w, 0.012), color=INK_SOFT, ha="center", va="top")
-    a.text(6.5, 3.1, "a", fontsize=_fs(w, 0.012), color=INK_SOFT, ha="left")
-    a.text(1.7, 2.8, "b", fontsize=_fs(w, 0.012), color=INK_SOFT, ha="right")
+    a = _plot(fig, [0.10, 0.40, 0.80, 0.44], (0, 10), (0, 5.6), aspect="equal")
+    A, B, C = np.array([1.0, 0.9]), np.array([9.0, 1.5]), np.array([3.7, 4.9])
+    a.add_patch(Polygon([A, B, C], closed=True, fill=True, facecolor="#eaf0f1",
+                        edgecolor=INK, lw=2.6, zorder=3, joinstyle="round"))
+    # altitude from C to AB (motivates the law of sines: h = b sin A = a sin B)
+    AB = B - A; t = np.dot(C - A, AB) / np.dot(AB, AB); F = A + t * AB
+    a.plot([C[0], F[0]], [C[1], F[1]], color=RUST, lw=1.6, ls=(0, (5, 3)), zorder=4)
+    n = (C - F); n = n / np.hypot(*n) * 0.32; t2 = AB / np.hypot(*AB) * 0.32
+    a.plot([F[0] + t2[0], F[0] + t2[0] + n[0], F[0] + n[0]],
+           [F[1] + t2[1], F[1] + t2[1] + n[1], F[1] + n[1]], color=RUST, lw=1.3, zorder=5)
+    a.text((C[0] + F[0]) / 2 + 0.18, (C[1] + F[1]) / 2, "h", color=RUST,
+           fontsize=_fs(w, 0.013), ha="left", va="center", style="italic", zorder=6)
+    # coloured angle arcs
+    _ang(a, A, B, C, RUST, "A", w)
+    _ang(a, B, A, C, TEAL, "B", w)
+    _ang(a, C, A, B, SLATE, "C", w)
+    # side labels at edge midpoints, nudged outward from the centroid
+    G = (A + B + C) / 3
+    for p, q, lab, col in [(B, C, "a", RUST), (A, C, "b", TEAL), (A, B, "c", SLATE)]:
+        mid = (p + q) / 2; out = mid - G; out = out / np.hypot(*out) * 0.5
+        a.text(mid[0] + out[0], mid[1] + out[1], lab, color=col, fontsize=_fs(w, 0.015),
+               ha="center", va="center", weight="bold", style="italic", zorder=6)
     _caption(ax, ["Law of sines: sides are proportional to the sines of opposite angles.",
                   "Law of cosines generalises Pythagoras to any angle C."], 34, 12)
     _footer_eqs(ax, (r"$\frac{a}{\sin A}=\frac{b}{\sin B}$", "law of sines"),
