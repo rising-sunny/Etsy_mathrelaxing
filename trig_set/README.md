@@ -17,3 +17,17 @@ house style (matches Special Functions & Famous Equations). Targets the
 
 Physical POD posters (portrait 2:3, blueprint 282 / provider 99) can be added
 later with a create_physical_posters.py like the other sets.
+
+## Physical POD posters — live (2026-09-16)
+Portrait 2:3, Printify blueprint 282 / provider 99 (12×18/20×30/24×36), via `create_physical_posters.py`:
+
+| Plate | Etsy ID |
+|---|---|
+| The Unit Circle | 4576459983 |
+| Sine and Cosine | 4576478280 |
+| Right Triangle (SOHCAHTOA) | 4576478398 |
+| Trig Identities | 4576478468 |
+| Law of Sines and Cosines | 4576478554 |
+| Tangent and Asymptotes | 4576478624 |
+
+Publish live/active; declare Printify as the production partner on each.
