@@ -261,5 +261,6 @@ _oauth_pending.json
 
 
 # Printify temp render/upload artifacts
+**/_pf_render/
 fractal_puzzles/_pf_render/
 **/_pf_*.jpg
