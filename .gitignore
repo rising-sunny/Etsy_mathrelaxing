@@ -259,3 +259,7 @@ wallart_set/__pycache__/
 # OAuth PKCE pending state (never commit)
 _oauth_pending.json
 
+
+# Printify temp render/upload artifacts
+fractal_puzzles/_pf_render/
+**/_pf_*.jpg
