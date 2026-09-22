@@ -267,6 +267,46 @@ color fills.
 © MathRelaxing. For personal use only. Not for redistribution or resale.
 """,
 
+    "better_buy_unit_rates": """\
+Which offer is really the better deal? Students compare unit prices, check \
+quantities, and make shopping decisions they can back up with the maths.
+
+This printable goes past picking the lowest sticker price. Students also weigh \
+whether a purchase actually meets their needs and fits the budget — including \
+one problem where the lowest price per item is NOT the cheapest way to buy.
+
+► What's included (15 pages)
+• 12 offer comparisons across two levels — 6 whole-dollar, 6 decimal
+• A worked example that separates unit value from total spending
+• A reusable comparison organizer
+• A club supply challenge with a $20 budget
+• A three-question exit ticket
+• Worked answer keys, teacher guidance and suggested scoring
+
+► Skills
+Calculate and compare unit rates; label dollars per item; compare prices per \
+100 g and per 100 mL; recognise equal unit prices; and choose whole-pack \
+purchases within a budget.
+
+► In the classroom or at home
+Built for grades 6–7. Works for independent or partner practice, a unit-rate \
+review, a sub plan, or homeschool. Level 1 uses whole-dollar rates, Level 2 \
+introduces decimals, and the two levels use different problems — so you can \
+assign both.
+
+► Format
+15-page PDF at US Letter: cover, teacher guide, 8 student-facing pages, \
+4 answer-key pages and terms of use. Black-and-white friendly. Not editable. \
+No devices and no cutting required.
+
+All stores and prices are fictional. Items within each comparison are assumed \
+to be the same quality.
+
+This is a DIGITAL download — nothing is shipped. Single-teacher classroom \
+licence; for personal or single-classroom use, not for redistribution or resale.
+© MathRelaxing
+""",
+
     "organic_abstract": """\
 Instant download — six abstract prints in which every shape is a plotted \
 curve, not a drawing.
@@ -3100,6 +3140,38 @@ PRODUCTS = {
         ],
         "tags": ["ipad coloring book","color by number","voronoi diagram","math art","nature coloring","digital download","procreate swatches","goodnotes planner","interactive coloring","cellular automata","relaxing coloring"],
         "notes": "Migrated to Interactive SVG framework via build_voronoi_ipad_svg.py",
+    },
+
+    # Recurso docente que ya existe en TPT; aqui va adaptado a Etsy. Cambios
+    # frente al listing de TPT: titulo reescrito con keywords que la gente
+    # teclea en Etsy (TPT vive de categorias, Etsy de busqueda), 13 tags,
+    # mencion explicita de homeschool -- en Etsy ese comprador pesa tanto como
+    # el docente, cosa que no pasa en TPT -- y precio $4.99 en vez de los $3.50
+    # sugeridos alli. Se quito el bloque "UPLOAD FIELDS", que es de TPT.
+    # Encaja en la linea con mas senal del shop: 4 de las 9 ventas organicas
+    # fueron printables practicos de STEM.
+    "better_buy_unit_rates": {
+        "title":       "Unit Rates Worksheets | Better Buy Shopping Math Activity | 6th 7th Grade Printable PDF Answer Keys | Homeschool",
+        "description": DESCRIPTIONS["better_buy_unit_rates"],
+        "price":       4.99,
+        "taxonomy_id": TAXONOMY["planner_template"],
+        "images": [
+            p("better_buy", "listing_images", "01_hero.jpg"),
+            p("better_buy", "listing_images", "02_whats_included.jpg"),
+            p("better_buy", "listing_images", "03_sample_pages.jpg"),
+            p("better_buy", "listing_images", "04_inside_the_pdf.jpg"),
+            p("better_buy", "listing_images", "05_answer_keys.jpg"),
+        ],
+        "files": [
+            p("better_buy", "Better_Buy_Unit_Rates.pdf"),
+        ],
+        "tags": ["unit rates","math worksheets","6th grade math","7th grade math",
+                 "middle school math","homeschool math","ratios and rates","math printable",
+                 "consumer math","teacher resource","math activity","sub plans",
+                 "financial literacy"],
+        "listing_id":  None,
+        "notes": "15 pags US Letter. Verificado contra el PDF: 12 problemas, reto de $20 "
+                 "resuelve en $19.20, y la clave del pack de 30 barras es correcta.",
     },
 
     # Formas organicas COMPUTADAS: series de Fourier truncadas en polares y
