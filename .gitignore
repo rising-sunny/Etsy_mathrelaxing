@@ -264,3 +264,6 @@ _oauth_pending.json
 **/_pf_render/
 fractal_puzzles/_pf_render/
 **/_pf_*.jpg
+
+# POD textile print files (regenerable via pod_textiles/prepare_prints.py)
+pod_textiles/prints/
