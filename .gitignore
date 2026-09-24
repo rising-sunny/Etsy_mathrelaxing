@@ -268,3 +268,4 @@ fractal_puzzles/_pf_render/
 # POD textile print files (regenerable via pod_textiles/prepare_prints.py)
 pod_textiles/prints/
 pod_textiles/mockups/
+pod_textiles/designs_ref/
