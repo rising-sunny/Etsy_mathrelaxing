@@ -115,8 +115,8 @@ def _attractor(f, s0, tmax, n, proj, lw=0.45, cmap=MB.CMAP, lims=None):
     if lims:
         ax.set_xlim(lims[0]); ax.set_ylim(lims[1])
     else:
-        ax.set_xlim(a.min() - abs(a.ptp()) * 0.04, a.max() + abs(a.ptp()) * 0.04)
-        ax.set_ylim(b.min() - abs(b.ptp()) * 0.04, b.max() + abs(b.ptp()) * 0.04)
+        ax.set_xlim(a.min() - abs(np.ptp(a)) * 0.04, a.max() + abs(np.ptp(a)) * 0.04)
+        ax.set_ylim(b.min() - abs(np.ptp(b)) * 0.04, b.max() + abs(np.ptp(b)) * 0.04)
     ax.set_aspect("auto")
     return MB.to_pil(fig, DARK)
 
