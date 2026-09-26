@@ -269,3 +269,8 @@ fractal_puzzles/_pf_render/
 pod_textiles/prints/
 pod_textiles/mockups/
 pod_textiles/designs_ref/
+
+# Generated book interiors/pages (regenerable from generators)
+lulu_books/generators/math_gallery/atlas/
+lulu_books/generators/math_gallery/book/
+lulu_books/generators/math_gallery/fullbook/
