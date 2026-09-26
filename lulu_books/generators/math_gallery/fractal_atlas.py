@@ -29,7 +29,7 @@ DPI = MB.DPI; TRIM_PX = MB.TRIM_PX
 PAPER, INK, SUB, ACC, DARK = MB.PAPER, MB.INK, MB.SUB, MB.ACC, MB.DARK
 CIN, CINR, RAL, RALI = MB.CINZEL, MB.CINZEL_R, MB.RALEWAY, MB.RALEWAY_I
 
-S = 2400          # fractal render resolution
+S = 2000          # fractal render resolution
 IT = 260          # iterations
 
 # ---------- vibrant fractal engine (smooth escape-time) ----------
@@ -85,7 +85,7 @@ def mandel(cx, cy, w, cmap, phase=0.0, cyc=0.03, power=2, conj=False, absfold=Fa
     return _color(_smooth(C, 0.0 + 0j, power=power, conj=conj, absfold=absfold), cmap, cyc, phase)
 
 
-def newton(n, cmap, w=3.2, it=48):
+def newton(n, cmap, w=3.2, it=40):
     x = np.linspace(-w / 2, w / 2, S)
     X, Y = np.meshgrid(x, x); Z = X + 1j * Y
     roots = np.exp(2j * np.pi * np.arange(n) / n)
@@ -93,8 +93,11 @@ def newton(n, cmap, w=3.2, it=48):
     for k in range(it):
         with np.errstate(all="ignore"):
             Z = Z - (Z ** n - 1) / (n * Z ** (n - 1) + 1e-12)
-        near = np.min(np.abs(Z[..., None] - roots), axis=-1)
-        conv = (near < 1e-3) & (~done); itc[conv] = k; done |= conv
+        # cheap convergence test: |z^n - 1| small  (no huge root broadcast)
+        with np.errstate(all="ignore"):
+            near = np.abs(Z ** n - 1)
+        conv = (near < 1e-4) & (~done); itc[conv] = k; done |= conv
+    # nearest root computed ONCE at the end
     idx = np.argmin(np.abs(Z[..., None] - roots), axis=-1)
     shade = 1 - itc / it
     base = cmap(idx / max(1, n - 1))[:, :, :3]
