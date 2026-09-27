@@ -158,13 +158,12 @@ def draw_cover(page, plan):
     sx = 300 / (max(xs) - min(xs)); sz = 260 / (max(zs) - min(zs))
     cx, cy = PW * 0.70, PH * 0.47
     poly = [(cx + (p[0] - (max(xs) + min(xs)) / 2) * sx, cy - (p[1] - (max(zs) + min(zs)) / 2) * sz) for p in pts]
-    for i in range(0, len(poly) - 40, 40):
-        page.draw_polyline(poly[i:i + 41], color=GOLD, width=0.45)
+    sh = page.new_shape(); sh.draw_polyline(poly); sh.finish(color=GOLD, width=0.45, closePath=False); sh.commit()
     text(page, 60, 220, str(YEAR), 96, SERIF_B, CREAM)
     text(page, 64, 270, "STEM PLANNER", 30, SERIF_B, CREAM)
     text(page, 64, 300, "Hyperlinked digital planner for students & researchers", 13, SERIF_I, GOLD)
     start = "Monday" if plan.fw == 0 else "Sunday"
-    text(page, 64, 322, f"January – December {YEAR}  ·  {start} start  ·  GoodNotes · Notability", 10.5, SERIF, CREAM)
+    text(page, 64, 322, f"January - December {YEAR}  ·  {start} start  ·  GoodNotes · Notability", 10.5, SERIF, CREAM)
     page.draw_rect(fitz.Rect(0, PH - 56, PW, PH), color=None, fill=(0, 0, 0), width=0)
     if os.path.exists(LOGO):
         page.insert_image(fitz.Rect(PW / 2 - 70, PH - 50, PW / 2 + 70, PH - 6), filename=LOGO, keep_proportion=True)
@@ -195,6 +194,17 @@ def draw_index(page, plan):
         box(page, rect, GOLD, 1.0, None, 0.25)
         ctext(page, rect, MONTHS[m][:3].upper(), 11, SERIF_B, NAVY)
         link(page, rect, plan.page("month", m + 1))
+    g = fitz.Rect(X0, y + 56, X1, y + 56 + 124)
+    box(page, g, GOLD, 1.0, SOFT, 0.04)
+    text(page, g.x0 + 12, g.y0 + 20, "How to navigate", 13, SERIF_B, NAVY)
+    tips = ["Tap any side tab to jump: IDX (this page), YR (year at a glance), J-D (months), TOOLS, NOTES.",
+            "On a month page, tap any date to open the weekly spread for that week.",
+            "Week pages have prev / next links; month pages link to their habit tracker.",
+            "Duplicate the Notes, Lab Notebook or Cornell pages in your app whenever you need more."]
+    yy = g.y0 + 40
+    for t in tips:
+        page.draw_circle((g.x0 + 16, yy - 3.5), 2.2, color=GOLD, fill=GOLD)
+        text(page, g.x0 + 26, yy, t, 10.5, SERIF, INK); yy += 19
     footer(page)
 
 
@@ -310,9 +320,11 @@ def draw_habits(page, plan, m):
     background(page); header(page, f"{MONTHS[m - 1]} Habits", str(YEAR)); tabs(page, plan, m)
     nd = calendar.monthrange(YEAR, m)[1]
     lw = 150; cw = (X1 - X0 - lw) / nd; y0 = 84
+    text(page, X0 + 4, y0 + 10, "HABIT", 8.5, SERIF_B, GOLD)
     for d in range(1, nd + 1):
         ctext(page, fitz.Rect(X0 + lw + (d - 1) * cw, y0, X0 + lw + d * cw, y0 + 12), str(d), 7, SERIF_B, GOLD)
     rows = 14; rh = (Y1 - 110 - y0) / rows
+    circ = page.new_shape()
     for r in range(rows):
         y = y0 + 16 + r * rh
         if r % 2:
@@ -320,7 +332,8 @@ def draw_habits(page, plan, m):
         hline(page, y + rh, color=LINE)
         for d in range(nd):
             cx = X0 + lw + d * cw + cw / 2
-            page.draw_circle((cx, y + rh / 2), min(cw, rh) * 0.28, color=LINE, width=0.6)
+            circ.draw_circle((cx, y + rh / 2), min(cw, rh) * 0.28)
+    circ.finish(color=LINE, width=0.6); circ.commit()
     text(page, X0, Y1 - 70, "Monthly reflection", 12, SERIF_B, NAVY)
     lines(page, fitz.Rect(X0, Y1 - 64, X1, Y1), 18)
     ml = fitz.Rect(X1 - 120, Y0 + 12, X1, Y0 + 30)
@@ -330,7 +343,7 @@ def draw_habits(page, plan, m):
 
 def draw_week(page, plan, i):
     s = plan.weeks[i]; e = s + dt.timedelta(days=6)
-    rng = f"{s.day} {s.strftime('%b')} – {e.day} {e.strftime('%b')} {e.year}"
+    rng = f"{s.day} {s.strftime('%b')} - {e.day} {e.strftime('%b')} {e.year}"
     background(page); header(page, f"Week {i + 1:02d}", rng)
     mid = s + dt.timedelta(days=3); tabs(page, plan, mid.month if mid.year == YEAR else None)
     days = [s + dt.timedelta(days=k) for k in range(7)]
@@ -400,10 +413,12 @@ def draw_tool(page, plan, t):
         text(page, X0, Y1 - 8, "Course total = sum of weighted scores.   GPA: ______", 10.5, SERIF_I, MUTED)
     elif t == "study":
         xs, y = table(page, ["Date", "Subject", "Focus goal", "Focus blocks", "Min"], 80, 20, 22, [1.1, 1.8, 3, 3, 0.8])
+        sh = page.new_shape()
         for k in range(20):
             yy = 80 + 22 * (k + 1) + 11
             for b in range(8):
-                page.draw_circle((xs[3] + 14 + b * ((xs[4] - xs[3] - 20) / 8), yy), 5, color=RED, width=0.7)
+                sh.draw_circle((xs[3] + 14 + b * ((xs[4] - xs[3] - 20) / 8), yy), 5)
+        sh.finish(color=RED, width=0.7); sh.commit()
     elif t == "project":
         y = 80
         for lab in ("Project", "Goal", "Deadline"):
@@ -442,12 +457,13 @@ def draw_tool(page, plan, t):
 
 def grid(page, r, g, soft=False):
     r = fitz.Rect(r); col = SOFT if soft else LINE
-    x = r.x0
+    sh = page.new_shape(); x = r.x0
     while x <= r.x1 + 0.1:
-        page.draw_line((x, r.y0), (x, r.y1), color=col, width=0.4); x += g
+        sh.draw_line((x, r.y0), (x, r.y1)); x += g
     y = r.y0
     while y <= r.y1 + 0.1:
-        page.draw_line((r.x0, y), (r.x1, y), color=col, width=0.4); y += g
+        sh.draw_line((r.x0, y), (r.x1, y)); y += g
+    sh.finish(color=col, width=0.4); sh.commit()
 
 
 def draw_note(page, plan, kind):
@@ -457,12 +473,13 @@ def draw_note(page, plan, kind):
     if kind == "graph":
         grid(page, r, 14.17)   # 5 mm
     elif kind == "dot":
-        y = r.y0
+        sh = page.new_shape(); y = r.y0
         while y <= r.y1:
             x = r.x0
             while x <= r.x1:
-                page.draw_circle((x, y), 0.7, color=MUTED, fill=MUTED); x += 14.17
+                sh.draw_circle((x, y), 0.7); x += 14.17
             y += 14.17
+        sh.finish(color=MUTED, fill=MUTED); sh.commit()
     else:
         lines(page, r, 20)
     footer(page)
