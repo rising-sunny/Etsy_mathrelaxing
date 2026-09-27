@@ -274,3 +274,6 @@ pod_textiles/designs_ref/
 lulu_books/generators/math_gallery/atlas/
 lulu_books/generators/math_gallery/book/
 lulu_books/generators/math_gallery/fullbook/
+
+# STEM advent calendar build output (regenerable)
+advent_stem/out/
