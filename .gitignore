@@ -277,3 +277,6 @@ lulu_books/generators/math_gallery/fullbook/
 
 # STEM advent calendar build output (regenerable)
 advent_stem/out/
+
+# 2027 planner build output (regenerable)
+planner_2027/out/
