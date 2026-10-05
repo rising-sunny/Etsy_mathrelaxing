@@ -27,3 +27,10 @@
   before 2026-10-26; let the ~71 no-signal listings expire. ~$24 per 4-month cycle.
 - Etsy Ads ($1-2/day) on proven converters: Ulam posters, Navier-Stokes, Physics Set, Golden Ratio, Advent.
 - Activate the 14 remaining educational drafts for Q4.
+
+## Auto-renew decision (2026-10-05)
+Enabled should_auto_renew on 10 listings only (owner capped at 10); all others expire naturally:
+4544209146 Coffee Table Book · 4554055609 Ulam Spiral Poster · 4537362221 Ulam Spiral Art Print ·
+4540082607 Famous Equations Set of 6 · 4554039070 Navier-Stokes Poster · 4539473180 Physics Poster Set of 6 ·
+4536928786 Sierpinski Triangle Poster · 4537362085 Golden Ratio Art Print · 4540138384 Fourier Series Poster ·
+4549082769 Number Theory Timeline.
