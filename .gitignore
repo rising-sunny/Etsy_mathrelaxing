@@ -301,3 +301,6 @@ paper_ornaments/out/
 
 # Math Christmas cards build output (regenerable)
 math_cards_xmas/out/
+
+# Fractal ornament artwork (regenerable)
+fractal_ornaments/out/
