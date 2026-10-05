@@ -295,3 +295,6 @@ logic_book_xmas/out/
 
 # Christmas bundle build output (regenerable)
 xmas_bundle/out/
+
+# Paper ornaments build output (regenerable)
+paper_ornaments/out/
