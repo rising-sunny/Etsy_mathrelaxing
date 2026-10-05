@@ -286,3 +286,6 @@ shop_tools/out/
 
 # Christmas escape room build output (regenerable)
 escape_room_xmas/out/
+
+# Christmas STEM challenge cards build output (regenerable)
+stem_cards_xmas/out/
