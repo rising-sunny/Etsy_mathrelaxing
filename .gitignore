@@ -289,3 +289,6 @@ escape_room_xmas/out/
 
 # Christmas STEM challenge cards build output (regenerable)
 stem_cards_xmas/out/
+
+# Christmas logic puzzle book build output (regenerable)
+logic_book_xmas/out/
