@@ -298,3 +298,6 @@ xmas_bundle/out/
 
 # Paper ornaments build output (regenerable)
 paper_ornaments/out/
+
+# Math Christmas cards build output (regenerable)
+math_cards_xmas/out/
