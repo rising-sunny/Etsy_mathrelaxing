@@ -283,3 +283,6 @@ planner_2027/out/
 
 # shop tool outputs (regenerable)
 shop_tools/out/
+
+# Christmas escape room build output (regenerable)
+escape_room_xmas/out/
