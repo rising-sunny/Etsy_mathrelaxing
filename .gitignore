@@ -292,3 +292,6 @@ stem_cards_xmas/out/
 
 # Christmas logic puzzle book build output (regenerable)
 logic_book_xmas/out/
+
+# Christmas bundle build output (regenerable)
+xmas_bundle/out/
