@@ -26,13 +26,21 @@ def circle_mask(im, bg):
     base = Image.new("RGB", im.size, bg); base.paste(im, (0, 0), m); return base
 
 
-def safe(im, bg, k=0.80, dy=0.035):
+def safe(im, bg, k=0.80, dy=0.0):
     """Shrink the motif into the ornament's safe zone, clear of the rim and the hanging hole."""
     sm = im.resize((int(N * k), int(N * k)), Image.LANCZOS)
     out = Image.new("RGB", (N, N), bg)
     m = Image.new("L", sm.size, 0); ImageDraw.Draw(m).ellipse((0, 0) + sm.size, fill=255)
     out.paste(sm, ((N - sm.width) // 2, (N - sm.height) // 2 + int(N * dy)), m)
     return out
+
+
+def center(im, bg, tol=25):
+    """Shift the motif so its bounding box is exactly centred in the round ornament."""
+    a = np.asarray(im.convert("L")).astype(float); m = np.abs(a - np.median(a[:30, :30])) > tol
+    ys, xs = np.nonzero(m)
+    dx = int(round(N / 2 - (xs.min() + xs.max()) / 2)); dy = int(round(N / 2 - (ys.min() + ys.max()) / 2))
+    out = Image.new("RGB", im.size, bg); out.paste(im, (dx, dy)); return out
 
 
 def ctext(d, cx, y, s, f, fill):
@@ -45,9 +53,9 @@ def f_koch():
     for _ in range(18):
         x, y, r = rnd.uniform(0.15, 0.85) * N * S, rnd.uniform(0.15, 0.85) * N * S, rnd.uniform(40, 90) * S
         q = GC.koch_pts(x, y, r, 3); d.line(q + [q[0]], fill=(60, 82, 125), width=3 * S)
-    big = GC.koch_pts(N * S / 2, N * S * 0.53, N * S * 0.42, 5)
+    big = GC.koch_pts(N * S / 2, N * S * 0.50, N * S * 0.42, 5)
     d.polygon(big, fill=(34, 54, 96)); d.line(big + [big[0]], fill=ICE, width=10 * S)
-    mid = GC.koch_pts(N * S / 2, N * S * 0.53, N * S * 0.42 / 3, 4)
+    mid = GC.koch_pts(N * S / 2, N * S * 0.50, N * S * 0.42 / 3, 4)
     d.line(mid + [mid[0]], fill=GOLD2, width=6 * S)
     return circle_mask(im.resize((N, N), Image.LANCZOS), NAVY)
 
@@ -74,7 +82,7 @@ def palette(t, stops):
 
 
 def f_mandel():
-    xs = np.linspace(-2.60, 1.20, N); ys = np.linspace(-1.98, 1.82, N)
+    xs = np.linspace(-2.65, 1.15, N); ys = np.linspace(-1.9, 1.9, N)
     X, Y = np.meshgrid(xs, ys); n = smooth_escape(X + 1j * Y, it=300)
     t = np.where(n < 0, 0, np.sqrt(np.clip(n, 0, None) / 60) % 1.0)
     rgb = palette(t, [DEEP, (40, 60, 110), (120, 80, 60), GOLD2, (255, 240, 200), GOLD2, (40, 60, 110)])
@@ -83,7 +91,7 @@ def f_mandel():
 
 
 def f_julia():
-    xs = np.linspace(-2.0, 2.0, N); X, Y = np.meshgrid(xs, np.linspace(-2.12, 1.88, N))
+    xs = np.linspace(-2.0, 2.0, N); X, Y = np.meshgrid(xs, np.linspace(-2.0, 2.0, N))
     z = X + 1j * Y; c = complex(-0.8, 0.156)
     n = np.zeros(z.shape); alive = np.ones(z.shape, bool)
     for k in range(300):
@@ -187,6 +195,9 @@ if __name__ == "__main__":
         fr = ff()
         if key in ("koch", "golden", "tree", "pi"):
             fr = safe(fr, fr.getpixel((5, 5)))
+            fr = center(fr, fr.getpixel((5, 5)))
+        elif key == "julia":
+            fr = center(fr, fr.getpixel((5, 5)), tol=40)
         fr.save(os.path.join(OUT, f"{key}_front.png"))
         bk = safe(back(title, lines), NAVY, k=0.86, dy=0.03); bk.save(os.path.join(OUT, f"{key}_back.png"))
         tiles += [fr, bk]; print("design", key)
