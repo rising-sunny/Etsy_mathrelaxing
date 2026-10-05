@@ -280,3 +280,6 @@ advent_stem/out/
 
 # 2027 planner build output (regenerable)
 planner_2027/out/
+
+# shop tool outputs (regenerable)
+shop_tools/out/
