@@ -1,0 +1,14 @@
+{
+ "physics": {
+  "pid": "6ac516f1cca74f096b029b9d",
+  "cost": 514
+ },
+ "chemistry": {
+  "pid": "6ac516f483738a057b0efe89",
+  "cost": 514
+ },
+ "math": {
+  "pid": "6ac516f883738a057b0efe8a",
+  "cost": 514
+ }
+}
