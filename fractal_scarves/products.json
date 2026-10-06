@@ -1,20 +1,32 @@
 {
  "midnight_mandelbrot": {
-  "pid": "6ac5266c6faf265a1b002f97"
+  "pid": "6ac5266c6faf265a1b002f97",
+  "published": true,
+  "etsy": "4589951483"
  },
  "coral_julia": {
-  "pid": "6ac52672bc6d520b860929bf"
+  "pid": "6ac52672bc6d520b860929bf",
+  "published": true,
+  "etsy": "4589951577"
  },
  "stained_glass": {
-  "pid": "6ac5267b92a4f869ed0ebcf5"
+  "pid": "6ac5267b92a4f869ed0ebcf5",
+  "published": true,
+  "etsy": "4589964320"
  },
  "seahorse_valley": {
-  "pid": "6ac5267f4006676f2c05143c"
+  "pid": "6ac5267f4006676f2c05143c",
+  "published": true,
+  "etsy": "4589951735"
  },
  "zircon_lyapunov": {
-  "pid": "6ac526876faf265a1b002fa1"
+  "pid": "6ac526876faf265a1b002fa1",
+  "published": true,
+  "etsy": "4589951821"
  },
  "golden_angle": {
-  "pid": "6ac5268dd0651dcc97026a24"
+  "pid": "6ac5268dd0651dcc97026a24",
+  "published": true,
+  "etsy": "4589951923"
  }
 }
