@@ -16,6 +16,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.abspath(os.path.join(HERE, ".."))
 sys.path.insert(0, os.path.join(REPO, "advent_stem"))
 from generate_advent import font, wrap, draw_par
+import design
 
 OUT = os.path.join(HERE, "out"); os.makedirs(OUT, exist_ok=True)
 DPI = 300
@@ -91,7 +92,7 @@ ANS = verify()
 
 # ------------------------------------------------------------------ page helpers
 def new(size):
-    im = Image.new("RGB", size, PAPER); d = ImageDraw.Draw(im)
+    im = design.parchment(size); d = ImageDraw.Draw(im)
     return im, d
 
 
@@ -110,7 +111,8 @@ def ctext(d, cx, y, s, f, fill=INK):
 def lock_box(d, W, H, n):
     y = H - int(H * 0.17); x0 = int(W * 0.09); x1 = W - int(W * 0.09)
     d.rounded_rectangle((x0, y, x1, y + int(H * 0.105)), radius=20, fill=NAVY)
-    d.text((x0 + 50, y + 34), f"LOCK {n}  ·  your answer", font=font("bold", int(W * 0.022)), fill=PAPER)
+    design.padlock(d, x0 + 40, y + 26, 52)
+    d.text((x0 + 115, y + 34), f"LOCK {n}  ·  your answer", font=font("bold", int(W * 0.022)), fill=PAPER)
     bw = int(W * 0.075)
     for k in range(2):
         bx = x0 + 60 + k * (bw + 30); d.rounded_rectangle((bx, y + 100, bx + bw, y + 100 + bw * 0.9), radius=10, fill=PAPER)
@@ -123,9 +125,9 @@ def lock_box(d, W, H, n):
 def puzzle_page(size, n, title, story, draw_fn, question):
     im, d = new(size); W, H = size
     frame(d, W, H)
-    d.text((int(W * 0.09), int(H * 0.06)), f"EXHIBIT {n} OF 9", font=font("bold", int(W * 0.018)), fill=OX)
-    d.text((int(W * 0.09), int(H * 0.06) + 70), title, font=font("cinzel", int(W * 0.05)), fill=NAVY)
-    y = draw_par(d, (int(W * 0.09), int(H * 0.06) + 230), story, font("body", int(W * 0.021)), int(W * 0.82), fill=INK)
+    design.plaque(d, int(W * 0.09), int(H * 0.055), f"EXHIBIT {n} OF 9", font, W)
+    d.text((int(W * 0.09), int(H * 0.06) + 105), title, font=font("cinzel", int(W * 0.05)), fill=NAVY)
+    y = draw_par(d, (int(W * 0.09), int(H * 0.06) + 255), story, font("body", int(W * 0.021)), int(W * 0.82), fill=INK)
     draw_fn(d, (int(W * 0.09), y + 40, W - int(W * 0.09), int(H * 0.66)), W)
     d.rounded_rectangle((int(W * 0.09), int(H * 0.68), W - int(W * 0.09), int(H * 0.79)), radius=18, fill=SOFT)
     draw_par(d, (int(W * 0.09) + 40, int(H * 0.68) + 40), question, font("bold", int(W * 0.023)), int(W * 0.74), fill=NAVY)
@@ -294,22 +296,7 @@ assert len(PUZZLES) == len(HINTS) == len(EXPLAIN) == 9
 
 # ------------------------------------------------------------------ other pages
 def cover(size):
-    im, d = new(size); W, H = size
-    d.rectangle((0, 0, W, H), fill=NAVY)
-    m = int(W * 0.05); d.rectangle((m, m, W - m, H - m), outline=GOLD, width=6)
-    cx, cy, R = W / 2, H * 0.34, W * 0.23  # vault dial
-    d.ellipse((cx - R, cy - R, cx + R, cy + R), fill=(58, 70, 98), outline=GOLD, width=16)
-    for k in range(60):
-        a = 2 * math.pi * k / 60; r1 = R * (0.80 if k % 5 else 0.72)
-        d.line((cx + r1 * math.cos(a), cy + r1 * math.sin(a), cx + R * 0.92 * math.cos(a), cy + R * 0.92 * math.sin(a)), fill=GOLD, width=5)
-    d.ellipse((cx - R * 0.45, cy - R * 0.45, cx + R * 0.45, cy + R * 0.45), fill=(36, 46, 72), outline=GOLD, width=10)
-    ctext(d, cx, cy - R * 0.3, "π", font("bold", int(R * 0.55)), GOLD)
-    ctext(d, W / 2, H * 0.60, "THE MATHEMATICIAN'S", font("cinzel", int(W * 0.058)), PAPER)
-    ctext(d, W / 2, H * 0.60 + W * 0.08, "VAULT", font("cinzel", int(W * 0.12)), GOLD)
-    ctext(d, W / 2, H * 0.60 + W * 0.25, "A printable escape room for adults", font("semi", int(W * 0.032)), PAPER)
-    ctext(d, W / 2, H * 0.86, "9 puzzles  ·  2-6 players  ·  60-90 minutes", font("body", int(W * 0.025)), (210, 214, 226))
-    ctext(d, W / 2, H * 0.92, "MathRelaxing", font("cinzel_r", int(W * 0.024)), GOLD)
-    return im
+    return design.cover(size, font)
 
 
 def text_page(size, title, blocks, col=NAVY):
@@ -364,12 +351,7 @@ def vault(size):
         ctext(d, bx + bw / 2, y, f"Lock {i + 1}", font("bold", 32), SUB)
         d.rounded_rectangle((bx, y + 55, bx + bw, y + 55 + bw * 0.85), radius=12, outline=NAVY, width=5, fill=(250, 246, 234))
         d.rounded_rectangle((bx, y + 110 + bw, bx + bw, y + 110 + 2 * bw), radius=12, fill=GOLD)
-    cx, cy, R = W / 2, int(H * 0.66), int(W * 0.18)
-    d.ellipse((cx - R, cy - R, cx + R, cy + R), fill=(58, 70, 98), outline=GOLD, width=14)
-    for k in range(40):
-        a = 2 * math.pi * k / 40
-        d.line((cx + R * 0.75 * math.cos(a), cy + R * 0.75 * math.sin(a), cx + R * 0.92 * math.cos(a), cy + R * 0.92 * math.sin(a)), fill=GOLD, width=5)
-    ctext(d, cx, cy - R * 0.35, "π", font("bold", int(R * 0.6)), GOLD)
+    design.vault_door(im, W / 2, int(H * 0.655), int(W * 0.17), font); d = ImageDraw.Draw(im)
     d.rounded_rectangle((int(W * 0.12), int(H * 0.83), W - int(W * 0.12), int(H * 0.92)), radius=24, fill=NAVY)
     ctext(d, W / 2, int(H * 0.85), "PASSWORD:  _  _  _  _  _  _  _  _  _", font("bold", int(W * 0.034)), PAPER)
     return im
@@ -410,9 +392,7 @@ def certificate(size):
     im, d = new(size); W, H = size; frame(d, W, H, GOLD)
     ctext(d, W / 2, int(H * 0.16), "THE VAULT IS OPEN", font("cinzel", int(W * 0.062)), NAVY)
     ctext(d, W / 2, int(H * 0.16) + int(W * 0.1), "Certificate of Mathematical Ingenuity", font("semi", int(W * 0.03)), OX)
-    cx, cy, R = W / 2, int(H * 0.36), int(W * 0.09)  # small vault dial instead of the password (no spoilers)
-    d.ellipse((cx - R, cy - R, cx + R, cy + R), fill=(58, 70, 98), outline=GOLD, width=10)
-    ctext(d, cx, cy - R * 0.42, "π", font("bold", int(R * 0.75)), GOLD)
+    design.vault_door(im, W / 2, int(H * 0.36), int(W * 0.10), font); d = ImageDraw.Draw(im)
     ctext(d, W / 2, int(H * 0.48), "This certifies that", font("body", int(W * 0.026)), SUB)
     for k in range(3):
         d.line((int(W * 0.18), int(H * (0.56 + k * 0.05)), W - int(W * 0.18), int(H * (0.56 + k * 0.05))), fill=NAVY, width=3)
