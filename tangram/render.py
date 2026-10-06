@@ -1,5 +1,5 @@
 """
-Vector PDF (PyMuPDF) for "Tangram Puzzles": printable pieces, 50 actual-size silhouettes in
+Vector PDF (PyMuPDF) for "Tangram Puzzles": printable pieces, 45 actual-size silhouettes in
 four levels, a progress tracker, solutions and a math page. US Letter + A4.
 Reads catalog.json (run catalog.py first).
 
@@ -118,9 +118,11 @@ def place(pts, ox, oy, s):
     return [(ox + x * s, oy - y * s) for x, y in pts]
 
 
-def draw_silhouette(p, rec, ox, oy, s, level):
+def draw_silhouette(p, rec, ox, oy, s, level, bg=WHITE):
     for ring in rec["outline"]:
         poly(p, place(ring, ox, oy, s), fill=SIL, stroke=SIL, width=0.6)
+    for ring in rec.get("holes", []):
+        poly(p, place(ring, ox, oy, s), fill=bg, stroke=None)
     if level == 1:
         for n, pts in rec["pieces"]:
             poly(p, place(pts, ox, oy, s), stroke=WHITE, width=1.3)
@@ -154,7 +156,7 @@ def cover(B):
     p.draw_rect(fitz.Rect(0, 0, W, H * 0.30), color=None, fill=NAVY)
     B.ctext(p, W / 2, H * 0.115, "TANGRAM", "title", 64, WHITE)
     B.ctext(p, W / 2, H * 0.175, "PUZZLE PACK", "title", 26, c((240, 200, 70)))
-    B.ctext(p, W / 2, H * 0.235, "50 actual-size silhouettes  ·  printable pieces  ·  all solutions", "semi", 12.5, WHITE)
+    B.ctext(p, W / 2, H * 0.235, "45 actual-size silhouettes  ·  printable pieces  ·  all solutions", "semi", 12.5, WHITE)
     cat = {r["name"]: r for r in B.cat}
     hero = cat["Cat"]; s = min(0.36 * H / hero["h"], 0.46 * W / hero["w"])
     ox = W * 0.29 - hero["w"] * s / 2; oy = H * 0.81

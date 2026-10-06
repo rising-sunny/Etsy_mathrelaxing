@@ -48,7 +48,7 @@ def pill(d, text, y, fill=(196, 64, 60), size=54):
     d.text(((S - w) / 2, y + 32), text, font=f, fill=CREAM)
 
 
-def draw(d, r, cx, cy, size, solved=False, lines=0, fill=SIL):
+def draw(d, r, cx, cy, size, solved=False, lines=0, fill=SIL, hole=CREAM):
     s = size / max(r["w"], r["h"], 3.2); ox = cx - r["w"] * s / 2; oy = cy + r["h"] * s / 2
     tr = lambda pts: [(ox + x * s, oy - y * s) for x, y in pts]
     if solved:
@@ -57,6 +57,8 @@ def draw(d, r, cx, cy, size, solved=False, lines=0, fill=SIL):
         return
     for ring in r["outline"]:
         d.polygon(tr(ring), fill=fill)
+    for ring in r.get("holes", []):
+        d.polygon(tr(ring), fill=hole)
     if lines:
         for n, pts in r["pieces"]:
             if lines == 1 or n in ("L1", "L2"):
@@ -66,18 +68,17 @@ def draw(d, r, cx, cy, size, solved=False, lines=0, fill=SIL):
 def hero():
     c = bg(True); d = ImageDraw.Draw(c)
     place(c, pg(2), 760, (1110, 430), angle=-7)
-    place(c, pg(find("Walking Cat")), 760, (130, 420), angle=7)
+    place(c, pg(find("Swan")), 760, (130, 420), angle=7)
     place(c, pg(0), 860, (570, 260))
-    pill(d, "50 TANGRAM PUZZLES  ·  PRINTABLE", 1790)
+    pill(d, "45 TANGRAM PUZZLES  ·  PRINTABLE", 1790)
     return c
 
 
 def gallery():
     c = bg(); d = ImageDraw.Draw(c)
-    banner(d, "50 Shapes to Build", "animals · objects · Christmas · the 13 convex shapes")
-    names = ["Cat", "Fish", "Sleigh", "Christmas Stocking", "Teapot", "Rabbit", "Goose", "Seahorse",
-             "Horse", "Kangaroo", "Heron", "Walking Cat", "Steamboat", "Number Two", "Goblet", "Dog", "Pine Tree", "Rocket",
-             "House", "Sailboat"]
+    banner(d, "45 Shapes to Build", "animals · objects · Christmas · the 13 convex shapes")
+    names = ["Cat", "Fish", "Swan", "Rabbit", "Teapot", "Elephant", "Chicken", "Whale", "Camel", "Horse", "Sleigh",
+             "Christmas Stocking", "Ornament", "Pine Tree", "Number Two", "Goblet", "Truck", "Castle", "Rocket", "House"]
     cols, rows = 5, 4; cw = 360; ch = 395
     for k, n in enumerate(names):
         cx = 100 + cw / 2 + (k % cols) * cw; cy = 450 + (k // cols) * ch
@@ -90,14 +91,14 @@ def levels():
     c = bg(); d = ImageDraw.Draw(c)
     banner(d, "Four Levels", "from first-timers to tangram masters")
     cols = [(1, "House", "WARM-UP", "every line shown"), (2, "Cat", "EXPLORER", "large triangles shown"),
-            (3, "Kangaroo", "MASTER", "silhouette only"), (4, "Convex Hexagon 1", "CONVEX", "the hardest 13")]
+            (3, "Elephant", "MASTER", "silhouette only"), (4, "Convex Hexagon 1", "CONVEX", "the hardest 13")]
     for i, (lv, n, t, sub) in enumerate(cols):
         x0 = 70 + i * 470; d.rounded_rectangle((x0, 400, x0 + 430, 1500), radius=36, fill=(255, 255, 255))
         d.rounded_rectangle((x0, 400, x0 + 430, 520), radius=36, fill=LV[lv]); d.rectangle((x0, 480, x0 + 430, 520), fill=LV[lv])
         f = G.font("bold", 44); d.text((x0 + 215 - d.textlength(t, font=f) / 2, 432), t, font=f, fill=(255, 255, 255))
         draw(d, BY[n], x0 + 215, 900, 340, lines=lv if lv < 3 else 0)
         f = G.font("semi", 34); d.text((x0 + 215 - d.textlength(sub, font=f) / 2, 1380), sub, font=f, fill=(90, 86, 80))
-    f = G.font("semi", 50); t = "12  +  13  +  12  +  13  =  50 puzzles"
+    f = G.font("semi", 50); t = "11  +  11  +  10  +  13  =  45 puzzles"
     d.text(((S - d.textlength(t, font=f)) / 2, 1640), t, font=f, fill=NAVY)
     return c
 
@@ -114,7 +115,7 @@ def actual_size():
 def solutions():
     c = bg(); d = ImageDraw.Draw(c)
     banner(d, "Every Solution Included", "each shape was built by computer from the 7 real pieces")
-    pairs = ["Sleigh", "Seahorse", "Teapot", "Horse"]
+    pairs = ["Swan", "Elephant", "Teapot", "Chicken"]
     for i, n in enumerate(pairs):
         y = 470 + i * 360
         draw(d, BY[n], 560, y + 140, 300); draw(d, BY[n], 1440, y + 140, 300, solved=True)
@@ -141,8 +142,8 @@ def included():
     c = bg(); d = ImageDraw.Draw(c)
     banner(d, "What's Included", "instant download · US Letter + A4")
     items = ["2 sets of colour cut-out pieces", "1 page of pieces to colour", "How-to-play guide",
-             "50 actual-size silhouettes in 4 levels", "Intro to the 13 convex shapes", "Progress checklist",
-             "Colour solutions for all 50", "The math inside: fractions, area, √2", "40+ pages, PDF"]
+             "45 actual-size silhouettes in 4 levels", "Intro to the 13 convex shapes", "Progress checklist",
+             "Colour solutions for all 45", "The math inside: fractions, area, √2", "About 40 pages, PDF"]
     f = G.font("semi", 54)
     for i, t in enumerate(items):
         y = 430 + i * 145; d.ellipse((330, y + 8, 380, y + 58), fill=LV[1 + i % 4]); d.text((420, y), t, font=f, fill=NAVY)

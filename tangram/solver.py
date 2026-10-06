@@ -58,11 +58,11 @@ def solve(target, limit=1):
             if counts[t] == 0:
                 continue
             for rot, flip, q in ORIENT[t]:
-                cand = affinity.translate(q, c[0], c[1])
+                cand = Polygon([(round(x + c[0], 9) + 0.0, round(y + c[1], 9) + 0.0) for x, y in q.exterior.coords])
                 if cand.difference(region).area > EPS:
                     continue
                 rest = region.difference(cand)
-                rest = rest.buffer(1e-9, join_style=2).buffer(-1e-9, join_style=2) if rest.area > EPS else rest
+                rest = rest.buffer(-1e-7, join_style=2).buffer(1e-7, join_style=2) if rest.area > EPS else rest
                 counts[t] -= 1; placed.append((t, rot, flip, cand))
                 done = rec(rest, placed)
                 placed.pop(); counts[t] += 1

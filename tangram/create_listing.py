@@ -6,7 +6,7 @@ os.chdir(REPO); sys.path.insert(0, REPO)
 from etsy_manager import EtsyManager
 import brand
 
-TITLE = ("Tangram Puzzles Printable, 50 Actual-Size Tangram Cards with Pieces and Solutions, "
+TITLE = ("Tangram Puzzles Printable, 45 Actual-Size Tangram Cards with Pieces and Solutions, "
          "Math Puzzle for Kids, Homeschool Geometry")
 PRICE = 5.99
 TAXONOMY = 12626
@@ -15,27 +15,27 @@ TAGS = ["tangram", "tangram printable", "tangram puzzles", "tangram cards", "mat
         "geometry activity", "homeschool math", "shape puzzles", "quiet time activity", "kids puzzle game",
         "stem activity", "logic puzzles kids", "brain teasers"]
 
-DESC = f"""Tangram Puzzle Pack: 50 actual-size tangram silhouettes with printable pieces and full-colour solutions. Print, cut out the seven pieces, and lay them right on the page to cover each shape.
+DESC = f"""Tangram Puzzle Pack: 45 actual-size tangram silhouettes with printable pieces and full-colour solutions. Print, cut out the seven pieces, and lay them right on the page to cover each shape.
 
 INSTANT DOWNLOAD
 This is a digital file; nothing is shipped. US Letter and A4 versions are included.
 
-WHAT'S INCLUDED (40+ pages)
+WHAT'S INCLUDED (about 40 pages)
 - How-to-play guide and printing tips
 - 2 sets of colour cut-out pieces + 1 set to colour or print on cardstock
-- 50 silhouettes printed at the same size as the pieces
-- Progress checklist for all 50 shapes
+- 45 silhouettes printed at the same size as the pieces
+- Progress checklist for all 45 shapes
 - Colour solutions for every puzzle
 - "The Math Inside" page: fractions, area, angles and square roots with tangram pieces
 
 FOUR LEVELS
-- Level 1, Warm-Up (12): every piece outline is shown, perfect for young children
-- Level 2, Explorer (13): only the two large triangles are shown
-- Level 3, Master (12): silhouette only
+- Level 1, Warm-Up (11): every piece outline is shown, perfect for young children
+- Level 2, Explorer (11): only the two large triangles are shown
+- Level 3, Master (10): silhouette only
 - Level 4, The 13 Convex Shapes (13): in 1942 two mathematicians proved that the seven tangram pieces can make exactly 13 convex shapes. All 13 are here, with a short, kid-friendly explanation of the theorem
 
 SHAPES YOU'LL BUILD
-Cat, fish, rabbit, sleigh, Christmas stocking, pine tree, teapot, seahorse, horse, kangaroo, heron, goose, duck, whale, steamboat, sailboat, rocket, house, the number 2 and many more.
+Cat, fish, rabbit, swan, chicken, elephant, camel, horse, whale, goose, teapot, sleigh, Christmas stocking, Christmas ornament, pine tree, castle, rocket, house, the number 2 and more.
 
 EVERY PUZZLE HAS A SOLUTION
 Each silhouette was built by a computer program that fits the seven real pieces together, then checked for overlaps, so every puzzle is guaranteed to be solvable.

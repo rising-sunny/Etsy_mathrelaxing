@@ -1,5 +1,5 @@
 """
-Builds the final puzzle catalogue (out/catalog.json): 50 tangram silhouettes, each with a
+Builds the final puzzle catalogue (out/catalog.json): 45 tangram silhouettes, each with a
 verified 7-piece solution, in four levels.
 
   python catalog.py
@@ -20,25 +20,25 @@ GRID = {
     "Rocket": [".ba.", ".##.", ".##.", "b##a"],
     "Pine Tree": [".ba.", "b##a", ".ba.", "b##a"],
     "Crown": ["a..b", "#ab#", "####"],
-    "Hammer": ["####", ".##.", ".##."],
     "Mushroom": ["b##a", "c##d", ".##."],
-    "Chair": ["##", "#.", "###", "#.#"],
-    "Gem": ["####", "c##d", ".cd."],
-    "Viking Ship": ["a...b", "#a.b#", "c###d"],
     "Lamp": ["b##a", ".##.", "b##a"],
+    "Top Hat": [".##.", ".##.", "####"],
+    "Castle": ["#.#", "###", "###"],
+    "Ornament": [".##.", "b##a", "c##d"],
+    "Hammer": ["####", ".##.", ".##."],
+    # silhouette-only objects for levels 2 and 3
+    "Truck": ["##..", "####", "#..#"],
+    "Table": ["####", "#..#", "#..#"],
+    "Chair": ["##", "#.", "###", "#.#"],
+    "Viking Ship": ["a...b", "#a.b#", "c###d"],
     "Hourglass": ["c##d", ".##.", "b##a"],
+    "Gem": ["####", "c##d", ".cd."],
 }
-# picked by eye from the edge-to-edge generator (index into cands.json, seed 11, n 6000)
-RANDOM = {
-    "Sleigh": 230, "Christmas Stocking": 93, "Teapot": 116, "Goblet": 163, "Jug": 117, "Duckling": 21,
-    "Duck": 143, "Angelfish": 179, "Whale": 156, "Horse": 78, "Walking Cat": 52, "Heron": 238,
-    "Kangaroo": 231, "Sitting Man": 234, "Seahorse": 124, "Steamboat": 241, "Goose": 252,
-    "Number Two": 259, "Dog": 301, "Truck": 245, "Race Car": 255, "Squirrel": 312, "Rabbit": 141,
-}
-MEDIUM = ["Cat", "Rabbit", "Fish", "Sleigh", "Christmas Stocking", "Teapot", "Goblet", "Jug", "Duck",
-          "Whale", "Walking Cat", "Steamboat", "Truck"]
-HARD = ["Duckling", "Angelfish", "Horse", "Heron", "Kangaroo", "Sitting Man", "Seahorse", "Goose",
-        "Number Two", "Dog", "Race Car", "Squirrel"]
+# picked by eye from the edge-to-edge generator (index into out/cands.json, seed 11, n 6000)
+RANDOM = {"Sleigh": 230, "Christmas Stocking": 93, "Number Two": 259, "Goblet": 163, "Goose": 21}
+EASY = ["House", "Sailboat", "Rocket", "Pine Tree", "Crown", "Mushroom", "Lamp", "Top Hat", "Castle", "Ornament", "Hammer"]
+MEDIUM = ["Cat", "Fish", "Rabbit", "Swan", "Teapot", "Whale", "Chicken", "Sleigh", "Christmas Stocking", "Truck", "Table"]
+HARD = ["Horse", "Elephant", "Camel", "Goose", "Number Two", "Goblet", "Chair", "Viking Ship", "Hourglass", "Gem"]
 TYPE2NAME = {"L": ["L1", "L2"], "S": ["S1", "S2"], "M": ["M"], "SQ": ["SQ"], "PA": ["PA"]}
 
 
@@ -67,7 +67,8 @@ def record(name, level, placed):
         placed = normalize([(n, affinity.rotate(g, 90, origin=(0, 0))) for n, g in placed])
     sil = silhouette(placed).simplify(1e-6)
     geoms = list(getattr(sil, "geoms", [sil]))
-    return {"name": name, "level": level,
+    holes = [[[round(x, 6), round(y, 6)] for x, y in list(h.coords)[:-1]] for g in geoms for h in g.interiors]
+    return {"name": name, "level": level, "holes": holes,
             "pieces": [[n, [[round(x, 6), round(y, 6)] for x, y in list(g.exterior.coords)[:-1]]] for n, g in placed],
             "outline": [[[round(x, 6), round(y, 6)] for x, y in list(g.exterior.coords)[:-1]] for g in geoms],
             "w": round(sil.bounds[2], 4), "h": round(sil.bounds[3], 4)}
@@ -87,15 +88,17 @@ def canon(p):
 
 def main():
     cat = []
+    figs = {}
     for nm, rows in GRID.items():
         sol = solver.solve(grid.parse(rows)); assert sol, nm
-        cat.append(record(nm, 1, from_solver(sol[0])))
+        figs[nm] = from_solver(sol[0])
     C = json.load(open(os.path.join(OUT, "cands.json")))
-    figs = {}
     for nm, fn in classics.FIGS.items():
         figs[nm] = fn().placed()
     for nm, i in RANDOM.items():
         figs[nm] = [(n, Polygon(pts)) for n, pts in C[i]["placed"]]
+    for nm in EASY:
+        cat.append(record(nm, 1, figs[nm]))
     for nm in MEDIUM:
         cat.append(record(nm, 2, figs[nm]))
     for nm in HARD:
