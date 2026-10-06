@@ -310,3 +310,6 @@ calendar_2027/out/
 
 # promo video renders (regenerable)
 promo_video/out/
+
+# Adult escape room build output (regenerable)
+escape_room_adults/out/
