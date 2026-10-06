@@ -1,5 +1,5 @@
 """
-Fractal scarves on Printify: blueprint 264 "Poly Scarf", provider 10 (MWW On Demand),
+Fractal scarves on Printify: blueprint 264 "Poly Scarf", provider 48 (Colorway),
 poly chiffon 25" and 50" (dye-sublimation). Artwork: out/final/<key>.jpg (9000 px).
 
   python create_products.py --dry [keys]  # create only, print costs
@@ -12,8 +12,8 @@ sys.path.insert(0, os.path.join(REPO, "printify")); sys.path.insert(0, HERE)
 import printify_publish as pp
 from fractals import DESIGNS
 
-BP, PROV = 264, 10
-VARIANTS = {42318: 3900, 42319: 5900}      # chiffon 25" , chiffon 50"  (price in cents)
+BP, PROV = 264, 48
+VARIANTS = {42318: 3900, 42319: 6400}      # chiffon 25" , chiffon 50"  (price in cents)
 STATE = os.path.join(HERE, "products.json")
 TAGS = ["fractal scarf", "math scarf", "{tag}", "chiffon scarf", "square scarf", "math teacher gift", "science gift",
         "mathematician gift", "art scarf", "fractal art", "neck scarf", "gift for her", "math lover gift"]
