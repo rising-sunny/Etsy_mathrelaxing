@@ -1,1 +1,20 @@
-{}
+{
+ "midnight_mandelbrot": {
+  "pid": "6ac5266c6faf265a1b002f97"
+ },
+ "coral_julia": {
+  "pid": "6ac52672bc6d520b860929bf"
+ },
+ "stained_glass": {
+  "pid": "6ac5267b92a4f869ed0ebcf5"
+ },
+ "seahorse_valley": {
+  "pid": "6ac5267f4006676f2c05143c"
+ },
+ "zircon_lyapunov": {
+  "pid": "6ac526876faf265a1b002fa1"
+ },
+ "golden_angle": {
+  "pid": "6ac5268dd0651dcc97026a24"
+ }
+}
