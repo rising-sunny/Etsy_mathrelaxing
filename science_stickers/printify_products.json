@@ -1,14 +1,20 @@
 {
  "physics": {
   "pid": "6ac516f1cca74f096b029b9d",
-  "cost": 514
+  "cost": 514,
+  "published": true,
+  "etsy": "4589778500"
  },
  "chemistry": {
   "pid": "6ac516f483738a057b0efe89",
-  "cost": 514
+  "cost": 514,
+  "published": true,
+  "etsy": "4589767345"
  },
  "math": {
   "pid": "6ac516f883738a057b0efe8a",
-  "cost": 514
+  "cost": 514,
+  "published": true,
+  "etsy": "4589778764"
  }
 }
