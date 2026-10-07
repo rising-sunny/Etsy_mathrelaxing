@@ -3009,6 +3009,220 @@ PRODUCTS = {
         "notes": "Tipo 8 (libro fisico POD via Lulu). Generado con lulu_books/generators/make_voronoi_book.py (comando 'interior' con blank_after_each=True -> *_interior_print.pdf; portada reutiliza el cover.pdf ya existente del producto digital, rasterizado a PNG). 104 paginas. Precio $18.99 + shipping profile Lulu Publishing. Subido como borrador el 2026-07-07, listing_id=4533709063.",
     },
 
+    # Strange Attractors set — chaos theory gallery plates
+    "strange_attractors_set": {
+        "title": (
+            "Strange Attractors Poster Set of 6 | Chaos Theory Wall Art | "
+            "Lorenz Rossler Thomas Chen Math Digital Download"
+        ),
+        "description": (
+            "6 dark-observatory attractor plates (Lorenz, Rössler, Thomas, Four-Wing, "
+            "Chen, Aizawa). generate_strange_attractors_set.py"
+        ),
+        "price": 12.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_1_hero.jpg"),
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_2_included.jpg"),
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_3_eq.jpg"),
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_4_eq.jpg"),
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_5_eq.jpg"),
+            p("special_plates", "strange_attractors_set", "previews", "strange_attractors_preview_6_eq.jpg"),
+        ],
+        "files": [
+            p("special_plates", "strange_attractors_set", "Strange_Attractors_Poster_Set_of_6.zip"),
+        ],
+        "tags": [
+            "chaos theory art", "strange attractor", "lorenz attractor", "math wall art",
+            "physics wall art", "science wall art", "fractal art", "stem wall art",
+            "digital download", "math poster set", "classroom decor", "nerd gift",
+            "equation poster",
+        ],
+        "notes": (
+            "Wave17 #1. ODE trajectories, zone layout anti-collision. "
+            "listing_id=4551535506 active $12.99. "
+            "python generate_strange_attractors_set.py"
+        ),
+        "listing_id": 4551535506,
+    },
+
+    # Physics formula classroom set — dark observatory scientific plates
+    "physics_formula_set": {
+        "title": (
+            "Physics Formula Poster Set of 6 | Classroom Science Wall Art | "
+            "Kinematics Energy Maxwell Waves Thermo Digital Download"
+        ),
+        "description": (
+            "6 elegant dark-observatory physics plates (kinematics, energy, momentum, "
+            "Maxwell, waves, thermodynamics). generate_physics_formula_set.py"
+        ),
+        "price": 11.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_1_hero.jpg"),
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_2_included.jpg"),
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_3_eq.jpg"),
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_4_eq.jpg"),
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_5_eq.jpg"),
+            p("special_plates", "physics_formula_set", "previews", "physics_formula_preview_6_eq.jpg"),
+        ],
+        "files": [
+            p("special_plates", "physics_formula_set", "Physics_Formula_Poster_Set_of_6.zip"),
+        ],
+        "tags": [
+            "physics poster", "physics formula", "science wall art", "classroom decor",
+            "physics classroom", "stem wall art", "equation poster", "teacher gift",
+            "digital download", "maxwell equations", "kinematics poster", "science classroom",
+            "lab decor",
+        ],
+        "notes": (
+            "Wave16 winner #1. Dark observatory plates, zone layout anti-collision. "
+            "listing_id=4550732719 active $11.99. "
+            "python generate_physics_formula_set.py"
+        ),
+        "listing_id": 4550732719,
+    },
+
+    # Physics-only digital bundle (10 designs)
+    "physics_wall_art_pack_10": {
+        "title": (
+            "Physics Wall Art Pack of 10 | Science Digital Prints Bundle | "
+            "Maxwell Schrodinger Black Hole Classroom Office Decor"
+        ),
+        "description": (
+            "Curated pack of 10 physics wall-art designs (instant download, 2 ZIPs). "
+            "See packs/build_physics_pack.py + packs/create_physics_pack_listing.py."
+        ),
+        "price": 16.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("packs", "physics_wall_art_10", "preview_1_hero.jpg"),
+            p("packs", "physics_wall_art_10", "preview_2_included.jpg"),
+            p("packs", "physics_wall_art_10", "preview_3_value.jpg"),
+        ],
+        "files": [
+            p("packs", "physics_wall_art_10", "MathRelaxing_Physics_Pack_Part1_of_2.zip"),
+            p("packs", "physics_wall_art_10", "MathRelaxing_Physics_Pack_Part2_of_2.zip"),
+        ],
+        "tags": [
+            "physics poster", "physics wall art", "science wall art", "stem wall art",
+            "physics art print", "classroom decor", "digital download", "physics teacher gift",
+            "equation poster", "quantum physics", "printable wall art", "science classroom",
+            "lab decor",
+        ],
+        "notes": (
+            "Physics-only sibling of stem_wall_art_pack_10. $16.99. "
+            "Etsy active listing_id=4550737656. Ads ON recommended. "
+            "Rebuild: python packs/build_physics_pack.py"
+        ),
+        "listing_id": 4550737656,
+    },
+
+    # Best-seller digital bundle (10 designs) — ops pack from sales metrics
+    "stem_wall_art_pack_10": {
+        "title": (
+            "STEM Wall Art Pack of 10 | Math Physics Digital Prints Bundle | "
+            "Famous Equations Unit Circle Classroom Office Decor"
+        ),
+        "description": (
+            "Curated pack of 10 STEM wall-art designs (instant download, 2 ZIPs). "
+            "See packs/build_stem_pack.py + packs/create_stem_pack_listing.py."
+        ),
+        "price": 16.99,
+        "taxonomy_id": TAXONOMY["digital_art"],
+        "images": [
+            p("packs", "stem_wall_art_10", "preview_1_hero.jpg"),
+            p("packs", "stem_wall_art_10", "preview_2_included.jpg"),
+            p("packs", "stem_wall_art_10", "preview_3_value.jpg"),
+        ],
+        "files": [
+            p("packs", "stem_wall_art_10", "MathRelaxing_STEM_Pack_Part1_of_2.zip"),
+            p("packs", "stem_wall_art_10", "MathRelaxing_STEM_Pack_Part2_of_2.zip"),
+        ],
+        "tags": [
+            "math wall art", "physics poster", "stem wall art", "math poster pack",
+            "science wall art", "classroom decor", "digital download", "math teacher gift",
+            "equation poster", "unit circle", "printable wall art", "office wall art",
+            "physics art print",
+        ],
+        "notes": (
+            "Bundle of 10 bestsellers/high-signal designs at $16.99 (~half of buying separate). "
+            "Etsy active listing_id=4550715355. Ads ON recommended. "
+            "Rebuild: python packs/build_stem_pack.py"
+        ),
+        "listing_id": 4550715355,
+    },
+
+    # Coffee-table hardcover — Lulu square color case-wrap; Etsy→Lulu via fulfillment.py
+    "shape_of_an_idea": {
+        "title": (
+            "The Shape of an Idea | Hardcover Math Art Book | 18 Plates on Great "
+            "Equations and Topology | Square Coffee Table Gallery Book"
+        ),
+        "description": (
+            "THE SHAPE OF AN IDEA — premium 8.5×8.5 hardcover gallery of great "
+            "equations and concepts (18 plates, 45 pages). Printed on demand via Lulu. "
+            "See lulu_books/generators/concepts_gallery/ and fulfillment.py."
+        ),
+        "price": 38.00,
+        "taxonomy_id": 335,
+        "images": [],
+        "files": [],
+        "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
+        "readiness_state_id": READINESS_STATE_LULU_BOOKS,
+        "return_policy_id": RETURN_POLICY_ID,
+        "tags": [
+            "math art book", "coffee table book", "hardcover art book", "gift for math lover",
+            "equation art", "topology art", "mathematician gift", "math teacher gift",
+            "geometric art book", "physics gift", "science art book", "mobius strip art",
+            "math gallery book",
+        ],
+        "notes": (
+            "Tipo 8 hardcover POD Lulu square 8.5×8.5. "
+            "generators/concepts_gallery: full_book.py + build_cover_wrap.py. "
+            "45 pages. Standard $38 (SOI-STD-8585) / Premium $52 (SOI-PREM-8585). "
+            "SKU Lulu STD 0850X0850.FC.STD.CW.080CW444.MXX / PREM .FC.PRE. "
+            "Fulfillment: lulu_books/fulfillment.py BOOKS[4548870190]. "
+            "Etsy draft listing_id=4548870190."
+        ),
+        "listing_id": 4548870190,
+    },
+
+    # Live SEO title: "Math Art Coffee Table Book | Hardcover Fractals Attractors Curves…"
+    "mathematics_of_beauty": {
+        "title": (
+            "Math Art Coffee Table Book | Hardcover Fractals Attractors Curves | "
+            "Gift for Math Teacher"
+        ),
+        "description": (
+            "THE MATHEMATICS OF BEAUTY — premium 8.5×8.5 hardcover gallery "
+            "(38 plates, 88 pages). Printed on demand via Lulu. "
+            "See lulu_books/generators/math_gallery/ and fulfillment.py."
+        ),
+        "price": 48.00,
+        "taxonomy_id": 335,
+        "images": [],
+        "files": [],
+        "shipping_profile_id": SHIPPING_PROFILE_LULU_BOOKS,
+        "readiness_state_id": READINESS_STATE_LULU_BOOKS,
+        "return_policy_id": RETURN_POLICY_ID,
+        "tags": [
+            "coffee table book", "math art", "math teacher gift", "math art book",
+            "generative art", "fractal art", "mandelbrot art", "math gift",
+            "science gift", "math lover gift", "beautiful math", "chaos theory art",
+            "geometry art",
+        ],
+        "notes": (
+            "Tipo 8 hardcover POD Lulu square 8.5×8.5. "
+            "generators/math_gallery: full_book.py + build_cover_wrap.py. "
+            "88 pages. Standard $48 (TMB-STD-8585) / Premium $65 (TMB-PREM-8585). "
+            "SKU Lulu STD 0850X0850.FC.STD.CW.080CW444.MXX / PREM .FC.PRE. "
+            "Fulfillment: lulu_books/fulfillment.py BOOKS[4544209146]. "
+            "Etsy active listing_id=4544209146. Partner Lulu 5702394."
+        ),
+        "listing_id": 4544209146,
+    },
+
     "spiral_tilings_ipad": {
         "title":       "Interactive Color By Number Spiral Tilings — iPad Safari SVG App | 50 Math Mandala Radial Designs",
         "description": DESCRIPTIONS["spiral_tilings_ipad"],

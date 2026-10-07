@@ -414,12 +414,61 @@ def fig_to_image(fig) -> Image.Image:
     return img
 
 
-def save_rgb(img: Image.Image, path: Path, dpi: int = DPI_PRINT, quality: int = 92):
+WATERMARK_TEXT = "MATHRELAXING  ·  PREVIEW"
+
+
+def _find_font(size: int) -> ImageFont.ImageFont:
+    candidates = [
+        r"C:\Windows\Fonts\arialbd.ttf",
+        r"C:\Windows\Fonts\segoeuib.ttf",
+        r"C:\Windows\Fonts\arial.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+    ]
+    for p in candidates:
+        if Path(p).is_file():
+            try:
+                return ImageFont.truetype(p, size)
+            except OSError:
+                continue
+    return ImageFont.load_default()
+
+
+def add_watermark(img: Image.Image, text: str = WATERMARK_TEXT, opacity: int = 38, angle: int = 30) -> Image.Image:
+    """Diagonal tiled watermark for listing previews only (not on print files)."""
+    w, h = img.size
+    fs = max(16, int(w * 0.028))
+    font = _find_font(fs)
+    probe = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+    try:
+        tw = int(probe.textlength(text, font=font))
+    except Exception:
+        bb = probe.textbbox((0, 0), text, font=font)
+        tw = bb[2] - bb[0]
+    step_x, step_y = int(tw * 1.65), int(fs * 5.5)
+    tile = Image.new("RGBA", (max(step_x, 1), max(step_y, 1)), (0, 0, 0, 0))
+    ImageDraw.Draw(tile).text(
+        (int(step_x * 0.06), int(step_y * 0.28)),
+        text,
+        font=font,
+        fill=(255, 255, 255, opacity),
+    )
+    tile = tile.rotate(angle, expand=True, resample=Image.Resampling.BICUBIC)
+    layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    for yy in range(-tile.height, h + tile.height, tile.height):
+        for xx in range(-tile.width, w + tile.width, tile.width):
+            layer.alpha_composite(tile, (xx, yy))
+    return Image.alpha_composite(img.convert("RGBA"), layer).convert("RGB")
+
+
+def save_rgb(img: Image.Image, path: Path, dpi: int = DPI_PRINT, quality: int = 92, watermark: bool = False):
     path.parent.mkdir(parents=True, exist_ok=True)
-    img.convert("RGB").save(
+    out = add_watermark(img) if watermark else img
+    out.convert("RGB").save(
         str(path), "JPEG", quality=quality, optimize=True, progressive=True, dpi=(dpi, dpi)
     )
-    print(f"  wrote {path.name}  ({path.stat().st_size / 1024:.0f} KB)")
+    tag = " +wm" if watermark else ""
+    print(f"  wrote {path.name}  ({path.stat().st_size / 1024:.0f} KB){tag}")
 
 
 def compose_equation_card(width_in: float = 10.0, height_in: float = 10.0, dpi: int = DPI_PREVIEW):
@@ -480,9 +529,10 @@ Best on matte or semi-gloss paper. Frame not included. Personal use only.
         mb = zip_path.stat().st_size / (1024 * 1024)
         print(f"  ZIP {zip_path.name} ({mb:.1f} MB)")
 
-    print("  previews…")
+    print("  previews (watermarked for Etsy listing)…")
+    # Listing previews ONLY — prints above stay clean (no watermark).
     hero = compose_platonic(10.0, 12.5, DPI_PREVIEW)
-    save_rgb(hero, previews / "platonic_solids_preview_1_hero.jpg", DPI_PREVIEW, 93)
+    save_rgb(hero, previews / "platonic_solids_preview_1_hero.jpg", DPI_PREVIEW, 93, watermark=True)
 
     detail = compose_platonic(14.0, 10.0, DPI_PREVIEW)
     dw, dh = detail.size
@@ -490,7 +540,7 @@ Best on matte or semi-gloss paper. Frame not included. Personal use only.
     side = max(crop.size)
     pad = Image.new("RGB", (side, int(side * 0.85)), (10, 12, 18))
     pad.paste(crop, ((pad.size[0] - crop.size[0]) // 2, (pad.size[1] - crop.size[1]) // 2))
-    save_rgb(pad, previews / "platonic_solids_preview_2_detail.jpg", DPI_PREVIEW, 93)
+    save_rgb(pad, previews / "platonic_solids_preview_2_detail.jpg", DPI_PREVIEW, 93, watermark=True)
 
     # included card
     fig, ax = _new_dark_plate(10, 10, DPI_PREVIEW)
@@ -518,13 +568,13 @@ Best on matte or semi-gloss paper. Frame not included. Personal use only.
     mini = compose_platonic(5.0, 7.0, DPI_PREVIEW)
     mini = mini.resize((int(base.size[0] * 0.42), int(base.size[1] * 0.68)), Image.Resampling.LANCZOS)
     base.paste(mini, (int(base.size[0] * 0.06), int(base.size[1] * 0.15)))
-    save_rgb(base, previews / "platonic_solids_preview_3_included.jpg", DPI_PREVIEW, 93)
+    save_rgb(base, previews / "platonic_solids_preview_3_included.jpg", DPI_PREVIEW, 93, watermark=True)
 
     plate = compose_platonic(8.0, 10.0, DPI_PREVIEW)
-    save_rgb(plate, previews / "platonic_solids_preview_4_plate.jpg", DPI_PREVIEW, 93)
+    save_rgb(plate, previews / "platonic_solids_preview_4_plate.jpg", DPI_PREVIEW, 93, watermark=True)
 
     eq = compose_equation_card()
-    save_rgb(eq, previews / "platonic_solids_preview_5_equation.jpg", DPI_PREVIEW, 93)
+    save_rgb(eq, previews / "platonic_solids_preview_5_equation.jpg", DPI_PREVIEW, 93, watermark=True)
     print(f"  done → {OUT}")
 
 
