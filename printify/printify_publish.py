@@ -69,7 +69,9 @@ def load_env():
 
 
 ENV = load_env()
-if "PRINTIFY_TOKEN" not in ENV or "PRINTIFY_ETSY_SHOP_ID" not in ENV:
+# PRINTIFY_TOKEN may be absent in cloud sessions: there the Authorization header for
+# api.printify.com is injected by the environment's network secret.
+if "PRINTIFY_ETSY_SHOP_ID" not in ENV:
     raise RuntimeError(
         "Missing Printify credentials. Create printify/.env with:\n"
         "  PRINTIFY_TOKEN=...\n"
@@ -77,18 +79,17 @@ if "PRINTIFY_TOKEN" not in ENV or "PRINTIFY_ETSY_SHOP_ID" not in ENV:
         "Token: https://printify.com/app/account/api\n"
         "Scopes: catalog.read shops.read products.read products.write uploads.write"
     )
-TOKEN = ENV["PRINTIFY_TOKEN"]
+TOKEN = ENV.get("PRINTIFY_TOKEN", "")
 SHOP_ID = ENV["PRINTIFY_ETSY_SHOP_ID"]
 
 
 def _req(method, path, body=None):
     url = API + path
     data = json.dumps(body).encode() if body is not None else None
-    req = urllib.request.Request(url, data=data, method=method, headers={
-        "Authorization": "Bearer " + TOKEN,
-        "Content-Type": "application/json",
-        "User-Agent": UA,
-    })
+    headers = {"Content-Type": "application/json", "User-Agent": UA}
+    if TOKEN:
+        headers["Authorization"] = "Bearer " + TOKEN
+    req = urllib.request.Request(url, data=data, method=method, headers=headers)
     try:
         with urllib.request.urlopen(req, timeout=180) as r:
             raw = r.read()
