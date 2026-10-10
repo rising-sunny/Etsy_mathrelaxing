@@ -11,7 +11,7 @@ LID = 4540003882
 
 
 def put_json(m: EtsyManager, endpoint: str, body: dict):
-    url = f"https://api.etsy.com/v3/application{endpoint}"
+    url = f"https://openapi.etsy.com/v3/application{endpoint}"
     data = json.dumps(body).encode("utf-8")
     headers = {
         "x-api-key": f"{CLIENT_ID}:{SHARED_SECRET}",
