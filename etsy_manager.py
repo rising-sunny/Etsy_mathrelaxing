@@ -17,7 +17,17 @@ class EtsyManager:
         
     def load_tokens(self):
         if not os.path.exists(TOKEN_FILE):
-            raise Exception("No se encontró etsy_token.json. ¡Por favor ejecuta auth.py primero!")
+            # Cloud sessions: build the token file from environment variables (set as environment
+            # secrets), then get a fresh access token on first use.
+            refresh = os.environ.get("ETSY_REFRESH_TOKEN")
+            if refresh:
+                data = {"refresh_token": refresh.strip(),
+                        "access_token": os.environ.get("ETSY_ACCESS_TOKEN", "").strip() or "expired"}
+                with open(TOKEN_FILE, 'w') as f:
+                    json.dump(data, f)
+                os.chmod(TOKEN_FILE, 0o600)
+                return data
+            raise Exception("No se encontró etsy_token.json ni ETSY_REFRESH_TOKEN. ¡Por favor ejecuta auth.py primero!")
         with open(TOKEN_FILE, 'r') as f:
             return json.load(f)
             
