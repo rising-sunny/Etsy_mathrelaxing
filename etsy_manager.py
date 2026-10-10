@@ -6,12 +6,12 @@ import uuid
 import mimetypes
 
 CLIENT_ID = "1nkkipgbsfholyrhfkqqqkjj"
-SHARED_SECRET = "3qm1l21bul"
+SHARED_SECRET = os.environ.get("ETSY_SHARED_SECRET", "")
 TOKEN_FILE = "etsy_token.json"
 
 class EtsyManager:
     def __init__(self):
-        self.base_url = "https://api.etsy.com/v3/application"
+        self.base_url = "https://openapi.etsy.com/v3/application"
         self.token_data = self.load_tokens()
         self.shop_id = None
         
