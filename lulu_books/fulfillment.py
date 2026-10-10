@@ -40,6 +40,7 @@ import json
 import os
 import shutil
 import sys
+import time
 
 _ROOT = os.path.dirname(os.path.abspath(__file__))
 _REPO_ROOT = os.path.dirname(_ROOT)
@@ -160,6 +161,48 @@ def _load_env() -> dict:
 def _public_base() -> str:
     env = _load_env()
     return (env.get("PDF_PUBLIC_BASE") or os.environ.get("PDF_PUBLIC_BASE") or "").rstrip("/")
+
+
+UNPAID_REMINDER_HOURS = 24
+
+
+def _notify(subject: str, body: str) -> bool:
+    """Email alert via SMTP (ALERT_* in lulu_books/.env or environment).
+    No-op (prints) when not configured; never raises."""
+    env = _load_env()
+    get = lambda k, d="": env.get(k) or os.environ.get(k) or d
+    host, to = get("ALERT_SMTP_HOST"), get("ALERT_EMAIL_TO")
+    if not host or not to:
+        print(f"  [aviso sin SMTP configurado] {subject}")
+        return False
+    import smtplib
+    from email.message import EmailMessage
+    msg = EmailMessage()
+    msg["Subject"] = f"[MathRelaxing Lulu] {subject}"
+    msg["From"] = get("ALERT_EMAIL_FROM") or get("ALERT_SMTP_USER") or to
+    msg["To"] = to
+    msg.set_content(body)
+    try:
+        with smtplib.SMTP(host, int(get("ALERT_SMTP_PORT", "587")), timeout=30) as s:
+            s.starttls()
+            if get("ALERT_SMTP_USER"):
+                s.login(get("ALERT_SMTP_USER"), get("ALERT_SMTP_PASSWORD"))
+            s.send_message(msg)
+        print(f"  Aviso enviado a {to}: {subject}")
+        return True
+    except Exception as e:
+        print(f"  Error enviando aviso ({subject}): {e}")
+        return False
+
+
+def _unpaid_body(order: dict) -> str:
+    job_id = (order.get("lulu_job") or {}).get("id")
+    return (
+        f"Pedido Etsy {order['receipt_id']}: {order.get('book')} x{order.get('quantity')}\n"
+        f"Comprador: {order.get('buyer_name')} ({order.get('address_summary')})\n"
+        f"Lulu print job {job_id} está UNPAID — Lulu no imprime hasta que lo pagues.\n\n"
+        "Pagar en el Lulu Print Job Portal (https://developers.lulu.com/ → Print Jobs).\n"
+    )
 
 
 def _load_state():
@@ -454,6 +497,8 @@ def submit_order(receipt_id):
 
     order["submitted"] = True
     order["lulu_job"] = result
+    if _notify(f"Pago pendiente: pedido Etsy {receipt_id}", _unpaid_body(order)):
+        order["unpaid_alert_at"] = time.time()
     pending[str(receipt_id)] = order
     _save_pending(pending)
 
@@ -556,8 +601,19 @@ def sync_tracking():
         if status in LULU_FAILED:
             msg = (job.get("status") or {}).get("messages")
             print(f"  ATENCIÓN: job {job_id} {status} — revisar en Lulu: {msg}")
+            if order.get("failed_alert_status") != status and _notify(
+                f"Lulu {status}: pedido Etsy {rid}",
+                f"Lulu print job {job_id} ({order.get('book')}) está {status}.\n"
+                f"Mensajes de Lulu: {msg}\nEl pedido de Etsy NO se imprimirá.\n",
+            ):
+                order["failed_alert_status"] = status
         elif status == "UNPAID":
             print(f"  job {job_id} sigue UNPAID — pagar en Lulu Print Job Portal.")
+            last = order.get("unpaid_alert_at") or 0
+            if time.time() - last >= UNPAID_REMINDER_HOURS * 3600 and _notify(
+                f"Recordatorio pago pendiente: pedido Etsy {rid}", _unpaid_body(order)
+            ):
+                order["unpaid_alert_at"] = time.time()
         elif status == "SHIPPED":
             tracking = _lulu_tracking(job)
             if not tracking:

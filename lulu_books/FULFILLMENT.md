@@ -111,7 +111,8 @@ python lulu_books/fulfillment.py ensure-partner   # Lulu partner on both listing
 
 ## Safety
 
-- Jobs are **UNPAID** until paid in the Lulu portal. Do **not** add a card on file if you want that human gate.
+- Jobs are **UNPAID** until paid in the Lulu portal. With `ALERT_*` set in `.env`, you get an email when a job is created, a reminder every 24 h while it stays UNPAID, and an alert if Lulu rejects/cancels it.
+- Do **not** add a card on file if you want that human gate.
 - State (gitignored): `lulu_books/output/fulfillment_state.json`, `pending_orders.json`.
 - Failed submits are **not** marked processed — the next `check` retries.
 
