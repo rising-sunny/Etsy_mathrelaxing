@@ -17,6 +17,12 @@ class EtsyManager:
         
     def load_tokens(self):
         if not os.path.exists(TOKEN_FILE):
+            env_refresh = os.environ.get("ETSY_REFRESH_TOKEN")
+            if env_refresh:
+                # Sin etsy_token.json (p. ej. sesión cloud nueva): generarlo con el refresh token del entorno
+                self.token_data = {'refresh_token': env_refresh}
+                self.refresh_token()
+                return self.token_data
             raise Exception("No se encontró etsy_token.json. ¡Por favor ejecuta auth.py primero!")
         with open(TOKEN_FILE, 'r') as f:
             return json.load(f)
