@@ -14,6 +14,8 @@ Usage
   python fulfillment.py publish-pdfs # copy local PDFs → store static/downloads/
   python fulfillment.py dry-run      # stage both hardcovers, no Lulu submit
   python fulfillment.py check        # poll Etsy → stage → submit Lulu UNPAID jobs
+                                     #   + sync-tracking
+  python fulfillment.py sync-tracking  # Lulu SHIPPED → push tracking to Etsy receipt
   python fulfillment.py list         # staged / submitted jobs
   python fulfillment.py submit ID    # (re)submit one receipt_id
 
@@ -38,6 +40,7 @@ import json
 import os
 import shutil
 import sys
+import time
 
 _ROOT = os.path.dirname(os.path.abspath(__file__))
 _REPO_ROOT = os.path.dirname(_ROOT)
@@ -158,6 +161,48 @@ def _load_env() -> dict:
 def _public_base() -> str:
     env = _load_env()
     return (env.get("PDF_PUBLIC_BASE") or os.environ.get("PDF_PUBLIC_BASE") or "").rstrip("/")
+
+
+UNPAID_REMINDER_HOURS = 24
+
+
+def _notify(subject: str, body: str) -> bool:
+    """Email alert via SMTP (ALERT_* in lulu_books/.env or environment).
+    No-op (prints) when not configured; never raises."""
+    env = _load_env()
+    get = lambda k, d="": env.get(k) or os.environ.get(k) or d
+    host, to = get("ALERT_SMTP_HOST"), get("ALERT_EMAIL_TO")
+    if not host or not to:
+        print(f"  [aviso sin SMTP configurado] {subject}")
+        return False
+    import smtplib
+    from email.message import EmailMessage
+    msg = EmailMessage()
+    msg["Subject"] = f"[MathRelaxing Lulu] {subject}"
+    msg["From"] = get("ALERT_EMAIL_FROM") or get("ALERT_SMTP_USER") or to
+    msg["To"] = to
+    msg.set_content(body)
+    try:
+        with smtplib.SMTP(host, int(get("ALERT_SMTP_PORT", "587")), timeout=30) as s:
+            s.starttls()
+            if get("ALERT_SMTP_USER"):
+                s.login(get("ALERT_SMTP_USER"), get("ALERT_SMTP_PASSWORD"))
+            s.send_message(msg)
+        print(f"  Aviso enviado a {to}: {subject}")
+        return True
+    except Exception as e:
+        print(f"  Error enviando aviso ({subject}): {e}")
+        return False
+
+
+def _unpaid_body(order: dict) -> str:
+    job_id = (order.get("lulu_job") or {}).get("id")
+    return (
+        f"Pedido Etsy {order['receipt_id']}: {order.get('book')} x{order.get('quantity')}\n"
+        f"Comprador: {order.get('buyer_name')} ({order.get('address_summary')})\n"
+        f"Lulu print job {job_id} está UNPAID — Lulu no imprime hasta que lo pagues.\n\n"
+        "Pagar en el Lulu Print Job Portal (https://developers.lulu.com/ → Print Jobs).\n"
+    )
 
 
 def _load_state():
@@ -312,7 +357,8 @@ def publish_pdfs(listing_ids=None, dest_root=None):
 # ── Etsy → stage → Lulu ──────────────────────────────────────────────────────
 
 def list_new_orders():
-    """Return [(receipt, transaction, book_cfg), ...] for paid unshipped book txns."""
+    """Return [(receipt, [(transaction, book_cfg), ...]), ...] for paid unshipped
+    receipts with at least one mapped book (one Lulu job per receipt)."""
     state = _load_state()
     em = EtsyManager()
     shop_id = em.get_shop_id()
@@ -339,11 +385,21 @@ def list_new_orders():
         # Skip if already staged/submitted for this receipt
         if str(rid) in pending and pending[str(rid)].get("submitted"):
             continue
-        for txn in receipt.get("transactions", []):
-            book_cfg = resolve_book(txn)
-            if book_cfg:
-                new.append((receipt, txn, book_cfg))
+        items = [
+            (txn, cfg)
+            for txn in receipt.get("transactions", [])
+            if (cfg := resolve_book(txn))
+        ]
+        if items:
+            new.append((receipt, items))
     return new
+
+
+def _state_code(receipt: dict) -> str:
+    """Etsy gives codes for US/CA/AU ("TX", "ON", "VIC") but full region names
+    elsewhere ("West Yorkshire"); Lulu wants a code, so drop long names."""
+    st = (receipt.get("state") or "").strip()
+    return st.upper() if 0 < len(st) <= 3 else ""
 
 
 def _shipping_from_receipt(receipt: dict) -> dict:
@@ -352,7 +408,7 @@ def _shipping_from_receipt(receipt: dict) -> dict:
         "street1": receipt.get("first_line") or "",
         "street2": receipt.get("second_line") or "",
         "city": receipt.get("city") or "",
-        "state_code": receipt.get("state") or "",
+        "state_code": _state_code(receipt),
         "postcode": receipt.get("zip") or "",
         "country_code": receipt.get("country_iso") or "US",
         "phone_number": receipt.get("buyer_phone") or "+1 202 555 0100",
@@ -360,16 +416,24 @@ def _shipping_from_receipt(receipt: dict) -> dict:
     }
 
 
-def prepare_order(receipt, txn, book_cfg, *, mark_processed: bool = False):
-    """Stage Lulu payload. Does not call Lulu. Optionally marks receipt processed."""
+def prepare_order(receipt, items, *, mark_processed: bool = False):
+    """Stage one Lulu payload for all book items [(txn, book_cfg), ...] of a
+    receipt (single shipment). Does not call Lulu. Optionally marks processed."""
     state = _load_state()
-    interior_url, cover_url = resolve_print_urls(book_cfg, state)
+    line_items = []
+    for txn, book_cfg in items:
+        interior_url, cover_url = resolve_print_urls(book_cfg, state)
+        line_items.append(dict(
+            interior_url=interior_url,
+            cover_url=cover_url,
+            pod_package_id=book_cfg["pod_package_id"],
+            quantity=int(txn.get("quantity") or 1),
+            title=book_cfg["title"],
+            external_id=f"etsy-txn-{txn['transaction_id']}",
+        ))
     ship = _shipping_from_receipt(receipt)
     payload = dict(
-        interior_url=interior_url,
-        cover_url=cover_url,
-        pod_package_id=book_cfg["pod_package_id"],
-        quantity=int(txn.get("quantity") or 1),
+        line_items=line_items,
         shipping_address={
             k: ship[k]
             for k in (
@@ -378,23 +442,22 @@ def prepare_order(receipt, txn, book_cfg, *, mark_processed: bool = False):
             )
         },
         contact_email=ship["email"],
-        title=book_cfg["title"],
-        external_id=f"etsy-{receipt['receipt_id']}-{txn['transaction_id']}",
+        external_id=f"etsy-{receipt['receipt_id']}",
     )
 
     pending = _load_pending()
     entry = {
         "receipt_id": receipt["receipt_id"],
-        "transaction_id": txn["transaction_id"],
-        "listing_id": txn.get("listing_id"),
-        "sku": txn.get("sku"),
-        "edition": book_cfg.get("edition"),
-        "book": book_cfg["slug"],
+        "transaction_ids": [t["transaction_id"] for t, _ in items],
+        "listing_ids": [t.get("listing_id") for t, _ in items],
+        "skus": [t.get("sku") for t, _ in items],
+        "editions": [c.get("edition") for _, c in items],
+        "book": " + ".join(c["slug"] for _, c in items),
         "buyer_name": ship["name"],
         "address_summary": (
             f"{ship['city']}, {ship.get('state_code', '')} {ship['country_code']}"
         ),
-        "quantity": payload["quantity"],
+        "quantity": sum(li["quantity"] for li in line_items),
         "lulu_payload": payload,
         "submitted": False,
     }
@@ -434,6 +497,8 @@ def submit_order(receipt_id):
 
     order["submitted"] = True
     order["lulu_job"] = result
+    if _notify(f"Pago pendiente: pedido Etsy {receipt_id}", _unpaid_body(order)):
+        order["unpaid_alert_at"] = time.time()
     pending[str(receipt_id)] = order
     _save_pending(pending)
 
@@ -458,30 +523,122 @@ def check_and_prepare():
         print("Sin pedidos nuevos de libros mapeados.")
         return []
     submitted = []
-    for receipt, txn, book_cfg in new_orders:
+    base = _public_base()
+    for receipt, items in new_orders:
         print(
             f"\nPedido nuevo: receipt_id={receipt['receipt_id']} "
-            f"libro={book_cfg['slug']} ({book_cfg.get('edition')}) "
-            f"cant={txn.get('quantity')} "
             f"comprador={receipt.get('name')} "
             f"({receipt.get('city')}, {receipt.get('country_iso')})"
         )
+        for txn, book_cfg in items:
+            print(
+                f"  - libro={book_cfg['slug']} ({book_cfg.get('edition')}) "
+                f"cant={txn.get('quantity')}"
+            )
         # Local files must exist if using R2; for public base only URLs matter
-        base = _public_base()
-        if not base:
-            for label, path in (("interior", book_cfg["interior"]), ("cover", book_cfg["cover"])):
-                if not os.path.isfile(path):
-                    print(f"  ABORT MISSING {label}: {path}")
-                    print("  Or set PDF_PUBLIC_BASE and deploy PDFs to the store.")
-                    continue
-        order = prepare_order(receipt, txn, book_cfg, mark_processed=False)
+        missing = [] if base else [
+            (label, cfg[label])
+            for _, cfg in items
+            for label in ("interior", "cover")
+            if not os.path.isfile(cfg[label])
+        ]
+        if missing:
+            for label, path in missing:
+                print(f"  ABORT MISSING {label}: {path}")
+            print("  Or set PDF_PUBLIC_BASE and deploy PDFs to the store.")
+            continue
         try:
+            order = prepare_order(receipt, items, mark_processed=False)
             submit_order(order["receipt_id"])
             submitted.append(order)
         except Exception as e:
             print(f"  Falló submit (se reintentará en el próximo check): {e}")
     print(f"\n{len(submitted)} pedido(s) enviados a Lulu (estado UNPAID).")
     return submitted
+
+
+# ── Lulu → Etsy (status + tracking) ──────────────────────────────────────────
+
+LULU_FAILED = ("REJECTED", "CANCELED", "ERROR")
+
+
+def _lulu_tracking(job: dict) -> list[tuple[str, str]]:
+    """[(tracking_code, carrier_name), ...] unique, from a Lulu print job."""
+    out = []
+    for li in job.get("line_items") or []:
+        code = (li.get("tracking_id") or "").strip()
+        if code and code not in [c for c, _ in out]:
+            out.append((code, (li.get("carrier_name") or "").strip()))
+    return out
+
+
+def sync_tracking():
+    """For submitted jobs not yet synced: read Lulu status; when SHIPPED, push
+    the tracking code to the Etsy receipt (marks it shipped, notifies buyer)."""
+    pending = _load_pending()
+    todo = {
+        rid: o for rid, o in pending.items()
+        if o.get("submitted") and not o.get("tracking_synced")
+        and isinstance(o.get("lulu_job"), dict) and o["lulu_job"].get("id")
+    }
+    if not todo:
+        print("Sin trabajos Lulu pendientes de tracking.")
+        return
+    client = lp.make_client()
+    em = EtsyManager()
+    shop_id = em.get_shop_id()
+    for rid, order in todo.items():
+        job_id = order["lulu_job"]["id"]
+        try:
+            job = client.get_print_job(job_id)
+        except Exception as e:
+            print(f"receipt_id={rid} job={job_id}: error leyendo Lulu: {e}")
+            continue
+        status = (job.get("status") or {}).get("name") or "?"
+        if status != order.get("lulu_status"):
+            print(f"receipt_id={rid} job={job_id}: {order.get('lulu_status')} -> {status}")
+        order["lulu_status"] = status
+        if status in LULU_FAILED:
+            msg = (job.get("status") or {}).get("messages")
+            print(f"  ATENCIÓN: job {job_id} {status} — revisar en Lulu: {msg}")
+            if order.get("failed_alert_status") != status and _notify(
+                f"Lulu {status}: pedido Etsy {rid}",
+                f"Lulu print job {job_id} ({order.get('book')}) está {status}.\n"
+                f"Mensajes de Lulu: {msg}\nEl pedido de Etsy NO se imprimirá.\n",
+            ):
+                order["failed_alert_status"] = status
+        elif status == "UNPAID":
+            print(f"  job {job_id} sigue UNPAID — pagar en Lulu Print Job Portal.")
+            last = order.get("unpaid_alert_at") or 0
+            if time.time() - last >= UNPAID_REMINDER_HOURS * 3600 and _notify(
+                f"Recordatorio pago pendiente: pedido Etsy {rid}", _unpaid_body(order)
+            ):
+                order["unpaid_alert_at"] = time.time()
+        elif status == "SHIPPED":
+            tracking = _lulu_tracking(job)
+            if not tracking:
+                print(f"  job {job_id} SHIPPED sin tracking todavía; reintento luego.")
+            else:
+                try:
+                    receipt = em.make_request("GET", f"/shops/{shop_id}/receipts/{rid}")
+                    if receipt.get("is_shipped"):
+                        print(f"  Etsy receipt {rid} ya estaba enviado; no se sube tracking.")
+                    else:
+                        code, carrier = tracking[0]
+                        em.make_request(
+                            "POST",
+                            f"/shops/{shop_id}/receipts/{rid}/tracking",
+                            payload={"tracking_code": code, "carrier_name": carrier or "other"},
+                        )
+                        print(f"  Tracking subido a Etsy: {carrier} {code}")
+                        if len(tracking) > 1:
+                            print(f"  (varios paquetes; resto: {tracking[1:]})")
+                    order["tracking"] = tracking
+                    order["tracking_synced"] = True
+                except Exception as e:
+                    print(f"  Error subiendo tracking a Etsy (reintento luego): {e}")
+        pending[rid] = order
+        _save_pending(pending)
 
 
 def register_status():
@@ -548,13 +705,13 @@ def dry_run_stage():
             "quantity": 1,
             "sku": "SOI-STD-8585" if lid == 4548870190 else "TMB-STD-8585",
         }
-        entry = prepare_order(fake_receipt, fake_txn, cfg, mark_processed=False)
+        entry = prepare_order(fake_receipt, [(fake_txn, cfg)], mark_processed=False)
         # Do not leave dry-run receipts as submitted
         pending = _load_pending()
         pending.pop(str(fake_receipt["receipt_id"]), None)
         _save_pending(pending)
         print(f"  staged external_id={entry['lulu_payload']['external_id']}")
-        print(f"  pod_package_id={entry['lulu_payload']['pod_package_id']}")
+        print(f"  pod_package_id={entry['lulu_payload']['line_items'][0]['pod_package_id']}")
     print(
         "\nDry-run complete — no Lulu print-job created. "
         "After PDFs are live at PDF_PUBLIC_BASE, real orders use: "
@@ -593,6 +750,9 @@ if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "check":
         check_and_prepare()
+        sync_tracking()
+    elif cmd == "sync-tracking":
+        sync_tracking()
     elif cmd == "list":
         pending = _load_pending()
         if not pending:

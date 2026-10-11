@@ -268,3 +268,6 @@ wallart_set/__pycache__/
 # OAuth PKCE pending state (never commit)
 _oauth_pending.json
 
+
+# Wave A poster masters (regenerate: python printify/create_wave_a_posters.py build)
+printify/_wave_a_art/*_[234]x[345].jpg

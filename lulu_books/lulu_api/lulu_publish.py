@@ -273,24 +273,34 @@ class LuluClient:
             "shipping_level": shipping_level,
         })
 
-    def create_print_job(self, *, interior_url: str, cover_url: str,
-                         pod_package_id: str, quantity: int,
-                         shipping_address: dict, contact_email: str,
-                         title: str, shipping_level: str = "MAIL",
+    def create_print_job(self, *, shipping_address: dict, contact_email: str,
+                         interior_url: Optional[str] = None,
+                         cover_url: Optional[str] = None,
+                         pod_package_id: Optional[str] = None,
+                         quantity: int = 1, title: Optional[str] = None,
+                         line_items: Optional[list] = None,
+                         shipping_level: str = "MAIL",
                          external_id: Optional[str] = None) -> dict:
+        """Single book via interior_url/cover_url/pod_package_id/title, or
+        several books in one job (one shipment) via line_items:
+        [{interior_url, cover_url, pod_package_id, quantity, title, external_id?}]"""
+        if line_items is None:
+            line_items = [dict(interior_url=interior_url, cover_url=cover_url,
+                               pod_package_id=pod_package_id,
+                               quantity=quantity, title=title)]
         body = {
             "contact_email": contact_email,
             "external_id": external_id or f"mr-{secrets.token_hex(4)}",
             "line_items": [{
-                "external_id": f"li-{secrets.token_hex(3)}",
-                "title": title,
+                "external_id": li.get("external_id") or f"li-{secrets.token_hex(3)}",
+                "title": li["title"],
                 "printable_normalization": {
-                    "cover": {"source_url": cover_url},
-                    "interior": {"source_url": interior_url},
+                    "cover": {"source_url": li["cover_url"]},
+                    "interior": {"source_url": li["interior_url"]},
                 },
-                "pod_package_id": pod_package_id,
-                "quantity": quantity,
-            }],
+                "pod_package_id": li["pod_package_id"],
+                "quantity": int(li.get("quantity") or 1),
+            } for li in line_items],
             "shipping_address": shipping_address,
             "shipping_level": shipping_level,
         }

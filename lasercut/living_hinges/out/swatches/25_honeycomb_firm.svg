@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120mm" height="50mm" viewBox="0 0 120 50">
+<!-- MathRelaxing living hinge · honeycomb · firm · 120x50 mm test strip · red = cut -->
+<path d="M 120.000,50.000 L 120.000,0.000 L 0.000,0.000 L 0.000,50.000 L 120.000,50.000 Z" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 31.315,37.620 L 27.920,35.660 L 24.525,37.620 L 24.525,41.540 L 27.920,43.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 41.947,37.620 L 38.552,35.660 L 35.157,37.620 L 35.157,41.540 L 38.552,43.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 52.579,37.620 L 49.184,35.660 L 45.789,37.620 L 45.789,41.540 L 49.184,43.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 63.211,37.620 L 59.816,35.660 L 56.421,37.620 L 56.421,41.540 L 59.816,43.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 73.843,37.620 L 70.448,35.660 L 67.053,37.620 L 67.053,41.540 L 70.448,43.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 84.475,37.620 L 81.080,35.660 L 77.685,37.620 L 77.685,41.540 L 81.080,43.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 95.107,37.620 L 91.712,35.660 L 88.317,37.620 L 88.317,41.540 L 91.712,43.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 35.431,29.740 L 32.036,27.780 L 28.641,29.740 L 28.641,33.660 L 32.036,35.620" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 46.063,29.740 L 42.668,27.780 L 39.273,29.740 L 39.273,33.660 L 42.668,35.620" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 56.695,29.740 L 53.300,27.780 L 49.905,29.740 L 49.905,33.660 L 53.300,35.620" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 67.327,29.740 L 63.932,27.780 L 60.537,29.740 L 60.537,33.660 L 63.932,35.620" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 77.959,29.740 L 74.564,27.780 L 71.169,29.740 L 71.169,33.660 L 74.564,35.620" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 88.591,29.740 L 85.196,27.780 L 81.801,29.740 L 81.801,33.660 L 85.196,35.620" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 31.315,21.860 L 27.920,19.900 L 24.525,21.860 L 24.525,25.780 L 27.920,27.740" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 41.947,21.860 L 38.552,19.900 L 35.157,21.860 L 35.157,25.780 L 38.552,27.740" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 52.579,21.860 L 49.184,19.900 L 45.789,21.860 L 45.789,25.780 L 49.184,27.740" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 63.211,21.860 L 59.816,19.900 L 56.421,21.860 L 56.421,25.780 L 59.816,27.740" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 73.843,21.860 L 70.448,19.900 L 67.053,21.860 L 67.053,25.780 L 70.448,27.740" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 84.475,21.860 L 81.080,19.900 L 77.685,21.860 L 77.685,25.780 L 81.080,27.740" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 95.107,21.860 L 91.712,19.900 L 88.317,21.860 L 88.317,25.780 L 91.712,27.740" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 35.431,13.980 L 32.036,12.020 L 28.641,13.980 L 28.641,17.900 L 32.036,19.860" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 46.063,13.980 L 42.668,12.020 L 39.273,13.980 L 39.273,17.900 L 42.668,19.860" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 56.695,13.980 L 53.300,12.020 L 49.905,13.980 L 49.905,17.900 L 53.300,19.860" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 67.327,13.980 L 63.932,12.020 L 60.537,13.980 L 60.537,17.900 L 63.932,19.860" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 77.959,13.980 L 74.564,12.020 L 71.169,13.980 L 71.169,17.900 L 74.564,19.860" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 88.591,13.980 L 85.196,12.020 L 81.801,13.980 L 81.801,17.900 L 85.196,19.860" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+</svg>

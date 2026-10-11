@@ -4893,6 +4893,330 @@ PRODUCTS = {
         "notes": "POD bp765/p59. create_pod_bookmark.py --design wave. Full line in printify/pod_bookmark_created.json.",
         "listing_id": 4546607100, "printify_id": "6a6ac119a55df4f3cd0db3b8",
     },
+    "midwinter_mystery_advent": {
+        "title": ("Murder Mystery Advent Calendar Printable, 24 Logic Puzzles for Adults, "
+                  "Christmas Detective Game, Sudoku Puzzle Countdown"),
+        "description": """\
+The Midwinter Theorem — a 24-day murder mystery advent calendar built from real logic puzzles.
+
+Snow has sealed Ashcombe Hall on the night of the Midwinter Gala. At midnight the Society's president is found dead, the last page of his notebook torn out. Thirty-six guests are snowed in. One of them is the killer.
+
+► How it works
+• Each day from December 1 to 24, read a short journal entry and solve one logic puzzle
+• The number in the starred cell tells you which of the day's statements is TRUE
+• Use it to cross suspects off your tracker
+• On Christmas Eve exactly one name remains. Open the sealed Final Reveal
+
+► Fair and self-checking
+• Every puzzle has exactly one solution, verified by computer, so no guessing
+• Every false statement would rule out the real killer, so a wrong answer shows up as a contradiction
+• Gentle 4×4 grids in week one, tricky 6×6 Sudoku and 5×5 Futoshiki / Skyscrapers by the end
+• Rules printed on every page; full solutions at the back
+
+► What you get
+• 35-page printable PDF in US Letter AND A4
+• How-to-play guide, 36 suspect profile cards, suspect elimination tracker
+• 24 daily pages with story, puzzle and clue statements
+• Sealed Final Reveal page + solutions for every puzzle
+
+Play solo, as a couple, with friends or as a family (teens and adults). Print one page a day or the whole case at once.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 8.99,
+        "taxonomy_id": 1350,  # same node as our printable escape rooms
+        "images": [p("puzzles", "midwinter_mystery", "listing", f) for f in (
+            "01_hero.jpg", "02_how_it_works.jpg", "03_puzzles.jpg", "04_cast.jpg", "05_included.jpg")],
+        "files": [p("puzzles", "midwinter_mystery", "out", f) for f in (
+            "Midwinter_Theorem_Mystery_Advent_Letter.pdf", "Midwinter_Theorem_Mystery_Advent_A4.pdf")],
+        "tags": ["murder mystery game", "advent calendar", "logic puzzle", "christmas puzzle",
+                 "printable game", "mystery advent", "puzzle advent", "detective game",
+                 "sudoku printable", "gift for puzzlers", "christmas activity", "adult advent",
+                 "escape room game"],
+        "listing_id": 4592914578,
+        "notes": ("puzzles/midwinter_mystery/build_mystery_advent.py (seed 2026) + listing_images.py. "
+                  "Research 2026-10-11: 'elimination puzzle' median 7 fav/mo; printable mystery advent "
+                  "~60 listings. Section: Christmas."),
+    },
+    "marble_maze_laser_pack": {
+        "title": ("Marble Maze SVG Laser Cut Files, 6 Labyrinth Balance Games, Glowforge xTool DXF, "
+                  "Wooden Maze Puzzle Bundle"),
+        "description": """\
+Six generative marble mazes, ready for your laser cutter. Square, circular and hexagonal labyrinths, each in an EASY and a HARD level.
+
+Every maze is a perfect maze, generated with code: exactly one route from start to finish, no loops, and the finish is the cell farthest from the start for the longest possible route.
+
+► What you get
+• 6 designs × 3 layers (BASE, MAZE, LID) as SVG + DXF in millimetres
+• 1:1 PDF templates with a 50 mm calibration bar
+• Assembly guide (materials, stacking order, scaling for other ball sizes)
+
+► Specs
+• Every design fits a 280 mm (11") bed: 169 to 279 mm across
+• 10.5 mm channels and 4 mm walls, made for an 8 mm steel ball
+• Cut the MAZE layer twice from 3 mm plywood or MDF for 6 mm walls
+• Optional clear acrylic lid with 4 × M3 bolt holes
+• Red hairline = cut, black fill = engrave (start ring and finish star)
+• Every wall layer is one connected piece: nothing falls out when you cut it
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF. Run a small test cut first to dial in your material settings.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 9.99,
+        "taxonomy_id": 12394,  # most-used node among marble-maze / laser-file competitors
+        "images": [p("lasercut", "marble_mazes", "listing", f) for f in (
+            "01_hero.jpg", "02_all_six.jpg", "03_layers.jpg", "04_specs.jpg", "05_hex.jpg")],
+        "files": [p("lasercut", "marble_mazes", "dist", f) for f in (
+            "MathRelaxing_Marble_Mazes_SVG_DXF.zip",
+            "MathRelaxing_Marble_Mazes_PDF_Templates_1to1.pdf",
+            "MathRelaxing_Marble_Mazes_Assembly_Guide.pdf")],
+        "tags": ["marble maze svg", "laser cut file", "glowforge files", "maze svg",
+                 "labyrinth game", "wooden maze puzzle", "laser cut puzzle", "balance maze",
+                 "dxf files", "xtool files", "laser cut game", "wood puzzle svg", "lightburn files"],
+        "listing_id": 4592916202,
+        "notes": ("lasercut/marble_mazes/build_marble_mazes.py + package_and_images.py. Research "
+                  "2026-10-11: 'marble maze svg' 18 listings, new listings ~16.6 fav/mo, top $14. "
+                  "Section: Puzzles."),
+    },
+    "ornaments_3d_laser_pack": {
+        "title": ("3D Christmas Ornament SVG Laser Cut Files, 8 Geometric Slot Together Ornaments, "
+                  "Glowforge xTool DXF, Snowflake Bauble Tree"),
+        "description": """\
+Eight mathematical 3D Christmas ornaments for your laser cutter. Each one is two flat pieces that slide together at 90° into a 3D ornament. No glue needed.
+
+► The designs
+• Koch Snowflake: the fractal curve with infinite perimeter
+• Sierpinski Tree: Sierpinski's triangle as a Christmas tree
+• Voronoi Bauble: cells of nearest points
+• Golden Angle Bauble: seeds at 137.5°, like a sunflower
+• Honeycomb Bauble: the hexagonal tiling
+• Apollonian Bauble: a gasket of tangent circles
+• Five-Fold Star and Girih Star: rose curve and Islamic geometry
+
+► What you get
+• 8 designs × 3 material thicknesses (3 mm, 1/8", 4 mm), slot sized exactly to each
+• SVG + DXF in millimetres, both pieces in one file
+• 1:1 PDF templates with a calibration bar
+• Guide: choosing the right thickness, cutting, assembly, finishing ideas
+
+► Specs
+• About 80–92 mm tall, hanging hole included
+• Red hairline = cut
+• Every piece is verified as one solid part with at least 2.6 mm of material between cut-outs
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF. Run a small test cut first to check the slot fit with your material.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 7.99,
+        "taxonomy_id": 12394,
+        "images": [p("lasercut", "ornaments_3d", "listing", f) for f in (
+            "01_hero.jpg", "02_all_eight.jpg", "03_how.jpg", "04_specs.jpg", "05_koch.jpg")],
+        "files": [p("lasercut", "ornaments_3d", "dist", f) for f in (
+            "MathRelaxing_3D_Ornaments_SVG_DXF.zip",
+            "MathRelaxing_3D_Ornaments_PDF_Templates_1to1.pdf",
+            "MathRelaxing_3D_Ornaments_Guide.pdf")],
+        "tags": ["3d ornament svg", "xmas ornament svg", "laser cut ornament", "glowforge christmas",
+                 "snowflake svg", "geometric ornament", "christmas laser file", "3d christmas svg",
+                 "slot together svg", "laser cut files", "xtool christmas", "dxf ornament",
+                 "wooden ornament diy"],
+        "listing_id": 4593071420,
+        "notes": ("lasercut/ornaments_3d/build_ornaments.py + package_and_images.py. Research 2026-10-11: "
+                  "'3d ornament svg laser' median 28.9 fav/mo, new ~87 fav/mo. Section: Christmas."),
+    },
+    "geometric_lanterns_laser_pack": {
+        "title": ("Christmas Lantern SVG Laser Cut Files, 6 Geometric Tealight Candle Holders, Snowflake "
+                  "Voronoi Honeycomb, Glowforge xTool DXF"),
+        "description": """\
+Six mathematical lanterns for your laser cutter. Square tealight lanterns with finger joints, a slotted base and a top ring, each wall cut with a geometric pattern that glows when lit.
+
+► The designs
+• Voronoi: cells of nearest points
+• Honeycomb: the hexagonal tiling
+• Golden Angle: seeds at 137.5°, like a sunflower
+• Koch Snowflakes: fractal snowflakes for the holidays
+• Girih Stars: eight-pointed stars from Islamic geometry
+• Circle Packing: bubbles of every size
+
+► What you get
+• 6 designs × 3 material thicknesses (3 mm, 1/8", 4 mm), joints sized exactly to each
+• SVG + DXF in millimetres: one sheet holds the whole lantern (2 front walls, 2 side walls, base, top ring)
+• Assembly guide with safety notes and finishing ideas
+
+► Specs
+• Lantern 90 × 90 × 120 mm (base and top ring 106 mm square)
+• Sheet layout 375 × 239 mm, fits a Glowforge-size bed
+• Red hairline = cut
+• Every piece is verified as one solid part
+
+⚠ For LED / battery tealights only. Never use a real flame in a wooden lantern.
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF. Run a small test cut first to check the joint fit with your material.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 8.99,
+        "taxonomy_id": 12394,
+        "images": [p("lasercut", "lanterns", "listing", f) for f in (
+            "01_hero.jpg", "02_all_six.jpg", "03_sheet.jpg", "04_specs.jpg", "05_snowflakes.jpg")],
+        "files": [p("lasercut", "lanterns", "dist", f) for f in (
+            "MathRelaxing_Geometric_Lanterns_SVG_DXF.zip", "MathRelaxing_Geometric_Lanterns_Guide.pdf")],
+        "tags": ["christmas lantern", "lantern svg", "laser cut lantern", "tealight holder svg",
+                 "candle holder svg", "glowforge files", "geometric lantern", "xmas lantern svg",
+                 "christmas candle svg", "laser cut files", "led lantern svg", "snowflake svg",
+                 "laser cut box svg"],
+        "listing_id": 4593074244,
+        "notes": ("lasercut/lanterns/build_lanterns.py + listing_images.py. Research 2026-10-11: "
+                  "'geometric tealight svg' 80 listings, 'laser cut lantern geometric' median 6 fav/mo. "
+                  "Section: Christmas."),
+    },
+    "living_hinge_library": {
+        "title": ("Living Hinge SVG Library, 30 Flexible Laser Cut Patterns, Bendable Plywood Kerf "
+                  "Bending, Glowforge xTool DXF, Cuff + Box"),
+        "description": """\
+Bend plywood like fabric. A library of 30 living hinge patterns for laser cutters, plus two ready-to-cut projects.
+
+► What you get
+• 30 patterns: 10 families × 3 flex levels (firm, medium, soft)
+  lattice · wave · zigzag · arcs · brick · serpentine · diamond · cross · honeycomb · ellipse
+• A 120 × 50 mm test swatch for every pattern: cut it in your material and pick the level that bends to your radius
+• A 100 × 100 mm tile of every pattern to paste into your own designs
+• 2 projects: a cuff bracelet and a Ø70 mm pencil cup with a puzzle-joint seam
+• Guide: slit orientation, materials, flex levels and laser tips
+
+► Specs
+• Single red cut lines, SVG + DXF in millimetres
+• At least 0.9 mm between slits, and slits never touch the part edge (verified by code)
+• Best in 2–3 mm birch plywood or MDF; acrylic only with the firm patterns
+• Cross bends both ways; serpentine is the softest; honeycomb is decorative flex
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 6.99,
+        "taxonomy_id": 12394,
+        "images": [p("lasercut", "living_hinges", "listing", f) for f in (
+            "01_hero.jpg", "02_patterns_1.jpg", "03_patterns_2.jpg", "04_projects.jpg", "05_specs.jpg")],
+        "files": [p("lasercut", "living_hinges", "dist", f) for f in (
+            "MathRelaxing_Living_Hinge_Library_SVG_DXF.zip", "MathRelaxing_Living_Hinge_Guide.pdf")],
+        "tags": ["living hinge svg", "laser cut files", "flexible plywood", "kerf bending",
+                 "glowforge files", "living hinge", "laser cut pattern", "bendable wood svg",
+                 "xtool files", "dxf files", "laser cut box svg", "lightburn files", "flex wood svg"],
+        "listing_id": 4593076472,
+        "notes": ("lasercut/living_hinges/build_hinges.py + package_and_images.py. Research 2026-10-11: "
+                  "'living hinge svg' 494 listings, median 16.6 fav/mo. Section: Laser Cut Files."),
+    },
+    "advent_ornaments_laser": {
+        "title": ("Advent Calendar SVG Laser Cut Files, 24 Numbered 3D Christmas Ornaments, Geometric Slot "
+                  "Together Countdown, Glowforge xTool DXF"),
+        "description": """\
+A mathematical advent calendar for your laser cutter: 24 numbered slot-together 3D ornaments, one for every day of December. Hang a new shape on the tree each morning.
+
+► The 24 days
+Koch snowflakes, Sierpinski trees, Voronoi and Apollonian baubles, golden-angle stars, honeycomb and girih tilings, five- to eight-fold rose curves, and a Christmas Star for Day 24. Every one is a different mathematical shape.
+
+► What you get
+• 24 ornaments × 3 material thicknesses (3 mm, 1/8", 4 mm), slots sized exactly to each
+• 3 cut sheets per thickness (fit a 480 × 280 mm bed) + single-day files
+• Day number engraved on each ornament (black fill = engrave, red = cut)
+• SVG + DXF in millimetres
+• Guide with countdown ideas and the list of all 24 shapes
+
+► Specs
+• About 75 mm tall, hanging hole included
+• Two pieces per ornament slide together at 90°, no glue needed
+• Every piece is verified as one solid part with at least 2.6 mm of material between cut-outs
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF. Run a small test cut first to check the slot fit with your material.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 9.99,
+        "taxonomy_id": 12394,
+        "images": [p("lasercut", "advent_ornaments", "listing", f) for f in (
+            "01_hero.jpg", "02_trio.jpg", "03_pieces.jpg", "04_specs.jpg", "05_all24.jpg")],
+        "files": [p("lasercut", "advent_ornaments", "dist", f) for f in (
+            "MathRelaxing_Advent_Ornaments_SVG_DXF.zip", "MathRelaxing_Advent_Ornaments_Guide.pdf")],
+        "tags": ["advent calendar svg", "laser cut advent", "xmas ornament svg", "advent ornaments",
+                 "3d ornament svg", "glowforge christmas", "christmas countdown", "laser cut ornament",
+                 "christmas laser file", "slot together svg", "geometric ornament", "xtool christmas",
+                 "wooden advent"],
+        "listing_id": 4593279861,
+        "notes": ("lasercut/advent_ornaments/build_advent.py + listing_images.py (reuses ornaments_3d engine). "
+                  "Research 2026-10-11 Christmas: 'advent calendar svg laser' 1,584 listings, new median "
+                  "38.9 fav/mo. Section: Christmas."),
+    },
+    "golden_spiral_tree_laser": {
+        "title": ("3D Christmas Tree SVG Laser Cut Files, Golden Spiral Stacked Tree, Koch Snowflake, "
+                  "Tabletop Decor, Glowforge xTool DXF"),
+        "description": """\
+A Christmas tree that grows like a sunflower. Sixteen laser-cut layers stack on a wooden dowel, each one turned 137.5° (the golden angle) from the one below, so the points spiral up the tree the way seeds spiral in a sunflower.
+
+► Three designs
+• Golden Star Tree: five-point stars with golden-angle dots
+• Koch Snowflake Tree: sixteen fractal snowflakes
+• Honeycomb Hexagon Tree: clean hexagonal layers
+
+► The trick
+Every layer is engraved with a small tick at its own golden angle plus its number. Draw a pencil line down the dowel, thread the layers in order with every tick on the line, and the spiral sets itself.
+
+► What you get
+• 3 trees × versions for 6 mm and 8 mm dowels (SVG + DXF in millimetres)
+• 16 layers from 150 mm to 28 mm, a 3-disc base, spacer rings and a star topper
+• Sheets fit a 480 × 280 mm bed. Red = cut, black = engrave (ticks and numbers)
+• Guide with build steps and the math behind the golden angle
+
+► Specs
+• No slots or finger joints: works with any 3 mm sheet (plywood, MDF, acrylic)
+• Tree about 22 cm tall with the topper
+• You also need: a wooden dowel (6 or 8 mm, about 25 cm)
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 8.99,
+        "taxonomy_id": 12394,
+        "images": [p("lasercut", "spiral_tree", "listing", f) for f in (
+            "01_hero.jpg", "02_three.jpg", "03_ticks.jpg", "04_specs.jpg", "05_koch.jpg")],
+        "files": [p("lasercut", "spiral_tree", "dist", f) for f in (
+            "MathRelaxing_Golden_Spiral_Trees_SVG_DXF.zip", "MathRelaxing_Golden_Spiral_Tree_Guide.pdf")],
+        "tags": ["christmas tree svg", "3d tree svg", "laser cut tree", "christmas laser file",
+                 "glowforge christmas", "spiral tree svg", "golden ratio", "fibonacci tree",
+                 "stacked tree svg", "xtool christmas", "tabletop tree svg", "christmas decor svg",
+                 "wooden tree svg"],
+        "listing_id": 4593282157,
+        "notes": ("lasercut/spiral_tree/build_tree.py + listing_images.py. Research 2026-10-11 Christmas: "
+                  "'3d christmas tree svg' 3,871 listings, new median 18.5 fav/mo. Section: Christmas."),
+    },
 }
 
 # ── Funciones de utilidad ─────────────────────────────────────────────────────

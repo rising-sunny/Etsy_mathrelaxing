@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120mm" height="50mm" viewBox="0 0 120 50">
+<!-- MathRelaxing living hinge · zigzag · firm · 120x50 mm test strip · red = cut -->
+<path d="M 120.000,50.000 L 120.000,0.000 L 0.000,0.000 L 0.000,50.000 L 120.000,50.000 Z" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 20.780,43.500 L 22.340,40.000 L 20.780,36.500 L 22.340,33.000 L 20.780,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 20.780,25.500 L 22.340,22.000 L 20.780,18.500 L 22.340,15.000 L 20.780,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 23.900,43.500 L 25.460,41.000 L 23.900,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 23.900,34.500 L 25.460,31.000 L 23.900,27.500 L 25.460,24.000 L 23.900,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 23.900,16.500 L 25.460,13.167 L 23.900,9.833 L 25.460,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 27.020,43.500 L 28.580,40.000 L 27.020,36.500 L 28.580,33.000 L 27.020,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 27.020,25.500 L 28.580,22.000 L 27.020,18.500 L 28.580,15.000 L 27.020,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 30.140,43.500 L 31.700,41.000 L 30.140,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 30.140,34.500 L 31.700,31.000 L 30.140,27.500 L 31.700,24.000 L 30.140,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 30.140,16.500 L 31.700,13.167 L 30.140,9.833 L 31.700,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 33.260,43.500 L 34.820,40.000 L 33.260,36.500 L 34.820,33.000 L 33.260,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 33.260,25.500 L 34.820,22.000 L 33.260,18.500 L 34.820,15.000 L 33.260,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 36.380,43.500 L 37.940,41.000 L 36.380,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 36.380,34.500 L 37.940,31.000 L 36.380,27.500 L 37.940,24.000 L 36.380,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 36.380,16.500 L 37.940,13.167 L 36.380,9.833 L 37.940,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 39.500,43.500 L 41.060,40.000 L 39.500,36.500 L 41.060,33.000 L 39.500,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 39.500,25.500 L 41.060,22.000 L 39.500,18.500 L 41.060,15.000 L 39.500,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 42.620,43.500 L 44.180,41.000 L 42.620,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 42.620,34.500 L 44.180,31.000 L 42.620,27.500 L 44.180,24.000 L 42.620,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 42.620,16.500 L 44.180,13.167 L 42.620,9.833 L 44.180,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 45.740,43.500 L 47.300,40.000 L 45.740,36.500 L 47.300,33.000 L 45.740,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 45.740,25.500 L 47.300,22.000 L 45.740,18.500 L 47.300,15.000 L 45.740,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 48.860,43.500 L 50.420,41.000 L 48.860,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 48.860,34.500 L 50.420,31.000 L 48.860,27.500 L 50.420,24.000 L 48.860,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 48.860,16.500 L 50.420,13.167 L 48.860,9.833 L 50.420,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 51.980,43.500 L 53.540,40.000 L 51.980,36.500 L 53.540,33.000 L 51.980,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 51.980,25.500 L 53.540,22.000 L 51.980,18.500 L 53.540,15.000 L 51.980,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 55.100,43.500 L 56.660,41.000 L 55.100,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 55.100,34.500 L 56.660,31.000 L 55.100,27.500 L 56.660,24.000 L 55.100,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 55.100,16.500 L 56.660,13.167 L 55.100,9.833 L 56.660,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 58.220,43.500 L 59.780,40.000 L 58.220,36.500 L 59.780,33.000 L 58.220,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 58.220,25.500 L 59.780,22.000 L 58.220,18.500 L 59.780,15.000 L 58.220,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 61.340,43.500 L 62.900,41.000 L 61.340,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 61.340,34.500 L 62.900,31.000 L 61.340,27.500 L 62.900,24.000 L 61.340,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 61.340,16.500 L 62.900,13.167 L 61.340,9.833 L 62.900,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 64.460,43.500 L 66.020,40.000 L 64.460,36.500 L 66.020,33.000 L 64.460,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 64.460,25.500 L 66.020,22.000 L 64.460,18.500 L 66.020,15.000 L 64.460,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 67.580,43.500 L 69.140,41.000 L 67.580,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 67.580,34.500 L 69.140,31.000 L 67.580,27.500 L 69.140,24.000 L 67.580,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 67.580,16.500 L 69.140,13.167 L 67.580,9.833 L 69.140,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 70.700,43.500 L 72.260,40.000 L 70.700,36.500 L 72.260,33.000 L 70.700,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 70.700,25.500 L 72.260,22.000 L 70.700,18.500 L 72.260,15.000 L 70.700,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 73.820,43.500 L 75.380,41.000 L 73.820,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 73.820,34.500 L 75.380,31.000 L 73.820,27.500 L 75.380,24.000 L 73.820,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 73.820,16.500 L 75.380,13.167 L 73.820,9.833 L 75.380,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 76.940,43.500 L 78.500,40.000 L 76.940,36.500 L 78.500,33.000 L 76.940,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 76.940,25.500 L 78.500,22.000 L 76.940,18.500 L 78.500,15.000 L 76.940,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 80.060,43.500 L 81.620,41.000 L 80.060,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 80.060,34.500 L 81.620,31.000 L 80.060,27.500 L 81.620,24.000 L 80.060,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 80.060,16.500 L 81.620,13.167 L 80.060,9.833 L 81.620,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 83.180,43.500 L 84.740,40.000 L 83.180,36.500 L 84.740,33.000 L 83.180,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 83.180,25.500 L 84.740,22.000 L 83.180,18.500 L 84.740,15.000 L 83.180,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 86.300,43.500 L 87.860,41.000 L 86.300,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 86.300,34.500 L 87.860,31.000 L 86.300,27.500 L 87.860,24.000 L 86.300,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 86.300,16.500 L 87.860,13.167 L 86.300,9.833 L 87.860,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 89.420,43.500 L 90.980,40.000 L 89.420,36.500 L 90.980,33.000 L 89.420,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 89.420,25.500 L 90.980,22.000 L 89.420,18.500 L 90.980,15.000 L 89.420,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 92.540,43.500 L 94.100,41.000 L 92.540,38.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 92.540,34.500 L 94.100,31.000 L 92.540,27.500 L 94.100,24.000 L 92.540,20.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 92.540,16.500 L 94.100,13.167 L 92.540,9.833 L 94.100,6.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 95.660,43.500 L 97.220,40.000 L 95.660,36.500 L 97.220,33.000 L 95.660,29.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 95.660,25.500 L 97.220,22.000 L 95.660,18.500 L 97.220,15.000 L 95.660,11.500" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+</svg>

@@ -30,7 +30,7 @@ Etsy v3 has **no order webhooks** — only polling `GET /shops/{id}/receipts`.
 | listing_id | Book | Etsy | Pages | Package |
 |---:|---|---|---:|---|
 | **4544209146** | *The Mathematics of Beauty* (live title: Math Art Coffee Table Book…) | **active** | 88 | square HC color STD/PREM |
-| **4548870190** | *The Shape of an Idea* | draft | 45 | square HC color STD/PREM |
+| **4548870190** | *The Shape of an Idea* | **active** | 45 | square HC color STD/PREM |
 
 Etsy SKUs: `TMB-STD-8585` / `TMB-PREM-8585` and `SOI-STD-8585` / `SOI-PREM-8585`.  
 Premium SKUs select Lulu package `0850X0850.FC.PRE.CW.080CW444.MXX`.
@@ -100,7 +100,8 @@ python lulu_books/fulfillment.py ensure-partner   # Lulu partner on both listing
 
 | Command | Action |
 |---|---|
-| `check` | Poll Etsy → stage → **create Lulu print-job (UNPAID)** |
+| `check` | Poll Etsy → stage → **create Lulu print-job (UNPAID)** (one job per receipt) + `sync-tracking` |
+| `sync-tracking` | Lulu job SHIPPED → upload tracking to the Etsy receipt (marks shipped, notifies buyer) |
 | `list` | Staged / submitted jobs |
 | `submit RECEIPT_ID` | Re-submit one |
 | `register` | File + URL readiness |
@@ -110,7 +111,8 @@ python lulu_books/fulfillment.py ensure-partner   # Lulu partner on both listing
 
 ## Safety
 
-- Jobs are **UNPAID** until paid in the Lulu portal. Do **not** add a card on file if you want that human gate.
+- Jobs are **UNPAID** until paid in the Lulu portal. With `ALERT_*` set in `.env`, you get an email when a job is created, a reminder every 24 h while it stays UNPAID, and an alert if Lulu rejects/cancels it.
+- Do **not** add a card on file if you want that human gate.
 - State (gitignored): `lulu_books/output/fulfillment_state.json`, `pending_orders.json`.
 - Failed submits are **not** marked processed — the next `check` retries.
 
