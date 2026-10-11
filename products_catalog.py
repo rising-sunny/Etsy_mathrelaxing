@@ -5036,8 +5036,8 @@ INSTANT DOWNLOAD — no physical item will be shipped.
                   "'3d ornament svg laser' median 28.9 fav/mo, new ~87 fav/mo. Section: Christmas."),
     },
     "geometric_lanterns_laser_pack": {
-        "title": ("Geometric Lantern SVG Laser Cut Files, 6 Tealight Holder Boxes, Voronoi Honeycomb "
-                  "Snowflake, Glowforge xTool DXF"),
+        "title": ("Christmas Lantern SVG Laser Cut Files, 6 Geometric Tealight Candle Holders, Snowflake "
+                  "Voronoi Honeycomb, Glowforge xTool DXF"),
         "description": """\
 Six mathematical lanterns for your laser cutter. Square tealight lanterns with finger joints, a slotted base and a top ring, each wall cut with a geometric pattern that glows when lit.
 
@@ -5076,9 +5076,10 @@ INSTANT DOWNLOAD — no physical item will be shipped.
             "01_hero.jpg", "02_all_six.jpg", "03_sheet.jpg", "04_specs.jpg", "05_snowflakes.jpg")],
         "files": [p("lasercut", "lanterns", "dist", f) for f in (
             "MathRelaxing_Geometric_Lanterns_SVG_DXF.zip", "MathRelaxing_Geometric_Lanterns_Guide.pdf")],
-        "tags": ["lantern svg", "laser cut lantern", "tealight holder svg", "glowforge files",
-                 "geometric lantern", "xmas lantern svg", "candle holder svg", "laser cut files",
-                 "xtool files", "dxf files", "led lantern svg", "voronoi svg", "laser cut box svg"],
+        "tags": ["christmas lantern", "lantern svg", "laser cut lantern", "tealight holder svg",
+                 "candle holder svg", "glowforge files", "geometric lantern", "xmas lantern svg",
+                 "christmas candle svg", "laser cut files", "led lantern svg", "snowflake svg",
+                 "laser cut box svg"],
         "listing_id": 4593074244,
         "notes": ("lasercut/lanterns/build_lanterns.py + listing_images.py. Research 2026-10-11: "
                   "'geometric tealight svg' 80 listings, 'laser cut lantern geometric' median 6 fav/mo. "
@@ -5124,6 +5125,50 @@ INSTANT DOWNLOAD — no physical item will be shipped.
         "listing_id": 4593076472,
         "notes": ("lasercut/living_hinges/build_hinges.py + package_and_images.py. Research 2026-10-11: "
                   "'living hinge svg' 494 listings, median 16.6 fav/mo. Section: Laser Cut Files."),
+    },
+    "advent_ornaments_laser": {
+        "title": ("Advent Calendar SVG Laser Cut Files, 24 Numbered 3D Christmas Ornaments, Geometric Slot "
+                  "Together Countdown, Glowforge xTool DXF"),
+        "description": """\
+A mathematical advent calendar for your laser cutter: 24 numbered slot-together 3D ornaments, one for every day of December. Hang a new shape on the tree each morning.
+
+► The 24 days
+Koch snowflakes, Sierpinski trees, Voronoi and Apollonian baubles, golden-angle stars, honeycomb and girih tilings, five- to eight-fold rose curves, and a Christmas Star for Day 24. Every one is a different mathematical shape.
+
+► What you get
+• 24 ornaments × 3 material thicknesses (3 mm, 1/8", 4 mm), slots sized exactly to each
+• 3 cut sheets per thickness (fit a 480 × 280 mm bed) + single-day files
+• Day number engraved on each ornament (black fill = engrave, red = cut)
+• SVG + DXF in millimetres
+• Guide with countdown ideas and the list of all 24 shapes
+
+► Specs
+• About 75 mm tall, hanging hole included
+• Two pieces per ornament slide together at 90°, no glue needed
+• Every piece is verified as one solid part with at least 2.6 mm of material between cut-outs
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF. Run a small test cut first to check the slot fit with your material.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 9.99,
+        "taxonomy_id": 12394,
+        "images": [p("lasercut", "advent_ornaments", "listing", f) for f in (
+            "01_hero.jpg", "02_trio.jpg", "03_pieces.jpg", "04_specs.jpg", "05_all24.jpg")],
+        "files": [p("lasercut", "advent_ornaments", "dist", f) for f in (
+            "MathRelaxing_Advent_Ornaments_SVG_DXF.zip", "MathRelaxing_Advent_Ornaments_Guide.pdf")],
+        "tags": ["advent calendar svg", "laser cut advent", "xmas ornament svg", "advent ornaments",
+                 "3d ornament svg", "glowforge christmas", "christmas countdown", "laser cut ornament",
+                 "christmas laser file", "slot together svg", "geometric ornament", "xtool christmas",
+                 "wooden advent"],
+        "listing_id": 4593279861,
+        "notes": ("lasercut/advent_ornaments/build_advent.py + listing_images.py (reuses ornaments_3d engine). "
+                  "Research 2026-10-11 Christmas: 'advent calendar svg laser' 1,584 listings, new median "
+                  "38.9 fav/mo. Section: Christmas."),
     },
 }
 
