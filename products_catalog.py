@@ -5170,6 +5170,53 @@ INSTANT DOWNLOAD — no physical item will be shipped.
                   "Research 2026-10-11 Christmas: 'advent calendar svg laser' 1,584 listings, new median "
                   "38.9 fav/mo. Section: Christmas."),
     },
+    "golden_spiral_tree_laser": {
+        "title": ("3D Christmas Tree SVG Laser Cut Files, Golden Spiral Stacked Tree, Koch Snowflake, "
+                  "Tabletop Decor, Glowforge xTool DXF"),
+        "description": """\
+A Christmas tree that grows like a sunflower. Sixteen laser-cut layers stack on a wooden dowel, each one turned 137.5° (the golden angle) from the one below, so the points spiral up the tree the way seeds spiral in a sunflower.
+
+► Three designs
+• Golden Star Tree: five-point stars with golden-angle dots
+• Koch Snowflake Tree: sixteen fractal snowflakes
+• Honeycomb Hexagon Tree: clean hexagonal layers
+
+► The trick
+Every layer is engraved with a small tick at its own golden angle plus its number. Draw a pencil line down the dowel, thread the layers in order with every tick on the line, and the spiral sets itself.
+
+► What you get
+• 3 trees × versions for 6 mm and 8 mm dowels (SVG + DXF in millimetres)
+• 16 layers from 150 mm to 28 mm, a 3-disc base, spacer rings and a star topper
+• Sheets fit a 480 × 280 mm bed. Red = cut, black = engrave (ticks and numbers)
+• Guide with build steps and the math behind the golden angle
+
+► Specs
+• No slots or finger joints: works with any 3 mm sheet (plywood, MDF, acrylic)
+• Tree about 22 cm tall with the topper
+• You also need: a wooden dowel (6 or 8 mm, about 25 cm)
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 8.99,
+        "taxonomy_id": 12394,
+        "images": [p("lasercut", "spiral_tree", "listing", f) for f in (
+            "01_hero.jpg", "02_three.jpg", "03_ticks.jpg", "04_specs.jpg", "05_koch.jpg")],
+        "files": [p("lasercut", "spiral_tree", "dist", f) for f in (
+            "MathRelaxing_Golden_Spiral_Trees_SVG_DXF.zip", "MathRelaxing_Golden_Spiral_Tree_Guide.pdf")],
+        "tags": ["christmas tree svg", "3d tree svg", "laser cut tree", "christmas laser file",
+                 "glowforge christmas", "spiral tree svg", "golden ratio", "fibonacci tree",
+                 "stacked tree svg", "xtool christmas", "tabletop tree svg", "christmas decor svg",
+                 "wooden tree svg"],
+        "listing_id": 4593282157,
+        "notes": ("lasercut/spiral_tree/build_tree.py + listing_images.py. Research 2026-10-11 Christmas: "
+                  "'3d christmas tree svg' 3,871 listings, new median 18.5 fav/mo. Section: Christmas."),
+    },
 }
 
 # ── Funciones de utilidad ─────────────────────────────────────────────────────
