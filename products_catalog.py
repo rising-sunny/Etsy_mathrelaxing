@@ -4940,6 +4940,51 @@ INSTANT DOWNLOAD — no physical item will be shipped.
                   "Research 2026-10-11: 'elimination puzzle' median 7 fav/mo; printable mystery advent "
                   "~60 listings. Section: Christmas."),
     },
+    "marble_maze_laser_pack": {
+        "title": ("Marble Maze SVG Laser Cut Files, 6 Labyrinth Balance Games, Glowforge xTool DXF, "
+                  "Wooden Maze Puzzle Bundle"),
+        "description": """\
+Six generative marble mazes, ready for your laser cutter. Square, circular and hexagonal labyrinths, each in an EASY and a HARD level.
+
+Every maze is a perfect maze, generated with code: exactly one route from start to finish, no loops, and the finish is the cell farthest from the start for the longest possible route.
+
+► What you get
+• 6 designs × 3 layers (BASE, MAZE, LID) as SVG + DXF in millimetres
+• 1:1 PDF templates with a 50 mm calibration bar
+• Assembly guide (materials, stacking order, scaling for other ball sizes)
+
+► Specs
+• Every design fits a 280 mm (11") bed: 169 to 279 mm across
+• 10.5 mm channels and 4 mm walls, made for an 8 mm steel ball
+• Cut the MAZE layer twice from 3 mm plywood or MDF for 6 mm walls
+• Optional clear acrylic lid with 4 × M3 bolt holes
+• Red hairline = cut, black fill = engrave (start ring and finish star)
+• Every wall layer is one connected piece: nothing falls out when you cut it
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF. Run a small test cut first to dial in your material settings.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 9.99,
+        "taxonomy_id": 12394,  # most-used node among marble-maze / laser-file competitors
+        "images": [p("lasercut", "marble_mazes", "listing", f) for f in (
+            "01_hero.jpg", "02_all_six.jpg", "03_layers.jpg", "04_specs.jpg", "05_hex.jpg")],
+        "files": [p("lasercut", "marble_mazes", "dist", f) for f in (
+            "MathRelaxing_Marble_Mazes_SVG_DXF.zip",
+            "MathRelaxing_Marble_Mazes_PDF_Templates_1to1.pdf",
+            "MathRelaxing_Marble_Mazes_Assembly_Guide.pdf")],
+        "tags": ["marble maze svg", "laser cut file", "glowforge files", "maze svg",
+                 "labyrinth game", "wooden maze puzzle", "laser cut puzzle", "balance maze",
+                 "dxf files", "xtool files", "laser cut game", "wood puzzle svg", "lightburn files"],
+        "listing_id": 4592916202,
+        "notes": ("lasercut/marble_mazes/build_marble_mazes.py + package_and_images.py. Research "
+                  "2026-10-11: 'marble maze svg' 18 listings, new listings ~16.6 fav/mo, top $14. "
+                  "Section: Puzzles."),
+    },
 }
 
 # ── Funciones de utilidad ─────────────────────────────────────────────────────
