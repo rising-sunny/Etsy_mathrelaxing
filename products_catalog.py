@@ -5035,6 +5035,55 @@ INSTANT DOWNLOAD — no physical item will be shipped.
         "notes": ("lasercut/ornaments_3d/build_ornaments.py + package_and_images.py. Research 2026-10-11: "
                   "'3d ornament svg laser' median 28.9 fav/mo, new ~87 fav/mo. Section: Christmas."),
     },
+    "geometric_lanterns_laser_pack": {
+        "title": ("Geometric Lantern SVG Laser Cut Files, 6 Tealight Holder Boxes, Voronoi Honeycomb "
+                  "Snowflake, Glowforge xTool DXF"),
+        "description": """\
+Six mathematical lanterns for your laser cutter. Square tealight lanterns with finger joints, a slotted base and a top ring, each wall cut with a geometric pattern that glows when lit.
+
+► The designs
+• Voronoi: cells of nearest points
+• Honeycomb: the hexagonal tiling
+• Golden Angle: seeds at 137.5°, like a sunflower
+• Koch Snowflakes: fractal snowflakes for the holidays
+• Girih Stars: eight-pointed stars from Islamic geometry
+• Circle Packing: bubbles of every size
+
+► What you get
+• 6 designs × 3 material thicknesses (3 mm, 1/8", 4 mm), joints sized exactly to each
+• SVG + DXF in millimetres: one sheet holds the whole lantern (2 front walls, 2 side walls, base, top ring)
+• Assembly guide with safety notes and finishing ideas
+
+► Specs
+• Lantern 90 × 90 × 120 mm (base and top ring 106 mm square)
+• Sheet layout 375 × 239 mm, fits a Glowforge-size bed
+• Red hairline = cut
+• Every piece is verified as one solid part
+
+⚠ For LED / battery tealights only. Never use a real flame in a wooden lantern.
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF. Run a small test cut first to check the joint fit with your material.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 8.99,
+        "taxonomy_id": 12394,
+        "images": [p("lasercut", "lanterns", "listing", f) for f in (
+            "01_hero.jpg", "02_all_six.jpg", "03_sheet.jpg", "04_specs.jpg", "05_snowflakes.jpg")],
+        "files": [p("lasercut", "lanterns", "dist", f) for f in (
+            "MathRelaxing_Geometric_Lanterns_SVG_DXF.zip", "MathRelaxing_Geometric_Lanterns_Guide.pdf")],
+        "tags": ["lantern svg", "laser cut lantern", "tealight holder svg", "glowforge files",
+                 "geometric lantern", "xmas lantern svg", "candle holder svg", "laser cut files",
+                 "xtool files", "dxf files", "led lantern svg", "voronoi svg", "laser cut box svg"],
+        "listing_id": 4593074244,
+        "notes": ("lasercut/lanterns/build_lanterns.py + listing_images.py. Research 2026-10-11: "
+                  "'geometric tealight svg' 80 listings, 'laser cut lantern geometric' median 6 fav/mo. "
+                  "Section: Christmas."),
+    },
 }
 
 # ── Funciones de utilidad ─────────────────────────────────────────────────────
