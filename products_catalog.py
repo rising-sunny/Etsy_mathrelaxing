@@ -5084,6 +5084,47 @@ INSTANT DOWNLOAD — no physical item will be shipped.
                   "'geometric tealight svg' 80 listings, 'laser cut lantern geometric' median 6 fav/mo. "
                   "Section: Christmas."),
     },
+    "living_hinge_library": {
+        "title": ("Living Hinge SVG Library, 30 Flexible Laser Cut Patterns, Bendable Plywood Kerf "
+                  "Bending, Glowforge xTool DXF, Cuff + Box"),
+        "description": """\
+Bend plywood like fabric. A library of 30 living hinge patterns for laser cutters, plus two ready-to-cut projects.
+
+► What you get
+• 30 patterns: 10 families × 3 flex levels (firm, medium, soft)
+  lattice · wave · zigzag · arcs · brick · serpentine · diamond · cross · honeycomb · ellipse
+• A 120 × 50 mm test swatch for every pattern: cut it in your material and pick the level that bends to your radius
+• A 100 × 100 mm tile of every pattern to paste into your own designs
+• 2 projects: a cuff bracelet and a Ø70 mm pencil cup with a puzzle-joint seam
+• Guide: slit orientation, materials, flex levels and laser tips
+
+► Specs
+• Single red cut lines, SVG + DXF in millimetres
+• At least 0.9 mm between slits, and slits never touch the part edge (verified by code)
+• Best in 2–3 mm birch plywood or MDF; acrylic only with the firm patterns
+• Cross bends both ways; serpentine is the softest; honeycomb is decorative flex
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 6.99,
+        "taxonomy_id": 12394,
+        "images": [p("lasercut", "living_hinges", "listing", f) for f in (
+            "01_hero.jpg", "02_patterns_1.jpg", "03_patterns_2.jpg", "04_projects.jpg", "05_specs.jpg")],
+        "files": [p("lasercut", "living_hinges", "dist", f) for f in (
+            "MathRelaxing_Living_Hinge_Library_SVG_DXF.zip", "MathRelaxing_Living_Hinge_Guide.pdf")],
+        "tags": ["living hinge svg", "laser cut files", "flexible plywood", "kerf bending",
+                 "glowforge files", "living hinge", "laser cut pattern", "bendable wood svg",
+                 "xtool files", "dxf files", "laser cut box svg", "lightburn files", "flex wood svg"],
+        "listing_id": 4593076472,
+        "notes": ("lasercut/living_hinges/build_hinges.py + package_and_images.py. Research 2026-10-11: "
+                  "'living hinge svg' 494 listings, median 16.6 fav/mo. Section: Laser Cut Files."),
+    },
 }
 
 # ── Funciones de utilidad ─────────────────────────────────────────────────────

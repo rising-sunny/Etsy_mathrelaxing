@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120mm" height="50mm" viewBox="0 0 120 50">
+<!-- MathRelaxing living hinge · honeycomb · soft · 120x50 mm test strip · red = cut -->
+<path d="M 120.000,50.000 L 120.000,0.000 L 0.000,0.000 L 0.000,50.000 L 120.000,50.000 Z" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 33.895,35.860 L 28.560,32.780 L 23.225,35.860 L 23.225,42.020 L 28.560,45.100" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 48.271,35.860 L 42.936,32.780 L 37.601,35.860 L 37.601,42.020 L 42.936,45.100" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 62.647,35.860 L 57.312,32.780 L 51.977,35.860 L 51.977,42.020 L 57.312,45.100" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 77.023,35.860 L 71.688,32.780 L 66.353,35.860 L 66.353,42.020 L 71.688,45.100" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 91.399,35.860 L 86.064,32.780 L 80.729,35.860 L 80.729,42.020 L 86.064,45.100" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 40.363,25.420 L 35.028,22.340 L 29.693,25.420 L 29.693,31.580 L 35.028,34.660" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 54.739,25.420 L 49.404,22.340 L 44.069,25.420 L 44.069,31.580 L 49.404,34.660" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 69.115,25.420 L 63.780,22.340 L 58.445,25.420 L 58.445,31.580 L 63.780,34.660" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 83.491,25.420 L 78.156,22.340 L 72.821,25.420 L 72.821,31.580 L 78.156,34.660" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 33.895,14.980 L 28.560,11.900 L 23.225,14.980 L 23.225,21.140 L 28.560,24.220" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 48.271,14.980 L 42.936,11.900 L 37.601,14.980 L 37.601,21.140 L 42.936,24.220" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 62.647,14.980 L 57.312,11.900 L 51.977,14.980 L 51.977,21.140 L 57.312,24.220" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 77.023,14.980 L 71.688,11.900 L 66.353,14.980 L 66.353,21.140 L 71.688,24.220" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+<path d="M 91.399,14.980 L 86.064,11.900 L 80.729,14.980 L 80.729,21.140 L 86.064,24.220" fill="none" stroke="#FF0000" stroke-width="0.1"/>
+</svg>
