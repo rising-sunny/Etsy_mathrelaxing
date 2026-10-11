@@ -4985,6 +4985,56 @@ INSTANT DOWNLOAD — no physical item will be shipped.
                   "2026-10-11: 'marble maze svg' 18 listings, new listings ~16.6 fav/mo, top $14. "
                   "Section: Puzzles."),
     },
+    "ornaments_3d_laser_pack": {
+        "title": ("3D Christmas Ornament SVG Laser Cut Files, 8 Geometric Slot Together Ornaments, "
+                  "Glowforge xTool DXF, Snowflake Bauble Tree"),
+        "description": """\
+Eight mathematical 3D Christmas ornaments for your laser cutter. Each one is two flat pieces that slide together at 90° into a 3D ornament. No glue needed.
+
+► The designs
+• Koch Snowflake: the fractal curve with infinite perimeter
+• Sierpinski Tree: Sierpinski's triangle as a Christmas tree
+• Voronoi Bauble: cells of nearest points
+• Golden Angle Bauble: seeds at 137.5°, like a sunflower
+• Honeycomb Bauble: the hexagonal tiling
+• Apollonian Bauble: a gasket of tangent circles
+• Five-Fold Star and Girih Star: rose curve and Islamic geometry
+
+► What you get
+• 8 designs × 3 material thicknesses (3 mm, 1/8", 4 mm), slot sized exactly to each
+• SVG + DXF in millimetres, both pieces in one file
+• 1:1 PDF templates with a calibration bar
+• Guide: choosing the right thickness, cutting, assembly, finishing ideas
+
+► Specs
+• About 80–92 mm tall, hanging hole included
+• Red hairline = cut
+• Every piece is verified as one solid part with at least 2.6 mm of material between cut-outs
+
+Works with Glowforge, xTool, LightBurn and any laser that opens SVG or DXF. Run a small test cut first to check the slot fit with your material.
+
+Product images are digital renders of the files.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 7.99,
+        "taxonomy_id": 12394,
+        "images": [p("lasercut", "ornaments_3d", "listing", f) for f in (
+            "01_hero.jpg", "02_all_eight.jpg", "03_how.jpg", "04_specs.jpg", "05_koch.jpg")],
+        "files": [p("lasercut", "ornaments_3d", "dist", f) for f in (
+            "MathRelaxing_3D_Ornaments_SVG_DXF.zip",
+            "MathRelaxing_3D_Ornaments_PDF_Templates_1to1.pdf",
+            "MathRelaxing_3D_Ornaments_Guide.pdf")],
+        "tags": ["3d ornament svg", "xmas ornament svg", "laser cut ornament", "glowforge christmas",
+                 "snowflake svg", "geometric ornament", "christmas laser file", "3d christmas svg",
+                 "slot together svg", "laser cut files", "xtool christmas", "dxf ornament",
+                 "wooden ornament diy"],
+        "listing_id": 4593071420,
+        "notes": ("lasercut/ornaments_3d/build_ornaments.py + package_and_images.py. Research 2026-10-11: "
+                  "'3d ornament svg laser' median 28.9 fav/mo, new ~87 fav/mo. Section: Christmas."),
+    },
 }
 
 # ── Funciones de utilidad ─────────────────────────────────────────────────────
