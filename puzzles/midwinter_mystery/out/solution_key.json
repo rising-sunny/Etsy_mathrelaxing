@@ -1,0 +1,182 @@
+{
+ "seed": 2026,
+ "culprit": {
+  "id": 28,
+  "name": "Prof. Silas Wren",
+  "dept": 1,
+  "loc": 1,
+  "acc": 1,
+  "drink": 2,
+  "arr": 2
+ },
+ "days": [
+  {
+   "day": 1,
+   "kind": "sudoku",
+   "n": 4,
+   "answer": 3,
+   "true": "The culprit was not in the Library at midnight."
+  },
+  {
+   "day": 2,
+   "kind": "futoshiki",
+   "n": 4,
+   "answer": 2,
+   "true": "Nobody drinking Hot Cocoa in the Billiard Room is guilty."
+  },
+  {
+   "day": 3,
+   "kind": "skyscrapers",
+   "n": 4,
+   "answer": 1,
+   "true": "The culprit does not work in Statistics."
+  },
+  {
+   "day": 4,
+   "kind": "sudoku",
+   "n": 4,
+   "answer": 2,
+   "true": "If the culprit drank Black Coffee, they arrived before 8:30."
+  },
+  {
+   "day": 5,
+   "kind": "futoshiki",
+   "n": 4,
+   "answer": 4,
+   "true": "The culprit is not a Topology scholar carrying a pocket watch."
+  },
+  {
+   "day": 6,
+   "kind": "skyscrapers",
+   "n": 4,
+   "answer": 3,
+   "true": "Nobody drinking Earl Grey in the Observatory is guilty."
+  },
+  {
+   "day": 7,
+   "kind": "sudoku",
+   "n": 6,
+   "answer": 3,
+   "true": "The culprit is not a Topology scholar carrying a walking cane."
+  },
+  {
+   "day": 8,
+   "kind": "futoshiki",
+   "n": 5,
+   "answer": 2,
+   "true": "If the culprit drank Black Coffee, they arrived before 8:00."
+  },
+  {
+   "day": 9,
+   "kind": "skyscrapers",
+   "n": 5,
+   "answer": 2,
+   "true": "Nobody drinking Earl Grey in the Billiard Room is guilty."
+  },
+  {
+   "day": 10,
+   "kind": "sudoku",
+   "n": 6,
+   "answer": 6,
+   "true": "The culprit is not a Algebra scholar carrying a pocket watch."
+  },
+  {
+   "day": 11,
+   "kind": "futoshiki",
+   "n": 5,
+   "answer": 2,
+   "true": "If the culprit drank Black Coffee, they arrived before 7:30."
+  },
+  {
+   "day": 12,
+   "kind": "skyscrapers",
+   "n": 5,
+   "answer": 1,
+   "true": "The culprit is not a Number Theory scholar carrying a walking cane."
+  },
+  {
+   "day": 13,
+   "kind": "sudoku",
+   "n": 6,
+   "answer": 5,
+   "true": "Nobody drinking Hot Cocoa in the Conservatory is guilty."
+  },
+  {
+   "day": 14,
+   "kind": "futoshiki",
+   "n": 5,
+   "answer": 5,
+   "true": "The culprit was not drinking Black Coffee."
+  },
+  {
+   "day": 15,
+   "kind": "skyscrapers",
+   "n": 5,
+   "answer": 2,
+   "true": "Nobody drinking Hot Cocoa in the Chapel is guilty."
+  },
+  {
+   "day": 16,
+   "kind": "sudoku",
+   "n": 6,
+   "answer": 2,
+   "true": "The culprit was not in the Chapel at midnight."
+  },
+  {
+   "day": 17,
+   "kind": "futoshiki",
+   "n": 5,
+   "answer": 2,
+   "true": "Nobody drinking Earl Grey in the Ballroom is guilty."
+  },
+  {
+   "day": 18,
+   "kind": "skyscrapers",
+   "n": 5,
+   "answer": 4,
+   "true": "The culprit is not a Number Theory scholar carrying a spectacles."
+  },
+  {
+   "day": 19,
+   "kind": "sudoku",
+   "n": 6,
+   "answer": 6,
+   "true": "The culprit is not a Number Theory scholar carrying a scarf."
+  },
+  {
+   "day": 20,
+   "kind": "futoshiki",
+   "n": 5,
+   "answer": 4,
+   "true": "Nobody drinking Mulled Wine in the Observatory is guilty."
+  },
+  {
+   "day": 21,
+   "kind": "skyscrapers",
+   "n": 5,
+   "answer": 1,
+   "true": "The culprit is not a doctor."
+  },
+  {
+   "day": 22,
+   "kind": "sudoku",
+   "n": 6,
+   "answer": 3,
+   "true": "At midnight the culprit was in either the Observatory or the Billiard Room."
+  },
+  {
+   "day": 23,
+   "kind": "futoshiki",
+   "n": 5,
+   "answer": 1,
+   "true": "If the culprit drank Mulled Wine, they arrived before 8:30."
+  },
+  {
+   "day": 24,
+   "kind": "skyscrapers",
+   "n": 5,
+   "answer": 5,
+   "true": "If the culprit drank Mulled Wine, they arrived before 7:30."
+  }
+ ]
+}

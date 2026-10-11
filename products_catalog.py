@@ -4893,6 +4893,53 @@ PRODUCTS = {
         "notes": "POD bp765/p59. create_pod_bookmark.py --design wave. Full line in printify/pod_bookmark_created.json.",
         "listing_id": 4546607100, "printify_id": "6a6ac119a55df4f3cd0db3b8",
     },
+    "midwinter_mystery_advent": {
+        "title": ("Murder Mystery Advent Calendar Printable, 24 Logic Puzzles for Adults, "
+                  "Christmas Detective Game, Sudoku Puzzle Countdown"),
+        "description": """\
+The Midwinter Theorem — a 24-day murder mystery advent calendar built from real logic puzzles.
+
+Snow has sealed Ashcombe Hall on the night of the Midwinter Gala. At midnight the Society's president is found dead, the last page of his notebook torn out. Thirty-six guests are snowed in. One of them is the killer.
+
+► How it works
+• Each day from December 1 to 24, read a short journal entry and solve one logic puzzle
+• The number in the starred cell tells you which of the day's statements is TRUE
+• Use it to cross suspects off your tracker
+• On Christmas Eve exactly one name remains. Open the sealed Final Reveal
+
+► Fair and self-checking
+• Every puzzle has exactly one solution, verified by computer, so no guessing
+• Every false statement would rule out the real killer, so a wrong answer shows up as a contradiction
+• Gentle 4×4 grids in week one, tricky 6×6 Sudoku and 5×5 Futoshiki / Skyscrapers by the end
+• Rules printed on every page; full solutions at the back
+
+► What you get
+• 35-page printable PDF in US Letter AND A4
+• How-to-play guide, 36 suspect profile cards, suspect elimination tracker
+• 24 daily pages with story, puzzle and clue statements
+• Sealed Final Reveal page + solutions for every puzzle
+
+Play solo, as a couple, with friends or as a family (teens and adults). Print one page a day or the whole case at once.
+
+INSTANT DOWNLOAD — no physical item will be shipped.
+
+© MathRelaxing. For personal use only. Not for redistribution or resale.
+""",
+        "price": 8.99,
+        "taxonomy_id": 1350,  # same node as our printable escape rooms
+        "images": [p("puzzles", "midwinter_mystery", "listing", f) for f in (
+            "01_hero.jpg", "02_how_it_works.jpg", "03_puzzles.jpg", "04_cast.jpg", "05_included.jpg")],
+        "files": [p("puzzles", "midwinter_mystery", "out", f) for f in (
+            "Midwinter_Theorem_Mystery_Advent_Letter.pdf", "Midwinter_Theorem_Mystery_Advent_A4.pdf")],
+        "tags": ["murder mystery game", "advent calendar", "logic puzzle", "christmas puzzle",
+                 "printable game", "mystery advent", "puzzle advent", "detective game",
+                 "sudoku printable", "gift for puzzlers", "christmas activity", "adult advent",
+                 "escape room game"],
+        "listing_id": 4592914578,
+        "notes": ("puzzles/midwinter_mystery/build_mystery_advent.py (seed 2026) + listing_images.py. "
+                  "Research 2026-10-11: 'elimination puzzle' median 7 fav/mo; printable mystery advent "
+                  "~60 listings. Section: Christmas."),
+    },
 }
 
 # ── Funciones de utilidad ─────────────────────────────────────────────────────
