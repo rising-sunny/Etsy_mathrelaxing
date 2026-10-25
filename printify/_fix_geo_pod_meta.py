@@ -1,7 +1,7 @@
 """One-shot: fix Metatron POD title + set Printify production partner."""
 import etsy_manager
 
-PARTNER = 5702392
+PARTNER = 5727366  # Printify (San Francisco CA)
 m = etsy_manager.EtsyManager()
 
 m.update_listing(

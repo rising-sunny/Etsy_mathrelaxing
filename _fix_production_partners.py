@@ -14,7 +14,7 @@ import time
 from etsy_manager import EtsyManager
 
 # From GET /shops/{id}/production-partners
-PARTNER_PRINTIFY = 5702392  # Print-on-demand printing partner, Chatsworth CA
+PARTNER_PRINTIFY = 5727366  # Print-on-demand printing partner, San Francisco CA (5702392 in Chatsworth is not Printify)
 PARTNER_LULU = 5702394      # Print-on-demand book printing partner, Morrisville NC
 
 LULU_SHIPPING_PROFILE = 310608167423
