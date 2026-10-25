@@ -150,28 +150,6 @@ HARDCOVER_IDS = (4548870190, 4544209146)
 
 PARTNER_LULU = 5702394  # Etsy production partner disclosure (Morrisville, NC)
 
-# Books from other stores (The Books Wanderer), exported on the VPS by that
-# store's scripts/export_etsy_lulu_books.py. The file is gitignored because
-# each entry carries signed interior_url / cover_url links that Lulu fetches.
-EXTRA_BOOKS_PATH = os.environ.get("EXTRA_BOOKS_PATH") or os.path.join(_ROOT, "output", "tbw_books.json")
-
-
-def _load_extra_books() -> None:
-    if not os.path.isfile(EXTRA_BOOKS_PATH):
-        return
-    with open(EXTRA_BOOKS_PATH, encoding="utf-8") as f:
-        extra = json.load(f)
-    for lid, cfg in extra.items():
-        if int(lid) in BOOKS:
-            continue  # never override a MathRelaxing book
-        cfg.setdefault("interior", "")
-        cfg.setdefault("cover", "")
-        cfg.setdefault("page_count", 0)
-        BOOKS[int(lid)] = cfg
-
-
-_load_extra_books()
-
 
 def _load_env() -> dict:
     return lp.load_env()
@@ -277,12 +255,9 @@ def resolve_print_urls(book_cfg: dict, state: dict | None = None) -> tuple[str, 
     """Return (interior_url, cover_url) Lulu can fetch.
 
     Priority:
-      0. interior_url / cover_url given by the book itself (extra books)
       1. PDF_PUBLIC_BASE + public_slug  (mathrelaxing.store static — preferred)
       2. Cloudflare R2 upload of local files
     """
-    if book_cfg.get("interior_url") and book_cfg.get("cover_url"):
-        return book_cfg["interior_url"], book_cfg["cover_url"]
     state = state if state is not None else _load_state()
     base = _public_base()
     pub = book_cfg.get("public_slug") or book_cfg["slug"]
@@ -493,7 +468,7 @@ def check_and_prepare():
         )
         # Local files must exist if using R2; for public base only URLs matter
         base = _public_base()
-        if not base and not book_cfg.get("interior_url"):
+        if not base:
             for label, path in (("interior", book_cfg["interior"]), ("cover", book_cfg["cover"])):
                 if not os.path.isfile(path):
                     print(f"  ABORT MISSING {label}: {path}")
@@ -521,10 +496,7 @@ def register_status():
         i_ok = "OK" if os.path.isfile(cfg["interior"]) else "MISSING"
         c_ok = "OK" if os.path.isfile(cfg["cover"]) else "MISSING"
         pub = cfg.get("public_slug") or cfg["slug"]
-        if cfg.get("interior_url"):
-            i_ok = c_ok = "URL"
-            urls = "signed links from " + cfg["interior_url"].split("/api/")[0]
-        elif base:
+        if base:
             urls = f"{base}/{pub}/{{interior,cover}}.pdf"
         else:
             urls = "R2 fallback"
