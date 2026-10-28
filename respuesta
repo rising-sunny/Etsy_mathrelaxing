@@ -1,0 +1,1174 @@
+root@ubuntu-4gb-hil-1:~# python3 - <<'PY'
+import urllib.request
+import urllib.parse
+from html.parser import HTMLParser
+
+class Text(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.parts = []
+        self.skip = 0
+    def handle_starttag(self, tag, attrs):
+        if tag in ("script", "style"):
+            self.skip += 1
+    def handle_endtag(self, tag):
+        if tag in ("script", "style"):
+            self.skip = max(0, self.skip - 1)
+    def handle_data(self, text):
+        if not self.skip and text.strip():
+            self.parts.append(text.strip())
+
+sources = [
+    ("Pósters matemáticos",
+     "https://www.bonanza.com/items/search?q=math+poster"),
+    ("Tazas matemáticas",
+     "https://www.bonanza.com/items/search?q=math+mug"),
+    ("Libros de arte matemático",
+     "https://www.bonanza.com/items/search?q=mathematical+art+book"),
+    ("Ayuda oficial: tarifas",
+     "https://support.bonanza.com/hc/en-us/search?query=selling%20fees"),
+    ("Ayuda oficial: productos digitales",
+     "https://support.bonanza.com/hc/en-us/search?query=digiPY      print("Consulta fallida:", type(error).__name__)resp
+
+FUENTE: Pósters matemáticos
+URL: https://www.bonanza.com/items/search?q=math+poster
+HTTP: 200
+Search  - Bonanza
+Sell on Bonanza
+Start selling in one click
+Add or edit items
+Import from Amazon
+Import from eBay
+Import from Etsy
+Import from Shopify
+Import from inventory file
+Open a Webstore
+Help
+Visit the help center
+Contact support
+Seller success tips
+Read the Bonanza Selling blog
+Read the Bonanza Shopping blog
+How Bonanza works
+Ask the community
+Submit an idea
+Log in
+Register
+Cart
+Women's Fashion
+Categories
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+Deals
+Under $100
+Under $50
+Shop all Fashion
+Top Brands
+Anthropologie
+Ann Taylor
+Banana Republic
+Calvin Klein
+Gap
+J. Crew
+Lululemon
+Michael Kors
+Nike
+Ralph Lauren
+Men's Fashion
+Categories
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+Deals
+Under $100
+Under $50
+Shop all Fashion
+Top Brands
+American Eagle
+Banana Republic
+Brooks Brothers
+Calvin Klein
+Gap
+J. Crew
+Levi's
+Nike
+Ralph Lauren
+Home & Garden
+Categories
+Bath
+Bedding
+Furniture
+Home Decor
+Home Improvement
+Kitchen & Dining
+Lamps & Ceiling Fans
+Yard, Garden & Outdoor
+Shop all Home & Garden
+Top Brands
+Craftsman
+Cuisinart
+DeWalt
+Dyson
+Keurig
+KitchenAid
+Kohler
+Lenox
+Health & Beauty
+Categories
+Bath & Body
+Dietary Supplements
+Fragrances
+Hair Care
+Health Care
+Makeup
+Nail Care
+Skin Care
+Vision Care
+Shop all Health & Beauty
+Top Brands
+Avon
+Clinique
+Dove
+Estee Lauder
+Lancôme
+L’Oreal
+Maybelline
+Neutrogena
+Olay
+Collectibles & Art
+Categories
+Art
+Collectibles
+Antiques
+Crafts
+Coins & Paper Money
+Entertainment Memorabilia
+Pottery & Glass
+Sports Memorabilia
+Stamps
+Shop all Collectibles
+Handbags
+Top Brands
+Ann Taylor
+Coach
+Fossil
+Kate Spade
+Louis Vuitton
+Michael Kors
+Vera Bradley
+Shop all Handbags
+Jewelry
+Categories
+Fashion Jewelry
+Fine Jewelry
+Handcrafted Jewelry
+Vintage Jewelry
+Wedding Jewelry
+Watches
+Shop all Jewelry
+Coupons
+More Categories
+Baby
+Books
+Business & Industrial
+Cameras And Photos
+Cell Phones & Accessories
+Computers & Tablets
+Consumer Electronics
+Digital Goods
+Dolls & Bears
+Movies & TV
+Everything Else
+Shop all Categories
+Music
+Musical Instruments & Gear
+Parts & Accessories
+Pet Supplies
+Specialty Services
+Sporting Goods
+Tickets & Experiences
+Toys & Hobbies
+Travel
+Video Games & Consoles
+Shop By
+Hand-Picked Lists
+Curated Guides
+New Items
+Freebies
+Log in
+Go
+Close
+Shop by Category
+Women's Fashion
+CATEGORIES
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+DEALS
+Under $100
+Under $50
+TOP BRANDS
+Anthropologie
+Ann Taylor
+Banana Republic
+Calvin Klein
+Gap
+J. Crew
+Lululemon
+Michael Kors
+Nike
+Ralph Lauren
+Men's Fashion
+CATEGORIES
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+DEALS
+Under $100
+Under $50
+TOP BRANDS
+American Eagle
+Banana Republic
+Brooks Brothers
+Calvin Klein
+Gap
+J. Crew
+Levi's
+Nike
+Ralph Lauren
+Home & Garden
+CATEGORIES
+Bath
+Bedding
+Furniture
+Home Decor
+Home Improvement
+Kitchen & Dining
+Lamps & Ceiling Fans
+Yard, Garden & Outdoor
+TOP BRANDS
+Craftsman
+Cuisinart
+DeWalt
+Dyson
+Keurig
+KitchenAid
+Kohler
+Lenox
+Health & Beauty
+CATEGORIES
+Bath & Body
+Dietary Supplements
+Fragrances
+Hair Care
+Health Care
+Makeup
+Nail Care
+Skin Care
+Vision Care
+TOP BRANDS
+Avon
+Clinique
+Dove
+Estee Lauder
+Lancôme
+L’Oreal
+Maybelline
+Neutrogena
+Olay
+Collectibles & Art
+CATEGORIES
+Art
+Collectibles
+Antiques
+Crafts
+Coins & Paper Money
+Entertainment Memorabilia
+Pottery & Glass
+Sports Memorabilia
+Stamps
+Handbags
+TOP BRANDS
+Ann Taylor
+Coach
+Fossil
+Kate Spade
+Louis Vuitton
+Michael Kors
+Vera Bradley
+Jewelry
+CATEGORIES
+Fashion Jewelry
+Fine Jewelry
+Handcrafted Jewelry
+Vintage Jewelry
+Wedding Jewelry
+Watches
+Coupons
+More Categories
+CATEGORIES
+Baby
+Books
+Business & Industrial
+Cameras And Photos
+Cell Phones & Accessories
+Computers & Tablets
+Consumer Electronics
+Digital Goods
+Dolls & Bears
+Movies & TV
+Everything Else
+Music
+Musical Instruments & Gear
+Parts & Accessories
+Pet Supplies
+Specialty Services
+Sporting Goods
+Tickets & Experiences
+Toys & Hobbies
+Travel
+Video Games & Consoles
+More Ways to Shop
+Hand-Picked Lists
+Curated Guides
+New Items
+Freebies
+Your Account
+Cart (0)
+Log In/Sign Up
+More
+Start Selling Online
+Help Center
+Contact Support
+About Bonanza
+Blog
+Top
+Filter search
+Your Selections:
+Revise Search
+Category
+Home
+»
+All Things Lighting
+Bringing Brilliant Light to Every Corner - Explore Our Collection and Buy the Ideal Lighting Solution for Your Space Today!
+Shop All
+Loading results...
+Go
+Loading filters
+Your Selections:
+Sort By
+Relevance
+Highest Price
+Lowest Price
+Newest
+Seller Rating
+View Style
+Start selling now
+Please enter a search term or
+pick a category
+to view listings.
+About
+Affiliates
+API
+Selling Blog
+/
+Shopping Blog
+Contact
+Help
+Legal
+Partners
+Press
+Webstores
+bCapital
+United States
+        / United States Dollar $
+Click to activate accessibility preferences
+Accessibility preferences
+SSL Secure Connection
+© 2026 Bonanza. All Rights Reserved
+Cookies and Tracking
+Accessibility
+Privacy Policy
+Terms of Use
+Bonanza uses cookies to ensure you get the best experience on our website.
+Learn more
+Accept all
+Reject non‑essential
+Do Not Sell/Share
+x
+Open in App
+Open in Browser
+
+FUENTE: Tazas matemáticas
+URL: https://www.bonanza.com/items/search?q=math+mug
+HTTP: 200
+Search  - Bonanza
+Sell on Bonanza
+Start selling in one click
+Add or edit items
+Import from Amazon
+Import from eBay
+Import from Etsy
+Import from Shopify
+Import from inventory file
+Open a Webstore
+Help
+Visit the help center
+Contact support
+Seller success tips
+Read the Bonanza Selling blog
+Read the Bonanza Shopping blog
+How Bonanza works
+Ask the community
+Submit an idea
+Log in
+Register
+Cart
+Women's Fashion
+Categories
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+Deals
+Under $100
+Under $50
+Shop all Fashion
+Top Brands
+Anthropologie
+Ann Taylor
+Banana Republic
+Calvin Klein
+Gap
+J. Crew
+Lululemon
+Michael Kors
+Nike
+Ralph Lauren
+Men's Fashion
+Categories
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+Deals
+Under $100
+Under $50
+Shop all Fashion
+Top Brands
+American Eagle
+Banana Republic
+Brooks Brothers
+Calvin Klein
+Gap
+J. Crew
+Levi's
+Nike
+Ralph Lauren
+Home & Garden
+Categories
+Bath
+Bedding
+Furniture
+Home Decor
+Home Improvement
+Kitchen & Dining
+Lamps & Ceiling Fans
+Yard, Garden & Outdoor
+Shop all Home & Garden
+Top Brands
+Craftsman
+Cuisinart
+DeWalt
+Dyson
+Keurig
+KitchenAid
+Kohler
+Lenox
+Health & Beauty
+Categories
+Bath & Body
+Dietary Supplements
+Fragrances
+Hair Care
+Health Care
+Makeup
+Nail Care
+Skin Care
+Vision Care
+Shop all Health & Beauty
+Top Brands
+Avon
+Clinique
+Dove
+Estee Lauder
+Lancôme
+L’Oreal
+Maybelline
+Neutrogena
+Olay
+Collectibles & Art
+Categories
+Art
+Collectibles
+Antiques
+Crafts
+Coins & Paper Money
+Entertainment Memorabilia
+Pottery & Glass
+Sports Memorabilia
+Stamps
+Shop all Collectibles
+Handbags
+Top Brands
+Ann Taylor
+Coach
+Fossil
+Kate Spade
+Louis Vuitton
+Michael Kors
+Vera Bradley
+Shop all Handbags
+Jewelry
+Categories
+Fashion Jewelry
+Fine Jewelry
+Handcrafted Jewelry
+Vintage Jewelry
+Wedding Jewelry
+Watches
+Shop all Jewelry
+Coupons
+More Categories
+Baby
+Books
+Business & Industrial
+Cameras And Photos
+Cell Phones & Accessories
+Computers & Tablets
+Consumer Electronics
+Digital Goods
+Dolls & Bears
+Movies & TV
+Everything Else
+Shop all Categories
+Music
+Musical Instruments & Gear
+Parts & Accessories
+Pet Supplies
+Specialty Services
+Sporting Goods
+Tickets & Experiences
+Toys & Hobbies
+Travel
+Video Games & Consoles
+Shop By
+Hand-Picked Lists
+Curated Guides
+New Items
+Freebies
+Log in
+Go
+Close
+Shop by Category
+Women's Fashion
+CATEGORIES
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+DEALS
+Under $100
+Under $50
+TOP BRANDS
+Anthropologie
+Ann Taylor
+Banana Republic
+Calvin Klein
+Gap
+J. Crew
+Lululemon
+Michael Kors
+Nike
+Ralph Lauren
+Men's Fashion
+CATEGORIES
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+DEALS
+Under $100
+Under $50
+TOP BRANDS
+American Eagle
+Banana Republic
+Brooks Brothers
+Calvin Klein
+Gap
+J. Crew
+Levi's
+Nike
+Ralph Lauren
+Home & Garden
+CATEGORIES
+Bath
+Bedding
+Furniture
+Home Decor
+Home Improvement
+Kitchen & Dining
+Lamps & Ceiling Fans
+Yard, Garden & Outdoor
+TOP BRANDS
+Craftsman
+Cuisinart
+DeWalt
+Dyson
+Keurig
+KitchenAid
+Kohler
+Lenox
+Health & Beauty
+CATEGORIES
+Bath & Body
+Dietary Supplements
+Fragrances
+Hair Care
+Health Care
+Makeup
+Nail Care
+Skin Care
+Vision Care
+TOP BRANDS
+Avon
+Clinique
+Dove
+Estee Lauder
+Lancôme
+L’Oreal
+Maybelline
+Neutrogena
+Olay
+Collectibles & Art
+CATEGORIES
+Art
+Collectibles
+Antiques
+Crafts
+Coins & Paper Money
+Entertainment Memorabilia
+Pottery & Glass
+Sports Memorabilia
+Stamps
+Handbags
+TOP BRANDS
+Ann Taylor
+Coach
+Fossil
+Kate Spade
+Louis Vuitton
+Michael Kors
+Vera Bradley
+Jewelry
+CATEGORIES
+Fashion Jewelry
+Fine Jewelry
+Handcrafted Jewelry
+Vintage Jewelry
+Wedding Jewelry
+Watches
+Coupons
+More Categories
+CATEGORIES
+Baby
+Books
+Business & Industrial
+Cameras And Photos
+Cell Phones & Accessories
+Computers & Tablets
+Consumer Electronics
+Digital Goods
+Dolls & Bears
+Movies & TV
+Everything Else
+Music
+Musical Instruments & Gear
+Parts & Accessories
+Pet Supplies
+Specialty Services
+Sporting Goods
+Tickets & Experiences
+Toys & Hobbies
+Travel
+Video Games & Consoles
+More Ways to Shop
+Hand-Picked Lists
+Curated Guides
+New Items
+Freebies
+Your Account
+Cart (0)
+Log In/Sign Up
+More
+Start Selling Online
+Help Center
+Contact Support
+About Bonanza
+Blog
+Top
+Filter search
+Your Selections:
+Revise Search
+Category
+Home
+»
+All Things Lighting
+Bringing Brilliant Light to Every Corner - Explore Our Collection and Buy the Ideal Lighting Solution for Your Space Today!
+Shop All
+Loading results...
+Go
+Loading filters
+Your Selections:
+Sort By
+Relevance
+Highest Price
+Lowest Price
+Newest
+Seller Rating
+View Style
+Start selling now
+Please enter a search term or
+pick a category
+to view listings.
+About
+Affiliates
+API
+Selling Blog
+/
+Shopping Blog
+Contact
+Help
+Legal
+Partners
+Press
+Webstores
+bCapital
+United States
+        / United States Dollar $
+Click to activate accessibility preferences
+Accessibility preferences
+SSL Secure Connection
+© 2026 Bonanza. All Rights Reserved
+Cookies and Tracking
+Accessibility
+Privacy Policy
+Terms of Use
+Bonanza uses cookies to ensure you get the best experience on our website.
+Learn more
+Accept all
+Reject non‑essential
+Do Not Sell/Share
+x
+Open in App
+Open in Browser
+
+FUENTE: Libros de arte matemático
+URL: https://www.bonanza.com/items/search?q=mathematical+art+book
+HTTP: 200
+Search  - Bonanza
+Sell on Bonanza
+Start selling in one click
+Add or edit items
+Import from Amazon
+Import from eBay
+Import from Etsy
+Import from Shopify
+Import from inventory file
+Open a Webstore
+Help
+Visit the help center
+Contact support
+Seller success tips
+Read the Bonanza Selling blog
+Read the Bonanza Shopping blog
+How Bonanza works
+Ask the community
+Submit an idea
+Log in
+Register
+Cart
+Women's Fashion
+Categories
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+Deals
+Under $100
+Under $50
+Shop all Fashion
+Top Brands
+Anthropologie
+Ann Taylor
+Banana Republic
+Calvin Klein
+Gap
+J. Crew
+Lululemon
+Michael Kors
+Nike
+Ralph Lauren
+Men's Fashion
+Categories
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+Deals
+Under $100
+Under $50
+Shop all Fashion
+Top Brands
+American Eagle
+Banana Republic
+Brooks Brothers
+Calvin Klein
+Gap
+J. Crew
+Levi's
+Nike
+Ralph Lauren
+Home & Garden
+Categories
+Bath
+Bedding
+Furniture
+Home Decor
+Home Improvement
+Kitchen & Dining
+Lamps & Ceiling Fans
+Yard, Garden & Outdoor
+Shop all Home & Garden
+Top Brands
+Craftsman
+Cuisinart
+DeWalt
+Dyson
+Keurig
+KitchenAid
+Kohler
+Lenox
+Health & Beauty
+Categories
+Bath & Body
+Dietary Supplements
+Fragrances
+Hair Care
+Health Care
+Makeup
+Nail Care
+Skin Care
+Vision Care
+Shop all Health & Beauty
+Top Brands
+Avon
+Clinique
+Dove
+Estee Lauder
+Lancôme
+L’Oreal
+Maybelline
+Neutrogena
+Olay
+Collectibles & Art
+Categories
+Art
+Collectibles
+Antiques
+Crafts
+Coins & Paper Money
+Entertainment Memorabilia
+Pottery & Glass
+Sports Memorabilia
+Stamps
+Shop all Collectibles
+Handbags
+Top Brands
+Ann Taylor
+Coach
+Fossil
+Kate Spade
+Louis Vuitton
+Michael Kors
+Vera Bradley
+Shop all Handbags
+Jewelry
+Categories
+Fashion Jewelry
+Fine Jewelry
+Handcrafted Jewelry
+Vintage Jewelry
+Wedding Jewelry
+Watches
+Shop all Jewelry
+Coupons
+More Categories
+Baby
+Books
+Business & Industrial
+Cameras And Photos
+Cell Phones & Accessories
+Computers & Tablets
+Consumer Electronics
+Digital Goods
+Dolls & Bears
+Movies & TV
+Everything Else
+Shop all Categories
+Music
+Musical Instruments & Gear
+Parts & Accessories
+Pet Supplies
+Specialty Services
+Sporting Goods
+Tickets & Experiences
+Toys & Hobbies
+Travel
+Video Games & Consoles
+Shop By
+Hand-Picked Lists
+Curated Guides
+New Items
+Freebies
+Log in
+Go
+Close
+Shop by Category
+Women's Fashion
+CATEGORIES
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+DEALS
+Under $100
+Under $50
+TOP BRANDS
+Anthropologie
+Ann Taylor
+Banana Republic
+Calvin Klein
+Gap
+J. Crew
+Lululemon
+Michael Kors
+Nike
+Ralph Lauren
+Men's Fashion
+CATEGORIES
+Clothing
+Shoes
+Accessories
+Vintage
+Formal & Wedding
+DEALS
+Under $100
+Under $50
+TOP BRANDS
+American Eagle
+Banana Republic
+Brooks Brothers
+Calvin Klein
+Gap
+J. Crew
+Levi's
+Nike
+Ralph Lauren
+Home & Garden
+CATEGORIES
+Bath
+Bedding
+Furniture
+Home Decor
+Home Improvement
+Kitchen & Dining
+Lamps & Ceiling Fans
+Yard, Garden & Outdoor
+TOP BRANDS
+Craftsman
+Cuisinart
+DeWalt
+Dyson
+Keurig
+KitchenAid
+Kohler
+Lenox
+Health & Beauty
+CATEGORIES
+Bath & Body
+Dietary Supplements
+Fragrances
+Hair Care
+Health Care
+Makeup
+Nail Care
+Skin Care
+Vision Care
+TOP BRANDS
+Avon
+Clinique
+Dove
+Estee Lauder
+Lancôme
+L’Oreal
+Maybelline
+Neutrogena
+Olay
+Collectibles & Art
+CATEGORIES
+Art
+Collectibles
+Antiques
+Crafts
+Coins & Paper Money
+Entertainment Memorabilia
+Pottery & Glass
+Sports Memorabilia
+Stamps
+Handbags
+TOP BRANDS
+Ann Taylor
+Coach
+Fossil
+Kate Spade
+Louis Vuitton
+Michael Kors
+Vera Bradley
+Jewelry
+CATEGORIES
+Fashion Jewelry
+Fine Jewelry
+Handcrafted Jewelry
+Vintage Jewelry
+Wedding Jewelry
+Watches
+Coupons
+More Categories
+CATEGORIES
+Baby
+Books
+Business & Industrial
+Cameras And Photos
+Cell Phones & Accessories
+Computers & Tablets
+Consumer Electronics
+Digital Goods
+Dolls & Bears
+Movies & TV
+Everything Else
+Music
+Musical Instruments & Gear
+Parts & Accessories
+Pet Supplies
+Specialty Services
+Sporting Goods
+Tickets & Experiences
+Toys & Hobbies
+Travel
+Video Games & Consoles
+More Ways to Shop
+Hand-Picked Lists
+Curated Guides
+New Items
+Freebies
+Your Account
+Cart (0)
+Log In/Sign Up
+More
+Start Selling Online
+Help Center
+Contact Support
+About Bonanza
+Blog
+Top
+Filter search
+Your Selections:
+Revise Search
+Category
+Home
+»
+All Things Lighting
+Bringing Brilliant Light to Every Corner - Explore Our Collection and Buy the Ideal Lighting Solution for Your Space Today!
+Shop All
+Loading results...
+Go
+Loading filters
+Your Selections:
+Sort By
+Relevance
+Highest Price
+Lowest Price
+Newest
+Seller Rating
+View Style
+Start selling now
+Please enter a search term or
+pick a category
+to view listings.
+About
+Affiliates
+API
+Selling Blog
+/
+Shopping Blog
+Contact
+Help
+Legal
+Partners
+Press
+Webstores
+bCapital
+United States
+        / United States Dollar $
+Click to activate accessibility preferences
+Accessibility preferences
+SSL Secure Connection
+© 2026 Bonanza. All Rights Reserved
+Cookies and Tracking
+Accessibility
+Privacy Policy
+Terms of Use
+Bonanza uses cookies to ensure you get the best experience on our website.
+Learn more
+Accept all
+Reject non‑essential
+Do Not Sell/Share
+x
+Open in App
+Open in Browser
+
+FUENTE: Ayuda oficial: tarifas
+URL: https://support.bonanza.com/hc/en-us/search?query=selling%20fees
+Consulta fallida: HTTPError
+
+FUENTE: Ayuda oficial: productos digitales
+URL: https://support.bonanza.com/hc/en-us/search?query=digital%20goods
+Consulta fallida: HTTPError
+root@ubuntu-4gb-hil-1:~#
